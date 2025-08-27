@@ -35,14 +35,14 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
 1. Stack:
    1. App should build with the latest version Next.js app router and follow Next.js best practices in every aspect
    2. Configure Eslint, Prettier, and Lint-Staged https\://nextjs.org/docs/app/api-reference/config/eslint
-   3. Use Static in all static pages, and ISR with all dynamic pages if possible
+   3. Use Static in all static pages, and ISR with all dynamic pages if possible.
    4. Use TypeScript with strict types everywhere https\://nextjs.org/docs/app/api-reference/config/typescript
    5. Use the latest Tailwind CSS and make the layout modern and catchy
    6. Use Cairo font with next/font/google
    7. Use next/dynamic, React.lazy() with Suspense when it’s needed
    8. Use MDX with all static pages (ex: articles, terms and conditions ... etc)
-   9. Database should be Drizzle with CloudFlare D1 database
-   10. Sentry integration for everything except logs.
+   9. Database should be CloudFlare D1 database with Drizzle ORM
+   10. Implement Sentry integration with Next.js, enable all Sentry features for everything except logs.
 2. Infrastructure
    1. Deployed on Cloudflare with OpenNext
       1. Configure all required Open-Next cache configurations to enable ISG
@@ -58,8 +58,10 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
 4. SEO
    1. All pages should implement solid Metadata and OG images
    2. All pages should have schema.org markup for the best SEO, use JSON-LD as per Next.js docs
+   3. Metadata and JSON-LD should respect user language
 5. Other NFRs
    1. Multilingual, layout, and content should be multilingual, and this should be considered in the routes, sitemaps, and database structure.
+   2. Sitemap should follow per Next.js best practices
 
 ### 1. The catalog
 
