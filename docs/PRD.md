@@ -14,11 +14,7 @@
 - AI-generated content, Schema.org, and Sitemap gonna be the main billers for better SEO.
 - Personalized emails for upsell service (Flight, accommodation, trips, etc.)
 
-## Revenue
-
-Expected to be post-revenue in phase 3
-
-### Streams
+## Revenue Streams
 
 1. Affiliation & Partnerships:
    1. Travel visa agencies
@@ -43,6 +39,12 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
    8. Use MDX with all static pages (ex: articles, terms and conditions ... etc)
    9. Database should be CloudFlare D1 database with Drizzle ORM
    10. Implement Sentry integration with Next.js, enable all Sentry features for everything except logs.
+   11. Use latest version of all dependencies and up to date code.
+   12. Use Cloudflare R2 for object storage.
+   13. Build an admin area to manage everything in the application and it's login with next-auth 5
+   14. User next-18next for multilingual
+   15. Content should be in multiple languages
+   17. All routes should have the language
 2. Infrastructure
    1. Deployed on Cloudflare with OpenNext
       1. Configure all required Open-Next cache configurations to enable ISG
@@ -52,6 +54,8 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
       2. Each GitHub release should deploy on production-domain.tld
       3. Each PullRequest should deploy on pr-PRNumber.staging-domain.tld
       4. Linting GitHub action to run tests and linting
+   3. Use wrangler.jsonc instead of the .toml file
+   4. 
 3. Analytics
    1. Integrate Next.js with GTM using @next/third-parties/google
    2. Integrate Next.js with Jitsu
@@ -61,7 +65,7 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
    3. Metadata and JSON-LD should respect user language
 5. Other NFRs
    1. Multilingual, layout, and content should be multilingual, and this should be considered in the routes, sitemaps, and database structure.
-   2. Sitemap should follow per Next.js best practices
+   2. Sitemap should follow per Next.js best practices https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#generating-a-sitemap-using-code-js-ts
 
 ### 1. The catalog
 
@@ -93,6 +97,7 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
 1. If there is a visa service provider for this visa type, show the apply button to open an external URL; if not, hide the button.
 2. Admin can CRUD visa Service Providers, and add the visa options provided by this provider.
    1. Each provider will have a URL that accepts some placeholders to be replaced on user click, for example https://visa-provider.com/apply?c={country}\&p={passport}
+   2. Add UTM query params for the url.
 
 ### 3. Destination Articles
 
