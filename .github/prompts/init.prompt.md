@@ -1,3 +1,6 @@
+---
+mode: agent
+---
 You are an expert senior full-stack engineer specializing in **Next.js App Router (latest version), NextAuth.js v5, Cloudflare, and TailwindCSS**. Build me a **production-ready travel visa application** with the following specifications. The output should be **final, working, and following best practices** with a **modern UI**.
 
 ## Application Overview
