@@ -1,0 +1,35 @@
+{
+  "HomePage": {
+    "title": "eVisa - Electronic Visa Processing",
+    "description": "Help users travel with minimal visa requirements through our centralized visa processing platform",
+    "welcome": "Welcome to eVisa",
+    "subtitle": "Your gateway to simplified visa processing"
+  },
+  "Hero": {
+    "headline": "Travel the World with Confidence",
+    "subheadline": "Check visa requirements instantly and streamline your travel planning",
+    "passportCountry": "Your Passport Country",
+    "destinationCountry": "Where do you want to go?",
+    "selectPassport": "Select your passport country",
+    "selectDestination": "Select destination",
+    "checkEligibility": "Check Eligibility",
+    "startApplication": "Start Application"
+  },
+  "Navigation": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "visaChecker": "Visa Checker",
+    "articles": "Articles",
+    "about": "About",
+    "contact": "Contact",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "login": "Login",
+    "register": "Register"
+  },
+  "Common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "notFound": "Page not found"
+  }
+}

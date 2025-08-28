@@ -343,3 +343,7 @@ npx husky init
 - Document management system
 
 This guide provides a comprehensive overview of the eVisa platform architecture and development practices. Always refer to this document when working on the project to maintain consistency and quality.
+
+- static pages should be implemented in mdx, like about, articles ... etc
+- All pages and functions should be functional, and no place holders
+- List the content from database if available instead of dummy data
