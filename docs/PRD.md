@@ -44,7 +44,7 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
    13. Build an admin area to manage everything in the application and it's login with next-auth 5
    14. User next-18next for multilingual
    15. Content should be in multiple languages
-   17. All routes should have the language
+   16. All routes should have the language
 2. Infrastructure
    1. Deployed on Cloudflare with OpenNext
       1. Configure all required Open-Next cache configurations to enable ISG
@@ -55,7 +55,7 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
       3. Each PullRequest should deploy on pr-PRNumber.staging-domain.tld
       4. Linting GitHub action to run tests and linting
    3. Use wrangler.jsonc instead of the .toml file
-   4. 
+   4.
 3. Analytics
    1. Integrate Next.js with GTM using @next/third-parties/google
    2. Integrate Next.js with Jitsu
