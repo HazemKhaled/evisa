@@ -1,9 +1,3 @@
----
-description: Next.js
-globs:
-alwaysApply: true
----
-
 # Frontend with Next.js
 
 You are an expert in TypeScript, Node.js, Next.js App Router, React, Redux Tailwind.
@@ -34,16 +28,16 @@ You provide accurate, factual, thoughtful answers, and are a genius at reasoning
 
 ## Next.js
 
-- Use latest version Next.js app router and follow Next.js best practices in every aspect.
+- Use latest version Next.js 15.4.6 app router and follow Next.js best practices in every aspect.
 - Keep maintaining code linting and style with Eslint & Prettier https\://nextjs.org/docs/app/api-reference/config/eslint
 - Use the right rendering strategy for your page depending on the needs
 - If a Google font used, make sure to use this package `next/font/google`
-- Use next/dynamic, React.lazy() with Suspense when it’s needed.
-- Use MDX with all static pages (ex: articles, terms and conditions ... etc)
+- Use next/dynamic, React.lazy() with Suspense when it's needed.
+- Use MDX with all static pages (ex: about, terms and conditions, articles, etc.)
 - Follow Next.js best practices in metadata, manifest.json, sitemap, JSON-LD, and robots.txt https://nextjs.org/docs/app/api-reference/file-conventions/metadata
 - All pages should include metadata and JSON-LD, should reflect the page content, and respect the page language.
 - Create and keep maintaining sitemap.xml, robots.txt, manifest.json
-- If mutilingual is required, use next-i18next
+- If multilingual is required, use next-intl 4.3.5
 
 ## TypeScript Usage
 
@@ -67,8 +61,11 @@ You provide accurate, factual, thoughtful answers, and are a genius at reasoning
 
 ## UI and Styling
 
-- Use Tailwind for components and styling.
+- Use Tailwind CSS v4 for components and styling.
 - Implement responsive design with Tailwind CSS; use a mobile-first approach.
+- Focus on normal, clean UI design - do not implement dark mode or theme switching.
+- Use Cairo font via `next/font/google` for Arabic support.
+- Use Lucide React 0.542.0 for consistent iconography.
 
 ## Performance Optimization
 
@@ -77,9 +74,66 @@ You provide accurate, factual, thoughtful answers, and are a genius at reasoning
 - Use dynamic loading for non-critical components.
 - Optimize images: use WebP format, include size data, implement lazy loading.
 
-# Git & Github
+## Content and Database
 
-## When creating commit messages
+- All pages and functions should be functional with no placeholders.
+- List content from database if available instead of dummy data.
+- Always add real content and seed the database with real content.
+- Use Drizzle ORM 0.44.5 with Cloudflare D1 SQLite database.
+- Follow established database schema patterns for destinations, visa types, and articles.
+
+## Internationalization
+
+- Use next-intl 4.3.5 for multilingual content and routing.
+- Full RTL support for RTL languages (Arabic).
+- Locale-based routing with `/[locale]/` structure.
+- Always use the `useTranslations` hook for text content.
+- Test both LTR and RTL layouts during development.
+
+## Project Structure
+
+Follow the established project structure:
+```
+src/
+├── app/                          # Next.js App Router
+│   ├── globals.css              # Global styles and design tokens
+│   ├── layout.tsx               # Root layout
+│   └── [locale]/                # Internationalized routes
+├── components/                   # Reusable components
+│   ├── layout/                  # Layout components
+│   └── ui/                      # Base UI components
+├── lib/                         # Utility libraries
+│   ├── db/                      # Database configuration
+│   └── utils.ts                 # Utility functions
+└── i18n/                        # Internationalization
+```
+
+## Development Commands
+
+- Use pnpm for package management
+- Development: `pnpm dev` (with Turbopack)
+- Build: `pnpm build`
+- Database: `pnpm db:generate`, `pnpm db:migrate`, `pnpm db:studio`
+- Code quality: `pnpm lint`, `pnpm format`
+
+## Error Handling and Monitoring
+
+- Implement proper error boundaries in React components
+- Use Sentry 10.7.0 for error tracking and performance monitoring
+- Implement proper error handling for database operations
+- Use TypeScript strict mode for better type safety
+
+## SEO and Metadata
+
+- Implement proper metadata for all pages
+- Use structured data (JSON-LD) for better search visibility
+- Ensure proper URL structures for internationalization
+- Generate dynamic sitemaps for destinations and articles
+- Use MDX for static content pages (about, articles, etc.)
+
+## Git & GitHub
+
+### When creating commit messages
 
 Use conventional commit message format as following:
 
@@ -91,7 +145,7 @@ Use conventional commit message format as following:
   - `fix(catalog): resolve null reference in address selection`
   - `docs(auth): update README with setup instructions`
 
-## When creating pull request subjects
+### When creating pull request subjects
 
 Use conventional commit for pull request subject as following:
 
@@ -102,7 +156,7 @@ Use conventional commit for pull request subject as following:
   - `feat(catalog): implement social login providers`
   - `fix(auth): add optional chaining to prevent null reference error`
 
-## When creating branch names
+### When creating branch names
 
 Use the following format for branch names:
 
@@ -113,10 +167,19 @@ Use the following format for branch names:
   - `chore`: For maintenance tasks.
 - **Description**: A brief, human-readable description of the task, using kebab-case.
 
-### Examples:
+#### Examples:
 
 - `feature/add-new-checkout-flow`
 - `bugfix/gtm-event-name-normalization`
 - `chore/move-to-pages`
 
 This convention ensures clarity and traceability in our development process.
+
+## Business Logic Phases
+
+- Phase 1: Visa Catalog (current focus)
+- Phase 2: Affiliate Integration
+- Phase 3: Content Strategy
+- Phase 4: In-house Services
+
+Always refer to CLAUDE.md for comprehensive project guidance and maintain consistency with the established architecture and patterns.
