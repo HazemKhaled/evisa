@@ -11,7 +11,7 @@
 ## Marketing
 
 - Depend on SEO mainly to generate leads.
-- AI-generated content, Schema.org, and Sitemap gonna be the main billers for better SEO.
+- AI-generated content, Schema.org, and Sitemap are gonna be the main billers for better SEO.
 - Personalized emails for upsell service (Flight, accommodation, trips, etc.)
 
 ## Revenue Streams
@@ -22,29 +22,24 @@
    3. Tourism trips
 2. In-house services: Observing the services that we affiliate with, to start providing the services ourselves.
 
-## Phases
-
-By decreasing time to market, and Lean iterations! Will ensure that I adopt and adjust rapidly.
-
-### 0. NFRs
+## NFRs
 
 1. Stack:
-   1. App should build with the latest version Next.js app router and follow Next.js best practices in every aspect
+   1. App should be built with the latest version Next.js app router and follow Next.js best practices in every aspect
    2. Configure Eslint, Prettier, and Lint-Staged https\://nextjs.org/docs/app/api-reference/config/eslint
    3. Use Static in all static pages, and ISR with all dynamic pages if possible.
    4. Use TypeScript with strict types everywhere https\://nextjs.org/docs/app/api-reference/config/typescript
-   5. Use the latest Tailwind CSS and make the layout modern and catchy
+   5. Use the latest Tailwind CSS and make the layout modern and catchy, simple and easy to navigate.
    6. Use Cairo font with next/font/google
    7. Use next/dynamic, React.lazy() with Suspense when it’s needed
    8. Use MDX with all static pages (ex: articles, terms and conditions ... etc)
    9. Database should be CloudFlare D1 database with Drizzle ORM
    10. Implement Sentry integration with Next.js, enable all Sentry features for everything except logs.
-   11. Use latest version of all dependencies and up to date code.
+   11. Use the latest version of all dependencies and up-to-date code.
    12. Use Cloudflare R2 for object storage.
-   13. Build an admin area to manage everything in the application and it's login with next-auth 5
-   14. User next-18next for multilingual
-   15. Content should be in multiple languages
-   16. All routes should have the language
+   13. User next-18next for multilingual
+   14. Content should be in multiple languages
+   15. All routes should have the language
 2. Infrastructure
    1. Deployed on Cloudflare with OpenNext
       1. Configure all required Open-Next cache configurations to enable ISG
@@ -62,10 +57,84 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
 4. SEO
    1. All pages should implement solid Metadata and OG images
    2. All pages should have schema.org markup for the best SEO, use JSON-LD as per Next.js docs
-   3. Metadata and JSON-LD should respect user language
+   3. Metadata and JSON-LD should respect user's language
 5. Other NFRs
    1. Multilingual, layout, and content should be multilingual, and this should be considered in the routes, sitemaps, and database structure.
-   2. Sitemap should follow per Next.js best practices https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#generating-a-sitemap-using-code-js-ts
+   2. Sitemap should follow Next.js best practices https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#generating-a-sitemap-using-code-js-ts
+
+## Design Requirements
+
+1. **Navigation (Header)**
+   - Sticky top navigation bar.
+   - Logo on the left (or right in RTL).
+   - Main navigation links:
+     - Home
+     - Destinations
+     - Visa Checker
+     - Articles / Blog
+     - About Us
+     - Contact Us
+     - Terms of Service
+     - Privacy Policy
+   - Language switcher (dropdown with flags, switches between LTR/RTL layouts automatically).
+   - Login / Register buttons.
+
+2. **Hero Section**
+   - Large, modern hero with background illustration/image.
+   - Headline + subheadline (multilingual).
+   - Search form: (Passport Country + Destination Country → Check Eligibility).
+   - Primary CTA: "Start Your Application".
+
+3. **Homepage Sections**
+   - **How it Works**: 3–4 steps (icon + text) explaining the process.
+   - **Top Destinations**: Grid of cards with flags/images.
+   - **Why Choose Us**: Feature highlights (speed, trust, global reach).
+   - **Testimonials**: Carousel with user feedback.
+   - **Latest Articles**: Blog previews with images and links.
+   - **Newsletter Signup**: Email capture with CTA.
+
+4. **Footer**
+   - Multi-column footer with:
+     - **Company**: About, Careers, Press.
+     - **Help**: FAQs, Support, Terms & Conditions, Privacy Policy.
+     - **Services**: Visa Checker, Document Center, Articles.
+     - **Contact Info**: Email, Phone, Office Address, Social Media icons.
+   - Copyright text.
+   - Language + currency switcher.
+
+5. **Contact Us Page**
+   - Simple form with fields: Name, Email, Subject, Message.
+   - Embedded Google Map for office location.
+   - Contact details (phone, email, address).
+
+6. **About Us Page**
+   - Mission statement.
+   - Team members section (avatars + bios).
+   - Timeline or story section.
+
+7. **Terms of Service Page**
+   - Structured sections for user agreements, acceptable use, disclaimers, and governing law.
+   - Easy-to-read typography and spacing.
+
+8. **Privacy Policy Page**
+   - Sections for data collection, usage, cookies, user rights, and GDPR compliance.
+   - Clear and transparent presentation.
+
+9. **Responsive & RTL**
+   - Must be fully responsive (mobile-first, tablet, desktop).
+   - RTL support for Arabic: entire layout, text alignment, and navigation flipped.
+   - Use `dir="rtl"` dynamically when Arabic is selected.
+
+10. **UI/UX Style**
+
+- Modern, clean design with generous whitespace.
+- Rounded corners, soft shadows.
+- Tailwind color palette with primary/secondary brand colors.
+- Consistent iconography (Lucide icons or Heroicons).
+
+## Phases
+
+By decreasing time to market, and Lean iterations! Will ensure that I adopt and adjust rapidly.
 
 ### 1. The catalog
 
@@ -95,14 +164,14 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
 ### 2. Affiliation travel visas
 
 1. If there is a visa service provider for this visa type, show the apply button to open an external URL; if not, hide the button.
-2. Admin can CRUD visa Service Providers, and add the visa options provided by this provider.
+2. Service Providers
    1. Each provider will have a URL that accepts some placeholders to be replaced on user click, for example https://visa-provider.com/apply?c={country}\&p={passport}
    2. Add UTM query params for the url.
 
 ### 3. Destination Articles
 
 1. Every destination should have some articles
-2. List latest articles in every destination page with a more button to open all articles as a blog
+2. List the latest articles in every destination page with a more button to open all articles as a blog
    1. Articles list page route /d/{DESTINATION_COUNTRY}/a
    2. Article details page /d/{DESTINATION_COUNTRY}/a/{ARTICLE_SLUG}
 3. Add all ar
