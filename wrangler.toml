@@ -1,0 +1,42 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "evisa"
+main = "src/index.js"
+compatibility_date = "2024-08-31"
+account_id = "5eb75f6fe4b39d922e963bf571acc93a"
+
+# Database migrations directory
+[migrations]
+dir = "drizzle"
+
+# D1 Database for local development
+[[d1_databases]]
+binding = "DB"
+database_name = "evisa-db-local"
+database_id = "ed2dd914-c369-4c97-b716-3f35a63c4a00"
+preview_database_id = "ed2dd914-c369-4c97-b716-3f35a63c4a00"
+
+# KV namespaces (for future use with caching)
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "your-kv-namespace-id"
+# preview_id = "your-preview-kv-namespace-id"
+
+# Environment variables (for production deployment)
+[vars]
+ENVIRONMENT = "development"
+
+# Build configuration for Next.js
+[build]
+command = "npm run build"
+
+# OpenNext configuration for Cloudflare Pages
+[env.production]
+compatibility_date = "2024-08-31"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "evisa-db-prod"
+database_id = "your-production-database-id"
+
+[env.production.vars]
+ENVIRONMENT = "production"
