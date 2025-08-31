@@ -1,103 +1,123 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20">
-      <main className="row-start-2 flex flex-col items-center gap-[32px] sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-center font-mono text-sm/6 sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="rounded bg-black/[.05] px-1 py-0.5 font-mono font-semibold dark:bg-white/[.06]">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="bg-background min-h-screen font-sans">
+      {/* Hero Section */}
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl text-center">
+          <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+            Travel with <span className="text-primary-600">Minimal Visa</span>{" "}
+            Requirements
+          </h1>
+          <p className="text-muted-foreground mx-auto mb-8 max-w-2xl text-xl">
+            Simplify your travel with our comprehensive visa processing
+            platform. Get destination-based visa information, eligibility
+            checking, and seamless application services.
+          </p>
 
-        <div className="flex flex-col items-center gap-4 sm:flex-row">
-          <a
-            className="bg-foreground text-background flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent px-4 text-sm font-medium transition-colors hover:bg-[#383838] sm:h-12 sm:w-auto sm:px-5 sm:text-base dark:hover:bg-[#ccc]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="flex h-10 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-[#f2f2f2] sm:h-12 sm:w-auto sm:px-5 sm:text-base md:w-[158px] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+            <button className="bg-primary-600 hover:bg-primary-700 rounded-lg px-6 py-3 font-medium text-white transition-colors">
+              Start Your Application
+            </button>
+            <button className="border-border text-foreground hover:bg-accent rounded-lg border px-6 py-3 font-medium transition-colors">
+              Check Eligibility
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex flex-wrap items-center justify-center gap-[24px]">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="bg-muted py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+              How It Works
+            </h2>
+            <p className="text-muted-foreground mx-auto max-w-2xl">
+              Get your visa in three simple steps with our streamlined process
+            </p>
+          </div>
+
+          <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-3">
+            <div className="bg-card rounded-lg border p-6 text-center shadow-sm">
+              <div className="bg-primary-100 mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg">
+                <span className="text-primary-600 text-xl font-bold">1</span>
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">Check Eligibility</h3>
+              <p className="text-muted-foreground">
+                Enter your passport country and destination to see visa
+                requirements
+              </p>
+            </div>
+
+            <div className="bg-card rounded-lg border p-6 text-center shadow-sm">
+              <div className="bg-secondary-100 mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg">
+                <span className="text-secondary-600 text-xl font-bold">2</span>
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">Submit Documents</h3>
+              <p className="text-muted-foreground">
+                Upload required documents through our secure platform
+              </p>
+            </div>
+
+            <div className="bg-card rounded-lg border p-6 text-center shadow-sm">
+              <div className="bg-primary-100 mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg">
+                <span className="text-primary-600 text-xl font-bold">3</span>
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">Get Your Visa</h3>
+              <p className="text-muted-foreground">
+                Receive your processed visa and travel with confidence
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+              Why Choose Our Platform
+            </h2>
+            <p className="text-muted-foreground mx-auto max-w-2xl">
+              Trusted by thousands of travelers worldwide for reliable visa
+              processing
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="text-center">
+              <div className="bg-primary-600 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+                <span className="text-2xl font-bold text-white">⚡</span>
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">Fast Processing</h3>
+              <p className="text-muted-foreground">
+                Get your visa processed quickly with our efficient system
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-secondary-500 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+                <span className="text-2xl font-bold text-white">🛡️</span>
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">Secure & Trusted</h3>
+              <p className="text-muted-foreground">
+                Your data is protected with enterprise-grade security
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-primary-600 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+                <span className="text-2xl font-bold text-white">🌍</span>
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">Global Coverage</h3>
+              <p className="text-muted-foreground">
+                Supporting visa applications for destinations worldwide
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
