@@ -53,7 +53,7 @@
    4.
 3. Analytics
    1. Integrate Next.js with GTM using @next/third-parties/google
-   2. Integrate Next.js with Jitsu
+   2. Integrate Next.js with Jitsu via `@jitsu/jitsu-react` npm
 4. SEO
    1. All pages should implement solid Metadata and OG images
    2. All pages should have schema.org markup for the best SEO, use JSON-LD as per Next.js docs
@@ -122,8 +122,8 @@
 
 9. **Responsive & RTL**
    - Must be fully responsive (mobile-first, tablet, desktop).
-   - RTL support for Arabic: entire layout, text alignment, and navigation flipped.
-   - Use `dir="rtl"` dynamically when Arabic is selected.
+   - RTL support: entire layout, text alignment, and navigation flipped.
+   - Use `dir="rtl"` dynamically when RTL language is selected.
 
 10. **UI/UX Style**
 
