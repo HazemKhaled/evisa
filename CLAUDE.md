@@ -8,7 +8,7 @@ The eVisa platform helps users travel with minimal visa requirements through a c
 
 **Key Features:**
 
-- Multilingual support (English/Arabic) with RTL layout
+- Multilingual support with RTL layout
 - Destination-based visa catalog with eligibility checking
 - Affiliate integration with visa service providers
 - Article system for destination content
@@ -25,7 +25,7 @@ The eVisa platform helps users travel with minimal visa requirements through a c
 ### Styling & UI
 
 - **Tailwind CSS v4** for styling with custom design tokens
-- **Cairo font** via `next/font/google` for Arabic support
+- **Cairo font** via `next/font/google`
 - **Lucide React 0.542.0** for consistent iconography
 - Custom component library with reusable UI components
 
@@ -45,7 +45,7 @@ The eVisa platform helps users travel with minimal visa requirements through a c
 
 - **Sentry 10.7.0** for error tracking and performance monitoring
 - **Google Tag Manager** via `@next/third-parties`
-- **Jitsu 3.1.5** for analytics collection
+- **Jitsu** for analytics collection via `@jitsu/jitsu-react` npm
 
 ### Deployment & Infrastructure
 
@@ -121,8 +121,6 @@ The application uses a comprehensive database schema designed for visa catalog m
 :root {
   --primary: #0066cc; /* Primary brand blue */
   --secondary: #00b386; /* Secondary brand green */
-  --primary-dark: #004d99; /* Darker primary for hover states */
-  --primary-light: #3399ff; /* Lighter primary for backgrounds */
 }
 ```
 
@@ -164,7 +162,7 @@ export const routing = defineRouting({
 
 - Dynamic `dir` attribute based on locale in layout
 - RTL-aware CSS classes using Tailwind's directional utilities
-- Proper text alignment and layout flipping for Arabic
+- Proper text alignment and layout flipping for RTL languages
 - Icon positioning adjustments for RTL layouts
 
 ### Translation Structure
@@ -305,7 +303,7 @@ npx husky init
 
 ### RTL Layout Issues
 
-- Always test Arabic layout changes
+- Always test RTL layout changes
 - Use `rtl:` prefixes for RTL-specific styles
 - Be mindful of icon and button positioning in RTL mode
 
@@ -347,3 +345,5 @@ This guide provides a comprehensive overview of the eVisa platform architecture 
 - static pages should be implemented in mdx, like about, articles ... etc
 - All pages and functions should be functional, and no place holders
 - List the content from database if available instead of dummy data
+- Always add real content and seed the database with real content in the database
+- Don't implement mode, focus on nice normal UI
