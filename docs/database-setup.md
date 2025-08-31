@@ -96,7 +96,7 @@ The eVisa platform uses three main tables:
 ### Migration Issues
 
 - Check that migration files exist in `./drizzle/` directory
-- Verify database binding in `wrangler.toml`
+- Verify database binding in `wrangler.jsonc`
 - Use database ID or name consistently
 
 ### Local Development
