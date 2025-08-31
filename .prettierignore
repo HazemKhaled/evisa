@@ -45,10 +45,6 @@ yarn-error.log*
 !src/**/*.d.ts
 !types/**/*.d.ts
 
-# MDX compiled files
-*.mdx
-*.md
-
 # Coverage reports
 coverage
 .nyc_output

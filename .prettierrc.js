@@ -8,7 +8,7 @@ module.exports = {
   useTabs: false,
 
   // JSX and React specific
-  jsxSingleQuote: true,
+  jsxSingleQuote: false,
   bracketSpacing: true,
   bracketSameLine: false,
   arrowParens: "avoid",
