@@ -1,3 +1,7 @@
+---
+alwaysApply: true
+---
+
 # Frontend with Next.js
 
 You are an expert in TypeScript, Node.js, Next.js App Router, React, Redux Tailwind.
@@ -64,7 +68,7 @@ You provide accurate, factual, thoughtful answers, and are a genius at reasoning
 - Use Tailwind CSS v4 for components and styling.
 - Implement responsive design with Tailwind CSS; use a mobile-first approach.
 - Focus on normal, clean UI design - do not implement dark mode or theme switching.
-- Use Cairo font via `next/font/google` for Arabic support.
+- Use Cairo font via `next/font/google`.
 - Use Lucide React 0.542.0 for consistent iconography.
 
 ## Performance Optimization
@@ -85,7 +89,7 @@ You provide accurate, factual, thoughtful answers, and are a genius at reasoning
 ## Internationalization
 
 - Use next-intl 4.3.5 for multilingual content and routing.
-- Full RTL support for RTL languages (Arabic).
+- Full RTL support for RTL languages.
 - Locale-based routing with `/[locale]/` structure.
 - Always use the `useTranslations` hook for text content.
 - Test both LTR and RTL layouts during development.
