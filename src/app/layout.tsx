@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cairo, Geist_Mono } from "next/font/google";
+import { getTextDirection } from "@/lib/utils";
 import "./globals.css";
 
 // Cairo font for Arabic, English, and other supported languages
@@ -72,8 +73,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // For now default to English, but this will be dynamic with i18n
+  const locale = "en-US";
+  const direction = getTextDirection(locale);
+
   return (
-    <html lang="en" dir="ltr" className="h-full">
+    <html lang="en" dir={direction} className="h-full">
       <body
         className={`${cairo.variable} ${geistMono.variable} bg-background text-foreground min-h-full font-sans antialiased`}
       >
