@@ -1,96 +1,82 @@
 # eVisa Platform - Claude Development Guide
 
-This document provides comprehensive guidance for working on the eVisa platform, a multilingual travel visa processing application built with modern web technologies.
+This document provides comprehensive guidance for working on the eVisa platform, a multilingual travel visa processing application built with modern web technologies. Always refer to this document when working on the project to maintain consistency and quality.
 
 ## Project Overview
 
-The eVisa platform helps users travel with minimal visa requirements through a centralized visa processing platform. It features destination-based visa catalogs, affiliate partnerships with visa service providers, and comprehensive SEO optimization.
+The eVisa platform helps users travel with minimal visa requirements through a centralized visa processing platform. It features destination-based visa catalogs, and comprehensive SEO optimization.
 
 **Key Features:**
 
 - Multilingual support with RTL layout
 - Destination-based visa catalog with eligibility checking
-- Affiliate integration with visa service providers
-- Article system for destination content
+- Blog for destination content
 - Modern, responsive design with accessibility features
 
 ## Technology Stack
 
+Use latest compatible versions from all dependencies, and never use old version without confirmation.
+
 ### Core Framework
 
-- **Next.js 15.4.6** with App Router and Turbopack for development
-- **React 19.1.0** for UI components
-- **TypeScript 5** with strict mode for type safety
+- **Next.js** with App Router and Turbopack for development, follow Next.js best practices in every aspect
+- **React**
+- **TypeScript** with strict mode for type safety
 
 ### Styling & UI
 
-- **Tailwind CSS v4** for styling with custom design tokens
-- **Cairo font** via `next/font/google`
-- **Lucide React 0.542.0** for consistent iconography
+- **Tailwind CSS** latest version for styling with custom design tokens
+- **Cairo font** Google Fonts via `next/font/google`
 - Custom component library with reusable UI components
 
 ### Database & Backend
 
-- **Drizzle ORM 0.44.5** with Cloudflare D1 SQLite database
-- **Drizzle Kit 0.31.4** for schema management and migrations
-- Well-structured schema for destinations, visa types, and articles
+- **Drizzle ORM** with Cloudflare D1 SQLite database
+- **Drizzle Kit** for schema management and migrations
+- Well-structured schema for destinations, visa types, and blog
 
 ### Internationalization
 
-- **next-intl 4.3.5** for multilingual content and routing
+- **next-i18next** for multilingual content and routing
 - Full RTL support for RTL languages
 - Locale-based routing with `/[locale]/` structure
+- Home page should be English
+- Support the following languages (English, Spanish, Arabic, Portuguese, Russian, German, French, Italian)
 
 ### Analytics & Monitoring
 
-- **Sentry 10.7.0** for error tracking and performance monitoring
+- **Sentry** for error tracking and performance monitoring
 - **Google Tag Manager** via `@next/third-parties`
 - **Jitsu** for analytics collection via `@jitsu/jitsu-react` npm
 
 ### Deployment & Infrastructure
 
 - **Cloudflare** deployment via **OpenNext.js**
-- **Wrangler 4.33.0** for Cloudflare Workers management
+- **Wrangler** for Cloudflare Workers management
 - **Cloudflare R2** for object storage (configured but not yet implemented)
+- **Cloudflare D1** for database
+
+### CI/CD with OpenNext & Github Actions
+
+- Follow OpenNext for CloudFlare to configure build and deploy the application https://opennext.js.org/cloudflare/howtos/dev-deploy
+- Configure SSG https://opennext.js.org/cloudflare/caching#ssg-site
+- Configure Cloudflare Image Optimization https://opennext.js.org/cloudflare/howtos/image
+- Static assets for public folder https://opennext.js.org/cloudflare/howtos/assets
+- `main` branch should deploy on staging-domain.tld
+- Each GitHub release should deploy on production-domain.tld
+- Each Pull Request should deploy on pr-PRNumber.staging-domain.tld
+- Another GitHub Action to run tests and linting
+- Use wrangler.jsonc instead of the .toml file
 
 ### Code Quality
 
+https://nextjs.org/docs/app/api-reference/config/eslint
+
 - **ESLint 9** with Next.js and Prettier configurations
-- **Prettier 3.6.2** for code formatting
-- **Husky 9.1.7** and **lint-staged 16.1.5** for pre-commit hooks
+- **Prettier** for code formatting
+- **Husky** and **lint-staged** for pre-commit hooks
 - TypeScript strict mode with comprehensive type checking
-
-## Project Structure
-
-```
-src/
-├── app/                          # Next.js App Router
-│   ├── globals.css              # Global styles and design tokens
-│   ├── layout.tsx               # Root layout
-│   └── [locale]/                # Internationalized routes
-│       ├── layout.tsx           # Locale-specific layout
-│       └── page.tsx             # Homepage
-├── components/                   # Reusable components
-│   ├── layout/                  # Layout components
-│   │   ├── Header.tsx           # Navigation header with language switcher
-│   │   └── Hero.tsx             # Hero section with visa checker form
-│   └── ui/                      # Base UI components
-│       ├── Button.tsx           # Button component with variants
-│       ├── Card.tsx             # Card component
-│       └── LanguageSwitcher.tsx # Language toggle component
-├── lib/                         # Utility libraries
-│   ├── analytics.tsx            # GTM and Jitsu providers
-│   ├── db/                      # Database configuration
-│   │   ├── index.ts             # Database connection
-│   │   └── schema.ts            # Drizzle schema definitions
-│   └── utils.ts                 # Utility functions
-├── i18n/                        # Internationalization
-│   ├── routing.ts               # Routing configuration
-│   └── request.ts               # Request handling for i18n
-├── local/                      # Translation files
-├── middleware.ts                # Next.js middleware for i18n
-└── instrumentation.ts           # Sentry instrumentation
-```
+- **Jest** for unit tests, don't cover UI, just cover database, API calls, Next.js actions and any non-UI code
 
 ## Database Schema
 
@@ -98,65 +84,88 @@ The application uses a comprehensive database schema designed for visa catalog m
 
 ### Core Tables
 
-- **destinations**: Countries/destinations with multilingual names and descriptions
+- **countries**: Used as a destinations and passport issuing with multilingual names and descriptions (See countries with all countries, and translate names in all required languages)
 - **visaTypes**: Different visa options for each destination
-- **passportCountries**: Countries that issue passports
-- **visaEligibility**: Many-to-many relationship defining visa eligibility
-- **visaServiceProviders**: External visa service providers for affiliate integration
-- **visaProviderMappings**: Which providers handle which visa types
-- **articles**: Destination-based content articles
+- **visaEligibility**: Many-to-many relationship defining visa eligibility between destination, passport and visa
 
 ### Key Features
 
-- Full multilingual support with separate table languages
-- Soft delete capabilities with `isActive` flags
-- Automatic timestamps with `createdAt` and `updatedAt`
+- Follow Drizzle bets practices https://orm.drizzle.team/docs/overview
+- Full multilingual support for strings like name, description ... etc
+- Soft delete capabilities with `deleted_at` flags
+- Automatic timestamps with `created_at` and `updated_a_t`
 - Proper foreign key relationships and data integrity
 
-## Component Library & Design System
+## Design System & UI
 
-### Design Tokens (globals.css)
+### Navigation (Header)
 
-```css
-:root {
-  --primary: #0066cc; /* Primary brand blue */
-  --secondary: #00b386; /* Secondary brand green */
-}
-```
+- Sticky top navigation bar.
+- Logo on the left, on click open home
+- Main navigation links:
+  - Home
+  - Destinations
+  - Travel Blog
 
-### Component Architecture
+### Hero Section
 
-- **Button**: Comprehensive button component with variants (primary, secondary, outline, ghost) and loading states
-- **Card**: Flexible card component with consistent styling
-- **Header**: Sticky navigation with responsive mobile menu and language switcher
-- **Hero**: Main hero section with visa checker form
-- **LanguageSwitcher**: Dropdown component for language selection with RTL support
+- Large, modern hero with background illustration/image.
+- Headline + sub-headline.
+- Search form: (Passport Country + Destination Country → Check Eligibility).
+- Primary CTA: "Start Your Application".
 
-### Styling Guidelines
+### Homepage Sections
 
-- Use Tailwind utility classes for styling
-- Leverage CSS custom properties for consistent theming
-- Mobile-first responsive design approach
-- RTL support with directional classes and layout adjustments
+- **How it Works**: 3–4 steps (icon + text) explaining the process.
+- **Top Destinations**: Grid of cards with flags/images.
+- **Why Choose Us**: Feature highlights (speed, trust, global reach).
+- **Latest Posts**: Blog posts previews with images and links.
 
-## Internationalization & RTL Support
+### Footer
 
-### Language Configuration
+- Multi-column footer with:
+  - **Company**: About, Contact Us, Terms & Conditions, Privacy Policy.
+  - **Services**: Visa Checker, Document Center, Travel Blog.
+  - **Contact Info**: Email, Phone, Office Address, Social Media icons.
+- Copyright text.
+- Language switcher.
 
-```typescript
-// src/i18n/routing.ts
-export const routing = defineRouting({
-  locales: ["en", "ar"],
-  defaultLocale: "en",
-  pathnames: {
-    "/": "/",
-    "/about": {
-      en: "/about",
-      ar: "/حول",
-    },
-  },
-});
-```
+### Contact Us Page
+
+- Simple form with fields: Name, Email, Phone, reason (question, partnership, other), Subject, Message.
+- 3 lines welcome messages for questions, and partnerships.
+
+### About Us Page
+
+- Mission statement.
+- Team members section (avatars + bios).
+- Timeline or story section.
+
+### Terms of Service Page
+
+- Structured sections for user agreements, acceptable use, disclaimers, and governing law.
+- Easy-to-read typography and spacing.
+
+### Privacy Policy Page
+
+- Sections for data collection, usage, cookies, user rights, and GDPR compliance.
+- Clear and transparent presentation.
+
+### Responsive & multilingual
+
+- Must be fully responsive (mobile-first, tablet, desktop).
+- RTL support: entire layout, text alignment, and navigation flipped.
+- Use `dir="rtl"` dynamically when RTL language is selected.
+- No dark mode required.
+- All static strings should be come from language file.
+- All static SEO metadata should com from language files.
+
+### UI/UX Style
+
+- Modern, clean design with generous whitespace.
+- Rounded corners, soft shadows.
+- Tailwind color palette with primary/secondary brand colors.
+- Consistent iconography (Lucide icons or Heroicons).
 
 ### RTL Implementation
 
@@ -165,20 +174,12 @@ export const routing = defineRouting({
 - Proper text alignment and layout flipping for RTL languages
 - Icon positioning adjustments for RTL layouts
 
-### Translation Structure
+### Styling Guidelines
 
-```json
-{
-  "Hero": {
-    "headline": "Travel the World with Confidence",
-    "subheadline": "Check visa requirements instantly"
-  },
-  "Navigation": {
-    "home": "Home",
-    "destinations": "Destinations"
-  }
-}
-```
+- Use Tailwind utility classes for styling
+- Leverage CSS custom properties for consistent theming
+- Mobile-first responsive design approach
+- RTL support with directional classes and layout adjustments
 
 ## Development Commands
 
@@ -219,7 +220,7 @@ pnpm cf-typegen         # Generate Cloudflare types
 
 ### Code Style
 
-- Use TypeScript with strict mode enabled
+- Use TypeScript with strict types, use generic types if needed, and try not to use `any`
 - Follow Next.js App Router conventions
 - Implement proper error boundaries and loading states
 - Use server components by default, client components only when needed
@@ -245,13 +246,26 @@ pnpm cf-typegen         # Generate Cloudflare types
 - Implement proper caching strategies
 - Use dynamic imports for code splitting when appropriate
 - Optimize bundle size with proper tree shaking
+- Use next/dynamic, React.lazy() with Suspense when it’s needed
 
 ### SEO Considerations
 
 - Implement proper metadata for all pages
 - Use structured data (JSON-LD) for better search visibility
+- All Metadata adn JSON-LD should come from localized database content or translation files
 - Ensure proper URL structures for internationalization
-- Generate dynamic sitemaps for destinations and articles
+- Generate XML sitemap index that include each destination sitemap
+- Generate sitemap per each destination including all pages related to this destination, blog, visas
+-
+
+## MDX
+
+- Follow Next.js guide for MDX pages https://nextjs.org/docs/app/guides/mdx
+- use remark-gfm npm remark and rehype
+- Use gray-matter package to support Frontmatter with Next.js
+  - Each mdx pages should include SEO required info title, description meta tags, ... etc
+  - Each mdx blog post has extras like destination, passport (optional), related visas (optional)
+- Blog pages should be in blog folder and each language should have it's own sub folder blog/ar, blog/en, blog/fr
 
 ## Testing & Quality Assurance
 
@@ -274,7 +288,7 @@ pnpm cf-typegen         # Generate Cloudflare types
 
 - Deploy via OpenNext.js for optimal Cloudflare compatibility
 - Use Cloudflare D1 for database
-- Leverage Cloudflare R2 for object storage (when implemented)
+- Leverage Cloudflare R2 for object storage
 - Configure proper caching strategies
 
 ### Environment Management
@@ -284,14 +298,6 @@ pnpm cf-typegen         # Generate Cloudflare types
 - Type-safe environment variables with TypeScript
 
 ## Common Issues & Solutions
-
-### Sentry Dependencies
-
-If you encounter Sentry-related import warnings, ensure these packages are installed:
-
-```bash
-pnpm add import-in-the-middle require-in-the-middle
-```
 
 ### Husky Setup
 
@@ -309,42 +315,11 @@ npx husky init
 
 ### TypeScript Strict Mode
 
-- Enable strict mode in tsconfig.json for better type safety
+- Use strict Eslint rules to prevent use any
 - Use proper type definitions for all props and state
 - Implement proper error handling with typed catch blocks
 
-## Business Logic & Development Phases
+### Other
 
-### Phase 1: Visa Catalog (Current)
-
-- Destination-based catalog with search by country and passport
-- Visa options display with fees, validity, requirements
-- SEO-friendly URLs and comprehensive sitemap structure
-- Subdomain strategy (e.g., uae.domain.tld, usa.domain.tld)
-
-### Phase 2: Affiliate Integration
-
-- Integration with visa service providers
-- Dynamic URLs with placeholders and UTM tracking
-- Admin CRUD for visa service providers
-
-### Phase 3: Content Strategy
-
-- Destination articles for each country
-- Blog-style article listings and detail pages
-- AI-generated content for SEO optimization
-
-### Phase 4: In-house Services
-
-- Direct visa processing capabilities
-- Payment integration
-- Document management system
-
-This guide provides a comprehensive overview of the eVisa platform architecture and development practices. Always refer to this document when working on the project to maintain consistency and quality.
-
-- static pages should be implemented in mdx, like about, articles ... etc
-- All pages and functions should be functional, and no place holders
-- List the content from database if available instead of dummy data
-- Always add real content and seed the database with real content in the database
-- Don't implement mode, focus on nice normal UI
-- 
+- Static pages & blog should be implemented in mdx
+- Always sed a real content in both db and static pages

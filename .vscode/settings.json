@@ -2,5 +2,10 @@
   "files.associations": {
     "wrangler.json": "jsonc"
   },
-  "cSpell.words": ["Jitsu", "upsell"]
+  "cSpell.words": [
+    "Frontmatter",
+    "Jitsu",
+    "Turbopack",
+    "upsell"
+  ]
 }
