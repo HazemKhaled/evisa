@@ -11,6 +11,7 @@ export function createDrizzleD1(d1: D1Database): Database {
 }
 
 // Extend globalThis interface for D1 database
+// Note: 'var' is required for global scope extension in TypeScript
 declare global {
   var DB: D1Database | undefined;
 }

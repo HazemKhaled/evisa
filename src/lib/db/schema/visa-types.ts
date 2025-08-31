@@ -25,8 +25,8 @@ export const visaTypes = sqliteTable("visa_types", {
   isMultiEntry: integer("is_multi_entry", { mode: "boolean" })
     .default(false)
     .notNull(),
-  requirements: text("requirements", { mode: "json" }), // JSON array of requirements
-  documents: text("documents", { mode: "json" }), // JSON array of required documents
+  requirements: text("requirements", { mode: "json" }).$type<string[]>(), // JSON array of requirement strings
+  documents: text("documents", { mode: "json" }).$type<string[]>(), // JSON array of document type strings
   isActive: integer("is_active", { mode: "boolean" }).default(true).notNull(),
   createdAt: integer("created_at", { mode: "timestamp" })
     .default(sql`(unixepoch())`)
@@ -62,6 +62,10 @@ export const visaTypesI18n = sqliteTable(
     };
   }
 );
+
+// Type definitions for JSON fields
+export type VisaRequirement = string; // e.g., "Valid passport", "Passport photos"
+export type DocumentType = string; // e.g., "passport_copy", "photos", "flight_booking"
 
 export type VisaType = typeof visaTypes.$inferSelect;
 export type NewVisaType = typeof visaTypes.$inferInsert;
