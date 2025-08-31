@@ -3,9 +3,11 @@
     "wrangler.json": "jsonc"
   },
   "cSpell.words": [
+    "autoincrement",
     "Frontmatter",
     "Jitsu",
     "Turbopack",
+    "unixepoch",
     "upsell"
   ]
 }

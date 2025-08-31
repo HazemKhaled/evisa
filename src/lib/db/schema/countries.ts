@@ -4,7 +4,6 @@ import { integer, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
 export const countries = sqliteTable("countries", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   code: text("code", { length: 3 }).notNull().unique(), // ISO 3166-1 alpha-3
-  flag: text("flag"), // Unicode emoji or URL to flag image
   continent: text("continent").notNull(), // e.g., "Africa", "Asia", "Europe"
   region: text("region"), // e.g., "Western Europe", "Southeast Asia"
   isActive: integer("is_active", { mode: "boolean" }).default(true).notNull(),
