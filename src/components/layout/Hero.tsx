@@ -1,26 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Search, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 
-// Mock data - will be replaced with real data later
-const countries = [
-  { code: "US", name: "United States", flag: "🇺🇸" },
-  { code: "AE", name: "United Arab Emirates", flag: "🇦🇪" },
-  { code: "GB", name: "United Kingdom", flag: "🇬🇧" },
-  { code: "DE", name: "Germany", flag: "🇩🇪" },
-  { code: "JP", name: "Japan", flag: "🇯🇵" },
-  { code: "AU", name: "Australia", flag: "🇦🇺" },
-];
+interface Country {
+  code: string;
+  name: string;
+  nameAr?: string | null;
+  flag: string | null;
+}
 
-export function Hero() {
+interface HeroProps {
+  destinations: Country[];
+  passportCountries: Country[];
+}
+
+export function Hero({ destinations, passportCountries }: HeroProps) {
   const [passportCountry, setPassportCountry] = useState<string>("");
   const [destinationCountry, setDestinationCountry] = useState<string>("");
   const [isSearching, setIsSearching] = useState(false);
   const t = useTranslations("Hero");
+  const locale = useLocale();
 
   const handleSearch = async () => {
     if (!passportCountry || !destinationCountry) return;
@@ -35,7 +38,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-[600px] bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900">
+    <section className="relative min-h-[600px] bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
@@ -46,21 +49,17 @@ export function Hero() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center max-w-4xl mx-auto">
           {/* Headlines */}
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            {t("headline")}
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12">
-            {t("subheadline")}
-          </p>
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">{t("headline")}</h1>
+          <p className="text-xl md:text-2xl text-gray-600 mb-12">{t("subheadline")}</p>
 
           {/* Visa Checker Form */}
-          <Card className="max-w-4xl mx-auto p-8 shadow-lg border-0 backdrop-blur-sm bg-white/90 dark:bg-gray-800/90">
+          <Card className="max-w-4xl mx-auto p-8 shadow-lg border-0 backdrop-blur-sm bg-white/95">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               {/* Passport Country */}
               <div className="text-left rtl:text-right">
                 <label
                   htmlFor="passport-country"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  className="block text-sm font-medium text-gray-700 mb-2"
                 >
                   {t("passportCountry")}
                 </label>
@@ -69,12 +68,13 @@ export function Hero() {
                     id="passport-country"
                     value={passportCountry}
                     onChange={(e) => setPassportCountry(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white appearance-none cursor-pointer"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white appearance-none cursor-pointer"
                   >
                     <option value="">{t("selectPassport")}</option>
-                    {countries.map((country) => (
+                    {passportCountries.map((country) => (
                       <option key={country.code} value={country.code}>
-                        {country.flag} {country.name}
+                        {country.flag}{" "}
+                        {locale === "ar" && country.nameAr ? country.nameAr : country.name}
                       </option>
                     ))}
                   </select>
@@ -100,7 +100,7 @@ export function Hero() {
               <div className="text-left rtl:text-right">
                 <label
                   htmlFor="destination-country"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  className="block text-sm font-medium text-gray-700 mb-2"
                 >
                   {t("destinationCountry")}
                 </label>
@@ -109,12 +109,13 @@ export function Hero() {
                     id="destination-country"
                     value={destinationCountry}
                     onChange={(e) => setDestinationCountry(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white appearance-none cursor-pointer"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white appearance-none cursor-pointer"
                   >
                     <option value="">{t("selectDestination")}</option>
-                    {countries.map((country) => (
+                    {destinations.map((country) => (
                       <option key={country.code} value={country.code}>
-                        {country.flag} {country.name}
+                        {country.flag}{" "}
+                        {locale === "ar" && country.nameAr ? country.nameAr : country.name}
                       </option>
                     ))}
                   </select>

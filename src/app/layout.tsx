@@ -9,9 +9,5 @@ export const metadata: Metadata = {
 // The root layout is required for Next.js but the actual HTML structure
 // is handled by the locale-specific layout in [locale]/layout.tsx
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html>
-      <body>{children}</body>
-    </html>
-  );
+  return children;
 }

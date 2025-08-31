@@ -16,8 +16,10 @@ export const routing = defineRouting({
     // string can be provided as a shortcut
     "/": "/",
     "/destinations": "/destinations",
+    "/destinations/[country]": "/destinations/[country]",
     "/visa-checker": "/visa-checker",
     "/articles": "/articles",
+    "/articles/[slug]": "/articles/[slug]",
     "/about": "/about",
     "/contact": "/contact",
     "/terms": "/terms",

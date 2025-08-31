@@ -5,7 +5,16 @@ import { withSentryConfig } from "@sentry/nextjs";
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 // Export the configuration with both Sentry and i18n
