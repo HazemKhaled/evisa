@@ -16,9 +16,8 @@
     "enabled": true,
   },
   /**
-   * Account ID for Cloudflare deployment
+   * Account ID for Cloudflare deployment (loaded from CLOUDFLARE_ACCOUNT_ID env var)
    */
-  "account_id": "5eb75f6fe4b39d922e963bf571acc93a",
 
 
   /**

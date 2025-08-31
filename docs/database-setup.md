@@ -20,6 +20,8 @@ CLOUDFLARE_D1_DATABASE_ID=your-database-id
 CLOUDFLARE_API_TOKEN=your-api-token
 ```
 
+**Note**: Wrangler automatically reads `CLOUDFLARE_ACCOUNT_ID` from environment variables for security. The account ID is not stored in the configuration file.
+
 ### 2. Database Creation
 
 The database has already been created with ID: `ed2dd914-c369-4c97-b716-3f35a63c4a00`
