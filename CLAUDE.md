@@ -1,6 +1,6 @@
-# eVisa Platform - Claude Development Guide
+# CLAUDE.md
 
-This document provides comprehensive guidance for working on the eVisa platform, a multilingual travel visa processing application built with modern web technologies. Always refer to this document when working on the project to maintain consistency and quality.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository. A multilingual travel visa processing application built with modern web technologies. Always refer to this document when working on the project to maintain consistency and quality.
 
 ## Project Overview
 
@@ -33,14 +33,14 @@ Use latest compatible versions from all dependencies, and never use old version 
 
 - **Drizzle ORM** with Cloudflare D1 SQLite database
 - **Drizzle Kit** for schema management and migrations
-- Well-structured schema for destinations, visa types, and blog
+- Well-structured schema for destinations, and visa types
 
 ### Internationalization
 
 - **next-i18next** for multilingual content and routing
 - Full RTL support for RTL languages
 - Locale-based routing with `/[locale]/` structure
-- Home page should be English
+- the root route `/` should be in English
 - Support the following languages (English, Spanish, Arabic, Portuguese, Russian, German, French, Italian)
 
 ### Analytics & Monitoring
@@ -53,7 +53,6 @@ Use latest compatible versions from all dependencies, and never use old version 
 
 - **Cloudflare** deployment via **OpenNext.js**
 - **Wrangler** for Cloudflare Workers management
-- **Cloudflare R2** for object storage (configured but not yet implemented)
 - **Cloudflare D1** for database
 
 ### CI/CD with OpenNext & Github Actions
@@ -70,12 +69,10 @@ Use latest compatible versions from all dependencies, and never use old version 
 
 ### Code Quality
 
-https://nextjs.org/docs/app/api-reference/config/eslint
-
-- **ESLint 9** with Next.js and Prettier configurations
+- **ESLint 9** with Next.js configurations
 - **Prettier** for code formatting
-- **Husky** and **lint-staged** for pre-commit hooks
-- TypeScript strict mode with comprehensive type checking
+- **Husky** and **lint-staged** for pre-commit hooks (use `npx husky init` for setup)
+- TypeScript with comprehensive type checking
 - **Jest** for unit tests, don't cover UI, just cover database, API calls, Next.js actions and any non-UI code
 
 ## Database Schema
@@ -211,20 +208,56 @@ pnpm db:studio          # Open Drizzle Studio
 ### Deployment
 
 ```bash
-pnpm deploy             # Build and deploy to Cloudflare
+pnpm deploy             # Build and deploy to Cloudflare via OpenNext
 pnpm preview            # Preview deployment locally
 pnpm cf-typegen         # Generate Cloudflare types
 ```
+
+## Project Architecture
+
+### Current State
+- **Framework**: Next.js with App Router and Turbopack for development
+- **Styling**: Tailwind CSS (latest) 
+- **Database**: Schema designed but Drizzle ORM not yet fully implemented
+- **Internationalization**: next-i18next
+- **Deployment**: OpenNext.js for Cloudflare Workers
+
+### Directory Structure
+```
+src/
+├── app/                          # Next.js App Router
+│   ├── globals.css              # Global styles and design tokens
+│   ├── layout.tsx               # Root layout
+│   └── [locale]/                # Internationalized routes (to be implemented)
+├── components/                   # Reusable components
+│   ├── layout/                  # Layout components
+│   └── ui/                      # Base UI components
+├── lib/                         # Utility libraries
+│   ├── db/                      # Database configuration
+│   └── utils.ts                 # Utility functions
+└── i18n/                        # Internationalization
+```
+
+### Package Management
+- Use **pnpm** exclusively (not npm or yarn)
 
 ## Development Guidelines
 
 ### Code Style
 
-- Use TypeScript with strict types, use generic types if needed, and try not to use `any`
-- Follow Next.js App Router conventions
+- Use TypeScript with strict types; prefer interfaces over types
+- Avoid enums; use maps instead
+- Use functional components with TypeScript interfaces
+- Function parameters should have explicit TypeScript types
+- Follow Next.js App Router conventions (never use Pages Router)
 - Implement proper error boundaries and loading states
 - Use server components by default, client components only when needed
 - Follow the established component patterns for consistency
+
+### Naming Conventions
+
+- Favor named exports for components
+- Use JSDoc style comments for functions, interfaces, and classes
 
 ### Internationalization Best Practices
 
@@ -256,15 +289,14 @@ pnpm cf-typegen         # Generate Cloudflare types
 - Ensure proper URL structures for internationalization
 - Generate XML sitemap index that include each destination sitemap
 - Generate sitemap per each destination including all pages related to this destination, blog, visas
--
 
 ## MDX
 
 - Follow Next.js guide for MDX pages https://nextjs.org/docs/app/guides/mdx
 - use remark-gfm npm remark and rehype
 - Use gray-matter package to support Frontmatter with Next.js
-  - Each mdx pages should include SEO required info title, description meta tags, ... etc
-  - Each mdx blog post has extras like destination, passport (optional), related visas (optional)
+  - Each mdx pages should include SEO required info like title, and description.
+  - Each mdx blog post has extras like destination, image, passport (optional), related visas (optional), tags (optional)
 - Blog pages should be in blog folder and each language should have it's own sub folder blog/ar, blog/en, blog/fr
 
 ## Testing & Quality Assurance
@@ -288,7 +320,6 @@ pnpm cf-typegen         # Generate Cloudflare types
 
 - Deploy via OpenNext.js for optimal Cloudflare compatibility
 - Use Cloudflare D1 for database
-- Leverage Cloudflare R2 for object storage
 - Configure proper caching strategies
 
 ### Environment Management
@@ -322,4 +353,52 @@ npx husky init
 ### Other
 
 - Static pages & blog should be implemented in mdx
-- Always sed a real content in both db and static pages
+- Always use real content in both db and static pages
+
+## Git & GitHub Workflow
+
+### Commit Message Format
+Use conventional commit format:
+- Format: `<type>(<scope>): <description>`
+- Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+- Scope: Required, use slug for current module
+- Description: imperative, present tense ("add" not "added" or "adds")
+
+Examples:
+- `fix(catalog): resolve null reference in address selection`
+- `docs(auth): update README with setup instructions`
+
+### Pull Request Format
+- Format: `<type>(<scope>): <description>`
+- Always include Sentry issue links in PR description when fixing bugs
+- Examples:
+  - `feat(catalog): implement social login providers`
+  - `fix(auth): add optional chaining to prevent null reference error`
+
+### Branch Naming
+- Format: `<type>/<description>`
+- Types: `feature`, `bugfix`, `chore`
+- Description: kebab-case
+- Examples: `feature/add-new-checkout-flow`, `bugfix/gtm-event-name-normalization`
+
+## Business Logic & URL Structure
+
+### Core Functionality
+The platform helps users travel with minimal visa process through:
+1. **Visa Catalog**: Destination-driven content showing visa requirements
+2. **Document Center**: Centralized document collection and processing  
+3. **Affiliate Integration**: Partnerships with visa agencies and travel services
+
+### URL Structure
+- Destination pages: `/d/{DESTINATION_COUNTRY}`
+- Visa options: `/d/{DESTINATION_NAME}/v/{VISA_OPTION}`
+- Passport-specific info: `/d/{DESTINATION_NAME}/p/{PASSPORT_COUNTRY}`
+- All destinations: `/d/`
+- Articles list: `/d/{DESTINATION_COUNTRY}/a`
+- Article details: `/d/{DESTINATION_COUNTRY}/a/{ARTICLE_SLUG}`
+
+### SEO Requirements
+- Generate sitemap index at `/sitemap_index.xml`
+- Each destination gets own sitemap: `/d/{DESTINATION_COUNTRY}/sitemap.xml`
+- Implement subdomain structure: `{country-code}.production-domain.tld`
+- Use canonical meta tags for destination pages

@@ -32,7 +32,7 @@ You provide accurate, factual, thoughtful answers, and are a genius at reasoning
 
 ## Next.js
 
-- Use latest version Next.js 15.4.6 app router and follow Next.js best practices in every aspect.
+- Use latest version Next.js app router and follow Next.js best practices in every aspect.
 - Keep maintaining code linting and style with Eslint & Prettier https\://nextjs.org/docs/app/api-reference/config/eslint
 - Use the right rendering strategy for your page depending on the needs
 - If a Google font used, make sure to use this package `next/font/google`
@@ -41,7 +41,7 @@ You provide accurate, factual, thoughtful answers, and are a genius at reasoning
 - Follow Next.js best practices in metadata, manifest.json, sitemap, JSON-LD, and robots.txt https://nextjs.org/docs/app/api-reference/file-conventions/metadata
 - All pages should include metadata and JSON-LD, should reflect the page content, and respect the page language.
 - Create and keep maintaining sitemap.xml, robots.txt, manifest.json
-- If multilingual is required, use next-intl 4.3.5
+- If multilingual is required, use next-i18next
 
 ## TypeScript Usage
 
@@ -88,7 +88,7 @@ You provide accurate, factual, thoughtful answers, and are a genius at reasoning
 
 ## Internationalization
 
-- Use next-intl 4.3.5 for multilingual content and routing.
+- Use next-i18next for multilingual content and routing.
 - Full RTL support for RTL languages.
 - Locale-based routing with `/[locale]/` structure.
 - Always use the `useTranslations` hook for text content.
