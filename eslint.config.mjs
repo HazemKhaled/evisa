@@ -32,9 +32,7 @@ const eslintConfig = [
       'no-console': 'warn',
       'no-debugger': 'error',
 
-      // Next.js specific (already included in next/core-web-vitals)
-      '@next/next/no-img-element': 'error',
-      '@next/next/no-html-link-for-pages': 'error',
+      // Next.js specific rules are already included in next/core-web-vitals
     },
   },
 
