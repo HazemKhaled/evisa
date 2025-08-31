@@ -1,5 +1,11 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text, real } from "drizzle-orm/sqlite-core";
+import {
+  integer,
+  sqliteTable,
+  text,
+  real,
+  unique,
+} from "drizzle-orm/sqlite-core";
 import { countries } from "./countries";
 
 export const visaTypes = sqliteTable("visa_types", {
@@ -8,22 +14,6 @@ export const visaTypes = sqliteTable("visa_types", {
     .references(() => countries.id)
     .notNull(),
   type: text("type").notNull(), // e.g., "tourist", "business", "transit", "student"
-  nameEn: text("name_en").notNull(),
-  nameAr: text("name_ar"),
-  nameEs: text("name_es"),
-  namePt: text("name_pt"),
-  nameRu: text("name_ru"),
-  nameDe: text("name_de"),
-  nameFr: text("name_fr"),
-  nameIt: text("name_it"),
-  descriptionEn: text("description_en"),
-  descriptionAr: text("description_ar"),
-  descriptionEs: text("description_es"),
-  descriptionPt: text("description_pt"),
-  descriptionRu: text("description_ru"),
-  descriptionDe: text("description_de"),
-  descriptionFr: text("description_fr"),
-  descriptionIt: text("description_it"),
   duration: integer("duration").notNull(), // Duration in days
   maxStay: integer("max_stay"), // Maximum stay duration in days
   processingTime: integer("processing_time").notNull(), // Processing time in days
@@ -48,5 +38,32 @@ export const visaTypes = sqliteTable("visa_types", {
   deletedAt: integer("deleted_at", { mode: "timestamp" }),
 });
 
+export const visaTypesI18n = sqliteTable(
+  "visa_types_i18n",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    visaTypeId: integer("visa_type_id")
+      .references(() => visaTypes.id)
+      .notNull(),
+    locale: text("locale", { length: 5 }).notNull(), // e.g., "en", "ar", "es"
+    name: text("name").notNull(),
+    description: text("description"),
+    createdAt: integer("created_at", { mode: "timestamp" })
+      .default(sql`(unixepoch())`)
+      .notNull(),
+    updatedAt: integer("updated_at", { mode: "timestamp" })
+      .default(sql`(unixepoch())`)
+      .$onUpdate(() => new Date())
+      .notNull(),
+  },
+  table => {
+    return {
+      uniqueVisaTypeLocale: unique().on(table.visaTypeId, table.locale),
+    };
+  }
+);
+
 export type VisaType = typeof visaTypes.$inferSelect;
 export type NewVisaType = typeof visaTypes.$inferInsert;
+export type VisaTypeI18n = typeof visaTypesI18n.$inferSelect;
+export type NewVisaTypeI18n = typeof visaTypesI18n.$inferInsert;
