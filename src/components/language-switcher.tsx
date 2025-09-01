@@ -2,7 +2,6 @@
 
 import { useParams, useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
-import { useTranslation } from "@/app/i18n/client";
 import { cn, isRTL } from "@/lib/utils";
 
 interface Language {
@@ -30,11 +29,22 @@ export function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
 
   const currentLocale = (params?.locale as string) || "en";
-  const { t } = useTranslation(currentLocale, "navigation");
 
   const currentLanguage =
     languages.find(lang => lang.code === currentLocale) || languages[0];
   const isCurrentRTL = isRTL(currentLocale);
+
+  // Static labels to avoid hydration mismatch
+  const languageLabels: Record<string, string> = {
+    en: "Language",
+    es: "Idioma",
+    ar: "اللغة",
+    pt: "Idioma",
+    ru: "Язык",
+    de: "Sprache",
+    fr: "Langue",
+    it: "Lingua",
+  };
 
   const handleLanguageChange = (languageCode: string) => {
     const newPath = pathname.replace(`/${currentLocale}`, `/${languageCode}`);
@@ -53,7 +63,7 @@ export function LanguageSwitcher() {
           "inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none",
           isCurrentRTL && "flex-row-reverse"
         )}
-        aria-label={t("header.language")}
+        aria-label={languageLabels[currentLocale] || "Language"}
         aria-expanded={isOpen}
       >
         <span className="text-lg">{currentLanguage.flag}</span>
