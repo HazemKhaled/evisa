@@ -1,38 +1,38 @@
 {
   "site": {
-    "title": "eVisa Platform - Travel with Minimal Visa Requirements",
-    "description": "Simplify your travel with our comprehensive visa processing platform. Get destination-based visa information, eligibility checking, and seamless application services."
+    "title": "Платформа eVisa - Путешествия с минимальными визовыми требованиями",
+    "description": "Упростите свое путешествие с нашей комплексной платформой обработки виз. Получайте информацию о визах по направлениям, проверяйте право на получение и пользуйтесь удобными услугами подачи заявления."
   },
   "buttons": {
-    "startApplication": "Start Your Application",
-    "checkEligibility": "Check Eligibility",
-    "learnMore": "Learn More",
-    "readMore": "Read More",
-    "submit": "Submit",
-    "cancel": "Cancel",
-    "close": "Close",
-    "next": "Next",
-    "previous": "Previous",
-    "save": "Save",
-    "edit": "Edit",
-    "delete": "Delete"
+    "startApplication": "Начать заявку",
+    "checkEligibility": "Проверить право",
+    "learnMore": "Узнать больше",
+    "readMore": "Читать далее",
+    "submit": "Отправить",
+    "cancel": "Отменить",
+    "close": "Закрыть",
+    "next": "Далее",
+    "previous": "Назад",
+    "save": "Сохранить",
+    "edit": "Редактировать",
+    "delete": "Удалить"
   },
   "forms": {
-    "passportCountry": "Passport Country",
-    "destinationCountry": "Destination Country",
-    "selectCountry": "Select a country",
-    "required": "This field is required",
-    "name": "Name",
-    "email": "Email",
-    "phone": "Phone",
-    "subject": "Subject",
-    "message": "Message",
-    "reason": "Reason for contact"
+    "passportCountry": "Страна паспорта",
+    "destinationCountry": "Страна назначения",
+    "selectCountry": "Выберите страну",
+    "required": "Это поле обязательно",
+    "name": "Имя",
+    "email": "Электронная почта",
+    "phone": "Телефон",
+    "subject": "Тема",
+    "message": "Сообщение",
+    "reason": "Причина обращения"
   },
   "status": {
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "success": "Success",
-    "notFound": "Not found"
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "success": "Успешно",
+    "notFound": "Не найдено"
   }
 }

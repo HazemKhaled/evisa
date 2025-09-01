@@ -1,27 +1,27 @@
 {
   "header": {
-    "home": "Home",
-    "destinations": "Destinations",
-    "blog": "Travel Blog",
-    "about": "About Us",
-    "contact": "Contact Us",
-    "language": "Language"
+    "home": "Startseite",
+    "destinations": "Reiseziele",
+    "blog": "Reise-Blog",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "language": "Sprache"
   },
   "footer": {
-    "company": "Company",
-    "services": "Services",
-    "contact": "Contact",
-    "about": "About",
-    "contact_us": "Contact Us",
-    "terms": "Terms & Conditions",
-    "privacy": "Privacy Policy",
-    "visa_checker": "Visa Checker",
-    "document_center": "Document Center",
-    "travel_blog": "Travel Blog",
-    "email": "Email",
-    "phone": "Phone",
-    "address": "Office Address",
-    "social_media": "Social Media",
-    "copyright": "© {{year}} eVisa Platform. All rights reserved."
+    "company": "Unternehmen",
+    "services": "Dienstleistungen",
+    "contact": "Kontakt",
+    "about": "Über uns",
+    "contact_us": "Kontaktieren Sie uns",
+    "terms": "Geschäftsbedingungen",
+    "privacy": "Datenschutzrichtlinie",
+    "visa_checker": "Visa-Prüfer",
+    "document_center": "Dokumentenzentrum",
+    "travel_blog": "Reise-Blog",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "address": "Büroadresse",
+    "social_media": "Soziale Medien",
+    "copyright": "© {{year}} eVisa Plattform. Alle Rechte vorbehalten."
   }
 }

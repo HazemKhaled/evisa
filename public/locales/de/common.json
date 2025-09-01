@@ -1,38 +1,38 @@
 {
   "site": {
-    "title": "eVisa Platform - Travel with Minimal Visa Requirements",
-    "description": "Simplify your travel with our comprehensive visa processing platform. Get destination-based visa information, eligibility checking, and seamless application services."
+    "title": "eVisa Plattform - Reisen mit minimalen Visa-Anforderungen",
+    "description": "Vereinfachen Sie Ihre Reisen mit unserer umfassenden Visa-Bearbeitungsplattform. Erhalten Sie zielbasierte Visa-Informationen, Berechtigungsprüfung und nahtlose Antragsservices."
   },
   "buttons": {
-    "startApplication": "Start Your Application",
-    "checkEligibility": "Check Eligibility",
-    "learnMore": "Learn More",
-    "readMore": "Read More",
-    "submit": "Submit",
-    "cancel": "Cancel",
-    "close": "Close",
-    "next": "Next",
-    "previous": "Previous",
-    "save": "Save",
-    "edit": "Edit",
-    "delete": "Delete"
+    "startApplication": "Antrag starten",
+    "checkEligibility": "Berechtigung prüfen",
+    "learnMore": "Mehr erfahren",
+    "readMore": "Weiterlesen",
+    "submit": "Senden",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen"
   },
   "forms": {
-    "passportCountry": "Passport Country",
-    "destinationCountry": "Destination Country",
-    "selectCountry": "Select a country",
-    "required": "This field is required",
+    "passportCountry": "Reisepass-Land",
+    "destinationCountry": "Zielland",
+    "selectCountry": "Land auswählen",
+    "required": "Dieses Feld ist erforderlich",
     "name": "Name",
-    "email": "Email",
-    "phone": "Phone",
-    "subject": "Subject",
-    "message": "Message",
-    "reason": "Reason for contact"
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "subject": "Betreff",
+    "message": "Nachricht",
+    "reason": "Grund der Kontaktaufnahme"
   },
   "status": {
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "success": "Success",
-    "notFound": "Not found"
+    "loading": "Lädt...",
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Erfolg",
+    "notFound": "Nicht gefunden"
   }
 }

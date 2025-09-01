@@ -1,10 +1,10 @@
 {
-  "headline": "Travel with Minimal Visa Requirements",
-  "subheadline": "Simplify your travel planning with our comprehensive visa processing platform. Check eligibility, apply online, and get your visa approved faster.",
+  "headline": "Путешествия с минимальными визовыми требованиями",
+  "subheadline": "Упростите планирование поездок с нашей комплексной платформой обработки виз. Проверяйте право на получение, подавайте заявления онлайн и получайте визы быстрее.",
   "search": {
-    "title": "Check Your Visa Requirements",
-    "passportPlaceholder": "Select your passport country",
-    "destinationPlaceholder": "Select your destination",
-    "checkButton": "Check Eligibility"
+    "title": "Проверьте визовые требования",
+    "passportPlaceholder": "Выберите страну вашего паспорта",
+    "destinationPlaceholder": "Выберите пункт назначения",
+    "checkButton": "Проверить право"
   }
 }
