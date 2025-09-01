@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The eVisa platform helps users travel with minimal visa requirements through a centralized visa processing platform. It features destination-based visa catalogs, and comprehensive SEO optimization.
+The GetTravelVisa.com platform helps users travel with minimal visa requirements through a centralized visa processing platform. It features destination-based visa catalogs, and comprehensive SEO optimization.
 
 **Key Features:**
 
@@ -61,9 +61,9 @@ Use latest compatible versions from all dependencies, and never use old version 
 - Configure SSG https://opennext.js.org/cloudflare/caching#ssg-site
 - Configure Cloudflare Image Optimization https://opennext.js.org/cloudflare/howtos/image
 - Static assets for public folder https://opennext.js.org/cloudflare/howtos/assets
-- `main` branch should deploy on staging-domain.tld
-- Each GitHub release should deploy on production-domain.tld
-- Each Pull Request should deploy on pr-PRNumber.staging-domain.tld
+- `main` branch should deploy on staging.gettravelvisa.com
+- Each GitHub release should deploy on gettravelvisa.com
+- Each Pull Request should deploy on pr-PRNumber.staging.gettravelvisa.com
 - Another GitHub Action to run tests and linting
 - Use wrangler.jsonc instead of the .toml file
 
@@ -411,6 +411,6 @@ The platform helps users travel with minimal visa process through:
 ### SEO Requirements
 
 - Generate sitemap index at `/sitemap_index.xml`
-- Each destination gets own sitemap: `/d/{DESTINATION_COUNTRY}/sitemap.xml`
-- Implement subdomain structure: `{country-code}.production-domain.tld`
+- Each destination gets own sitemap: `/uae/sitemap.xml`
+- Implement subdomain structure: `{country-code}.gettravelvisa.com
 - Use canonical meta tags for destination pages

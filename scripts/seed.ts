@@ -1,5 +1,5 @@
 /**
- * Database seeding script for eVisa platform with i18n structure
+ * Database seeding script for GetTravelVisa.com platform with i18n structure
  * This script populates the database with initial data for countries, visa types, and eligibility
  * using the new normalized i18n table structure
  */

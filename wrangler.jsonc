@@ -4,7 +4,7 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "evisa",
+  "name": "gettravelvisa",
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-03-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
@@ -26,7 +26,7 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "evisa-db-local",
+      "database_name": "gettravelvisa-db-local",
       "database_id": "ed2dd914-c369-4c97-b716-3f35a63c4a00",
       "preview_database_id": "ed2dd914-c369-4c97-b716-3f35a63c4a00",
     },
@@ -49,7 +49,7 @@
       "d1_databases": [
         {
           "binding": "DB",
-          "database_name": "evisa-db-prod",
+          "database_name": "gettravelvisa-db-prod",
           "database_id": "your-production-database-id",
         },
       ],

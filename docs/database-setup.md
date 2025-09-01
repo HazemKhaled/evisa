@@ -1,6 +1,6 @@
 # Database Setup Guide
 
-This guide explains how to set up Drizzle ORM with Cloudflare D1 database for the eVisa platform, including both local development and production environments.
+This guide explains how to set up Drizzle ORM with Cloudflare D1 database for the GetTravelVisa.com platform, including both local development and production environments.
 
 ## Prerequisites
 
@@ -139,7 +139,7 @@ pnpm format               # Prettier formatting
 
 ## Database Schema
 
-The eVisa platform uses a comprehensive i18n database architecture:
+The GetTravelVisa.com platform uses a comprehensive i18n database architecture:
 
 ### Core Tables
 
@@ -204,7 +204,7 @@ scripts/
 1. **Create Production Database**:
 
    ```bash
-   pnpm wrangler d1 create evisa-db-prod
+   pnpm wrangler d1 create gettravelvisa-db-prod
    ```
 
 2. **Update Configuration**:
@@ -261,7 +261,7 @@ pnpm db:local:setup           # Recreate and populate
 **Production Reset (Careful!):**
 
 ```bash
-pnpm wrangler d1 execute evisa-db-prod --remote --file=./scripts/reset.sql
+pnpm wrangler d1 execute gettravelvisa-db-prod --remote --file=./scripts/reset.sql
 pnpm db:migrate              # Reapply schema
 pnpm db:seed                 # Repopulate data
 ```

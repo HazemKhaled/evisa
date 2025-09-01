@@ -36,7 +36,9 @@ export default function HomePage() {
                   isCurrentRTL && "flex-row-reverse"
                 )}
               >
-                <div className="text-2xl font-bold text-blue-600">eVisa</div>
+                <div className="text-2xl font-bold text-blue-600">
+                  GetTravelVisa.com
+                </div>
               </div>
               <nav
                 className={cn(
@@ -217,7 +219,9 @@ export default function HomePage() {
               )}
             >
               <div className="col-span-1 md:col-span-2">
-                <div className="text-2xl font-bold text-white">eVisa</div>
+                <div className="text-2xl font-bold text-white">
+                  GetTravelVisa.com
+                </div>
                 <p className="mt-4 text-gray-300">
                   {t("common:site.description")}
                 </p>
