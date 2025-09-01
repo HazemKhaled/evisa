@@ -52,7 +52,7 @@ export function LanguageSwitcher() {
     setIsOpen(false);
 
     // Set cookie to remember language preference
-    document.cookie = `i18next=${languageCode}; path=/; max-age=31536000`; // 1 year
+    document.cookie = `i18next=${languageCode}; path=/; max-age=31536000; Secure; SameSite=Strict`; // 1 year
   };
 
   return (
