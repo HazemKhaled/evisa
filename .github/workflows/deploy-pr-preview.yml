@@ -21,11 +21,10 @@ jobs:
       url: https://pr-${{ github.event.pull_request.number }}.staging.gettravelvisa.com
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Prepare Deployment Name
         run: |
-          sed -i "s/__WORKER_DOMAIN__/pr-${{ github.event.pull_request.number }}.staging/g" wrangler.jsonc
           sed -i "s/__WORKER_ENVIRONMENT__/pr-${{ github.event.pull_request.number }}/g" wrangler.jsonc
 
       - name: 🤌 Setup pnpm

@@ -4,7 +4,7 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "gettravelvisa",
+  "name": "gtv",
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-03-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
@@ -12,32 +12,26 @@
     "binding": "ASSETS",
     "directory": ".open-next/assets",
   },
+
   "observability": {
     "enabled": true,
+    "head_sampling_rate": 0.01,
   },
   /**
    * Account ID for Cloudflare deployment (loaded from CLOUDFLARE_ACCOUNT_ID env var)
    */
 
   /**
-   * D1 Database Configuration
-   * https://developers.cloudflare.com/d1/
+   * Smart Placement
+   * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
    */
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "gettravelvisa-db-local",
-      "database_id": "ed2dd914-c369-4c97-b716-3f35a63c4a00",
-      "preview_database_id": "ed2dd914-c369-4c97-b716-3f35a63c4a00",
-    },
-  ],
+  "placement": { "mode": "smart" },
 
   /**
-   * Environment Variables
+   * Service Bindings (communicate between multiple Workers)
+   * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
    */
-  "vars": {
-    "ENVIRONMENT": "development",
-  },
+  // "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
 
   /**
    * Environment Configuration
@@ -45,91 +39,55 @@
   "env": {
     "__WORKER_ENVIRONMENT__": {
       "name": "__WORKER_ENVIRONMENT__",
-      "compatibility_date": "2025-03-01",
       "d1_databases": [
         {
           "binding": "DB",
-          "database_name": "gettravelvisa-db-staging",
+          "database_name": "gtv-db-staging",
           "database_id": "staging-database-id-placeholder",
         },
       ],
-      "vars": {
-        "ENVIRONMENT": "__WORKER_ENVIRONMENT__",
-      },
       "routes": [
         {
-          "pattern": "__WORKER_DOMAIN__.gettravelvisa.com/*",
+          "pattern": "__WORKER_ENVIRONMENT__.staging.gettravelvisa.com",
           "custom_domain": true,
         },
       ],
     },
     "staging": {
-      "name": "gettravelvisa-staging",
-      "compatibility_date": "2025-03-01",
+      "name": "gtv-staging",
       "d1_databases": [
         {
           "binding": "DB",
-          "database_name": "gettravelvisa-db-staging",
+          "database_name": "gtv-db-staging",
           "database_id": "staging-database-id-placeholder",
         },
       ],
-      "vars": {
-        "ENVIRONMENT": "staging",
-      },
       "routes": [
         {
-          "pattern": "staging.gettravelvisa.com/*",
+          "pattern": "staging.gettravelvisa.com",
           "custom_domain": true,
         },
       ],
     },
     "production": {
-      "name": "gettravelvisa-prod",
-      "compatibility_date": "2025-03-01",
+      "name": "gtv-prod",
       "d1_databases": [
         {
           "binding": "DB",
-          "database_name": "gettravelvisa-db-prod",
+          "database_name": "gtv-db-prod",
           "database_id": "production-database-id-placeholder",
         },
       ],
-      "vars": {
-        "ENVIRONMENT": "production",
-      },
       "routes": [
         {
-          "pattern": "gettravelvisa.com/*",
+          "pattern": "gettravelvisa.com",
           "custom_domain": true,
         },
         {
-          "pattern": "www.gettravelvisa.com/*",
+          "pattern": "www.gettravelvisa.com",
           "custom_domain": true,
         },
       ],
     },
   },
-
-  /**
-   * KV namespaces (for future use with caching)
-   * https://developers.cloudflare.com/kv/
-   */
-  // "kv_namespaces": [
-  //   {
-  //     "binding": "CACHE",
-  //     "id": "your-kv-namespace-id",
-  //     "preview_id": "your-preview-kv-namespace-id"
-  //   }
-  // ],
-
-  /**
-   * Smart Placement
-   * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
-   */
-  // "placement": { "mode": "smart" }
-
-  /**
-   * Service Bindings (communicate between multiple Workers)
-   * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
-   */
-  // "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
 }
