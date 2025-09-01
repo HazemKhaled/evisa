@@ -1,0 +1,54 @@
+{
+  "howItWorks": {
+    "title": "Cómo funciona",
+    "subtitle": "Pasos simples para obtener la aprobación de tu visa",
+    "steps": {
+      "check": {
+        "title": "Verificar elegibilidad",
+        "description": "Ingresa tu país de pasaporte y destino para verificar los requisitos de visa"
+      },
+      "apply": {
+        "title": "Aplicar en línea",
+        "description": "Completa tu aplicación con nuestro proceso guiado paso a paso"
+      },
+      "documents": {
+        "title": "Subir documentos",
+        "description": "Sube de forma segura los documentos requeridos usando nuestra plataforma encriptada"
+      },
+      "approval": {
+        "title": "Obtener aprobación",
+        "description": "Recibe tu visa aprobada directamente por email dentro del tiempo de procesamiento"
+      }
+    }
+  },
+  "topDestinations": {
+    "title": "Destinos principales",
+    "subtitle": "Destinos de viaje populares con información de visa"
+  },
+  "whyChooseUs": {
+    "title": "Por qué elegirnos",
+    "subtitle": "Confiado por viajeros de todo el mundo",
+    "features": {
+      "speed": {
+        "title": "Procesamiento rápido",
+        "description": "Obtén tu visa procesada rápidamente con nuestro proceso de aplicación optimizado"
+      },
+      "trust": {
+        "title": "Plataforma confiable",
+        "description": "Procesamiento de visa seguro y confiable con asociaciones gubernamentales"
+      },
+      "global": {
+        "title": "Alcance global",
+        "description": "Soporte para aplicaciones de visa a destinos de todo el mundo"
+      },
+      "support": {
+        "title": "Soporte 24/7",
+        "description": "Soporte al cliente las 24 horas en múltiples idiomas"
+      }
+    }
+  },
+  "latestPosts": {
+    "title": "Últimas perspectivas de viaje",
+    "subtitle": "Mantente actualizado con consejos de viaje y guías de destino"
+  }
+}

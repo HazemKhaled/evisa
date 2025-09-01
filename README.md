@@ -1,4 +1,4 @@
-# eVisa Platform
+# GetTravelVisa.com Platform
 
 A multilingual travel visa processing application built with modern web technologies. The platform helps users travel with minimal visa requirements through a centralized visa processing platform featuring destination-based visa catalogs and comprehensive SEO optimization.
 
@@ -23,7 +23,7 @@ A multilingual travel visa processing application built with modern web technolo
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd evisa-claude
+cd gettravelvisa
 
 # Install dependencies
 pnpm install
@@ -160,7 +160,7 @@ The application uses a comprehensive i18n database schema:
 
 ### Internationalization
 
-- **next-i18next** for multilingual routing
+- **i18next** for multilingual routing
 - Full RTL support for Arabic
 - Locale-based routing (`/[locale]/`)
 

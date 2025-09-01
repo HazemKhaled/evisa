@@ -47,7 +47,7 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
    2. This should include all possible routes under this destination
 3. Add another sitemap /sitemap.xml to include all standalone pages like contact us, terms & conditions … etc.
 4. Add a subdomain for every country
-   1. Each country should have a subdomain with the 3-letter ex: uae.production-domain.tld, usa.production-domain.tld
+   1. Each country should have a subdomain with the 3-letter ex: uae.gettravelvisa.com, usa.gettravelvisa.com
    2. Add canonical meta tag for /d/{DESTINATION_COUNTRY}/
    3. All links in the subdomain should open the main domain on click
 

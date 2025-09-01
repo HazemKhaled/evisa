@@ -1,0 +1,27 @@
+{
+  "header": {
+    "home": "Главная",
+    "destinations": "Направления",
+    "blog": "Блог путешествий",
+    "about": "О нас",
+    "contact": "Контакты",
+    "language": "Язык"
+  },
+  "footer": {
+    "company": "Компания",
+    "services": "Услуги",
+    "contact": "Контакты",
+    "about": "О нас",
+    "contact_us": "Связаться с нами",
+    "terms": "Условия использования",
+    "privacy": "Политика конфиденциальности",
+    "visa_checker": "Проверка виз",
+    "document_center": "Центр документов",
+    "travel_blog": "Блог путешествий",
+    "email": "Электронная почта",
+    "phone": "Телефон",
+    "address": "Адрес офиса",
+    "social_media": "Социальные сети",
+    "copyright": "© {{year}} Платформа GetTravelVisa.com. Все права защищены."
+  }
+}

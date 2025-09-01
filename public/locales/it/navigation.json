@@ -1,0 +1,27 @@
+{
+  "header": {
+    "home": "Home",
+    "destinations": "Destinazioni",
+    "blog": "Blog di Viaggio",
+    "about": "Chi Siamo",
+    "contact": "Contattaci",
+    "language": "Lingua"
+  },
+  "footer": {
+    "company": "Azienda",
+    "services": "Servizi",
+    "contact": "Contatto",
+    "about": "Chi Siamo",
+    "contact_us": "Contattaci",
+    "terms": "Termini e Condizioni",
+    "privacy": "Informativa sulla Privacy",
+    "visa_checker": "Controllore Visti",
+    "document_center": "Centro Documenti",
+    "travel_blog": "Blog di Viaggio",
+    "email": "Email",
+    "phone": "Telefono",
+    "address": "Indirizzo Ufficio",
+    "social_media": "Social Media",
+    "copyright": "© {{year}} Piattaforma GetTravelVisa.com. Tutti i diritti riservati."
+  }
+}

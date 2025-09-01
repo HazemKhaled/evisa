@@ -1,4 +1,4 @@
--- Reset script for eVisa database
+-- Reset script for GetTravelVisa.com database
 -- This script drops all tables in the correct order to handle foreign key constraints
 
 -- Disable foreign key constraints temporarily

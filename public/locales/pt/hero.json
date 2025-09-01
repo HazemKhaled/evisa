@@ -1,0 +1,10 @@
+{
+  "headline": "Viaje com Requisitos Mínimos de Visto",
+  "subheadline": "Simplifique seu planejamento de viagem com nossa plataforma abrangente de processamento de vistos. Verifique elegibilidade, solicite online e obtenha seu visto aprovado mais rapidamente.",
+  "search": {
+    "title": "Verifique os Requisitos do Seu Visto",
+    "passportPlaceholder": "Selecione o país do seu passaporte",
+    "destinationPlaceholder": "Selecione seu destino",
+    "checkButton": "Verificar Elegibilidade"
+  }
+}

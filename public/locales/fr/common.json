@@ -1,0 +1,38 @@
+{
+  "site": {
+    "title": "Plateforme GetTravelVisa.com - Voyagez avec des exigences de visa minimales",
+    "description": "Simplifiez vos voyages avec notre plateforme complète de traitement des visas. Obtenez des informations sur les visas par destination, la vérification d'éligibilité et des services de demande transparents."
+  },
+  "buttons": {
+    "startApplication": "Démarrer votre demande",
+    "checkEligibility": "Vérifier l'éligibilité",
+    "learnMore": "En savoir plus",
+    "readMore": "Lire la suite",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "save": "Sauvegarder",
+    "edit": "Modifier",
+    "delete": "Supprimer"
+  },
+  "forms": {
+    "passportCountry": "Pays du passeport",
+    "destinationCountry": "Pays de destination",
+    "selectCountry": "Sélectionner un pays",
+    "required": "Ce champ est obligatoire",
+    "name": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "subject": "Sujet",
+    "message": "Message",
+    "reason": "Raison du contact"
+  },
+  "status": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès",
+    "notFound": "Non trouvé"
+  }
+}

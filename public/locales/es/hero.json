@@ -1,0 +1,10 @@
+{
+  "headline": "Viaja con requisitos mínimos de visa",
+  "subheadline": "Simplifica tu planificación de viaje con nuestra plataforma integral de procesamiento de visas. Verifica elegibilidad, aplica en línea y obtén tu visa aprobada más rápido.",
+  "search": {
+    "title": "Verifica tus requisitos de visa",
+    "passportPlaceholder": "Selecciona tu país de pasaporte",
+    "destinationPlaceholder": "Selecciona tu destino",
+    "checkButton": "Verificar elegibilidad"
+  }
+}

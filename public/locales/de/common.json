@@ -1,0 +1,38 @@
+{
+  "site": {
+    "title": "GetTravelVisa.com Plattform - Reisen mit minimalen Visa-Anforderungen",
+    "description": "Vereinfachen Sie Ihre Reisen mit unserer umfassenden Visa-Bearbeitungsplattform. Erhalten Sie zielbasierte Visa-Informationen, Berechtigungsprüfung und nahtlose Antragsservices."
+  },
+  "buttons": {
+    "startApplication": "Antrag starten",
+    "checkEligibility": "Berechtigung prüfen",
+    "learnMore": "Mehr erfahren",
+    "readMore": "Weiterlesen",
+    "submit": "Senden",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen"
+  },
+  "forms": {
+    "passportCountry": "Reisepass-Land",
+    "destinationCountry": "Zielland",
+    "selectCountry": "Land auswählen",
+    "required": "Dieses Feld ist erforderlich",
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "subject": "Betreff",
+    "message": "Nachricht",
+    "reason": "Grund der Kontaktaufnahme"
+  },
+  "status": {
+    "loading": "Lädt...",
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Erfolg",
+    "notFound": "Nicht gefunden"
+  }
+}

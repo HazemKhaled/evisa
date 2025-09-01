@@ -1,5 +1,5 @@
 {
-  "name": "evisa",
+  "name": "gettravelvisa",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,12 +19,12 @@
     "db:push": "bash -c 'export $(cat .env.local | grep -v \"^#\" | grep -v \"^$\" | xargs) && drizzle-kit push'",
     "db:studio": "bash -c 'export $(cat .env.local | grep -v \"^#\" | grep -v \"^$\" | xargs) && drizzle-kit studio'",
     "db:seed": "bash -c 'export $(cat .env.local | grep -v \"^#\" | grep -v \"^$\" | xargs) && tsx scripts/seed.ts'",
-    "db:local:create": "wrangler d1 create evisa-db-local",
-    "db:local:migrate": "wrangler d1 migrations apply evisa-db-local --local",
-    "db:local:seed": "wrangler d1 execute evisa-db-local --local --file=./drizzle/seed.sql",
-    "db:local:reset": "wrangler d1 execute evisa-db-local --local --file=./scripts/reset.sql",
+    "db:local:create": "wrangler d1 create gettravelvisa-db-local",
+    "db:local:migrate": "wrangler d1 migrations apply gettravelvisa-db-local --local",
+    "db:local:seed": "wrangler d1 execute gettravelvisa-db-local --local --file=./drizzle/seed.sql",
+    "db:local:reset": "wrangler d1 execute gettravelvisa-db-local --local --file=./scripts/reset.sql",
     "db:local:studio": "bash -c 'pkill -f \"drizzle-kit studio\" 2>/dev/null || true && export $(cat .env.local | grep -v \"^#\" | grep -v \"^$\" | xargs) && LOCAL_DB_PATH=$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -type f -name \"*.sqlite\" -print -quit) drizzle-kit studio --port 4984'",
-    "db:local:query": "pnpm wrangler d1 execute evisa-db-local --local --command",
+    "db:local:query": "pnpm wrangler d1 execute gettravelvisa-db-local --local --command",
     "db:local:setup": "pnpm db:local:reset && pnpm db:local:migrate && pnpm db:local:seed",
     "prepare": "husky"
   },
@@ -32,9 +32,13 @@
     "@opennextjs/cloudflare": "^1.6.5",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.44.5",
+    "i18next": "^25.4.2",
+    "i18next-browser-languagedetector": "^8.2.0",
+    "i18next-resources-to-backend": "^1.2.1",
     "next": "15.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-i18next": "^15.7.3",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {

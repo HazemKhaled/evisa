@@ -1,0 +1,38 @@
+{
+  "site": {
+    "title": "Piattaforma GetTravelVisa.com - Viaggia con Requisiti Minimi di Visto",
+    "description": "Semplifica i tuoi viaggi con la nostra piattaforma completa di elaborazione dei visti. Ottieni informazioni sui visti per destinazione, verifica dell'idoneità e servizi di domanda trasparenti."
+  },
+  "buttons": {
+    "startApplication": "Inizia la tua domanda",
+    "checkEligibility": "Verifica l'idoneità",
+    "learnMore": "Scopri di più",
+    "readMore": "Leggi di più",
+    "submit": "Invia",
+    "cancel": "Annulla",
+    "close": "Chiudi",
+    "next": "Avanti",
+    "previous": "Indietro",
+    "save": "Salva",
+    "edit": "Modifica",
+    "delete": "Elimina"
+  },
+  "forms": {
+    "passportCountry": "Paese del passaporto",
+    "destinationCountry": "Paese di destinazione",
+    "selectCountry": "Seleziona un paese",
+    "required": "Questo campo è obbligatorio",
+    "name": "Nome",
+    "email": "Email",
+    "phone": "Telefono",
+    "subject": "Oggetto",
+    "message": "Messaggio",
+    "reason": "Motivo del contatto"
+  },
+  "status": {
+    "loading": "Caricamento...",
+    "error": "Si è verificato un errore",
+    "success": "Successo",
+    "notFound": "Non trovato"
+  }
+}

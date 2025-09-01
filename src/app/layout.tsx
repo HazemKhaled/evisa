@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Cairo, Geist_Mono } from "next/font/google";
-import { getTextDirection } from "@/lib/utils";
 import "./globals.css";
 
 // Cairo font for Arabic, English, and other supported languages
@@ -19,22 +18,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "eVisa Platform - Travel with Minimal Visa Requirements",
+  title: "GetTravelVisa.com - Your Trusted Visa Application Partner",
   description:
-    "Simplify your travel with our comprehensive visa processing platform. Get destination-based visa information, eligibility checking, and seamless application services.",
+    "Simplify your visa application process with our comprehensive visa checking and application services. Get expert guidance for travel visas worldwide.",
   keywords: [
-    "visa",
-    "travel",
-    "passport",
     "visa application",
     "travel visa",
-    "visa requirements",
-    "visa eligibility",
-    "travel planning",
+    "visa checker",
+    "visa services",
+    "international travel",
   ],
-  authors: [{ name: "eVisa Platform" }],
-  creator: "eVisa Platform",
-  publisher: "eVisa Platform",
+  authors: [{ name: "GetTravelVisa.com" }],
+  creator: "GetTravelVisa.com",
+  publisher: "GetTravelVisa.com",
   robots: {
     index: true,
     follow: true,
@@ -49,16 +45,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "eVisa Platform - Travel with Minimal Visa Requirements",
+    title: "GetTravelVisa.com - Your Trusted Visa Application Partner",
     description:
-      "Simplify your travel with our comprehensive visa processing platform.",
-    siteName: "eVisa Platform",
+      "Simplify your visa application process with our comprehensive visa checking and application services.",
+    siteName: "GetTravelVisa.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "eVisa Platform - Travel with Minimal Visa Requirements",
+    title: "GetTravelVisa.com - Your Trusted Visa Application Partner",
     description:
-      "Simplify your travel with our comprehensive visa processing platform.",
+      "Simplify your visa application process with our comprehensive visa checking and application services.",
   },
 };
 
@@ -73,14 +69,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // For now default to English, but this will be dynamic with i18n
-  const locale = "en-US";
-  const direction = getTextDirection(locale);
-
   return (
-    <html lang="en" dir={direction} className="h-full">
+    <html suppressHydrationWarning>
       <body
-        className={`${cairo.variable} ${geistMono.variable} bg-background text-foreground min-h-full font-sans antialiased`}
+        className={`${cairo.variable} ${geistMono.variable} bg-background text-foreground min-h-full antialiased`}
+        style={{ fontFamily: "var(--font-cairo), system-ui, sans-serif" }}
       >
         {children}
       </body>

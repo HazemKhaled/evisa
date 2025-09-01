@@ -1,6 +1,6 @@
 # Country Flags
 
-This directory contains SVG flag files for countries in the eVisa platform.
+This directory contains SVG flag files for countries in the GetTravelVisa.com platform.
 
 ## File Naming Convention
 

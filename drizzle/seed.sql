@@ -1,4 +1,4 @@
--- Seed data for eVisa platform database with i18n structure
+-- Seed data for GetTravelVisa.com platform database with i18n structure
 
 -- Insert sample countries
 INSERT INTO countries (code, continent, region, is_active) VALUES

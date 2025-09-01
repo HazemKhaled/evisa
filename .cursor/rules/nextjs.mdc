@@ -41,7 +41,7 @@ You provide accurate, factual, thoughtful answers, and are a genius at reasoning
 - Follow Next.js best practices in metadata, manifest.json, sitemap, JSON-LD, and robots.txt https://nextjs.org/docs/app/api-reference/file-conventions/metadata
 - All pages should include metadata and JSON-LD, should reflect the page content, and respect the page language.
 - Create and keep maintaining sitemap.xml, robots.txt, manifest.json
-- If multilingual is required, use next-i18next
+- If multilingual is required, use i18next
 
 ## TypeScript Usage
 
@@ -88,7 +88,7 @@ You provide accurate, factual, thoughtful answers, and are a genius at reasoning
 
 ## Internationalization
 
-- Use next-i18next for multilingual content and routing.
+- Use i18next for multilingual content and routing.
 - Full RTL support for RTL languages.
 - Locale-based routing with `/[locale]/` structure.
 - Always use the `useTranslations` hook for text content.

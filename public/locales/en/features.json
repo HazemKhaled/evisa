@@ -1,0 +1,54 @@
+{
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Simple steps to get your visa approved",
+    "steps": {
+      "check": {
+        "title": "Check Eligibility",
+        "description": "Enter your passport and destination country to check visa requirements"
+      },
+      "apply": {
+        "title": "Apply Online",
+        "description": "Complete your application with our guided step-by-step process"
+      },
+      "documents": {
+        "title": "Upload Documents",
+        "description": "Securely upload required documents using our encrypted platform"
+      },
+      "approval": {
+        "title": "Get Approved",
+        "description": "Receive your approved visa directly to your email within processing time"
+      }
+    }
+  },
+  "topDestinations": {
+    "title": "Top Destinations",
+    "subtitle": "Popular travel destinations with visa information"
+  },
+  "whyChooseUs": {
+    "title": "Why Choose Us",
+    "subtitle": "Trusted by travelers worldwide",
+    "features": {
+      "speed": {
+        "title": "Fast Processing",
+        "description": "Get your visa processed quickly with our streamlined application process"
+      },
+      "trust": {
+        "title": "Trusted Platform",
+        "description": "Secure and reliable visa processing with government partnerships"
+      },
+      "global": {
+        "title": "Global Reach",
+        "description": "Support for visa applications to destinations worldwide"
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Round-the-clock customer support in multiple languages"
+      }
+    }
+  },
+  "latestPosts": {
+    "title": "Latest Travel Insights",
+    "subtitle": "Stay updated with travel tips and destination guides"
+  }
+}

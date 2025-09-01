@@ -1,0 +1,54 @@
+{
+  "howItWorks": {
+    "title": "Come funziona",
+    "subtitle": "Passi semplici per ottenere l'approvazione del tuo visto",
+    "steps": {
+      "check": {
+        "title": "Verifica l'idoneità",
+        "description": "Inserisci il tuo paese di passaporto e destinazione per verificare i requisiti del visto"
+      },
+      "apply": {
+        "title": "Candidati online",
+        "description": "Completa la tua domanda con il nostro processo guidato passo dopo passo"
+      },
+      "documents": {
+        "title": "Carica documenti",
+        "description": "Carica in modo sicuro i documenti richiesti utilizzando la nostra piattaforma crittografata"
+      },
+      "approval": {
+        "title": "Ottieni l'approvazione",
+        "description": "Ricevi il tuo visto approvato direttamente via email entro i tempi di elaborazione"
+      }
+    }
+  },
+  "topDestinations": {
+    "title": "Destinazioni principali",
+    "subtitle": "Destinazioni di viaggio popolari con informazioni sui visti"
+  },
+  "whyChooseUs": {
+    "title": "Perché scegliere noi",
+    "subtitle": "Fidato dai viaggiatori di tutto il mondo",
+    "features": {
+      "speed": {
+        "title": "Elaborazione veloce",
+        "description": "Ottieni il tuo visto elaborato rapidamente con il nostro processo di domanda ottimizzato"
+      },
+      "trust": {
+        "title": "Piattaforma affidabile",
+        "description": "Elaborazione dei visti sicura e affidabile con partnership governative"
+      },
+      "global": {
+        "title": "Raggiunta globale",
+        "description": "Supporto per le domande di visto verso destinazioni in tutto il mondo"
+      },
+      "support": {
+        "title": "Supporto 24/7",
+        "description": "Assistenza clienti 24 ore su 24 in più lingue"
+      }
+    }
+  },
+  "latestPosts": {
+    "title": "Ultimi approfondimenti sui viaggi",
+    "subtitle": "Rimani aggiornato con consigli di viaggio e guide alle destinazioni"
+  }
+}
