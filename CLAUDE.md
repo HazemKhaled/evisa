@@ -37,7 +37,7 @@ Use latest compatible versions from all dependencies, and never use old version 
 
 ### Internationalization
 
-- **next-i18next** for multilingual content and routing
+- **i18next** for multilingual content and routing
 - Full RTL support for RTL languages
 - Locale-based routing with `/[locale]/` structure
 - the root route `/` should be in English
@@ -220,7 +220,7 @@ pnpm cf-typegen         # Generate Cloudflare types
 - **Framework**: Next.js with App Router and Turbopack for development
 - **Styling**: Tailwind CSS (latest)
 - **Database**: Schema designed but Drizzle ORM not yet fully implemented
-- **Internationalization**: next-i18next
+- **Internationalization**: i18next
 - **Deployment**: OpenNext.js for Cloudflare Workers
 
 ### Directory Structure

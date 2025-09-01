@@ -160,7 +160,7 @@ The application uses a comprehensive i18n database schema:
 
 ### Internationalization
 
-- **next-i18next** for multilingual routing
+- **i18next** for multilingual routing
 - Full RTL support for Arabic
 - Locale-based routing (`/[locale]/`)
 

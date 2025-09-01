@@ -6,7 +6,7 @@
 - [x] Configure tailwind
 - [x] Implement the required design with required font
 - [x] Configure [Drizzle ORM with Cloudflare D1](https://opennext.js.org/cloudflare/howtos/db#d1-example), and prepare the [local development environment](https://developers.cloudflare.com/d1/best-practices/local-development/)
-- [x] Use next-i18next for multilingual, make sure language switcher working as expected, and routes updated supporting all required languages. Make sure RTL is working if the selected language is right to left.
+- [x] Use i18next for multilingual, make sure language switcher working as expected, and routes updated supporting all required languages. Make sure RTL is working if the selected language is right to left.
 - [ ] Integrate Sentry & error proper error boundaries
 - [ ] Integrate Google Tag Manager
 - [ ] Integrate Jitsu with Next.js
