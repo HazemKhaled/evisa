@@ -2,11 +2,18 @@
   "files.associations": {
     "wrangler.json": "jsonc"
   },
+  "files.exclude": {
+      ".next": true,
+      "node_modules": true,
+      "wrangler": true,
+      "tsconfig.tsbuildinfo": true,
+  },
   "cSpell.words": [
     "autoincrement",
     "Frontmatter",
     "gettravelvisa",
     "Jitsu",
+    "languagedetector",
     "libsql",
     "opennextjs",
     "pkill",

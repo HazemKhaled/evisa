@@ -1,11 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  i18n: {
-    locales: ["en", "es", "ar", "pt", "ru", "de", "fr", "it"],
-    defaultLocale: "en",
-    localeDetection: false,
-  },
   /* config options here */
 };
 

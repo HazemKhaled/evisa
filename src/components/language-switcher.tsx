@@ -1,8 +1,8 @@
 "use client";
 
-import { useRouter } from "next/router";
+import { useParams, useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "@/app/i18n/client";
 import { cn, isRTL } from "@/lib/utils";
 
 interface Language {
@@ -25,17 +25,24 @@ const languages: Language[] = [
 
 export function LanguageSwitcher() {
   const router = useRouter();
-  const { t } = useTranslation("navigation");
+  const pathname = usePathname();
+  const params = useParams();
   const [isOpen, setIsOpen] = useState(false);
 
-  const currentLanguage =
-    languages.find(lang => lang.code === router.locale) || languages[0];
-  const isCurrentRTL = isRTL(router.locale || "en");
+  const currentLocale = (params?.locale as string) || "en";
+  const { t } = useTranslation(currentLocale, "navigation");
 
-  const handleLanguageChange = async (languageCode: string) => {
-    const { pathname, asPath, query } = router;
-    await router.push({ pathname, query }, asPath, { locale: languageCode });
+  const currentLanguage =
+    languages.find(lang => lang.code === currentLocale) || languages[0];
+  const isCurrentRTL = isRTL(currentLocale);
+
+  const handleLanguageChange = (languageCode: string) => {
+    const newPath = pathname.replace(`/${currentLocale}`, `/${languageCode}`);
+    router.push(newPath);
     setIsOpen(false);
+
+    // Set cookie to remember language preference
+    document.cookie = `i18next=${languageCode}; path=/; max-age=31536000`; // 1 year
   };
 
   return (
@@ -90,7 +97,7 @@ export function LanguageSwitcher() {
                   onClick={() => handleLanguageChange(language.code)}
                   className={cn(
                     "flex w-full items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900",
-                    router.locale === language.code &&
+                    currentLocale === language.code &&
                       "bg-gray-100 text-gray-900",
                     isCurrentRTL && "flex-row-reverse text-right"
                   )}
@@ -100,7 +107,7 @@ export function LanguageSwitcher() {
                     <div className="font-medium">{language.nativeName}</div>
                     <div className="text-xs text-gray-500">{language.name}</div>
                   </div>
-                  {router.locale === language.code && (
+                  {currentLocale === language.code && (
                     <svg
                       className="h-4 w-4 text-blue-600"
                       xmlns="http://www.w3.org/2000/svg"
