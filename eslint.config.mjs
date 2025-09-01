@@ -43,6 +43,19 @@ const eslintConfig = [
       "no-console": "off",
     },
   },
+
+  // Ignore generated files
+  {
+    ignores: ["cloudflare-env.d.ts"],
+  },
+
+  // Allow var in TypeScript declare blocks for global extensions
+  {
+    files: ["src/lib/db/index.ts"],
+    rules: {
+      "no-var": "off",
+    },
+  },
 ];
 
 export default eslintConfig;

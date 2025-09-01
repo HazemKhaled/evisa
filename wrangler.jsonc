@@ -19,7 +19,6 @@
    * Account ID for Cloudflare deployment (loaded from CLOUDFLARE_ACCOUNT_ID env var)
    */
 
-
   /**
    * D1 Database Configuration
    * https://developers.cloudflare.com/d1/
@@ -29,8 +28,8 @@
       "binding": "DB",
       "database_name": "evisa-db-local",
       "database_id": "ed2dd914-c369-4c97-b716-3f35a63c4a00",
-      "preview_database_id": "ed2dd914-c369-4c97-b716-3f35a63c4a00"
-    }
+      "preview_database_id": "ed2dd914-c369-4c97-b716-3f35a63c4a00",
+    },
   ],
 
   /**
@@ -38,7 +37,7 @@
    * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
    */
   "vars": {
-    "ENVIRONMENT": "development"
+    "ENVIRONMENT": "development",
   },
 
   /**
@@ -51,13 +50,13 @@
         {
           "binding": "DB",
           "database_name": "evisa-db-prod",
-          "database_id": "your-production-database-id"
-        }
+          "database_id": "your-production-database-id",
+        },
       ],
       "vars": {
-        "ENVIRONMENT": "production"
-      }
-    }
+        "ENVIRONMENT": "production",
+      },
+    },
   },
 
   /**
@@ -77,7 +76,7 @@
    * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
    */
   // "placement": { "mode": "smart" }
-  
+
   /**
    * Service Bindings (communicate between multiple Workers)
    * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
