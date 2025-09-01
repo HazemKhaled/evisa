@@ -24,7 +24,7 @@
     "db:local:seed": "wrangler d1 execute evisa-db-local --local --file=./drizzle/seed.sql",
     "db:local:reset": "wrangler d1 execute evisa-db-local --local --file=./scripts/reset.sql",
     "db:local:studio": "bash -c 'pkill -f \"drizzle-kit studio\" 2>/dev/null || true && export $(cat .env.local | grep -v \"^#\" | grep -v \"^$\" | xargs) && LOCAL_DB_PATH=$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -type f -name \"*.sqlite\" -print -quit) drizzle-kit studio --port 4984'",
-    "db:local:query": "pnpx wrangler d1 execute evisa-db-local --local --command",
+    "db:local:query": "pnpm wrangler d1 execute evisa-db-local --local --command",
     "db:local:setup": "pnpm db:local:reset && pnpm db:local:migrate && pnpm db:local:seed",
     "prepare": "husky"
   },
