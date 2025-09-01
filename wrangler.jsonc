@@ -44,7 +44,7 @@
    */
   "env": {
     "__WORKER_ENVIRONMENT__": {
-      "name": "__WORKER_DOMAIN__",
+      "name": "__WORKER_ENVIRONMENT__",
       "compatibility_date": "2025-03-01",
       "d1_databases": [
         {
@@ -79,10 +79,6 @@
       "routes": [
         {
           "pattern": "staging.gettravelvisa.com/*",
-          "custom_domain": true,
-        },
-        {
-          "pattern": "pr-*.staging.gettravelvisa.com/*",
           "custom_domain": true,
         },
       ],
