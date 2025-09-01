@@ -1,10 +1,10 @@
 {
-  "headline": "Travel with Minimal Visa Requirements",
-  "subheadline": "Simplify your travel planning with our comprehensive visa processing platform. Check eligibility, apply online, and get your visa approved faster.",
+  "headline": "Viaggia con requisiti minimi di visto",
+  "subheadline": "Semplifica la pianificazione del tuo viaggio con la nostra piattaforma completa di elaborazione dei visti. Verifica l'idoneità, candidati online e ottieni il tuo visto approvato più velocemente.",
   "search": {
-    "title": "Check Your Visa Requirements",
-    "passportPlaceholder": "Select your passport country",
-    "destinationPlaceholder": "Select your destination",
-    "checkButton": "Check Eligibility"
+    "title": "Verifica i tuoi requisiti di visto",
+    "passportPlaceholder": "Seleziona il tuo paese di passaporto",
+    "destinationPlaceholder": "Seleziona la tua destinazione",
+    "checkButton": "Verifica l'idoneità"
   }
 }

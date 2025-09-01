@@ -1,27 +1,27 @@
 {
   "header": {
     "home": "Home",
-    "destinations": "Destinations",
-    "blog": "Travel Blog",
-    "about": "About Us",
-    "contact": "Contact Us",
-    "language": "Language"
+    "destinations": "Destinazioni",
+    "blog": "Blog di Viaggio",
+    "about": "Chi Siamo",
+    "contact": "Contattaci",
+    "language": "Lingua"
   },
   "footer": {
-    "company": "Company",
-    "services": "Services",
-    "contact": "Contact",
-    "about": "About",
-    "contact_us": "Contact Us",
-    "terms": "Terms & Conditions",
-    "privacy": "Privacy Policy",
-    "visa_checker": "Visa Checker",
-    "document_center": "Document Center",
-    "travel_blog": "Travel Blog",
+    "company": "Azienda",
+    "services": "Servizi",
+    "contact": "Contatto",
+    "about": "Chi Siamo",
+    "contact_us": "Contattaci",
+    "terms": "Termini e Condizioni",
+    "privacy": "Informativa sulla Privacy",
+    "visa_checker": "Controllore Visti",
+    "document_center": "Centro Documenti",
+    "travel_blog": "Blog di Viaggio",
     "email": "Email",
-    "phone": "Phone",
-    "address": "Office Address",
+    "phone": "Telefono",
+    "address": "Indirizzo Ufficio",
     "social_media": "Social Media",
-    "copyright": "© {{year}} GetTravelVisa.com Platform. All rights reserved."
+    "copyright": "© {{year}} Piattaforma GetTravelVisa.com. Tutti i diritti riservati."
   }
 }

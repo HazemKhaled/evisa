@@ -1,0 +1,54 @@
+{
+  "howItWorks": {
+    "title": "Comment ça marche",
+    "subtitle": "Étapes simples pour obtenir l'approbation de votre visa",
+    "steps": {
+      "check": {
+        "title": "Vérifier l'éligibilité",
+        "description": "Entrez votre pays de passeport et de destination pour vérifier les exigences de visa"
+      },
+      "apply": {
+        "title": "Postuler en ligne",
+        "description": "Complétez votre demande avec notre processus guidé étape par étape"
+      },
+      "documents": {
+        "title": "Télécharger les documents",
+        "description": "Téléchargez en toute sécurité les documents requis en utilisant notre plateforme chiffrée"
+      },
+      "approval": {
+        "title": "Obtenir l'approbation",
+        "description": "Recevez votre visa approuvé directement par email dans le délai de traitement"
+      }
+    }
+  },
+  "topDestinations": {
+    "title": "Destinations populaires",
+    "subtitle": "Destinations de voyage populaires avec informations sur les visas"
+  },
+  "whyChooseUs": {
+    "title": "Pourquoi nous choisir",
+    "subtitle": "Fait confiance par les voyageurs du monde entier",
+    "features": {
+      "speed": {
+        "title": "Traitement rapide",
+        "description": "Obtenez votre visa traité rapidement avec notre processus de demande optimisé"
+      },
+      "trust": {
+        "title": "Plateforme de confiance",
+        "description": "Traitement de visa sécurisé et fiable avec des partenariats gouvernementaux"
+      },
+      "global": {
+        "title": "Portée mondiale",
+        "description": "Support pour les demandes de visa vers des destinations du monde entier"
+      },
+      "support": {
+        "title": "Support 24/7",
+        "description": "Service client 24h/24 et 7j/7 en plusieurs langues"
+      }
+    }
+  },
+  "latestPosts": {
+    "title": "Derniers aperçus de voyage",
+    "subtitle": "Restez à jour avec des conseils de voyage et des guides de destination"
+  }
+}

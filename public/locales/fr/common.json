@@ -1,38 +1,38 @@
 {
   "site": {
-    "title": "GetTravelVisa.com Platform - Travel with Minimal Visa Requirements",
-    "description": "Simplify your travel with our comprehensive visa processing platform. Get destination-based visa information, eligibility checking, and seamless application services."
+    "title": "Plateforme GetTravelVisa.com - Voyagez avec des exigences de visa minimales",
+    "description": "Simplifiez vos voyages avec notre plateforme complète de traitement des visas. Obtenez des informations sur les visas par destination, la vérification d'éligibilité et des services de demande transparents."
   },
   "buttons": {
-    "startApplication": "Start Your Application",
-    "checkEligibility": "Check Eligibility",
-    "learnMore": "Learn More",
-    "readMore": "Read More",
-    "submit": "Submit",
-    "cancel": "Cancel",
-    "close": "Close",
-    "next": "Next",
-    "previous": "Previous",
-    "save": "Save",
-    "edit": "Edit",
-    "delete": "Delete"
+    "startApplication": "Démarrer votre demande",
+    "checkEligibility": "Vérifier l'éligibilité",
+    "learnMore": "En savoir plus",
+    "readMore": "Lire la suite",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "save": "Sauvegarder",
+    "edit": "Modifier",
+    "delete": "Supprimer"
   },
   "forms": {
-    "passportCountry": "Passport Country",
-    "destinationCountry": "Destination Country",
-    "selectCountry": "Select a country",
-    "required": "This field is required",
-    "name": "Name",
+    "passportCountry": "Pays du passeport",
+    "destinationCountry": "Pays de destination",
+    "selectCountry": "Sélectionner un pays",
+    "required": "Ce champ est obligatoire",
+    "name": "Nom",
     "email": "Email",
-    "phone": "Phone",
-    "subject": "Subject",
+    "phone": "Téléphone",
+    "subject": "Sujet",
     "message": "Message",
-    "reason": "Reason for contact"
+    "reason": "Raison du contact"
   },
   "status": {
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "success": "Success",
-    "notFound": "Not found"
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès",
+    "notFound": "Non trouvé"
   }
 }

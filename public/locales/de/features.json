@@ -1,0 +1,54 @@
+{
+  "howItWorks": {
+    "title": "Wie es funktioniert",
+    "subtitle": "Einfache Schritte zur Visa-Genehmigung",
+    "steps": {
+      "check": {
+        "title": "Berechtigung prüfen",
+        "description": "Geben Sie Ihr Reisepass- und Zielland ein, um Visa-Anforderungen zu prüfen"
+      },
+      "apply": {
+        "title": "Online bewerben",
+        "description": "Vervollständigen Sie Ihre Bewerbung mit unserem geführten Schritt-für-Schritt-Prozess"
+      },
+      "documents": {
+        "title": "Dokumente hochladen",
+        "description": "Laden Sie erforderliche Dokumente sicher mit unserer verschlüsselten Plattform hoch"
+      },
+      "approval": {
+        "title": "Genehmigung erhalten",
+        "description": "Erhalten Sie Ihr genehmigtes Visa direkt per E-Mail innerhalb der Bearbeitungszeit"
+      }
+    }
+  },
+  "topDestinations": {
+    "title": "Top-Destinationen",
+    "subtitle": "Beliebte Reiseziele mit Visa-Informationen"
+  },
+  "whyChooseUs": {
+    "title": "Warum uns wählen",
+    "subtitle": "Vertraut von Reisenden weltweit",
+    "features": {
+      "speed": {
+        "title": "Schnelle Bearbeitung",
+        "description": "Erhalten Sie Ihr Visa schnell bearbeitet mit unserem optimierten Antragsverfahren"
+      },
+      "trust": {
+        "title": "Vertrauenswürdige Plattform",
+        "description": "Sichere und zuverlässige Visa-Bearbeitung mit Regierungspartnerschaften"
+      },
+      "global": {
+        "title": "Globale Reichweite",
+        "description": "Unterstützung für Visa-Anträge zu Zielen weltweit"
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Rund-um-die-Uhr-Kundenservice in mehreren Sprachen"
+      }
+    }
+  },
+  "latestPosts": {
+    "title": "Neueste Reiseeinblicke",
+    "subtitle": "Bleiben Sie auf dem Laufenden mit Reisetipps und Zielleitfäden"
+  }
+}
