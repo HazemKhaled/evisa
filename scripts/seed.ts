@@ -3,7 +3,6 @@
  * This script populates the database with initial data for countries, visa types, and eligibility
  * using the new normalized i18n table structure
  */
-/* eslint-disable no-console */
 import { createDrizzleLocal } from "../src/lib/db";
 import {
   countries,
