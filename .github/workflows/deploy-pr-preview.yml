@@ -47,10 +47,7 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           environment: pr-${{ github.event.pull_request.number }}
           wranglerVersion: "4.33.1"
-          secrets: |
-            EXAMPLE_SECRET
           vars: |
             NEXT_PUBLIC_GTM_ID
         env:
           NEXT_PUBLIC_GTM_ID: ${{ vars.NEXT_PUBLIC_GTM_ID }}
-          EXAMPLE_SECRET: "example value"

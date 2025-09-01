@@ -3,7 +3,7 @@ module.exports = {
   "**/*.{js,jsx,ts,tsx}": ["eslint --fix --max-warnings=0", "prettier --write"],
 
   // JSON files
-  "**/*.json": ["prettier --write"],
+  "**/*.{json}": ["prettier --write"],
 
   // CSS and style files
   "**/*.{css,scss,sass}": ["prettier --write"],
@@ -16,7 +16,7 @@ module.exports = {
 
   // Note: Type checking disabled for staged files due to Next.js generated files
   // Run 'pnpm type-check' manually or in CI/CD pipeline
-  // Removed tsc --noEmit to avoid Cloudflare Workers type conflicts
+  "**/*.{ts,tsx}": ["tsc --noEmit"],
 
   "cloudflare-env.d.ts": ["wrangler types --env-interface CloudflareEnv"],
 };

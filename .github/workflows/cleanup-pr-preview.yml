@@ -27,7 +27,7 @@ jobs:
 
       - name: Delete PR Preview Worker
         run: |
-          pnpm exec wrangler delete gettravelvisa-pr-${{ github.event.number }} --force || echo "Worker may not exist"
+          pnpm exec wrangler delete gtv-pr-${{ github.event.number }} --force || echo "Worker may not exist"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -58,5 +58,5 @@ jobs:
       - name: Cleanup notification
         run: |
           echo "🧹 PR Preview cleanup completed!"
-          echo "🗑️ Removed: gettravelvisa-pr-${{ github.event.number }}"
+          echo "🗑️ Removed: gtv-pr-${{ github.event.number }}"
           echo "📝 PR: #${{ github.event.number }}"
