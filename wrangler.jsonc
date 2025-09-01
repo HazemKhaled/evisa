@@ -34,28 +34,62 @@
 
   /**
    * Environment Variables
-   * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
    */
   "vars": {
     "ENVIRONMENT": "development",
   },
 
   /**
-   * Production Environment Configuration
+   * Environment Configuration
    */
   "env": {
+    "staging": {
+      "name": "gettravelvisa-staging",
+      "compatibility_date": "2025-03-01",
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "gettravelvisa-db-staging",
+          "database_id": "staging-database-id-placeholder",
+        },
+      ],
+      "vars": {
+        "ENVIRONMENT": "staging",
+      },
+      "routes": [
+        {
+          "pattern": "staging.gettravelvisa.com/*",
+          "custom_domain": true,
+        },
+        {
+          "pattern": "pr-*.staging.gettravelvisa.com/*",
+          "custom_domain": true,
+        },
+      ],
+    },
     "production": {
+      "name": "gettravelvisa-prod",
       "compatibility_date": "2025-03-01",
       "d1_databases": [
         {
           "binding": "DB",
           "database_name": "gettravelvisa-db-prod",
-          "database_id": "your-production-database-id",
+          "database_id": "production-database-id-placeholder",
         },
       ],
       "vars": {
         "ENVIRONMENT": "production",
       },
+      "routes": [
+        {
+          "pattern": "gettravelvisa.com/*",
+          "custom_domain": true,
+        },
+        {
+          "pattern": "www.gettravelvisa.com/*",
+          "custom_domain": true,
+        },
+      ],
     },
   },
 
