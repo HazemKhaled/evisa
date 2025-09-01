@@ -11,6 +11,7 @@
 - [ ] Integrate Google Tag Manager
 - [ ] Integrate Jitsu with Next.js
 - [x] Configure Jest and add basic coverage
+- [ ] Configure CI/CD
 
 ## Main pages
 
