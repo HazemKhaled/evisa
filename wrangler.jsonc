@@ -43,6 +43,26 @@
    * Environment Configuration
    */
   "env": {
+    "__WORKER_ENVIRONMENT__": {
+      "name": "__WORKER_DOMAIN__",
+      "compatibility_date": "2025-03-01",
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "gettravelvisa-db-staging",
+          "database_id": "staging-database-id-placeholder",
+        },
+      ],
+      "vars": {
+        "ENVIRONMENT": "__WORKER_ENVIRONMENT__",
+      },
+      "routes": [
+        {
+          "pattern": "__WORKER_DOMAIN__.gettravelvisa.com/*",
+          "custom_domain": true,
+        },
+      ],
+    },
     "staging": {
       "name": "gettravelvisa-staging",
       "compatibility_date": "2025-03-01",
