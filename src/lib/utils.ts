@@ -112,12 +112,22 @@ export function isValidEmail(email: string): boolean {
 }
 
 /**
- * Generate a random ID
+ * Generate a random ID with guaranteed length
+ * Uses a more reliable approach than Math.random().toString(36)
  */
 export function generateId(length: number = 8): string {
-  return Math.random()
-    .toString(36)
-    .substring(2, 2 + length);
+  if (length <= 0) return "";
+
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+
+  // Generate exactly the requested length
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+
+  return result;
 }
 
 /**

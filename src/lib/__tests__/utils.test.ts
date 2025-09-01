@@ -245,9 +245,8 @@ describe("utils", () => {
 
     it("should generate ID with custom length", () => {
       const id = generateId(12);
-      // The actual length might be slightly different due to Math.random().toString(36) behavior
-      expect(id.length).toBeGreaterThanOrEqual(10);
-      expect(id.length).toBeLessThanOrEqual(12);
+      expect(id).toHaveLength(12);
+      expect(typeof id).toBe("string");
     });
 
     it("should generate different IDs", () => {
@@ -259,6 +258,19 @@ describe("utils", () => {
     it("should handle edge cases", () => {
       expect(generateId(0)).toHaveLength(0);
       expect(generateId(1)).toHaveLength(1);
+    });
+
+    it("should generate IDs with consistent length", () => {
+      // Test multiple calls to ensure consistency
+      for (let i = 0; i < 10; i++) {
+        const id = generateId(15);
+        expect(id).toHaveLength(15);
+      }
+    });
+
+    it("should only contain valid characters", () => {
+      const id = generateId(20);
+      expect(id).toMatch(/^[A-Za-z0-9]+$/);
     });
   });
 
