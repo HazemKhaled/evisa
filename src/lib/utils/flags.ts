@@ -39,11 +39,12 @@ export async function flagExists(countryCode: string): Promise<boolean> {
  * Get flag URL with fallback to a default flag
  * @param countryCode - ISO 3166-1 alpha-3 country code
  * @param fallbackUrl - Optional fallback URL (defaults to a generic flag)
- * @returns URL to flag or fallback
+ * @returns Promise that resolves to URL to flag or fallback
  */
-export function getFlagUrlWithFallback(
+export async function getFlagUrlWithFallback(
   countryCode: string,
   fallbackUrl: string = "/flags/default.svg"
-): string {
-  return getFlagUrl(countryCode) || fallbackUrl;
+): Promise<string> {
+  const exists = await flagExists(countryCode);
+  return exists ? getFlagUrl(countryCode) : fallbackUrl;
 }

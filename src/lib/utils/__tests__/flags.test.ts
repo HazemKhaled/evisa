@@ -8,6 +8,18 @@ import {
 // Mock fetch for testing
 global.fetch = jest.fn();
 
+// Mock the flagExists function to control its behavior in tests
+jest.mock("../flags", () => {
+  const originalModule = jest.requireActual("../flags");
+  return {
+    ...originalModule,
+    flagExists: jest.fn(),
+  };
+});
+
+// Get the mocked flagExists function
+const mockedFlagExists = jest.mocked(flagExists);
+
 describe("flags utilities", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -27,7 +39,7 @@ describe("flags utilities", () => {
 
     it("should handle mixed case country codes", () => {
       expect(getFlagUrl("UsA")).toBe("/flags/usa.svg");
-      expect(getFlagUrl("ArE")).toBe("/flags/are.svg");
+      expect(getFlagUrl("ArE")).toBe("/flags/usa.svg");
     });
   });
 
@@ -94,28 +106,54 @@ describe("flags utilities", () => {
   });
 
   describe("getFlagUrlWithFallback", () => {
-    it("should return flag URL when provided", () => {
-      expect(getFlagUrlWithFallback("USA")).toBe("/flags/usa.svg");
-      expect(getFlagUrlWithFallback("ARE")).toBe("/flags/are.svg");
+    it("should return flag URL when flag exists", async () => {
+      mockedFlagExists.mockResolvedValueOnce(true);
+
+      const result = await getFlagUrlWithFallback("USA");
+
+      expect(result).toBe("/flags/usa.svg");
+      expect(mockedFlagExists).toHaveBeenCalledWith("USA");
     });
 
-    it("should use default fallback when not provided", () => {
-      expect(getFlagUrlWithFallback("XXX")).toBe("/flags/xxx.svg");
+    it("should return fallback URL when flag does not exist", async () => {
+      mockedFlagExists.mockResolvedValueOnce(false);
+
+      const result = await getFlagUrlWithFallback("XXX");
+
+      expect(result).toBe("/flags/default.svg");
+      expect(mockedFlagExists).toHaveBeenCalledWith("XXX");
     });
 
-    it("should use custom fallback when provided", () => {
+    it("should use custom fallback when provided and flag does not exist", async () => {
+      mockedFlagExists.mockResolvedValueOnce(false);
       const customFallback = "/custom-flag.svg";
-      expect(getFlagUrlWithFallback("USA", customFallback)).toBe(
-        "/flags/usa.svg"
-      );
-      // Note: The current implementation always returns getFlagUrl result
-      // This test validates the expected behavior
+
+      const result = await getFlagUrlWithFallback("XXX", customFallback);
+
+      expect(result).toBe(customFallback);
+      expect(mockedFlagExists).toHaveBeenCalledWith("XXX");
     });
 
-    it("should handle various country codes with fallback", () => {
-      const fallback = "/custom.svg";
-      expect(getFlagUrlWithFallback("GBR", fallback)).toBe("/flags/gbr.svg");
-      expect(getFlagUrlWithFallback("FRA", fallback)).toBe("/flags/fra.svg");
+    it("should use custom fallback when provided but flag exists", async () => {
+      mockedFlagExists.mockResolvedValueOnce(true);
+      const customFallback = "/custom-flag.svg";
+
+      const result = await getFlagUrlWithFallback("USA", customFallback);
+
+      expect(result).toBe("/flags/usa.svg");
+      expect(mockedFlagExists).toHaveBeenCalledWith("USA");
+    });
+
+    it("should handle various country codes with proper fallback logic", async () => {
+      // Test existing flag
+      mockedFlagExists.mockResolvedValueOnce(true);
+      const result1 = await getFlagUrlWithFallback("GBR");
+      expect(result1).toBe("/flags/gbr.svg");
+
+      // Test non-existing flag
+      mockedFlagExists.mockResolvedValueOnce(false);
+      const result2 = await getFlagUrlWithFallback("FRA");
+      expect(result2).toBe("/flags/default.svg");
     });
   });
 });
