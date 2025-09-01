@@ -52,7 +52,7 @@ NODE_ENV=development
 The project uses intelligent configuration in `drizzle.config.ts` that automatically switches between local and production:
 
 ```typescript
-// Local development when LOCAL_DB_PATH is set
+// Automatic environment validation and switching
 LOCAL_DB_PATH
   ? {
       dialect: "sqlite",
@@ -62,7 +62,7 @@ LOCAL_DB_PATH
       // Production with Cloudflare D1 HTTP API
       dialect: "sqlite",
       driver: "d1-http",
-      dbCredentials: { databaseId, token, accountId },
+      dbCredentials: validateProductionEnv(), // Throws descriptive error if vars missing
     };
 ```
 
@@ -232,9 +232,10 @@ pnpm wrangler secret put NEXTAUTH_SECRET
 
 **Migration Errors:**
 
-- Ensure `.env.local` has correct credentials
-- Check that database ID matches in both environment and `wrangler.jsonc`
-- Verify migrations exist in both `drizzle/` and `migrations/` directories
+- **Missing Environment Variables**: The config now validates required variables and shows descriptive error messages
+- **Incorrect Credentials**: Ensure `.env.local` has correct Cloudflare credentials
+- **Database ID Mismatch**: Check that database ID matches in both environment and `wrangler.jsonc`
+- **Missing Migration Files**: Verify migrations exist in both `drizzle/` and `migrations/` directories
 
 **Studio Connection Issues:**
 
