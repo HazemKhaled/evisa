@@ -38,7 +38,6 @@ jobs:
         run: pnpm exec opennextjs-cloudflare build
         env:
           NEXT_PUBLIC_GTM_ID: ${{ vars.NEXT_PUBLIC_GTM_ID }}
-          ## Add all env variables here
 
       - name: Build & Deploy Worker
         uses: cloudflare/wrangler-action@v3
@@ -50,10 +49,9 @@ jobs:
           environment: pr-${{ github.event.pull_request.number }}
           wranglerVersion: "4.33.1"
           secrets: |
-            # Add all secrets here
+            EXAMPLE_SECRET
           vars: |
             NEXT_PUBLIC_GTM_ID
-            # Add all vars here
         env:
           NEXT_PUBLIC_GTM_ID: ${{ vars.NEXT_PUBLIC_GTM_ID }}
-          # Add all env variables here
+          EXAMPLE_SECRET: "example value"
