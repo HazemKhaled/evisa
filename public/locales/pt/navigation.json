@@ -1,0 +1,27 @@
+{
+  "header": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "blog": "Travel Blog",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "language": "Language"
+  },
+  "footer": {
+    "company": "Company",
+    "services": "Services",
+    "contact": "Contact",
+    "about": "About",
+    "contact_us": "Contact Us",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "visa_checker": "Visa Checker",
+    "document_center": "Document Center",
+    "travel_blog": "Travel Blog",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Office Address",
+    "social_media": "Social Media",
+    "copyright": "© {{year}} eVisa Platform. All rights reserved."
+  }
+}

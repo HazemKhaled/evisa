@@ -1,0 +1,10 @@
+{
+  "headline": "Travel with Minimal Visa Requirements",
+  "subheadline": "Simplify your travel planning with our comprehensive visa processing platform. Check eligibility, apply online, and get your visa approved faster.",
+  "search": {
+    "title": "Check Your Visa Requirements",
+    "passportPlaceholder": "Select your passport country",
+    "destinationPlaceholder": "Select your destination",
+    "checkButton": "Check Eligibility"
+  }
+}

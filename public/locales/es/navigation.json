@@ -1,0 +1,27 @@
+{
+  "header": {
+    "home": "Inicio",
+    "destinations": "Destinos",
+    "blog": "Blog de Viajes",
+    "about": "Sobre Nosotros",
+    "contact": "Contacto",
+    "language": "Idioma"
+  },
+  "footer": {
+    "company": "Empresa",
+    "services": "Servicios",
+    "contact": "Contacto",
+    "about": "Sobre Nosotros",
+    "contact_us": "Contáctanos",
+    "terms": "Términos y Condiciones",
+    "privacy": "Política de Privacidad",
+    "visa_checker": "Verificador de Visa",
+    "document_center": "Centro de Documentos",
+    "travel_blog": "Blog de Viajes",
+    "email": "Correo",
+    "phone": "Teléfono",
+    "address": "Dirección de Oficina",
+    "social_media": "Redes Sociales",
+    "copyright": "© {{year}} Plataforma eVisa. Todos los derechos reservados."
+  }
+}

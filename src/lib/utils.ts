@@ -69,6 +69,20 @@ export function getTextDirection(locale: string): "ltr" | "rtl" {
 }
 
 /**
+ * Check if a locale is RTL
+ */
+export function isRTL(locale: string): boolean {
+  return getTextDirection(locale) === "rtl";
+}
+
+/**
+ * Get the language code from locale
+ */
+export function getLanguageFromLocale(locale: string): string {
+  return locale.split("-")[0];
+}
+
+/**
  * Sleep utility for async operations
  */
 export function sleep(ms: number): Promise<void> {
