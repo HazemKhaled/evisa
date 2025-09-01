@@ -1,16 +1,15 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-const nextJest = require("next/jest");
+import nextJest from "next/jest.js";
+import type { Config } from "jest";
 
-/** @type {import('jest').Config} */
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files
   dir: "./",
 });
 
 // Add any custom config to be passed to Jest
-const config = {
+const config: Config = {
   testEnvironment: "jsdom",
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   testMatch: ["**/__tests__/**/*.(ts|tsx|js)", "**/*.(test|spec).(ts|tsx|js)"],
   collectCoverageFrom: [
     "src/lib/**/*.{ts,tsx}",
@@ -38,4 +37,4 @@ const config = {
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-module.exports = createJestConfig(config);
+export default createJestConfig(config);
