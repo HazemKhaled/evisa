@@ -216,13 +216,15 @@ pnpm cf-typegen         # Generate Cloudflare types
 ## Project Architecture
 
 ### Current State
+
 - **Framework**: Next.js with App Router and Turbopack for development
-- **Styling**: Tailwind CSS (latest) 
+- **Styling**: Tailwind CSS (latest)
 - **Database**: Schema designed but Drizzle ORM not yet fully implemented
 - **Internationalization**: next-i18next
 - **Deployment**: OpenNext.js for Cloudflare Workers
 
 ### Directory Structure
+
 ```
 src/
 ├── app/                          # Next.js App Router
@@ -239,6 +241,7 @@ src/
 ```
 
 ### Package Management
+
 - Use **pnpm** exclusively (not npm or yarn)
 
 ## Development Guidelines
@@ -358,17 +361,21 @@ npx husky init
 ## Git & GitHub Workflow
 
 ### Commit Message Format
+
 Use conventional commit format:
+
 - Format: `<type>(<scope>): <description>`
 - Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
 - Scope: Required, use slug for current module
 - Description: imperative, present tense ("add" not "added" or "adds")
 
 Examples:
+
 - `fix(catalog): resolve null reference in address selection`
 - `docs(auth): update README with setup instructions`
 
 ### Pull Request Format
+
 - Format: `<type>(<scope>): <description>`
 - Always include Sentry issue links in PR description when fixing bugs
 - Examples:
@@ -376,6 +383,7 @@ Examples:
   - `fix(auth): add optional chaining to prevent null reference error`
 
 ### Branch Naming
+
 - Format: `<type>/<description>`
 - Types: `feature`, `bugfix`, `chore`
 - Description: kebab-case
@@ -384,12 +392,15 @@ Examples:
 ## Business Logic & URL Structure
 
 ### Core Functionality
+
 The platform helps users travel with minimal visa process through:
+
 1. **Visa Catalog**: Destination-driven content showing visa requirements
-2. **Document Center**: Centralized document collection and processing  
+2. **Document Center**: Centralized document collection and processing
 3. **Affiliate Integration**: Partnerships with visa agencies and travel services
 
 ### URL Structure
+
 - Destination pages: `/d/{DESTINATION_COUNTRY}`
 - Visa options: `/d/{DESTINATION_NAME}/v/{VISA_OPTION}`
 - Passport-specific info: `/d/{DESTINATION_NAME}/p/{PASSPORT_COUNTRY}`
@@ -398,6 +409,7 @@ The platform helps users travel with minimal visa process through:
 - Article details: `/d/{DESTINATION_COUNTRY}/a/{ARTICLE_SLUG}`
 
 ### SEO Requirements
+
 - Generate sitemap index at `/sitemap_index.xml`
 - Each destination gets own sitemap: `/d/{DESTINATION_COUNTRY}/sitemap.xml`
 - Implement subdomain structure: `{country-code}.production-domain.tld`

@@ -16,30 +16,67 @@
     "enabled": true,
   },
   /**
-   * Smart Placement
-   * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
+   * Account ID for Cloudflare deployment (loaded from CLOUDFLARE_ACCOUNT_ID env var)
    */
-  // "placement": { "mode": "smart" }
+
   /**
-   * Bindings
-   * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
-   * databases, object storage, AI inference, real-time communication and more.
-   * https://developers.cloudflare.com/workers/runtime-apis/bindings/
+   * D1 Database Configuration
+   * https://developers.cloudflare.com/d1/
    */
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "evisa-db-local",
+      "database_id": "ed2dd914-c369-4c97-b716-3f35a63c4a00",
+      "preview_database_id": "ed2dd914-c369-4c97-b716-3f35a63c4a00",
+    },
+  ],
+
   /**
    * Environment Variables
    * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
    */
-  // "vars": { "MY_VARIABLE": "production_value" }
+  "vars": {
+    "ENVIRONMENT": "development",
+  },
+
   /**
-   * Note: Use secrets to store sensitive data.
-   * https://developers.cloudflare.com/workers/configuration/secrets/
+   * Production Environment Configuration
    */
+  "env": {
+    "production": {
+      "compatibility_date": "2025-03-01",
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "evisa-db-prod",
+          "database_id": "your-production-database-id",
+        },
+      ],
+      "vars": {
+        "ENVIRONMENT": "production",
+      },
+    },
+  },
+
   /**
-   * Static Assets
-   * https://developers.cloudflare.com/workers/static-assets/binding/
+   * KV namespaces (for future use with caching)
+   * https://developers.cloudflare.com/kv/
    */
-  // "assets": { "directory": "./public/", "binding": "ASSETS" }
+  // "kv_namespaces": [
+  //   {
+  //     "binding": "CACHE",
+  //     "id": "your-kv-namespace-id",
+  //     "preview_id": "your-preview-kv-namespace-id"
+  //   }
+  // ],
+
+  /**
+   * Smart Placement
+   * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
+   */
+  // "placement": { "mode": "smart" }
+
   /**
    * Service Bindings (communicate between multiple Workers)
    * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
