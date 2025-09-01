@@ -44,6 +44,14 @@ const eslintConfig = [
     },
   },
 
+  // Allow console in scripts directory
+  {
+    files: ["scripts/**/*"],
+    rules: {
+      "no-console": "off",
+    },
+  },
+
   // Ignore generated files
   {
     ignores: ["cloudflare-env.d.ts"],

@@ -10,7 +10,7 @@
 - [ ] Integrate Sentry & error proper error boundaries
 - [ ] Integrate Google Tag Manager
 - [ ] Integrate Jitsu with Next.js
-- [ ] Configure Jest and add basic coverage
+- [x] Configure Jest and add basic coverage
 
 ## Main pages
 

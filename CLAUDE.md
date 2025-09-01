@@ -414,3 +414,4 @@ The platform helps users travel with minimal visa process through:
 - Each destination gets own sitemap: `/uae/sitemap.xml`
 - Implement subdomain structure: `{country-code}.gettravelvisa.com
 - Use canonical meta tags for destination pages
+- never use eslint-disabled, instead add propper rules or eslint issues
