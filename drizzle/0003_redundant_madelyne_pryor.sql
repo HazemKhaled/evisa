@@ -1,1 +1,0 @@
-ALTER TABLE `countries` DROP COLUMN `flag`;

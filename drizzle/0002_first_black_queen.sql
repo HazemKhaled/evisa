@@ -1,1 +1,0 @@
-CREATE UNIQUE INDEX `visa_eligibility_destination_id_passport_id_visa_type_id_unique` ON `visa_eligibility` (`destination_id`,`passport_id`,`visa_type_id`);

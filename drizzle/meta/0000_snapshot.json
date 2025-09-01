@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "dab4ecec-f917-4e4f-b296-5e33db4641c2",
+  "id": "6c6071d8-e634-40b2-a7de-535be006465d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "countries": {
@@ -19,125 +19,6 @@
           "type": "text(3)",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
-        },
-        "name_en": {
-          "name": "name_en",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "name_ar": {
-          "name": "name_ar",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "name_es": {
-          "name": "name_es",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "name_pt": {
-          "name": "name_pt",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "name_ru": {
-          "name": "name_ru",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "name_de": {
-          "name": "name_de",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "name_fr": {
-          "name": "name_fr",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "name_it": {
-          "name": "name_it",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_en": {
-          "name": "description_en",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_ar": {
-          "name": "description_ar",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_es": {
-          "name": "description_es",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_pt": {
-          "name": "description_pt",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_ru": {
-          "name": "description_ru",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_de": {
-          "name": "description_de",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_fr": {
-          "name": "description_fr",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_it": {
-          "name": "description_it",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "flag": {
-          "name": "flag",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
           "autoincrement": false
         },
         "continent": {
@@ -198,6 +79,83 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
+    "countries_i18n": {
+      "name": "countries_i18n",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "country_id": {
+          "name": "country_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "locale": {
+          "name": "locale",
+          "type": "text(5)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch())"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch())"
+        }
+      },
+      "indexes": {
+        "countries_i18n_country_id_locale_unique": {
+          "name": "countries_i18n_country_id_locale_unique",
+          "columns": ["country_id", "locale"],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "countries_i18n_country_id_countries_id_fk": {
+          "name": "countries_i18n_country_id_countries_id_fk",
+          "tableFrom": "countries_i18n",
+          "tableTo": "countries",
+          "columnsFrom": ["country_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
     "visa_eligibility": {
       "name": "visa_eligibility",
       "columns": {
@@ -243,62 +201,6 @@
           "notNull": false,
           "autoincrement": false
         },
-        "notes_en": {
-          "name": "notes_en",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "notes_ar": {
-          "name": "notes_ar",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "notes_es": {
-          "name": "notes_es",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "notes_pt": {
-          "name": "notes_pt",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "notes_ru": {
-          "name": "notes_ru",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "notes_de": {
-          "name": "notes_de",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "notes_fr": {
-          "name": "notes_fr",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "notes_it": {
-          "name": "notes_it",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
         "last_updated": {
           "name": "last_updated",
           "type": "integer",
@@ -339,7 +241,13 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "visa_eligibility_destination_id_passport_id_visa_type_id_unique": {
+          "name": "visa_eligibility_destination_id_passport_id_visa_type_id_unique",
+          "columns": ["destination_id", "passport_id", "visa_type_id"],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {
         "visa_eligibility_destination_id_countries_id_fk": {
           "name": "visa_eligibility_destination_id_countries_id_fk",
@@ -373,6 +281,76 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
+    "visa_eligibility_i18n": {
+      "name": "visa_eligibility_i18n",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "visa_eligibility_id": {
+          "name": "visa_eligibility_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "locale": {
+          "name": "locale",
+          "type": "text(5)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "notes": {
+          "name": "notes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch())"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch())"
+        }
+      },
+      "indexes": {
+        "visa_eligibility_i18n_visa_eligibility_id_locale_unique": {
+          "name": "visa_eligibility_i18n_visa_eligibility_id_locale_unique",
+          "columns": ["visa_eligibility_id", "locale"],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "visa_eligibility_i18n_visa_eligibility_id_visa_eligibility_id_fk": {
+          "name": "visa_eligibility_i18n_visa_eligibility_id_visa_eligibility_id_fk",
+          "tableFrom": "visa_eligibility_i18n",
+          "tableTo": "visa_eligibility",
+          "columnsFrom": ["visa_eligibility_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
     "visa_types": {
       "name": "visa_types",
       "columns": {
@@ -395,118 +373,6 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
-        },
-        "name_en": {
-          "name": "name_en",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "name_ar": {
-          "name": "name_ar",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "name_es": {
-          "name": "name_es",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "name_pt": {
-          "name": "name_pt",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "name_ru": {
-          "name": "name_ru",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "name_de": {
-          "name": "name_de",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "name_fr": {
-          "name": "name_fr",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "name_it": {
-          "name": "name_it",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_en": {
-          "name": "description_en",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_ar": {
-          "name": "description_ar",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_es": {
-          "name": "description_es",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_pt": {
-          "name": "description_pt",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_ru": {
-          "name": "description_ru",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_de": {
-          "name": "description_de",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_fr": {
-          "name": "description_fr",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "description_it": {
-          "name": "description_it",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
           "autoincrement": false
         },
         "duration": {
@@ -614,6 +480,83 @@
           "tableFrom": "visa_types",
           "tableTo": "countries",
           "columnsFrom": ["destination_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "visa_types_i18n": {
+      "name": "visa_types_i18n",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "visa_type_id": {
+          "name": "visa_type_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "locale": {
+          "name": "locale",
+          "type": "text(5)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch())"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch())"
+        }
+      },
+      "indexes": {
+        "visa_types_i18n_visa_type_id_locale_unique": {
+          "name": "visa_types_i18n_visa_type_id_locale_unique",
+          "columns": ["visa_type_id", "locale"],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "visa_types_i18n_visa_type_id_visa_types_id_fk": {
+          "name": "visa_types_i18n_visa_type_id_visa_types_id_fk",
+          "tableFrom": "visa_types_i18n",
+          "tableTo": "visa_types",
+          "columnsFrom": ["visa_type_id"],
           "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
