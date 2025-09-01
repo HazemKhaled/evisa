@@ -37,17 +37,17 @@ jobs:
         with:
           script: |
             const prNumber = context.payload.number;
-            
+
             const commentBody = `## 🧹 PR Preview Cleanup
-            
+
             ✅ **Preview environment cleaned up!**
-            
+
             The preview deployment for this PR has been automatically removed.
-            
+
             ---
-            
+
             Thank you for your contribution! 🎉`;
-            
+
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
