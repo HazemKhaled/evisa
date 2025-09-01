@@ -72,7 +72,8 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <body
-        className={`${cairo.variable} ${geistMono.variable} bg-background text-foreground min-h-full font-sans antialiased`}
+        className={`${cairo.variable} ${geistMono.variable} bg-background text-foreground min-h-full antialiased`}
+        style={{ fontFamily: "var(--font-cairo), system-ui, sans-serif" }}
       >
         {children}
       </body>

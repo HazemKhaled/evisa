@@ -48,8 +48,8 @@
   --color-chart-4: 43 74% 66%;
   --color-chart-5: 27 87% 67%;
   --radius: 0.5rem;
-  --font-sans: var(--font-cairo), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-family-sans: var(--font-cairo), system-ui, sans-serif;
+  --font-family-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 @layer base {
@@ -66,12 +66,49 @@
     border-color: hsl(var(--color-border));
   }
 
+  /* Ensure Cairo font is applied globally */
+  html {
+    font-family: var(--font-family-sans);
+  }
+
   body {
     background-color: hsl(var(--color-background));
     color: hsl(var(--color-foreground));
+    font-family: var(--font-family-sans);
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
+  }
+
+  /* Ensure all text elements use Cairo font */
+  *,
+  *::before,
+  *::after,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  div,
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  label,
+  li,
+  ul,
+  ol,
+  nav,
+  header,
+  footer,
+  main,
+  section,
+  article {
+    font-family: var(--font-cairo), system-ui, sans-serif !important;
   }
 
   /* Smooth scrolling */
