@@ -4,10 +4,11 @@
 INSERT INTO countries (code, continent, region, is_active) VALUES
 ('USA', 'North America', 'Northern America', 1),
 ('CAN', 'North America', 'Northern America', 1),
-('ARE', 'Asia', 'Western Asia', 1),
+('UAE', 'Asia', 'Western Asia', 1),
 ('GBR', 'Europe', 'Northern Europe', 1),
 ('DEU', 'Europe', 'Western Europe', 1),
-('JPN', 'Asia', 'Eastern Asia', 1);
+('JPN', 'Asia', 'Eastern Asia', 1),
+('KSA', 'Asia', 'Western Asia', 1);
 
 -- Insert country translations
 INSERT INTO countries_i18n (country_id, locale, name, description) VALUES
@@ -45,7 +46,13 @@ INSERT INTO countries_i18n (country_id, locale, name, description) VALUES
 (6, 'en', 'Japan', 'Japan'),
 (6, 'ar', 'اليابان', 'اليابان'),
 (6, 'es', 'Japón', 'Japón'),
-(6, 'fr', 'Japon', 'Japon');
+(6, 'fr', 'Japon', 'Japon'),
+
+-- Saudi Arabia translations
+(7, 'en', 'Saudi Arabia', 'Kingdom of Saudi Arabia'),
+(7, 'ar', 'المملكة العربية السعودية', 'مملكة المملكة العربية السعودية'),
+(7, 'es', 'Arabia Saudita', 'Reino de Arabia Saudita'),
+(7, 'fr', 'Arabie Saoudite', 'Royaume d''Arabie Saoudite');
 
 -- Insert sample visa types
 INSERT INTO visa_types (destination_id, type, duration, processing_time, fee, currency, is_active) VALUES
@@ -68,7 +75,12 @@ INSERT INTO visa_types (destination_id, type, duration, processing_time, fee, cu
 
 -- Germany visa types
 (5, 'tourist', 90, 10, 80.00, 'EUR', 1),
-(5, 'business', 90, 10, 80.00, 'EUR', 1);
+(5, 'business', 90, 10, 80.00, 'EUR', 1),
+
+-- Saudi Arabia visa types
+(7, 'tourist', 30, 3, 150.00, 'SAR', 1),
+(7, 'business', 14, 5, 200.00, 'SAR', 1),
+(7, 'transit', 4, 2, 70.00, 'SAR', 1);
 
 -- Insert visa type translations
 INSERT INTO visa_types_i18n (visa_type_id, locale, name, description) VALUES
@@ -125,7 +137,17 @@ INSERT INTO visa_types_i18n (visa_type_id, locale, name, description) VALUES
 -- Germany Business Visa
 (11, 'en', 'Schengen Business Visa', '90-day Schengen visa for business'),
 (11, 'ar', 'تأشيرة شنغن عمل', 'تأشيرة شنغن لمدة 90 يوم للعمل'),
-(11, 'es', 'Visa de Negocios Schengen', 'Visa Schengen de 90 días para negocios');
+(11, 'es', 'Visa de Negocios Schengen', 'Visa Schengen de 90 días para negocios'),
+
+-- Saudi Arabia Tourist Visa
+(12, 'en', 'Tourist Visa', '30-day tourist visa for leisure travel to Saudi Arabia'),
+(12, 'ar', 'تأشيرة سياحية', 'تأشيرة سياحية لمدة 30 يوم للسفر الترفيهي إلى المملكة العربية السعودية'),
+(12, 'es', 'Visa Turística', 'Visa turística de 30 días para viajes de ocio a Arabia Saudita'),
+
+-- Saudi Arabia Business Visa
+(13, 'en', 'Business Visa', '14-day business visa for commercial activities in Saudi Arabia'),
+(13, 'ar', 'تأشيرة عمل', 'تأشيرة عمل لمدة 14 يوم للأنشطة التجارية في المملكة العربية السعودية'),
+(13, 'es', 'Visa de Negocios', 'Visa de negocios de 14 días para actividades comerciales en Arabia Saudita');
 
 -- Insert sample visa eligibility rules
 INSERT INTO visa_eligibility (destination_id, passport_id, visa_type_id, eligibility_status, max_stay_days) VALUES
@@ -158,6 +180,12 @@ INSERT INTO visa_eligibility (destination_id, passport_id, visa_type_id, eligibi
 (2, 5, 3, 'visa_required', 180),   -- Germany -> Canada Tourist
 (3, 5, 5, 'visa_free', 30),       -- Germany -> UAE Tourist
 (4, 5, 8, 'visa_free', 180);      -- Germany -> UK Tourist
+
+-- Saudi Arabia passport holders
+(1, 7, 12, 'visa_required', 30),    -- Saudi Arabia -> UAE Tourist
+(2, 7, 13, 'visa_required', 14),    -- Saudi Arabia -> UAE Business  
+(3, 7, 12, 'visa_required', 30),    -- Saudi Arabia -> UK Tourist
+(4, 7, 13, 'visa_required', 14),    -- Saudi Arabia -> Germany Tourist
 
 -- Insert visa eligibility translations
 INSERT INTO visa_eligibility_i18n (visa_eligibility_id, locale, notes) VALUES
