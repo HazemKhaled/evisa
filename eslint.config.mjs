@@ -52,10 +52,10 @@ const eslintConfig = [
     },
   },
 
-  // Ignore generated files
-  {
-    ignores: ["cloudflare-env.d.ts"],
-  },
+  // // Ignore generated files
+  // {
+  //   ignores: ["cloudflare-env.d.ts"],
+  // },
 
   // Allow var in TypeScript declare blocks for global extensions
   {
