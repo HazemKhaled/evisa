@@ -19,9 +19,21 @@
 
 ## Travel Blog
 
-- [ ] Create the blog as required
-- [ ] Create a new page blog home page `/blog` to list all blog posts in a grid with the featured image, title, description, destination and tags, make pagination, and add the link in the navigation bar. Blog card should open Bog post page. Clicking on the tags or destination should open new page list all articles under it.
-- [ ] In the blog post page, show small section in left of the blog content named "See Also" (just 3 random blog posts)
+Create the blog as required
+
+- [ ] Create a new page blog home page `/[locale]/blog` to list all blog posts in a nice grid with the featured image, title, description, destination and tags, make pagination, and add the link in the navigation bar.
+- [ ] Clicking on the blog post card should open Bog post page.
+- [ ] Blog post page should show the mdx file, in nice UI.
+- [ ] Show blog post tags in blog post page. On click open `/[locale]/blog/t/[tag]` and list all posts under this tag. This page should re-use blog home page components if possible.
+- [ ] Show blog post dentation blog post page as a nice looking card, with call to action to apply a visa.
+- [ ] In the blog post page, show random 3 other articles as a related article.
+
+## SEO
+
+- [ ] Create all required sitemaps
+- [ ] Create robots.txt, deny all traffic except on production domain
+- [ ] Enhance SEO metadata or add it if not exists for all pages
+- [ ] Add JSON-LD in all pages, consider each page should have it in it's own language
 
 ## Visa Catalog
 
