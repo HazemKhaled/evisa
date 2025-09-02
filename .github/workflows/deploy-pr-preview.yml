@@ -30,15 +30,15 @@ jobs:
       - name: 🤌 Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: latest
+          version: 10
           run_install: true
 
       - name: Build
-        run: pnpm exec opennextjs-cloudflare build
+        run: pnpm build:open-next
         env:
           NEXT_PUBLIC_GTM_ID: ${{ vars.NEXT_PUBLIC_GTM_ID }}
 
-      - name: Build & Deploy Worker
+      - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
           packageManager: pnpm
