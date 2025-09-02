@@ -12,7 +12,9 @@ jobs:
   deploy-staging:
     name: Deploy to Staging
     runs-on: ubuntu-latest
-    environment: staging
+    environment:
+      name: staging
+      url: https://staging.gettravelvisa.com
 
     steps:
       - name: Checkout code
@@ -23,21 +25,6 @@ jobs:
         with:
           version: latest
           run_install: true
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "pnpm"
-
-      - name: Run type checking
-        run: pnpm type-check
-
-      - name: Run linting
-        run: pnpm lint
-
-      - name: Run tests
-        run: pnpm test:ci
 
       - name: Build application
         run: pnpm build

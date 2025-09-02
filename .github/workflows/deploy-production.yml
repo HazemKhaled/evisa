@@ -12,7 +12,9 @@ jobs:
   deploy-production:
     name: Deploy to Production
     runs-on: ubuntu-latest
-    environment: production
+    environment:
+      name: production
+      url: https://gettravelvisa.com
 
     steps:
       - name: Checkout code
@@ -23,12 +25,6 @@ jobs:
         with:
           version: latest
           run_install: true
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "pnpm"
 
       - name: Build application
         run: pnpm build
