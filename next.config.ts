@@ -4,6 +4,9 @@ import remarkGfm from "remark-gfm";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  images: {
+    domains: ["images.unsplash.com"],
+  },
 };
 
 const withMDX = createMDX({

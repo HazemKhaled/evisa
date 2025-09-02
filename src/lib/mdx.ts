@@ -1,6 +1,9 @@
 import * as fs from "fs";
 import * as path from "path";
 import matter from "gray-matter";
+import { eq, and } from "drizzle-orm";
+import { countries, countriesI18n } from "./db/schema/countries";
+import { createDrizzleLocal } from "./db";
 
 export interface MDXPageData {
   content: string;
@@ -13,6 +16,83 @@ export interface MDXPageData {
     lastUpdated?: string;
     [key: string]: unknown;
   };
+}
+
+export interface BlogPostData {
+  content: string;
+  slug: string;
+  frontmatter: {
+    title: string;
+    description: string;
+    destinations: string[]; // Array of 3-letter country codes
+    image: string;
+    tags: string[];
+    passport?: string;
+    related_visas?: string[];
+    author: string;
+    publishedAt: string;
+    lastUpdated?: string;
+    [key: string]: unknown;
+  };
+  destinationNames?: string[]; // Array of resolved country names from database
+}
+
+/**
+ * Get country name by country code and locale from database
+ */
+async function getCountryName(
+  countryCode: string,
+  locale: string
+): Promise<string | undefined> {
+  try {
+    const db = createDrizzleLocal();
+
+    const result = await db
+      .select({
+        name: countriesI18n.name,
+      })
+      .from(countries)
+      .innerJoin(countriesI18n, eq(countries.id, countriesI18n.countryId))
+      .where(
+        and(eq(countries.code, countryCode), eq(countriesI18n.locale, locale))
+      )
+      .limit(1);
+
+    return result[0]?.name;
+  } catch (error) {
+    console.warn(
+      `Failed to get country name for ${countryCode} (${locale}):`,
+      error
+    );
+    return undefined;
+  }
+}
+
+/**
+ * Get country names for multiple country codes and locale from database
+ */
+async function getCountryNames(
+  countryCodes: string[],
+  locale: string
+): Promise<string[]> {
+  if (countryCodes.length === 0) return [];
+
+  try {
+    const results = await Promise.all(
+      countryCodes.map(async code => {
+        const countryName = await getCountryName(code, locale);
+        return countryName || code; // Fallback to code if name not found
+      })
+    );
+
+    return results;
+  } catch (error) {
+    console.warn(
+      `Failed to get country names for ${countryCodes.join(", ")} (${locale}):`,
+      error
+    );
+    return countryCodes; // Fallback to codes if all queries fail
+  }
 }
 
 /**
@@ -49,6 +129,172 @@ export function getAllStaticPages(): { locale: string; slug: string }[] {
   } catch {
     return [];
   }
+}
+
+/**
+ * Get all available blog posts for generateStaticParams
+ */
+export function getAllBlogPosts(): { locale: string; slug: string }[] {
+  const contentsDir = path.join(process.cwd(), "src", "contents");
+  const blogPosts: { locale: string; slug: string }[] = [];
+
+  try {
+    // Get all locale directories
+    const locales = fs
+      .readdirSync(contentsDir, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory() && dirent.name !== "generated")
+      .map(dirent => dirent.name);
+
+    // For each locale, get all MDX files in blog directory
+    for (const locale of locales) {
+      const blogDir = path.join(contentsDir, locale, "blog");
+
+      if (fs.existsSync(blogDir)) {
+        const files = fs
+          .readdirSync(blogDir)
+          .filter(file => file.endsWith(".mdx"));
+
+        for (const file of files) {
+          const slug = file.replace(".mdx", "");
+          blogPosts.push({ locale, slug });
+        }
+      }
+    }
+
+    return blogPosts;
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Get all blog posts with metadata for a specific locale
+ */
+export async function getBlogPostsForLocale(
+  locale: string
+): Promise<BlogPostData[]> {
+  const blogDir = path.join(process.cwd(), "src", "contents", locale, "blog");
+  const blogPosts: BlogPostData[] = [];
+
+  if (!fs.existsSync(blogDir)) {
+    return [];
+  }
+
+  try {
+    const files = fs.readdirSync(blogDir).filter(file => file.endsWith(".mdx"));
+
+    for (const file of files) {
+      const filePath = path.join(blogDir, file);
+      const fileContent = fs.readFileSync(filePath, "utf8");
+      const { data: frontmatter, content } = matter(fileContent);
+      const slug = file.replace(".mdx", "");
+      const frontmatterTyped = frontmatter as BlogPostData["frontmatter"];
+
+      // Handle both old format (destination: string) and new format (destinations: string[])
+      let destinations: string[] = [];
+      if ((frontmatterTyped as any).destinations) {
+        destinations = (frontmatterTyped as any).destinations;
+      } else if ((frontmatterTyped as any).destination) {
+        destinations = [(frontmatterTyped as any).destination];
+      }
+
+      // Get country names from database
+      const destinationNames = await getCountryNames(destinations, locale);
+
+      blogPosts.push({
+        content,
+        slug,
+        frontmatter: {
+          ...frontmatterTyped,
+          destinations,
+        },
+        destinationNames,
+      });
+    }
+
+    // Sort by publishedAt date (newest first)
+    return blogPosts.sort(
+      (a, b) =>
+        new Date(b.frontmatter.publishedAt).getTime() -
+        new Date(a.frontmatter.publishedAt).getTime()
+    );
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Get a specific blog post by slug and locale
+ */
+export async function getBlogPost(
+  slug: string,
+  locale: string
+): Promise<BlogPostData> {
+  const filePath = path.join(
+    process.cwd(),
+    "src",
+    "contents",
+    locale,
+    "blog",
+    `${slug}.mdx`
+  );
+
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Blog post not found: ${slug} for locale: ${locale}`);
+  }
+
+  const fileContent = fs.readFileSync(filePath, "utf8");
+  const { data: frontmatter, content } = matter(fileContent);
+  const frontmatterTyped = frontmatter as any;
+
+  // Handle both old format (destination: string) and new format (destinations: string[])
+  let destinations: string[] = [];
+  if (frontmatterTyped.destinations) {
+    destinations = frontmatterTyped.destinations;
+  } else if (frontmatterTyped.destination) {
+    destinations = [frontmatterTyped.destination];
+  }
+
+  // Get country names from database
+  const destinationNames = await getCountryNames(destinations, locale);
+
+  return {
+    content,
+    slug,
+    frontmatter: {
+      ...frontmatterTyped,
+      destinations,
+    } as BlogPostData["frontmatter"],
+    destinationNames,
+  };
+}
+
+/**
+ * Get paginated blog posts for a specific locale
+ */
+export async function getPaginatedBlogPosts(
+  locale: string,
+  page: number = 1,
+  postsPerPage: number = 10
+): Promise<{
+  posts: BlogPostData[];
+  totalPages: number;
+  currentPage: number;
+  totalPosts: number;
+}> {
+  const allPosts = await getBlogPostsForLocale(locale);
+  const totalPosts = allPosts.length;
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
+  const startIndex = (page - 1) * postsPerPage;
+  const endIndex = startIndex + postsPerPage;
+  const posts = allPosts.slice(startIndex, endIndex);
+
+  return {
+    posts,
+    totalPages,
+    currentPage: page,
+    totalPosts,
+  };
 }
 
 /**

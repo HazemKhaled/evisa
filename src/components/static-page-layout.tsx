@@ -66,18 +66,6 @@ export async function StaticPageLayout({
               >
                 {tNav("header.blog")}
               </Link>
-              <Link
-                href={`/${locale}/p/about-us`}
-                className="text-gray-900 hover:text-blue-600"
-              >
-                {tNav("header.about")}
-              </Link>
-              <Link
-                href={`/${locale}/contact`}
-                className="text-gray-900 hover:text-blue-600"
-              >
-                {tNav("header.contact")}
-              </Link>
             </nav>
             <Suspense fallback={<div>Loading...</div>}>
               <LanguageSwitcher />

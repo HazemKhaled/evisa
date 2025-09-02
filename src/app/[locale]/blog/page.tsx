@@ -1,0 +1,280 @@
+import { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+import { getBlogPostsForLocale } from "@/lib/mdx";
+import { isRTL, cn } from "@/lib/utils";
+import { StaticPageLayout } from "@/components/static-page-layout";
+
+interface BlogHomeProps {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ page?: string; tag?: string; destination?: string }>;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `Travel Blog - GetTravelVisa.com`,
+    description:
+      "Expert travel guides, visa tips, and destination insights to help you plan your perfect trip.",
+    keywords:
+      "travel blog, visa guides, travel tips, destination guides, travel advice",
+  };
+}
+
+export default async function BlogHome({
+  params,
+  searchParams,
+}: BlogHomeProps) {
+  const { locale } = await params;
+  const { page = "1", tag, destination } = await searchParams;
+
+  const currentPage = parseInt(page, 10);
+  const postsPerPage = 9;
+
+  // Get all blog posts for the locale
+  let allPosts = await getBlogPostsForLocale(locale);
+
+  // Filter by tag if specified
+  if (tag) {
+    allPosts = allPosts.filter(post =>
+      post.frontmatter.tags?.includes(tag.toLowerCase())
+    );
+  }
+
+  // Filter by destination if specified
+  if (destination) {
+    allPosts = allPosts.filter(post =>
+      post.frontmatter.destinations?.some(dest =>
+        dest.toLowerCase().includes(destination.toLowerCase())
+      )
+    );
+  }
+
+  const totalPosts = allPosts.length;
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const posts = allPosts.slice(startIndex, startIndex + postsPerPage);
+
+  const isCurrentRTL = isRTL(locale);
+
+  if (allPosts.length === 0) {
+    return (
+      <StaticPageLayout locale={locale}>
+        <div className="py-16 text-center">
+          <h1 className="mb-4 text-4xl font-bold text-gray-900">Travel Blog</h1>
+          <p className="text-lg text-gray-600">
+            No blog posts available yet. Check back soon!
+          </p>
+        </div>
+      </StaticPageLayout>
+    );
+  }
+
+  return (
+    <StaticPageLayout locale={locale}>
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <div className="mb-12 text-center">
+          <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
+            Travel Blog
+          </h1>
+          <p className="mx-auto max-w-3xl text-xl text-gray-600">
+            Expert travel guides, visa tips, and destination insights to help
+            you plan your perfect trip.
+          </p>
+        </div>
+
+        {/* Filters */}
+        {(tag || destination) && (
+          <div
+            className={cn(
+              "mb-8 flex flex-wrap gap-2",
+              isCurrentRTL && "flex-row-reverse"
+            )}
+          >
+            {tag && (
+              <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
+                Tag: {tag}
+                <Link
+                  href={`/${locale}/blog`}
+                  className={cn(
+                    "ml-2 hover:text-blue-600",
+                    isCurrentRTL && "mr-2 ml-0"
+                  )}
+                >
+                  ×
+                </Link>
+              </span>
+            )}
+            {destination && (
+              <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800">
+                Destination: {destination}
+                <Link
+                  href={`/${locale}/blog`}
+                  className={cn(
+                    "ml-2 hover:text-green-600",
+                    isCurrentRTL && "mr-2 ml-0"
+                  )}
+                >
+                  ×
+                </Link>
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Blog Grid */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map(post => (
+            <article
+              key={post.slug}
+              className="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg"
+            >
+              <Link href={`/${locale}/blog/${post.slug}`}>
+                <div className="relative aspect-video overflow-hidden">
+                  <Image
+                    src={post.frontmatter.image}
+                    alt={post.frontmatter.title}
+                    fill
+                    className="object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+              </Link>
+
+              <div className="p-6">
+                {/* Tags and Destinations */}
+                <div
+                  className={cn(
+                    "mb-3 flex flex-wrap gap-2",
+                    isCurrentRTL && "flex-row-reverse"
+                  )}
+                >
+                  {post.frontmatter.destinations?.map((destination, index) => (
+                    <Link
+                      key={destination}
+                      href={`/${locale}/blog?destination=${encodeURIComponent(destination)}`}
+                      className="inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800 hover:bg-blue-200"
+                    >
+                      📍 {post.destinationNames?.[index] || destination}
+                    </Link>
+                  ))}
+                  {post.frontmatter.tags?.slice(0, 2).map(tag => (
+                    <Link
+                      key={tag}
+                      href={`/${locale}/blog?tag=${encodeURIComponent(tag)}`}
+                      className="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800 hover:bg-gray-200"
+                    >
+                      #{tag}
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Title */}
+                <h2
+                  className={cn(
+                    "mb-3 line-clamp-2 text-xl font-bold text-gray-900",
+                    isCurrentRTL && "text-right"
+                  )}
+                >
+                  <Link
+                    href={`/${locale}/blog/${post.slug}`}
+                    className="hover:text-blue-600"
+                  >
+                    {post.frontmatter.title}
+                  </Link>
+                </h2>
+
+                {/* Description */}
+                <p
+                  className={cn(
+                    "mb-4 line-clamp-3 text-gray-600",
+                    isCurrentRTL && "text-right"
+                  )}
+                >
+                  {post.frontmatter.description}
+                </p>
+
+                {/* Meta */}
+                <div
+                  className={cn(
+                    "flex items-center justify-between text-sm text-gray-500",
+                    isCurrentRTL && "flex-row-reverse"
+                  )}
+                >
+                  <span className={cn(isCurrentRTL && "text-right")}>
+                    {post.frontmatter.author}
+                  </span>
+                  <span className={cn(isCurrentRTL && "text-left")}>
+                    {new Date(post.frontmatter.publishedAt).toLocaleDateString(
+                      locale
+                    )}
+                  </span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="mt-12 flex justify-center">
+            <nav
+              className="flex items-center space-x-2"
+              aria-label="Pagination"
+            >
+              {/* Previous */}
+              {currentPage > 1 && (
+                <Link
+                  href={`/${locale}/blog?page=${currentPage - 1}${tag ? `&tag=${tag}` : ""}${destination ? `&destination=${destination}` : ""}`}
+                  className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
+                >
+                  {isCurrentRTL ? "التالي" : "Previous"}
+                </Link>
+              )}
+
+              {/* Page Numbers */}
+              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                const pageNum =
+                  Math.max(1, Math.min(totalPages - 4, currentPage - 2)) + i;
+                if (pageNum > totalPages) return null;
+
+                return (
+                  <Link
+                    key={pageNum}
+                    href={`/${locale}/blog?page=${pageNum}${tag ? `&tag=${tag}` : ""}${destination ? `&destination=${destination}` : ""}`}
+                    className={cn(
+                      "rounded-md border px-3 py-2 text-sm font-medium",
+                      pageNum === currentPage
+                        ? "border-blue-600 bg-blue-600 text-white"
+                        : "border-gray-300 bg-white text-gray-500 hover:bg-gray-50"
+                    )}
+                  >
+                    {pageNum}
+                  </Link>
+                );
+              })}
+
+              {/* Next */}
+              {currentPage < totalPages && (
+                <Link
+                  href={`/${locale}/blog?page=${currentPage + 1}${tag ? `&tag=${tag}` : ""}${destination ? `&destination=${destination}` : ""}`}
+                  className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
+                >
+                  {isCurrentRTL ? "السابق" : "Next"}
+                </Link>
+              )}
+            </nav>
+          </div>
+        )}
+
+        {/* Blog Stats */}
+        <div className="mt-12 text-center text-gray-500">
+          <p>
+            Showing {startIndex + 1}-
+            {Math.min(startIndex + postsPerPage, totalPosts)} of {totalPosts}{" "}
+            articles
+          </p>
+        </div>
+      </div>
+    </StaticPageLayout>
+  );
+}
