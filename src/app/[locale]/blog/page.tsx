@@ -5,6 +5,8 @@ import { getBlogPostsForLocale } from "@/lib/mdx";
 import { isRTL, cn } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
 
+export const dynamic = "force-static";
+
 interface BlogHomeProps {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{ page?: string; tag?: string; destination?: string }>;
