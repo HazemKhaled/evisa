@@ -52,10 +52,16 @@ export default async function LocalePage({
               <a href="#" className="text-gray-900 hover:text-blue-600">
                 {tNav("header.blog")}
               </a>
-              <a href={`/${locale}/p/about-us`} className="text-gray-900 hover:text-blue-600">
+              <a
+                href={`/${locale}/p/about-us`}
+                className="text-gray-900 hover:text-blue-600"
+              >
                 {tNav("header.about")}
               </a>
-              <a href={`/${locale}/contact`} className="text-gray-900 hover:text-blue-600">
+              <a
+                href={`/${locale}/contact`}
+                className="text-gray-900 hover:text-blue-600"
+              >
                 {tNav("header.contact")}
               </a>
             </nav>

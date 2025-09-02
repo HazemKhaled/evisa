@@ -4,7 +4,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ children, ...props }) => (
       <h1
-        className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-8"
+        className="mb-8 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl"
         {...props}
       >
         {children}
@@ -12,7 +12,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     h2: ({ children, ...props }) => (
       <h2
-        className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6 mt-12"
+        className="mt-12 mb-6 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
         {...props}
       >
         {children}
@@ -20,24 +20,30 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     h3: ({ children, ...props }) => (
       <h3
-        className="text-2xl font-bold tracking-tight text-gray-900 mb-4 mt-8"
+        className="mt-8 mb-4 text-2xl font-bold tracking-tight text-gray-900"
         {...props}
       >
         {children}
       </h3>
     ),
     p: ({ children, ...props }) => (
-      <p className="text-lg text-gray-600 mb-6 leading-relaxed" {...props}>
+      <p className="mb-6 text-lg leading-relaxed text-gray-600" {...props}>
         {children}
       </p>
     ),
     ul: ({ children, ...props }) => (
-      <ul className="list-disc list-inside mb-6 space-y-2 text-gray-600" {...props}>
+      <ul
+        className="mb-6 list-inside list-disc space-y-2 text-gray-600"
+        {...props}
+      >
         {children}
       </ul>
     ),
     ol: ({ children, ...props }) => (
-      <ol className="list-decimal list-inside mb-6 space-y-2 text-gray-600" {...props}>
+      <ol
+        className="mb-6 list-inside list-decimal space-y-2 text-gray-600"
+        {...props}
+      >
         {children}
       </ol>
     ),
@@ -49,7 +55,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     a: ({ children, href, ...props }) => (
       <a
         href={href}
-        className="text-blue-600 hover:text-blue-800 underline"
+        className="text-blue-600 underline hover:text-blue-800"
         {...props}
       >
         {children}
@@ -57,7 +63,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     blockquote: ({ children, ...props }) => (
       <blockquote
-        className="border-l-4 border-blue-500 pl-6 italic text-gray-700 my-6"
+        className="my-6 border-l-4 border-blue-500 pl-6 text-gray-700 italic"
         {...props}
       >
         {children}

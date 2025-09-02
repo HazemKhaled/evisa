@@ -21,7 +21,7 @@ export async function StaticPageLayout({
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="border-b bg-white shadow-sm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div
             className={cn(
@@ -35,7 +35,10 @@ export async function StaticPageLayout({
                 isCurrentRTL && "flex-row-reverse"
               )}
             >
-              <Link href={`/${locale}`} className="text-2xl font-bold text-blue-600">
+              <Link
+                href={`/${locale}`}
+                className="text-2xl font-bold text-blue-600"
+              >
                 GetTravelVisa.com
               </Link>
             </div>
@@ -45,19 +48,34 @@ export async function StaticPageLayout({
                 isCurrentRTL && "space-x-reverse"
               )}
             >
-              <Link href={`/${locale}`} className="text-gray-900 hover:text-blue-600">
+              <Link
+                href={`/${locale}`}
+                className="text-gray-900 hover:text-blue-600"
+              >
                 {tNav("header.home")}
               </Link>
-              <Link href={`/${locale}/destinations`} className="text-gray-900 hover:text-blue-600">
+              <Link
+                href={`/${locale}/destinations`}
+                className="text-gray-900 hover:text-blue-600"
+              >
                 {tNav("header.destinations")}
               </Link>
-              <Link href={`/${locale}/blog`} className="text-gray-900 hover:text-blue-600">
+              <Link
+                href={`/${locale}/blog`}
+                className="text-gray-900 hover:text-blue-600"
+              >
                 {tNav("header.blog")}
               </Link>
-              <Link href={`/${locale}/p/about-us`} className="text-gray-900 hover:text-blue-600">
+              <Link
+                href={`/${locale}/p/about-us`}
+                className="text-gray-900 hover:text-blue-600"
+              >
                 {tNav("header.about")}
               </Link>
-              <Link href={`/${locale}/contact`} className="text-gray-900 hover:text-blue-600">
+              <Link
+                href={`/${locale}/contact`}
+                className="text-gray-900 hover:text-blue-600"
+              >
                 {tNav("header.contact")}
               </Link>
             </nav>
@@ -83,7 +101,7 @@ export async function StaticPageLayout({
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 mt-16">
+      <footer className="mt-16 bg-gray-900">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div
             className={cn(

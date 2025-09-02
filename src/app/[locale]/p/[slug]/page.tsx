@@ -9,17 +9,21 @@ interface StaticPageProps {
   params: Promise<{ locale: string; slug: string }>;
 }
 
-export async function generateMetadata({ params }: StaticPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: StaticPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  
+
   try {
     const mdxData = await getMDXPage(`${slug}.mdx`, locale);
-    
+
     return {
       title: mdxData.frontmatter.title,
       description: mdxData.frontmatter.description,
       keywords: mdxData.frontmatter.keywords,
-      authors: mdxData.frontmatter.author ? [{ name: mdxData.frontmatter.author }] : undefined,
+      authors: mdxData.frontmatter.author
+        ? [{ name: mdxData.frontmatter.author }]
+        : undefined,
     };
   } catch {
     // Return 404 metadata if page not found
@@ -36,7 +40,7 @@ export default async function StaticPage({ params }: StaticPageProps) {
 
   try {
     const mdxData = await getMDXPage(`${slug}.mdx`, locale);
-    
+
     return (
       <StaticPageLayout locale={locale}>
         <MDXContent data={mdxData} isRTL={isCurrentRTL} />
