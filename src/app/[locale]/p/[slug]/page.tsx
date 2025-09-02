@@ -2,11 +2,20 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { MDXContent } from "@/components/mdx-content";
-import { getMDXPage } from "@/lib/mdx";
+import { getMDXPage, getAllStaticPages } from "@/lib/mdx";
 import { isRTL } from "@/lib/utils";
 
 interface StaticPageProps {
   params: Promise<{ locale: string; slug: string }>;
+}
+
+export function generateStaticParams() {
+  const staticPages = getAllStaticPages();
+
+  return staticPages.map(({ locale, slug }) => ({
+    locale,
+    slug,
+  }));
 }
 
 export async function generateMetadata({
@@ -47,7 +56,6 @@ export default async function StaticPage({ params }: StaticPageProps) {
       </StaticPageLayout>
     );
   } catch {
-    // Return 404 if MDX file can't be read
     notFound();
   }
 }

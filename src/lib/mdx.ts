@@ -16,6 +16,42 @@ export interface MDXPageData {
 }
 
 /**
+ * Get all available static pages for generateStaticParams
+ */
+export function getAllStaticPages(): { locale: string; slug: string }[] {
+  const contentsDir = path.join(process.cwd(), "src", "contents");
+  const staticPages: { locale: string; slug: string }[] = [];
+
+  try {
+    // Get all locale directories
+    const locales = fs
+      .readdirSync(contentsDir, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory() && dirent.name !== "generated")
+      .map(dirent => dirent.name);
+
+    // For each locale, get all MDX files in pages directory
+    for (const locale of locales) {
+      const pagesDir = path.join(contentsDir, locale, "pages");
+
+      if (fs.existsSync(pagesDir)) {
+        const files = fs
+          .readdirSync(pagesDir)
+          .filter(file => file.endsWith(".mdx"));
+
+        for (const file of files) {
+          const slug = file.replace(".mdx", "");
+          staticPages.push({ locale, slug });
+        }
+      }
+    }
+
+    return staticPages;
+  } catch {
+    return [];
+  }
+}
+
+/**
  * Read and parse an MDX file from the contents/[locale]/pages directory
  */
 export async function getMDXPage(
