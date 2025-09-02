@@ -16,13 +16,16 @@ export interface MDXPageData {
 }
 
 /**
- * Read and parse an MDX file from the contents/pages directory
+ * Read and parse an MDX file from the contents/[locale]/pages directory
  */
-export async function getMDXPage(fileName: string): Promise<MDXPageData> {
-  const filePath = path.join(process.cwd(), 'src', 'contents', 'pages', fileName);
+export async function getMDXPage(fileName: string, locale?: string): Promise<MDXPageData> {
+  // If locale is provided, use locale-specific path, otherwise fallback to old structure
+  const filePath = locale 
+    ? path.join(process.cwd(), 'src', 'contents', locale, 'pages', fileName)
+    : path.join(process.cwd(), 'src', 'contents', 'pages', fileName);
   
   if (!fs.existsSync(filePath)) {
-    throw new Error(`MDX file not found: ${fileName}`);
+    throw new Error(`MDX file not found: ${fileName} for locale: ${locale || 'default'}`);
   }
   
   const fileContent = fs.readFileSync(filePath, 'utf8');

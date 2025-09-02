@@ -54,7 +54,7 @@ export async function StaticPageLayout({
               <Link href={`/${locale}/blog`} className="text-gray-900 hover:text-blue-600">
                 {tNav("header.blog")}
               </Link>
-              <Link href={`/${locale}/about`} className="text-gray-900 hover:text-blue-600">
+              <Link href={`/${locale}/p/about-us`} className="text-gray-900 hover:text-blue-600">
                 {tNav("header.about")}
               </Link>
               <Link href={`/${locale}/contact`} className="text-gray-900 hover:text-blue-600">
@@ -106,7 +106,7 @@ export async function StaticPageLayout({
               <ul className="mt-4 space-y-4">
                 <li>
                   <Link
-                    href={`/${locale}/about`}
+                    href={`/${locale}/p/about-us`}
                     className="text-base text-gray-300 hover:text-white"
                   >
                     {tNav("footer.about")}
@@ -122,7 +122,7 @@ export async function StaticPageLayout({
                 </li>
                 <li>
                   <Link
-                    href={`/${locale}/terms`}
+                    href={`/${locale}/p/terms-n-conditions`}
                     className="text-base text-gray-300 hover:text-white"
                   >
                     {tNav("footer.terms")}
@@ -130,7 +130,7 @@ export async function StaticPageLayout({
                 </li>
                 <li>
                   <Link
-                    href={`/${locale}/privacy`}
+                    href={`/${locale}/p/privacy-policy`}
                     className="text-base text-gray-300 hover:text-white"
                   >
                     {tNav("footer.privacy")}

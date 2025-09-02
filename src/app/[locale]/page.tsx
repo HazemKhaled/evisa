@@ -52,7 +52,7 @@ export default async function LocalePage({
               <a href="#" className="text-gray-900 hover:text-blue-600">
                 {tNav("header.blog")}
               </a>
-              <a href={`/${locale}/about`} className="text-gray-900 hover:text-blue-600">
+              <a href={`/${locale}/p/about-us`} className="text-gray-900 hover:text-blue-600">
                 {tNav("header.about")}
               </a>
               <a href={`/${locale}/contact`} className="text-gray-900 hover:text-blue-600">
@@ -229,7 +229,7 @@ export default async function LocalePage({
               <ul className="mt-4 space-y-4">
                 <li>
                   <a
-                    href={`/${locale}/about`}
+                    href={`/${locale}/p/about-us`}
                     className="text-base text-gray-300 hover:text-white"
                   >
                     {tNav("footer.about")}
@@ -245,7 +245,7 @@ export default async function LocalePage({
                 </li>
                 <li>
                   <a
-                    href={`/${locale}/terms`}
+                    href={`/${locale}/p/terms-n-conditions`}
                     className="text-base text-gray-300 hover:text-white"
                   >
                     {tNav("footer.terms")}
@@ -253,7 +253,7 @@ export default async function LocalePage({
                 </li>
                 <li>
                   <a
-                    href={`/${locale}/privacy`}
+                    href={`/${locale}/p/privacy-policy`}
                     className="text-base text-gray-300 hover:text-white"
                   >
                     {tNav("footer.privacy")}
