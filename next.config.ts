@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   images: {
     domains: ["images.unsplash.com"],
+    unoptimized: true,
   },
 };
 
