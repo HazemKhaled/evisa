@@ -3,7 +3,8 @@
  * This script populates the database with initial data for countries, visa types, and eligibility
  * using the new normalized i18n table structure
  */
-import { createDrizzleLocal } from "../src/lib/db";
+import { drizzle } from "drizzle-orm/libsql";
+import { createClient } from "@libsql/client";
 import {
   countries,
   countriesI18n,
@@ -17,6 +18,7 @@ import {
   type NewVisaEligibility,
   type NewVisaEligibilityI18n,
 } from "../src/lib/db/schema";
+import * as schema from "../src/lib/db/schema";
 
 // Country data with translations
 const countryDataWithTranslations = [
@@ -336,7 +338,11 @@ async function seed() {
   console.log("🌱 Starting database seeding with i18n structure...");
 
   try {
-    const db = createDrizzleLocal();
+    // Create LibSQL client for seed script
+    const client = createClient({
+      url: `file:${process.cwd()}/.wrangler/state/v3/d1/miniflare-D1DatabaseObject/3bcf51c707c15e397cc3c101eb947a49c4300992dbbb79335dbd86cdcd72a4f1.sqlite`,
+    });
+    const db = drizzle(client, { schema });
 
     // Insert countries
     console.log("📍 Inserting countries...");

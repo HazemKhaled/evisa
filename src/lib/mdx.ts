@@ -1,9 +1,9 @@
 import * as fs from "fs";
 import * as path from "path";
 import matter from "gray-matter";
-import { eq, and } from "drizzle-orm";
+import { eq, and, inArray } from "drizzle-orm";
 import { countries, countriesI18n } from "./db/schema/countries";
-import { createDrizzleLocal } from "./db";
+import { getDbAsync, isDatabaseAvailableAsync } from "./db/connection";
 
 export interface MDXPageData {
   content: string;
@@ -38,38 +38,8 @@ export interface BlogPostData {
 }
 
 /**
- * Get country name by country code and locale from database
- */
-async function getCountryName(
-  countryCode: string,
-  locale: string
-): Promise<string | undefined> {
-  try {
-    const db = createDrizzleLocal();
-
-    const result = await db
-      .select({
-        name: countriesI18n.name,
-      })
-      .from(countries)
-      .innerJoin(countriesI18n, eq(countries.id, countriesI18n.countryId))
-      .where(
-        and(eq(countries.code, countryCode), eq(countriesI18n.locale, locale))
-      )
-      .limit(1);
-
-    return result[0]?.name;
-  } catch (error) {
-    console.warn(
-      `Failed to get country name for ${countryCode} (${locale}):`,
-      error
-    );
-    return undefined;
-  }
-}
-
-/**
  * Get country names for multiple country codes and locale from database
+ * Optimized to use a single query instead of multiple individual queries
  */
 async function getCountryNames(
   countryCodes: string[],
@@ -77,21 +47,47 @@ async function getCountryNames(
 ): Promise<string[]> {
   if (countryCodes.length === 0) return [];
 
-  try {
-    const results = await Promise.all(
-      countryCodes.map(async code => {
-        const countryName = await getCountryName(code, locale);
-        return countryName || code; // Fallback to code if name not found
-      })
-    );
+  // Check if database is available
+  const isDatabaseReady = await isDatabaseAvailableAsync();
+  if (!isDatabaseReady) {
+    console.warn("Database not available, using country codes as fallback");
+    return countryCodes;
+  }
 
-    return results;
+  try {
+    const db = await getDbAsync();
+
+    // Use a single query to get all country names at once
+    const results = await db
+      .select({
+        code: countries.code,
+        name: countriesI18n.name,
+      })
+      .from(countries)
+      .innerJoin(countriesI18n, eq(countries.id, countriesI18n.countryId))
+      .where(
+        and(
+          eq(countriesI18n.locale, locale),
+          inArray(countries.code, countryCodes)
+        )
+      );
+
+    // Create a map for quick lookups
+    const countryMap = new Map<string, string>();
+    results.forEach(result => {
+      if (result.code && result.name) {
+        countryMap.set(result.code, result.name);
+      }
+    });
+
+    // Return names in the same order as input codes, with fallback to code if not found
+    return countryCodes.map(code => countryMap.get(code) || code);
   } catch (error) {
     console.warn(
       `Failed to get country names for ${countryCodes.join(", ")} (${locale}):`,
       error
     );
-    return countryCodes; // Fallback to codes if all queries fail
+    return countryCodes; // Fallback to codes if queries fail
   }
 }
 
@@ -198,7 +194,7 @@ export async function getBlogPostsForLocale(
         destinations = [(frontmatterTyped as any).destination];
       }
 
-      // Get country names from database
+      // Get country names from database (with automatic fallback handling)
       const destinationNames = await getCountryNames(destinations, locale);
 
       blogPosts.push({
@@ -255,7 +251,7 @@ export async function getBlogPost(
     destinations = [frontmatterTyped.destination];
   }
 
-  // Get country names from database
+  // Get country names from database (with automatic fallback handling)
   const destinationNames = await getCountryNames(destinations, locale);
 
   return {

@@ -181,12 +181,6 @@ INSERT INTO visa_eligibility (destination_id, passport_id, visa_type_id, eligibi
 (3, 5, 5, 'visa_free', 30),       -- Germany -> UAE Tourist
 (4, 5, 8, 'visa_free', 180);      -- Germany -> UK Tourist
 
--- Saudi Arabia passport holders
-(1, 7, 12, 'visa_required', 30),    -- Saudi Arabia -> UAE Tourist
-(2, 7, 13, 'visa_required', 14),    -- Saudi Arabia -> UAE Business  
-(3, 7, 12, 'visa_required', 30),    -- Saudi Arabia -> UK Tourist
-(4, 7, 13, 'visa_required', 14),    -- Saudi Arabia -> Germany Tourist
-
 -- Insert visa eligibility translations
 INSERT INTO visa_eligibility_i18n (visa_eligibility_id, locale, notes) VALUES
 (1, 'en', 'Tourist visa required. Apply online or at UAE consulate.'),
