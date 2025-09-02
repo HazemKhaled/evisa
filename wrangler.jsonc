@@ -40,7 +40,7 @@
         {
           "binding": "DB",
           "database_name": "gtv-db-staging",
-          "database_id": "staging-database-id-placeholder",
+          "database_id": "de85b8f1-81b0-4263-b69d-0b82e9d48875",
         },
       ],
       "routes": [
@@ -56,7 +56,7 @@
         {
           "binding": "DB",
           "database_name": "gtv-db-staging",
-          "database_id": "staging-database-id-placeholder",
+          "database_id": "de85b8f1-81b0-4263-b69d-0b82e9d48875",
         },
       ],
       "routes": [
@@ -72,7 +72,7 @@
         {
           "binding": "DB",
           "database_name": "gtv-db-prod",
-          "database_id": "production-database-id-placeholder",
+          "database_id": "122c0178-435f-4d87-badd-e4d2a25f2391",
         },
       ],
       "routes": [
