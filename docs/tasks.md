@@ -14,8 +14,8 @@
 
 ## Main pages
 
-- [ ] Create About Us, Contact Us, Privacy Policy and Terms & Conditions pages in all languages
-- [ ] Update the navigation links
+- [x] Create About Us, Contact Us, Privacy Policy and Terms & Conditions pages in all languages
+- [x] Update the navigation links
 
 ## Travel Blog
 
