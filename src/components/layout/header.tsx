@@ -1,0 +1,47 @@
+import { Suspense } from "react";
+import Link from "next/link";
+import { LanguageSwitcher } from "@/components/language-switcher";
+import { cn } from "@/lib/utils";
+import { getTranslation } from "@/app/i18n";
+
+interface HeaderProps {
+  locale: string;
+}
+
+export async function Header({ locale }: HeaderProps) {
+  const { t: tNav } = await getTranslation(locale, "navigation");
+
+  return (
+    <header className="border-b bg-white shadow-sm">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className={cn("flex h-16 items-center justify-between")}>
+          <div className={cn("flex items-center")}>
+            <Link
+              href={`/${locale}`}
+              className="text-2xl font-bold text-blue-600"
+            >
+              GetTravelVisa.com
+            </Link>
+          </div>
+          <nav className={cn("hidden space-x-8 md:flex")}>
+            <Link
+              href={`/${locale}/destinations`}
+              className="text-gray-900 hover:text-blue-600"
+            >
+              {tNav("header.destinations")}
+            </Link>
+            <Link
+              href={`/${locale}/blog`}
+              className="text-gray-900 hover:text-blue-600"
+            >
+              {tNav("header.blog")}
+            </Link>
+          </nav>
+          <Suspense fallback={<div>Loading...</div>}>
+            <LanguageSwitcher />
+          </Suspense>
+        </div>
+      </div>
+    </header>
+  );
+}

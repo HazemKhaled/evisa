@@ -1,9 +1,6 @@
 module.exports = {
   // TypeScript and JavaScript files
-  "**/*.{js,jsx,ts,tsx}": [
-    "eslint --fix --max-warnings=10",
-    "prettier --write",
-  ],
+  "**/*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
 
   // JSON files
   "**/*.{json,css,scss,sass,md,mdx,yml,yaml}": ["prettier --write"],

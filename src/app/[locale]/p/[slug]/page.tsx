@@ -51,7 +51,7 @@ export default async function StaticPage({ params }: StaticPageProps) {
     const mdxData = await getMDXPage(`${slug}.mdx`, locale);
 
     return (
-      <StaticPageLayout locale={locale}>
+      <StaticPageLayout>
         <MDXContent data={mdxData} isRTL={isCurrentRTL} />
       </StaticPageLayout>
     );

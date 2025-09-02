@@ -86,7 +86,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
       .slice(0, 3);
 
     return (
-      <StaticPageLayout locale={locale}>
+      <StaticPageLayout>
         <article className="mx-auto max-w-4xl">
           {/* Hero Image */}
           <div className="relative mb-8 aspect-video overflow-hidden rounded-lg">
@@ -346,11 +346,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
         )}
       </StaticPageLayout>
     );
-  } catch (error) {
-    console.error(
-      `Failed to load blog post: ${slug} for locale: ${locale}`,
-      error
-    );
+  } catch {
     notFound();
   }
 }

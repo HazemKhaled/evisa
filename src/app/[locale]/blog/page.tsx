@@ -60,7 +60,7 @@ export default async function BlogHome({
 
   if (allPosts.length === 0) {
     return (
-      <StaticPageLayout locale={locale}>
+      <StaticPageLayout>
         <div className="py-16 text-center">
           <h1 className="mb-4 text-4xl font-bold text-gray-900">Travel Blog</h1>
           <p className="text-lg text-gray-600">
@@ -72,7 +72,7 @@ export default async function BlogHome({
   }
 
   return (
-    <StaticPageLayout locale={locale}>
+    <StaticPageLayout>
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-12 text-center">

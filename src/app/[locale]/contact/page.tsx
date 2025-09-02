@@ -25,7 +25,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const isCurrentRTL = isRTL(locale);
 
   return (
-    <StaticPageLayout locale={locale}>
+    <StaticPageLayout>
       <div className={cn("space-y-12", isCurrentRTL && "text-right")}>
         <header>
           <h1 className="mb-8 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
