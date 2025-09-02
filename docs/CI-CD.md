@@ -17,14 +17,14 @@ The project uses GitHub Actions for CI/CD with OpenNext.js for Cloudflare Worker
 ### 🚀 Staging Environment
 
 - **Trigger**: Push to `main` branch
-- **Database**: `gettravelvisa-db-staging`
+- **Database**: `gtv-db-staging`
 - **URL**: `staging.gettravelvisa.com`
 - **Workflow**: `.github/workflows/deploy-staging.yml`
 
 ### 🌟 Production Environment
 
 - **Trigger**: GitHub release published
-- **Database**: `gettravelvisa-db-prod`
+- **Database**: `gtv-db-prod`
 - **URL**: `gettravelvisa.com`
 - **Workflow**: `.github/workflows/deploy-production.yml`
 
@@ -116,10 +116,10 @@ Update the following placeholders in `wrangler.jsonc`:
 
 ```bash
 # Create staging database
-wrangler d1 create gettravelvisa-db-staging
+wrangler d1 create gtv-db-staging
 
 # Create production database
-wrangler d1 create gettravelvisa-db-prod
+wrangler d1 create gtv-db-prod
 
 # Update wrangler.jsonc with the returned database IDs
 ```

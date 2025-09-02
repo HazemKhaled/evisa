@@ -19,10 +19,10 @@ You need to create the staging and production databases and update the configura
 
 ```bash
 # Create staging database
-wrangler d1 create gettravelvisa-db-staging
+wrangler d1 create gtv-db-staging
 
 # Create production database
-wrangler d1 create gettravelvisa-db-prod
+wrangler d1 create gtv-db-prod
 ```
 
 ### 2. Update Database IDs in wrangler.jsonc
@@ -129,7 +129,7 @@ pnpm preview
 pnpm exec wrangler whoami
 
 # Test database connection
-pnpm exec wrangler d1 info gettravelvisa-db-staging
+pnpm exec wrangler d1 info gtv-db-staging
 ```
 
 ## 📋 Workflow Overview

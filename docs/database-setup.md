@@ -204,7 +204,7 @@ scripts/
 1. **Create Production Database**:
 
    ```bash
-   pnpm wrangler d1 create gettravelvisa-db-prod
+   pnpm wrangler d1 create gtv-db-prod
    ```
 
 2. **Update Configuration**:
@@ -261,7 +261,7 @@ pnpm db:local:setup           # Recreate and populate
 **Production Reset (Careful!):**
 
 ```bash
-pnpm wrangler d1 execute gettravelvisa-db-prod --remote --file=./scripts/reset.sql
+pnpm wrangler d1 execute gtv-db-prod --remote --file=./scripts/reset.sql
 pnpm db:migrate              # Reapply schema
 pnpm db:seed                 # Repopulate data
 ```

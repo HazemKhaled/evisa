@@ -17,9 +17,6 @@
     "enabled": true,
     "head_sampling_rate": 0.01,
   },
-  /**
-   * Account ID for Cloudflare deployment (loaded from CLOUDFLARE_ACCOUNT_ID env var)
-   */
 
   /**
    * Smart Placement
