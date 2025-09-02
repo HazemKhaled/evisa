@@ -1,0 +1,39 @@
+{
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "Ponte en contacto con nuestro equipo. Estamos aquí para ayudarte con tus preguntas sobre visas y necesidades de planificación de viajes.",
+    "form": {
+      "title": "Envíanos un mensaje",
+      "name_label": "Nombre Completo",
+      "name_placeholder": "Ingresa tu nombre completo",
+      "email_label": "Dirección de Correo Electrónico",
+      "email_placeholder": "Ingresa tu dirección de correo electrónico",
+      "phone_label": "Número de Teléfono",
+      "phone_placeholder": "Ingresa tu número de teléfono (opcional)",
+      "reason_label": "Motivo del Contacto",
+      "reason_question": "Pregunta General",
+      "reason_partnership": "Consulta de Asociación",
+      "reason_other": "Otro",
+      "subject_label": "Asunto",
+      "subject_placeholder": "Breve descripción de tu consulta",
+      "message_label": "Mensaje",
+      "message_placeholder": "Por favor proporciona detalles sobre tu consulta...",
+      "submit": "Enviar Mensaje"
+    },
+    "info": {
+      "title": "Ponte en Contacto",
+      "email": "hello@gettravelvisa.com",
+      "phone": "+1 (555) 123-4567",
+      "address": "123 Calle del Viaje, Ciudad Visa, VC 12345",
+      "hours": "Lunes - Viernes: 9:00 AM - 6:00 PM (UTC)"
+    },
+    "questions": {
+      "title": "¿Preguntas sobre Requisitos de Visa?",
+      "description": "Nuestro equipo de expertos en visas está listo para ayudarte a entender los requisitos para tu destino y guiarte a través del proceso de solicitud."
+    },
+    "partnerships": {
+      "title": "Oportunidades de Asociación",
+      "description": "Siempre estamos buscando asociarnos con agencias de viaje, proveedores de servicios de visa y organizaciones de turismo para servir mejor a los viajeros en todo el mundo."
+    }
+  }
+}

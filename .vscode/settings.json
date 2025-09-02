@@ -5,9 +5,15 @@
   "files.exclude": {
       ".next": true,
       "node_modules": true,
-      "wrangler": true,
+      ".wrangler": true,
       "tsconfig.tsbuildinfo": true,
       "coverage": true,
+      ".open-next": true,
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
   },
   "cSpell.words": [
     "autoincrement",
@@ -16,6 +22,7 @@
     "Jitsu",
     "languagedetector",
     "libsql",
+    "opennext",
     "opennextjs",
     "pkill",
     "Turbopack",

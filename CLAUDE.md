@@ -63,7 +63,6 @@ Use latest compatible versions from all dependencies, and never use old version 
 - Static assets for public folder https://opennext.js.org/cloudflare/howtos/assets
 - `main` branch should deploy on staging.gettravelvisa.com
 - Each GitHub release should deploy on gettravelvisa.com
-- Each Pull Request should deploy on pr-PRNumber.staging.gettravelvisa.com
 - Another GitHub Action to run tests and linting
 - Use wrangler.jsonc instead of the .toml file
 
