@@ -44,6 +44,6 @@ TBD
 ## Background tasks
 
 - [x] Remove UI duplication code, header and foo
-- [ ] Review and fix any RTL test alignment error
+- [x] Review and fix any RTL test alignment error
 - [ ] Remove any code duplication. decrease the complexity and increase the testability
 - [ ] Add more unit tests if needed, but never cover UI components
