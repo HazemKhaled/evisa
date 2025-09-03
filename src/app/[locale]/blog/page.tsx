@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getBlogPostsForLocale } from "@/lib/mdx";
 import { isRTL, cn } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
+import { getTranslation } from "@/app/i18n";
 
 export const dynamic = "force-static";
 
@@ -28,6 +29,7 @@ export default async function BlogHome({
 }: BlogHomeProps) {
   const { locale } = await params;
   const { page = "1", tag, destination } = await searchParams;
+  const { t } = await getTranslation(locale, "pages");
 
   const currentPage = parseInt(page, 10);
   const postsPerPage = 9;
@@ -210,7 +212,7 @@ export default async function BlogHome({
                   href={`/${locale}/blog?page=${currentPage - 1}${tag ? `&tag=${tag}` : ""}${destination ? `&destination=${destination}` : ""}`}
                   className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
                 >
-                  {isCurrentRTL ? "التالي" : "Previous"}
+                  {t("blog.pagination.previous")}
                 </Link>
               )}
 
@@ -242,7 +244,7 @@ export default async function BlogHome({
                   href={`/${locale}/blog?page=${currentPage + 1}${tag ? `&tag=${tag}` : ""}${destination ? `&destination=${destination}` : ""}`}
                   className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
                 >
-                  {isCurrentRTL ? "السابق" : "Next"}
+                  {t("blog.pagination.next")}
                 </Link>
               )}
             </nav>
@@ -252,9 +254,10 @@ export default async function BlogHome({
         {/* Blog Stats */}
         <div className="mt-12 text-center text-gray-500">
           <p>
-            Showing {startIndex + 1}-
-            {Math.min(startIndex + postsPerPage, totalPosts)} of {totalPosts}{" "}
-            articles
+            {t("blog.pagination.showing")} {startIndex + 1}-
+            {Math.min(startIndex + postsPerPage, totalPosts)}{" "}
+            {t("blog.pagination.of")} {totalPosts}{" "}
+            {t("blog.pagination.articles")}
           </p>
         </div>
       </div>
