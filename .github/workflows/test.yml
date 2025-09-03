@@ -32,7 +32,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate blog data
-        run: tsx scripts/generate-blog-data.ts
+        run: pnpm tsx scripts/generate-blog-data.ts
 
       - name: Run type checking
         run: pnpm type-check
