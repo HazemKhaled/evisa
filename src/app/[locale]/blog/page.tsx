@@ -60,6 +60,22 @@ export default async function BlogHome({
 
   const isCurrentRTL = isRTL(locale);
 
+  // Helper function to build pagination URLs with query parameters
+  const buildPaginationUrl = (page: number): string => {
+    const searchParams = new URLSearchParams();
+    searchParams.set("page", page.toString());
+
+    if (tag) {
+      searchParams.set("tag", tag);
+    }
+
+    if (destination) {
+      searchParams.set("destination", destination);
+    }
+
+    return `/${locale}/blog?${searchParams.toString()}`;
+  };
+
   if (allPosts.length === 0) {
     return (
       <StaticPageLayout>
@@ -209,7 +225,7 @@ export default async function BlogHome({
               {/* Previous */}
               {currentPage > 1 && (
                 <Link
-                  href={`/${locale}/blog?page=${currentPage - 1}${tag ? `&tag=${tag}` : ""}${destination ? `&destination=${destination}` : ""}`}
+                  href={buildPaginationUrl(currentPage - 1)}
                   className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
                 >
                   {t("blog.pagination.previous")}
@@ -225,7 +241,7 @@ export default async function BlogHome({
                 return (
                   <Link
                     key={pageNum}
-                    href={`/${locale}/blog?page=${pageNum}${tag ? `&tag=${tag}` : ""}${destination ? `&destination=${destination}` : ""}`}
+                    href={buildPaginationUrl(pageNum)}
                     className={cn(
                       "rounded-md border px-3 py-2 text-sm font-medium",
                       pageNum === currentPage
@@ -241,7 +257,7 @@ export default async function BlogHome({
               {/* Next */}
               {currentPage < totalPages && (
                 <Link
-                  href={`/${locale}/blog?page=${currentPage + 1}${tag ? `&tag=${tag}` : ""}${destination ? `&destination=${destination}` : ""}`}
+                  href={buildPaginationUrl(currentPage + 1)}
                   className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
                 >
                   {t("blog.pagination.next")}
