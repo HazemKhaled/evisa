@@ -188,10 +188,10 @@ export async function getBlogPostsForLocale(
 
       // Handle both old format (destination: string) and new format (destinations: string[])
       let destinations: string[] = [];
-      if ((frontmatterTyped as any).destinations) {
-        destinations = (frontmatterTyped as any).destinations;
-      } else if ((frontmatterTyped as any).destination) {
-        destinations = [(frontmatterTyped as any).destination];
+      if (frontmatterTyped.destinations) {
+        destinations = frontmatterTyped.destinations;
+      } else if (frontmatterTyped.destination) {
+        destinations = [frontmatterTyped.destinations];
       }
 
       // Get country names from database (with automatic fallback handling)
@@ -241,14 +241,14 @@ export async function getBlogPost(
 
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { data: frontmatter, content } = matter(fileContent);
-  const frontmatterTyped = frontmatter as any;
+  const frontmatterTyped = frontmatter as BlogPostData["frontmatter"];
 
   // Handle both old format (destination: string) and new format (destinations: string[])
   let destinations: string[] = [];
   if (frontmatterTyped.destinations) {
     destinations = frontmatterTyped.destinations;
   } else if (frontmatterTyped.destination) {
-    destinations = [frontmatterTyped.destination];
+    destinations = [frontmatterTyped.destinations];
   }
 
   // Get country names from database (with automatic fallback handling)
