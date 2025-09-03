@@ -50,6 +50,9 @@ export default async function StaticPage({ params }: StaticPageProps) {
 
     return (
       <StaticPageLayout>
+        <h1 className="mb-6 text-4xl font-bold text-gray-900 sm:text-5xl">
+          {mdxData.frontmatter.title}
+        </h1>
         <MDXContent data={mdxData} />
       </StaticPageLayout>
     );
