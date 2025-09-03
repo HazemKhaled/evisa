@@ -1,12 +1,16 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { getBlogPostsForLocale } from "@/lib/blog";
+import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
 import { isRTL, cn } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
+import { languages } from "@/app/i18n/settings";
 
-export const dynamic = "force-static";
+// Generate static params for basic locale routes only
+export async function generateStaticParams() {
+  return languages.map(locale => ({ locale }));
+}
 
 interface BlogHomeProps {
   params: Promise<{ locale: string }>;
@@ -34,8 +38,8 @@ export default async function BlogHome({
   const currentPage = parseInt(page, 10);
   const postsPerPage = 9;
 
-  // Get all blog posts for the locale
-  let allPosts = await getBlogPostsForLocale(locale);
+  // Get all blog posts for the locale using generated data
+  let allPosts = getGeneratedBlogPostsForLocale(locale);
 
   // Filter by tag if specified
   if (tag) {

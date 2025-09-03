@@ -3,24 +3,7 @@
 import { useParams, useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 import { cn, isRTL } from "@/lib/utils";
-
-interface Language {
-  code: string;
-  name: string;
-  nativeName: string;
-  flag: string;
-}
-
-const languages: Language[] = [
-  { code: "en", name: "English", nativeName: "English", flag: "🇺🇸" },
-  { code: "es", name: "Spanish", nativeName: "Español", flag: "🇪🇸" },
-  { code: "ar", name: "Arabic", nativeName: "العربية", flag: "🇸🇦" },
-  { code: "pt", name: "Portuguese", nativeName: "Português", flag: "🇵🇹" },
-  { code: "ru", name: "Russian", nativeName: "Русский", flag: "🇷🇺" },
-  { code: "de", name: "German", nativeName: "Deutsch", flag: "🇩🇪" },
-  { code: "fr", name: "French", nativeName: "Français", flag: "🇫🇷" },
-  { code: "it", name: "Italian", nativeName: "Italiano", flag: "🇮🇹" },
-];
+import { languagesObj } from "@/app/i18n/settings";
 
 export function LanguageSwitcher() {
   const router = useRouter();
@@ -31,7 +14,7 @@ export function LanguageSwitcher() {
   const currentLocale = (params?.locale as string) || "en";
 
   const currentLanguage =
-    languages.find(lang => lang.code === currentLocale) || languages[0];
+    languagesObj.find(lang => lang.code === currentLocale) || languagesObj[0];
   const isCurrentRTL = isRTL(currentLocale);
 
   // Static labels to avoid hydration mismatch
@@ -100,7 +83,7 @@ export function LanguageSwitcher() {
             )}
           >
             <div className="py-1">
-              {languages.map(language => (
+              {languagesObj.map(language => (
                 <button
                   key={language.code}
                   onClick={() => handleLanguageChange(language.code)}

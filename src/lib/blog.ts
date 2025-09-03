@@ -2,7 +2,6 @@ import * as fs from "fs";
 import * as path from "path";
 import matter from "gray-matter";
 import { filterAndPaginate, createBlogFilter } from "./utils/pagination";
-import { getCountryNames } from "./services/country-service";
 
 export interface BlogPostData {
   content: string;
@@ -21,6 +20,50 @@ export interface BlogPostData {
     [key: string]: unknown;
   };
   destinationNames?: string[]; // Array of resolved country names from database
+}
+
+/**
+ * Helper function to read blog posts from a specific directory
+ */
+function getBlogPostsFromDirectory(blogDir: string): BlogPostData[] {
+  const blogPosts: BlogPostData[] = [];
+
+  try {
+    const files = fs.readdirSync(blogDir).filter(file => file.endsWith(".mdx"));
+
+    for (const file of files) {
+      const filePath = path.join(blogDir, file);
+      const fileContent = fs.readFileSync(filePath, "utf8");
+      const { data: frontmatter, content } = matter(fileContent);
+      const slug = file.replace(".mdx", "");
+      const frontmatterTyped = frontmatter as BlogPostData["frontmatter"];
+
+      // Handle both old format (destination: string) and new format (destinations: string[])
+      const destinations = frontmatterTyped.destinations;
+
+      // Temporarily disable country names lookup
+      const destinationNames = destinations || [];
+
+      blogPosts.push({
+        content,
+        slug,
+        frontmatter: {
+          ...frontmatterTyped,
+          destinations,
+        },
+        destinationNames,
+      });
+    }
+
+    // Sort by publishedAt date (newest first)
+    return blogPosts.sort(
+      (a, b) =>
+        new Date(b.frontmatter.publishedAt).getTime() -
+        new Date(a.frontmatter.publishedAt).getTime()
+    );
+  } catch {
+    return [];
+  }
 }
 
 /**
@@ -185,49 +228,36 @@ export async function getAllUniqueTags(): Promise<string[]> {
 export async function getBlogPostsForLocale(
   locale: string
 ): Promise<BlogPostData[]> {
-  const blogDir = path.join(process.cwd(), "src", "contents", locale, "blog");
-  const blogPosts: BlogPostData[] = [];
+  const projectRoot = process.cwd();
+  const blogDir = path.join(projectRoot, "src", "contents", locale, "blog");
 
   if (!fs.existsSync(blogDir)) {
-    return [];
-  }
+    // Try alternative paths for preview environment
+    const altPaths = [
+      path.join(projectRoot, "..", "src", "contents", locale, "blog"),
+      path.join(projectRoot, "..", "..", "src", "contents", locale, "blog"),
+      path.join(
+        projectRoot,
+        "..",
+        "..",
+        "..",
+        "src",
+        "contents",
+        locale,
+        "blog"
+      ),
+    ];
 
-  try {
-    const files = fs.readdirSync(blogDir).filter(file => file.endsWith(".mdx"));
-
-    for (const file of files) {
-      const filePath = path.join(blogDir, file);
-      const fileContent = fs.readFileSync(filePath, "utf8");
-      const { data: frontmatter, content } = matter(fileContent);
-      const slug = file.replace(".mdx", "");
-      const frontmatterTyped = frontmatter as BlogPostData["frontmatter"];
-
-      // Handle both old format (destination: string) and new format (destinations: string[])
-      const destinations = frontmatterTyped.destinations;
-
-      // Get country names from database (with automatic fallback handling)
-      const destinationNames = await getCountryNames(destinations, locale);
-
-      blogPosts.push({
-        content,
-        slug,
-        frontmatter: {
-          ...frontmatterTyped,
-          destinations,
-        },
-        destinationNames,
-      });
+    for (const altPath of altPaths) {
+      if (fs.existsSync(altPath)) {
+        return getBlogPostsFromDirectory(altPath);
+      }
     }
 
-    // Sort by publishedAt date (newest first)
-    return blogPosts.sort(
-      (a, b) =>
-        new Date(b.frontmatter.publishedAt).getTime() -
-        new Date(a.frontmatter.publishedAt).getTime()
-    );
-  } catch {
     return [];
   }
+
+  return getBlogPostsFromDirectory(blogDir);
 }
 
 /**
@@ -311,8 +341,10 @@ export async function getBlogPost(
   slug: string,
   locale: string
 ): Promise<BlogPostData> {
+  // Use a more robust path resolution that works in both build and preview
+  const projectRoot = process.cwd();
   const filePath = path.join(
-    process.cwd(),
+    projectRoot,
     "src",
     "contents",
     locale,
@@ -321,6 +353,64 @@ export async function getBlogPost(
   );
 
   if (!fs.existsSync(filePath)) {
+    // Try alternative paths for preview environment
+    const altPaths = [
+      path.join(
+        projectRoot,
+        "..",
+        "src",
+        "contents",
+        locale,
+        "blog",
+        `${slug}.mdx`
+      ),
+      path.join(
+        projectRoot,
+        "..",
+        "..",
+        "src",
+        "contents",
+        locale,
+        "blog",
+        `${slug}.mdx`
+      ),
+      path.join(
+        projectRoot,
+        "..",
+        "..",
+        "..",
+        "src",
+        "contents",
+        locale,
+        "blog",
+        `${slug}.mdx`
+      ),
+    ];
+
+    for (const altPath of altPaths) {
+      if (fs.existsSync(altPath)) {
+        const fileContent = fs.readFileSync(altPath, "utf8");
+        const { data: frontmatter, content } = matter(fileContent);
+        const frontmatterTyped = frontmatter as BlogPostData["frontmatter"];
+
+        // Handle both old format (destination: string) and new format (destinations: string[])
+        const destinations = frontmatterTyped.destinations;
+
+        // Temporarily disable country names lookup
+        const destinationNames = destinations || [];
+
+        return {
+          content,
+          slug,
+          frontmatter: {
+            ...frontmatterTyped,
+            destinations,
+          } as BlogPostData["frontmatter"],
+          destinationNames,
+        };
+      }
+    }
+
     throw new Error(`Blog post not found: ${slug} for locale: ${locale}`);
   }
 
@@ -331,8 +421,8 @@ export async function getBlogPost(
   // Handle both old format (destination: string) and new format (destinations: string[])
   const destinations = frontmatterTyped.destinations;
 
-  // Get country names from database (with automatic fallback handling)
-  // const destinationNames = await getCountryNames(destinations, locale);
+  // Temporarily disable country names lookup
+  const destinationNames = destinations || [];
 
   return {
     content,
@@ -341,7 +431,7 @@ export async function getBlogPost(
       ...frontmatterTyped,
       destinations,
     } as BlogPostData["frontmatter"],
-    destinationNames: [],
+    destinationNames,
   };
 }
 

@@ -1,16 +1,13 @@
 import { Metadata } from "next";
-import { getAllUniqueTags, getAllBlogPosts } from "@/lib/blog";
+import {
+  getGeneratedAllUniqueTags,
+  getAllBlogPosts,
+} from "@/lib/generated-blog-data";
 import BlogHome from "../../page";
 
-export const dynamic = "force-static";
-
-interface TagPageProps {
-  params: Promise<{ locale: string; tag: string }>;
-  searchParams: Promise<{ page?: string; destination?: string }>;
-}
-
+// Generate static params for basic tag routes only
 export async function generateStaticParams() {
-  const allTags = await getAllUniqueTags();
+  const allTags = getGeneratedAllUniqueTags();
   const allBlogPosts = getAllBlogPosts();
 
   // Get all unique locale-tag combinations
@@ -19,11 +16,17 @@ export async function generateStaticParams() {
   const params = [];
   for (const currentLocale of locales) {
     for (const tag of allTags) {
+      // Base tag route only
       params.push({ locale: currentLocale, tag });
     }
   }
 
   return params;
+}
+
+interface TagPageProps {
+  params: Promise<{ locale: string; tag: string }>;
+  searchParams: Promise<{ page?: string; destination?: string }>;
 }
 
 export async function generateMetadata({
