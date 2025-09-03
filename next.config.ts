@@ -5,8 +5,9 @@ import remarkGfm from "remark-gfm";
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   images: {
+    loader: "custom",
+    loaderFile: "./image-loader.ts",
     domains: ["images.unsplash.com"],
-    unoptimized: true,
   },
 };
 
