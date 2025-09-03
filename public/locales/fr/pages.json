@@ -35,5 +35,27 @@
       "title": "Partnership Opportunities",
       "description": "We're always looking to partner with travel agencies, visa service providers, and tourism organizations to better serve travelers worldwide."
     }
+  },
+  "blog": {
+    "post": {
+      "published": "Publié",
+      "updated": "Mis à jour",
+      "passport": "Passeport",
+      "related_visas": "Visa connexes",
+      "tags": "Tags",
+      "back_to_blog": "Retour au blog",
+      "related_articles": "Articles connexes"
+    },
+    "meta": {
+      "post_not_found": "Article non trouvé",
+      "post_not_found_description": "L'article de blog demandé n'a pas pu être trouvé."
+    },
+    "pagination": {
+      "showing": "Affichage",
+      "articles": "articles",
+      "of": "sur",
+      "previous": "Précédent",
+      "next": "Suivant"
+    }
   }
 }

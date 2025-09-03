@@ -35,5 +35,27 @@
       "title": "Oportunidades de Asociación",
       "description": "Siempre estamos buscando asociarnos con agencias de viaje, proveedores de servicios de visa y organizaciones de turismo para servir mejor a los viajeros en todo el mundo."
     }
+  },
+  "blog": {
+    "post": {
+      "published": "Publicado",
+      "updated": "Actualizado",
+      "passport": "Pasaporte",
+      "related_visas": "Visas relacionadas",
+      "tags": "Etiquetas",
+      "back_to_blog": "Volver al blog",
+      "related_articles": "Artículos relacionados"
+    },
+    "meta": {
+      "post_not_found": "Artículo no encontrado",
+      "post_not_found_description": "El artículo del blog solicitado no se pudo encontrar."
+    },
+    "pagination": {
+      "showing": "Mostrando",
+      "articles": "artículos",
+      "of": "de",
+      "previous": "Anterior",
+      "next": "Siguiente"
+    }
   }
 }

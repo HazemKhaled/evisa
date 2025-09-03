@@ -49,6 +49,13 @@
     "meta": {
       "post_not_found": "المقال غير موجود",
       "post_not_found_description": "لم يتم العثور على المقال المطلوب."
+    },
+    "pagination": {
+      "showing": "عرض",
+      "articles": "مقالات",
+      "of": "من",
+      "previous": "السابق",
+      "next": "التالي"
     }
   }
 }

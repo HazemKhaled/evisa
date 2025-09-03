@@ -49,6 +49,13 @@
     "meta": {
       "post_not_found": "Post Not Found",
       "post_not_found_description": "The requested blog post could not be found."
+    },
+    "pagination": {
+      "showing": "Showing",
+      "articles": "articles",
+      "of": "of",
+      "previous": "Previous",
+      "next": "Next"
     }
   }
 }
