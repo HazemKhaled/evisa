@@ -14,24 +14,22 @@
     "binding": "ASSETS",
     "directory": ".open-next/assets",
   },
-
   "observability": {
     "enabled": true,
   },
-
   /**
    * Smart Placement
    * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
    */
-  "placement": { "mode": "smart" },
-
+  "placement": {
+    "mode": "smart",
+  },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "gtv-db-staging",
       "database_id": "de85b8f1-81b0-4263-b69d-0b82e9d48875",
     },
-
     // OpenNext cache
     {
       "binding": "NEXT_TAG_CACHE_D1",
@@ -45,17 +43,17 @@
       "custom_domain": true,
     },
   ],
-
   // Cache
-
   /**
    * Service Bindings (communicate between multiple Workers)
    * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
    */
   "services": [
-    { "binding": "WORKER_SELF_REFERENCE", "service": "gtv-staging" },
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "gtv-staging",
+    },
   ],
-
   // R2 incremental cache
   "r2_buckets": [
     {
@@ -63,7 +61,6 @@
       "bucket_name": "gtv-staging-cache",
     },
   ],
-
   "durable_objects": {
     "bindings": [
       {

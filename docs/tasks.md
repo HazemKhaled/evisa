@@ -21,12 +21,14 @@
 
 Create the blog as required
 
-- [ ] Create a new page blog home page `/[locale]/blog` to list all blog posts in a nice grid with the featured image, title, description, destination and tags, make pagination, and add the link in the navigation bar.
-- [ ] Clicking on the blog post card should open Bog post page.
-- [ ] Blog post page should show the mdx file, in nice UI.
-- [ ] Show blog post tags in blog post page. On click open `/[locale]/blog/t/[tag]` and list all posts under this tag. This page should re-use blog home page components if possible.
-- [ ] Show blog post dentation blog post page as a nice looking card, with call to action to apply a visa.
-- [ ] In the blog post page, show random 3 other articles as a related article.
+- [x] Content should be saves as mdx files in `/src/contents/{locale}/blog/{slug}.mdx`, and use `generateStaticParams` to generate it in the build time.
+- [x] Create a new page blog home page `/[locale]/blog` to list all blog posts in a nice grid with the featured image, title, description, destination and tags, make pagination, and add the link in the navigation bar.
+- [x] Clicking on the blog post card should open Blog post page.
+- [x] Blog post page should have nice UI.
+- [x] Show blog post tags in blog post page. On click open `/[locale]/blog?tag={tag}` and list all posts under this tag (using query params instead of separate route).
+- [ ] Show blog post destination in blog post page as a nice looking card, with call to action to apply a visa.
+- [x] In the blog post page, show random 3 other articles as a related article.
+- [ ] Create real blog posts for different destinations (Japan, Canada, Europe, UK, USA, UAE, KSA, France, Turkiye), at least every destination should have 4 posts, and every language should have 15 post
 
 ## SEO
 
@@ -38,3 +40,10 @@ Create the blog as required
 ## Visa Catalog
 
 TBD
+
+## Background tasks
+
+- [x] Remove UI duplication code, header and foo
+- [ ] Review and fix any RTL test alignment error
+- [ ] Remove any code duplication. decrease the complexity and increase the testability
+- [ ] Add more unit tests if needed, but never cover UI components

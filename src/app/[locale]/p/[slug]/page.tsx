@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { MDXContent } from "@/components/mdx-content";
 import { getMDXPage, getAllStaticPages } from "@/lib/mdx";
-import { isRTL } from "@/lib/utils";
 
 interface StaticPageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -45,14 +44,13 @@ export async function generateMetadata({
 
 export default async function StaticPage({ params }: StaticPageProps) {
   const { locale, slug } = await params;
-  const isCurrentRTL = isRTL(locale);
 
   try {
     const mdxData = await getMDXPage(`${slug}.mdx`, locale);
 
     return (
-      <StaticPageLayout locale={locale}>
-        <MDXContent data={mdxData} isRTL={isCurrentRTL} />
+      <StaticPageLayout>
+        <MDXContent data={mdxData} />
       </StaticPageLayout>
     );
   } catch {
