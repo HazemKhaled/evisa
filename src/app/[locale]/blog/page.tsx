@@ -87,12 +87,7 @@ export default async function BlogHome({
 
         {/* Filters */}
         {(tag || destination) && (
-          <div
-            className={cn(
-              "mb-8 flex flex-wrap gap-2",
-              isCurrentRTL && "flex-row-reverse"
-            )}
-          >
+          <div className={cn("mb-8 flex flex-wrap gap-2")}>
             {tag && (
               <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
                 Tag: {tag}
@@ -144,12 +139,7 @@ export default async function BlogHome({
 
               <div className="p-6">
                 {/* Tags and Destinations */}
-                <div
-                  className={cn(
-                    "mb-3 flex flex-wrap gap-2",
-                    isCurrentRTL && "flex-row-reverse"
-                  )}
-                >
+                <div className={cn("mb-3 flex flex-wrap gap-2")}>
                   {post.frontmatter.destinations?.map((destination, index) => (
                     <Link
                       key={destination}
@@ -173,8 +163,7 @@ export default async function BlogHome({
                 {/* Title */}
                 <h2
                   className={cn(
-                    "mb-3 line-clamp-2 text-xl font-bold text-gray-900",
-                    isCurrentRTL && "text-right"
+                    "mb-3 line-clamp-2 text-xl font-bold text-gray-900"
                   )}
                 >
                   <Link
@@ -186,26 +175,18 @@ export default async function BlogHome({
                 </h2>
 
                 {/* Description */}
-                <p
-                  className={cn(
-                    "mb-4 line-clamp-3 text-gray-600",
-                    isCurrentRTL && "text-right"
-                  )}
-                >
+                <p className={cn("mb-4 line-clamp-3 text-gray-600")}>
                   {post.frontmatter.description}
                 </p>
 
                 {/* Meta */}
                 <div
                   className={cn(
-                    "flex items-center justify-between text-sm text-gray-500",
-                    isCurrentRTL && "flex-row-reverse"
+                    "flex items-center justify-between text-sm text-gray-500"
                   )}
                 >
-                  <span className={cn(isCurrentRTL && "text-right")}>
-                    {post.frontmatter.author}
-                  </span>
-                  <span className={cn(isCurrentRTL && "text-left")}>
+                  <span>{post.frontmatter.author}</span>
+                  <span>
                     {new Date(post.frontmatter.publishedAt).toLocaleDateString(
                       locale
                     )}

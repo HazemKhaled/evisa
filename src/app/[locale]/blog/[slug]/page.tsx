@@ -102,12 +102,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
           {/* Article Header */}
           <header className="mb-8">
             {/* Tags and Destinations */}
-            <div
-              className={cn(
-                "mb-4 flex flex-wrap gap-2",
-                isCurrentRTL && "flex-row-reverse"
-              )}
-            >
+            <div className={cn("mb-4 flex flex-wrap gap-2")}>
               {blogPost.frontmatter.destinations?.map((destination, index) => (
                 <Link
                   key={destination}
@@ -131,8 +126,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
             {/* Title */}
             <h1
               className={cn(
-                "mb-6 text-4xl font-bold text-gray-900 sm:text-5xl",
-                isCurrentRTL && "text-right"
+                "mb-6 text-4xl font-bold text-gray-900 sm:text-5xl"
               )}
             >
               {blogPost.frontmatter.title}
@@ -140,29 +134,16 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
             {/* Meta Information */}
             <div
-              className={cn(
-                "flex flex-wrap items-center gap-4 text-gray-600",
-                isCurrentRTL && "flex-row-reverse"
-              )}
+              className={cn("flex flex-wrap items-center gap-4 text-gray-600")}
             >
-              <div
-                className={cn(
-                  "flex items-center",
-                  isCurrentRTL && "flex-row-reverse"
-                )}
-              >
+              <div className={cn("flex items-center")}>
                 <span
                   className={cn("font-medium", isCurrentRTL && "mr-0 ml-2")}
                 >
                   {blogPost.frontmatter.author}
                 </span>
               </div>
-              <div
-                className={cn(
-                  "flex items-center gap-4",
-                  isCurrentRTL && "flex-row-reverse"
-                )}
-              >
+              <div className={cn("flex items-center gap-4")}>
                 <time dateTime={blogPost.frontmatter.publishedAt}>
                   Published:{" "}
                   {new Date(
@@ -183,12 +164,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
             {/* Passport and Related Visas */}
             {(blogPost.frontmatter.passport ||
               blogPost.frontmatter.related_visas) && (
-              <div
-                className={cn(
-                  "mt-4 flex flex-wrap gap-4",
-                  isCurrentRTL && "flex-row-reverse"
-                )}
-              >
+              <div className={cn("mt-4 flex flex-wrap gap-4")}>
                 {blogPost.frontmatter.passport && (
                   <div className="flex items-center text-sm text-gray-600">
                     <span className="font-medium">🛂 Passport: </span>
@@ -210,36 +186,20 @@ export default async function BlogPost({ params }: BlogPostProps) {
           </header>
 
           {/* Article Content */}
-          <div
-            className={cn(
-              "prose prose-lg mb-12 max-w-none",
-              isCurrentRTL && "rtl prose-headings:text-right prose-p:text-right"
-            )}
-          >
+          <div className={cn("prose prose-lg mb-12 max-w-none")}>
             <MDXContent
               data={{
                 content: blogPost.content,
                 frontmatter: blogPost.frontmatter,
               }}
-              isRTL={isCurrentRTL}
             />
           </div>
 
           {/* Tags Section */}
           {blogPost.frontmatter.tags && (
-            <div
-              className={cn(
-                "mb-8 border-t border-gray-200 pt-8",
-                isCurrentRTL && "text-right"
-              )}
-            >
+            <div className={cn("mb-8 border-t border-gray-200 pt-8")}>
               <h3 className="mb-3 text-lg font-semibold text-gray-900">Tags</h3>
-              <div
-                className={cn(
-                  "flex flex-wrap gap-2",
-                  isCurrentRTL && "flex-row-reverse"
-                )}
-              >
+              <div className={cn("flex flex-wrap gap-2")}>
                 {blogPost.frontmatter.tags.map(tag => (
                   <Link
                     key={tag}
@@ -254,12 +214,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
           )}
 
           {/* Navigation */}
-          <div
-            className={cn(
-              "mb-8 border-t border-gray-200 pt-8",
-              isCurrentRTL && "text-right"
-            )}
-          >
+          <div className={cn("mb-8 border-t border-gray-200 pt-8")}>
             <Link
               href={`/${locale}/blog`}
               className="inline-flex items-center font-medium text-blue-600 hover:text-blue-800"
@@ -272,12 +227,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
         {/* Related Posts */}
         {relatedPosts.length > 0 && (
           <section className="mx-auto mt-16 max-w-7xl border-t border-gray-200 pt-16">
-            <h2
-              className={cn(
-                "mb-8 text-3xl font-bold text-gray-900",
-                isCurrentRTL && "text-right"
-              )}
-            >
+            <h2 className={cn("mb-8 text-3xl font-bold text-gray-900")}>
               Related Articles
             </h2>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -298,12 +248,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
                   </Link>
 
                   <div className="p-6">
-                    <div
-                      className={cn(
-                        "mb-3 flex flex-wrap gap-2",
-                        isCurrentRTL && "flex-row-reverse"
-                      )}
-                    >
+                    <div className={cn("mb-3 flex flex-wrap gap-2")}>
                       {post.frontmatter.destinations
                         ?.slice(0, 2)
                         .map((destination, index) => (
@@ -318,8 +263,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
                     <h3
                       className={cn(
-                        "mb-2 line-clamp-2 text-lg font-bold text-gray-900",
-                        isCurrentRTL && "text-right"
+                        "mb-2 line-clamp-2 text-lg font-bold text-gray-900"
                       )}
                     >
                       <Link
@@ -330,12 +274,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
                       </Link>
                     </h3>
 
-                    <p
-                      className={cn(
-                        "line-clamp-2 text-sm text-gray-600",
-                        isCurrentRTL && "text-right"
-                      )}
-                    >
+                    <p className={cn("line-clamp-2 text-sm text-gray-600")}>
                       {post.frontmatter.description}
                     </p>
                   </div>

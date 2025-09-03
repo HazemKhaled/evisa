@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { isRTL, cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { getTranslation } from "@/app/i18n";
 
 interface FooterProps {
@@ -7,19 +7,13 @@ interface FooterProps {
 }
 
 export async function Footer({ locale }: FooterProps) {
-  const isCurrentRTL = isRTL(locale);
   const { t: tNav } = await getTranslation(locale, "navigation");
   const { t: tCommon } = await getTranslation(locale, "common");
 
   return (
     <footer className="mt-16 bg-gray-900">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div
-          className={cn(
-            "grid grid-cols-1 gap-8 md:grid-cols-4",
-            isCurrentRTL && "text-right"
-          )}
-        >
+        <div className={cn("grid grid-cols-1 gap-8 md:grid-cols-4")}>
           <div className="col-span-1 md:col-span-2">
             <div className="text-2xl font-bold text-white">
               GetTravelVisa.com
@@ -91,8 +85,7 @@ export async function Footer({ locale }: FooterProps) {
         </div>
         <div
           className={cn(
-            "mt-8 border-t border-gray-700 pt-8 text-center text-base text-gray-400",
-            isCurrentRTL && "text-right"
+            "mt-8 border-t border-gray-700 pt-8 text-center text-base text-gray-400"
           )}
         >
           <p>

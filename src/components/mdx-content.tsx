@@ -5,10 +5,9 @@ import { cn } from "@/lib/utils";
 interface MDXContentProps {
   data: MDXPageData;
   className?: string;
-  isRTL?: boolean;
 }
 
-export function MDXContent({ data, className, isRTL }: MDXContentProps) {
+export function MDXContent({ data, className }: MDXContentProps) {
   const components = {
     h1: ({ children, ...props }: React.ComponentProps<"h1">) => (
       <h1
@@ -88,13 +87,7 @@ export function MDXContent({ data, className, isRTL }: MDXContentProps) {
   };
 
   return (
-    <div
-      className={cn(
-        "prose prose-lg max-w-none",
-        isRTL && "text-right",
-        className
-      )}
-    >
+    <div className={cn("prose prose-lg max-w-none", className)}>
       <MDXRemote source={data.content} components={components} />
     </div>
   );

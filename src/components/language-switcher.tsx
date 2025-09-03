@@ -60,10 +60,9 @@ export function LanguageSwitcher() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none",
-          isCurrentRTL && "flex-row-reverse"
+          "inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
         )}
-        aria-label={languageLabels[currentLocale] || "Language"}
+        aria-label={languageLabels[currentLocale] || languageLabels.en}
         aria-expanded={isOpen}
       >
         <span className="text-lg">{currentLanguage.flag}</span>
@@ -108,12 +107,11 @@ export function LanguageSwitcher() {
                   className={cn(
                     "flex w-full items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900",
                     currentLocale === language.code &&
-                      "bg-gray-100 text-gray-900",
-                    isCurrentRTL && "flex-row-reverse text-right"
+                      "bg-gray-100 text-gray-900"
                   )}
                 >
                   <span className="text-lg">{language.flag}</span>
-                  <div className={cn("flex-1", isCurrentRTL && "text-right")}>
+                  <div className={cn("flex-1")}>
                     <div className="font-medium">{language.nativeName}</div>
                     <div className="text-xs text-gray-500">{language.name}</div>
                   </div>
