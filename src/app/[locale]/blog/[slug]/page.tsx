@@ -6,6 +6,7 @@ import { getBlogPost, getAllBlogPosts, getBlogPostsForLocale } from "@/lib/mdx";
 import { MDXContent } from "@/components/mdx-content";
 import { isRTL, cn } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
+import { getTranslation } from "@/app/i18n";
 
 interface BlogPostProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -66,6 +67,7 @@ export async function generateMetadata({
 export default async function BlogPost({ params }: BlogPostProps) {
   const { locale, slug } = await params;
   const isCurrentRTL = isRTL(locale);
+  const { t } = await getTranslation(locale, "pages");
 
   try {
     const blogPost = await getBlogPost(slug, locale);
@@ -159,7 +161,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
                     dateTime={blogPost.frontmatter.publishedAt}
                     aria-label={`Published on ${new Date(blogPost.frontmatter.publishedAt).toLocaleDateString(locale)}`}
                   >
-                    {isCurrentRTL ? "نُشر في" : "Published:"}{" "}
+                    {t("blog.post.published")}{" "}
                     {new Date(
                       blogPost.frontmatter.publishedAt
                     ).toLocaleDateString(locale)}
@@ -169,7 +171,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
                       dateTime={blogPost.frontmatter.lastUpdated}
                       aria-label={`Last updated on ${new Date(blogPost.frontmatter.lastUpdated).toLocaleDateString(locale)}`}
                     >
-                      {isCurrentRTL ? "محدث في" : "Updated:"}{" "}
+                      {t("blog.post.updated")}{" "}
                       {new Date(
                         blogPost.frontmatter.lastUpdated
                       ).toLocaleDateString(locale)}
@@ -184,7 +186,9 @@ export default async function BlogPost({ params }: BlogPostProps) {
                 <div className={cn("mt-4 flex flex-wrap gap-4")}>
                   {blogPost.frontmatter.passport && (
                     <div className="flex items-center text-sm text-gray-600">
-                      <span className="font-medium">🛂 Passport: </span>
+                      <span className="font-medium">
+                        🛂 {t("blog.post.passport")}:{" "}
+                      </span>
                       <span className={cn("ml-1", isCurrentRTL && "mr-1 ml-0")}>
                         {blogPost.frontmatter.passport.toUpperCase()}
                       </span>
@@ -192,7 +196,9 @@ export default async function BlogPost({ params }: BlogPostProps) {
                   )}
                   {blogPost.frontmatter.related_visas && (
                     <div className="flex items-center text-sm text-gray-600">
-                      <span className="font-medium">📋 Related Visas: </span>
+                      <span className="font-medium">
+                        📋 {t("blog.post.related_visas")}:{" "}
+                      </span>
                       <span className={cn("ml-1", isCurrentRTL && "mr-1 ml-0")}>
                         {blogPost.frontmatter.related_visas.join(", ")}
                       </span>
@@ -219,7 +225,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
                 aria-label="Article Tags"
               >
                 <h3 className="mb-3 text-lg font-semibold text-gray-900">
-                  Tags
+                  {t("blog.post.tags")}
                 </h3>
                 <div className={cn("flex flex-wrap gap-2")}>
                   {blogPost.frontmatter.tags.map(tag => (
@@ -246,7 +252,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
                 className="inline-flex items-center font-medium text-blue-600 hover:text-blue-800"
                 aria-label="Return to blog listing"
               >
-                {isCurrentRTL ? <>العودة للمدونة ←</> : <>← Back to Blog</>}
+                {t("blog.post.back_to_blog")}
               </Link>
             </nav>
           </article>
@@ -258,7 +264,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
               aria-label={`Related Articles - ${relatedPosts.length} similar posts`}
             >
               <h2 className={cn("mb-8 text-3xl font-bold text-gray-900")}>
-                Related Articles
+                {t("blog.post.related_articles")}
               </h2>
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {relatedPosts.map(post => (
