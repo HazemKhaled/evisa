@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { getBlogPostsForLocale } from "@/lib/mdx";
+import { getBlogPostsForLocale } from "@/lib/blog";
 import { isRTL, cn } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
@@ -170,7 +170,7 @@ export default async function BlogHome({
                   {post.frontmatter.tags?.slice(0, 2).map(tag => (
                     <Link
                       key={tag}
-                      href={`/${locale}/blog?tag=${encodeURIComponent(tag)}`}
+                      href={`/${locale}/blog/t/${encodeURIComponent(tag)}`}
                       className="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800 hover:bg-gray-200"
                     >
                       #{tag}

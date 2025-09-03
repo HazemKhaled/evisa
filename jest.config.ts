@@ -11,6 +11,13 @@ const config: Config = {
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   testMatch: ["**/__tests__/**/*.(ts|tsx|js)", "**/*.(test|spec).(ts|tsx|js)"],
+  // Transform ES modules from OpenNext Cloudflare
+  transformIgnorePatterns: ["node_modules/(?!(@opennextjs/cloudflare)/)"],
+  // Mock ES modules that Jest can't handle
+  moduleNameMapper: {
+    "^@opennextjs/cloudflare$":
+      "<rootDir>/src/lib/__mocks__/opennextjs-cloudflare.js",
+  },
   collectCoverageFrom: [
     "src/lib/**/*.{ts,tsx}",
     "src/app/i18n/settings.ts",
