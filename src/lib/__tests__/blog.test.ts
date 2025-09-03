@@ -176,7 +176,7 @@ Content 2`;
       expect(result[1].frontmatter.publishedAt).toBe("2024-01-01");
       expect(result[0].slug).toBe("post2"); // post2 has newer date, so it's first
       expect(result[1].slug).toBe("post1"); // post1 has older date, so it's second
-      expect(result[0].destinationNames).toEqual([]); // Database unavailable, no destination names
+      expect(result[0].destinationNames).toEqual(["GBR"]); // Database unavailable, fallback to country codes
     });
 
     it("should return empty array for non-existent locale", async () => {
@@ -405,43 +405,55 @@ Content ${i}`);
     });
 
     it("should return paginated results with correct metadata", async () => {
-      const result = await getPaginatedBlogPosts("en", 1, 10);
+      const result = await getPaginatedBlogPosts("en", {
+        page: 1,
+        postsPerPage: 10,
+      });
 
       expect(result.posts).toHaveLength(10);
-      expect(result.totalPages).toBe(3); // 25 posts / 10 per page = 3 pages
-      expect(result.currentPage).toBe(1);
+      expect(result.pagination.totalPages).toBe(3); // 25 posts / 10 per page = 3 pages
+      expect(result.pagination.currentPage).toBe(1);
       expect(result.totalPosts).toBe(25);
     });
 
     it("should return correct posts for page 2", async () => {
-      const result = await getPaginatedBlogPosts("en", 2, 10);
+      const result = await getPaginatedBlogPosts("en", {
+        page: 2,
+        postsPerPage: 10,
+      });
 
       expect(result.posts).toHaveLength(10);
-      expect(result.currentPage).toBe(2);
+      expect(result.pagination.currentPage).toBe(2);
     });
 
     it("should return remaining posts on last page", async () => {
-      const result = await getPaginatedBlogPosts("en", 3, 10);
+      const result = await getPaginatedBlogPosts("en", {
+        page: 3,
+        postsPerPage: 10,
+      });
 
       expect(result.posts).toHaveLength(5); // 25 - (2 * 10) = 5 remaining posts
-      expect(result.currentPage).toBe(3);
+      expect(result.pagination.currentPage).toBe(3);
     });
 
     it("should handle default parameters", async () => {
       const result = await getPaginatedBlogPosts("en");
 
       expect(result.posts).toHaveLength(10); // Default 10 per page
-      expect(result.currentPage).toBe(1); // Default page 1
+      expect(result.pagination.currentPage).toBe(1); // Default page 1
     });
 
     it("should handle empty blog directory", async () => {
       jest.clearAllMocks();
       mockedFs.existsSync.mockReturnValue(false);
 
-      const result = await getPaginatedBlogPosts("en", 1, 10);
+      const result = await getPaginatedBlogPosts("en", {
+        page: 1,
+        postsPerPage: 10,
+      });
 
       expect(result.posts).toEqual([]);
-      expect(result.totalPages).toBe(0);
+      expect(result.pagination.totalPages).toBe(1);
       expect(result.totalPosts).toBe(0);
     });
   });

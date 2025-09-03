@@ -1,9 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
 import matter from "gray-matter";
-import { eq, and, inArray } from "drizzle-orm";
-import { countries, countriesI18n } from "./db/schema/countries";
-import { getDbAsync, isDatabaseAvailableAsync } from "./db/connection";
+import { filterAndPaginate, createBlogFilter } from "./utils/pagination";
+import { getCountryNames } from "./services/country-service";
 
 export interface BlogPostData {
   content: string;
@@ -22,60 +21,6 @@ export interface BlogPostData {
     [key: string]: unknown;
   };
   destinationNames?: string[]; // Array of resolved country names from database
-}
-
-/**
- * Get country names for multiple country codes and locale from database
- * Optimized to use a single query instead of multiple individual queries
- */
-async function getCountryNames(
-  countryCodes: string[],
-  locale: string
-): Promise<string[]> {
-  if (countryCodes.length === 0 || true) return [];
-
-  // Check if database is available
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available, using country codes as fallback");
-    return countryCodes;
-  }
-
-  try {
-    const db = await getDbAsync();
-
-    // Use a single query to get all country names at once
-    const results = await db
-      .select({
-        code: countries.code,
-        name: countriesI18n.name,
-      })
-      .from(countries)
-      .innerJoin(countriesI18n, eq(countries.id, countriesI18n.countryId))
-      .where(
-        and(
-          eq(countriesI18n.locale, locale),
-          inArray(countries.code, countryCodes)
-        )
-      );
-
-    // Create a map for quick lookups
-    const countryMap = new Map<string, string>();
-    results.forEach(result => {
-      if (result.code && result.name) {
-        countryMap.set(result.code, result.name);
-      }
-    });
-
-    // Return names in the same order as input codes, with fallback to code if not found
-    return countryCodes.map(code => countryMap.get(code) || code);
-  } catch (error) {
-    console.warn(
-      `Failed to get country names for ${countryCodes.join(", ")} (${locale}):`,
-      error
-    );
-    return countryCodes; // Fallback to codes if queries fail
-  }
 }
 
 /**
@@ -387,7 +332,7 @@ export async function getBlogPost(
   const destinations = frontmatterTyped.destinations;
 
   // Get country names from database (with automatic fallback handling)
-  const destinationNames = await getCountryNames(destinations, locale);
+  // const destinationNames = await getCountryNames(destinations, locale);
 
   return {
     content,
@@ -396,114 +341,36 @@ export async function getBlogPost(
       ...frontmatterTyped,
       destinations,
     } as BlogPostData["frontmatter"],
-    destinationNames,
+    destinationNames: [],
   };
 }
 
 /**
- * Get paginated blog posts for a specific locale
- *
- * This function retrieves blog posts for a specific locale and returns them in
- * paginated format. It automatically calculates pagination metadata and ensures
- * proper bounds checking for page numbers. The function uses getBlogPostsForLocale
- * internally to fetch all posts and then applies pagination logic.
- *
- * @param locale - The locale string (e.g., 'en', 'ar', 'de', 'es', 'fr', 'it', 'pt', 'ru')
- *                 representing the language/directory to read blog posts from
- * @param page - The page number to retrieve (defaults to 1). Must be a positive integer.
- *               If page exceeds total pages, the last available page will be returned
- * @param postsPerPage - The number of posts to return per page (defaults to 10).
- *                       Must be a positive integer greater than 0
- *
- * @returns Promise<object> - A promise that resolves to a pagination object containing:
- *   - posts: BlogPostData[] - Array of blog posts for the requested page, each containing:
- *     - content: string - The parsed MDX content as a string
- *     - slug: string - The filename without extension, used as URL slug
- *     - frontmatter: object - The extracted frontmatter metadata including:
- *       - title: string - Blog post title
- *       - description: string - Blog post description
- *       - destinations: string[] - Array of 3-letter country codes (e.g., ['USA', 'GBR'])
- *       - image: string - Featured image path or URL
- *       - tags: string[] - Array of tags for categorization
- *       - passport?: string - Optional passport type requirement
- *       - related_visas?: string[] - Optional array of related visa types
- *       - author: string - Author name
- *       - publishedAt: string - Publication date (ISO format)
- *       - lastUpdated?: string - Optional last update timestamp
- *       - [key: string]: unknown - Additional custom frontmatter fields
- *     - destinationNames?: string[] - Array of resolved country names from database
- *       (falls back to country codes if database unavailable)
- *   - totalPages: number - Total number of pages available based on postsPerPage
- *   - currentPage: number - The actual page number returned (may differ from requested page)
- *   - totalPosts: number - Total number of blog posts available for the locale
- *
- * @example
- * ```typescript
- * // Get first page with default 10 posts per page
- * const firstPage = await getPaginatedBlogPosts('en');
- * console.log(`Page ${firstPage.currentPage} of ${firstPage.totalPages}`);
- * console.log(`Showing ${firstPage.posts.length} of ${firstPage.totalPosts} posts`);
- * ```
- *
- * @example
- * ```typescript
- * // Get second page with custom posts per page
- * const secondPage = await getPaginatedBlogPosts('en', 2, 5);
- * console.log(`Posts on page ${secondPage.currentPage}:`);
- * secondPage.posts.forEach(post => {
- *   console.log(`- ${post.frontmatter.title}`);
- * });
- * ```
- *
- * @example
- * ```typescript
- * // Handle pagination in a UI component
- * const { posts, totalPages, currentPage, totalPosts } =
- *   await getPaginatedBlogPosts('ar', 1, 6);
- *
- * // Check if there are more pages
- * const hasNextPage = currentPage < totalPages;
- * const hasPreviousPage = currentPage > 1;
- *
- * // Display pagination info
- * console.log(`Page ${currentPage} of ${totalPages} (${totalPosts} total posts)`);
- * ```
- *
- * @example
- * ```typescript
- * // Handle edge cases
- * const lastPage = await getPaginatedBlogPosts('en', 999, 10);
- * // If there are only 3 pages, this will return page 3 instead of 999
- * console.log(`Actually returned page ${lastPage.currentPage}`);
- * ```
- *
- * @note Posts are automatically sorted by publishedAt date (newest first)
- * @note If the requested page exceeds total pages, the last available page is returned
- * @note If postsPerPage is 0 or negative, it defaults to 10
- * @note If page is 0 or negative, it defaults to 1
- * @note The function handles empty blog directories gracefully by returning empty results
+ * Get paginated blog posts with filtering support
+ * Uses the new pagination utilities for better testability
  */
 export async function getPaginatedBlogPosts(
   locale: string,
-  page: number = 1,
-  postsPerPage: number = 10
+  options: {
+    page?: number;
+    postsPerPage?: number;
+    tag?: string;
+    destination?: string;
+  } = {}
 ): Promise<{
   posts: BlogPostData[];
-  totalPages: number;
-  currentPage: number;
+  pagination: ReturnType<typeof filterAndPaginate>["pagination"];
   totalPosts: number;
 }> {
+  const { page = 1, postsPerPage = 10, tag, destination } = options;
   const allPosts = await getBlogPostsForLocale(locale);
-  const totalPosts = allPosts.length;
-  const totalPages = Math.ceil(totalPosts / postsPerPage);
-  const startIndex = (page - 1) * postsPerPage;
-  const endIndex = startIndex + postsPerPage;
-  const posts = allPosts.slice(startIndex, endIndex);
+
+  const filter = createBlogFilter({ tag, destination });
+  const result = filterAndPaginate(allPosts, filter, page, postsPerPage);
 
   return {
-    posts,
-    totalPages,
-    currentPage: page,
-    totalPosts,
+    posts: result.items,
+    pagination: result.pagination,
+    totalPosts: result.totalFilteredItems,
   };
 }
