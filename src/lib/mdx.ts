@@ -187,12 +187,7 @@ export async function getBlogPostsForLocale(
       const frontmatterTyped = frontmatter as BlogPostData["frontmatter"];
 
       // Handle both old format (destination: string) and new format (destinations: string[])
-      let destinations: string[] = [];
-      if (frontmatterTyped.destinations) {
-        destinations = frontmatterTyped.destinations;
-      } else if (frontmatterTyped.destination) {
-        destinations = [frontmatterTyped.destinations];
-      }
+      const destinations = frontmatterTyped.destinations;
 
       // Get country names from database (with automatic fallback handling)
       const destinationNames = await getCountryNames(destinations, locale);
@@ -244,12 +239,7 @@ export async function getBlogPost(
   const frontmatterTyped = frontmatter as BlogPostData["frontmatter"];
 
   // Handle both old format (destination: string) and new format (destinations: string[])
-  let destinations: string[] = [];
-  if (frontmatterTyped.destinations) {
-    destinations = frontmatterTyped.destinations;
-  } else if (frontmatterTyped.destination) {
-    destinations = [frontmatterTyped.destinations];
-  }
+  const destinations = frontmatterTyped.destinations;
 
   // Get country names from database (with automatic fallback handling)
   const destinationNames = await getCountryNames(destinations, locale);
