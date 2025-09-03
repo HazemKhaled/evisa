@@ -1,12 +1,16 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { getBlogPostsForLocale } from "@/lib/mdx";
+import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
 import { isRTL, cn } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
+import { languages } from "@/app/i18n/settings";
 
-export const dynamic = "force-static";
+// Generate static params for basic locale routes only
+export async function generateStaticParams() {
+  return languages.map(locale => ({ locale }));
+}
 
 interface BlogHomeProps {
   params: Promise<{ locale: string }>;
@@ -34,8 +38,8 @@ export default async function BlogHome({
   const currentPage = parseInt(page, 10);
   const postsPerPage = 9;
 
-  // Get all blog posts for the locale
-  let allPosts = await getBlogPostsForLocale(locale);
+  // Get all blog posts for the locale using generated data
+  let allPosts = getGeneratedBlogPostsForLocale(locale);
 
   // Filter by tag if specified
   if (tag) {
@@ -65,15 +69,20 @@ export default async function BlogHome({
     const searchParams = new URLSearchParams();
     searchParams.set("page", page.toString());
 
-    if (tag) {
-      searchParams.set("tag", tag);
-    }
-
     if (destination) {
       searchParams.set("destination", destination);
     }
 
-    return `/${locale}/blog?${searchParams.toString()}`;
+    const queryString = searchParams.toString();
+    const query = queryString ? `?${queryString}` : "";
+
+    if (tag) {
+      // For tag routes, use clean URL format: /en/blog/t/tag-name?page=2
+      return `/${locale}/blog/t/${encodeURIComponent(tag)}${query}`;
+    }
+
+    // For regular blog routes, use query parameter format: /en/blog?page=2
+    return `/${locale}/blog${query}`;
   };
 
   if (allPosts.length === 0) {
@@ -170,7 +179,7 @@ export default async function BlogHome({
                   {post.frontmatter.tags?.slice(0, 2).map(tag => (
                     <Link
                       key={tag}
-                      href={`/${locale}/blog?tag=${encodeURIComponent(tag)}`}
+                      href={`/${locale}/blog/t/${encodeURIComponent(tag)}`}
                       className="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800 hover:bg-gray-200"
                     >
                       #{tag}

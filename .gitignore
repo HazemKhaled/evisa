@@ -44,3 +44,4 @@ next-env.d.ts
 !.dev.vars.example
 .env*
 !.env.example
+src/lib/generated-blog-data.ts

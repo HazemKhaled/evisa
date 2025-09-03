@@ -28,7 +28,8 @@ Create the blog as required
 - [x] Show blog post tags in blog post page. On click open `/[locale]/blog?tag={tag}` and list all posts under this tag (using query params instead of separate route).
 - [ ] Show blog post destination in blog post page as a nice looking card, with call to action to apply a visa.
 - [x] In the blog post page, show random 3 other articles as a related article.
-- [ ] Create real blog posts for different destinations (Japan, Canada, Europe, UK, USA, UAE, KSA, France, Turkiye), at least every destination should have 4 posts, and every language should have 15 post
+- [x] Create real blog posts for different destinations (Japan, Canada, Europe, UK, USA, UAE, KSA, France, Turkiye), at least every destination should have 4 posts, and every language should have 15 post
+- [ ] Pagination is broken because of force-static, find a way to fix it without using dynamic
 
 ## SEO
 
@@ -44,6 +45,6 @@ TBD
 ## Background tasks
 
 - [x] Remove UI duplication code, header and foo
-- [ ] Review and fix any RTL test alignment error
+- [x] Review and fix any RTL test alignment error
 - [ ] Remove any code duplication. decrease the complexity and increase the testability
 - [ ] Add more unit tests if needed, but never cover UI components

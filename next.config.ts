@@ -5,8 +5,16 @@ import remarkGfm from "remark-gfm";
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   images: {
-    domains: ["images.unsplash.com"],
-    unoptimized: true,
+    loader: "custom",
+    loaderFile: "./image-loader.ts",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
 };
 

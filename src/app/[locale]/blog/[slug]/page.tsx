@@ -2,7 +2,11 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { getBlogPost, getAllBlogPosts, getBlogPostsForLocale } from "@/lib/mdx";
+import {
+  getBlogPost,
+  getAllBlogPosts,
+  getBlogPostsForLocale,
+} from "@/lib/blog";
 import { MDXContent } from "@/components/mdx-content";
 import { isRTL, cn } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
@@ -124,7 +128,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
                 {blogPost.frontmatter.tags?.map(tag => (
                   <Link
                     key={tag}
-                    href={`/${locale}/blog?tag=${encodeURIComponent(tag)}`}
+                    href={`/${locale}/blog/t/${encodeURIComponent(tag)}`}
                     className="inline-flex items-center rounded-full bg-gray-100 px-2 py-1 text-sm font-medium text-gray-800 hover:bg-blue-200"
                     aria-label={`Filter blog posts by tag: ${tag}`}
                   >
@@ -231,7 +235,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
                   {blogPost.frontmatter.tags.map(tag => (
                     <Link
                       key={tag}
-                      href={`/${locale}/blog?tag=${encodeURIComponent(tag)}`}
+                      href={`/${locale}/blog/t/${encodeURIComponent(tag)}`}
                       className="inline-flex items-center rounded-full bg-gray-100 px-2 py-1 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-200"
                       aria-label={`Filter blog posts by tag: ${tag}`}
                     >

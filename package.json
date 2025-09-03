@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "tsx scripts/generate-blog-data.ts && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix && pnpm format",
