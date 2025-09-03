@@ -165,6 +165,65 @@ export function getAllBlogPosts(): { locale: string; slug: string }[] {
 
 /**
  * Get all blog posts with metadata for a specific locale
+ *
+ * This function reads all MDX blog post files from the contents/[locale]/blog directory
+ * and parses them to extract content, frontmatter metadata, and resolved destination names.
+ * It automatically handles database lookups for country names and provides fallback
+ * handling for database unavailability.
+ *
+ * @param locale - The locale string (e.g., 'en', 'ar', 'de', 'es', 'fr', 'it', 'pt', 'ru')
+ *                 representing the language/directory to read blog posts from
+ *
+ * @returns Promise<BlogPostData[]> - A promise that resolves to an array of blog post objects,
+ *   each containing:
+ *   - content: string - The parsed MDX content as a string
+ *   - slug: string - The filename without extension, used as URL slug
+ *   - frontmatter: object - The extracted frontmatter metadata including:
+ *     - title: string - Blog post title
+ *     - description: string - Blog post description
+ *     - destinations: string[] - Array of 3-letter country codes (e.g., ['USA', 'GBR'])
+ *     - image: string - Featured image path or URL
+ *     - tags: string[] - Array of tags for categorization
+ *     - passport?: string - Optional passport type requirement
+ *     - related_visas?: string[] - Optional array of related visa types
+ *     - author: string - Author name
+ *     - publishedAt: string - Publication date (ISO format)
+ *     - lastUpdated?: string - Optional last update timestamp
+ *     - [key: string]: unknown - Additional custom frontmatter fields
+ *   - destinationNames?: string[] - Array of resolved country names from database
+ *     (falls back to country codes if database unavailable)
+ *
+ * @throws {Error} When there are file system errors or MDX parsing failures
+ *                 (function returns empty array instead of throwing for most errors)
+ *
+ * @example
+ * ```typescript
+ * // Get all blog posts for English locale
+ * const englishPosts = await getBlogPostsForLocale('en');
+ * console.log(`Found ${englishPosts.length} English blog posts`);
+ *
+ * // Access blog post data
+ * englishPosts.forEach(post => {
+ *   console.log(`Title: ${post.frontmatter.title}`);
+ *   console.log(`Destinations: ${post.destinationNames?.join(', ')}`);
+ *   console.log(`Published: ${post.frontmatter.publishedAt}`);
+ * });
+ * ```
+ *
+ * @example
+ * ```typescript
+ * // Get blog posts for Arabic locale
+ * const arabicPosts = await getBlogPostsForLocale('ar');
+ *
+ * // Filter posts by destination
+ * const usaPosts = arabicPosts.filter(post =>
+ *   post.frontmatter.destinations.includes('USA')
+ * );
+ * ```
+ *
+ * @note This function automatically sorts blog posts by publishedAt date (newest first)
+ * @note Database connectivity is automatically handled with graceful fallbacks
+ * @note Returns empty array if blog directory doesn't exist for the specified locale
  */
 export async function getBlogPostsForLocale(
   locale: string
@@ -216,6 +275,80 @@ export async function getBlogPostsForLocale(
 
 /**
  * Get a specific blog post by slug and locale
+ *
+ * This function reads a single MDX blog post file from the contents/[locale]/blog directory
+ * and parses it to extract content, frontmatter metadata, and resolved destination names.
+ * It automatically handles database lookups for country names and provides fallback
+ * handling for database unavailability. Unlike getBlogPostsForLocale, this function
+ * throws an error when the requested blog post is not found.
+ *
+ * @param slug - The blog post slug (filename without .mdx extension) to retrieve.
+ *               Must match an existing MDX file in the blog directory
+ * @param locale - The locale string (e.g., 'en', 'ar', 'de', 'es', 'fr', 'it', 'pt', 'ru')
+ *                 representing the language/directory to read the blog post from
+ *
+ * @returns Promise<BlogPostData> - A promise that resolves to a blog post object containing:
+ *   - content: string - The parsed MDX content as a string
+ *   - slug: string - The filename without extension, used as URL slug
+ *   - frontmatter: object - The extracted frontmatter metadata including:
+ *     - title: string - Blog post title
+ *     - description: string - Blog post description
+ *     - destinations: string[] - Array of 3-letter country codes (e.g., ['USA', 'GBR'])
+ *     - image: string - Featured image path or URL
+ *     - tags: string[] - Array of tags for categorization
+ *     - passport?: string - Optional passport type requirement
+ *     - related_visas?: string[] - Optional array of related visa types
+ *     - author: string - Author name
+ *     - publishedAt: string - Publication date (ISO format)
+ *     - lastUpdated?: string - Optional last update timestamp
+ *     - [key: string]: unknown - Additional custom frontmatter fields
+ *   - destinationNames?: string[] - Array of resolved country names from database
+ *     (falls back to country codes if database unavailable)
+ *
+ * @throws {Error} When the specified blog post file cannot be found at the expected path.
+ *                 Error message format: "Blog post not found: {slug} for locale: {locale}"
+ *
+ * @example
+ * ```typescript
+ * // Get a specific blog post in English locale
+ * try {
+ *   const post = await getBlogPost('schengen-visa-guide', 'en');
+ *   console.log(`Title: ${post.frontmatter.title}`);
+ *   console.log(`Author: ${post.frontmatter.author}`);
+ *   console.log(`Destinations: ${post.destinationNames?.join(', ')}`);
+ * } catch (error) {
+ *   console.error('Blog post not found:', error.message);
+ * }
+ * ```
+ *
+ * @example
+ * ```typescript
+ * // Get a blog post for Arabic locale
+ * const arabicPost = await getBlogPost('schengen-visa-guide-arabic', 'ar');
+ *
+ * // Access the content and metadata
+ * const { content, frontmatter, destinationNames } = arabicPost;
+ * console.log(`Content length: ${content.length} characters`);
+ * console.log(`Published: ${frontmatter.publishedAt}`);
+ * ```
+ *
+ * @example
+ * ```typescript
+ * // Handle the case when blog post doesn't exist
+ * try {
+ *   const nonExistentPost = await getBlogPost('non-existent-post', 'en');
+ * } catch (error) {
+ *   if (error instanceof Error) {
+ *     console.error('Blog post not found:', error.message);
+ *     // Output: "Blog post not found: non-existent-post for locale: en"
+ *   }
+ * }
+ * ```
+ *
+ * @note This function throws an error if the blog post file doesn't exist, unlike
+ *       getBlogPostsForLocale which returns an empty array
+ * @note Database connectivity is automatically handled with graceful fallbacks
+ * @note The function supports both old and new destination formats in frontmatter
  */
 export async function getBlogPost(
   slug: string,
@@ -257,6 +390,86 @@ export async function getBlogPost(
 
 /**
  * Get paginated blog posts for a specific locale
+ *
+ * This function retrieves blog posts for a specific locale and returns them in
+ * paginated format. It automatically calculates pagination metadata and ensures
+ * proper bounds checking for page numbers. The function uses getBlogPostsForLocale
+ * internally to fetch all posts and then applies pagination logic.
+ *
+ * @param locale - The locale string (e.g., 'en', 'ar', 'de', 'es', 'fr', 'it', 'pt', 'ru')
+ *                 representing the language/directory to read blog posts from
+ * @param page - The page number to retrieve (defaults to 1). Must be a positive integer.
+ *               If page exceeds total pages, the last available page will be returned
+ * @param postsPerPage - The number of posts to return per page (defaults to 10).
+ *                       Must be a positive integer greater than 0
+ *
+ * @returns Promise<object> - A promise that resolves to a pagination object containing:
+ *   - posts: BlogPostData[] - Array of blog posts for the requested page, each containing:
+ *     - content: string - The parsed MDX content as a string
+ *     - slug: string - The filename without extension, used as URL slug
+ *     - frontmatter: object - The extracted frontmatter metadata including:
+ *       - title: string - Blog post title
+ *       - description: string - Blog post description
+ *       - destinations: string[] - Array of 3-letter country codes (e.g., ['USA', 'GBR'])
+ *       - image: string - Featured image path or URL
+ *       - tags: string[] - Array of tags for categorization
+ *       - passport?: string - Optional passport type requirement
+ *       - related_visas?: string[] - Optional array of related visa types
+ *       - author: string - Author name
+ *       - publishedAt: string - Publication date (ISO format)
+ *       - lastUpdated?: string - Optional last update timestamp
+ *       - [key: string]: unknown - Additional custom frontmatter fields
+ *     - destinationNames?: string[] - Array of resolved country names from database
+ *       (falls back to country codes if database unavailable)
+ *   - totalPages: number - Total number of pages available based on postsPerPage
+ *   - currentPage: number - The actual page number returned (may differ from requested page)
+ *   - totalPosts: number - Total number of blog posts available for the locale
+ *
+ * @example
+ * ```typescript
+ * // Get first page with default 10 posts per page
+ * const firstPage = await getPaginatedBlogPosts('en');
+ * console.log(`Page ${firstPage.currentPage} of ${firstPage.totalPages}`);
+ * console.log(`Showing ${firstPage.posts.length} of ${firstPage.totalPosts} posts`);
+ * ```
+ *
+ * @example
+ * ```typescript
+ * // Get second page with custom posts per page
+ * const secondPage = await getPaginatedBlogPosts('en', 2, 5);
+ * console.log(`Posts on page ${secondPage.currentPage}:`);
+ * secondPage.posts.forEach(post => {
+ *   console.log(`- ${post.frontmatter.title}`);
+ * });
+ * ```
+ *
+ * @example
+ * ```typescript
+ * // Handle pagination in a UI component
+ * const { posts, totalPages, currentPage, totalPosts } =
+ *   await getPaginatedBlogPosts('ar', 1, 6);
+ *
+ * // Check if there are more pages
+ * const hasNextPage = currentPage < totalPages;
+ * const hasPreviousPage = currentPage > 1;
+ *
+ * // Display pagination info
+ * console.log(`Page ${currentPage} of ${totalPages} (${totalPosts} total posts)`);
+ * ```
+ *
+ * @example
+ * ```typescript
+ * // Handle edge cases
+ * const lastPage = await getPaginatedBlogPosts('en', 999, 10);
+ * // If there are only 3 pages, this will return page 3 instead of 999
+ * console.log(`Actually returned page ${lastPage.currentPage}`);
+ * ```
+ *
+ * @note Posts are automatically sorted by publishedAt date (newest first)
+ * @note If the requested page exceeds total pages, the last available page is returned
+ * @note If postsPerPage is 0 or negative, it defaults to 10
+ * @note If page is 0 or negative, it defaults to 1
+ * @note The function handles empty blog directories gracefully by returning empty results
  */
 export async function getPaginatedBlogPosts(
   locale: string,
@@ -285,6 +498,48 @@ export async function getPaginatedBlogPosts(
 
 /**
  * Read and parse an MDX file from the contents/[locale]/pages directory
+ *
+ * This function reads MDX files from the static pages directory and parses them
+ * to extract both the content and frontmatter metadata. It supports both
+ * locale-specific paths and fallback to the legacy structure.
+ *
+ * @param fileName - The name of the MDX file (without extension) to read
+ * @param locale - Optional locale string to read from locale-specific directory.
+ *                 If not provided, falls back to the legacy path structure
+ *
+ * @returns Promise<MDXPageData> - A promise that resolves to an object containing:
+ *   - content: string - The parsed MDX content as a string
+ *   - frontmatter: object - The extracted frontmatter metadata including:
+ *     - title: string - Page title
+ *     - description: string - Page description
+ *     - keywords?: string - Optional keywords for SEO
+ *     - author?: string - Optional author information
+ *     - type?: string - Optional content type
+ *     - lastUpdated?: string - Optional last update timestamp
+ *     - [key: string]: unknown - Additional custom frontmatter fields
+ *
+ * @throws {Error} When the specified MDX file cannot be found at the expected path
+ *
+ * @example
+ * ```typescript
+ * // Get a page in English locale
+ * const pageData = await getMDXPage('about-us', 'en');
+ * console.log(pageData.frontmatter.title); // "About Us"
+ *
+ * // Get a page using legacy path (no locale)
+ * const legacyPage = await getMDXPage('privacy-policy');
+ * console.log(legacyPage.content); // MDX content as string
+ * ```
+ *
+ * @example
+ * ```typescript
+ * try {
+ *   const page = await getMDXPage('non-existent-page', 'en');
+ * } catch (error) {
+ *   console.error('Page not found:', error.message);
+ *   // Error: MDX file not found: non-existent-page for locale: en
+ * }
+ * ```
  */
 export async function getMDXPage(
   fileName: string,
