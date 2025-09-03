@@ -1,4 +1,4 @@
-import { cn } from "../utils";
+import { cn } from "@/lib/utils";
 
 /**
  * Styling utilities to create consistent, reusable styling patterns

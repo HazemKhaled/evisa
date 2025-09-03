@@ -66,32 +66,23 @@ export default async function BlogHome({
 
   // Helper function to build pagination URLs with query parameters
   const buildPaginationUrl = (page: number): string => {
-    if (tag) {
-      // For tag routes, use clean URL format: /en/blog/t/tag-name?page=2&destination=USA
-      const searchParams = new URLSearchParams();
-      searchParams.set("page", page.toString());
+    const searchParams = new URLSearchParams();
+    searchParams.set("page", page.toString());
 
-      if (destination) {
-        searchParams.set("destination", destination);
-      }
-
-      const queryString = searchParams.toString();
-      return `/${locale}/blog/t/${encodeURIComponent(tag)}${queryString ? `?${queryString}` : ""}`;
-    } else {
-      // For regular blog routes, use query parameter format: /en/blog?tag=tag-name&page=2
-      const searchParams = new URLSearchParams();
-      searchParams.set("page", page.toString());
-
-      if (tag) {
-        searchParams.set("tag", tag);
-      }
-
-      if (destination) {
-        searchParams.set("destination", destination);
-      }
-
-      return `/${locale}/blog?${searchParams.toString()}`;
+    if (destination) {
+      searchParams.set("destination", destination);
     }
+
+    const queryString = searchParams.toString();
+    const query = queryString ? `?${queryString}` : "";
+
+    if (tag) {
+      // For tag routes, use clean URL format: /en/blog/t/tag-name?page=2
+      return `/${locale}/blog/t/${encodeURIComponent(tag)}${query}`;
+    }
+
+    // For regular blog routes, use query parameter format: /en/blog?page=2
+    return `/${locale}/blog${query}`;
   };
 
   if (allPosts.length === 0) {

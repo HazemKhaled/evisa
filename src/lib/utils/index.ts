@@ -3,9 +3,6 @@
  * Provides a single entry point for importing utilities
  */
 
-// Core utilities
-export * from "../utils";
-
 // Specialized utilities
 export * from "./flags";
 export * from "./urls";

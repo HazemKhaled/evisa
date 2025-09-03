@@ -31,14 +31,20 @@ export async function loadTranslations<T extends TranslationNamespace[]>(
     namespaces.map(ns => getTranslation(locale, ns))
   );
 
-  const result = {} as Record<string, unknown>;
+  type ResultType = {
+    [K in T[number] as `t${Capitalize<K>}`]: Awaited<
+      ReturnType<typeof getTranslation>
+    >["t"];
+  };
+
+  const result = {} as Record<string, any>;
 
   namespaces.forEach((ns, index) => {
-    const key = `t${ns.charAt(0).toUpperCase() + ns.slice(1)}` as const;
+    const key = `t${ns.charAt(0).toUpperCase() + ns.slice(1)}`;
     result[key] = translations[index]?.t;
   });
 
-  return result as any; // Type assertion needed due to complex mapped type
+  return result as ResultType;
 }
 
 /**
