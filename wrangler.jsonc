@@ -42,6 +42,10 @@
       "pattern": "staging.gettravelvisa.com",
       "custom_domain": true,
     },
+    {
+      "pattern": "gettravelvisa.com",
+      "custom_domain": true,
+    },
   ],
   // Cache
   /**
