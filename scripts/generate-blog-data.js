@@ -3,16 +3,51 @@ const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
 
+// Read languages from the settings file directly
+function getLanguages() {
+  try {
+    const settingsPath = path.join(
+      process.cwd(),
+      "src",
+      "app",
+      "i18n",
+      "settings.ts"
+    );
+    const settingsContent = fs.readFileSync(settingsPath, "utf8");
+
+    // Extract the languagesObj array from the TypeScript file
+    const languagesMatch = settingsContent.match(
+      /export const languagesObj = \[([\s\S]*?)\];/
+    );
+    if (languagesMatch) {
+      const languagesArray = languagesMatch[1];
+      // Extract code values using regex
+      const codeMatches = languagesArray.match(/code: "([^"]+)"/g);
+      if (codeMatches) {
+        return codeMatches.map(match => match.match(/code: "([^"]+)"/)[1]);
+      }
+    }
+
+    // Fallback to hardcoded languages if parsing fails
+    console.warn("Could not parse languages from settings.ts, using fallback");
+    return ["ar", "de", "en", "es", "fr", "it", "pt", "ru"];
+  } catch (error) {
+    console.warn("Error reading settings file:", error.message);
+    return ["ar", "de", "en", "es", "fr", "it", "pt", "ru"];
+  }
+}
+
+const languages = getLanguages();
+
 // Generate static blog data for runtime use
 async function generateBlogData() {
   console.log("🔄 Generating static blog data...");
 
   const contentsDir = path.join(process.cwd(), "src", "contents");
-  const locales = languages;
   const blogData = {};
   const allTags = new Set();
 
-  for (const locale of locales) {
+  for (const locale of languages) {
     const blogDir = path.join(contentsDir, locale, "blog");
     const posts = [];
 

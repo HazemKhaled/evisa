@@ -56,7 +56,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
     destination,
   };
 
-  // Call the existing blog page component with the modified search params
+  // Call the existing blog page component with the modified search params and tag route flag
   return BlogHome({
     params,
     searchParams: Promise.resolve(modifiedSearchParams),

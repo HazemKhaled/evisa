@@ -241,7 +241,7 @@ Test content`;
           author: "Test Author",
           publishedAt: "2024-01-01",
         },
-        destinationNames: [], // Database unavailable, no destination names
+        destinationNames: ["USA", "GBR"], // Database unavailable, fallback to destination codes
       });
     });
 
