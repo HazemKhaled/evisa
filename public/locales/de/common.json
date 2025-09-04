@@ -1,7 +1,12 @@
 {
   "site": {
     "title": "GetTravelVisa.com Plattform - Reisen mit minimalen Visa-Anforderungen",
-    "description": "Vereinfachen Sie Ihre Reisen mit unserer umfassenden Visa-Bearbeitungsplattform. Erhalten Sie zielbasierte Visa-Informationen, Berechtigungsprüfung und nahtlose Antragsservices."
+    "description": "Vereinfachen Sie Ihre Reisen mit unserer umfassenden Visa-Bearbeitungsplattform. Erhalten Sie zielbasierte Visa-Informationen, Berechtigungsprüfung und nahtlose Antragsservices.",
+    "keywords": "Visumantrag, Reisevisum, Visumprüfer, Visadienste, internationale Reisen, Visumanforderungen, Reisedokumente, Passdienste, Visumbearbeitung, Reiseassistenz",
+    "ogTitle": "GetTravelVisa.com - Ihr vertrauenswürdiger Partner für Visumanträge",
+    "ogDescription": "Vereinfachen Sie Ihren Visumantragsprozess mit unseren umfassenden Visumprüfungs- und Antragsservices. Erhalten Sie Expertenberatung für Reisevisa weltweit.",
+    "twitterTitle": "GetTravelVisa.com - Ihr vertrauenswürdiger Partner für Visumanträge",
+    "twitterDescription": "Vereinfachen Sie Ihren Visumantragsprozess mit unseren umfassenden Visumprüfungs- und Antragsservices. Erhalten Sie Expertenberatung für Reisevisa weltweit."
   },
   "buttons": {
     "startApplication": "Antrag starten",
