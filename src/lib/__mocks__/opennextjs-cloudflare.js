@@ -12,6 +12,8 @@ export const getCloudflareContext = jest.fn().mockResolvedValue({
   },
 });
 
-export default {
+const mockModule = {
   getCloudflareContext,
 };
+
+export default mockModule;

@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server';
+import { NextRequest } from "next/server";
 
 /**
  * Generate robots.txt file for SEO
@@ -6,12 +6,13 @@ import { NextRequest } from 'next/server';
  */
 export async function GET(_request: NextRequest) {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gettravelvisa.com';
-    const isProduction = process.env.NODE_ENV === 'production';
+    const baseUrl =
+      process.env.NEXT_PUBLIC_SITE_URL || "https://gettravelvisa.com";
+    const isProduction = process.env.NODE_ENV === "production";
 
     // Generate robots.txt content
     const robotsTxt = `User-agent: *
-${isProduction ? 'Allow: /' : 'Disallow: /'}
+${isProduction ? "Allow: /" : "Disallow: /"}
 
 # Sitemaps
 Sitemap: ${baseUrl}/sitemap_index.xml
@@ -44,12 +45,15 @@ Disallow: /open-next.config.*`;
 
     return new Response(robotsTxt, {
       headers: {
-        'Content-Type': 'text/plain',
-        'Cache-Control': 'public, max-age=86400, s-maxage=86400', // Cache for 24 hours
+        "Content-Type": "text/plain",
+        "Cache-Control": "public, max-age=86400, s-maxage=86400", // Cache for 24 hours
       },
     });
   } catch (error) {
-    console.error('Error generating robots.txt:', error);
-    return new Response('Error generating robots.txt', { status: 500 });
+    // Log error in development environment
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error generating robots.txt:", error);
+    }
+    return new Response("Error generating robots.txt", { status: 500 });
   }
 }

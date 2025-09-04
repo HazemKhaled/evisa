@@ -37,7 +37,7 @@ export async function loadTranslations<T extends TranslationNamespace[]>(
     >["t"];
   };
 
-  const result = {} as Record<string, any>;
+  const result = {} as Record<string, unknown>;
 
   namespaces.forEach((ns, index) => {
     const key = `t${ns.charAt(0).toUpperCase() + ns.slice(1)}`;
@@ -162,15 +162,18 @@ export function getTranslationKey<T extends Record<string, unknown>>(
   obj: T,
   path: string[]
 ): string {
-  let current = obj as any;
+  let current = obj as Record<string, unknown>;
   for (const key of path) {
     if (current && typeof current === "object" && key in current) {
-      current = (current as any)[key];
+      current = (current as Record<string, unknown>)[key] as Record<
+        string,
+        unknown
+      >;
     } else {
       throw new Error(`Invalid translation key path: ${path.join(".")}`);
     }
   }
-  return current as string;
+  return current as unknown as string;
 }
 
 /**
@@ -178,7 +181,7 @@ export function getTranslationKey<T extends Record<string, unknown>>(
  */
 export type TranslationFunction = (
   key: string,
-  options?: Record<string, any>
+  options?: Record<string, unknown>
 ) => string;
 
 /**

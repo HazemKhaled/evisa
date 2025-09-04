@@ -1,5 +1,5 @@
-import { NextRequest } from 'next/server';
-import { generateDestinationSitemap, generateSitemapXml } from '@/lib/sitemap';
+import { NextRequest } from "next/server";
+import { generateDestinationSitemap, generateSitemapXml } from "@/lib/sitemap";
 
 /**
  * Generate destination-specific sitemap
@@ -7,26 +7,31 @@ import { generateDestinationSitemap, generateSitemapXml } from '@/lib/sitemap';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { country: string } }
+  { params }: { params: Promise<{ country: string }> }
 ) {
   try {
-    const countryCode = params.country;
+    const { country: countryCode } = await params;
     const urls = await generateDestinationSitemap(countryCode);
 
     if (urls.length === 0) {
-      return new Response('Country not found', { status: 404 });
+      return new Response("Country not found", { status: 404 });
     }
 
     const sitemapXml = generateSitemapXml(urls);
 
     return new Response(sitemapXml, {
       headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600', // Cache for 1 hour
+        "Content-Type": "application/xml",
+        "Cache-Control": "public, max-age=3600, s-maxage=3600", // Cache for 1 hour
       },
     });
   } catch (error) {
-    console.error('Error generating destination sitemap:', error);
-    return new Response('Error generating destination sitemap', { status: 500 });
+    // Log error in development environment
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error generating destination sitemap:", error);
+    }
+    return new Response("Error generating destination sitemap", {
+      status: 500,
+    });
   }
 }

@@ -8,7 +8,7 @@ global.Headers = global.Headers || class Headers {};
 global.fetch = global.fetch || jest.fn();
 
 // Mock cookies for NextRequest
-global.cookies = global.cookies || {
+(global as any).cookies = (global as any).cookies || {
   get: jest.fn(),
   set: jest.fn(),
   delete: jest.fn(),

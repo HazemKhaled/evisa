@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
 import { isRTL, cn } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
@@ -119,7 +120,7 @@ export default async function BlogHome({
             {tag && (
               <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
                 Tag: {tag}
-                <a
+                <Link
                   href={`/${locale}/blog`}
                   className={cn(
                     "ml-2 hover:text-blue-600",
@@ -127,13 +128,13 @@ export default async function BlogHome({
                   )}
                 >
                   ×
-                </a>
+                </Link>
               </span>
             )}
             {destination && (
               <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800">
                 Destination: {destination}
-                <a
+                <Link
                   href={`/${locale}/blog`}
                   className={cn(
                     "ml-2 hover:text-green-600",
@@ -141,7 +142,7 @@ export default async function BlogHome({
                   )}
                 >
                   ×
-                </a>
+                </Link>
               </span>
             )}
           </div>
@@ -155,11 +156,7 @@ export default async function BlogHome({
         {/* Blog Posts Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts.map(post => (
-            <BlogCard
-              key={post.slug}
-              post={post}
-              locale={locale}
-            />
+            <BlogCard key={post.slug} post={post} locale={locale} />
           ))}
         </div>
 

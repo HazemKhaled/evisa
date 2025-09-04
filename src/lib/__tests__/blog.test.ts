@@ -36,7 +36,9 @@ const mockedIsDatabaseAvailableAsync =
   >;
 
 // Create typed mock functions to avoid TypeScript issues
-const mockedReaddirSync = mockedFs.readdirSync as jest.MockedFunction<any>;
+const mockedReaddirSync = mockedFs.readdirSync as jest.MockedFunction<
+  typeof fs.readdirSync
+>;
 
 // Helper function to create properly typed mock Dirent objects
 function createMockDirent(name: string, isDirectory = false): fs.Dirent {

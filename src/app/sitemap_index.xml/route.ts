@@ -1,5 +1,5 @@
-import { NextRequest } from 'next/server';
-import { generateSitemapIndex, generateSitemapIndexXml } from '@/lib/sitemap';
+import { NextRequest } from "next/server";
+import { generateSitemapIndex, generateSitemapIndexXml } from "@/lib/sitemap";
 
 /**
  * Generate sitemap index that includes all sitemaps
@@ -12,12 +12,15 @@ export async function GET(_request: NextRequest) {
 
     return new Response(sitemapIndexXml, {
       headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600', // Cache for 1 hour
+        "Content-Type": "application/xml",
+        "Cache-Control": "public, max-age=3600, s-maxage=3600", // Cache for 1 hour
       },
     });
   } catch (error) {
-    console.error('Error generating sitemap index:', error);
-    return new Response('Error generating sitemap index', { status: 500 });
+    // Log error in development environment
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error generating sitemap index:", error);
+    }
+    return new Response("Error generating sitemap index", { status: 500 });
   }
 }

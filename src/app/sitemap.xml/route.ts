@@ -1,5 +1,5 @@
-import { NextRequest } from 'next/server';
-import { generateMainSitemap, generateSitemapXml } from '@/lib/sitemap';
+import { NextRequest } from "next/server";
+import { generateMainSitemap, generateSitemapXml } from "@/lib/sitemap";
 
 /**
  * Generate main sitemap for standalone pages
@@ -12,12 +12,15 @@ export async function GET(_request: NextRequest) {
 
     return new Response(sitemapXml, {
       headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600', // Cache for 1 hour
+        "Content-Type": "application/xml",
+        "Cache-Control": "public, max-age=3600, s-maxage=3600", // Cache for 1 hour
       },
     });
   } catch (error) {
-    console.error('Error generating main sitemap:', error);
-    return new Response('Error generating main sitemap', { status: 500 });
+    // Log error in development environment
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error generating main sitemap:", error);
+    }
+    return new Response("Error generating main sitemap", { status: 500 });
   }
 }
