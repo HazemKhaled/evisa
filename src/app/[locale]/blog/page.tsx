@@ -1,9 +1,10 @@
 import { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
 import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
 import { isRTL, cn } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
+import { BlogCard } from "@/components/blog/blog-card";
+import { BlogPagination } from "@/components/blog/blog-pagination";
+import { BlogFilter } from "@/components/blog/blog-filter";
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
 
@@ -112,13 +113,13 @@ export default async function BlogHome({
           </p>
         </div>
 
-        {/* Filters */}
+        {/* Active Filters */}
         {(tag || destination) && (
           <div className={cn("mb-8 flex flex-wrap gap-2")}>
             {tag && (
               <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
                 Tag: {tag}
-                <Link
+                <a
                   href={`/${locale}/blog`}
                   className={cn(
                     "ml-2 hover:text-blue-600",
@@ -126,13 +127,13 @@ export default async function BlogHome({
                   )}
                 >
                   ×
-                </Link>
+                </a>
               </span>
             )}
             {destination && (
               <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800">
                 Destination: {destination}
-                <Link
+                <a
                   href={`/${locale}/blog`}
                   className={cn(
                     "ml-2 hover:text-green-600",
@@ -140,150 +141,39 @@ export default async function BlogHome({
                   )}
                 >
                   ×
-                </Link>
+                </a>
               </span>
             )}
           </div>
         )}
 
-        {/* Blog Grid */}
+        {/* Filter Section */}
+        <div className="mb-8 border-b border-gray-200 pb-8">
+          <BlogFilter locale={locale} currentTag={tag} />
+        </div>
+
+        {/* Blog Posts Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts.map(post => (
-            <article
+            <BlogCard
               key={post.slug}
-              className="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg"
-            >
-              <Link href={`/${locale}/blog/${post.slug}`}>
-                <div className="relative aspect-video overflow-hidden">
-                  <Image
-                    src={post.frontmatter.image}
-                    alt={post.frontmatter.title}
-                    fill
-                    className="object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                </div>
-              </Link>
-
-              <div className="p-6">
-                {/* Tags and Destinations */}
-                <div className={cn("mb-3 flex flex-wrap gap-2")}>
-                  {post.frontmatter.destinations?.map((destination, index) => (
-                    <Link
-                      key={destination}
-                      href={`/${locale}/blog?destination=${encodeURIComponent(destination)}`}
-                      className="inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800 hover:bg-blue-200"
-                    >
-                      📍 {post.destinationNames?.[index] || destination}
-                    </Link>
-                  ))}
-                  {post.frontmatter.tags?.slice(0, 2).map(tag => (
-                    <Link
-                      key={tag}
-                      href={`/${locale}/blog/t/${encodeURIComponent(tag)}`}
-                      className="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800 hover:bg-gray-200"
-                    >
-                      #{tag}
-                    </Link>
-                  ))}
-                </div>
-
-                {/* Title */}
-                <h2
-                  className={cn(
-                    "mb-3 line-clamp-2 text-xl font-bold text-gray-900"
-                  )}
-                >
-                  <Link
-                    href={`/${locale}/blog/${post.slug}`}
-                    className="hover:text-blue-600"
-                  >
-                    {post.frontmatter.title}
-                  </Link>
-                </h2>
-
-                {/* Description */}
-                <p className={cn("mb-4 line-clamp-3 text-gray-600")}>
-                  {post.frontmatter.description}
-                </p>
-
-                {/* Meta */}
-                <div
-                  className={cn(
-                    "flex items-center justify-between text-sm text-gray-500"
-                  )}
-                >
-                  <span>{post.frontmatter.author}</span>
-                  <span>
-                    {new Date(post.frontmatter.publishedAt).toLocaleDateString(
-                      locale
-                    )}
-                  </span>
-                </div>
-              </div>
-            </article>
+              post={post}
+              locale={locale}
+            />
           ))}
         </div>
 
         {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="mt-12 flex justify-center">
-            <nav
-              className="flex items-center space-x-2"
-              aria-label="Pagination"
-            >
-              {/* Previous */}
-              {currentPage > 1 && (
-                <Link
-                  href={buildPaginationUrl(currentPage - 1)}
-                  className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
-                  {t("blog.pagination.previous")}
-                </Link>
-              )}
-
-              {/* Page Numbers */}
-              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                const pageNum =
-                  Math.max(1, Math.min(totalPages - 4, currentPage - 2)) + i;
-                if (pageNum > totalPages) return null;
-
-                return (
-                  <Link
-                    key={pageNum}
-                    href={buildPaginationUrl(pageNum)}
-                    className={cn(
-                      "rounded-md border px-3 py-2 text-sm font-medium",
-                      pageNum === currentPage
-                        ? "border-blue-600 bg-blue-600 text-white"
-                        : "border-gray-300 bg-white text-gray-500 hover:bg-gray-50"
-                    )}
-                  >
-                    {pageNum}
-                  </Link>
-                );
-              })}
-
-              {/* Next */}
-              {currentPage < totalPages && (
-                <Link
-                  href={buildPaginationUrl(currentPage + 1)}
-                  className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
-                  {t("blog.pagination.next")}
-                </Link>
-              )}
-            </nav>
-          </div>
-        )}
-
-        {/* Blog Stats */}
-        <div className="mt-12 text-center text-gray-500">
-          <p>
-            {t("blog.pagination.showing")} {startIndex + 1}-
-            {Math.min(startIndex + postsPerPage, totalPosts)}{" "}
-            {t("blog.pagination.of")} {totalPosts}{" "}
-            {t("blog.pagination.articles")}
-          </p>
+        <div className="mt-12">
+          <BlogPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            buildPaginationUrl={buildPaginationUrl}
+            startIndex={startIndex}
+            endIndex={startIndex + postsPerPage}
+            totalPosts={totalPosts}
+            t={t}
+          />
         </div>
       </div>
     </StaticPageLayout>
