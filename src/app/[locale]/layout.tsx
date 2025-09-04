@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTextDirection } from "@/lib/utils";
-import { languages } from "../i18n/settings";
+import { languages, getLocaleWithRegion } from "../i18n/settings";
 import { Header, Footer } from "@/components/layout";
 import { getTranslation } from "../i18n";
 
@@ -41,24 +41,13 @@ export async function generateMetadata({
   };
 }
 
-function getLocaleWithRegion(locale: string): string {
-  const localeMap: Record<string, string> = {
-    en: "en_US",
-    es: "es_ES",
-    ar: "ar_SA",
-    pt: "pt_PT",
-    ru: "ru_RU",
-    de: "de_DE",
-    fr: "fr_FR",
-    it: "it_IT",
-  };
-  return localeMap[locale] || "en_US";
-}
-
-function generateAlternateLanguages(currentLocale: string): Record<string, string> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com";
+function generateAlternateLanguages(
+  currentLocale: string
+): Record<string, string> {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com";
   const alternates: Record<string, string> = {};
-  
+
   languages.forEach(locale => {
     alternates[locale] = `${baseUrl}/${locale}`;
   });
