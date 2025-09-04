@@ -11,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
       },
-      sitemap: "https://gettravelvisa.com/sitemap.xml",
+      sitemap: `${process.env.SITE_URL || "https://gettravelvisa.com"}/sitemap.xml`,
     };
   } else {
     // Deny all bots on non-production domains (staging, localhost, etc.)
