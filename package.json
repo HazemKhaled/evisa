@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "tsx scripts/generate-optimized-blog-data.ts && opennextjs-cloudflare build",
-    "build:next": "tsx scripts/generate-optimized-blog-data.ts && next build",
+    "build": "tsx scripts/generate-optimized-blog-data.ts && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix && pnpm format",
