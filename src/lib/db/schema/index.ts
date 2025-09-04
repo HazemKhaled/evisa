@@ -1,6 +1,7 @@
 export * from "./countries";
 export * from "./visa-types";
 export * from "./visa-eligibility";
+export * from "./relations";
 
 // Re-export all tables for easy import
 export { countries, countriesI18n } from "./countries";

@@ -1,6 +1,21 @@
 import "@testing-library/jest-dom";
 import * as React from "react";
 
+// Polyfill for Web APIs used by Next.js
+global.Request = global.Request || class Request {};
+global.Response = global.Response || class Response {};
+global.Headers = global.Headers || class Headers {};
+global.fetch = global.fetch || jest.fn();
+
+// Mock cookies for NextRequest
+global.cookies = global.cookies || {
+  get: jest.fn(),
+  set: jest.fn(),
+  delete: jest.fn(),
+  has: jest.fn(),
+  getAll: jest.fn(),
+};
+
 // Mock next/navigation
 jest.mock("next/navigation", () => ({
   useRouter() {

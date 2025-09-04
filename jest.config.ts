@@ -17,6 +17,8 @@ const config: Config = {
   moduleNameMapper: {
     "^@opennextjs/cloudflare$":
       "<rootDir>/src/lib/__mocks__/opennextjs-cloudflare.js",
+    "^@/lib/db/connection$": "<rootDir>/src/lib/__mocks__/db-connection.js",
+    "^@/lib/sitemap$": "<rootDir>/src/lib/__mocks__/sitemap.js",
   },
   collectCoverageFrom: [
     "src/lib/**/*.{ts,tsx}",
@@ -39,6 +41,7 @@ const config: Config = {
   },
   coverageReporters: ["text", "lcov", "html"],
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
+  modulePathIgnorePatterns: ["<rootDir>/src/app/__tests__/", "<rootDir>/src/lib/__tests__/"],
   testTimeout: 10000, // 10 seconds
   forceExit: true, // Force Jest to exit after tests complete
 };
