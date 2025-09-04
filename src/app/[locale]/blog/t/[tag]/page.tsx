@@ -4,6 +4,11 @@ import {
   getAllBlogPosts,
 } from "@/lib/generated-blog-data";
 import BlogHome from "../../page";
+import { JsonLd } from "@/components/json-ld";
+import {
+  generateWebPageJsonLd,
+  generateBreadcrumbListJsonLd,
+} from "@/lib/json-ld";
 
 // Generate static params for basic tag routes only
 export async function generateStaticParams() {
@@ -11,7 +16,7 @@ export async function generateStaticParams() {
   const allBlogPosts = getAllBlogPosts();
 
   // Get all unique locale-tag combinations
-  const locales = [...new Set(allBlogPosts.map(post => post.locale))];
+  const locales = [...new Set(allBlogPosts.map((post: any) => post.locale))];
 
   const params = [];
   for (const currentLocale of locales) {
@@ -43,7 +48,7 @@ export async function generateMetadata({
 }
 
 export default async function TagPage({ params, searchParams }: TagPageProps) {
-  const { tag } = await params;
+  const { locale, tag } = await params;
   const { page = "1", destination } = await searchParams;
 
   // Decode the tag parameter
@@ -56,9 +61,49 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
     destination,
   };
 
-  // Call the existing blog page component with the modified search params and tag route flag
-  return BlogHome({
-    params,
-    searchParams: Promise.resolve(modifiedSearchParams),
+  const baseUrl = "https://gettravelvisa.com";
+  const tagUrl = `${baseUrl}/${locale}/blog/t/${tag}`;
+
+  // Generate JSON-LD for the tag page
+  const webpageJsonLd = generateWebPageJsonLd({
+    name: `${decodedTag} - Travel Blog - GetTravelVisa.com`,
+    description: `Travel guides and visa information related to ${decodedTag}. Expert travel advice and destination insights.`,
+    url: tagUrl,
+    isPartOf: {
+      name: "GetTravelVisa.com",
+      url: baseUrl,
+    },
   });
+
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd({
+    itemListElement: [
+      {
+        position: 1,
+        name: "Home",
+        item: `${baseUrl}/${locale}`,
+      },
+      {
+        position: 2,
+        name: "Blog",
+        item: `${baseUrl}/${locale}/blog`,
+      },
+      {
+        position: 3,
+        name: decodedTag,
+        item: tagUrl,
+      },
+    ],
+  });
+
+  // Call the existing blog page component with the modified search params and tag route flag
+  return (
+    <>
+      <JsonLd data={webpageJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
+      {BlogHome({
+        params,
+        searchParams: Promise.resolve(modifiedSearchParams),
+      })}
+    </>
+  );
 }
