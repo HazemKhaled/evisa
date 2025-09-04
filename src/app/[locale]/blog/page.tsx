@@ -1,7 +1,8 @@
 import { type Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { getBlogPostsForLocale, BlogPostData } from "@/lib/blog";
+import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
+import { BlogPostData } from "@/lib/blog";
 import { isRTL, cn } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
@@ -39,7 +40,7 @@ export default async function BlogHome({
   const postsPerPage = 9;
 
   // Get all blog posts for the locale using generated data
-  let allPosts = await getBlogPostsForLocale(locale);
+  let allPosts = getGeneratedBlogPostsForLocale(locale);
 
   // Filter by tag if specified
   if (tag) {
