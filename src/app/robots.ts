@@ -1,51 +1,25 @@
 import { MetadataRoute } from "next";
-import { languages } from "@/app/i18n/settings";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com";
-  
-  // Generate sitemap URLs for all locales
-  const sitemaps = languages.map(locale => ({
-    url: `${baseUrl}/sitemap.xml`,
-    lastModified: new Date().toISOString(),
-  }));
+  // Check if this is production environment
+  const isProduction = process.env.NODE_ENV === "production";
 
-  return {
-    rules: [
-      {
+  if (isProduction) {
+    // Allow all bots on production domain
+    return {
+      rules: {
         userAgent: "*",
         allow: "/",
-        disallow: [
-          "/api/",
-          "/_next/",
-          "/admin/",
-          "/private/",
-          "/*.json$",
-          "/*.xml$",
-        ],
       },
-      {
-        userAgent: "GPTBot",
+      sitemap: `${process.env.SITE_URL || "https://gettravelvisa.com"}/sitemap.xml`,
+    };
+  } else {
+    // Deny all bots on non-production domains (staging, localhost, etc.)
+    return {
+      rules: {
+        userAgent: "*",
         disallow: "/",
       },
-      {
-        userAgent: "ChatGPT-User",
-        disallow: "/",
-      },
-      {
-        userAgent: "CCBot",
-        disallow: "/",
-      },
-      {
-        userAgent: "anthropic-ai",
-        disallow: "/",
-      },
-      {
-        userAgent: "Claude-Web",
-        disallow: "/",
-      },
-    ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
-  };
+    };
+  }
 }
