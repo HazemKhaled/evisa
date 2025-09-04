@@ -15,7 +15,8 @@ import { JsonLd } from "@/components/json-ld";
 import {
   generateArticleJsonLd,
   generateBreadcrumbListJsonLd,
-  generateBlogPostJsonLd,
+  generateBlogPostJsonLdWithTranslations,
+  generateBreadcrumbData,
 } from "@/lib/json-ld";
 
 interface BlogPostProps {
@@ -78,6 +79,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const { locale, slug } = await params;
   const isCurrentRTL = isRTL(locale);
   const { t } = await getTranslation(locale, "pages");
+  const { t: tNav } = await getTranslation(locale, "navigation");
 
   try {
     const blogPost = await getBlogPost(slug, locale);
@@ -101,29 +103,23 @@ export default async function BlogPost({ params }: BlogPostProps) {
     const postUrl = `${baseUrl}/${locale}/blog/${slug}`;
 
     // Generate JSON-LD for the blog post
-    const articleJsonLd = generateArticleJsonLd(
-      generateBlogPostJsonLd(blogPost, locale, baseUrl)
+    const articleData = generateBlogPostJsonLdWithTranslations(
+      blogPost,
+      locale,
+      baseUrl,
+      t
     );
+    const articleJsonLd = generateArticleJsonLd(articleData);
 
-    const breadcrumbJsonLd = generateBreadcrumbListJsonLd({
-      itemListElement: [
-        {
-          position: 1,
-          name: "Home",
-          item: `${baseUrl}/${locale}`,
-        },
-        {
-          position: 2,
-          name: "Blog",
-          item: `${baseUrl}/${locale}/blog`,
-        },
-        {
-          position: 3,
-          name: blogPost.frontmatter.title,
-          item: postUrl,
-        },
+    const breadcrumbData = generateBreadcrumbData(
+      [
+        { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+        { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
+        { name: blogPost.frontmatter.title, url: postUrl },
       ],
-    });
+      tNav
+    );
+    const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
 
     return (
       <>

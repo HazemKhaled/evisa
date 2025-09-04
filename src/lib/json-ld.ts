@@ -245,6 +245,117 @@ export function generateBlogPostJsonLd(
 }
 
 /**
+ * Generate organization data with translations
+ */
+export function generateOrganizationData(
+  t: (key: string) => string
+): Organization {
+  return {
+    name: t("jsonld.organization.name"),
+    url: "https://gettravelvisa.com",
+    logo: "https://gettravelvisa.com/logo.png",
+    description: t("jsonld.organization.description"),
+    contactPoint: {
+      telephone: "+1-555-0123",
+      contactType: t("jsonld.organization.contact_type"),
+      email: "info@gettravelvisa.com",
+    },
+    address: {
+      streetAddress: "123 Travel Street",
+      addressLocality: "New York",
+      addressRegion: "NY",
+      postalCode: "10001",
+      addressCountry: "US",
+    },
+  };
+}
+
+/**
+ * Generate website data with translations
+ */
+export function generateWebSiteData(t: (key: string) => string): WebSite {
+  return {
+    name: t("jsonld.website.name"),
+    url: "https://gettravelvisa.com",
+    description: t("jsonld.website.description"),
+    potentialAction: {
+      target: "https://gettravelvisa.com/search?q={search_term_string}",
+      queryInput: "required name=search_term_string",
+    },
+  };
+}
+
+/**
+ * Generate service data with translations
+ */
+export function generateServiceData(
+  t: (key: string) => string,
+  organization: Organization
+) {
+  return {
+    name: t("jsonld.service.name"),
+    description: t("jsonld.service.description"),
+    provider: organization,
+    areaServed: t("jsonld.service.area_served"),
+    serviceType: t("jsonld.service.service_type"),
+  };
+}
+
+/**
+ * Generate blog post article JSON-LD from BlogPostData with translations
+ */
+export function generateBlogPostJsonLdWithTranslations(
+  post: BlogPostData,
+  locale: string,
+  baseUrl: string,
+  t: (key: string) => string
+): Article {
+  const postUrl = `${baseUrl}/${locale}/blog/${post.slug}`;
+
+  return {
+    headline: post.frontmatter.title,
+    description: post.frontmatter.description,
+    image: post.frontmatter.image,
+    author: {
+      name: post.frontmatter.author,
+      type: "Person",
+    },
+    publisher: {
+      name: t("jsonld.organization.name"),
+      logo: {
+        url: `${baseUrl}/logo.png`,
+        width: 200,
+        height: 60,
+      },
+    },
+    datePublished: post.frontmatter.publishedAt,
+    dateModified: post.frontmatter.lastUpdated || post.frontmatter.publishedAt,
+    mainEntityOfPage: {
+      type: "WebPage",
+      id: postUrl,
+    },
+    articleSection: t("jsonld.blog.article_section"),
+    keywords: post.frontmatter.tags,
+  };
+}
+
+/**
+ * Generate breadcrumb data with translations
+ */
+export function generateBreadcrumbData(
+  items: Array<{ name: string; url: string }>,
+  _t: (key: string) => string
+): BreadcrumbList {
+  return {
+    itemListElement: items.map((item, index) => ({
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+}
+
+/**
  * Default organization data for GetTravelVisa.com
  */
 export const defaultOrganization: Organization = {

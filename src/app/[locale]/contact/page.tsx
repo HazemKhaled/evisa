@@ -7,6 +7,7 @@ import {
   generateWebPageJsonLd,
   generateBreadcrumbListJsonLd,
   generateFAQJsonLd,
+  generateBreadcrumbData,
 } from "@/lib/json-ld";
 
 interface ContactPageProps {
@@ -28,6 +29,7 @@ export async function generateMetadata({
 export default async function ContactPage({ params }: ContactPageProps) {
   const { locale } = await params;
   const { t } = await getTranslation(locale, "pages");
+  const { t: tNav } = await getTranslation(locale, "navigation");
 
   const baseUrl = "https://gettravelvisa.com";
   const contactUrl = `${baseUrl}/${locale}/contact`;
@@ -38,25 +40,19 @@ export default async function ContactPage({ params }: ContactPageProps) {
     description: t("contact.subtitle"),
     url: contactUrl,
     isPartOf: {
-      name: "GetTravelVisa.com",
+      name: t("jsonld.organization.name"),
       url: baseUrl,
     },
   });
 
-  const breadcrumbJsonLd = generateBreadcrumbListJsonLd({
-    itemListElement: [
-      {
-        position: 1,
-        name: "Home",
-        item: `${baseUrl}/${locale}`,
-      },
-      {
-        position: 2,
-        name: "Contact",
-        item: contactUrl,
-      },
+  const breadcrumbData = generateBreadcrumbData(
+    [
+      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+      { name: tNav("breadcrumb.contact"), url: contactUrl },
     ],
-  });
+    tNav
+  );
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
 
   const faqJsonLd = generateFAQJsonLd([
     {

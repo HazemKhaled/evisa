@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/json-ld";
 import {
   generateWebPageJsonLd,
   generateBreadcrumbListJsonLd,
+  generateBreadcrumbData,
 } from "@/lib/json-ld";
 
 // Generate static params for basic tag routes only
@@ -51,6 +52,11 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   const { locale, tag } = await params;
   const { page = "1", destination } = await searchParams;
 
+  // We need to get translations for this component
+  const { getTranslation } = await import("@/app/i18n");
+  const { t } = await getTranslation(locale, "pages");
+  const { t: tNav } = await getTranslation(locale, "navigation");
+
   // Decode the tag parameter
   const decodedTag = decodeURIComponent(tag);
 
@@ -66,34 +72,24 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
 
   // Generate JSON-LD for the tag page
   const webpageJsonLd = generateWebPageJsonLd({
-    name: `${decodedTag} - Travel Blog - GetTravelVisa.com`,
+    name: `${decodedTag} - ${t("jsonld.blog.title")}`,
     description: `Travel guides and visa information related to ${decodedTag}. Expert travel advice and destination insights.`,
     url: tagUrl,
     isPartOf: {
-      name: "GetTravelVisa.com",
+      name: t("jsonld.organization.name"),
       url: baseUrl,
     },
   });
 
-  const breadcrumbJsonLd = generateBreadcrumbListJsonLd({
-    itemListElement: [
-      {
-        position: 1,
-        name: "Home",
-        item: `${baseUrl}/${locale}`,
-      },
-      {
-        position: 2,
-        name: "Blog",
-        item: `${baseUrl}/${locale}/blog`,
-      },
-      {
-        position: 3,
-        name: decodedTag,
-        item: tagUrl,
-      },
+  const breadcrumbData = generateBreadcrumbData(
+    [
+      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+      { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
+      { name: decodedTag, url: tagUrl },
     ],
-  });
+    tNav
+  );
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
 
   // Call the existing blog page component with the modified search params and tag route flag
   return (

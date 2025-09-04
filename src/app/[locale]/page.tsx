@@ -4,7 +4,8 @@ import { JsonLd } from "@/components/json-ld";
 import {
   generateWebPageJsonLd,
   generateServiceJsonLd,
-  defaultOrganization,
+  generateOrganizationData,
+  generateServiceData,
 } from "@/lib/json-ld";
 
 export default async function LocalePage({
@@ -16,6 +17,7 @@ export default async function LocalePage({
   const { t: tCommon } = await getTranslation(locale, "common");
   const { t: tHero } = await getTranslation(locale, "hero");
   const { t: tFeatures } = await getTranslation(locale, "features");
+  const { t } = await getTranslation(locale, "pages");
 
   const baseUrl = "https://gettravelvisa.com";
   const pageUrl = `${baseUrl}/${locale}`;
@@ -31,14 +33,9 @@ export default async function LocalePage({
     },
   });
 
-  const serviceJsonLd = generateServiceJsonLd({
-    name: "Visa Application Services",
-    description:
-      "Comprehensive visa checking and application services for international travel",
-    provider: defaultOrganization,
-    areaServed: "Worldwide",
-    serviceType: "Travel Services",
-  });
+  const organizationData = generateOrganizationData(t);
+  const serviceData = generateServiceData(t, organizationData);
+  const serviceJsonLd = generateServiceJsonLd(serviceData);
 
   return (
     <>

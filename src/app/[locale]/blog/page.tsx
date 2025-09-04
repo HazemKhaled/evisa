@@ -10,6 +10,7 @@ import { JsonLd } from "@/components/json-ld";
 import {
   generateWebPageJsonLd,
   generateBreadcrumbListJsonLd,
+  generateBreadcrumbData,
 } from "@/lib/json-ld";
 
 // Generate static params for basic locale routes only
@@ -39,6 +40,7 @@ export default async function BlogHome({
   const { locale } = await params;
   const { page = "1", tag, destination } = await searchParams;
   const { t } = await getTranslation(locale, "pages");
+  const { t: tNav } = await getTranslation(locale, "navigation");
 
   const currentPage = parseInt(page, 10);
   const postsPerPage = 9;
@@ -74,44 +76,23 @@ export default async function BlogHome({
 
   // Generate JSON-LD for the blog page
   const webpageJsonLd = generateWebPageJsonLd({
-    name: "Travel Blog - GetTravelVisa.com",
-    description:
-      "Expert travel guides, visa tips, and destination insights to help you plan your perfect trip.",
+    name: t("jsonld.blog.title"),
+    description: t("jsonld.blog.description"),
     url: blogUrl,
     isPartOf: {
-      name: "GetTravelVisa.com",
+      name: t("jsonld.organization.name"),
       url: baseUrl,
-    },
-    breadcrumb: {
-      itemListElement: [
-        {
-          position: 1,
-          name: "Home",
-          item: `${baseUrl}/${locale}`,
-        },
-        {
-          position: 2,
-          name: "Blog",
-          item: blogUrl,
-        },
-      ],
     },
   });
 
-  const breadcrumbJsonLd = generateBreadcrumbListJsonLd({
-    itemListElement: [
-      {
-        position: 1,
-        name: "Home",
-        item: `${baseUrl}/${locale}`,
-      },
-      {
-        position: 2,
-        name: "Blog",
-        item: blogUrl,
-      },
+  const breadcrumbData = generateBreadcrumbData(
+    [
+      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+      { name: tNav("breadcrumb.blog"), url: blogUrl },
     ],
-  });
+    tNav
+  );
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
 
   // Helper function to build pagination URLs with query parameters
   const buildPaginationUrl = (page: number): string => {
