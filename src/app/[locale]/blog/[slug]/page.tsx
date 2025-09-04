@@ -9,6 +9,7 @@ import {
 } from "@/lib/blog";
 import { MDXContent } from "@/components/mdx-content";
 import { isRTL, cn } from "@/lib/utils";
+import { getBaseUrl } from "@/lib/utils/urls";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
 import { JsonLd } from "@/components/json-ld";
@@ -99,7 +100,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
       )
       .slice(0, 3);
 
-    const baseUrl = "https://gettravelvisa.com";
+    const baseUrl = getBaseUrl();
     const postUrl = `${baseUrl}/${locale}/blog/${slug}`;
 
     // Generate JSON-LD for the blog post

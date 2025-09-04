@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
 import { cn } from "@/lib/utils";
+import { getBaseUrl } from "@/lib/utils/urls";
 import { JsonLd } from "@/components/json-ld";
 import {
   generateWebPageJsonLd,
@@ -31,7 +32,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const { t } = await getTranslation(locale, "pages");
   const { t: tNav } = await getTranslation(locale, "navigation");
 
-  const baseUrl = "https://gettravelvisa.com";
+  const baseUrl = getBaseUrl();
   const contactUrl = `${baseUrl}/${locale}/contact`;
 
   // Generate JSON-LD for the contact page

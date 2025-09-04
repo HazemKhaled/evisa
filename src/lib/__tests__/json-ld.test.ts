@@ -16,6 +16,7 @@ import {
   type BreadcrumbList,
 } from "../json-ld";
 import { BlogPostData } from "../blog";
+import { getBaseUrl } from "../utils/urls";
 
 describe("JSON-LD utilities", () => {
   describe("generateOrganizationJsonLd", () => {
@@ -493,10 +494,8 @@ describe("JSON-LD utilities", () => {
   describe("default constants", () => {
     it("should have correct default organization data", () => {
       expect(defaultOrganization.name).toBe("GetTravelVisa.com");
-      expect(defaultOrganization.url).toBe("https://gettravelvisa.com");
-      expect(defaultOrganization.logo).toBe(
-        "https://gettravelvisa.com/logo.png"
-      );
+      expect(defaultOrganization.url).toBe(getBaseUrl());
+      expect(defaultOrganization.logo).toBe(`${getBaseUrl()}/logo.png`);
       expect(defaultOrganization.contactPoint?.email).toBe(
         "info@gettravelvisa.com"
       );
@@ -504,7 +503,7 @@ describe("JSON-LD utilities", () => {
 
     it("should have correct default website data", () => {
       expect(defaultWebSite.name).toBe("GetTravelVisa.com");
-      expect(defaultWebSite.url).toBe("https://gettravelvisa.com");
+      expect(defaultWebSite.url).toBe(getBaseUrl());
       expect(defaultWebSite.potentialAction?.target).toContain("search");
     });
   });

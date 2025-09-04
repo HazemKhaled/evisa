@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
 import { isRTL, cn } from "@/lib/utils";
+import { getBaseUrl } from "@/lib/utils/urls";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
@@ -71,7 +72,7 @@ export default async function BlogHome({
 
   const isCurrentRTL = isRTL(locale);
 
-  const baseUrl = "https://gettravelvisa.com";
+  const baseUrl = getBaseUrl();
   const blogUrl = `${baseUrl}/${locale}/blog`;
 
   // Generate JSON-LD for the blog page

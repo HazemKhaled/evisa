@@ -5,6 +5,7 @@ import {
 } from "@/lib/generated-blog-data";
 import BlogHome from "../../page";
 import { JsonLd } from "@/components/json-ld";
+import { getBaseUrl } from "@/lib/utils/urls";
 import {
   generateWebPageJsonLd,
   generateBreadcrumbListJsonLd,
@@ -67,7 +68,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
     destination,
   };
 
-  const baseUrl = "https://gettravelvisa.com";
+  const baseUrl = getBaseUrl();
   const tagUrl = `${baseUrl}/${locale}/blog/t/${tag}`;
 
   // Generate JSON-LD for the tag page

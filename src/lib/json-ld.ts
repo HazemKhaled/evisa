@@ -1,4 +1,5 @@
 import { BlogPostData } from "./blog";
+import { getBaseUrl } from "./utils/urls";
 
 /**
  * JSON-LD structured data utilities for SEO
@@ -250,10 +251,11 @@ export function generateBlogPostJsonLd(
 export function generateOrganizationData(
   t: (key: string) => string
 ): Organization {
+  const baseUrl = getBaseUrl();
   return {
     name: t("jsonld.organization.name"),
-    url: "https://gettravelvisa.com",
-    logo: "https://gettravelvisa.com/logo.png",
+    url: baseUrl,
+    logo: `${baseUrl}/logo.png`,
     description: t("jsonld.organization.description"),
     contactPoint: {
       telephone: "+1-555-0123",
@@ -274,12 +276,13 @@ export function generateOrganizationData(
  * Generate website data with translations
  */
 export function generateWebSiteData(t: (key: string) => string): WebSite {
+  const baseUrl = getBaseUrl();
   return {
     name: t("jsonld.website.name"),
-    url: "https://gettravelvisa.com",
+    url: baseUrl,
     description: t("jsonld.website.description"),
     potentialAction: {
-      target: "https://gettravelvisa.com/search?q={search_term_string}",
+      target: `${baseUrl}/search?q={search_term_string}`,
       queryInput: "required name=search_term_string",
     },
   };
@@ -323,7 +326,7 @@ export function generateBlogPostJsonLdWithTranslations(
     publisher: {
       name: t("jsonld.organization.name"),
       logo: {
-        url: `${baseUrl}/logo.png`,
+        url: `${getBaseUrl()}/logo.png`,
         width: 200,
         height: 60,
       },
@@ -360,8 +363,8 @@ export function generateBreadcrumbData(
  */
 export const defaultOrganization: Organization = {
   name: "GetTravelVisa.com",
-  url: "https://gettravelvisa.com",
-  logo: "https://gettravelvisa.com/logo.png",
+  url: getBaseUrl(),
+  logo: `${getBaseUrl()}/logo.png`,
   description:
     "Your trusted visa application partner. Simplify your visa application process with our comprehensive visa checking and application services.",
   contactPoint: {
@@ -383,11 +386,11 @@ export const defaultOrganization: Organization = {
  */
 export const defaultWebSite: WebSite = {
   name: "GetTravelVisa.com",
-  url: "https://gettravelvisa.com",
+  url: getBaseUrl(),
   description:
     "Simplify your visa application process with our comprehensive visa checking and application services. Get expert guidance for travel visas worldwide.",
   potentialAction: {
-    target: "https://gettravelvisa.com/search?q={search_term_string}",
+    target: `${getBaseUrl()}/search?q={search_term_string}`,
     queryInput: "required name=search_term_string",
   },
 };
