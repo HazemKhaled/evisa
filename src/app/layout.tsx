@@ -17,50 +17,16 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-// Generate comprehensive metadata for the root layout
+// Root layout metadata - will be overridden by locale-specific layouts
 export const metadata: Metadata = {
   title: {
     template: "%s | GetTravelVisa.com",
-    default: "GetTravelVisa.com - Your Trusted Visa Application Partner",
+    default: "GetTravelVisa.com",
   },
-  description: "Simplify your visa application process with our comprehensive visa checking and application services. Get expert guidance for travel visas worldwide.",
-  keywords: [
-    "visa application",
-    "travel visa",
-    "visa checker",
-    "visa services",
-    "international travel",
-    "visa requirements",
-    "travel documents",
-    "passport services",
-    "visa processing",
-    "travel assistance",
-  ],
-  authors: [{ name: "GetTravelVisa.com" }],
-  creator: "GetTravelVisa.com",
-  publisher: "GetTravelVisa.com",
+  description: "Visa application and travel services platform",
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    title: "GetTravelVisa.com - Your Trusted Visa Application Partner",
-    description: "Simplify your visa application process with our comprehensive visa checking and application services.",
-    siteName: "GetTravelVisa.com",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "GetTravelVisa.com - Your Trusted Visa Application Partner",
-    description: "Simplify your visa application process with our comprehensive visa checking and application services.",
   },
   verification: {
     google: process.env.GOOGLE_VERIFICATION_ID,

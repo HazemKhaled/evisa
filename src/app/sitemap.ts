@@ -1,16 +1,40 @@
 import { MetadataRoute } from "next";
-import { generateSitemapData } from "@/lib/seo";
+import { languages } from "@/app/i18n/settings";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const sitemapEntries = generateSitemapData();
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com";
+  const staticRoutes = [
+    "/",
+    "/contact",
+    "/about",
+    "/privacy",
+    "/terms",
+    "/blog",
+  ];
   
-  return sitemapEntries.map(entry => ({
-    url: entry.url,
-    lastModified: entry.lastModified,
-    changeFrequency: entry.changeFrequency,
-    priority: entry.priority,
-    alternates: entry.alternates ? {
-      languages: entry.alternates,
-    } : undefined,
-  }));
+  const sitemapEntries: MetadataRoute.Sitemap = [];
+
+  // Generate entries for each locale and route combination
+  languages.forEach(locale => {
+    staticRoutes.forEach(route => {
+      const url = `${baseUrl}/${locale}${route === "/" ? "" : route}`;
+      
+      sitemapEntries.push({
+        url,
+        lastModified: new Date().toISOString(),
+        changeFrequency: route === "/" ? "daily" : "weekly",
+        priority: route === "/" ? 1.0 : 0.8,
+        alternates: {
+          languages: Object.fromEntries(
+            languages.map(lang => [
+              lang,
+              `${baseUrl}/${lang}${route === "/" ? "" : route}`
+            ])
+          ),
+        },
+      });
+    });
+  });
+
+  return sitemapEntries;
 }
