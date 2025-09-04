@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
+import { BlogPostData } from "@/lib/blog";
 import { isRTL, cn } from "@/lib/utils";
 import { getBaseUrl } from "@/lib/utils/urls";
 import { StaticPageLayout } from "@/components/static-page-layout";
@@ -51,14 +52,14 @@ export default async function BlogHome({
 
   // Filter by tag if specified
   if (tag) {
-    allPosts = allPosts.filter((post: any) =>
+    allPosts = allPosts.filter((post: BlogPostData) =>
       post.frontmatter.tags?.includes(tag.toLowerCase())
     );
   }
 
   // Filter by destination if specified
   if (destination) {
-    allPosts = allPosts.filter((post: any) =>
+    allPosts = allPosts.filter((post: BlogPostData) =>
       post.frontmatter.destinations?.some((dest: string) =>
         dest.toLowerCase().includes(destination.toLowerCase())
       )
@@ -182,7 +183,7 @@ export default async function BlogHome({
 
           {/* Blog Grid */}
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post: any) => (
+            {posts.map((post: BlogPostData) => (
               <article
                 key={post.slug}
                 className="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg"

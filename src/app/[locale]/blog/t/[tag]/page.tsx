@@ -18,7 +18,7 @@ export async function generateStaticParams() {
   const allBlogPosts = getAllBlogPosts();
 
   // Get all unique locale-tag combinations
-  const locales = [...new Set(allBlogPosts.map((post: any) => post.locale))];
+  const locales = [...new Set(allBlogPosts.map(post => post.locale))];
 
   const params = [];
   for (const currentLocale of locales) {
