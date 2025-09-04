@@ -11,7 +11,6 @@ interface PageSEOConfig {
   ogImage?: string;
   ogType?: "website" | "article" | "product";
   noIndex?: boolean;
-  structuredData?: Record<string, unknown>;
   customTranslations?: {
     titleKey?: string;
     descriptionKey?: string;
@@ -31,7 +30,6 @@ export async function generatePageMetadata({
   ogImage,
   ogType = "website",
   noIndex = false,
-  structuredData,
   customTranslations = {},
 }: PageSEOConfig): Promise<Metadata> {
   const { t } = await getTranslation(locale, "common");
@@ -48,7 +46,6 @@ export async function generatePageMetadata({
     ogImage,
     ogType,
     noIndex,
-    structuredData,
   };
 
   return generateSEOMetadata(seoConfig, locale, pathname);
@@ -82,36 +79,6 @@ export async function generateBlogPostMetadata({
   const fullUrl = `${baseUrl}/${locale}${pathname}`;
   const ogImage = image || `${baseUrl}/og-image-${locale}.jpg`;
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: title,
-    description,
-    author: {
-      "@type": "Organization",
-      name: author,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "GetTravelVisa.com",
-      logo: {
-        "@type": "ImageObject",
-        url: `${baseUrl}/logo.png`,
-      },
-    },
-    datePublished: publishedDate,
-    dateModified: modifiedDate || publishedDate,
-    image: ogImage,
-    url: fullUrl,
-    inLanguage: locale,
-    keywords: tags.join(", "),
-    isPartOf: {
-      "@type": "WebSite",
-      name: "GetTravelVisa.com",
-      url: baseUrl,
-    },
-  };
-
   return generatePageMetadata({
     locale,
     pathname,
@@ -120,7 +87,6 @@ export async function generateBlogPostMetadata({
     keywords: tags,
     ogImage,
     ogType: "article",
-    structuredData,
   });
 }
 
@@ -153,38 +119,6 @@ export async function generateDestinationMetadata({
   const title = `Visa Requirements for ${destinationName} - GetTravelVisa.com`;
   const description = `Complete guide to visa requirements for ${destinationName}. Processing time: ${processingTime}, Cost: ${cost}. ${visaRequirements}`;
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "TravelGuide",
-    name: `Visa Requirements for ${destinationName}`,
-    description,
-    url: fullUrl,
-    image: ogImage,
-    author: {
-      "@type": "Organization",
-      name: "GetTravelVisa.com",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "GetTravelVisa.com",
-    },
-    about: {
-      "@type": "Place",
-      name: destinationName,
-      address: {
-        "@type": "PostalAddress",
-        addressCountry: destinationCountry,
-      },
-    },
-    offers: {
-      "@type": "Offer",
-      price: cost,
-      priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
-    },
-    inLanguage: locale,
-  };
-
   return generatePageMetadata({
     locale,
     pathname,
@@ -199,7 +133,6 @@ export async function generateDestinationMetadata({
       "visa application",
     ],
     ogImage,
-    structuredData,
   });
 }
 
@@ -218,25 +151,6 @@ export async function generateContactMetadata({
   const title = `Contact Us - GetTravelVisa.com`;
   const description = `Get in touch with our visa experts. We're here to help with your visa application process and answer any questions you may have.`;
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    name: "Contact GetTravelVisa.com",
-    description,
-    url: `${process.env.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com"}/${locale}${pathname}`,
-    mainEntity: {
-      "@type": "Organization",
-      name: "GetTravelVisa.com",
-      contactPoint: {
-        "@type": "ContactPoint",
-        telephone: "+1-800-VISA-HELP",
-        contactType: "customer service",
-        availableLanguage: ["en", "es", "ar", "pt", "ru", "de", "fr", "it"],
-        areaServed: "Worldwide",
-      },
-    },
-  };
-
   return generatePageMetadata({
     locale,
     pathname,
@@ -250,6 +164,5 @@ export async function generateContactMetadata({
       "get help",
       "visa questions",
     ],
-    structuredData,
   });
 }

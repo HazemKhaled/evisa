@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cairo, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { generateMetadata as generateSEOMetadata, generateOrganizationStructuredData, generateWebsiteStructuredData } from "@/lib/seo";
 
 // Cairo font for Arabic, English, and other supported languages
 const cairo = Cairo({
@@ -19,8 +18,11 @@ const geistMono = Geist_Mono({
 });
 
 // Generate comprehensive metadata for the root layout
-export const metadata: Metadata = generateSEOMetadata({
-  title: "GetTravelVisa.com - Your Trusted Visa Application Partner",
+export const metadata: Metadata = {
+  title: {
+    template: "%s | GetTravelVisa.com",
+    default: "GetTravelVisa.com - Your Trusted Visa Application Partner",
+  },
   description: "Simplify your visa application process with our comprehensive visa checking and application services. Get expert guidance for travel visas worldwide.",
   keywords: [
     "visa application",
@@ -34,14 +36,38 @@ export const metadata: Metadata = generateSEOMetadata({
     "visa processing",
     "travel assistance",
   ],
-  structuredData: {
-    "@context": "https://schema.org",
-    "@graph": [
-      generateOrganizationStructuredData("en"),
-      generateWebsiteStructuredData("en"),
-    ],
+  authors: [{ name: "GetTravelVisa.com" }],
+  creator: "GetTravelVisa.com",
+  publisher: "GetTravelVisa.com",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
-});
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    title: "GetTravelVisa.com - Your Trusted Visa Application Partner",
+    description: "Simplify your visa application process with our comprehensive visa checking and application services.",
+    siteName: "GetTravelVisa.com",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "GetTravelVisa.com - Your Trusted Visa Application Partner",
+    description: "Simplify your visa application process with our comprehensive visa checking and application services.",
+  },
+  verification: {
+    google: process.env.GOOGLE_VERIFICATION_ID,
+    yandex: process.env.YANDEX_VERIFICATION_ID,
+    yahoo: process.env.YAHOO_VERIFICATION_ID,
+  },
+};
 
 export const viewport: Viewport = {
   width: "device-width",
