@@ -3,16 +3,18 @@ import { LanguageSwitcher } from "../language-switcher";
 
 // Mock Next.js navigation hooks
 const mockPush = jest.fn();
-const mockPathname = "/en/blog";
-const mockParams = { locale: "en" };
 
 jest.mock("next/navigation", () => ({
   useRouter: () => ({
     push: mockPush,
   }),
-  usePathname: () => mockPathname,
-  useParams: () => mockParams,
+  usePathname: jest.fn().mockReturnValue("/en/blog"),
+  useParams: jest.fn().mockReturnValue({ locale: "en" }),
 }));
+
+// Get references to the mocked functions
+const { usePathname: mockUsePathname, useParams: mockUseParams } =
+  jest.requireMock("next/navigation");
 
 // Mock document.cookie
 Object.defineProperty(document, "cookie", {
@@ -24,6 +26,9 @@ describe("LanguageSwitcher component", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     document.cookie = "";
+    // Reset to default mock values
+    mockUsePathname.mockReturnValue("/en/blog");
+    mockUseParams.mockReturnValue({ locale: "en" });
   });
 
   it("should render with current language", () => {
@@ -80,22 +85,22 @@ describe("LanguageSwitcher component", () => {
   });
 
   it("should handle RTL languages correctly", async () => {
-    // Mock Arabic locale
-    jest.doMock("next/navigation", () => ({
-      useRouter: () => ({
-        push: mockPush,
-      }),
-      usePathname: () => "/ar/blog",
-      useParams: () => ({ locale: "ar" }),
-    }));
+    // Mock Arabic locale for this test
+    mockUseParams.mockReturnValueOnce({ locale: "ar" });
+    mockUsePathname.mockReturnValueOnce("/ar/blog");
 
     render(<LanguageSwitcher />);
+
+    // Verify the Arabic locale is selected (العربية should be in the button)
+    expect(screen.getByText("العربية")).toBeInTheDocument();
 
     const button = screen.getByRole("button");
     fireEvent.click(button);
 
     await waitFor(() => {
-      expect(screen.getByText("العربية")).toBeInTheDocument();
+      // The dropdown should show other language options
+      expect(screen.getAllByText("English")).toHaveLength(3); // Button text, dropdown title, and dropdown subtitle
+      expect(screen.getByText("Español")).toBeInTheDocument();
     });
   });
 
@@ -147,18 +152,13 @@ describe("LanguageSwitcher component", () => {
   });
 
   it("should handle missing locale in params", () => {
-    // Mock missing locale
-    jest.doMock("next/navigation", () => ({
-      useRouter: () => ({
-        push: mockPush,
-      }),
-      usePathname: () => "/blog",
-      useParams: () => ({}),
-    }));
+    // Mock missing locale for this test
+    mockUseParams.mockReturnValueOnce({});
+    mockUsePathname.mockReturnValueOnce("/blog");
 
     render(<LanguageSwitcher />);
 
-    // Should default to English
+    // Should default to English when no locale is provided
     expect(screen.getByText("English")).toBeInTheDocument();
   });
 });
