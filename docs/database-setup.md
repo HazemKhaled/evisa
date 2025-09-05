@@ -321,13 +321,12 @@ The countries seeding system provides:
 
 ```
 scripts/
-├── countries-data.ts              # African countries data
+├── countries-data-africa.ts       # African countries data
 ├── countries-data-asia.ts         # Asian countries data
 ├── countries-data-europe.ts       # European countries data
 ├── countries-data-americas.ts     # North & South American countries data
 ├── countries-data-oceania.ts      # Oceanian countries data
 ├── seed.ts                        # Main seeding script (includes countries seeding)
-└── README-countries-seeding.md    # Countries seeding documentation
 ```
 
 ## Countries Database Schema

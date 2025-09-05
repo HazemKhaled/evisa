@@ -26,7 +26,7 @@ import {
 import * as schema from "../src/lib/db/schema";
 
 // Import all countries data
-import { allCountriesData } from "./countries-data";
+import { allCountriesData } from "./countries-data-africa";
 import { asianCountriesData } from "./countries-data-asia";
 import { europeanCountriesData } from "./countries-data-europe";
 import { americasCountriesData } from "./countries-data-americas";
