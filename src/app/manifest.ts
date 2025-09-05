@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     process.env.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com";
 
   return {
-    name: "GetTravelVisa.com - Visa Application Platform",
+    name: "Get Travel Visa",
     short_name: "GetTravelVisa",
     description: "Comprehensive visa processing and travel services platform",
     start_url: "/",

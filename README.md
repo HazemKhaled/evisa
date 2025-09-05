@@ -1,4 +1,4 @@
-# GetTravelVisa.com Platform
+# GetTravelVisa.com
 
 A multilingual travel visa processing application built with modern web technologies. The platform helps users travel with minimal visa requirements through a centralized visa processing platform featuring destination-based visa catalogs and comprehensive SEO optimization.
 
