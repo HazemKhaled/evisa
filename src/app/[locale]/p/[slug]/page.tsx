@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { MDXContent } from "@/components/mdx-content";
