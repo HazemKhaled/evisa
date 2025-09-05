@@ -11,18 +11,22 @@ This guide explains how to set up Drizzle ORM with Cloudflare D1 database for th
 
 ## Quick Start
 
-### Complete Local Setup (Recommended)
+### Local Development Setup (Recommended)
 
 ```bash
-# One command to set up everything locally
-pnpm db:local:setup
+# Generate and apply migrations
+pnpm db:generate
+pnpm db:migrate
+
+# Seed the database with sample data
+pnpm db:seed
 ```
 
-This command will:
+This sequence will:
 
-1. Reset the local database
-2. Apply all migrations
-3. Seed with sample data
+1. Generate migrations from schema changes
+2. Apply all migrations to the database
+3. Seed with countries and sample visa data
 
 ## Environment Configuration
 
@@ -71,29 +75,30 @@ LOCAL_DB_PATH
 ### Database Management
 
 ```bash
-# Complete setup (recommended for first time)
-pnpm db:local:setup         # Reset → Migrate → Seed
+# Schema and migrations
+pnpm db:generate            # Generate migrations from schema changes
+pnpm db:migrate             # Apply migrations to database
+pnpm db:push                # Push schema directly (dev only)
 
-# Individual operations
-pnpm db:local:migrate       # Apply migrations to local DB
-pnpm db:local:seed          # Populate with sample data
-pnpm db:local:reset         # Clear all data and tables
+# Database seeding
+pnpm db:seed                # Seed database with countries and sample data
+pnpm tsx scripts/seed.ts countries  # Seed only countries data
 
 # Database exploration
-pnpm db:local:studio        # Open Drizzle Studio GUI (port 4984)
-pnpm db:local:query "SQL"   # Execute custom SQL queries
-
-# Database creation (rarely needed)
-pnpm db:local:create        # Create new local D1 database
+pnpm db:studio              # Open Drizzle Studio GUI
 ```
 
 ### Development Workflow
 
-1. **First Setup**: `pnpm db:local:setup`
+1. **First Setup**:
+   ```bash
+   pnpm db:migrate    # Apply existing migrations
+   pnpm db:seed       # Seed with sample data
+   ```
 2. **Schema Changes**: Modify files in `src/lib/db/schema/`
 3. **Generate Migration**: `pnpm db:generate`
-4. **Apply Locally**: `pnpm db:local:migrate`
-5. **Test with Studio**: `pnpm db:local:studio`
+4. **Apply Migration**: `pnpm db:migrate`
+5. **Test with Studio**: `pnpm db:studio`
 
 ## Production Commands
 
@@ -115,18 +120,12 @@ pnpm format               # Prettier formatting
 
 ## Drizzle Studio Access
 
-### Local Database
+### Database Studio
 
-- **URL**: https://local.drizzle.studio?port=4984
-- **Command**: `pnpm db:local:studio`
-- **Connection**: Direct SQLite file access via `@libsql/client`
-- **Location**: `.wrangler/state/v3/d1/miniflare-D1DatabaseObject/*.sqlite`
-
-### Production Database
-
-- **URL**: https://local.drizzle.studio (default port 4983)
 - **Command**: `pnpm db:studio`
-- **Connection**: Cloudflare D1 HTTP API
+- **Connection**: Automatically detects local or production based on environment
+- **Local Mode**: Direct SQLite file access via `@libsql/client`
+- **Production Mode**: Cloudflare D1 HTTP API
 - **Authentication**: Uses environment variables from `.env.local`
 
 ### Studio Features
@@ -252,8 +251,10 @@ pnpm wrangler secret put NEXTAUTH_SECRET
 **Complete Local Reset:**
 
 ```bash
-rm -rf .wrangler/state/v3/d1  # Delete local database
-pnpm db:local:setup           # Recreate and populate
+# Manually delete local database file if needed
+rm local-db.sqlite
+pnpm db:migrate              # Recreate tables
+pnpm db:seed                 # Populate with data
 ```
 
 **Production Reset (Careful!):**
@@ -265,9 +266,9 @@ pnpm db:seed                 # Repopulate data
 
 ### Performance Tips
 
-- Use `db:local:studio` for development - faster than production
-- Run `pnpm db:local:query` for quick SQL tests
-- Keep local database fresh with regular `pnpm db:local:setup`
+- Use local development environment for faster iteration
+- Run `pnpm db:studio` to visually explore database structure
+- Keep database up-to-date with regular `pnpm db:migrate` and `pnpm db:seed`
 
 ## Development Best Practices
 
@@ -282,14 +283,13 @@ pnpm db:seed                 # Repopulate data
 ### Health Checks
 
 ```bash
-# Verify database connectivity
-pnpm db:local:query "SELECT COUNT(*) FROM countries"
+# Verify database connectivity and data
+pnpm db:studio  # Visual inspection and queries
 
-# Check schema version
-pnpm db:local:query "SELECT name FROM sqlite_master WHERE type='table'"
-
-# Validate data integrity
-pnpm db:local:studio  # Visual inspection
+# Check schema with SQL queries in Studio
+# Example queries to run in Studio:
+# SELECT COUNT(*) FROM countries
+# SELECT name FROM sqlite_master WHERE type='table'
 ```
 
 ### Regular Maintenance
@@ -351,13 +351,13 @@ scripts/
 
 ## Countries Seeding Usage
 
-### 1. Setup Local Database
+### 1. Setup Database
 
 ```bash
-pnpm db:local:setup
+pnpm db:migrate
 ```
 
-Creates the local SQLite database with all required tables and applies migrations.
+Applies all migrations to create the required database tables.
 
 ### 2. Seed Countries Data
 
@@ -366,7 +366,7 @@ Creates the local SQLite database with all required tables and applies migration
 pnpm tsx scripts/seed.ts countries
 
 # Or seed everything including sample visa data
-pnpm tsx scripts/seed.ts
+pnpm db:seed
 ```
 
 Populates the database with all 190+ countries and their translations in 8 languages.
@@ -495,8 +495,8 @@ The seeding script includes comprehensive error handling:
 ### Common Issues
 
 1. **Database Connection Error**
-   - Ensure local database is set up: `pnpm db:local:setup`
-   - Check file permissions on `local-db.sqlite`
+   - Ensure database is set up: `pnpm db:migrate`
+   - Check file permissions on local database file
 
 2. **Translation Missing**
    - Verify all countries have 8 locale translations
