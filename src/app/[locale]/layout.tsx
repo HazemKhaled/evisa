@@ -3,7 +3,6 @@ import { getTextDirection } from "@/lib/utils";
 import { languages, getLocaleWithRegion } from "../i18n/settings";
 import { Header, Footer } from "@/components/layout";
 import { getTranslation } from "../i18n";
-import { env } from "@/lib/consts";
 
 export async function generateStaticParams() {
   return languages.map(locale => ({ locale }));
@@ -36,24 +35,7 @@ export async function generateMetadata({
       title: t("site.twitterTitle"),
       description: t("site.twitterDescription"),
     },
-    alternates: {
-      languages: generateAlternateLanguages(locale),
-    },
   };
-}
-
-function generateAlternateLanguages(
-  currentLocale: string
-): Record<string, string> {
-  const baseUrl = env.baseUrl;
-  const alternates: Record<string, string> = {};
-
-  languages.forEach(locale => {
-    alternates[locale] = `${baseUrl}/${locale}`;
-  });
-
-  alternates["x-default"] = `${baseUrl}/${currentLocale}`;
-  return alternates;
 }
 
 export default async function LocaleLayout({
