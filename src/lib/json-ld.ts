@@ -320,7 +320,7 @@ export function generateBlogPostJsonLdWithTranslations(
     publisher: {
       name: t("jsonld.organization.name"),
       logo: {
-        url: `${env.baseUrl}/logo.png`,
+        url: `${baseUrl}/logo.png`,
         width: 200,
         height: 60,
       },
@@ -340,8 +340,7 @@ export function generateBlogPostJsonLdWithTranslations(
  * Generate breadcrumb data with translations
  */
 export function generateBreadcrumbData(
-  items: Array<{ name: string; url: string }>,
-  _t: (key: string) => string
+  items: Array<{ name: string; url: string }>
 ): BreadcrumbList {
   return {
     itemListElement: items.map((item, index) => ({
@@ -351,32 +350,3 @@ export function generateBreadcrumbData(
     })),
   };
 }
-
-/**
- * Default organization data for GetTravelVisa.com
- */
-export const defaultOrganization: Organization = {
-  name: "GetTravelVisa.com",
-  url: env.baseUrl,
-  logo: `${env.baseUrl}/logo.png`,
-  description:
-    "Your trusted visa application partner. Simplify your visa application process with our comprehensive visa checking and application services.",
-  contactPoint: {
-    contactType: "customer service",
-    email: "info@gettravelvisa.com",
-  },
-};
-
-/**
- * Default website data for GetTravelVisa.com
- */
-export const defaultWebSite: WebSite = {
-  name: "GetTravelVisa.com",
-  url: env.baseUrl,
-  description:
-    "Simplify your visa application process with our comprehensive visa checking and application services. Get expert guidance for travel visas worldwide.",
-  potentialAction: {
-    target: `${env.baseUrl}/search?q={search_term_string}`,
-    queryInput: "required name=search_term_string",
-  },
-};

@@ -7,8 +7,8 @@ import {
   generateFAQJsonLd,
   generateServiceJsonLd,
   generateBlogPostJsonLd,
-  defaultOrganization,
-  defaultWebSite,
+  generateOrganizationData,
+  generateWebSiteData,
   type Organization,
   type WebSite,
   type WebPage,
@@ -554,10 +554,11 @@ describe("JSON-LD utilities", () => {
 
   describe("generateServiceJsonLd", () => {
     it("should generate service JSON-LD", () => {
+      const testOrganization = generateOrganizationData(t);
       const service = {
         name: t("test.service.name"),
         description: t("test.service.description"),
-        provider: defaultOrganization,
+        provider: testOrganization,
         areaServed: t("jsonld.service.area_served"),
         serviceType: t("test.service.name"),
       };
@@ -569,7 +570,7 @@ describe("JSON-LD utilities", () => {
         "@type": "Service",
         name: t("test.service.name"),
         description: t("test.service.description"),
-        provider: generateOrganizationJsonLd(defaultOrganization),
+        provider: generateOrganizationJsonLd(testOrganization),
         areaServed: t("jsonld.service.area_served"),
         serviceType: t("test.service.name"),
       });
@@ -652,20 +653,31 @@ describe("JSON-LD utilities", () => {
     });
   });
 
-  describe("default constants", () => {
-    it("should have correct default organization data", () => {
-      expect(defaultOrganization.name).toBe(t("jsonld.organization.name"));
-      expect(defaultOrganization.url).toBe(getBaseUrl());
-      expect(defaultOrganization.logo).toBe(`${getBaseUrl()}/logo.png`);
-      expect(defaultOrganization.contactPoint?.email).toBe(
+  describe("default data generators", () => {
+    it("should generate correct organization data with translations", () => {
+      const organizationData = generateOrganizationData(t);
+
+      expect(organizationData.name).toBe(t("jsonld.organization.name"));
+      expect(organizationData.url).toBe(getBaseUrl());
+      expect(organizationData.logo).toBe(`${getBaseUrl()}/logo.png`);
+      expect(organizationData.contactPoint?.email).toBe(
         "info@gettravelvisa.com"
+      );
+      expect(organizationData.description).toBe(
+        t("jsonld.organization.description")
+      );
+      expect(organizationData.contactPoint?.contactType).toBe(
+        t("jsonld.organization.contact_type")
       );
     });
 
-    it("should have correct default website data", () => {
-      expect(defaultWebSite.name).toBe(t("jsonld.website.name"));
-      expect(defaultWebSite.url).toBe(getBaseUrl());
-      expect(defaultWebSite.potentialAction?.target).toContain("search");
+    it("should generate correct website data with translations", () => {
+      const websiteData = generateWebSiteData(t);
+
+      expect(websiteData.name).toBe(t("jsonld.website.name"));
+      expect(websiteData.url).toBe(getBaseUrl());
+      expect(websiteData.description).toBe(t("jsonld.website.description"));
+      expect(websiteData.potentialAction?.target).toContain("search");
     });
   });
 });

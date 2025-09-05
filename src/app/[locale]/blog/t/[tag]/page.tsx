@@ -86,14 +86,11 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
     },
   });
 
-  const breadcrumbData = generateBreadcrumbData(
-    [
-      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-      { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
-      { name: decodedTag, url: tagUrl },
-    ],
-    tNav
-  );
+  const breadcrumbData = generateBreadcrumbData([
+    { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+    { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
+    { name: decodedTag, url: tagUrl },
+  ]);
   const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
 
   // Call the existing blog page component with the modified search params and tag route flag

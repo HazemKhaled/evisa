@@ -46,13 +46,10 @@ export default async function ContactPage({ params }: ContactPageProps) {
     },
   });
 
-  const breadcrumbData = generateBreadcrumbData(
-    [
-      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-      { name: tNav("breadcrumb.contact"), url: contactUrl },
-    ],
-    tNav
-  );
+  const breadcrumbData = generateBreadcrumbData([
+    { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+    { name: tNav("breadcrumb.contact"), url: contactUrl },
+  ]);
   const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
 
   const faqJsonLd = generateFAQJsonLd([

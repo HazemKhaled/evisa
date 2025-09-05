@@ -92,13 +92,10 @@ export default async function BlogHome({
     },
   });
 
-  const breadcrumbData = generateBreadcrumbData(
-    [
-      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-      { name: tNav("breadcrumb.blog"), url: blogUrl },
-    ],
-    tNav
-  );
+  const breadcrumbData = generateBreadcrumbData([
+    { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+    { name: tNav("breadcrumb.blog"), url: blogUrl },
+  ]);
   const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
 
   // Helper function to build pagination URLs with query parameters

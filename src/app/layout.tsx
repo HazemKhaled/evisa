@@ -1,8 +1,6 @@
 import type { Viewport } from "next";
 import { Cairo, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { JsonLd } from "@/components/json-ld";
-import { generateOrganizationJsonLd, defaultOrganization } from "@/lib/json-ld";
 
 // Cairo font for Arabic, English, and other supported languages
 const cairo = Cairo({
@@ -30,15 +28,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const organizationJsonLd = generateOrganizationJsonLd(defaultOrganization);
-
   return (
     <html suppressHydrationWarning>
       <body
         className={`${cairo.variable} ${geistMono.variable} bg-background text-foreground min-h-full antialiased`}
         style={{ fontFamily: "var(--font-cairo), system-ui, sans-serif" }}
       >
-        <JsonLd data={organizationJsonLd} />
         {children}
       </body>
     </html>

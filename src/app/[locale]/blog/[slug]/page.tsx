@@ -113,14 +113,11 @@ export default async function BlogPost({ params }: BlogPostProps) {
     );
     const articleJsonLd = generateArticleJsonLd(articleData);
 
-    const breadcrumbData = generateBreadcrumbData(
-      [
-        { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-        { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
-        { name: blogPost.frontmatter.title, url: postUrl },
-      ],
-      tNav
-    );
+    const breadcrumbData = generateBreadcrumbData([
+      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+      { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
+      { name: blogPost.frontmatter.title, url: postUrl },
+    ]);
     const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
 
     return (
