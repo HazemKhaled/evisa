@@ -1,8 +1,9 @@
-import { MetadataRoute } from "next";
+import { type MetadataRoute } from "next";
 import { languages } from "@/app/i18n/settings";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com";
   const staticRoutes = [
     "/",
     "/contact",
@@ -11,14 +12,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/terms",
     "/blog",
   ];
-  
+
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
   // Generate entries for each locale and route combination
   languages.forEach(locale => {
     staticRoutes.forEach(route => {
       const url = `${baseUrl}/${locale}${route === "/" ? "" : route}`;
-      
+
       sitemapEntries.push({
         url,
         lastModified: new Date().toISOString(),
@@ -28,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           languages: Object.fromEntries(
             languages.map(lang => [
               lang,
-              `${baseUrl}/${lang}${route === "/" ? "" : route}`
+              `${baseUrl}/${lang}${route === "/" ? "" : route}`,
             ])
           ),
         },

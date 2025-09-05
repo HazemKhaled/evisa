@@ -5,6 +5,7 @@ This comprehensive SEO system provides multilingual support for all metadata, st
 ## Features
 
 ### ✅ Complete SEO Coverage
+
 - **Meta Tags**: Title, description, keywords, author, robots
 - **Open Graph**: Complete OG tags for social media sharing
 - **Twitter Cards**: Optimized Twitter card metadata
@@ -15,6 +16,7 @@ This comprehensive SEO system provides multilingual support for all metadata, st
 - **Manifest**: PWA manifest with multilingual considerations
 
 ### ✅ Multilingual Support
+
 - **8 Languages**: English, Spanish, Arabic, Portuguese, Russian, German, French, Italian
 - **RTL Support**: Proper text direction for Arabic
 - **Locale-specific URLs**: Each language has its own URL structure
@@ -22,6 +24,7 @@ This comprehensive SEO system provides multilingual support for all metadata, st
 - **Localized Content**: All metadata translated per locale
 
 ### ✅ Search Engine Optimization
+
 - **Rich Snippets**: Organization, Website, Article, FAQ, Breadcrumb structured data
 - **Performance**: Optimized for Core Web Vitals
 - **Accessibility**: Proper semantic markup
@@ -35,7 +38,11 @@ This comprehensive SEO system provides multilingual support for all metadata, st
 ```typescript
 import { generatePageMetadata } from "@/lib/pageSEO";
 
-export async function generateMetadata({ params }: { params: { locale: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}) {
   return generatePageMetadata({
     locale: params.locale,
     pathname: "/about",
@@ -51,7 +58,11 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 ```typescript
 import { generateBlogPostMetadata } from "@/lib/pageSEO";
 
-export async function generateMetadata({ params }: { params: { locale: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}) {
   return generateBlogPostMetadata({
     locale: params.locale,
     pathname: "/blog/visa-tips",
@@ -69,7 +80,11 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 ```typescript
 import { generateDestinationMetadata } from "@/lib/pageSEO";
 
-export async function generateMetadata({ params }: { params: { locale: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}) {
   return generateDestinationMetadata({
     locale: params.locale,
     pathname: "/destinations/japan",
@@ -114,31 +129,31 @@ export default function MyPage({ locale }: { locale: string }) {
 ### Structured Data Components
 
 ```tsx
-import { 
+import {
   OrganizationStructuredData,
   BreadcrumbStructuredData,
-  FAQStructuredData 
+  FAQStructuredData,
 } from "@/components/seo/StructuredData";
 
 export default function MyPage({ locale }: { locale: string }) {
   return (
     <>
       <OrganizationStructuredData locale={locale} />
-      <BreadcrumbStructuredData 
-        locale={locale} 
+      <BreadcrumbStructuredData
+        locale={locale}
         items={[
           { name: "Home", url: "/" },
           { name: "Services", url: "/services" },
-        ]} 
+        ]}
       />
-      <FAQStructuredData 
-        locale={locale} 
+      <FAQStructuredData
+        locale={locale}
         faqs={[
           {
             question: "What documents do I need?",
             answer: "You need a valid passport and completed application form.",
           },
-        ]} 
+        ]}
       />
     </>
   );
@@ -180,30 +195,35 @@ NEXT_PUBLIC_YANDEX_VERIFICATION=your_yandex_verification_code
 ## Best Practices
 
 ### 1. Title Optimization
+
 - Keep titles under 60 characters
 - Include primary keyword
 - Make titles unique per page
 - Use locale-specific titles
 
 ### 2. Description Optimization
+
 - Keep descriptions under 160 characters
 - Include call-to-action
 - Use locale-specific descriptions
 - Make descriptions compelling
 
 ### 3. Keywords Strategy
+
 - Use 5-10 relevant keywords
 - Include long-tail keywords
 - Avoid keyword stuffing
 - Use locale-specific keywords
 
 ### 4. Structured Data
+
 - Always include Organization and Website data
 - Add Breadcrumb data for navigation
 - Use FAQ data for common questions
 - Include Article data for blog posts
 
 ### 5. Image Optimization
+
 - Use locale-specific OG images
 - Optimize image sizes (1200x630 for OG)
 - Include alt text
@@ -212,15 +232,19 @@ NEXT_PUBLIC_YANDEX_VERIFICATION=your_yandex_verification_code
 ## Testing
 
 ### Google Rich Results Test
+
 Test your structured data: https://search.google.com/test/rich-results
 
 ### Facebook Sharing Debugger
+
 Test OG tags: https://developers.facebook.com/tools/debug/
 
 ### Twitter Card Validator
+
 Test Twitter cards: https://cards-dev.twitter.com/validator
 
 ### Google Search Console
+
 Monitor your SEO performance and fix any issues.
 
 ## Performance Considerations
