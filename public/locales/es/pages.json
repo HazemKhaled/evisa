@@ -61,10 +61,7 @@
       "related_articles": "Artículos relacionados"
     },
     "meta": {
-      "title": "Blog de Viajes",
-      "description": "Guías expertas de viaje, consejos de visa y perspectivas de destinos para ayudarte a planificar tu viaje perfecto.",
-      "keywords": "blog de viajes, guías de visa, consejos de viaje, guías de destinos, consejos de viaje",
-      "tag_title_template": "{{tag}} - Blog de Viajes",
+      "tag_title_template": "{{tag}} - {{title}}",
       "tag_description_template": "Guías de viaje e información de visa relacionada con {{tag}}. Consejos expertos de viaje y perspectivas de destinos.",
       "tag_keywords_template": "{{tag}}, blog de viajes, guías de visa, consejos de viaje, guías de destinos",
       "post_not_found": "Artículo no encontrado",
