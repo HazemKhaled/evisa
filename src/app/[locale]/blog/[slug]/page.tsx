@@ -280,12 +280,12 @@ export default async function BlogPost({ params }: BlogPostProps) {
               {/* Navigation */}
               <nav
                 className={cn("mb-8 border-t border-gray-200 pt-8")}
-                aria-label="Blog Navigation"
+                aria-label={t("blog.aria.blog_navigation")}
               >
                 <Link
                   href={`/${locale}/blog`}
                   className="inline-flex items-center font-medium text-blue-600 hover:text-blue-800"
-                  aria-label="Return to blog listing"
+                  aria-label={t("blog.aria.return_to_listing")}
                 >
                   {t("blog.post.back_to_blog")}
                 </Link>
@@ -296,7 +296,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
             {relatedPosts.length > 0 && (
               <section
                 className="mx-auto mt-16 max-w-7xl border-t border-gray-200 pt-16"
-                aria-label={`Related Articles - ${relatedPosts.length} similar posts`}
+                aria-label={`${t("blog.aria.related_articles")} - ${relatedPosts.length} similar posts`}
               >
                 <h2 className={cn("mb-8 text-3xl font-bold text-gray-900")}>
                   {t("blog.post.related_articles")}
