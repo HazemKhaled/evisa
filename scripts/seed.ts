@@ -24,6 +24,7 @@ import {
   type NewVisaEligibilityI18n,
 } from "../src/lib/db/schema";
 import * as schema from "../src/lib/db/schema";
+import { languages } from "../src/app/i18n/settings";
 
 // Import all countries data
 import { allCountriesData } from "./countries-data-africa";
@@ -269,12 +270,14 @@ async function insertCountriesWithRobustHandling(
 
       // Insert country translations
       const countryTranslations: NewCountryI18n[] =
-        countryData.translations.map(t => ({
-          countryId: insertedCountry.id,
-          locale: t.locale,
-          name: t.name,
-          description: t.description,
-        }));
+        countryData.translations.map(
+          (t: { locale: string; name: string; description: string }) => ({
+            countryId: insertedCountry.id,
+            locale: t.locale,
+            name: t.name,
+            description: t.description,
+          })
+        );
 
       await db.insert(countriesI18n).values(countryTranslations);
       successCount++;
@@ -290,11 +293,16 @@ async function insertCountriesWithRobustHandling(
     }
   }
 
+  // Calculate actual translation count
+  const totalTranslations = allWorldCountries.reduce((total, country) => {
+    return total + country.translations.length;
+  }, 0);
+
   console.log(`✅ Countries seeding completed!`);
   console.log(`   • Successfully inserted: ${successCount} countries`);
   console.log(`   • Errors: ${errorCount} countries`);
   console.log(
-    `   • Total translations: ${successCount * 8} (8 locales per country)`
+    `   • Total translations: ${totalTranslations} (${languages.length} supported locales)`
   );
 
   if (showDetailedStats) {
@@ -358,12 +366,14 @@ async function insertVisaTypesWithTranslations(
     insertedVisaTypes.push(insertedVisaType.id);
 
     // Insert visa type translations
-    const visaTypeTranslations: NewVisaTypeI18n[] = translations.map(t => ({
-      visaTypeId: insertedVisaType.id,
-      locale: t.locale,
-      name: t.name,
-      description: t.description,
-    }));
+    const visaTypeTranslations: NewVisaTypeI18n[] = translations.map(
+      (t: { locale: string; name: string; description: string }) => ({
+        visaTypeId: insertedVisaType.id,
+        locale: t.locale,
+        name: t.name,
+        description: t.description,
+      })
+    );
 
     await db.insert(visaTypesI18n).values(visaTypeTranslations);
   }
@@ -412,7 +422,7 @@ async function insertVisaEligibilityWithTranslations(
 
     // Insert eligibility translations
     const eligibilityTranslations: NewVisaEligibilityI18n[] = translations.map(
-      t => ({
+      (t: { locale: string; notes: string }) => ({
         visaEligibilityId: insertedEligibility.id,
         locale: t.locale,
         notes: t.notes,
