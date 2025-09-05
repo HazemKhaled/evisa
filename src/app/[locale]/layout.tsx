@@ -3,6 +3,7 @@ import { getTextDirection } from "@/lib/utils";
 import { languages, getLocaleWithRegion } from "../i18n/settings";
 import { Header, Footer } from "@/components/layout";
 import { getTranslation } from "../i18n";
+import { env } from "@/lib/consts";
 
 export async function generateStaticParams() {
   return languages.map(locale => ({ locale }));
@@ -28,7 +29,7 @@ export async function generateMetadata({
       locale: getLocaleWithRegion(locale),
       title: t("site.ogTitle"),
       description: t("site.ogDescription"),
-      siteName: "GetTravelVisa.com",
+      siteName: t("site.title"),
     },
     twitter: {
       card: "summary_large_image",
@@ -44,8 +45,7 @@ export async function generateMetadata({
 function generateAlternateLanguages(
   currentLocale: string
 ): Record<string, string> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com";
+  const baseUrl = env.baseUrl;
   const alternates: Record<string, string> = {};
 
   languages.forEach(locale => {

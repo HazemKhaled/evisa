@@ -20,7 +20,7 @@ interface BlogHomeProps {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: `Travel Blog - GetTravelVisa.com`,
+    title: `Travel Blog`,
     description:
       "Expert travel guides, visa tips, and destination insights to help you plan your perfect trip.",
     keywords:

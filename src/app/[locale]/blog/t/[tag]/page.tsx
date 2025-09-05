@@ -40,7 +40,7 @@ export async function generateMetadata({
   const decodedTag = decodeURIComponent(tag);
 
   return {
-    title: `${decodedTag} - Travel Blog - GetTravelVisa.com`,
+    title: `${decodedTag} - Travel Blog`,
     description: `Travel guides and visa information related to ${decodedTag}. Expert travel advice and destination insights.`,
     keywords: `${decodedTag}, travel blog, visa guides, travel tips, destination guides`,
   };

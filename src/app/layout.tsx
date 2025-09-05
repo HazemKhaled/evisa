@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
 import { Cairo, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -16,24 +16,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
 });
-
-// Root layout metadata - will be overridden by locale-specific layouts
-export const metadata: Metadata = {
-  title: {
-    template: "%s | GetTravelVisa.com",
-    default: "GetTravelVisa.com",
-  },
-  description: "Visa application and travel services platform",
-  robots: {
-    index: true,
-    follow: true,
-  },
-  verification: {
-    google: process.env.GOOGLE_VERIFICATION_ID,
-    yandex: process.env.YANDEX_VERIFICATION_ID,
-    yahoo: process.env.YAHOO_VERIFICATION_ID,
-  },
-};
 
 export const viewport: Viewport = {
   width: "device-width",

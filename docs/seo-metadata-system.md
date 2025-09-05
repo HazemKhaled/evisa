@@ -46,7 +46,7 @@ export async function generateMetadata({
   return generatePageMetadata({
     locale: params.locale,
     pathname: "/about",
-    title: "About Us - GetTravelVisa.com",
+    title: "About Us",
     description: "Learn about our visa processing services",
     keywords: ["about", "visa services", "company"],
   });
@@ -179,17 +179,6 @@ src/
     ├── sitemap.ts           # Dynamic sitemap generation
     ├── robots.ts            # Robots.txt generation
     └── manifest.ts          # PWA manifest
-```
-
-## Environment Variables
-
-Add these to your `.env.local`:
-
-```env
-NEXT_PUBLIC_BASE_URL=https://gettravelvisa.com
-NEXT_PUBLIC_GOOGLE_VERIFICATION=your_google_verification_code
-NEXT_PUBLIC_BING_VERIFICATION=your_bing_verification_code
-NEXT_PUBLIC_YANDEX_VERIFICATION=your_yandex_verification_code
 ```
 
 ## Best Practices
