@@ -1,9 +1,7 @@
 import { type MetadataRoute } from "next";
+import { isProduction, env } from "@/lib/consts";
 
 export default function robots(): MetadataRoute.Robots {
-  // Check if this is production environment
-  const isProduction = process.env.NODE_ENV === "production";
-
   if (isProduction) {
     // Allow all bots on production domain
     return {
@@ -11,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
       },
-      sitemap: `${process.env.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com"}/sitemap.xml`,
+      sitemap: `${env.baseUrl}/sitemap.xml`,
     };
   } else {
     // Deny all bots on non-production domains (staging, localhost, etc.)

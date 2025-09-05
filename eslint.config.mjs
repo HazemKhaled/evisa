@@ -14,9 +14,6 @@ const eslintConfig = [
   // Next.js and TypeScript configs (these include recommended configs)
   ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
 
-  // Prettier config to avoid conflicts
-  ...compat.extends("prettier"),
-
   // Custom rules for better code quality
   {
     rules: {

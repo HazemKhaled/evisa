@@ -6,6 +6,7 @@
 import { loadEnvConfig } from "@next/env";
 import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
+import { getLocalDbPath } from "../src/lib/consts";
 
 // Load environment variables from .env.local
 const projectDir = process.cwd();
@@ -219,7 +220,7 @@ const visaEligibilityDataWithTranslations = [
 ];
 
 function createDatabase() {
-  const dbPath = `${process.cwd()}/${process.env.LOCAL_DB_PATH}`;
+  const dbPath = `${process.cwd()}/${getLocalDbPath()}`;
   const client = createClient({
     url: `file:${dbPath}`,
   });
