@@ -267,7 +267,7 @@ export default async function BlogHome({
             <div className="mt-12 flex justify-center">
               <nav
                 className="flex items-center space-x-2"
-                aria-label="Pagination"
+                aria-label={t("blog.aria.pagination")}
               >
                 {/* Previous */}
                 {currentPage > 1 && (
