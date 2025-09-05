@@ -10,6 +10,7 @@ interface HeaderProps {
 
 export async function Header({ locale }: HeaderProps) {
   const { t: tNav } = await getTranslation(locale, "navigation");
+  const { t: tCommon } = await getTranslation(locale, "common");
 
   return (
     <header className="border-b bg-white shadow-sm">
@@ -20,7 +21,7 @@ export async function Header({ locale }: HeaderProps) {
               href={`/${locale}`}
               className="text-2xl font-bold text-blue-600"
             >
-              GetTravelVisa.com
+              {tCommon("site.name")}
             </Link>
           </div>
           <nav className={cn("hidden space-x-8 md:flex")}>

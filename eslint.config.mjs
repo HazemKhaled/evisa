@@ -1,6 +1,7 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
+import i18next from "eslint-plugin-i18next";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,7 +13,12 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   // Next.js and TypeScript configs (these include recommended configs)
-  ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
+  ...compat.extends(
+    "next/core-web-vitals",
+    "next/typescript",
+    "prettier",
+    "plugin:i18next/recommended"
+  ),
 
   // Custom rules for better code quality
   {
@@ -56,10 +62,13 @@ const eslintConfig = [
     },
   },
 
-  // // Ignore generated files
-  // {
-  //   ignores: ["cloudflare-env.d.ts"],
-  // },
+  // Ignore i18next in test files
+  {
+    files: ["**/*.test.ts", "**/*.test.tsx"],
+    rules: {
+      "i18next/no-literal-string": "off",
+    },
+  },
 
   // Allow var in TypeScript declare blocks for global extensions
   {

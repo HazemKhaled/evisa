@@ -22,6 +22,10 @@
     },
     "info": {
       "title": "Get in Touch",
+      "email_label": "Email",
+      "phone_label": "Phone",
+      "address_label": "Address",
+      "hours_label": "Hours",
       "email": "hello@gettravelvisa.com",
       "phone": "+1 (555) 123-4567",
       "address": "123 Travel Street, Visa City, VC 12345",
@@ -73,6 +77,32 @@
       "of": "of",
       "previous": "Previous",
       "next": "Next"
+    }
+  },
+  "jsonld": {
+    "organization": {
+      "name": "GetTravelVisa.com",
+      "description": "Your trusted visa application partner. Simplify your visa application process with our comprehensive visa checking and application services.",
+      "contact_type": "customer service"
+    },
+    "website": {
+      "name": "GetTravelVisa.com",
+      "description": "Simplify your visa application process with our comprehensive visa checking and application services. Get expert guidance for travel visas worldwide."
+    },
+    "service": {
+      "name": "Visa Application Services",
+      "description": "Comprehensive visa checking and application services for international travel",
+      "area_served": "Worldwide",
+      "service_type": "Travel Services"
+    },
+    "blog": {
+      "title": "Travel Blog - GetTravelVisa.com",
+      "description": "Expert travel guides, visa tips, and destination insights to help you plan your perfect trip.",
+      "article_section": "Travel Blog"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "Get in touch with our team. We're here to help you with your visa questions and travel planning needs."
     }
   },
   "errors": {

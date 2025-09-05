@@ -32,6 +32,7 @@ export async function getCountryNames(
   // Check if database is available
   const isDatabaseReady = await isDatabaseAvailableAsync();
   if (!isDatabaseReady) {
+    // eslint-disable-next-line no-console
     console.warn("Database not available, using country codes as fallback");
     return countryCodes;
   }
@@ -65,6 +66,7 @@ export async function getCountryNames(
     // Return names in the same order as input codes, with fallback to code if not found
     return countryCodes.map(code => countryMap.get(code) || code);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn(
       `Failed to get country names for ${countryCodes.join(", ")} (${locale}):`,
       error
@@ -80,6 +82,7 @@ export async function getAllCountries(
 ): Promise<CountryWithI18n[]> {
   const isDatabaseReady = await isDatabaseAvailableAsync();
   if (!isDatabaseReady) {
+    // eslint-disable-next-line no-console
     console.warn("Database not available, using country codes as fallback");
     return [];
   }
@@ -111,6 +114,7 @@ export async function getAllCountries(
       localizedName: result.localizedName || result.name,
     }));
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn(`Failed to get all countries for locale ${locale}:`, error);
     return [];
   }
@@ -125,6 +129,7 @@ export async function getCountryByCode(
 ): Promise<CountryWithI18n | null> {
   const isDatabaseReady = await isDatabaseAvailableAsync();
   if (!isDatabaseReady) {
+    // eslint-disable-next-line no-console
     console.warn("Database not available");
     return null;
   }
@@ -164,6 +169,7 @@ export async function getCountryByCode(
       localizedName: result.localizedName || result.name,
     };
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn(`Failed to get country by code ${countryCode}:`, error);
     return null;
   }
@@ -183,6 +189,7 @@ export async function searchCountries(
 
   const isDatabaseReady = await isDatabaseAvailableAsync();
   if (!isDatabaseReady) {
+    // eslint-disable-next-line no-console
     console.warn("Database not available");
     return [];
   }
@@ -231,6 +238,7 @@ export async function searchCountries(
         localizedName: result.localizedName || result.name,
       }));
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn(`Failed to search countries with query "${query}":`, error);
     return [];
   }
@@ -266,6 +274,7 @@ export async function getCountriesByCodes(
 
   const isDatabaseReady = await isDatabaseAvailableAsync();
   if (!isDatabaseReady) {
+    // eslint-disable-next-line no-console
     console.warn("Database not available");
     return [];
   }
@@ -307,6 +316,7 @@ export async function getCountriesByCodes(
       .map(code => countryMap.get(code))
       .filter((country): country is CountryWithI18n => country !== undefined);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn(
       `Failed to get countries by codes ${countryCodes.join(", ")}:`,
       error
