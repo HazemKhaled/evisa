@@ -39,6 +39,7 @@
   "blog": {
     "title": "Travel Blog",
     "subtitle": "Expert travel guides, visa tips, and destination insights to help you plan your perfect trip.",
+    "keywords": "travel blog, visa guides, travel tips, destination guides, travel advice",
     "empty_state": "No blog posts available yet. Check back soon!",
     "filters": {
       "tag_prefix": "Tag:",
@@ -60,6 +61,9 @@
       "related_articles": "Related Articles"
     },
     "meta": {
+      "tag_title_template": "{{tag}} - {{title}}",
+      "tag_description_template": "Travel guides and visa information related to {{tag}}. Expert travel advice and destination insights.",
+      "tag_keywords_template": "{{tag}}, travel blog, visa guides, travel tips, destination guides",
       "post_not_found": "Post Not Found",
       "post_not_found_description": "The requested blog post could not be found."
     },

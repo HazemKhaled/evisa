@@ -39,6 +39,7 @@
   "blog": {
     "title": "Blog de Viagem",
     "subtitle": "Guias especializados de viagem, dicas de visto e percepções de destinos para ajudar você a planejar sua viagem perfeita.",
+    "keywords": "blog de viagem, guias de visto, dicas de viagem, guias de destinos, assistência de viagem",
     "empty_state": "Ainda não há artigos de blog disponíveis. Volte em breve!",
     "filters": {
       "tag_prefix": "Tag:",
@@ -60,6 +61,12 @@
       "related_articles": "Artigos relacionados"
     },
     "meta": {
+      "title": "Blog de Viagem",
+      "description": "Guias especializados de viagem, dicas de visto e percepções de destinos para ajudar você a planejar sua viagem perfeita.",
+      "keywords": "blog de viagem, guias de visto, dicas de viagem, guias de destinos, assistência de viagem",
+      "tag_title_template": "{{tag}} - Blog de Viagem",
+      "tag_description_template": "Guias de viagem e informações de visto relacionadas a {{tag}}. Conselhos especializados de viagem e percepções de destinos.",
+      "tag_keywords_template": "{{tag}}, blog de viagem, guias de visto, dicas de viagem, guias de destinos",
       "post_not_found": "Artigo não encontrado",
       "post_not_found_description": "O artigo do blog solicitado não foi encontrado."
     },
