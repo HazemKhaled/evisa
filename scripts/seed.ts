@@ -3,8 +3,13 @@
  * This script populates the database with initial data for countries, visa types, and eligibility
  * using the new normalized i18n table structure
  */
+import { loadEnvConfig } from "@next/env";
 import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
+
+// Load environment variables from .env.local
+const projectDir = process.cwd();
+loadEnvConfig(projectDir);
 import {
   countries,
   countriesI18n,
@@ -212,75 +217,87 @@ const visaEligibilityDataWithTranslations = [
   },
 ];
 
-async function seedCountries() {
-  console.log("🌍 Starting comprehensive countries seeding...");
+function createDatabase() {
+  const dbPath = `${process.cwd()}/${process.env.LOCAL_DB_PATH}`;
+  const client = createClient({
+    url: `file:${dbPath}`,
+  });
+  return drizzle(client, { schema });
+}
+
+async function insertCountriesWithRobustHandling(
+  db: ReturnType<typeof createDatabase>,
+  clearExisting = false,
+  showDetailedStats = false
+) {
+  if (clearExisting) {
+    console.log("🧹 Clearing existing data...");
+    try {
+      await db.delete(countriesI18n);
+      await db.delete(visaEligibilityI18n);
+      await db.delete(visaTypesI18n);
+      await db.delete(visaEligibility);
+      await db.delete(visaTypes);
+      await db.delete(countries);
+      console.log("✅ Existing data cleared");
+    } catch (error) {
+      console.log(`⚠️ Error clearing data: ${error}`);
+      console.log("ℹ️ Continuing with seeding...");
+    }
+  }
+
+  console.log("📍 Inserting data...");
   console.log(`📊 Total countries to seed: ${allWorldCountries.length}`);
 
-  try {
-    // Create LibSQL client for seed script using local SQLite file
-    const dbPath = `${process.cwd()}/${process.env.LOCAL_DB_PATH}`;
-    const client = createClient({
-      url: `file:${dbPath}`,
-    });
-    const db = drizzle(client, { schema });
+  const insertedCountries: Record<string, number> = {};
+  let successCount = 0;
+  let errorCount = 0;
 
-    // Clear existing countries data (optional - comment out if you want to keep existing data)
-    console.log("🧹 Clearing existing countries data...");
-    const x = await db.delete(countriesI18n);
-    console.log("x", x);
-    await db.delete(countries);
-    console.log("✅ Existing countries data cleared");
+  for (const countryData of allWorldCountries) {
+    try {
+      const [insertedCountry] = await db
+        .insert(countries)
+        .values({
+          code: countryData.code,
+          continent: countryData.continent,
+          region: countryData.region,
+          isActive: countryData.isActive,
+        })
+        .returning();
 
-    // Insert countries
-    console.log("📍 Inserting countries...");
-    const insertedCountries: Record<string, number> = {};
-    let successCount = 0;
-    let errorCount = 0;
+      insertedCountries[countryData.code] = insertedCountry.id;
 
-    for (const countryData of allWorldCountries) {
-      try {
-        const [insertedCountry] = await db
-          .insert(countries)
-          .values({
-            code: countryData.code,
-            continent: countryData.continent,
-            region: countryData.region,
-            isActive: countryData.isActive,
-          })
-          .returning();
+      // Insert country translations
+      const countryTranslations: NewCountryI18n[] =
+        countryData.translations.map(t => ({
+          countryId: insertedCountry.id,
+          locale: t.locale,
+          name: t.name,
+          description: t.description,
+        }));
 
-        insertedCountries[countryData.code] = insertedCountry.id;
+      await db.insert(countriesI18n).values(countryTranslations);
+      successCount++;
 
-        // Insert country translations
-        const countryTranslations: NewCountryI18n[] =
-          countryData.translations.map(t => ({
-            countryId: insertedCountry.id,
-            locale: t.locale,
-            name: t.name,
-            description: t.description,
-          }));
-
-        await db.insert(countriesI18n).values(countryTranslations);
-        successCount++;
-
-        if (successCount % 50 === 0) {
-          console.log(
-            `   ✅ Processed ${successCount}/${allWorldCountries.length} countries...`
-          );
-        }
-      } catch (error) {
-        errorCount++;
-        console.error(`❌ Error inserting country ${countryData.code}:`, error);
+      if (successCount % 50 === 0) {
+        console.log(
+          `   ✅ Processed ${successCount}/${allWorldCountries.length} countries...`
+        );
       }
+    } catch (error) {
+      errorCount++;
+      console.error(`❌ Error inserting country ${countryData.code}:`, error);
     }
+  }
 
-    console.log(`✅ Countries seeding completed!`);
-    console.log(`   • Successfully inserted: ${successCount} countries`);
-    console.log(`   • Errors: ${errorCount} countries`);
-    console.log(
-      `   • Total translations: ${successCount * 8} (8 locales per country)`
-    );
+  console.log(`✅ Countries seeding completed!`);
+  console.log(`   • Successfully inserted: ${successCount} countries`);
+  console.log(`   • Errors: ${errorCount} countries`);
+  console.log(
+    `   • Total translations: ${successCount * 8} (8 locales per country)`
+  );
 
+  if (showDetailedStats) {
     // Display summary by continent
     const continentSummary = allWorldCountries.reduce(
       (acc, country) => {
@@ -299,6 +316,124 @@ async function seedCountries() {
       "\n🎉 All countries have been successfully seeded with multilingual support!"
     );
     console.log("🌐 Supported locales: en, ar, es, fr, pt, ru, de, it");
+  }
+
+  return insertedCountries;
+}
+
+async function insertVisaTypesWithTranslations(
+  db: ReturnType<typeof createDatabase>,
+  insertedCountries: Record<string, number>
+) {
+  console.log("🛂 Inserting visa types...");
+  const insertedVisaTypes: number[] = [];
+
+  for (const { visaType, translations } of visaTypeDataWithTranslations) {
+    const destinationId = insertedCountries[visaType.destinationCode];
+    if (!destinationId) {
+      console.warn(
+        `⚠️ Destination ${visaType.destinationCode} not found, skipping visa type`
+      );
+      continue;
+    }
+
+    const visaTypeData: NewVisaType = {
+      destinationId,
+      type: visaType.type,
+      duration: visaType.duration,
+      processingTime: visaType.processingTime,
+      fee: visaType.fee,
+      currency: visaType.currency,
+      requiresInterview: visaType.requiresInterview,
+      isMultiEntry: visaType.isMultiEntry,
+      requirements: visaType.requirements,
+      documents: visaType.documents,
+      isActive: visaType.isActive,
+    };
+
+    const [insertedVisaType] = await db
+      .insert(visaTypes)
+      .values(visaTypeData)
+      .returning();
+    insertedVisaTypes.push(insertedVisaType.id);
+
+    // Insert visa type translations
+    const visaTypeTranslations: NewVisaTypeI18n[] = translations.map(t => ({
+      visaTypeId: insertedVisaType.id,
+      locale: t.locale,
+      name: t.name,
+      description: t.description,
+    }));
+
+    await db.insert(visaTypesI18n).values(visaTypeTranslations);
+  }
+
+  console.log(
+    `✅ Inserted ${insertedVisaTypes.length} visa types with translations`
+  );
+  return insertedVisaTypes;
+}
+
+async function insertVisaEligibilityWithTranslations(
+  db: ReturnType<typeof createDatabase>,
+  insertedCountries: Record<string, number>,
+  insertedVisaTypes: number[]
+) {
+  console.log("📋 Inserting visa eligibility...");
+  let eligibilityCount = 0;
+
+  for (const {
+    eligibility,
+    translations,
+  } of visaEligibilityDataWithTranslations) {
+    const destinationId = insertedCountries[eligibility.destinationCode];
+    const passportId = insertedCountries[eligibility.passportCode];
+    const visaTypeId = insertedVisaTypes[eligibility.visaTypeIndex];
+
+    if (!destinationId || !passportId || !visaTypeId) {
+      console.warn(`⚠️ Missing IDs for eligibility rule, skipping`);
+      continue;
+    }
+
+    const eligibilityData: NewVisaEligibility = {
+      destinationId,
+      passportId,
+      visaTypeId,
+      eligibilityStatus: eligibility.eligibilityStatus,
+      maxStayDays: eligibility.maxStayDays,
+      isActive: eligibility.isActive,
+    };
+
+    const [insertedEligibility] = await db
+      .insert(visaEligibility)
+      .values(eligibilityData)
+      .returning();
+    eligibilityCount++;
+
+    // Insert eligibility translations
+    const eligibilityTranslations: NewVisaEligibilityI18n[] = translations.map(
+      t => ({
+        visaEligibilityId: insertedEligibility.id,
+        locale: t.locale,
+        notes: t.notes,
+      })
+    );
+
+    await db.insert(visaEligibilityI18n).values(eligibilityTranslations);
+  }
+
+  console.log(
+    `✅ Inserted ${eligibilityCount} visa eligibility rules with translations`
+  );
+  return eligibilityCount;
+}
+
+async function seedCountries() {
+  console.log("🌍 Starting comprehensive countries seeding...");
+
+  try {
+    const db = createDatabase();
+    await insertCountriesWithRobustHandling(db, true, true);
   } catch (error) {
     console.error("❌ Error seeding countries:", error);
     throw error;
@@ -309,138 +444,22 @@ async function seed() {
   console.log("🌱 Starting database seeding with i18n structure...");
 
   try {
-    // Create LibSQL client for seed script using local SQLite file
-    const dbPath = `${process.cwd()}/${process.env.LOCAL_DB_PATH}`;
-    const client = createClient({
-      url: `file:${dbPath}`,
-    });
-    const db = drizzle(client, { schema });
+    const db = createDatabase();
 
-    // Insert countries
-    console.log("📍 Inserting countries...");
-    const insertedCountries: Record<string, number> = {};
+    // Insert countries using robust handler with clearing enabled
+    const insertedCountries = await insertCountriesWithRobustHandling(db, true);
 
-    for (const countryData of allWorldCountries) {
-      const [insertedCountry] = await db
-        .insert(countries)
-        .values({
-          code: countryData.code,
-          continent: countryData.continent,
-          region: countryData.region,
-          isActive: countryData.isActive,
-        })
-        .returning();
-      insertedCountries[countryData.code] = insertedCountry.id;
-
-      // Insert country translations
-      const countryTranslations: NewCountryI18n[] =
-        countryData.translations.map(t => ({
-          countryId: insertedCountry.id,
-          locale: t.locale,
-          name: t.name,
-          description: t.description,
-        }));
-
-      await db.insert(countriesI18n).values(countryTranslations);
-    }
-
-    console.log(
-      `✅ Inserted ${Object.keys(insertedCountries).length} countries with translations (${allWorldCountries.length} total)`
+    // Insert visa types with translations
+    const insertedVisaTypes = await insertVisaTypesWithTranslations(
+      db,
+      insertedCountries
     );
 
-    // Insert visa types
-    console.log("🛂 Inserting visa types...");
-    const insertedVisaTypes: number[] = [];
-
-    for (const { visaType, translations } of visaTypeDataWithTranslations) {
-      const destinationId = insertedCountries[visaType.destinationCode];
-      if (!destinationId) {
-        console.warn(
-          `⚠️ Destination ${visaType.destinationCode} not found, skipping visa type`
-        );
-        continue;
-      }
-
-      const visaTypeData: NewVisaType = {
-        destinationId,
-        type: visaType.type,
-        duration: visaType.duration,
-        processingTime: visaType.processingTime,
-        fee: visaType.fee,
-        currency: visaType.currency,
-        requiresInterview: visaType.requiresInterview,
-        isMultiEntry: visaType.isMultiEntry,
-        requirements: visaType.requirements,
-        documents: visaType.documents,
-        isActive: visaType.isActive,
-      };
-
-      const [insertedVisaType] = await db
-        .insert(visaTypes)
-        .values(visaTypeData)
-        .returning();
-      insertedVisaTypes.push(insertedVisaType.id);
-
-      // Insert visa type translations
-      const visaTypeTranslations: NewVisaTypeI18n[] = translations.map(t => ({
-        visaTypeId: insertedVisaType.id,
-        locale: t.locale,
-        name: t.name,
-        description: t.description,
-      }));
-
-      await db.insert(visaTypesI18n).values(visaTypeTranslations);
-    }
-
-    console.log(
-      `✅ Inserted ${insertedVisaTypes.length} visa types with translations`
-    );
-
-    // Insert visa eligibility
-    console.log("📋 Inserting visa eligibility...");
-    let eligibilityCount = 0;
-
-    for (const {
-      eligibility,
-      translations,
-    } of visaEligibilityDataWithTranslations) {
-      const destinationId = insertedCountries[eligibility.destinationCode];
-      const passportId = insertedCountries[eligibility.passportCode];
-      const visaTypeId = insertedVisaTypes[eligibility.visaTypeIndex];
-
-      if (!destinationId || !passportId || !visaTypeId) {
-        console.warn(`⚠️ Missing IDs for eligibility rule, skipping`);
-        continue;
-      }
-
-      const eligibilityData: NewVisaEligibility = {
-        destinationId,
-        passportId,
-        visaTypeId,
-        eligibilityStatus: eligibility.eligibilityStatus,
-        maxStayDays: eligibility.maxStayDays,
-        isActive: eligibility.isActive,
-      };
-
-      const [insertedEligibility] = await db
-        .insert(visaEligibility)
-        .values(eligibilityData)
-        .returning();
-      eligibilityCount++;
-
-      // Insert eligibility translations
-      const eligibilityTranslations: NewVisaEligibilityI18n[] =
-        translations.map(t => ({
-          visaEligibilityId: insertedEligibility.id,
-          locale: t.locale,
-          notes: t.notes,
-        }));
-
-      await db.insert(visaEligibilityI18n).values(eligibilityTranslations);
-    }
-
-    console.log(
-      `✅ Inserted ${eligibilityCount} visa eligibility rules with translations`
+    // Insert visa eligibility with translations
+    const eligibilityCount = await insertVisaEligibilityWithTranslations(
+      db,
+      insertedCountries,
+      insertedVisaTypes
     );
 
     console.log("🎉 Database seeding completed successfully!");
