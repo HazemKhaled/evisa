@@ -18,6 +18,19 @@ import {
 import { type BlogPostData } from "../blog";
 import { getBaseUrl } from "../utils/urls";
 
+// Mock the i18n module
+jest.mock("../../app/i18n", () => ({
+  getTranslation: jest.fn().mockResolvedValue({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        "jsonld.organization.name": "GetTravelVisa.com",
+        "jsonld.blog.title": "Travel Blog",
+      };
+      return translations[key] || key;
+    },
+  }),
+}));
+
 describe("JSON-LD utilities", () => {
   describe("generateOrganizationJsonLd", () => {
     it("should generate organization JSON-LD with all fields", () => {
@@ -27,16 +40,8 @@ describe("JSON-LD utilities", () => {
         logo: "https://test.com/logo.png",
         description: "Test description",
         contactPoint: {
-          telephone: "+1-555-0123",
           contactType: "customer service",
           email: "test@test.com",
-        },
-        address: {
-          streetAddress: "123 Test St",
-          addressLocality: "Test City",
-          addressRegion: "TS",
-          postalCode: "12345",
-          addressCountry: "US",
         },
       };
 
@@ -50,16 +55,8 @@ describe("JSON-LD utilities", () => {
         logo: "https://test.com/logo.png",
         description: "Test description",
         contactPoint: {
-          telephone: "+1-555-0123",
           contactType: "customer service",
           email: "test@test.com",
-        },
-        address: {
-          streetAddress: "123 Test St",
-          addressLocality: "Test City",
-          addressRegion: "TS",
-          postalCode: "12345",
-          addressCountry: "US",
         },
       });
     });
@@ -424,7 +421,7 @@ describe("JSON-LD utilities", () => {
   });
 
   describe("generateBlogPostJsonLd", () => {
-    it("should generate blog post JSON-LD from BlogPostData", () => {
+    it("should generate blog post JSON-LD from BlogPostData", async () => {
       const blogPost: BlogPostData = {
         content: "Test content",
         slug: "test-post",
@@ -441,7 +438,11 @@ describe("JSON-LD utilities", () => {
         destinationNames: ["United States"],
       };
 
-      const result = generateBlogPostJsonLd(blogPost, "en", "https://test.com");
+      const result = await generateBlogPostJsonLd(
+        blogPost,
+        "en",
+        "https://test.com"
+      );
 
       expect(result).toEqual({
         headline: "Test Blog Post",
@@ -470,7 +471,7 @@ describe("JSON-LD utilities", () => {
       });
     });
 
-    it("should handle blog post without lastUpdated", () => {
+    it("should handle blog post without lastUpdated", async () => {
       const blogPost: BlogPostData = {
         content: "Test content",
         slug: "test-post",
@@ -485,7 +486,11 @@ describe("JSON-LD utilities", () => {
         },
       };
 
-      const result = generateBlogPostJsonLd(blogPost, "en", "https://test.com");
+      const result = await generateBlogPostJsonLd(
+        blogPost,
+        "en",
+        "https://test.com"
+      );
 
       expect(result.dateModified).toBe("2023-01-01");
     });

@@ -1,3 +1,4 @@
+import { getTranslation } from "@/app/i18n";
 import { type BlogPostData } from "./blog";
 import { env } from "./consts";
 
@@ -211,12 +212,13 @@ export function generateServiceJsonLd(service: {
 /**
  * Generate blog post article JSON-LD from BlogPostData
  */
-export function generateBlogPostJsonLd(
+export async function generateBlogPostJsonLd(
   post: BlogPostData,
   locale: string,
   baseUrl: string
-): Article {
+): Promise<Article> {
   const postUrl = `${baseUrl}/${locale}/blog/${post.slug}`;
+  const { t } = await getTranslation(locale, "pages");
 
   return {
     headline: post.frontmatter.title,
@@ -227,7 +229,7 @@ export function generateBlogPostJsonLd(
       type: "Person",
     },
     publisher: {
-      name: "GetTravelVisa.com",
+      name: t("jsonld.organization.name"),
       logo: {
         url: `${baseUrl}/logo.png`,
         width: 200,
@@ -240,7 +242,7 @@ export function generateBlogPostJsonLd(
       type: "WebPage",
       id: postUrl,
     },
-    articleSection: "Travel Blog",
+    articleSection: t("jsonld.blog.title"),
     keywords: post.frontmatter.tags,
   };
 }
@@ -258,16 +260,8 @@ export function generateOrganizationData(
     logo: `${baseUrl}/logo.png`,
     description: t("jsonld.organization.description"),
     contactPoint: {
-      telephone: "+1-555-0123",
       contactType: t("jsonld.organization.contact_type"),
       email: "info@gettravelvisa.com",
-    },
-    address: {
-      streetAddress: "123 Travel Street",
-      addressLocality: "New York",
-      addressRegion: "NY",
-      postalCode: "10001",
-      addressCountry: "US",
     },
   };
 }
@@ -368,16 +362,8 @@ export const defaultOrganization: Organization = {
   description:
     "Your trusted visa application partner. Simplify your visa application process with our comprehensive visa checking and application services.",
   contactPoint: {
-    telephone: "+1-555-0123",
     contactType: "customer service",
     email: "info@gettravelvisa.com",
-  },
-  address: {
-    streetAddress: "123 Travel Street",
-    addressLocality: "New York",
-    addressRegion: "NY",
-    postalCode: "10001",
-    addressCountry: "US",
   },
 };
 

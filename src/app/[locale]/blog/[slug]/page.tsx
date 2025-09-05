@@ -265,7 +265,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
               {blogPost.frontmatter.tags && (
                 <section
                   className={cn("mb-8 border-t border-gray-200 pt-8")}
-                  aria-label="Article Tags"
+                  aria-label={t("blog.post.tags")}
                 >
                   <h3 className="mb-3 text-lg font-semibold text-gray-900">
                     {t("blog.post.tags")}

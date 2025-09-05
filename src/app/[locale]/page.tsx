@@ -29,7 +29,7 @@ export default async function LocalePage({
     description: tHero("subheadline"),
     url: pageUrl,
     isPartOf: {
-      name: "GetTravelVisa.com",
+      name: t("jsonld.website.name"),
       url: baseUrl,
     },
   });

@@ -59,7 +59,6 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   const { page = "1", destination } = await searchParams;
 
   // We need to get translations for this component
-  const { getTranslation } = await import("@/app/i18n");
   const { t } = await getTranslation(locale, "pages");
   const { t: tNav } = await getTranslation(locale, "navigation");
 
@@ -79,10 +78,10 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   // Generate JSON-LD for the tag page
   const webpageJsonLd = generateWebPageJsonLd({
     name: `${decodedTag} - ${t("jsonld.blog.title")}`,
-    description: `Travel guides and visa information related to ${decodedTag}. Expert travel advice and destination insights.`,
+    description: t("jsonld.blog.description"),
     url: tagUrl,
     isPartOf: {
-      name: t("jsonld.organization.name"),
+      name: t("jsonld.website.name"),
       url: baseUrl,
     },
   });
