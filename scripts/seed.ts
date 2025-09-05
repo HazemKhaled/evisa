@@ -218,7 +218,7 @@ async function seedCountries() {
 
   try {
     // Create LibSQL client for seed script using local SQLite file
-    const dbPath = `${process.cwd()}/local-db.sqlite`;
+    const dbPath = `${process.cwd()}/${process.env.LOCAL_DB_PATH}`;
     const client = createClient({
       url: `file:${dbPath}`,
     });
@@ -226,7 +226,8 @@ async function seedCountries() {
 
     // Clear existing countries data (optional - comment out if you want to keep existing data)
     console.log("🧹 Clearing existing countries data...");
-    await db.delete(countriesI18n);
+    const x = await db.delete(countriesI18n);
+    console.log("x", x);
     await db.delete(countries);
     console.log("✅ Existing countries data cleared");
 
@@ -309,7 +310,7 @@ async function seed() {
 
   try {
     // Create LibSQL client for seed script using local SQLite file
-    const dbPath = `${process.cwd()}/local-db.sqlite`;
+    const dbPath = `${process.cwd()}/${process.env.LOCAL_DB_PATH}`;
     const client = createClient({
       url: `file:${dbPath}`,
     });
