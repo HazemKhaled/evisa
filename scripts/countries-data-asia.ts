@@ -2,7 +2,7 @@
  * Asian countries data for database seeding
  */
 
-import { CountryData } from "./countries-data";
+import { type CountryData } from "./countries-data-africa";
 
 export const asianCountriesData: CountryData[] = [
   {

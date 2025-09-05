@@ -2,7 +2,7 @@
  * North and South American countries data for database seeding
  */
 
-import { CountryData } from "./countries-data";
+import { type CountryData } from "./countries-data-africa";
 
 export const americasCountriesData: CountryData[] = [
   // North America

@@ -1,5 +1,5 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { MDXPageData } from "@/lib/mdx";
+import { type MDXPageData } from "@/lib/mdx";
 import { cn } from "@/lib/utils";
 
 interface MDXContentProps {

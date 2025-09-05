@@ -2,7 +2,7 @@
  * Oceanian countries data for database seeding
  */
 
-import { CountryData } from "./countries-data";
+import { type CountryData } from "./countries-data-africa";
 
 export const oceaniaCountriesData: CountryData[] = [
   {

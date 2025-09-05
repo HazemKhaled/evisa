@@ -1,4 +1,4 @@
-import { MetadataRoute } from "next";
+import { type MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   // Check if this is production environment
@@ -11,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
       },
-      sitemap: `${process.env.SITE_URL || "https://gettravelvisa.com"}/sitemap.xml`,
+      sitemap: `${process.env.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com"}/sitemap.xml`,
     };
   } else {
     // Deny all bots on non-production domains (staging, localhost, etc.)
