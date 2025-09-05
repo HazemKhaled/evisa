@@ -37,7 +37,10 @@ export async function loadTranslations<T extends TranslationNamespace[]>(
     >["t"];
   };
 
-  const result = {} as Record<string, any>;
+  const result = {} as Record<
+    string,
+    Awaited<ReturnType<typeof getTranslation>>["t"]
+  >;
 
   namespaces.forEach((ns, index) => {
     const key = `t${ns.charAt(0).toUpperCase() + ns.slice(1)}`;

@@ -1,5 +1,5 @@
 import { type BlogPostData } from "./blog";
-import { getBaseUrl } from "./utils/urls";
+import { env } from "./consts";
 
 /**
  * JSON-LD structured data utilities for SEO
@@ -251,7 +251,7 @@ export function generateBlogPostJsonLd(
 export function generateOrganizationData(
   t: (key: string) => string
 ): Organization {
-  const baseUrl = getBaseUrl();
+  const baseUrl = env.baseUrl;
   return {
     name: t("jsonld.organization.name"),
     url: baseUrl,
@@ -276,7 +276,7 @@ export function generateOrganizationData(
  * Generate website data with translations
  */
 export function generateWebSiteData(t: (key: string) => string): WebSite {
-  const baseUrl = getBaseUrl();
+  const baseUrl = env.baseUrl;
   return {
     name: t("jsonld.website.name"),
     url: baseUrl,
@@ -326,7 +326,7 @@ export function generateBlogPostJsonLdWithTranslations(
     publisher: {
       name: t("jsonld.organization.name"),
       logo: {
-        url: `${getBaseUrl()}/logo.png`,
+        url: `${env.baseUrl}/logo.png`,
         width: 200,
         height: 60,
       },
@@ -363,8 +363,8 @@ export function generateBreadcrumbData(
  */
 export const defaultOrganization: Organization = {
   name: "GetTravelVisa.com",
-  url: getBaseUrl(),
-  logo: `${getBaseUrl()}/logo.png`,
+  url: env.baseUrl,
+  logo: `${env.baseUrl}/logo.png`,
   description:
     "Your trusted visa application partner. Simplify your visa application process with our comprehensive visa checking and application services.",
   contactPoint: {
@@ -386,11 +386,11 @@ export const defaultOrganization: Organization = {
  */
 export const defaultWebSite: WebSite = {
   name: "GetTravelVisa.com",
-  url: getBaseUrl(),
+  url: env.baseUrl,
   description:
     "Simplify your visa application process with our comprehensive visa checking and application services. Get expert guidance for travel visas worldwide.",
   potentialAction: {
-    target: `${getBaseUrl()}/search?q={search_term_string}`,
+    target: `${env.baseUrl}/search?q={search_term_string}`,
     queryInput: "required name=search_term_string",
   },
 };

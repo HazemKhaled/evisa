@@ -23,5 +23,10 @@
     "address": "Büroadresse",
     "social_media": "Soziale Medien",
     "copyright": "© {{year}} GetTravelVisa.com Plattform. Alle Rechte vorbehalten."
+  },
+  "breadcrumb": {
+    "home": "Startseite",
+    "blog": "Reise-Blog",
+    "contact": "Kontakt"
   }
 }

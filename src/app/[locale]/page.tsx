@@ -1,6 +1,6 @@
 import { getTranslation } from "../i18n";
 import { cn } from "@/lib/utils";
-import { getBaseUrl } from "@/lib/utils/urls";
+import { env } from "@/lib/consts";
 import { JsonLd } from "@/components/json-ld";
 import {
   generateWebPageJsonLd,
@@ -20,7 +20,7 @@ export default async function LocalePage({
   const { t: tFeatures } = await getTranslation(locale, "features");
   const { t } = await getTranslation(locale, "pages");
 
-  const baseUrl = getBaseUrl();
+  const baseUrl = env.baseUrl;
   const pageUrl = `${baseUrl}/${locale}`;
 
   // Generate JSON-LD for the home page

@@ -57,5 +57,31 @@
       "previous": "Precedente",
       "next": "Successivo"
     }
+  },
+  "jsonld": {
+    "organization": {
+      "name": "GetTravelVisa.com",
+      "description": "Il vostro partner affidabile per le richieste di visto. Semplificate il processo di richiesta del visto con i nostri servizi completi di verifica e richiesta visto.",
+      "contact_type": "servizio clienti"
+    },
+    "website": {
+      "name": "GetTravelVisa.com",
+      "description": "Semplificate il processo di richiesta del visto con i nostri servizi completi di verifica e richiesta visto. Ottenete consulenza esperta per i visti di viaggio in tutto il mondo."
+    },
+    "service": {
+      "name": "Servizi di richiesta visto",
+      "description": "Servizi completi di verifica e richiesta visto per viaggi internazionali",
+      "area_served": "Mondiale",
+      "service_type": "Servizi di viaggio"
+    },
+    "blog": {
+      "title": "Blog di viaggio - GetTravelVisa.com",
+      "description": "Guide di viaggio esperte, consigli sui visti e approfondimenti sulle destinazioni per aiutarvi a pianificare il vostro viaggio perfetto.",
+      "article_section": "Blog di viaggio"
+    },
+    "contact": {
+      "title": "Contattaci",
+      "description": "Mettetevi in contatto con il nostro team. Siamo qui per aiutarvi con le vostre domande sui visti e le esigenze di pianificazione del viaggio."
+    }
   }
 }

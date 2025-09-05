@@ -4,7 +4,7 @@ import Image from "next/image";
 import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
 import { type BlogPostData } from "@/lib/blog";
 import { isRTL, cn } from "@/lib/utils";
-import { getBaseUrl } from "@/lib/utils/urls";
+import { env } from "@/lib/consts";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
@@ -73,7 +73,7 @@ export default async function BlogHome({
 
   const isCurrentRTL = isRTL(locale);
 
-  const baseUrl = getBaseUrl();
+  const baseUrl = env.baseUrl;
   const blogUrl = `${baseUrl}/${locale}/blog`;
 
   // Generate JSON-LD for the blog page
