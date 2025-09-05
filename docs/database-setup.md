@@ -179,13 +179,11 @@ The seed script populates:
 ```
 drizzle/                    # Drizzle Kit generated files
 ├── 0000_*.sql             # Schema migrations (sequential)
-├── seed.sql               # Sample data population
 └── meta/                  # Migration metadata
 
 migrations/                 # Wrangler migration files (copied from drizzle/)
 scripts/
 ├── seed.ts                # TypeScript seed script
-└── reset.sql              # Database reset script
 ```
 
 ### Migration Workflow
@@ -261,7 +259,6 @@ pnpm db:local:setup           # Recreate and populate
 **Production Reset (Careful!):**
 
 ```bash
-pnpm wrangler d1 execute gtv-db-prod --remote --file=./scripts/reset.sql
 pnpm db:migrate              # Reapply schema
 pnpm db:seed                 # Repopulate data
 ```

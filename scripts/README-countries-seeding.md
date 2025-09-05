@@ -22,7 +22,6 @@ scripts/
 ├── countries-data-americas.ts     # North & South American countries data
 ├── countries-data-oceania.ts      # Oceanian countries data
 ├── seed.ts                        # Main seeding script (includes countries seeding)
-├── setup-local-db.ts              # Database schema setup
 └── README-countries-seeding.md    # This documentation
 ```
 
