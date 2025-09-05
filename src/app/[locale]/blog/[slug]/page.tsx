@@ -16,7 +16,7 @@ import { JsonLd } from "@/components/json-ld";
 import {
   generateArticleJsonLd,
   generateBreadcrumbListJsonLd,
-  generateBlogPostJsonLdWithTranslations,
+  generateBlogPostJsonLd,
   generateBreadcrumbData,
 } from "@/lib/json-ld";
 
@@ -105,12 +105,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
     const postUrl = `${baseUrl}/${locale}/blog/${slug}`;
 
     // Generate JSON-LD for the blog post
-    const articleData = generateBlogPostJsonLdWithTranslations(
-      blogPost,
-      locale,
-      baseUrl,
-      t
-    );
+    const articleData = generateBlogPostJsonLd(blogPost, locale, baseUrl, t);
     const articleJsonLd = generateArticleJsonLd(articleData);
 
     const breadcrumbData = generateBreadcrumbData([

@@ -578,7 +578,7 @@ describe("JSON-LD utilities", () => {
   });
 
   describe("generateBlogPostJsonLd", () => {
-    it("should generate blog post JSON-LD from BlogPostData", async () => {
+    it("should generate blog post JSON-LD from BlogPostData", () => {
       const blogPost: BlogPostData = {
         content: "Test content",
         slug: "test-post",
@@ -595,10 +595,11 @@ describe("JSON-LD utilities", () => {
         destinationNames: ["United States"],
       };
 
-      const result = await generateBlogPostJsonLd(
+      const result = generateBlogPostJsonLd(
         blogPost,
         "en",
-        "https://test.com"
+        "https://test.com",
+        t
       );
 
       expect(result).toEqual({
@@ -623,12 +624,12 @@ describe("JSON-LD utilities", () => {
           type: "WebPage",
           id: "https://test.com/en/blog/test-post",
         },
-        articleSection: t("jsonld.blog.title"),
+        articleSection: t("jsonld.blog.article_section"),
         keywords: ["travel", "test"],
       });
     });
 
-    it("should handle blog post without lastUpdated", async () => {
+    it("should handle blog post without lastUpdated", () => {
       const blogPost: BlogPostData = {
         content: "Test content",
         slug: "test-post",
@@ -643,10 +644,11 @@ describe("JSON-LD utilities", () => {
         },
       };
 
-      const result = await generateBlogPostJsonLd(
+      const result = generateBlogPostJsonLd(
         blogPost,
         "en",
-        "https://test.com"
+        "https://test.com",
+        t
       );
 
       expect(result.dateModified).toBe("2023-01-01");

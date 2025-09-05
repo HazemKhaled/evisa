@@ -1,4 +1,3 @@
-import { getTranslation } from "@/app/i18n";
 import { type BlogPostData } from "./blog";
 import { env } from "./consts";
 
@@ -210,44 +209,6 @@ export function generateServiceJsonLd(service: {
 }
 
 /**
- * Generate blog post article JSON-LD from BlogPostData
- */
-export async function generateBlogPostJsonLd(
-  post: BlogPostData,
-  locale: string,
-  baseUrl: string
-): Promise<Article> {
-  const postUrl = `${baseUrl}/${locale}/blog/${post.slug}`;
-  const { t } = await getTranslation(locale, "pages");
-
-  return {
-    headline: post.frontmatter.title,
-    description: post.frontmatter.description,
-    image: post.frontmatter.image,
-    author: {
-      name: post.frontmatter.author,
-      type: "Person",
-    },
-    publisher: {
-      name: t("jsonld.organization.name"),
-      logo: {
-        url: `${baseUrl}/logo.png`,
-        width: 200,
-        height: 60,
-      },
-    },
-    datePublished: post.frontmatter.publishedAt,
-    dateModified: post.frontmatter.lastUpdated || post.frontmatter.publishedAt,
-    mainEntityOfPage: {
-      type: "WebPage",
-      id: postUrl,
-    },
-    articleSection: t("jsonld.blog.title"),
-    keywords: post.frontmatter.tags,
-  };
-}
-
-/**
  * Generate organization data with translations
  */
 export function generateOrganizationData(
@@ -299,9 +260,9 @@ export function generateServiceData(
 }
 
 /**
- * Generate blog post article JSON-LD from BlogPostData with translations
+ * Generate blog post article JSON-LD from BlogPostData
  */
-export function generateBlogPostJsonLdWithTranslations(
+export function generateBlogPostJsonLd(
   post: BlogPostData,
   locale: string,
   baseUrl: string,
