@@ -22,6 +22,10 @@
     },
     "info": {
       "title": "Связаться с нами",
+      "email_label": "Электронная почта",
+      "phone_label": "Телефон",
+      "address_label": "Адрес",
+      "hours_label": "Часы работы",
       "email": "hello@gettravelvisa.com",
       "phone": "+1 (555) 123-4567",
       "address": "123 Travel Street, Visa City, VC 12345",

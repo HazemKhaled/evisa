@@ -16,7 +16,7 @@ export async function Footer({ locale }: FooterProps) {
         <div className={cn("grid grid-cols-1 gap-8 md:grid-cols-4")}>
           <div className="col-span-1 md:col-span-2">
             <div className="text-2xl font-bold text-white">
-              {tCommon("site.title")}
+              {tCommon("site.name")}
             </div>
             <p className="mt-4 text-gray-300">{tCommon("site.description")}</p>
           </div>

@@ -21,11 +21,15 @@
       "submit": "Send Message"
     },
     "info": {
-      "title": "Get in Touch",
+      "title": "Entre em Contato",
+      "email_label": "Email",
+      "phone_label": "Telefone",
+      "address_label": "Endereço",
+      "hours_label": "Horários",
       "email": "hello@gettravelvisa.com",
       "phone": "+1 (555) 123-4567",
       "address": "123 Travel Street, Visa City, VC 12345",
-      "hours": "Monday - Friday: 9:00 AM - 6:00 PM (UTC)"
+      "hours": "Segunda - Sexta: 9:00 - 18:00 (UTC)"
     },
     "questions": {
       "title": "Questions About Visa Requirements?",

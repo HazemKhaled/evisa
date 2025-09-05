@@ -219,7 +219,9 @@ export default async function ContactPage({ params }: ContactPageProps) {
                       <span className="text-lg text-blue-600">📧</span>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">Email</p>
+                      <p className="font-medium text-gray-900">
+                        {t("contact.info.email_label")}
+                      </p>
                       <a
                         href={`mailto:${t("contact.info.email")}`}
                         className="text-blue-600 hover:text-blue-800"
@@ -234,7 +236,9 @@ export default async function ContactPage({ params }: ContactPageProps) {
                       <span className="text-lg text-blue-600">📞</span>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">Phone</p>
+                      <p className="font-medium text-gray-900">
+                        {t("contact.info.phone_label")}
+                      </p>
                       <a
                         href={`tel:${t("contact.info.phone")}`}
                         className="text-blue-600 hover:text-blue-800"
@@ -249,7 +253,9 @@ export default async function ContactPage({ params }: ContactPageProps) {
                       <span className="text-lg text-blue-600">📍</span>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">Address</p>
+                      <p className="font-medium text-gray-900">
+                        {t("contact.info.address_label")}
+                      </p>
                       <p className="text-gray-600">
                         {t("contact.info.address")}
                       </p>
@@ -261,7 +267,9 @@ export default async function ContactPage({ params }: ContactPageProps) {
                       <span className="text-lg text-blue-600">🕒</span>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">Hours</p>
+                      <p className="font-medium text-gray-900">
+                        {t("contact.info.hours_label")}
+                      </p>
                       <p className="text-gray-600">{t("contact.info.hours")}</p>
                     </div>
                   </div>

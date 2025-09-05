@@ -22,6 +22,10 @@
     },
     "info": {
       "title": "تواصل معنا",
+      "email_label": "البريد الإلكتروني",
+      "phone_label": "الهاتف",
+      "address_label": "العنوان",
+      "hours_label": "ساعات العمل",
       "email": "hello@gettravelvisa.com",
       "phone": "+1 (555) 123-4567",
       "address": "123 شارع السفر، مدينة التأشيرة، VC 12345",

@@ -23,25 +23,181 @@ jest.mock("../../app/i18n", () => ({
   getTranslation: jest.fn().mockResolvedValue({
     t: (key: string) => {
       const translations: Record<string, string> = {
+        // JSON-LD Organization keys
         "jsonld.organization.name": "GetTravelVisa.com",
+        "jsonld.organization.description":
+          "Your trusted visa application partner. Simplify your visa application process with our comprehensive visa checking and application services.",
+        "jsonld.organization.contact_type": "customer service",
+
+        // JSON-LD Website keys
+        "jsonld.website.name": "GetTravelVisa.com",
+        "jsonld.website.description":
+          "Simplify your visa application process with our comprehensive visa checking and application services. Get expert guidance for travel visas worldwide.",
+
+        // JSON-LD Service keys
+        "jsonld.service.name": "Visa Application Services",
+        "jsonld.service.description":
+          "Comprehensive visa checking and application services for international travel",
+        "jsonld.service.area_served": "Worldwide",
+        "jsonld.service.service_type": "Travel Services",
+
+        // JSON-LD Blog keys
         "jsonld.blog.title": "Travel Blog",
+        "jsonld.blog.article_section": "Travel Blog",
+
+        // Navigation keys
+        "navigation.breadcrumb.home": "Home",
+        "navigation.header.home": "Home",
+        "navigation.header.blog": "Travel Blog",
+
+        // Common keys
+        "common.site.title": "Get Travel Visa",
+
+        // Test-specific keys for mock scenarios
+        "test.organization.name": "Test Organization",
+        "test.organization.description": "Test description",
+        "test.website.name": "Test Website",
+        "test.website.description": "Test website description",
+        "test.page.name": "Test Page",
+        "test.page.description": "Test page description",
+        "test.article.headline": "Test Article",
+        "test.article.description": "Test article description",
+        "test.article.section": "Technology",
+        "test.service.name": "Test Service",
+        "test.service.description": "Test service description",
+        "test.faq.question1": "What is this?",
+        "test.faq.answer1": "This is a test FAQ.",
+        "test.faq.question2": "How does it work?",
+        "test.faq.answer2": "It works by testing.",
+
+        // Minimal test keys
+        "test.minimal.organization": "Minimal Org",
+        "test.minimal.website": "Minimal Website",
+        "test.minimal.page": "Minimal Page",
+        "test.minimal.article": "Minimal Article",
+        "test.minimal.description": "Minimal article description",
+
+        // Navigation test keys
+        "test.navigation.category": "Category",
+        "test.navigation.page": "Page",
       };
       return translations[key] || key;
     },
   }),
 }));
 
+// Test constants for commonly used values
+const TEST_CONSTANTS = {
+  urls: {
+    test: "https://test.com",
+    minimal: "https://minimal.com",
+    testPage: "https://test.com/page",
+    minimalPage: "https://minimal.com/page",
+    testImage: "https://test.com/image.jpg",
+    testLogo: "https://test.com/logo.png",
+    testArticle: "https://test.com/article",
+    testCategory: "https://test.com/category",
+    testCategoryPage: "https://test.com/category/page",
+    searchTarget: "https://test.com/search?q={search_term_string}",
+  },
+  contact: {
+    email: "test@test.com",
+    type: "customer service",
+  },
+  dates: {
+    published: "2023-01-01",
+    modified: "2023-01-02",
+  },
+  publisher: {
+    logoWidth: 200,
+    logoHeight: 60,
+  },
+  searchQuery: "required name=search_term_string",
+  authorType: "Person",
+  webPageType: "WebPage",
+  articleType: "Article",
+  keywords: {
+    test: ["test", "article"],
+    travel: ["travel", "test"],
+    singleTravel: ["travel"],
+  },
+};
+
+// Helper function to get translation values (simulating the t function)
+const t = (key: string): string => {
+  const translations: Record<string, string> = {
+    // JSON-LD Organization keys
+    "jsonld.organization.name": "GetTravelVisa.com",
+    "jsonld.organization.description":
+      "Your trusted visa application partner. Simplify your visa application process with our comprehensive visa checking and application services.",
+    "jsonld.organization.contact_type": "customer service",
+
+    // JSON-LD Website keys
+    "jsonld.website.name": "GetTravelVisa.com",
+    "jsonld.website.description":
+      "Simplify your visa application process with our comprehensive visa checking and application services. Get expert guidance for travel visas worldwide.",
+
+    // JSON-LD Service keys
+    "jsonld.service.name": "Visa Application Services",
+    "jsonld.service.description":
+      "Comprehensive visa checking and application services for international travel",
+    "jsonld.service.area_served": "Worldwide",
+    "jsonld.service.service_type": "Travel Services",
+
+    // JSON-LD Blog keys
+    "jsonld.blog.title": "Travel Blog",
+    "jsonld.blog.article_section": "Travel Blog",
+
+    // Navigation keys
+    "navigation.breadcrumb.home": "Home",
+    "navigation.header.home": "Home",
+    "navigation.header.blog": "Travel Blog",
+
+    // Common keys
+    "common.site.title": "Get Travel Visa",
+
+    // Test-specific keys for mock scenarios
+    "test.organization.name": "Test Organization",
+    "test.organization.description": "Test description",
+    "test.website.name": "Test Website",
+    "test.website.description": "Test website description",
+    "test.page.name": "Test Page",
+    "test.page.description": "Test page description",
+    "test.article.headline": "Test Article",
+    "test.article.description": "Test article description",
+    "test.article.section": "Technology",
+    "test.service.name": "Test Service",
+    "test.service.description": "Test service description",
+    "test.faq.question1": "What is this?",
+    "test.faq.answer1": "This is a test FAQ.",
+    "test.faq.question2": "How does it work?",
+    "test.faq.answer2": "It works by testing.",
+
+    // Minimal test keys
+    "test.minimal.organization": "Minimal Org",
+    "test.minimal.website": "Minimal Website",
+    "test.minimal.page": "Minimal Page",
+    "test.minimal.article": "Minimal Article",
+    "test.minimal.description": "Minimal article description",
+
+    // Navigation test keys
+    "test.navigation.category": "Category",
+    "test.navigation.page": "Page",
+  };
+  return translations[key] || key;
+};
+
 describe("JSON-LD utilities", () => {
   describe("generateOrganizationJsonLd", () => {
     it("should generate organization JSON-LD with all fields", () => {
       const organization: Organization = {
-        name: "Test Organization",
-        url: "https://test.com",
-        logo: "https://test.com/logo.png",
-        description: "Test description",
+        name: t("test.organization.name"),
+        url: TEST_CONSTANTS.urls.test,
+        logo: TEST_CONSTANTS.urls.testLogo,
+        description: t("test.organization.description"),
         contactPoint: {
-          contactType: "customer service",
-          email: "test@test.com",
+          contactType: TEST_CONSTANTS.contact.type,
+          email: TEST_CONSTANTS.contact.email,
         },
       };
 
@@ -50,21 +206,21 @@ describe("JSON-LD utilities", () => {
       expect(result).toEqual({
         "@context": "https://schema.org",
         "@type": "Organization",
-        name: "Test Organization",
-        url: "https://test.com",
-        logo: "https://test.com/logo.png",
-        description: "Test description",
+        name: t("test.organization.name"),
+        url: TEST_CONSTANTS.urls.test,
+        logo: TEST_CONSTANTS.urls.testLogo,
+        description: t("test.organization.description"),
         contactPoint: {
-          contactType: "customer service",
-          email: "test@test.com",
+          contactType: TEST_CONSTANTS.contact.type,
+          email: TEST_CONSTANTS.contact.email,
         },
       });
     });
 
     it("should generate organization JSON-LD with minimal fields", () => {
       const organization: Organization = {
-        name: "Minimal Org",
-        url: "https://minimal.com",
+        name: t("test.minimal.organization"),
+        url: TEST_CONSTANTS.urls.minimal,
       };
 
       const result = generateOrganizationJsonLd(organization);
@@ -72,8 +228,8 @@ describe("JSON-LD utilities", () => {
       expect(result).toEqual({
         "@context": "https://schema.org",
         "@type": "Organization",
-        name: "Minimal Org",
-        url: "https://minimal.com",
+        name: t("test.minimal.organization"),
+        url: TEST_CONSTANTS.urls.minimal,
       });
     });
   });
@@ -81,12 +237,12 @@ describe("JSON-LD utilities", () => {
   describe("generateWebSiteJsonLd", () => {
     it("should generate website JSON-LD with all fields", () => {
       const website: WebSite = {
-        name: "Test Website",
-        url: "https://test.com",
-        description: "Test website description",
+        name: t("test.website.name"),
+        url: TEST_CONSTANTS.urls.test,
+        description: t("test.website.description"),
         potentialAction: {
-          target: "https://test.com/search?q={search_term_string}",
-          queryInput: "required name=search_term_string",
+          target: TEST_CONSTANTS.urls.searchTarget,
+          queryInput: TEST_CONSTANTS.searchQuery,
         },
       };
 
@@ -95,20 +251,20 @@ describe("JSON-LD utilities", () => {
       expect(result).toEqual({
         "@context": "https://schema.org",
         "@type": "WebSite",
-        name: "Test Website",
-        url: "https://test.com",
-        description: "Test website description",
+        name: t("test.website.name"),
+        url: TEST_CONSTANTS.urls.test,
+        description: t("test.website.description"),
         potentialAction: {
-          target: "https://test.com/search?q={search_term_string}",
-          queryInput: "required name=search_term_string",
+          target: TEST_CONSTANTS.urls.searchTarget,
+          queryInput: TEST_CONSTANTS.searchQuery,
         },
       });
     });
 
     it("should generate website JSON-LD with minimal fields", () => {
       const website: WebSite = {
-        name: "Minimal Website",
-        url: "https://minimal.com",
+        name: t("test.minimal.website"),
+        url: TEST_CONSTANTS.urls.minimal,
       };
 
       const result = generateWebSiteJsonLd(website);
@@ -116,8 +272,8 @@ describe("JSON-LD utilities", () => {
       expect(result).toEqual({
         "@context": "https://schema.org",
         "@type": "WebSite",
-        name: "Minimal Website",
-        url: "https://minimal.com",
+        name: t("test.minimal.website"),
+        url: TEST_CONSTANTS.urls.minimal,
       });
     });
   });
@@ -125,28 +281,28 @@ describe("JSON-LD utilities", () => {
   describe("generateWebPageJsonLd", () => {
     it("should generate webpage JSON-LD with all fields", () => {
       const webpage: WebPage = {
-        name: "Test Page",
-        description: "Test page description",
-        url: "https://test.com/page",
+        name: t("test.page.name"),
+        description: t("test.page.description"),
+        url: TEST_CONSTANTS.urls.testPage,
         isPartOf: {
-          name: "Test Website",
-          url: "https://test.com",
+          name: t("test.website.name"),
+          url: TEST_CONSTANTS.urls.test,
         },
         breadcrumb: {
           itemListElement: [
             {
               position: 1,
-              name: "Home",
-              item: "https://test.com",
+              name: t("navigation.breadcrumb.home"),
+              item: TEST_CONSTANTS.urls.test,
             },
             {
               position: 2,
-              name: "Page",
-              item: "https://test.com/page",
+              name: t("test.navigation.page"),
+              item: TEST_CONSTANTS.urls.testPage,
             },
           ],
         },
-        mainEntity: { "@type": "Article" },
+        mainEntity: { "@type": TEST_CONSTANTS.articleType },
       };
 
       const result = generateWebPageJsonLd(webpage);
@@ -154,35 +310,35 @@ describe("JSON-LD utilities", () => {
       expect(result).toEqual({
         "@context": "https://schema.org",
         "@type": "WebPage",
-        name: "Test Page",
-        description: "Test page description",
-        url: "https://test.com/page",
+        name: t("test.page.name"),
+        description: t("test.page.description"),
+        url: TEST_CONSTANTS.urls.testPage,
         isPartOf: {
-          name: "Test Website",
-          url: "https://test.com",
+          name: t("test.website.name"),
+          url: TEST_CONSTANTS.urls.test,
         },
         breadcrumb: {
           itemListElement: [
             {
               position: 1,
-              name: "Home",
-              item: "https://test.com",
+              name: t("navigation.breadcrumb.home"),
+              item: TEST_CONSTANTS.urls.test,
             },
             {
               position: 2,
-              name: "Page",
-              item: "https://test.com/page",
+              name: t("test.navigation.page"),
+              item: TEST_CONSTANTS.urls.testPage,
             },
           ],
         },
-        mainEntity: { "@type": "Article" },
+        mainEntity: { "@type": TEST_CONSTANTS.articleType },
       });
     });
 
     it("should generate webpage JSON-LD with minimal fields", () => {
       const webpage: WebPage = {
-        name: "Minimal Page",
-        url: "https://minimal.com/page",
+        name: t("test.minimal.page"),
+        url: TEST_CONSTANTS.urls.minimalPage,
       };
 
       const result = generateWebPageJsonLd(webpage);
@@ -190,8 +346,8 @@ describe("JSON-LD utilities", () => {
       expect(result).toEqual({
         "@context": "https://schema.org",
         "@type": "WebPage",
-        name: "Minimal Page",
-        url: "https://minimal.com/page",
+        name: t("test.minimal.page"),
+        url: TEST_CONSTANTS.urls.minimalPage,
       });
     });
   });
@@ -199,29 +355,29 @@ describe("JSON-LD utilities", () => {
   describe("generateArticleJsonLd", () => {
     it("should generate article JSON-LD with all fields", () => {
       const article: Article = {
-        headline: "Test Article",
-        description: "Test article description",
-        image: "https://test.com/image.jpg",
+        headline: t("test.article.headline"),
+        description: t("test.article.description"),
+        image: TEST_CONSTANTS.urls.testImage,
         author: {
           name: "Test Author",
-          type: "Person",
+          type: TEST_CONSTANTS.authorType,
         },
         publisher: {
           name: "Test Publisher",
           logo: {
-            url: "https://test.com/logo.png",
-            width: 200,
-            height: 60,
+            url: TEST_CONSTANTS.urls.testLogo,
+            width: TEST_CONSTANTS.publisher.logoWidth,
+            height: TEST_CONSTANTS.publisher.logoHeight,
           },
         },
-        datePublished: "2023-01-01",
-        dateModified: "2023-01-02",
+        datePublished: TEST_CONSTANTS.dates.published,
+        dateModified: TEST_CONSTANTS.dates.modified,
         mainEntityOfPage: {
-          type: "WebPage",
-          id: "https://test.com/article",
+          type: TEST_CONSTANTS.webPageType,
+          id: TEST_CONSTANTS.urls.testArticle,
         },
-        articleSection: "Technology",
-        keywords: ["test", "article"],
+        articleSection: t("test.article.section"),
+        keywords: TEST_CONSTANTS.keywords.test,
       };
 
       const result = generateArticleJsonLd(article);
@@ -229,53 +385,53 @@ describe("JSON-LD utilities", () => {
       expect(result).toEqual({
         "@context": "https://schema.org",
         "@type": "Article",
-        headline: "Test Article",
-        description: "Test article description",
-        image: "https://test.com/image.jpg",
+        headline: t("test.article.headline"),
+        description: t("test.article.description"),
+        image: TEST_CONSTANTS.urls.testImage,
         author: {
           name: "Test Author",
-          type: "Person",
+          type: TEST_CONSTANTS.authorType,
         },
         publisher: {
           name: "Test Publisher",
           logo: {
-            url: "https://test.com/logo.png",
-            width: 200,
-            height: 60,
+            url: TEST_CONSTANTS.urls.testLogo,
+            width: TEST_CONSTANTS.publisher.logoWidth,
+            height: TEST_CONSTANTS.publisher.logoHeight,
           },
         },
-        datePublished: "2023-01-01",
-        dateModified: "2023-01-02",
+        datePublished: TEST_CONSTANTS.dates.published,
+        dateModified: TEST_CONSTANTS.dates.modified,
         mainEntityOfPage: {
-          type: "WebPage",
-          id: "https://test.com/article",
+          type: TEST_CONSTANTS.webPageType,
+          id: TEST_CONSTANTS.urls.testArticle,
         },
-        articleSection: "Technology",
-        keywords: ["test", "article"],
+        articleSection: t("test.article.section"),
+        keywords: TEST_CONSTANTS.keywords.test,
       });
     });
 
     it("should generate article JSON-LD without optional fields", () => {
       const article: Article = {
-        headline: "Minimal Article",
-        description: "Minimal article description",
-        image: "https://test.com/image.jpg",
+        headline: t("test.minimal.article"),
+        description: t("test.minimal.description"),
+        image: TEST_CONSTANTS.urls.testImage,
         author: {
           name: "Test Author",
-          type: "Person",
+          type: TEST_CONSTANTS.authorType,
         },
         publisher: {
           name: "Test Publisher",
           logo: {
-            url: "https://test.com/logo.png",
-            width: 200,
-            height: 60,
+            url: TEST_CONSTANTS.urls.testLogo,
+            width: TEST_CONSTANTS.publisher.logoWidth,
+            height: TEST_CONSTANTS.publisher.logoHeight,
           },
         },
-        datePublished: "2023-01-01",
+        datePublished: TEST_CONSTANTS.dates.published,
         mainEntityOfPage: {
-          type: "WebPage",
-          id: "https://test.com/article",
+          type: TEST_CONSTANTS.webPageType,
+          id: TEST_CONSTANTS.urls.testArticle,
         },
       };
 
@@ -284,25 +440,25 @@ describe("JSON-LD utilities", () => {
       expect(result).toEqual({
         "@context": "https://schema.org",
         "@type": "Article",
-        headline: "Minimal Article",
-        description: "Minimal article description",
-        image: "https://test.com/image.jpg",
+        headline: t("test.minimal.article"),
+        description: t("test.minimal.description"),
+        image: TEST_CONSTANTS.urls.testImage,
         author: {
           name: "Test Author",
-          type: "Person",
+          type: TEST_CONSTANTS.authorType,
         },
         publisher: {
           name: "Test Publisher",
           logo: {
-            url: "https://test.com/logo.png",
-            width: 200,
-            height: 60,
+            url: TEST_CONSTANTS.urls.testLogo,
+            width: TEST_CONSTANTS.publisher.logoWidth,
+            height: TEST_CONSTANTS.publisher.logoHeight,
           },
         },
-        datePublished: "2023-01-01",
+        datePublished: TEST_CONSTANTS.dates.published,
         mainEntityOfPage: {
-          type: "WebPage",
-          id: "https://test.com/article",
+          type: TEST_CONSTANTS.webPageType,
+          id: TEST_CONSTANTS.urls.testArticle,
         },
       });
     });
@@ -314,18 +470,18 @@ describe("JSON-LD utilities", () => {
         itemListElement: [
           {
             position: 1,
-            name: "Home",
-            item: "https://test.com",
+            name: t("navigation.breadcrumb.home"),
+            item: TEST_CONSTANTS.urls.test,
           },
           {
             position: 2,
-            name: "Category",
-            item: "https://test.com/category",
+            name: t("test.navigation.category"),
+            item: TEST_CONSTANTS.urls.testCategory,
           },
           {
             position: 3,
-            name: "Page",
-            item: "https://test.com/category/page",
+            name: t("test.navigation.page"),
+            item: TEST_CONSTANTS.urls.testCategoryPage,
           },
         ],
       };
@@ -338,18 +494,18 @@ describe("JSON-LD utilities", () => {
         itemListElement: [
           {
             position: 1,
-            name: "Home",
-            item: "https://test.com",
+            name: t("navigation.breadcrumb.home"),
+            item: TEST_CONSTANTS.urls.test,
           },
           {
             position: 2,
-            name: "Category",
-            item: "https://test.com/category",
+            name: t("test.navigation.category"),
+            item: TEST_CONSTANTS.urls.testCategory,
           },
           {
             position: 3,
-            name: "Page",
-            item: "https://test.com/category/page",
+            name: t("test.navigation.page"),
+            item: TEST_CONSTANTS.urls.testCategoryPage,
           },
         ],
       });
@@ -360,12 +516,12 @@ describe("JSON-LD utilities", () => {
     it("should generate FAQ JSON-LD", () => {
       const faqs = [
         {
-          question: "What is this?",
-          answer: "This is a test FAQ.",
+          question: t("test.faq.question1"),
+          answer: t("test.faq.answer1"),
         },
         {
-          question: "How does it work?",
-          answer: "It works by testing.",
+          question: t("test.faq.question2"),
+          answer: t("test.faq.answer2"),
         },
       ];
 
@@ -377,18 +533,18 @@ describe("JSON-LD utilities", () => {
         mainEntity: [
           {
             "@type": "Question",
-            name: "What is this?",
+            name: t("test.faq.question1"),
             acceptedAnswer: {
               "@type": "Answer",
-              text: "This is a test FAQ.",
+              text: t("test.faq.answer1"),
             },
           },
           {
             "@type": "Question",
-            name: "How does it work?",
+            name: t("test.faq.question2"),
             acceptedAnswer: {
               "@type": "Answer",
-              text: "It works by testing.",
+              text: t("test.faq.answer2"),
             },
           },
         ],
@@ -399,11 +555,11 @@ describe("JSON-LD utilities", () => {
   describe("generateServiceJsonLd", () => {
     it("should generate service JSON-LD", () => {
       const service = {
-        name: "Test Service",
-        description: "Test service description",
+        name: t("test.service.name"),
+        description: t("test.service.description"),
         provider: defaultOrganization,
-        areaServed: "Worldwide",
-        serviceType: "Test Service",
+        areaServed: t("jsonld.service.area_served"),
+        serviceType: t("test.service.name"),
       };
 
       const result = generateServiceJsonLd(service);
@@ -411,11 +567,11 @@ describe("JSON-LD utilities", () => {
       expect(result).toEqual({
         "@context": "https://schema.org",
         "@type": "Service",
-        name: "Test Service",
-        description: "Test service description",
+        name: t("test.service.name"),
+        description: t("test.service.description"),
         provider: generateOrganizationJsonLd(defaultOrganization),
-        areaServed: "Worldwide",
-        serviceType: "Test Service",
+        areaServed: t("jsonld.service.area_served"),
+        serviceType: t("test.service.name"),
       });
     });
   });
@@ -453,7 +609,7 @@ describe("JSON-LD utilities", () => {
           type: "Person",
         },
         publisher: {
-          name: "GetTravelVisa.com",
+          name: t("jsonld.organization.name"),
           logo: {
             url: "https://test.com/logo.png",
             width: 200,
@@ -466,7 +622,7 @@ describe("JSON-LD utilities", () => {
           type: "WebPage",
           id: "https://test.com/en/blog/test-post",
         },
-        articleSection: "Travel Blog",
+        articleSection: t("jsonld.blog.title"),
         keywords: ["travel", "test"],
       });
     });
@@ -498,7 +654,7 @@ describe("JSON-LD utilities", () => {
 
   describe("default constants", () => {
     it("should have correct default organization data", () => {
-      expect(defaultOrganization.name).toBe("GetTravelVisa.com");
+      expect(defaultOrganization.name).toBe(t("jsonld.organization.name"));
       expect(defaultOrganization.url).toBe(getBaseUrl());
       expect(defaultOrganization.logo).toBe(`${getBaseUrl()}/logo.png`);
       expect(defaultOrganization.contactPoint?.email).toBe(
@@ -507,7 +663,7 @@ describe("JSON-LD utilities", () => {
     });
 
     it("should have correct default website data", () => {
-      expect(defaultWebSite.name).toBe("GetTravelVisa.com");
+      expect(defaultWebSite.name).toBe(t("jsonld.website.name"));
       expect(defaultWebSite.url).toBe(getBaseUrl());
       expect(defaultWebSite.potentialAction?.target).toContain("search");
     });

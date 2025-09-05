@@ -22,6 +22,10 @@
     },
     "info": {
       "title": "Ponte en Contacto",
+      "email_label": "Email",
+      "phone_label": "Teléfono",
+      "address_label": "Dirección",
+      "hours_label": "Horarios",
       "email": "hello@gettravelvisa.com",
       "phone": "+1 (555) 123-4567",
       "address": "123 Calle del Viaje, Ciudad Visa, VC 12345",

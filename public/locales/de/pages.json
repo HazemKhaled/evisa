@@ -22,6 +22,10 @@
     },
     "info": {
       "title": "Kontakt aufnehmen",
+      "email_label": "E-Mail",
+      "phone_label": "Telefon",
+      "address_label": "Adresse",
+      "hours_label": "Öffnungszeiten",
       "email": "hello@gettravelvisa.com",
       "phone": "+1 (555) 123-4567",
       "address": "123 Travel Street, Visa City, VC 12345",
