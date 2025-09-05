@@ -1,4 +1,4 @@
-import { BlogPostData } from "./blog";
+import { type BlogPostData } from "./blog";
 import { getBaseUrl } from "./utils/urls";
 
 /**

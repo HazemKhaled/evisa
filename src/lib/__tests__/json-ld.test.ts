@@ -15,7 +15,7 @@ import {
   type Article,
   type BreadcrumbList,
 } from "../json-ld";
-import { BlogPostData } from "../blog";
+import { type BlogPostData } from "../blog";
 import { getBaseUrl } from "../utils/urls";
 
 describe("JSON-LD utilities", () => {

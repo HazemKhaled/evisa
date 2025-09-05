@@ -2,7 +2,7 @@ import { type Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
-import { BlogPostData } from "@/lib/blog";
+import { type BlogPostData } from "@/lib/blog";
 import { isRTL, cn } from "@/lib/utils";
 import { getBaseUrl } from "@/lib/utils/urls";
 import { StaticPageLayout } from "@/components/static-page-layout";
