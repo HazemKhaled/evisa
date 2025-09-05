@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import { getTextDirection } from "@/lib/utils";
 import { languages, getLocaleWithRegion } from "../i18n/settings";
 import { Header, Footer } from "@/components/layout";
+import { JsonLd } from "@/components/json-ld";
+import {
+  generateWebSiteJsonLd,
+  generateWebSiteData,
+  generateOrganizationJsonLd,
+  generateOrganizationData,
+} from "@/lib/json-ld";
 import { getTranslation } from "../i18n";
 
 export async function generateStaticParams() {
@@ -47,9 +54,19 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   const direction = getTextDirection(locale);
+  const { t } = await getTranslation(locale, "pages");
+
+  const websiteData = generateWebSiteData(t);
+  websiteData.url = `${websiteData.url}/${locale}`;
+  const websiteJsonLd = generateWebSiteJsonLd(websiteData);
+
+  const organizationData = generateOrganizationData(t);
+  const organizationJsonLd = generateOrganizationJsonLd(organizationData);
 
   return (
     <div lang={locale} dir={direction} className="min-h-screen">
+      <JsonLd data={organizationJsonLd} />
+      <JsonLd data={websiteJsonLd} />
       <Header locale={locale} />
       {children}
       <Footer locale={locale} />

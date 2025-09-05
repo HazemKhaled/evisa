@@ -23,5 +23,10 @@
     "address": "Indirizzo Ufficio",
     "social_media": "Social Media",
     "copyright": "© {{year}} GetTravelVisa.com. Tutti i diritti riservati."
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "blog": "Blog di Viaggio",
+    "contact": "Contattaci"
   }
 }

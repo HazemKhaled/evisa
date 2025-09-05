@@ -12,6 +12,7 @@ export * from "./translations";
 
 // Re-export commonly used utilities with better names
 export {
+  getBaseUrl,
   buildLocalePath,
   buildBlogUrl,
   buildBlogPostUrl,
