@@ -2,7 +2,6 @@ import { type Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
-import { type BlogPostData } from "@/lib/blog";
 import { isRTL, cn } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
@@ -49,14 +48,14 @@ export default async function BlogHome({
 
   // Filter by tag if specified
   if (tag) {
-    allPosts = allPosts.filter((post: BlogPostData) =>
+    allPosts = allPosts.filter(post =>
       post.frontmatter.tags?.includes(tag.toLowerCase())
     );
   }
 
   // Filter by destination if specified
   if (destination) {
-    allPosts = allPosts.filter((post: BlogPostData) =>
+    allPosts = allPosts.filter(post =>
       post.frontmatter.destinations?.some((dest: string) =>
         dest.toLowerCase().includes(destination.toLowerCase())
       )
@@ -153,7 +152,7 @@ export default async function BlogHome({
 
         {/* Blog Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post: BlogPostData) => (
+          {posts.map(post => (
             <article
               key={post.slug}
               className="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg"
@@ -172,18 +171,16 @@ export default async function BlogHome({
               <div className="p-6">
                 {/* Tags and Destinations */}
                 <div className={cn("mb-3 flex flex-wrap gap-2")}>
-                  {post.frontmatter.destinations?.map(
-                    (destination: string, index: number) => (
-                      <Link
-                        key={destination}
-                        href={`/${locale}/blog?destination=${encodeURIComponent(destination)}`}
-                        className="inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800 hover:bg-blue-200"
-                      >
-                        📍 {post.destinationNames?.[index] || destination}
-                      </Link>
-                    )
-                  )}
-                  {post.frontmatter.tags?.slice(0, 2).map((tag: string) => (
+                  {post.frontmatter.destinations?.map((destination, index) => (
+                    <Link
+                      key={destination}
+                      href={`/${locale}/blog?destination=${encodeURIComponent(destination)}`}
+                      className="inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800 hover:bg-blue-200"
+                    >
+                      📍 {post.destinationNames?.[index] || destination}
+                    </Link>
+                  ))}
+                  {post.frontmatter.tags?.slice(0, 2).map(tag => (
                     <Link
                       key={tag}
                       href={`/${locale}/blog/t/${encodeURIComponent(tag)}`}
