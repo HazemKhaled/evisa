@@ -90,10 +90,10 @@ export default async function BlogHome({
     return (
       <StaticPageLayout>
         <div className="py-16 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">Travel Blog</h1>
-          <p className="text-lg text-gray-600">
-            No blog posts available yet. Check back soon!
-          </p>
+          <h1 className="mb-4 text-4xl font-bold text-gray-900">
+            {t("blog.title")}
+          </h1>
+          <p className="text-lg text-gray-600">{t("blog.empty_state")}</p>
         </div>
       </StaticPageLayout>
     );
@@ -105,11 +105,10 @@ export default async function BlogHome({
         {/* Header */}
         <div className="mb-12 text-center">
           <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
-            Travel Blog
+            {t("blog.title")}
           </h1>
           <p className="mx-auto max-w-3xl text-xl text-gray-600">
-            Expert travel guides, visa tips, and destination insights to help
-            you plan your perfect trip.
+            {t("blog.subtitle")}
           </p>
         </div>
 
@@ -118,7 +117,7 @@ export default async function BlogHome({
           <div className={cn("mb-8 flex flex-wrap gap-2")}>
             {tag && (
               <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
-                Tag: {tag}
+                {t("blog.filters.tag_prefix")} {tag}
                 <Link
                   href={`/${locale}/blog`}
                   className={cn(
@@ -132,7 +131,7 @@ export default async function BlogHome({
             )}
             {destination && (
               <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800">
-                Destination: {destination}
+                {t("blog.filters.destination_prefix")} {destination}
                 <Link
                   href={`/${locale}/blog`}
                   className={cn(
@@ -232,7 +231,7 @@ export default async function BlogHome({
           <div className="mt-12 flex justify-center">
             <nav
               className="flex items-center space-x-2"
-              aria-label="Pagination"
+              aria-label={t("blog.aria.blog_navigation")}
             >
               {/* Previous */}
               {currentPage > 1 && (

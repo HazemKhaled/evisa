@@ -7,6 +7,10 @@
     "contact": "Contact Us",
     "language": "Language"
   },
+  "language_switcher": {
+    "label": "Language",
+    "select_language": "Select Language"
+  },
   "footer": {
     "company": "Company",
     "services": "Services",

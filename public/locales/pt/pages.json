@@ -37,6 +37,19 @@
     }
   },
   "blog": {
+    "title": "Blog de Viagem",
+    "subtitle": "Guias especializados de viagem, dicas de visto e percepções de destinos para ajudar você a planejar sua viagem perfeita.",
+    "empty_state": "Ainda não há artigos de blog disponíveis. Volte em breve!",
+    "filters": {
+      "tag_prefix": "Tag:",
+      "destination_prefix": "Destino:"
+    },
+    "aria": {
+      "article_tags": "Tags do Artigo",
+      "blog_navigation": "Navegação do Blog",
+      "return_to_listing": "Retornar à listagem do blog",
+      "related_articles": "Artigos Relacionados"
+    },
     "post": {
       "published": "Publicado",
       "updated": "Atualizado",
@@ -57,5 +70,9 @@
       "previous": "Anterior",
       "next": "Próximo"
     }
+  },
+  "errors": {
+    "page_not_found": "Página não encontrada",
+    "page_not_found_description": "A página solicitada não foi encontrada."
   }
 }

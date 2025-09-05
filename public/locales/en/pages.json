@@ -37,6 +37,19 @@
     }
   },
   "blog": {
+    "title": "Travel Blog",
+    "subtitle": "Expert travel guides, visa tips, and destination insights to help you plan your perfect trip.",
+    "empty_state": "No blog posts available yet. Check back soon!",
+    "filters": {
+      "tag_prefix": "Tag:",
+      "destination_prefix": "Destination:"
+    },
+    "aria": {
+      "article_tags": "Article Tags",
+      "blog_navigation": "Blog Navigation",
+      "return_to_listing": "Return to blog listing",
+      "related_articles": "Related Articles"
+    },
     "post": {
       "published": "Published",
       "updated": "Updated",
@@ -57,5 +70,9 @@
       "previous": "Previous",
       "next": "Next"
     }
+  },
+  "errors": {
+    "page_not_found": "Page Not Found",
+    "page_not_found_description": "The requested page could not be found."
   }
 }
