@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { type Metadata } from "next";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
 import { cn } from "@/lib/utils";

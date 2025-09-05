@@ -45,7 +45,7 @@ async function generateBlogData(): Promise<void> {
   const tsContent = `// Auto-generated file - Do not edit manually
 // Generated at: ${new Date().toISOString()}
 
-import { BlogPostData } from "./blog";
+import { type BlogPostData } from "./blog";
 
 // Pre-generated blog data for each locale
 export const GENERATED_BLOG_DATA: Record<string, BlogPostData[]> = ${JSON.stringify(blogData, null, 2)};
