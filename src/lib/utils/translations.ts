@@ -165,10 +165,10 @@ export function getTranslationKey<T extends Record<string, unknown>>(
   obj: T,
   path: string[]
 ): string {
-  let current = obj as any;
+  let current: unknown = obj;
   for (const key of path) {
     if (current && typeof current === "object" && key in current) {
-      current = (current as any)[key];
+      current = (current as Record<string, unknown>)[key];
     } else {
       throw new Error(`Invalid translation key path: ${path.join(".")}`);
     }
@@ -181,7 +181,7 @@ export function getTranslationKey<T extends Record<string, unknown>>(
  */
 export type TranslationFunction = (
   key: string,
-  options?: Record<string, any>
+  options?: Record<string, string | number | boolean>
 ) => string;
 
 /**
