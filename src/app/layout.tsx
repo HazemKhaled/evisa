@@ -75,13 +75,11 @@ export default function RootLayout({
 
   return (
     <html suppressHydrationWarning>
-      <head>
-        <JsonLd data={organizationJsonLd} />
-      </head>
       <body
         className={`${cairo.variable} ${geistMono.variable} bg-background text-foreground min-h-full antialiased`}
         style={{ fontFamily: "var(--font-cairo), system-ui, sans-serif" }}
       >
+        <JsonLd data={organizationJsonLd} />
         {children}
       </body>
     </html>
