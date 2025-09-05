@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { MDXContent } from "@/components/mdx-content";
 import { getMDXPage, getAllStaticPages } from "@/lib/mdx";
+import { getTranslation } from "@/app/i18n";
 
 interface StaticPageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -35,9 +36,10 @@ export async function generateMetadata({
     };
   } catch {
     // Return 404 metadata if page not found
+    const { t } = await getTranslation(locale, "pages");
     return {
-      title: "Page Not Found",
-      description: "The requested page could not be found.",
+      title: t("errors.page_not_found"),
+      description: t("errors.page_not_found_description"),
     };
   }
 }

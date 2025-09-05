@@ -1,7 +1,12 @@
 {
   "site": {
-    "title": "GetTravelVisa.com Platform - Travel with Minimal Visa Requirements",
-    "description": "Simplify your travel with our comprehensive visa processing platform. Get destination-based visa information, eligibility checking, and seamless application services."
+    "title": "Get Travel Visa",
+    "description": "Simplify your travel with our comprehensive visa processing platform. Get destination-based visa information, eligibility checking, and seamless application services.",
+    "keywords": "visa application, travel visa, visa checker, visa services, international travel, visa requirements, travel documents, passport services, visa processing, travel assistance",
+    "ogTitle": "Get Travel Visa - Your Trusted Visa Application Partner",
+    "ogDescription": "Simplify your visa application process with our comprehensive visa checking and application services. Get expert guidance for travel visas worldwide.",
+    "twitterTitle": "Get Travel Visa - Your Trusted Visa Application Partner",
+    "twitterDescription": "Simplify your visa application process with our comprehensive visa checking and application services. Get expert guidance for travel visas worldwide."
   },
   "buttons": {
     "startApplication": "Start Your Application",

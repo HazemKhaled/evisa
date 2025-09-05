@@ -4,6 +4,7 @@ import {
   getAllBlogPosts,
 } from "@/lib/generated-blog-data";
 import BlogHome from "../../page";
+import { getTranslation } from "@/app/i18n";
 
 // Generate static params for basic tag routes only
 export async function generateStaticParams() {
@@ -32,13 +33,17 @@ interface TagPageProps {
 export async function generateMetadata({
   params,
 }: TagPageProps): Promise<Metadata> {
-  const { tag } = await params;
+  const { locale, tag } = await params;
+  const { t } = await getTranslation(locale, "pages");
   const decodedTag = decodeURIComponent(tag);
 
   return {
-    title: `${decodedTag} - Travel Blog - GetTravelVisa.com`,
-    description: `Travel guides and visa information related to ${decodedTag}. Expert travel advice and destination insights.`,
-    keywords: `${decodedTag}, travel blog, visa guides, travel tips, destination guides`,
+    title: t("blog.meta.tag_title_template", {
+      tag: decodedTag,
+      title: t("blog.title"),
+    }),
+    description: t("blog.meta.tag_description_template", { tag: decodedTag }),
+    keywords: t("blog.meta.tag_keywords_template", { tag: decodedTag }),
   };
 }
 
