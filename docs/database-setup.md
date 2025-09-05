@@ -11,18 +11,22 @@ This guide explains how to set up Drizzle ORM with Cloudflare D1 database for th
 
 ## Quick Start
 
-### Complete Local Setup (Recommended)
+### Local Development Setup (Recommended)
 
 ```bash
-# One command to set up everything locally
-pnpm db:local:setup
+# Generate and apply migrations
+pnpm db:generate
+pnpm db:migrate
+
+# Seed the database with sample data
+pnpm db:seed
 ```
 
-This command will:
+This sequence will:
 
-1. Reset the local database
-2. Apply all migrations
-3. Seed with sample data
+1. Generate migrations from schema changes
+2. Apply all migrations to the database
+3. Seed with countries and sample visa data
 
 ## Environment Configuration
 
@@ -71,29 +75,30 @@ LOCAL_DB_PATH
 ### Database Management
 
 ```bash
-# Complete setup (recommended for first time)
-pnpm db:local:setup         # Reset → Migrate → Seed
+# Schema and migrations
+pnpm db:generate            # Generate migrations from schema changes
+pnpm db:migrate             # Apply migrations to database
+pnpm db:push                # Push schema directly (dev only)
 
-# Individual operations
-pnpm db:local:migrate       # Apply migrations to local DB
-pnpm db:local:seed          # Populate with sample data
-pnpm db:local:reset         # Clear all data and tables
+# Database seeding
+pnpm db:seed                # Seed database with countries and sample data
+pnpm tsx scripts/seed.ts countries  # Seed only countries data
 
 # Database exploration
-pnpm db:local:studio        # Open Drizzle Studio GUI (port 4984)
-pnpm db:local:query "SQL"   # Execute custom SQL queries
-
-# Database creation (rarely needed)
-pnpm db:local:create        # Create new local D1 database
+pnpm db:studio              # Open Drizzle Studio GUI
 ```
 
 ### Development Workflow
 
-1. **First Setup**: `pnpm db:local:setup`
+1. **First Setup**:
+   ```bash
+   pnpm db:migrate    # Apply existing migrations
+   pnpm db:seed       # Seed with sample data
+   ```
 2. **Schema Changes**: Modify files in `src/lib/db/schema/`
 3. **Generate Migration**: `pnpm db:generate`
-4. **Apply Locally**: `pnpm db:local:migrate`
-5. **Test with Studio**: `pnpm db:local:studio`
+4. **Apply Migration**: `pnpm db:migrate`
+5. **Test with Studio**: `pnpm db:studio`
 
 ## Production Commands
 
@@ -115,18 +120,12 @@ pnpm format               # Prettier formatting
 
 ## Drizzle Studio Access
 
-### Local Database
+### Database Studio
 
-- **URL**: https://local.drizzle.studio?port=4984
-- **Command**: `pnpm db:local:studio`
-- **Connection**: Direct SQLite file access via `@libsql/client`
-- **Location**: `.wrangler/state/v3/d1/miniflare-D1DatabaseObject/*.sqlite`
-
-### Production Database
-
-- **URL**: https://local.drizzle.studio (default port 4983)
 - **Command**: `pnpm db:studio`
-- **Connection**: Cloudflare D1 HTTP API
+- **Connection**: Automatically detects local or production based on environment
+- **Local Mode**: Direct SQLite file access via `@libsql/client`
+- **Production Mode**: Cloudflare D1 HTTP API
 - **Authentication**: Uses environment variables from `.env.local`
 
 ### Studio Features
@@ -179,13 +178,11 @@ The seed script populates:
 ```
 drizzle/                    # Drizzle Kit generated files
 ├── 0000_*.sql             # Schema migrations (sequential)
-├── seed.sql               # Sample data population
 └── meta/                  # Migration metadata
 
 migrations/                 # Wrangler migration files (copied from drizzle/)
 scripts/
 ├── seed.ts                # TypeScript seed script
-└── reset.sql              # Database reset script
 ```
 
 ### Migration Workflow
@@ -254,23 +251,24 @@ pnpm wrangler secret put NEXTAUTH_SECRET
 **Complete Local Reset:**
 
 ```bash
-rm -rf .wrangler/state/v3/d1  # Delete local database
-pnpm db:local:setup           # Recreate and populate
+# Manually delete local database file if needed
+rm local-db.sqlite
+pnpm db:migrate              # Recreate tables
+pnpm db:seed                 # Populate with data
 ```
 
 **Production Reset (Careful!):**
 
 ```bash
-pnpm wrangler d1 execute gtv-db-prod --remote --file=./scripts/reset.sql
 pnpm db:migrate              # Reapply schema
 pnpm db:seed                 # Repopulate data
 ```
 
 ### Performance Tips
 
-- Use `db:local:studio` for development - faster than production
-- Run `pnpm db:local:query` for quick SQL tests
-- Keep local database fresh with regular `pnpm db:local:setup`
+- Use local development environment for faster iteration
+- Run `pnpm db:studio` to visually explore database structure
+- Keep database up-to-date with regular `pnpm db:migrate` and `pnpm db:seed`
 
 ## Development Best Practices
 
@@ -285,14 +283,13 @@ pnpm db:seed                 # Repopulate data
 ### Health Checks
 
 ```bash
-# Verify database connectivity
-pnpm db:local:query "SELECT COUNT(*) FROM countries"
+# Verify database connectivity and data
+pnpm db:studio  # Visual inspection and queries
 
-# Check schema version
-pnpm db:local:query "SELECT name FROM sqlite_master WHERE type='table'"
-
-# Validate data integrity
-pnpm db:local:studio  # Visual inspection
+# Check schema with SQL queries in Studio
+# Example queries to run in Studio:
+# SELECT COUNT(*) FROM countries
+# SELECT name FROM sqlite_master WHERE type='table'
 ```
 
 ### Regular Maintenance
@@ -303,3 +300,225 @@ pnpm db:local:studio  # Visual inspection
 - Regular backup of production data
 
 This setup provides a robust, scalable database architecture with excellent developer experience for both local development and production deployment.
+
+---
+
+# Countries Database Seeding
+
+This section provides comprehensive guidance for seeding the database with all world countries and their multilingual translations.
+
+## Overview
+
+The countries seeding system provides:
+
+- **190+ countries** from all continents
+- **1,536+ translations** across 8 locales (en, ar, es, fr, pt, ru, de, it)
+- **ISO 3166-1 alpha-3** country codes
+- **Continent and region** classification
+- **Multilingual support** for internationalization
+
+## Countries Files Structure
+
+```
+scripts/
+├── countries-data-africa.ts       # African countries data
+├── countries-data-asia.ts         # Asian countries data
+├── countries-data-europe.ts       # European countries data
+├── countries-data-americas.ts     # North & South American countries data
+├── countries-data-oceania.ts      # Oceanian countries data
+├── seed.ts                        # Main seeding script (includes countries seeding)
+```
+
+## Countries Database Schema
+
+### Countries Table
+
+- `id`: Primary key (auto-increment)
+- `code`: ISO 3166-1 alpha-3 country code (e.g., "USA", "ARE")
+- `continent`: Continent name (e.g., "North America", "Asia")
+- `region`: Sub-region (e.g., "Northern America", "Western Asia")
+- `isActive`: Boolean flag for active countries
+- `createdAt`, `updatedAt`, `deletedAt`: Timestamps
+
+### Countries I18n Table
+
+- `id`: Primary key (auto-increment)
+- `countryId`: Foreign key to countries table
+- `locale`: Language code (en, ar, es, fr, pt, ru, de, it)
+- `name`: Country name in the specified locale
+- `description`: Full country name/description in the specified locale
+- `createdAt`, `updatedAt`: Timestamps
+
+## Countries Seeding Usage
+
+### 1. Setup Database
+
+```bash
+pnpm db:migrate
+```
+
+Applies all migrations to create the required database tables.
+
+### 2. Seed Countries Data
+
+```bash
+# Seed only countries (190+ countries)
+pnpm tsx scripts/seed.ts countries
+
+# Or seed everything including sample visa data
+pnpm db:seed
+```
+
+Populates the database with all 190+ countries and their translations in 8 languages.
+
+## Countries Data Statistics
+
+### Countries by Continent
+
+- **Africa**: 54 countries
+- **Europe**: 45 countries
+- **Asia**: 44 countries
+- **North America**: 23 countries
+- **Oceania**: 14 countries
+- **South America**: 12 countries
+
+### Supported Locales
+
+- `en`: English
+- `ar`: Arabic (العربية)
+- `es`: Spanish (Español)
+- `fr`: French (Français)
+- `pt`: Portuguese (Português)
+- `ru`: Russian (Русский)
+- `de`: German (Deutsch)
+- `it`: Italian (Italiano)
+
+## Countries Sample Data
+
+### Country Example: United Arab Emirates (ARE)
+
+```json
+{
+  "code": "ARE",
+  "continent": "Asia",
+  "region": "Western Asia",
+  "translations": [
+    {
+      "locale": "en",
+      "name": "United Arab Emirates",
+      "description": "United Arab Emirates"
+    },
+    {
+      "locale": "ar",
+      "name": "الإمارات العربية المتحدة",
+      "description": "دولة الإمارات العربية المتحدة"
+    },
+    {
+      "locale": "es",
+      "name": "Emiratos Árabes Unidos",
+      "description": "Emiratos Árabes Unidos"
+    },
+    {
+      "locale": "fr",
+      "name": "Émirats arabes unis",
+      "description": "Émirats arabes unis"
+    },
+    {
+      "locale": "pt",
+      "name": "Emirados Árabes Unidos",
+      "description": "Emirados Árabes Unidos"
+    },
+    {
+      "locale": "ru",
+      "name": "Объединенные Арабские Эмираты",
+      "description": "Объединенные Арабские Эмираты"
+    },
+    {
+      "locale": "de",
+      "name": "Vereinigte Arabische Emirate",
+      "description": "Vereinigte Arabische Emirate"
+    },
+    {
+      "locale": "it",
+      "name": "Emirati Arabi Uniti",
+      "description": "Emirati Arabi Uniti"
+    }
+  ]
+}
+```
+
+## Countries Integration with Application
+
+The seeded countries data integrates with the GetTravelVisa.com platform for:
+
+1. **Visa Destination Selection**: Users can select from all world countries
+2. **Passport Country Selection**: Users can select their passport country
+3. **Multilingual Support**: Country names display in user's preferred language
+4. **Visa Eligibility Rules**: Countries are used as destinations and passport countries
+5. **Search and Filtering**: Countries can be filtered by continent/region
+
+## Countries Maintenance
+
+### Adding New Countries
+
+1. Add country data to appropriate continent file
+2. Include all 8 locale translations
+3. Run seed script to update database
+
+### Adding New Locales
+
+1. Update all country data files with new locale
+2. Update database schema if needed
+3. Re-run seed script
+
+### Updating Country Information
+
+1. Modify country data in appropriate file
+2. Re-run seed script (clears and re-inserts all data)
+
+## Countries Error Handling
+
+The seeding script includes comprehensive error handling:
+
+- Individual country insertion errors don't stop the process
+- Detailed logging of success/failure counts
+- Verification script to ensure data integrity
+
+## Countries Performance
+
+- **Seeding Time**: ~3-5 seconds for all 190+ countries with 8 languages
+- **Database Size**: ~1MB for countries + translations
+- **Memory Usage**: Minimal, processes countries in batches
+
+## Countries Troubleshooting
+
+### Common Issues
+
+1. **Database Connection Error**
+   - Ensure database is set up: `pnpm db:migrate`
+   - Check file permissions on local database file
+
+2. **Translation Missing**
+   - Verify all countries have 8 locale translations
+   - Check for typos in locale codes (en, ar, es, fr, pt, ru, de, it)
+
+3. **Duplicate Country Codes**
+   - Ensure each country has unique ISO 3166-1 alpha-3 code
+   - Check for case sensitivity issues
+
+### Countries Verification Commands
+
+```bash
+# Check database by running seed script in countries mode
+pnpm tsx scripts/seed.ts countries
+```
+
+## Countries Future Enhancements
+
+- [x] Support for 8 languages (en, ar, es, fr, pt, ru, de, it) - **COMPLETED**
+- [ ] Add additional locales (zh, ja, ko, hi, etc.)
+- [ ] Include country flags/emoji data
+- [ ] Add country calling codes
+- [ ] Include currency information
+- [ ] Add timezone data
+- [ ] Include country population data

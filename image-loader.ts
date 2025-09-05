@@ -1,4 +1,5 @@
 import type { ImageLoaderProps } from "next/image";
+import { isDevelopment } from "./src/lib/consts";
 
 const normalizeSrc = (src: string) => {
   return src.startsWith("/") ? src.slice(1) : src;
@@ -9,7 +10,7 @@ export default function cloudflareLoader({
   width,
   quality,
 }: ImageLoaderProps) {
-  if (process.env.NODE_ENV === "development") {
+  if (isDevelopment) {
     // Serve the original image when using `next dev`
     return src;
   }
