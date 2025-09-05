@@ -69,9 +69,10 @@ export async function generateMetadata({
       },
     };
   } catch {
+    const { t } = await getTranslation(locale, "pages");
     return {
-      title: "Post Not Found",
-      description: "The requested blog post could not be found.",
+      title: t("blog.meta.post_not_found"),
+      description: t("blog.meta.post_not_found_description"),
     };
   }
 }

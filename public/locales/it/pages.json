@@ -1,42 +1,56 @@
 {
   "contact": {
-    "title": "Contact Us",
-    "subtitle": "Get in touch with our team. We're here to help you with your visa questions and travel planning needs.",
+    "title": "Contattaci",
+    "subtitle": "Entra in contatto con il nostro team. Siamo qui per aiutarti con le tue domande sui visti e le tue esigenze di pianificazione del viaggio.",
     "form": {
-      "title": "Send us a message",
-      "name_label": "Full Name",
-      "name_placeholder": "Enter your full name",
-      "email_label": "Email Address",
-      "email_placeholder": "Enter your email address",
-      "phone_label": "Phone Number",
-      "phone_placeholder": "Enter your phone number (optional)",
-      "reason_label": "Reason for Contact",
-      "reason_question": "General Question",
-      "reason_partnership": "Partnership Inquiry",
-      "reason_other": "Other",
-      "subject_label": "Subject",
-      "subject_placeholder": "Brief description of your inquiry",
-      "message_label": "Message",
-      "message_placeholder": "Please provide details about your inquiry...",
-      "submit": "Send Message"
+      "title": "Inviaci un messaggio",
+      "name_label": "Nome completo",
+      "name_placeholder": "Inserisci il tuo nome completo",
+      "email_label": "Indirizzo email",
+      "email_placeholder": "Inserisci il tuo indirizzo email",
+      "phone_label": "Numero di telefono",
+      "phone_placeholder": "Inserisci il tuo numero di telefono (opzionale)",
+      "reason_label": "Motivo del contatto",
+      "reason_question": "Domanda generale",
+      "reason_partnership": "Richiesta di partnership",
+      "reason_other": "Altro",
+      "subject_label": "Oggetto",
+      "subject_placeholder": "Breve descrizione della tua richiesta",
+      "message_label": "Messaggio",
+      "message_placeholder": "Per favore fornisci dettagli sulla tua richiesta...",
+      "submit": "Invia messaggio"
     },
     "info": {
-      "title": "Get in Touch",
+      "title": "Mettiti in contatto",
       "email": "hello@gettravelvisa.com",
       "phone": "+1 (555) 123-4567",
       "address": "123 Travel Street, Visa City, VC 12345",
-      "hours": "Monday - Friday: 9:00 AM - 6:00 PM (UTC)"
+      "hours": "Lunedì - Venerdì: 9:00 - 18:00 (UTC)"
     },
     "questions": {
-      "title": "Questions About Visa Requirements?",
-      "description": "Our team of visa experts is ready to help you understand the requirements for your destination and guide you through the application process."
+      "title": "Domande sui requisiti per il visto?",
+      "description": "Il nostro team di esperti di visti è pronto ad aiutarti a comprendere i requisiti per la tua destinazione e guidarti attraverso il processo di richiesta."
     },
     "partnerships": {
-      "title": "Partnership Opportunities",
-      "description": "We're always looking to partner with travel agencies, visa service providers, and tourism organizations to better serve travelers worldwide."
+      "title": "Opportunità di partnership",
+      "description": "Cerchiamo sempre di collaborare con agenzie di viaggio, fornitori di servizi per visti e organizzazioni turistiche per servire meglio i viaggiatori di tutto il mondo."
     }
   },
   "blog": {
+    "title": "Blog di Viaggio",
+    "subtitle": "Guide di viaggio esperte, consigli sui visti e informazioni sulle destinazioni per aiutarti a pianificare il tuo viaggio perfetto.",
+    "keywords": "blog di viaggio, guide sui visti, consigli di viaggio, guide sulle destinazioni, consigli di viaggio",
+    "empty_state": "Nessun articolo del blog ancora disponibile. Torna presto!",
+    "filters": {
+      "tag_prefix": "Tag:",
+      "destination_prefix": "Destinazione:"
+    },
+    "aria": {
+      "article_tags": "Tag dell'Articolo",
+      "blog_navigation": "Navigazione del Blog",
+      "return_to_listing": "Torna all'elenco del blog",
+      "related_articles": "Articoli Correlati"
+    },
     "post": {
       "published": "Pubblicato",
       "updated": "Aggiornato",
@@ -47,6 +61,9 @@
       "related_articles": "Articoli correlati"
     },
     "meta": {
+      "tag_title_template": "{{tag}} - {{title}}",
+      "tag_description_template": "Guide di viaggio e informazioni sui visti relative a {{tag}}. Consigli di viaggio esperti e informazioni sulle destinazioni.",
+      "tag_keywords_template": "{{tag}}, blog di viaggio, guide sui visti, consigli di viaggio, guide sulle destinazioni",
       "post_not_found": "Articolo non trovato",
       "post_not_found_description": "L'articolo del blog richiesto non è stato trovato."
     },
@@ -83,5 +100,9 @@
       "title": "Contattaci",
       "description": "Mettetevi in contatto con il nostro team. Siamo qui per aiutarvi con le vostre domande sui visti e le esigenze di pianificazione del viaggio."
     }
+  },
+  "errors": {
+    "page_not_found": "Pagina non trovata",
+    "page_not_found_description": "La pagina richiesta non è stata trovata."
   }
 }

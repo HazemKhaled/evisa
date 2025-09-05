@@ -1,42 +1,56 @@
 {
   "contact": {
-    "title": "Contact Us",
-    "subtitle": "Get in touch with our team. We're here to help you with your visa questions and travel planning needs.",
+    "title": "Связаться с нами",
+    "subtitle": "Свяжитесь с нашей командой. Мы здесь, чтобы помочь вам с вопросами о визах и планированием путешествий.",
     "form": {
-      "title": "Send us a message",
-      "name_label": "Full Name",
-      "name_placeholder": "Enter your full name",
-      "email_label": "Email Address",
-      "email_placeholder": "Enter your email address",
-      "phone_label": "Phone Number",
-      "phone_placeholder": "Enter your phone number (optional)",
-      "reason_label": "Reason for Contact",
-      "reason_question": "General Question",
-      "reason_partnership": "Partnership Inquiry",
-      "reason_other": "Other",
-      "subject_label": "Subject",
-      "subject_placeholder": "Brief description of your inquiry",
-      "message_label": "Message",
-      "message_placeholder": "Please provide details about your inquiry...",
-      "submit": "Send Message"
+      "title": "Отправьте нам сообщение",
+      "name_label": "Полное имя",
+      "name_placeholder": "Введите ваше полное имя",
+      "email_label": "Адрес электронной почты",
+      "email_placeholder": "Введите ваш адрес электронной почты",
+      "phone_label": "Номер телефона",
+      "phone_placeholder": "Введите ваш номер телефона (необязательно)",
+      "reason_label": "Причина обращения",
+      "reason_question": "Общий вопрос",
+      "reason_partnership": "Вопрос о партнерстве",
+      "reason_other": "Другое",
+      "subject_label": "Тема",
+      "subject_placeholder": "Краткое описание вашего запроса",
+      "message_label": "Сообщение",
+      "message_placeholder": "Пожалуйста, предоставьте подробности о вашем запросе...",
+      "submit": "Отправить сообщение"
     },
     "info": {
-      "title": "Get in Touch",
+      "title": "Связаться с нами",
       "email": "hello@gettravelvisa.com",
       "phone": "+1 (555) 123-4567",
       "address": "123 Travel Street, Visa City, VC 12345",
-      "hours": "Monday - Friday: 9:00 AM - 6:00 PM (UTC)"
+      "hours": "Понедельник - Пятница: 9:00 - 18:00 (UTC)"
     },
     "questions": {
-      "title": "Questions About Visa Requirements?",
-      "description": "Our team of visa experts is ready to help you understand the requirements for your destination and guide you through the application process."
+      "title": "Вопросы о требованиях к визе?",
+      "description": "Наша команда экспертов по визам готова помочь вам понять требования для вашего направления и провести вас через процесс подачи заявления."
     },
     "partnerships": {
-      "title": "Partnership Opportunities",
-      "description": "We're always looking to partner with travel agencies, visa service providers, and tourism organizations to better serve travelers worldwide."
+      "title": "Возможности партнерства",
+      "description": "Мы всегда ищем партнерство с турагентствами, поставщиками визовых услуг и туристическими организациями для лучшего обслуживания путешественников по всему миру."
     }
   },
   "blog": {
+    "title": "Блог о путешествиях",
+    "subtitle": "Экспертные путеводители, советы по визам и информация о направлениях, чтобы помочь вам спланировать идеальное путешествие.",
+    "keywords": "блог о путешествиях, руководства по визам, советы по путешествиям, путеводители, советы путешественникам",
+    "empty_state": "Пока нет доступных статей блога. Заходите позже!",
+    "filters": {
+      "tag_prefix": "Тег:",
+      "destination_prefix": "Направление:"
+    },
+    "aria": {
+      "article_tags": "Теги статьи",
+      "blog_navigation": "Навигация по блогу",
+      "return_to_listing": "Вернуться к списку блога",
+      "related_articles": "Похожие статьи"
+    },
     "post": {
       "published": "Опубликовано",
       "updated": "Обновлено",
@@ -47,6 +61,9 @@
       "related_articles": "Похожие статьи"
     },
     "meta": {
+      "tag_title_template": "{{tag}} - {{title}}",
+      "tag_description_template": "Путеводители и визовая информация, связанные с {{tag}}. Экспертные советы путешественникам и информация о направлениях.",
+      "tag_keywords_template": "{{tag}}, блог о путешествиях, руководства по визам, советы по путешествиям, путеводители",
       "post_not_found": "Статья не найдена",
       "post_not_found_description": "Запрошенная статья блога не была найдена."
     },
@@ -83,5 +100,9 @@
       "title": "Свяжитесь с нами",
       "description": "Свяжитесь с нашей командой. Мы здесь, чтобы помочь вам с вопросами по визам и потребностями в планировании путешествий."
     }
+  },
+  "errors": {
+    "page_not_found": "Страница не найдена",
+    "page_not_found_description": "Запрошенная страница не была найдена."
   }
 }

@@ -25,13 +25,18 @@ interface BlogHomeProps {
   searchParams: Promise<{ page?: string; tag?: string; destination?: string }>;
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const { t } = await getTranslation(locale, "pages");
+
   return {
-    title: `Travel Blog - GetTravelVisa.com`,
-    description:
-      "Expert travel guides, visa tips, and destination insights to help you plan your perfect trip.",
-    keywords:
-      "travel blog, visa guides, travel tips, destination guides, travel advice",
+    title: t("blog.title"),
+    description: t("blog.subtitle"),
+    keywords: t("blog.keywords"),
   };
 }
 
@@ -121,10 +126,10 @@ export default async function BlogHome({
     return (
       <StaticPageLayout>
         <div className="py-16 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">Travel Blog</h1>
-          <p className="text-lg text-gray-600">
-            No blog posts available yet. Check back soon!
-          </p>
+          <h1 className="mb-4 text-4xl font-bold text-gray-900">
+            {t("blog.title")}
+          </h1>
+          <p className="text-lg text-gray-600">{t("blog.empty_state")}</p>
         </div>
       </StaticPageLayout>
     );
