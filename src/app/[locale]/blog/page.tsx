@@ -56,7 +56,7 @@ export default async function BlogHome({
   // Filter by destination if specified
   if (destination) {
     allPosts = allPosts.filter(post =>
-      post.frontmatter.destinations?.some((dest: string) =>
+      post.frontmatter.destinations?.some(dest =>
         dest.toLowerCase().includes(destination.toLowerCase())
       )
     );
