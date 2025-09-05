@@ -27,6 +27,26 @@ export const oceaniaCountriesData: CountryData[] = [
         name: "Australie",
         description: "Commonwealth d'Australie",
       },
+      {
+        locale: "pt",
+        name: "Austrália",
+        description: "Commonwealth da Austrália",
+      },
+      {
+        locale: "ru",
+        name: "Австралия",
+        description: "Содружество Австралии",
+      },
+      {
+        locale: "de",
+        name: "Australien",
+        description: "Commonwealth von Australien",
+      },
+      {
+        locale: "it",
+        name: "Australia",
+        description: "Commonwealth d'Australia",
+      },
     ],
   },
   {
@@ -39,6 +59,10 @@ export const oceaniaCountriesData: CountryData[] = [
       { locale: "ar", name: "فيجي", description: "جمهورية فيجي" },
       { locale: "es", name: "Fiyi", description: "República de Fiyi" },
       { locale: "fr", name: "Fidji", description: "République des Fidji" },
+      { locale: "pt", name: "Fiji", description: "República de Fiji" },
+      { locale: "ru", name: "Фиджи", description: "Республика Фиджи" },
+      { locale: "de", name: "Fidschi", description: "Republik Fidschi" },
+      { locale: "it", name: "Fiji", description: "Repubblica delle Fiji" },
     ],
   },
   {
@@ -51,6 +75,10 @@ export const oceaniaCountriesData: CountryData[] = [
       { locale: "ar", name: "كيريباتي", description: "جمهورية كيريباتي" },
       { locale: "es", name: "Kiribati", description: "República de Kiribati" },
       { locale: "fr", name: "Kiribati", description: "République de Kiribati" },
+      { locale: "pt", name: "Kiribati", description: "República de Kiribati" },
+      { locale: "ru", name: "Кирибати", description: "Республика Кирибати" },
+      { locale: "de", name: "Kiribati", description: "Republik Kiribati" },
+      { locale: "it", name: "Kiribati", description: "Repubblica di Kiribati" },
     ],
   },
   {
@@ -74,6 +102,26 @@ export const oceaniaCountriesData: CountryData[] = [
         locale: "fr",
         name: "Îles Marshall",
         description: "République des Îles Marshall",
+      },
+      {
+        locale: "pt",
+        name: "Ilhas Marshall",
+        description: "República das Ilhas Marshall",
+      },
+      {
+        locale: "ru",
+        name: "Маршалловы Острова",
+        description: "Республика Маршалловы Острова",
+      },
+      {
+        locale: "de",
+        name: "Marshallinseln",
+        description: "Republik der Marshallinseln",
+      },
+      {
+        locale: "it",
+        name: "Isole Marshall",
+        description: "Repubblica delle Isole Marshall",
       },
     ],
   },
@@ -103,6 +151,26 @@ export const oceaniaCountriesData: CountryData[] = [
         name: "Micronésie",
         description: "États fédérés de Micronésie",
       },
+      {
+        locale: "pt",
+        name: "Micronésia",
+        description: "Estados Federados da Micronésia",
+      },
+      {
+        locale: "ru",
+        name: "Микронезия",
+        description: "Федеративные Штаты Микронезии",
+      },
+      {
+        locale: "de",
+        name: "Mikronesien",
+        description: "Föderierte Staaten von Mikronesien",
+      },
+      {
+        locale: "it",
+        name: "Micronesia",
+        description: "Stati Federati di Micronesia",
+      },
     ],
   },
   {
@@ -115,6 +183,10 @@ export const oceaniaCountriesData: CountryData[] = [
       { locale: "ar", name: "ناورو", description: "جمهورية ناورو" },
       { locale: "es", name: "Nauru", description: "República de Nauru" },
       { locale: "fr", name: "Nauru", description: "République de Nauru" },
+      { locale: "pt", name: "Nauru", description: "República de Nauru" },
+      { locale: "ru", name: "Науру", description: "Республика Науру" },
+      { locale: "de", name: "Nauru", description: "Republik Nauru" },
+      { locale: "it", name: "Nauru", description: "Repubblica di Nauru" },
     ],
   },
   {
@@ -131,6 +203,26 @@ export const oceaniaCountriesData: CountryData[] = [
         name: "Nouvelle-Zélande",
         description: "Nouvelle-Zélande",
       },
+      {
+        locale: "pt",
+        name: "Nova Zelândia",
+        description: "Nova Zelândia",
+      },
+      {
+        locale: "ru",
+        name: "Новая Зеландия",
+        description: "Новая Зеландия",
+      },
+      {
+        locale: "de",
+        name: "Neuseeland",
+        description: "Neuseeland",
+      },
+      {
+        locale: "it",
+        name: "Nuova Zelanda",
+        description: "Nuova Zelanda",
+      },
     ],
   },
   {
@@ -143,6 +235,10 @@ export const oceaniaCountriesData: CountryData[] = [
       { locale: "ar", name: "بالاو", description: "جمهورية بالاو" },
       { locale: "es", name: "Palau", description: "República de Palau" },
       { locale: "fr", name: "Palaos", description: "République des Palaos" },
+      { locale: "pt", name: "Palau", description: "República de Palau" },
+      { locale: "ru", name: "Палау", description: "Республика Палау" },
+      { locale: "de", name: "Palau", description: "Republik Palau" },
+      { locale: "it", name: "Palau", description: "Repubblica di Palau" },
     ],
   },
   {
@@ -171,6 +267,26 @@ export const oceaniaCountriesData: CountryData[] = [
         name: "Papouasie-Nouvelle-Guinée",
         description: "État indépendant de Papouasie-Nouvelle-Guinée",
       },
+      {
+        locale: "pt",
+        name: "Papua-Nova Guiné",
+        description: "Estado Independente da Papua-Nova Guiné",
+      },
+      {
+        locale: "ru",
+        name: "Папуа-Новая Гвинея",
+        description: "Независимое Государство Папуа-Новая Гвинея",
+      },
+      {
+        locale: "de",
+        name: "Papua-Neuguinea",
+        description: "Unabhängiger Staat Papua-Neuguinea",
+      },
+      {
+        locale: "it",
+        name: "Papua Nuova Guinea",
+        description: "Stato Indipendente di Papua Nuova Guinea",
+      },
     ],
   },
   {
@@ -195,6 +311,26 @@ export const oceaniaCountriesData: CountryData[] = [
         name: "Samoa",
         description: "État indépendant des Samoa",
       },
+      {
+        locale: "pt",
+        name: "Samoa",
+        description: "Estado Independente de Samoa",
+      },
+      {
+        locale: "ru",
+        name: "Самоа",
+        description: "Независимое Государство Самоа",
+      },
+      {
+        locale: "de",
+        name: "Samoa",
+        description: "Unabhängiger Staat Samoa",
+      },
+      {
+        locale: "it",
+        name: "Samoa",
+        description: "Stato Indipendente di Samoa",
+      },
     ],
   },
   {
@@ -207,6 +343,14 @@ export const oceaniaCountriesData: CountryData[] = [
       { locale: "ar", name: "جزر سليمان", description: "جزر سليمان" },
       { locale: "es", name: "Islas Salomón", description: "Islas Salomón" },
       { locale: "fr", name: "Îles Salomon", description: "Îles Salomon" },
+      { locale: "pt", name: "Ilhas Salomão", description: "Ilhas Salomão" },
+      {
+        locale: "ru",
+        name: "Соломоновы Острова",
+        description: "Соломоновы Острова",
+      },
+      { locale: "de", name: "Salomonen", description: "Salomonen" },
+      { locale: "it", name: "Isole Salomone", description: "Isole Salomone" },
     ],
   },
   {
@@ -219,6 +363,10 @@ export const oceaniaCountriesData: CountryData[] = [
       { locale: "ar", name: "تونغا", description: "مملكة تونغا" },
       { locale: "es", name: "Tonga", description: "Reino de Tonga" },
       { locale: "fr", name: "Tonga", description: "Royaume des Tonga" },
+      { locale: "pt", name: "Tonga", description: "Reino de Tonga" },
+      { locale: "ru", name: "Тонга", description: "Королевство Тонга" },
+      { locale: "de", name: "Tonga", description: "Königreich Tonga" },
+      { locale: "it", name: "Tonga", description: "Regno di Tonga" },
     ],
   },
   {
@@ -231,6 +379,10 @@ export const oceaniaCountriesData: CountryData[] = [
       { locale: "ar", name: "توفالو", description: "توفالو" },
       { locale: "es", name: "Tuvalu", description: "Tuvalu" },
       { locale: "fr", name: "Tuvalu", description: "Tuvalu" },
+      { locale: "pt", name: "Tuvalu", description: "Tuvalu" },
+      { locale: "ru", name: "Тувалу", description: "Тувалу" },
+      { locale: "de", name: "Tuvalu", description: "Tuvalu" },
+      { locale: "it", name: "Tuvalu", description: "Tuvalu" },
     ],
   },
   {
@@ -243,6 +395,10 @@ export const oceaniaCountriesData: CountryData[] = [
       { locale: "ar", name: "فانواتو", description: "جمهورية فانواتو" },
       { locale: "es", name: "Vanuatu", description: "República de Vanuatu" },
       { locale: "fr", name: "Vanuatu", description: "République de Vanuatu" },
+      { locale: "pt", name: "Vanuatu", description: "República de Vanuatu" },
+      { locale: "ru", name: "Вануату", description: "Республика Вануату" },
+      { locale: "de", name: "Vanuatu", description: "Republik Vanuatu" },
+      { locale: "it", name: "Vanuatu", description: "Repubblica di Vanuatu" },
     ],
   },
 ];

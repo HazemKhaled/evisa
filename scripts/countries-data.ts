@@ -43,6 +43,26 @@ export const allCountriesData: CountryData[] = [
         name: "Algérie",
         description: "République algérienne démocratique et populaire",
       },
+      {
+        locale: "pt",
+        name: "Argélia",
+        description: "República Argelina Democrática e Popular",
+      },
+      {
+        locale: "ru",
+        name: "Алжир",
+        description: "Алжирская Народно-Демократическая Республика",
+      },
+      {
+        locale: "de",
+        name: "Algerien",
+        description: "Demokratische Volksrepublik Algerien",
+      },
+      {
+        locale: "it",
+        name: "Algeria",
+        description: "Repubblica Algerina Democratica e Popolare",
+      },
     ],
   },
   {
@@ -55,6 +75,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "أنغولا", description: "جمهورية أنغولا" },
       { locale: "es", name: "Angola", description: "República de Angola" },
       { locale: "fr", name: "Angola", description: "République d'Angola" },
+      { locale: "pt", name: "Angola", description: "República de Angola" },
+      { locale: "ru", name: "Ангола", description: "Республика Ангола" },
+      { locale: "de", name: "Angola", description: "Republik Angola" },
+      { locale: "it", name: "Angola", description: "Repubblica dell'Angola" },
     ],
   },
   {
@@ -67,6 +91,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "بنين", description: "جمهورية بنين" },
       { locale: "es", name: "Benín", description: "República de Benín" },
       { locale: "fr", name: "Bénin", description: "République du Bénin" },
+      { locale: "pt", name: "Benin", description: "República do Benin" },
+      { locale: "ru", name: "Бенин", description: "Республика Бенин" },
+      { locale: "de", name: "Benin", description: "Republik Benin" },
+      { locale: "it", name: "Benin", description: "Repubblica del Benin" },
     ],
   },
   {
@@ -79,6 +107,14 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "بوتسوانا", description: "جمهورية بوتسوانا" },
       { locale: "es", name: "Botsuana", description: "República de Botsuana" },
       { locale: "fr", name: "Botswana", description: "République du Botswana" },
+      { locale: "pt", name: "Botsuana", description: "República do Botsuana" },
+      { locale: "ru", name: "Ботсвана", description: "Республика Ботсвана" },
+      { locale: "de", name: "Botswana", description: "Republik Botswana" },
+      {
+        locale: "it",
+        name: "Botswana",
+        description: "Repubblica del Botswana",
+      },
     ],
   },
   {
@@ -91,6 +127,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "بوركينا فاسو", description: "بوركينا فاسو" },
       { locale: "es", name: "Burkina Faso", description: "Burkina Faso" },
       { locale: "fr", name: "Burkina Faso", description: "Burkina Faso" },
+      { locale: "pt", name: "Burkina Faso", description: "Burkina Faso" },
+      { locale: "ru", name: "Буркина-Фасо", description: "Буркина-Фасо" },
+      { locale: "de", name: "Burkina Faso", description: "Burkina Faso" },
+      { locale: "it", name: "Burkina Faso", description: "Burkina Faso" },
     ],
   },
   {
@@ -103,6 +143,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "بوروندي", description: "جمهورية بوروندي" },
       { locale: "es", name: "Burundi", description: "República de Burundi" },
       { locale: "fr", name: "Burundi", description: "République du Burundi" },
+      { locale: "pt", name: "Burundi", description: "República do Burundi" },
+      { locale: "ru", name: "Бурунди", description: "Республика Бурунди" },
+      { locale: "de", name: "Burundi", description: "Republik Burundi" },
+      { locale: "it", name: "Burundi", description: "Repubblica del Burundi" },
     ],
   },
   {
@@ -115,6 +159,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "الكاميرون", description: "جمهورية الكاميرون" },
       { locale: "es", name: "Camerún", description: "República de Camerún" },
       { locale: "fr", name: "Cameroun", description: "République du Cameroun" },
+      { locale: "pt", name: "Camarões", description: "República dos Camarões" },
+      { locale: "ru", name: "Камерун", description: "Республика Камерун" },
+      { locale: "de", name: "Kamerun", description: "Republik Kamerun" },
+      { locale: "it", name: "Camerun", description: "Repubblica del Camerun" },
     ],
   },
   {
@@ -139,6 +187,22 @@ export const allCountriesData: CountryData[] = [
         description: "República de Cabo Verde",
       },
       { locale: "fr", name: "Cap-Vert", description: "République du Cap-Vert" },
+      {
+        locale: "pt",
+        name: "Cabo Verde",
+        description: "República de Cabo Verde",
+      },
+      {
+        locale: "ru",
+        name: "Кабо-Верде",
+        description: "Республика Кабо-Верде",
+      },
+      { locale: "de", name: "Kap Verde", description: "Republik Kap Verde" },
+      {
+        locale: "it",
+        name: "Capo Verde",
+        description: "Repubblica di Capo Verde",
+      },
     ],
   },
   {
@@ -167,6 +231,26 @@ export const allCountriesData: CountryData[] = [
         name: "République centrafricaine",
         description: "République centrafricaine",
       },
+      {
+        locale: "pt",
+        name: "República Centro-Africana",
+        description: "República Centro-Africana",
+      },
+      {
+        locale: "ru",
+        name: "Центральноафриканская Республика",
+        description: "Центральноафриканская Республика",
+      },
+      {
+        locale: "de",
+        name: "Zentralafrikanische Republik",
+        description: "Zentralafrikanische Republik",
+      },
+      {
+        locale: "it",
+        name: "Repubblica Centrafricana",
+        description: "Repubblica Centrafricana",
+      },
     ],
   },
   {
@@ -179,6 +263,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "تشاد", description: "جمهورية تشاد" },
       { locale: "es", name: "Chad", description: "República del Chad" },
       { locale: "fr", name: "Tchad", description: "République du Tchad" },
+      { locale: "pt", name: "Chade", description: "República do Chade" },
+      { locale: "ru", name: "Чад", description: "Республика Чад" },
+      { locale: "de", name: "Tschad", description: "Republik Tschad" },
+      { locale: "it", name: "Ciad", description: "Repubblica del Ciad" },
     ],
   },
   {
@@ -191,6 +279,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "جزر القمر", description: "اتحاد جزر القمر" },
       { locale: "es", name: "Comoras", description: "Unión de las Comoras" },
       { locale: "fr", name: "Comores", description: "Union des Comores" },
+      { locale: "pt", name: "Comores", description: "União das Comores" },
+      { locale: "ru", name: "Коморы", description: "Союз Коморских Островов" },
+      { locale: "de", name: "Komoren", description: "Union der Komoren" },
+      { locale: "it", name: "Comore", description: "Unione delle Comore" },
     ],
   },
   {
@@ -203,6 +295,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "الكونغو", description: "جمهورية الكونغو" },
       { locale: "es", name: "Congo", description: "República del Congo" },
       { locale: "fr", name: "Congo", description: "République du Congo" },
+      { locale: "pt", name: "Congo", description: "República do Congo" },
+      { locale: "ru", name: "Конго", description: "Республика Конго" },
+      { locale: "de", name: "Kongo", description: "Republik Kongo" },
+      { locale: "it", name: "Congo", description: "Repubblica del Congo" },
     ],
   },
   {
@@ -231,6 +327,26 @@ export const allCountriesData: CountryData[] = [
         name: "République démocratique du Congo",
         description: "République démocratique du Congo",
       },
+      {
+        locale: "pt",
+        name: "República Democrática do Congo",
+        description: "República Democrática do Congo",
+      },
+      {
+        locale: "ru",
+        name: "Демократическая Республика Конго",
+        description: "Демократическая Республика Конго",
+      },
+      {
+        locale: "de",
+        name: "Demokratische Republik Kongo",
+        description: "Demokratische Republik Kongo",
+      },
+      {
+        locale: "it",
+        name: "Repubblica Democratica del Congo",
+        description: "Repubblica Democratica del Congo",
+      },
     ],
   },
   {
@@ -255,6 +371,26 @@ export const allCountriesData: CountryData[] = [
         name: "Côte d'Ivoire",
         description: "République de Côte d'Ivoire",
       },
+      {
+        locale: "pt",
+        name: "Costa do Marfim",
+        description: "República da Costa do Marfim",
+      },
+      {
+        locale: "ru",
+        name: "Кот-д'Ивуар",
+        description: "Республика Кот-д'Ивуар",
+      },
+      {
+        locale: "de",
+        name: "Elfenbeinküste",
+        description: "Republik Côte d'Ivoire",
+      },
+      {
+        locale: "it",
+        name: "Costa d'Avorio",
+        description: "Repubblica della Costa d'Avorio",
+      },
     ],
   },
   {
@@ -267,6 +403,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "جيبوتي", description: "جمهورية جيبوتي" },
       { locale: "es", name: "Yibuti", description: "República de Yibuti" },
       { locale: "fr", name: "Djibouti", description: "République de Djibouti" },
+      { locale: "pt", name: "Djibuti", description: "República do Djibuti" },
+      { locale: "ru", name: "Джибути", description: "Республика Джибути" },
+      { locale: "de", name: "Dschibuti", description: "Republik Dschibuti" },
+      { locale: "it", name: "Gibuti", description: "Repubblica di Gibuti" },
     ],
   },
   {
@@ -286,6 +426,26 @@ export const allCountriesData: CountryData[] = [
         locale: "fr",
         name: "Égypte",
         description: "République arabe d'Égypte",
+      },
+      {
+        locale: "pt",
+        name: "Egito",
+        description: "República Árabe do Egito",
+      },
+      {
+        locale: "ru",
+        name: "Египет",
+        description: "Арабская Республика Египет",
+      },
+      {
+        locale: "de",
+        name: "Ägypten",
+        description: "Arabische Republik Ägypten",
+      },
+      {
+        locale: "it",
+        name: "Egitto",
+        description: "Repubblica Araba d'Egitto",
       },
     ],
   },
@@ -315,6 +475,26 @@ export const allCountriesData: CountryData[] = [
         name: "Guinée équatoriale",
         description: "République de Guinée équatoriale",
       },
+      {
+        locale: "pt",
+        name: "Guiné Equatorial",
+        description: "República da Guiné Equatorial",
+      },
+      {
+        locale: "ru",
+        name: "Экваториальная Гвинея",
+        description: "Республика Экваториальная Гвинея",
+      },
+      {
+        locale: "de",
+        name: "Äquatorialguinea",
+        description: "Republik Äquatorialguinea",
+      },
+      {
+        locale: "it",
+        name: "Guinea Equatoriale",
+        description: "Repubblica della Guinea Equatoriale",
+      },
     ],
   },
   {
@@ -327,6 +507,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "إريتريا", description: "دولة إريتريا" },
       { locale: "es", name: "Eritrea", description: "Estado de Eritrea" },
       { locale: "fr", name: "Érythrée", description: "État d'Érythrée" },
+      { locale: "pt", name: "Eritreia", description: "Estado da Eritreia" },
+      { locale: "ru", name: "Эритрея", description: "Государство Эритрея" },
+      { locale: "de", name: "Eritrea", description: "Staat Eritrea" },
+      { locale: "it", name: "Eritrea", description: "Stato dell'Eritrea" },
     ],
   },
   {
@@ -339,6 +523,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "إسواتيني", description: "مملكة إسواتيني" },
       { locale: "es", name: "Esuatini", description: "Reino de Esuatini" },
       { locale: "fr", name: "Eswatini", description: "Royaume d'Eswatini" },
+      { locale: "pt", name: "Eswatini", description: "Reino de Eswatini" },
+      { locale: "ru", name: "Эсватини", description: "Королевство Эсватини" },
+      { locale: "de", name: "Eswatini", description: "Königreich Eswatini" },
+      { locale: "it", name: "Eswatini", description: "Regno di Eswatini" },
     ],
   },
   {
@@ -367,6 +555,26 @@ export const allCountriesData: CountryData[] = [
         name: "Éthiopie",
         description: "République fédérale démocratique d'Éthiopie",
       },
+      {
+        locale: "pt",
+        name: "Etiópia",
+        description: "República Democrática Federal da Etiópia",
+      },
+      {
+        locale: "ru",
+        name: "Эфиопия",
+        description: "Федеративная Демократическая Республика Эфиопия",
+      },
+      {
+        locale: "de",
+        name: "Äthiopien",
+        description: "Demokratische Bundesrepublik Äthiopien",
+      },
+      {
+        locale: "it",
+        name: "Etiopia",
+        description: "Repubblica Federale Democratica d'Etiopia",
+      },
     ],
   },
   {
@@ -379,6 +587,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "الغابون", description: "جمهورية الغابون" },
       { locale: "es", name: "Gabón", description: "República Gabonesa" },
       { locale: "fr", name: "Gabon", description: "République gabonaise" },
+      { locale: "pt", name: "Gabão", description: "República Gabonesa" },
+      { locale: "ru", name: "Габон", description: "Габонская Республика" },
+      { locale: "de", name: "Gabun", description: "Gabunische Republik" },
+      { locale: "it", name: "Gabon", description: "Repubblica Gabonese" },
     ],
   },
   {
@@ -391,6 +603,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "غامبيا", description: "جمهورية غامبيا" },
       { locale: "es", name: "Gambia", description: "República de Gambia" },
       { locale: "fr", name: "Gambie", description: "République de Gambie" },
+      { locale: "pt", name: "Gâmbia", description: "República da Gâmbia" },
+      { locale: "ru", name: "Гамбия", description: "Республика Гамбия" },
+      { locale: "de", name: "Gambia", description: "Republik Gambia" },
+      { locale: "it", name: "Gambia", description: "Repubblica del Gambia" },
     ],
   },
   {
@@ -403,6 +619,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "غانا", description: "جمهورية غانا" },
       { locale: "es", name: "Ghana", description: "República de Ghana" },
       { locale: "fr", name: "Ghana", description: "République du Ghana" },
+      { locale: "pt", name: "Gana", description: "República do Gana" },
+      { locale: "ru", name: "Гана", description: "Республика Гана" },
+      { locale: "de", name: "Ghana", description: "Republik Ghana" },
+      { locale: "it", name: "Ghana", description: "Repubblica del Ghana" },
     ],
   },
   {
@@ -415,6 +635,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "غينيا", description: "جمهورية غينيا" },
       { locale: "es", name: "Guinea", description: "República de Guinea" },
       { locale: "fr", name: "Guinée", description: "République de Guinée" },
+      { locale: "pt", name: "Guiné", description: "República da Guiné" },
+      { locale: "ru", name: "Гвинея", description: "Республика Гвинея" },
+      { locale: "de", name: "Guinea", description: "Republik Guinea" },
+      { locale: "it", name: "Guinea", description: "Repubblica di Guinea" },
     ],
   },
   {
@@ -439,6 +663,26 @@ export const allCountriesData: CountryData[] = [
         name: "Guinée-Bissau",
         description: "République de Guinée-Bissau",
       },
+      {
+        locale: "pt",
+        name: "Guiné-Bissau",
+        description: "República da Guiné-Bissau",
+      },
+      {
+        locale: "ru",
+        name: "Гвинея-Бисау",
+        description: "Республика Гвинея-Бисау",
+      },
+      {
+        locale: "de",
+        name: "Guinea-Bissau",
+        description: "Republik Guinea-Bissau",
+      },
+      {
+        locale: "it",
+        name: "Guinea-Bissau",
+        description: "Repubblica della Guinea-Bissau",
+      },
     ],
   },
   {
@@ -451,6 +695,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "كينيا", description: "جمهورية كينيا" },
       { locale: "es", name: "Kenia", description: "República de Kenia" },
       { locale: "fr", name: "Kenya", description: "République du Kenya" },
+      { locale: "pt", name: "Quênia", description: "República do Quênia" },
+      { locale: "ru", name: "Кения", description: "Республика Кения" },
+      { locale: "de", name: "Kenia", description: "Republik Kenia" },
+      { locale: "it", name: "Kenya", description: "Repubblica del Kenya" },
     ],
   },
   {
@@ -463,6 +711,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "ليسوتو", description: "مملكة ليسوتو" },
       { locale: "es", name: "Lesoto", description: "Reino de Lesoto" },
       { locale: "fr", name: "Lesotho", description: "Royaume du Lesotho" },
+      { locale: "pt", name: "Lesoto", description: "Reino do Lesoto" },
+      { locale: "ru", name: "Лесото", description: "Королевство Лесото" },
+      { locale: "de", name: "Lesotho", description: "Königreich Lesotho" },
+      { locale: "it", name: "Lesotho", description: "Regno del Lesotho" },
     ],
   },
   {
@@ -475,6 +727,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "ليبيريا", description: "جمهورية ليبيريا" },
       { locale: "es", name: "Liberia", description: "República de Liberia" },
       { locale: "fr", name: "Libéria", description: "République du Libéria" },
+      { locale: "pt", name: "Libéria", description: "República da Libéria" },
+      { locale: "ru", name: "Либерия", description: "Республика Либерия" },
+      { locale: "de", name: "Liberia", description: "Republik Liberia" },
+      { locale: "it", name: "Liberia", description: "Repubblica di Liberia" },
     ],
   },
   {
@@ -487,6 +743,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "ليبيا", description: "دولة ليبيا" },
       { locale: "es", name: "Libia", description: "Estado de Libia" },
       { locale: "fr", name: "Libye", description: "État de Libye" },
+      { locale: "pt", name: "Líbia", description: "Estado da Líbia" },
+      { locale: "ru", name: "Ливия", description: "Государство Ливия" },
+      { locale: "de", name: "Libyen", description: "Staat Libyen" },
+      { locale: "it", name: "Libia", description: "Stato di Libia" },
     ],
   },
   {
@@ -511,6 +771,26 @@ export const allCountriesData: CountryData[] = [
         name: "Madagascar",
         description: "République de Madagascar",
       },
+      {
+        locale: "pt",
+        name: "Madagascar",
+        description: "República de Madagascar",
+      },
+      {
+        locale: "ru",
+        name: "Мадагаскар",
+        description: "Республика Мадагаскар",
+      },
+      {
+        locale: "de",
+        name: "Madagaskar",
+        description: "Republik Madagaskar",
+      },
+      {
+        locale: "it",
+        name: "Madagascar",
+        description: "Repubblica del Madagascar",
+      },
     ],
   },
   {
@@ -523,6 +803,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "مالاوي", description: "جمهورية مالاوي" },
       { locale: "es", name: "Malaui", description: "República de Malaui" },
       { locale: "fr", name: "Malawi", description: "République du Malawi" },
+      { locale: "pt", name: "Malawi", description: "República do Malawi" },
+      { locale: "ru", name: "Малави", description: "Республика Малави" },
+      { locale: "de", name: "Malawi", description: "Republik Malawi" },
+      { locale: "it", name: "Malawi", description: "Repubblica del Malawi" },
     ],
   },
   {
@@ -535,6 +819,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "مالي", description: "جمهورية مالي" },
       { locale: "es", name: "Malí", description: "República de Malí" },
       { locale: "fr", name: "Mali", description: "République du Mali" },
+      { locale: "pt", name: "Mali", description: "República do Mali" },
+      { locale: "ru", name: "Мали", description: "Республика Мали" },
+      { locale: "de", name: "Mali", description: "Republik Mali" },
+      { locale: "it", name: "Mali", description: "Repubblica del Mali" },
     ],
   },
   {
@@ -563,6 +851,26 @@ export const allCountriesData: CountryData[] = [
         name: "Mauritanie",
         description: "République islamique de Mauritanie",
       },
+      {
+        locale: "pt",
+        name: "Mauritânia",
+        description: "República Islâmica da Mauritânia",
+      },
+      {
+        locale: "ru",
+        name: "Мавритания",
+        description: "Исламская Республика Мавритания",
+      },
+      {
+        locale: "de",
+        name: "Mauretanien",
+        description: "Islamische Republik Mauretanien",
+      },
+      {
+        locale: "it",
+        name: "Mauritania",
+        description: "Repubblica Islamica di Mauritania",
+      },
     ],
   },
   {
@@ -575,6 +883,14 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "موريشيوس", description: "جمهورية موريشيوس" },
       { locale: "es", name: "Mauricio", description: "República de Mauricio" },
       { locale: "fr", name: "Maurice", description: "République de Maurice" },
+      { locale: "pt", name: "Maurícia", description: "República de Maurícia" },
+      { locale: "ru", name: "Маврикий", description: "Республика Маврикий" },
+      { locale: "de", name: "Mauritius", description: "Republik Mauritius" },
+      {
+        locale: "it",
+        name: "Mauritius",
+        description: "Repubblica di Mauritius",
+      },
     ],
   },
   {
@@ -587,6 +903,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "المغرب", description: "المملكة المغربية" },
       { locale: "es", name: "Marruecos", description: "Reino de Marruecos" },
       { locale: "fr", name: "Maroc", description: "Royaume du Maroc" },
+      { locale: "pt", name: "Marrocos", description: "Reino de Marrocos" },
+      { locale: "ru", name: "Марокко", description: "Королевство Марокко" },
+      { locale: "de", name: "Marokko", description: "Königreich Marokko" },
+      { locale: "it", name: "Marocco", description: "Regno del Marocco" },
     ],
   },
   {
@@ -611,6 +931,26 @@ export const allCountriesData: CountryData[] = [
         name: "Mozambique",
         description: "République du Mozambique",
       },
+      {
+        locale: "pt",
+        name: "Moçambique",
+        description: "República de Moçambique",
+      },
+      {
+        locale: "ru",
+        name: "Мозамбик",
+        description: "Республика Мозамбик",
+      },
+      {
+        locale: "de",
+        name: "Mosambik",
+        description: "Republik Mosambik",
+      },
+      {
+        locale: "it",
+        name: "Mozambico",
+        description: "Repubblica del Mozambico",
+      },
     ],
   },
   {
@@ -623,6 +963,14 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "ناميبيا", description: "جمهورية ناميبيا" },
       { locale: "es", name: "Namibia", description: "República de Namibia" },
       { locale: "fr", name: "Namibie", description: "République de Namibie" },
+      { locale: "pt", name: "Namíbia", description: "República da Namíbia" },
+      { locale: "ru", name: "Намибия", description: "Республика Намибия" },
+      { locale: "de", name: "Namibia", description: "Republik Namibia" },
+      {
+        locale: "it",
+        name: "Namibia",
+        description: "Repubblica della Namibia",
+      },
     ],
   },
   {
@@ -635,6 +983,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "النيجر", description: "جمهورية النيجر" },
       { locale: "es", name: "Níger", description: "República del Níger" },
       { locale: "fr", name: "Niger", description: "République du Niger" },
+      { locale: "pt", name: "Níger", description: "República do Níger" },
+      { locale: "ru", name: "Нигер", description: "Республика Нигер" },
+      { locale: "de", name: "Niger", description: "Republik Niger" },
+      { locale: "it", name: "Niger", description: "Repubblica del Niger" },
     ],
   },
   {
@@ -663,6 +1015,26 @@ export const allCountriesData: CountryData[] = [
         name: "Nigéria",
         description: "République fédérale du Nigéria",
       },
+      {
+        locale: "pt",
+        name: "Nigéria",
+        description: "República Federal da Nigéria",
+      },
+      {
+        locale: "ru",
+        name: "Нигерия",
+        description: "Федеративная Республика Нигерия",
+      },
+      {
+        locale: "de",
+        name: "Nigeria",
+        description: "Bundesrepublik Nigeria",
+      },
+      {
+        locale: "it",
+        name: "Nigeria",
+        description: "Repubblica Federale di Nigeria",
+      },
     ],
   },
   {
@@ -675,6 +1047,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "رواندا", description: "جمهورية رواندا" },
       { locale: "es", name: "Ruanda", description: "República de Ruanda" },
       { locale: "fr", name: "Rwanda", description: "République du Rwanda" },
+      { locale: "pt", name: "Ruanda", description: "República do Ruanda" },
+      { locale: "ru", name: "Руанда", description: "Республика Руанда" },
+      { locale: "de", name: "Ruanda", description: "Republik Ruanda" },
+      { locale: "it", name: "Ruanda", description: "Repubblica del Ruanda" },
     ],
   },
   {
@@ -703,6 +1079,26 @@ export const allCountriesData: CountryData[] = [
         name: "Sao Tomé-et-Principe",
         description: "République démocratique de Sao Tomé-et-Principe",
       },
+      {
+        locale: "pt",
+        name: "São Tomé e Príncipe",
+        description: "República Democrática de São Tomé e Príncipe",
+      },
+      {
+        locale: "ru",
+        name: "Сан-Томе и Принсипи",
+        description: "Демократическая Республика Сан-Томе и Принсипи",
+      },
+      {
+        locale: "de",
+        name: "São Tomé und Príncipe",
+        description: "Demokratische Republik São Tomé und Príncipe",
+      },
+      {
+        locale: "it",
+        name: "São Tomé e Príncipe",
+        description: "Repubblica Democratica di São Tomé e Príncipe",
+      },
     ],
   },
   {
@@ -715,6 +1111,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "السنغال", description: "جمهورية السنغال" },
       { locale: "es", name: "Senegal", description: "República de Senegal" },
       { locale: "fr", name: "Sénégal", description: "République du Sénégal" },
+      { locale: "pt", name: "Senegal", description: "República do Senegal" },
+      { locale: "ru", name: "Сенегал", description: "Республика Сенегал" },
+      { locale: "de", name: "Senegal", description: "Republik Senegal" },
+      { locale: "it", name: "Senegal", description: "Repubblica del Senegal" },
     ],
   },
   {
@@ -739,6 +1139,26 @@ export const allCountriesData: CountryData[] = [
         name: "Seychelles",
         description: "République des Seychelles",
       },
+      {
+        locale: "pt",
+        name: "Seychelles",
+        description: "República das Seychelles",
+      },
+      {
+        locale: "ru",
+        name: "Сейшельские Острова",
+        description: "Республика Сейшельские Острова",
+      },
+      {
+        locale: "de",
+        name: "Seychellen",
+        description: "Republik Seychellen",
+      },
+      {
+        locale: "it",
+        name: "Seychelles",
+        description: "Repubblica delle Seychelles",
+      },
     ],
   },
   {
@@ -762,6 +1182,26 @@ export const allCountriesData: CountryData[] = [
         locale: "fr",
         name: "Sierra Leone",
         description: "République de Sierra Leone",
+      },
+      {
+        locale: "pt",
+        name: "Serra Leoa",
+        description: "República da Serra Leoa",
+      },
+      {
+        locale: "ru",
+        name: "Сьерра-Леоне",
+        description: "Республика Сьерра-Леоне",
+      },
+      {
+        locale: "de",
+        name: "Sierra Leone",
+        description: "Republik Sierra Leone",
+      },
+      {
+        locale: "it",
+        name: "Sierra Leone",
+        description: "Repubblica della Sierra Leone",
       },
     ],
   },
@@ -791,6 +1231,26 @@ export const allCountriesData: CountryData[] = [
         name: "Somalie",
         description: "République fédérale de Somalie",
       },
+      {
+        locale: "pt",
+        name: "Somália",
+        description: "República Federal da Somália",
+      },
+      {
+        locale: "ru",
+        name: "Сомали",
+        description: "Федеративная Республика Сомали",
+      },
+      {
+        locale: "de",
+        name: "Somalia",
+        description: "Bundesrepublik Somalia",
+      },
+      {
+        locale: "it",
+        name: "Somalia",
+        description: "Repubblica Federale di Somalia",
+      },
     ],
   },
   {
@@ -818,6 +1278,26 @@ export const allCountriesData: CountryData[] = [
         locale: "fr",
         name: "Afrique du Sud",
         description: "République d'Afrique du Sud",
+      },
+      {
+        locale: "pt",
+        name: "África do Sul",
+        description: "República da África do Sul",
+      },
+      {
+        locale: "ru",
+        name: "Южная Африка",
+        description: "Южно-Африканская Республика",
+      },
+      {
+        locale: "de",
+        name: "Südafrika",
+        description: "Republik Südafrika",
+      },
+      {
+        locale: "it",
+        name: "Sudafrica",
+        description: "Repubblica del Sudafrica",
       },
     ],
   },
@@ -847,6 +1327,26 @@ export const allCountriesData: CountryData[] = [
         name: "Soudan du Sud",
         description: "République du Soudan du Sud",
       },
+      {
+        locale: "pt",
+        name: "Sudão do Sul",
+        description: "República do Sudão do Sul",
+      },
+      {
+        locale: "ru",
+        name: "Южный Судан",
+        description: "Республика Южный Судан",
+      },
+      {
+        locale: "de",
+        name: "Südsudan",
+        description: "Republik Südsudan",
+      },
+      {
+        locale: "it",
+        name: "Sudan del Sud",
+        description: "Repubblica del Sudan del Sud",
+      },
     ],
   },
   {
@@ -859,6 +1359,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "السودان", description: "جمهورية السودان" },
       { locale: "es", name: "Sudán", description: "República del Sudán" },
       { locale: "fr", name: "Soudan", description: "République du Soudan" },
+      { locale: "pt", name: "Sudão", description: "República do Sudão" },
+      { locale: "ru", name: "Судан", description: "Республика Судан" },
+      { locale: "de", name: "Sudan", description: "Republik Sudan" },
+      { locale: "it", name: "Sudan", description: "Repubblica del Sudan" },
     ],
   },
   {
@@ -887,6 +1391,26 @@ export const allCountriesData: CountryData[] = [
         name: "Tanzanie",
         description: "République unie de Tanzanie",
       },
+      {
+        locale: "pt",
+        name: "Tanzânia",
+        description: "República Unida da Tanzânia",
+      },
+      {
+        locale: "ru",
+        name: "Танзания",
+        description: "Объединённая Республика Танзания",
+      },
+      {
+        locale: "de",
+        name: "Tansania",
+        description: "Vereinigte Republik Tansania",
+      },
+      {
+        locale: "it",
+        name: "Tanzania",
+        description: "Repubblica Unita di Tanzania",
+      },
     ],
   },
   {
@@ -899,6 +1423,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "توغو", description: "جمهورية توغو" },
       { locale: "es", name: "Togo", description: "República Togolesa" },
       { locale: "fr", name: "Togo", description: "République togolaise" },
+      { locale: "pt", name: "Togo", description: "República Togolesa" },
+      { locale: "ru", name: "Того", description: "Тоголезская Республика" },
+      { locale: "de", name: "Togo", description: "Republik Togo" },
+      { locale: "it", name: "Togo", description: "Repubblica Togolese" },
     ],
   },
   {
@@ -911,6 +1439,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "تونس", description: "الجمهورية التونسية" },
       { locale: "es", name: "Túnez", description: "República de Túnez" },
       { locale: "fr", name: "Tunisie", description: "République tunisienne" },
+      { locale: "pt", name: "Tunísia", description: "República da Tunísia" },
+      { locale: "ru", name: "Тунис", description: "Тунисская Республика" },
+      { locale: "de", name: "Tunesien", description: "Republik Tunesien" },
+      { locale: "it", name: "Tunisia", description: "Repubblica Tunisina" },
     ],
   },
   {
@@ -923,6 +1455,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "أوغندا", description: "جمهورية أوغندا" },
       { locale: "es", name: "Uganda", description: "República de Uganda" },
       { locale: "fr", name: "Ouganda", description: "République d'Ouganda" },
+      { locale: "pt", name: "Uganda", description: "República do Uganda" },
+      { locale: "ru", name: "Уганда", description: "Республика Уганда" },
+      { locale: "de", name: "Uganda", description: "Republik Uganda" },
+      { locale: "it", name: "Uganda", description: "Repubblica dell'Uganda" },
     ],
   },
   {
@@ -935,6 +1471,10 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "زامبيا", description: "جمهورية زامبيا" },
       { locale: "es", name: "Zambia", description: "República de Zambia" },
       { locale: "fr", name: "Zambie", description: "République de Zambie" },
+      { locale: "pt", name: "Zâmbia", description: "República da Zâmbia" },
+      { locale: "ru", name: "Замбия", description: "Республика Замбия" },
+      { locale: "de", name: "Sambia", description: "Republik Sambia" },
+      { locale: "it", name: "Zambia", description: "Repubblica dello Zambia" },
     ],
   },
   {
@@ -947,6 +1487,14 @@ export const allCountriesData: CountryData[] = [
       { locale: "ar", name: "زيمبابوي", description: "جمهورية زيمبابوي" },
       { locale: "es", name: "Zimbabue", description: "República de Zimbabue" },
       { locale: "fr", name: "Zimbabwe", description: "République du Zimbabwe" },
+      { locale: "pt", name: "Zimbabué", description: "República do Zimbabué" },
+      { locale: "ru", name: "Зимбабве", description: "Республика Зимбабве" },
+      { locale: "de", name: "Simbabwe", description: "Republik Simbabwe" },
+      {
+        locale: "it",
+        name: "Zimbabwe",
+        description: "Repubblica dello Zimbabwe",
+      },
     ],
   },
 ];

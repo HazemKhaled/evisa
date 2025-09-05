@@ -31,6 +31,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Afghanistan",
         description: "Émirat islamique d'Afghanistan",
       },
+      {
+        locale: "pt",
+        name: "Afeganistão",
+        description: "Emirado Islâmico do Afeganistão",
+      },
+      {
+        locale: "ru",
+        name: "Афганистан",
+        description: "Исламский эмират Афганистан",
+      },
+      {
+        locale: "de",
+        name: "Afghanistan",
+        description: "Islamisches Emirat Afghanistan",
+      },
+      {
+        locale: "it",
+        name: "Afghanistan",
+        description: "Emirato Islamico dell'Afghanistan",
+      },
     ],
   },
   {
@@ -59,6 +79,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Bangladesh",
         description: "République populaire du Bangladesh",
       },
+      {
+        locale: "pt",
+        name: "Bangladesh",
+        description: "República Popular do Bangladesh",
+      },
+      {
+        locale: "ru",
+        name: "Бангладеш",
+        description: "Народная Республика Бангладеш",
+      },
+      {
+        locale: "de",
+        name: "Bangladesch",
+        description: "Volksrepublik Bangladesch",
+      },
+      {
+        locale: "it",
+        name: "Bangladesh",
+        description: "Repubblica Popolare del Bangladesh",
+      },
     ],
   },
   {
@@ -71,6 +111,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "بوتان", description: "مملكة بوتان" },
       { locale: "es", name: "Bután", description: "Reino de Bután" },
       { locale: "fr", name: "Bhoutan", description: "Royaume du Bhoutan" },
+      { locale: "pt", name: "Butão", description: "Reino do Butão" },
+      { locale: "ru", name: "Бутан", description: "Королевство Бутан" },
+      { locale: "de", name: "Bhutan", description: "Königreich Bhutan" },
+      { locale: "it", name: "Bhutan", description: "Regno del Bhutan" },
     ],
   },
   {
@@ -83,6 +127,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "بروناي", description: "بروناي دار السلام" },
       { locale: "es", name: "Brunéi", description: "Brunéi Darussalam" },
       { locale: "fr", name: "Brunéi", description: "Brunéi Darussalam" },
+      { locale: "pt", name: "Brunei", description: "Brunei Darussalam" },
+      { locale: "ru", name: "Бруней", description: "Бруней-Даруссалам" },
+      { locale: "de", name: "Brunei", description: "Brunei Darussalam" },
+      { locale: "it", name: "Brunei", description: "Brunei Darussalam" },
     ],
   },
   {
@@ -95,6 +143,14 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "كمبوديا", description: "مملكة كمبوديا" },
       { locale: "es", name: "Camboya", description: "Reino de Camboya" },
       { locale: "fr", name: "Cambodge", description: "Royaume du Cambodge" },
+      { locale: "pt", name: "Camboja", description: "Reino do Camboja" },
+      { locale: "ru", name: "Камбоджа", description: "Королевство Камбоджа" },
+      {
+        locale: "de",
+        name: "Kambodscha",
+        description: "Königreich Kambodscha",
+      },
+      { locale: "it", name: "Cambogia", description: "Regno di Cambogia" },
     ],
   },
   {
@@ -114,6 +170,26 @@ export const asianCountriesData: CountryData[] = [
         locale: "fr",
         name: "Chine",
         description: "République populaire de Chine",
+      },
+      {
+        locale: "pt",
+        name: "China",
+        description: "República Popular da China",
+      },
+      {
+        locale: "ru",
+        name: "Китай",
+        description: "Китайская Народная Республика",
+      },
+      {
+        locale: "de",
+        name: "China",
+        description: "Volksrepublik China",
+      },
+      {
+        locale: "it",
+        name: "Cina",
+        description: "Repubblica Popolare Cinese",
       },
     ],
   },
@@ -143,6 +219,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Timor oriental",
         description: "République démocratique du Timor oriental",
       },
+      {
+        locale: "pt",
+        name: "Timor-Leste",
+        description: "República Democrática de Timor-Leste",
+      },
+      {
+        locale: "ru",
+        name: "Восточный Тимор",
+        description: "Демократическая Республика Тимор-Лешти",
+      },
+      {
+        locale: "de",
+        name: "Osttimor",
+        description: "Demokratische Republik Timor-Leste",
+      },
+      {
+        locale: "it",
+        name: "Timor Est",
+        description: "Repubblica Democratica di Timor Est",
+      },
     ],
   },
   {
@@ -155,6 +251,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "جورجيا", description: "جورجيا" },
       { locale: "es", name: "Georgia", description: "Georgia" },
       { locale: "fr", name: "Géorgie", description: "Géorgie" },
+      { locale: "pt", name: "Geórgia", description: "Geórgia" },
+      { locale: "ru", name: "Грузия", description: "Грузия" },
+      { locale: "de", name: "Georgien", description: "Georgien" },
+      { locale: "it", name: "Georgia", description: "Georgia" },
     ],
   },
   {
@@ -167,6 +267,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "الهند", description: "جمهورية الهند" },
       { locale: "es", name: "India", description: "República de la India" },
       { locale: "fr", name: "Inde", description: "République de l'Inde" },
+      { locale: "pt", name: "Índia", description: "República da Índia" },
+      { locale: "ru", name: "Индия", description: "Республика Индия" },
+      { locale: "de", name: "Indien", description: "Republik Indien" },
+      { locale: "it", name: "India", description: "Repubblica dell'India" },
     ],
   },
   {
@@ -187,6 +291,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Indonésie",
         description: "République d'Indonésie",
       },
+      {
+        locale: "pt",
+        name: "Indonésia",
+        description: "República da Indonésia",
+      },
+      {
+        locale: "ru",
+        name: "Индонезия",
+        description: "Республика Индонезия",
+      },
+      {
+        locale: "de",
+        name: "Indonesien",
+        description: "Republik Indonesien",
+      },
+      {
+        locale: "it",
+        name: "Indonesia",
+        description: "Repubblica di Indonesia",
+      },
     ],
   },
   {
@@ -203,6 +327,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Iran",
         description: "République islamique d'Iran",
       },
+      {
+        locale: "pt",
+        name: "Irã",
+        description: "República Islâmica do Irã",
+      },
+      {
+        locale: "ru",
+        name: "Иран",
+        description: "Исламская Республика Иран",
+      },
+      {
+        locale: "de",
+        name: "Iran",
+        description: "Islamische Republik Iran",
+      },
+      {
+        locale: "it",
+        name: "Iran",
+        description: "Repubblica Islamica dell'Iran",
+      },
     ],
   },
   {
@@ -215,6 +359,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "العراق", description: "جمهورية العراق" },
       { locale: "es", name: "Irak", description: "República de Irak" },
       { locale: "fr", name: "Irak", description: "République d'Irak" },
+      { locale: "pt", name: "Iraque", description: "República do Iraque" },
+      { locale: "ru", name: "Ирак", description: "Республика Ирак" },
+      { locale: "de", name: "Irak", description: "Republik Irak" },
+      { locale: "it", name: "Iraq", description: "Repubblica dell'Iraq" },
     ],
   },
   {
@@ -227,6 +375,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "إسرائيل", description: "دولة إسرائيل" },
       { locale: "es", name: "Israel", description: "Estado de Israel" },
       { locale: "fr", name: "Israël", description: "État d'Israël" },
+      { locale: "pt", name: "Israel", description: "Estado de Israel" },
+      { locale: "ru", name: "Израиль", description: "Государство Израиль" },
+      { locale: "de", name: "Israel", description: "Staat Israel" },
+      { locale: "it", name: "Israele", description: "Stato di Israele" },
     ],
   },
   {
@@ -239,6 +391,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "اليابان", description: "اليابان" },
       { locale: "es", name: "Japón", description: "Japón" },
       { locale: "fr", name: "Japon", description: "Japon" },
+      { locale: "pt", name: "Japão", description: "Japão" },
+      { locale: "ru", name: "Япония", description: "Япония" },
+      { locale: "de", name: "Japan", description: "Japan" },
+      { locale: "it", name: "Giappone", description: "Giappone" },
     ],
   },
   {
@@ -267,6 +423,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Jordanie",
         description: "Royaume hachémite de Jordanie",
       },
+      {
+        locale: "pt",
+        name: "Jordânia",
+        description: "Reino Hachemita da Jordânia",
+      },
+      {
+        locale: "ru",
+        name: "Иордания",
+        description: "Иорданское Хашимитское Королевство",
+      },
+      {
+        locale: "de",
+        name: "Jordanien",
+        description: "Haschemitisches Königreich Jordanien",
+      },
+      {
+        locale: "it",
+        name: "Giordania",
+        description: "Regno Hascemita di Giordania",
+      },
     ],
   },
   {
@@ -291,6 +467,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Kazakhstan",
         description: "République du Kazakhstan",
       },
+      {
+        locale: "pt",
+        name: "Cazaquistão",
+        description: "República do Cazaquistão",
+      },
+      {
+        locale: "ru",
+        name: "Казахстан",
+        description: "Республика Казахстан",
+      },
+      {
+        locale: "de",
+        name: "Kasachstan",
+        description: "Republik Kasachstan",
+      },
+      {
+        locale: "it",
+        name: "Kazakistan",
+        description: "Repubblica del Kazakistan",
+      },
     ],
   },
   {
@@ -303,6 +499,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "الكويت", description: "دولة الكويت" },
       { locale: "es", name: "Kuwait", description: "Estado de Kuwait" },
       { locale: "fr", name: "Koweït", description: "État du Koweït" },
+      { locale: "pt", name: "Kuwait", description: "Estado do Kuwait" },
+      { locale: "ru", name: "Кувейт", description: "Государство Кувейт" },
+      { locale: "de", name: "Kuwait", description: "Staat Kuwait" },
+      { locale: "it", name: "Kuwait", description: "Stato del Kuwait" },
     ],
   },
   {
@@ -318,6 +518,26 @@ export const asianCountriesData: CountryData[] = [
         locale: "fr",
         name: "Kirghizistan",
         description: "République kirghize",
+      },
+      {
+        locale: "pt",
+        name: "Quirguistão",
+        description: "República Quirguiz",
+      },
+      {
+        locale: "ru",
+        name: "Кыргызстан",
+        description: "Кыргызская Республика",
+      },
+      {
+        locale: "de",
+        name: "Kirgisistan",
+        description: "Kirgisische Republik",
+      },
+      {
+        locale: "it",
+        name: "Kirghizistan",
+        description: "Repubblica del Kirghizistan",
       },
     ],
   },
@@ -347,6 +567,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Laos",
         description: "République démocratique populaire lao",
       },
+      {
+        locale: "pt",
+        name: "Laos",
+        description: "República Democrática Popular do Laos",
+      },
+      {
+        locale: "ru",
+        name: "Лаос",
+        description: "Лаосская Народно-Демократическая Республика",
+      },
+      {
+        locale: "de",
+        name: "Laos",
+        description: "Demokratische Volksrepublik Laos",
+      },
+      {
+        locale: "it",
+        name: "Laos",
+        description: "Repubblica Democratica Popolare del Laos",
+      },
     ],
   },
   {
@@ -359,6 +599,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "لبنان", description: "الجمهورية اللبنانية" },
       { locale: "es", name: "Líbano", description: "República Libanesa" },
       { locale: "fr", name: "Liban", description: "République libanaise" },
+      { locale: "pt", name: "Líbano", description: "República Libanesa" },
+      { locale: "ru", name: "Ливан", description: "Ливанская Республика" },
+      { locale: "de", name: "Libanon", description: "Libanesische Republik" },
+      { locale: "it", name: "Libano", description: "Repubblica Libanese" },
     ],
   },
   {
@@ -371,6 +615,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "ماليزيا", description: "ماليزيا" },
       { locale: "es", name: "Malasia", description: "Malasia" },
       { locale: "fr", name: "Malaisie", description: "Malaisie" },
+      { locale: "pt", name: "Malásia", description: "Malásia" },
+      { locale: "ru", name: "Малайзия", description: "Малайзия" },
+      { locale: "de", name: "Malaysia", description: "Malaysia" },
+      { locale: "it", name: "Malesia", description: "Malesia" },
     ],
   },
   {
@@ -395,6 +643,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Maldives",
         description: "République des Maldives",
       },
+      {
+        locale: "pt",
+        name: "Maldivas",
+        description: "República das Maldivas",
+      },
+      {
+        locale: "ru",
+        name: "Мальдивы",
+        description: "Республика Мальдивы",
+      },
+      {
+        locale: "de",
+        name: "Malediven",
+        description: "Republik Malediven",
+      },
+      {
+        locale: "it",
+        name: "Maldive",
+        description: "Repubblica delle Maldive",
+      },
     ],
   },
   {
@@ -407,6 +675,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "منغوليا", description: "منغوليا" },
       { locale: "es", name: "Mongolia", description: "Mongolia" },
       { locale: "fr", name: "Mongolie", description: "Mongolie" },
+      { locale: "pt", name: "Mongólia", description: "Mongólia" },
+      { locale: "ru", name: "Монголия", description: "Монголия" },
+      { locale: "de", name: "Mongolei", description: "Mongolei" },
+      { locale: "it", name: "Mongolia", description: "Mongolia" },
     ],
   },
   {
@@ -430,6 +702,26 @@ export const asianCountriesData: CountryData[] = [
         locale: "fr",
         name: "Myanmar",
         description: "République de l'Union du Myanmar",
+      },
+      {
+        locale: "pt",
+        name: "Myanmar",
+        description: "República da União de Myanmar",
+      },
+      {
+        locale: "ru",
+        name: "Мьянма",
+        description: "Республика Союз Мьянма",
+      },
+      {
+        locale: "de",
+        name: "Myanmar",
+        description: "Republik der Union Myanmar",
+      },
+      {
+        locale: "it",
+        name: "Myanmar",
+        description: "Repubblica dell'Unione del Myanmar",
       },
     ],
   },
@@ -459,6 +751,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Népal",
         description: "République fédérale démocratique du Népal",
       },
+      {
+        locale: "pt",
+        name: "Nepal",
+        description: "República Federal Democrática do Nepal",
+      },
+      {
+        locale: "ru",
+        name: "Непал",
+        description: "Федеративная Демократическая Республика Непал",
+      },
+      {
+        locale: "de",
+        name: "Nepal",
+        description: "Demokratische Bundesrepublik Nepal",
+      },
+      {
+        locale: "it",
+        name: "Nepal",
+        description: "Repubblica Federale Democratica del Nepal",
+      },
     ],
   },
   {
@@ -487,6 +799,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Corée du Nord",
         description: "République populaire démocratique de Corée",
       },
+      {
+        locale: "pt",
+        name: "Coreia do Norte",
+        description: "República Popular Democrática da Coreia",
+      },
+      {
+        locale: "ru",
+        name: "Северная Корея",
+        description: "Корейская Народно-Демократическая Республика",
+      },
+      {
+        locale: "de",
+        name: "Nordkorea",
+        description: "Demokratische Volksrepublik Korea",
+      },
+      {
+        locale: "it",
+        name: "Corea del Nord",
+        description: "Repubblica Popolare Democratica di Corea",
+      },
     ],
   },
   {
@@ -499,6 +831,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "عُمان", description: "سلطنة عُمان" },
       { locale: "es", name: "Omán", description: "Sultanato de Omán" },
       { locale: "fr", name: "Oman", description: "Sultanat d'Oman" },
+      { locale: "pt", name: "Omã", description: "Sultanato de Omã" },
+      { locale: "ru", name: "Оман", description: "Султанат Оман" },
+      { locale: "de", name: "Oman", description: "Sultanat Oman" },
+      { locale: "it", name: "Oman", description: "Sultanato dell'Oman" },
     ],
   },
   {
@@ -527,6 +863,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Pakistan",
         description: "République islamique du Pakistan",
       },
+      {
+        locale: "pt",
+        name: "Paquistão",
+        description: "República Islâmica do Paquistão",
+      },
+      {
+        locale: "ru",
+        name: "Пакистан",
+        description: "Исламская Республика Пакистан",
+      },
+      {
+        locale: "de",
+        name: "Pakistan",
+        description: "Islamische Republik Pakistan",
+      },
+      {
+        locale: "it",
+        name: "Pakistan",
+        description: "Repubblica Islamica del Pakistan",
+      },
     ],
   },
   {
@@ -539,6 +895,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "فلسطين", description: "دولة فلسطين" },
       { locale: "es", name: "Palestina", description: "Estado de Palestina" },
       { locale: "fr", name: "Palestine", description: "État de Palestine" },
+      { locale: "pt", name: "Palestina", description: "Estado da Palestina" },
+      { locale: "ru", name: "Палестина", description: "Государство Палестина" },
+      { locale: "de", name: "Palästina", description: "Staat Palästina" },
+      { locale: "it", name: "Palestina", description: "Stato di Palestina" },
     ],
   },
   {
@@ -563,6 +923,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Philippines",
         description: "République des Philippines",
       },
+      {
+        locale: "pt",
+        name: "Filipinas",
+        description: "República das Filipinas",
+      },
+      {
+        locale: "ru",
+        name: "Филиппины",
+        description: "Республика Филиппины",
+      },
+      {
+        locale: "de",
+        name: "Philippinen",
+        description: "Republik der Philippinen",
+      },
+      {
+        locale: "it",
+        name: "Filippine",
+        description: "Repubblica delle Filippine",
+      },
     ],
   },
   {
@@ -575,6 +955,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "قطر", description: "دولة قطر" },
       { locale: "es", name: "Catar", description: "Estado de Catar" },
       { locale: "fr", name: "Qatar", description: "État du Qatar" },
+      { locale: "pt", name: "Catar", description: "Estado do Catar" },
+      { locale: "ru", name: "Катар", description: "Государство Катар" },
+      { locale: "de", name: "Katar", description: "Staat Katar" },
+      { locale: "it", name: "Qatar", description: "Stato del Qatar" },
     ],
   },
   {
@@ -603,6 +987,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Arabie saoudite",
         description: "Royaume d'Arabie saoudite",
       },
+      {
+        locale: "pt",
+        name: "Arábia Saudita",
+        description: "Reino da Arábia Saudita",
+      },
+      {
+        locale: "ru",
+        name: "Саудовская Аравия",
+        description: "Королевство Саудовская Аравия",
+      },
+      {
+        locale: "de",
+        name: "Saudi-Arabien",
+        description: "Königreich Saudi-Arabien",
+      },
+      {
+        locale: "it",
+        name: "Arabia Saudita",
+        description: "Regno dell'Arabia Saudita",
+      },
     ],
   },
   {
@@ -618,6 +1022,26 @@ export const asianCountriesData: CountryData[] = [
         locale: "fr",
         name: "Singapour",
         description: "République de Singapour",
+      },
+      {
+        locale: "pt",
+        name: "Singapura",
+        description: "República de Singapura",
+      },
+      {
+        locale: "ru",
+        name: "Сингапур",
+        description: "Республика Сингапур",
+      },
+      {
+        locale: "de",
+        name: "Singapur",
+        description: "Republik Singapur",
+      },
+      {
+        locale: "it",
+        name: "Singapore",
+        description: "Repubblica di Singapore",
       },
     ],
   },
@@ -638,6 +1062,26 @@ export const asianCountriesData: CountryData[] = [
         locale: "fr",
         name: "Corée du Sud",
         description: "République de Corée",
+      },
+      {
+        locale: "pt",
+        name: "Coreia do Sul",
+        description: "República da Coreia",
+      },
+      {
+        locale: "ru",
+        name: "Южная Корея",
+        description: "Республика Корея",
+      },
+      {
+        locale: "de",
+        name: "Südkorea",
+        description: "Republik Korea",
+      },
+      {
+        locale: "it",
+        name: "Corea del Sud",
+        description: "Repubblica di Corea",
       },
     ],
   },
@@ -667,6 +1111,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Sri Lanka",
         description: "République démocratique socialiste du Sri Lanka",
       },
+      {
+        locale: "pt",
+        name: "Sri Lanka",
+        description: "República Democrática Socialista do Sri Lanka",
+      },
+      {
+        locale: "ru",
+        name: "Шри-Ланка",
+        description: "Демократическая Социалистическая Республика Шри-Ланка",
+      },
+      {
+        locale: "de",
+        name: "Sri Lanka",
+        description: "Demokratische Sozialistische Republik Sri Lanka",
+      },
+      {
+        locale: "it",
+        name: "Sri Lanka",
+        description: "Repubblica Democratica Socialista dello Sri Lanka",
+      },
     ],
   },
   {
@@ -679,6 +1143,18 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "سوريا", description: "الجمهورية العربية السورية" },
       { locale: "es", name: "Siria", description: "República Árabe Siria" },
       { locale: "fr", name: "Syrie", description: "République arabe syrienne" },
+      { locale: "pt", name: "Síria", description: "República Árabe Síria" },
+      {
+        locale: "ru",
+        name: "Сирия",
+        description: "Сирийская Арабская Республика",
+      },
+      {
+        locale: "de",
+        name: "Syrien",
+        description: "Arabische Republik Syrien",
+      },
+      { locale: "it", name: "Siria", description: "Repubblica Araba Siriana" },
     ],
   },
   {
@@ -703,6 +1179,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Tadjikistan",
         description: "République du Tadjikistan",
       },
+      {
+        locale: "pt",
+        name: "Tajiquistão",
+        description: "República do Tajiquistão",
+      },
+      {
+        locale: "ru",
+        name: "Таджикистан",
+        description: "Республика Таджикистан",
+      },
+      {
+        locale: "de",
+        name: "Tadschikistan",
+        description: "Republik Tadschikistan",
+      },
+      {
+        locale: "it",
+        name: "Tagikistan",
+        description: "Repubblica del Tagikistan",
+      },
     ],
   },
   {
@@ -715,6 +1211,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "تايلاند", description: "مملكة تايلاند" },
       { locale: "es", name: "Tailandia", description: "Reino de Tailandia" },
       { locale: "fr", name: "Thaïlande", description: "Royaume de Thaïlande" },
+      { locale: "pt", name: "Tailândia", description: "Reino da Tailândia" },
+      { locale: "ru", name: "Таиланд", description: "Королевство Таиланд" },
+      { locale: "de", name: "Thailand", description: "Königreich Thailand" },
+      { locale: "it", name: "Tailandia", description: "Regno di Tailandia" },
     ],
   },
   {
@@ -727,6 +1227,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "تركيا", description: "جمهورية تركيا" },
       { locale: "es", name: "Turquía", description: "República de Turquía" },
       { locale: "fr", name: "Turquie", description: "République de Turquie" },
+      { locale: "pt", name: "Turquia", description: "República da Turquia" },
+      { locale: "ru", name: "Турция", description: "Республика Турция" },
+      { locale: "de", name: "Türkei", description: "Republik Türkei" },
+      { locale: "it", name: "Turchia", description: "Repubblica di Turchia" },
     ],
   },
   {
@@ -739,6 +1243,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "تركمانستان", description: "تركمانستان" },
       { locale: "es", name: "Turkmenistán", description: "Turkmenistán" },
       { locale: "fr", name: "Turkménistan", description: "Turkménistan" },
+      { locale: "pt", name: "Turcomenistão", description: "Turcomenistão" },
+      { locale: "ru", name: "Туркменистан", description: "Туркменистан" },
+      { locale: "de", name: "Turkmenistan", description: "Turkmenistan" },
+      { locale: "it", name: "Turkmenistan", description: "Turkmenistan" },
     ],
   },
   {
@@ -767,6 +1275,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Émirats arabes unis",
         description: "Émirats arabes unis",
       },
+      {
+        locale: "pt",
+        name: "Emirados Árabes Unidos",
+        description: "Emirados Árabes Unidos",
+      },
+      {
+        locale: "ru",
+        name: "Объединенные Арабские Эмираты",
+        description: "Объединенные Арабские Эмираты",
+      },
+      {
+        locale: "de",
+        name: "Vereinigte Arabische Emirate",
+        description: "Vereinigte Arabische Emirate",
+      },
+      {
+        locale: "it",
+        name: "Emirati Arabi Uniti",
+        description: "Emirati Arabi Uniti",
+      },
     ],
   },
   {
@@ -790,6 +1318,26 @@ export const asianCountriesData: CountryData[] = [
         locale: "fr",
         name: "Ouzbékistan",
         description: "République d'Ouzbékistan",
+      },
+      {
+        locale: "pt",
+        name: "Uzbequistão",
+        description: "República do Uzbequistão",
+      },
+      {
+        locale: "ru",
+        name: "Узбекистан",
+        description: "Республика Узбекистан",
+      },
+      {
+        locale: "de",
+        name: "Usbekistan",
+        description: "Republik Usbekistan",
+      },
+      {
+        locale: "it",
+        name: "Uzbekistan",
+        description: "Repubblica dell'Uzbekistan",
       },
     ],
   },
@@ -819,6 +1367,26 @@ export const asianCountriesData: CountryData[] = [
         name: "Vietnam",
         description: "République socialiste du Vietnam",
       },
+      {
+        locale: "pt",
+        name: "Vietnã",
+        description: "República Socialista do Vietnã",
+      },
+      {
+        locale: "ru",
+        name: "Вьетнам",
+        description: "Социалистическая Республика Вьетнам",
+      },
+      {
+        locale: "de",
+        name: "Vietnam",
+        description: "Sozialistische Republik Vietnam",
+      },
+      {
+        locale: "it",
+        name: "Vietnam",
+        description: "Repubblica Socialista del Vietnam",
+      },
     ],
   },
   {
@@ -831,6 +1399,10 @@ export const asianCountriesData: CountryData[] = [
       { locale: "ar", name: "اليمن", description: "جمهورية اليمن" },
       { locale: "es", name: "Yemen", description: "República de Yemen" },
       { locale: "fr", name: "Yémen", description: "République du Yémen" },
+      { locale: "pt", name: "Iêmen", description: "República do Iêmen" },
+      { locale: "ru", name: "Йемен", description: "Республика Йемен" },
+      { locale: "de", name: "Jemen", description: "Republik Jemen" },
+      { locale: "it", name: "Yemen", description: "Repubblica dello Yemen" },
     ],
   },
 ];

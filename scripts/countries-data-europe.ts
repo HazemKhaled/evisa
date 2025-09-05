@@ -15,6 +15,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "ألبانيا", description: "جمهورية ألبانيا" },
       { locale: "es", name: "Albania", description: "República de Albania" },
       { locale: "fr", name: "Albanie", description: "République d'Albanie" },
+      { locale: "pt", name: "Albânia", description: "República da Albânia" },
+      { locale: "ru", name: "Албания", description: "Республика Албания" },
+      { locale: "de", name: "Albanien", description: "Republik Albanien" },
+      { locale: "it", name: "Albania", description: "Repubblica d'Albania" },
     ],
   },
   {
@@ -27,6 +31,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "أندورا", description: "إمارة أندورا" },
       { locale: "es", name: "Andorra", description: "Principado de Andorra" },
       { locale: "fr", name: "Andorre", description: "Principauté d'Andorre" },
+      { locale: "pt", name: "Andorra", description: "Principado de Andorra" },
+      { locale: "ru", name: "Андорра", description: "Княжество Андорра" },
+      { locale: "de", name: "Andorra", description: "Fürstentum Andorra" },
+      { locale: "it", name: "Andorra", description: "Principato di Andorra" },
     ],
   },
   {
@@ -39,6 +47,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "النمسا", description: "جمهورية النمسا" },
       { locale: "es", name: "Austria", description: "República de Austria" },
       { locale: "fr", name: "Autriche", description: "République d'Autriche" },
+      { locale: "pt", name: "Áustria", description: "República da Áustria" },
+      { locale: "ru", name: "Австрия", description: "Республика Австрия" },
+      { locale: "de", name: "Österreich", description: "Republik Österreich" },
+      { locale: "it", name: "Austria", description: "Repubblica d'Austria" },
     ],
   },
   {
@@ -59,6 +71,18 @@ export const europeanCountriesData: CountryData[] = [
         name: "Biélorussie",
         description: "République de Biélorussie",
       },
+      {
+        locale: "pt",
+        name: "Bielorrússia",
+        description: "República da Bielorrússia",
+      },
+      { locale: "ru", name: "Беларусь", description: "Республика Беларусь" },
+      { locale: "de", name: "Belarus", description: "Republik Belarus" },
+      {
+        locale: "it",
+        name: "Bielorussia",
+        description: "Repubblica di Bielorussia",
+      },
     ],
   },
   {
@@ -71,6 +95,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "بلجيكا", description: "مملكة بلجيكا" },
       { locale: "es", name: "Bélgica", description: "Reino de Bélgica" },
       { locale: "fr", name: "Belgique", description: "Royaume de Belgique" },
+      { locale: "pt", name: "Bélgica", description: "Reino da Bélgica" },
+      { locale: "ru", name: "Бельгия", description: "Королевство Бельгия" },
+      { locale: "de", name: "Belgien", description: "Königreich Belgien" },
+      { locale: "it", name: "Belgio", description: "Regno del Belgio" },
     ],
   },
   {
@@ -95,6 +123,26 @@ export const europeanCountriesData: CountryData[] = [
         name: "Bosnie-Herzégovine",
         description: "Bosnie-Herzégovine",
       },
+      {
+        locale: "pt",
+        name: "Bósnia e Herzegovina",
+        description: "Bósnia e Herzegovina",
+      },
+      {
+        locale: "ru",
+        name: "Босния и Герцеговина",
+        description: "Босния и Герцеговина",
+      },
+      {
+        locale: "de",
+        name: "Bosnien und Herzegowina",
+        description: "Bosnien und Herzegowina",
+      },
+      {
+        locale: "it",
+        name: "Bosnia ed Erzegovina",
+        description: "Bosnia ed Erzegovina",
+      },
     ],
   },
   {
@@ -107,6 +155,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "بلغاريا", description: "جمهورية بلغاريا" },
       { locale: "es", name: "Bulgaria", description: "República de Bulgaria" },
       { locale: "fr", name: "Bulgarie", description: "République de Bulgarie" },
+      { locale: "pt", name: "Bulgária", description: "República da Bulgária" },
+      { locale: "ru", name: "Болгария", description: "Республика Болгария" },
+      { locale: "de", name: "Bulgarien", description: "Republik Bulgarien" },
+      { locale: "it", name: "Bulgaria", description: "Repubblica di Bulgaria" },
     ],
   },
   {
@@ -119,6 +171,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "كرواتيا", description: "جمهورية كرواتيا" },
       { locale: "es", name: "Croacia", description: "República de Croacia" },
       { locale: "fr", name: "Croatie", description: "République de Croatie" },
+      { locale: "pt", name: "Croácia", description: "República da Croácia" },
+      { locale: "ru", name: "Хорватия", description: "Республика Хорватия" },
+      { locale: "de", name: "Kroatien", description: "Republik Kroatien" },
+      { locale: "it", name: "Croazia", description: "Repubblica di Croazia" },
     ],
   },
   {
@@ -131,6 +187,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "قبرص", description: "جمهورية قبرص" },
       { locale: "es", name: "Chipre", description: "República de Chipre" },
       { locale: "fr", name: "Chypre", description: "République de Chypre" },
+      { locale: "pt", name: "Chipre", description: "República de Chipre" },
+      { locale: "ru", name: "Кипр", description: "Республика Кипр" },
+      { locale: "de", name: "Zypern", description: "Republik Zypern" },
+      { locale: "it", name: "Cipro", description: "Repubblica di Cipro" },
     ],
   },
   {
@@ -147,6 +207,14 @@ export const europeanCountriesData: CountryData[] = [
         name: "République tchèque",
         description: "République tchèque",
       },
+      { locale: "pt", name: "República Checa", description: "República Checa" },
+      { locale: "ru", name: "Чехия", description: "Чешская Республика" },
+      {
+        locale: "de",
+        name: "Tschechien",
+        description: "Tschechische Republik",
+      },
+      { locale: "it", name: "Repubblica Ceca", description: "Repubblica Ceca" },
     ],
   },
   {
@@ -159,6 +227,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "الدنمارك", description: "مملكة الدنمارك" },
       { locale: "es", name: "Dinamarca", description: "Reino de Dinamarca" },
       { locale: "fr", name: "Danemark", description: "Royaume du Danemark" },
+      { locale: "pt", name: "Dinamarca", description: "Reino da Dinamarca" },
+      { locale: "ru", name: "Дания", description: "Королевство Дания" },
+      { locale: "de", name: "Dänemark", description: "Königreich Dänemark" },
+      { locale: "it", name: "Danimarca", description: "Regno di Danimarca" },
     ],
   },
   {
@@ -171,6 +243,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "إستونيا", description: "جمهورية إستونيا" },
       { locale: "es", name: "Estonia", description: "República de Estonia" },
       { locale: "fr", name: "Estonie", description: "République d'Estonie" },
+      { locale: "pt", name: "Estônia", description: "República da Estônia" },
+      { locale: "ru", name: "Эстония", description: "Эстонская Республика" },
+      { locale: "de", name: "Estland", description: "Republik Estland" },
+      { locale: "it", name: "Estonia", description: "Repubblica di Estonia" },
     ],
   },
   {
@@ -187,6 +263,22 @@ export const europeanCountriesData: CountryData[] = [
         description: "República de Finlandia",
       },
       { locale: "fr", name: "Finlande", description: "République de Finlande" },
+      {
+        locale: "pt",
+        name: "Finlândia",
+        description: "República da Finlândia",
+      },
+      {
+        locale: "ru",
+        name: "Финляндия",
+        description: "Финляндская Республика",
+      },
+      { locale: "de", name: "Finnland", description: "Republik Finnland" },
+      {
+        locale: "it",
+        name: "Finlandia",
+        description: "Repubblica di Finlandia",
+      },
     ],
   },
   {
@@ -199,6 +291,14 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "فرنسا", description: "الجمهورية الفرنسية" },
       { locale: "es", name: "Francia", description: "República Francesa" },
       { locale: "fr", name: "France", description: "République française" },
+      { locale: "pt", name: "França", description: "República Francesa" },
+      { locale: "ru", name: "Франция", description: "Французская Республика" },
+      {
+        locale: "de",
+        name: "Frankreich",
+        description: "Französische Republik",
+      },
+      { locale: "it", name: "Francia", description: "Repubblica Francese" },
     ],
   },
   {
@@ -227,6 +327,26 @@ export const europeanCountriesData: CountryData[] = [
         name: "Allemagne",
         description: "République fédérale d'Allemagne",
       },
+      {
+        locale: "pt",
+        name: "Alemanha",
+        description: "República Federal da Alemanha",
+      },
+      {
+        locale: "ru",
+        name: "Германия",
+        description: "Федеративная Республика Германия",
+      },
+      {
+        locale: "de",
+        name: "Deutschland",
+        description: "Bundesrepublik Deutschland",
+      },
+      {
+        locale: "it",
+        name: "Germania",
+        description: "Repubblica Federale di Germania",
+      },
     ],
   },
   {
@@ -239,6 +359,14 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "اليونان", description: "الجمهورية الهيلينية" },
       { locale: "es", name: "Grecia", description: "República Helénica" },
       { locale: "fr", name: "Grèce", description: "République hellénique" },
+      { locale: "pt", name: "Grécia", description: "República Helênica" },
+      { locale: "ru", name: "Греция", description: "Греческая Республика" },
+      {
+        locale: "de",
+        name: "Griechenland",
+        description: "Hellenische Republik",
+      },
+      { locale: "it", name: "Grecia", description: "Repubblica Ellenica" },
     ],
   },
   {
@@ -251,6 +379,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "المجر", description: "المجر" },
       { locale: "es", name: "Hungría", description: "Hungría" },
       { locale: "fr", name: "Hongrie", description: "Hongrie" },
+      { locale: "pt", name: "Hungria", description: "Hungria" },
+      { locale: "ru", name: "Венгрия", description: "Венгрия" },
+      { locale: "de", name: "Ungarn", description: "Ungarn" },
+      { locale: "it", name: "Ungheria", description: "Ungheria" },
     ],
   },
   {
@@ -263,6 +395,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "آيسلندا", description: "آيسلندا" },
       { locale: "es", name: "Islandia", description: "Islandia" },
       { locale: "fr", name: "Islande", description: "Islande" },
+      { locale: "pt", name: "Islândia", description: "Islândia" },
+      { locale: "ru", name: "Исландия", description: "Исландия" },
+      { locale: "de", name: "Island", description: "Island" },
+      { locale: "it", name: "Islanda", description: "Islanda" },
     ],
   },
   {
@@ -275,6 +411,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "أيرلندا", description: "أيرلندا" },
       { locale: "es", name: "Irlanda", description: "Irlanda" },
       { locale: "fr", name: "Irlande", description: "Irlande" },
+      { locale: "pt", name: "Irlanda", description: "Irlanda" },
+      { locale: "ru", name: "Ирландия", description: "Ирландия" },
+      { locale: "de", name: "Irland", description: "Irland" },
+      { locale: "it", name: "Irlanda", description: "Irlanda" },
     ],
   },
   {
@@ -287,6 +427,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "إيطاليا", description: "الجمهورية الإيطالية" },
       { locale: "es", name: "Italia", description: "República Italiana" },
       { locale: "fr", name: "Italie", description: "République italienne" },
+      { locale: "pt", name: "Itália", description: "República Italiana" },
+      { locale: "ru", name: "Италия", description: "Итальянская Республика" },
+      { locale: "de", name: "Italien", description: "Italienische Republik" },
+      { locale: "it", name: "Italia", description: "Repubblica Italiana" },
     ],
   },
   {
@@ -299,6 +443,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "لاتفيا", description: "جمهورية لاتفيا" },
       { locale: "es", name: "Letonia", description: "República de Letonia" },
       { locale: "fr", name: "Lettonie", description: "République de Lettonie" },
+      { locale: "pt", name: "Letônia", description: "República da Letônia" },
+      { locale: "ru", name: "Латвия", description: "Латвийская Республика" },
+      { locale: "de", name: "Lettland", description: "Republik Lettland" },
+      { locale: "it", name: "Lettonia", description: "Repubblica di Lettonia" },
     ],
   },
   {
@@ -323,6 +471,26 @@ export const europeanCountriesData: CountryData[] = [
         name: "Liechtenstein",
         description: "Principauté du Liechtenstein",
       },
+      {
+        locale: "pt",
+        name: "Liechtenstein",
+        description: "Principado de Liechtenstein",
+      },
+      {
+        locale: "ru",
+        name: "Лихтенштейн",
+        description: "Княжество Лихтенштейн",
+      },
+      {
+        locale: "de",
+        name: "Liechtenstein",
+        description: "Fürstentum Liechtenstein",
+      },
+      {
+        locale: "it",
+        name: "Liechtenstein",
+        description: "Principato del Liechtenstein",
+      },
     ],
   },
   {
@@ -335,6 +503,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "ليتوانيا", description: "جمهورية ليتوانيا" },
       { locale: "es", name: "Lituania", description: "República de Lituania" },
       { locale: "fr", name: "Lituanie", description: "République de Lituanie" },
+      { locale: "pt", name: "Lituânia", description: "República da Lituânia" },
+      { locale: "ru", name: "Литва", description: "Литовская Республика" },
+      { locale: "de", name: "Litauen", description: "Republik Litauen" },
+      { locale: "it", name: "Lituania", description: "Repubblica di Lituania" },
     ],
   },
   {
@@ -363,6 +535,26 @@ export const europeanCountriesData: CountryData[] = [
         name: "Luxembourg",
         description: "Grand-Duché de Luxembourg",
       },
+      {
+        locale: "pt",
+        name: "Luxemburgo",
+        description: "Grão-Ducado do Luxemburgo",
+      },
+      {
+        locale: "ru",
+        name: "Люксембург",
+        description: "Великое Герцогство Люксембург",
+      },
+      {
+        locale: "de",
+        name: "Luxemburg",
+        description: "Großherzogtum Luxemburg",
+      },
+      {
+        locale: "it",
+        name: "Lussemburgo",
+        description: "Granducato di Lussemburgo",
+      },
     ],
   },
   {
@@ -375,6 +567,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "مالطا", description: "جمهورية مالطا" },
       { locale: "es", name: "Malta", description: "República de Malta" },
       { locale: "fr", name: "Malte", description: "République de Malte" },
+      { locale: "pt", name: "Malta", description: "República de Malta" },
+      { locale: "ru", name: "Мальта", description: "Республика Мальта" },
+      { locale: "de", name: "Malta", description: "Republik Malta" },
+      { locale: "it", name: "Malta", description: "Repubblica di Malta" },
     ],
   },
   {
@@ -387,6 +583,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "مولدوفا", description: "جمهورية مولدوفا" },
       { locale: "es", name: "Moldavia", description: "República de Moldavia" },
       { locale: "fr", name: "Moldavie", description: "République de Moldavie" },
+      { locale: "pt", name: "Moldávia", description: "República da Moldávia" },
+      { locale: "ru", name: "Молдова", description: "Республика Молдова" },
+      { locale: "de", name: "Moldau", description: "Republik Moldau" },
+      { locale: "it", name: "Moldova", description: "Repubblica di Moldova" },
     ],
   },
   {
@@ -399,6 +599,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "موناكو", description: "إمارة موناكو" },
       { locale: "es", name: "Mónaco", description: "Principado de Mónaco" },
       { locale: "fr", name: "Monaco", description: "Principauté de Monaco" },
+      { locale: "pt", name: "Mônaco", description: "Principado do Mônaco" },
+      { locale: "ru", name: "Монако", description: "Княжество Монако" },
+      { locale: "de", name: "Monaco", description: "Fürstentum Monaco" },
+      { locale: "it", name: "Monaco", description: "Principato di Monaco" },
     ],
   },
   {
@@ -411,6 +615,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "الجبل الأسود", description: "الجبل الأسود" },
       { locale: "es", name: "Montenegro", description: "Montenegro" },
       { locale: "fr", name: "Monténégro", description: "Monténégro" },
+      { locale: "pt", name: "Montenegro", description: "Montenegro" },
+      { locale: "ru", name: "Черногория", description: "Черногория" },
+      { locale: "de", name: "Montenegro", description: "Montenegro" },
+      { locale: "it", name: "Montenegro", description: "Montenegro" },
     ],
   },
   {
@@ -431,6 +639,26 @@ export const europeanCountriesData: CountryData[] = [
         description: "Reino de los Países Bajos",
       },
       { locale: "fr", name: "Pays-Bas", description: "Royaume des Pays-Bas" },
+      {
+        locale: "pt",
+        name: "Países Baixos",
+        description: "Reino dos Países Baixos",
+      },
+      {
+        locale: "ru",
+        name: "Нидерланды",
+        description: "Королевство Нидерландов",
+      },
+      {
+        locale: "de",
+        name: "Niederlande",
+        description: "Königreich der Niederlande",
+      },
+      {
+        locale: "it",
+        name: "Paesi Bassi",
+        description: "Regno dei Paesi Bassi",
+      },
     ],
   },
   {
@@ -459,6 +687,26 @@ export const europeanCountriesData: CountryData[] = [
         name: "Macédoine du Nord",
         description: "République de Macédoine du Nord",
       },
+      {
+        locale: "pt",
+        name: "Macedônia do Norte",
+        description: "República da Macedônia do Norte",
+      },
+      {
+        locale: "ru",
+        name: "Северная Македония",
+        description: "Республика Северная Македония",
+      },
+      {
+        locale: "de",
+        name: "Nordmazedonien",
+        description: "Republik Nordmazedonien",
+      },
+      {
+        locale: "it",
+        name: "Macedonia del Nord",
+        description: "Repubblica di Macedonia del Nord",
+      },
     ],
   },
   {
@@ -471,6 +719,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "النرويج", description: "مملكة النرويج" },
       { locale: "es", name: "Noruega", description: "Reino de Noruega" },
       { locale: "fr", name: "Norvège", description: "Royaume de Norvège" },
+      { locale: "pt", name: "Noruega", description: "Reino da Noruega" },
+      { locale: "ru", name: "Норвегия", description: "Королевство Норвегия" },
+      { locale: "de", name: "Norwegen", description: "Königreich Norwegen" },
+      { locale: "it", name: "Norvegia", description: "Regno di Norvegia" },
     ],
   },
   {
@@ -483,6 +735,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "بولندا", description: "جمهورية بولندا" },
       { locale: "es", name: "Polonia", description: "República de Polonia" },
       { locale: "fr", name: "Pologne", description: "République de Pologne" },
+      { locale: "pt", name: "Polônia", description: "República da Polônia" },
+      { locale: "ru", name: "Польша", description: "Республика Польша" },
+      { locale: "de", name: "Polen", description: "Republik Polen" },
+      { locale: "it", name: "Polonia", description: "Repubblica di Polonia" },
     ],
   },
   {
@@ -495,6 +751,22 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "البرتغال", description: "الجمهورية البرتغالية" },
       { locale: "es", name: "Portugal", description: "República Portuguesa" },
       { locale: "fr", name: "Portugal", description: "République portugaise" },
+      { locale: "pt", name: "Portugal", description: "República Portuguesa" },
+      {
+        locale: "ru",
+        name: "Португалия",
+        description: "Португальская Республика",
+      },
+      {
+        locale: "de",
+        name: "Portugal",
+        description: "Portugiesische Republik",
+      },
+      {
+        locale: "it",
+        name: "Portogallo",
+        description: "Repubblica Portoghese",
+      },
     ],
   },
   {
@@ -507,6 +779,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "رومانيا", description: "رومانيا" },
       { locale: "es", name: "Rumania", description: "Rumania" },
       { locale: "fr", name: "Roumanie", description: "Roumanie" },
+      { locale: "pt", name: "Romênia", description: "Romênia" },
+      { locale: "ru", name: "Румыния", description: "Румыния" },
+      { locale: "de", name: "Rumänien", description: "Rumänien" },
+      { locale: "it", name: "Romania", description: "Romania" },
     ],
   },
   {
@@ -519,6 +795,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "روسيا", description: "الاتحاد الروسي" },
       { locale: "es", name: "Rusia", description: "Federación de Rusia" },
       { locale: "fr", name: "Russie", description: "Fédération de Russie" },
+      { locale: "pt", name: "Rússia", description: "Federação Russa" },
+      { locale: "ru", name: "Россия", description: "Российская Федерация" },
+      { locale: "de", name: "Russland", description: "Russische Föderation" },
+      { locale: "it", name: "Russia", description: "Federazione Russa" },
     ],
   },
   {
@@ -543,6 +823,22 @@ export const europeanCountriesData: CountryData[] = [
         name: "Saint-Marin",
         description: "République de Saint-Marin",
       },
+      {
+        locale: "pt",
+        name: "San Marino",
+        description: "República de San Marino",
+      },
+      {
+        locale: "ru",
+        name: "Сан-Марино",
+        description: "Республика Сан-Марино",
+      },
+      { locale: "de", name: "San Marino", description: "Republik San Marino" },
+      {
+        locale: "it",
+        name: "San Marino",
+        description: "Repubblica di San Marino",
+      },
     ],
   },
   {
@@ -555,6 +851,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "صربيا", description: "جمهورية صربيا" },
       { locale: "es", name: "Serbia", description: "República de Serbia" },
       { locale: "fr", name: "Serbie", description: "République de Serbie" },
+      { locale: "pt", name: "Sérvia", description: "República da Sérvia" },
+      { locale: "ru", name: "Сербия", description: "Республика Сербия" },
+      { locale: "de", name: "Serbien", description: "Republik Serbien" },
+      { locale: "it", name: "Serbia", description: "Repubblica di Serbia" },
     ],
   },
   {
@@ -567,6 +867,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "سلوفاكيا", description: "جمهورية سلوفاكيا" },
       { locale: "es", name: "Eslovaquia", description: "República Eslovaca" },
       { locale: "fr", name: "Slovaquie", description: "République slovaque" },
+      { locale: "pt", name: "Eslováquia", description: "República Eslovaca" },
+      { locale: "ru", name: "Словакия", description: "Словацкая Республика" },
+      { locale: "de", name: "Slowakei", description: "Slowakische Republik" },
+      { locale: "it", name: "Slovacchia", description: "Repubblica Slovacca" },
     ],
   },
   {
@@ -583,6 +887,14 @@ export const europeanCountriesData: CountryData[] = [
         description: "República de Eslovenia",
       },
       { locale: "fr", name: "Slovénie", description: "République de Slovénie" },
+      {
+        locale: "pt",
+        name: "Eslovênia",
+        description: "República da Eslovênia",
+      },
+      { locale: "ru", name: "Словения", description: "Республика Словения" },
+      { locale: "de", name: "Slowenien", description: "Republik Slowenien" },
+      { locale: "it", name: "Slovenia", description: "Repubblica di Slovenia" },
     ],
   },
   {
@@ -595,6 +907,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "إسبانيا", description: "مملكة إسبانيا" },
       { locale: "es", name: "España", description: "Reino de España" },
       { locale: "fr", name: "Espagne", description: "Royaume d'Espagne" },
+      { locale: "pt", name: "Espanha", description: "Reino de Espanha" },
+      { locale: "ru", name: "Испания", description: "Королевство Испания" },
+      { locale: "de", name: "Spanien", description: "Königreich Spanien" },
+      { locale: "it", name: "Spagna", description: "Regno di Spagna" },
     ],
   },
   {
@@ -607,6 +923,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "السويد", description: "مملكة السويد" },
       { locale: "es", name: "Suecia", description: "Reino de Suecia" },
       { locale: "fr", name: "Suède", description: "Royaume de Suède" },
+      { locale: "pt", name: "Suécia", description: "Reino da Suécia" },
+      { locale: "ru", name: "Швеция", description: "Королевство Швеция" },
+      { locale: "de", name: "Schweden", description: "Königreich Schweden" },
+      { locale: "it", name: "Svezia", description: "Regno di Svezia" },
     ],
   },
   {
@@ -619,6 +939,22 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "سويسرا", description: "الاتحاد السويسري" },
       { locale: "es", name: "Suiza", description: "Confederación Suiza" },
       { locale: "fr", name: "Suisse", description: "Confédération suisse" },
+      { locale: "pt", name: "Suíça", description: "Confederação Suíça" },
+      {
+        locale: "ru",
+        name: "Швейцария",
+        description: "Швейцарская Конфедерация",
+      },
+      {
+        locale: "de",
+        name: "Schweiz",
+        description: "Schweizerische Eidgenossenschaft",
+      },
+      {
+        locale: "it",
+        name: "Svizzera",
+        description: "Confederazione Svizzera",
+      },
     ],
   },
   {
@@ -631,6 +967,10 @@ export const europeanCountriesData: CountryData[] = [
       { locale: "ar", name: "أوكرانيا", description: "أوكرانيا" },
       { locale: "es", name: "Ucrania", description: "Ucrania" },
       { locale: "fr", name: "Ukraine", description: "Ukraine" },
+      { locale: "pt", name: "Ucrânia", description: "Ucrânia" },
+      { locale: "ru", name: "Украина", description: "Украина" },
+      { locale: "de", name: "Ukraine", description: "Ukraine" },
+      { locale: "it", name: "Ucraina", description: "Ucraina" },
     ],
   },
   {
@@ -659,6 +999,27 @@ export const europeanCountriesData: CountryData[] = [
         name: "Royaume-Uni",
         description: "Royaume-Uni de Grande-Bretagne et d'Irlande du Nord",
       },
+      {
+        locale: "pt",
+        name: "Reino Unido",
+        description: "Reino Unido da Grã-Bretanha e Irlanda do Norte",
+      },
+      {
+        locale: "ru",
+        name: "Великобритания",
+        description:
+          "Соединенное Королевство Великобритании и Северной Ирландии",
+      },
+      {
+        locale: "de",
+        name: "Vereinigtes Königreich",
+        description: "Vereinigtes Königreich Großbritannien und Nordirland",
+      },
+      {
+        locale: "it",
+        name: "Regno Unito",
+        description: "Regno Unito di Gran Bretagna e Irlanda del Nord",
+      },
     ],
   },
   {
@@ -678,6 +1039,22 @@ export const europeanCountriesData: CountryData[] = [
         locale: "fr",
         name: "Vatican",
         description: "État de la Cité du Vatican",
+      },
+      {
+        locale: "pt",
+        name: "Vaticano",
+        description: "Estado da Cidade do Vaticano",
+      },
+      {
+        locale: "ru",
+        name: "Ватикан",
+        description: "Государство-город Ватикан",
+      },
+      { locale: "de", name: "Vatikan", description: "Vatikanstadt" },
+      {
+        locale: "it",
+        name: "Vaticano",
+        description: "Stato della Città del Vaticano",
       },
     ],
   },

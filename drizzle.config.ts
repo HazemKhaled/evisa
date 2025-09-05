@@ -1,4 +1,9 @@
+import { loadEnvConfig } from "@next/env";
+
 import type { Config } from "drizzle-kit";
+
+const projectDir = process.cwd();
+loadEnvConfig(projectDir);
 
 const {
   LOCAL_DB_PATH,
