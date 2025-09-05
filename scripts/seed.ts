@@ -3,8 +3,14 @@
  * This script populates the database with initial data for countries, visa types, and eligibility
  * using the new normalized i18n table structure
  */
+import { loadEnvConfig } from "@next/env";
 import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
+import { getLocalDbPath } from "../src/lib/consts";
+
+// Load environment variables from .env.local
+const projectDir = process.cwd();
+loadEnvConfig(projectDir);
 import {
   countries,
   countriesI18n,
@@ -19,143 +25,22 @@ import {
   type NewVisaEligibilityI18n,
 } from "../src/lib/db/schema";
 import * as schema from "../src/lib/db/schema";
+import { languages } from "../src/app/i18n/settings";
 
-// Country data with translations
-const countryDataWithTranslations = [
-  {
-    country: {
-      code: "USA",
-      continent: "North America",
-      region: "Northern America",
-      isActive: true,
-    },
-    translations: [
-      {
-        locale: "en",
-        name: "United States",
-        description: "United States of America",
-      },
-      {
-        locale: "ar",
-        name: "الولايات المتحدة",
-        description: "الولايات المتحدة الأمريكية",
-      },
-      {
-        locale: "es",
-        name: "Estados Unidos",
-        description: "Estados Unidos de América",
-      },
-      {
-        locale: "fr",
-        name: "États-Unis",
-        description: "États-Unis d'Amérique",
-      },
-    ],
-  },
-  {
-    country: {
-      code: "ARE",
-      continent: "Asia",
-      region: "Western Asia",
-      isActive: true,
-    },
-    translations: [
-      {
-        locale: "en",
-        name: "United Arab Emirates",
-        description: "United Arab Emirates",
-      },
-      {
-        locale: "ar",
-        name: "الإمارات العربية المتحدة",
-        description: "دولة الإمارات العربية المتحدة",
-      },
-      {
-        locale: "es",
-        name: "Emiratos Árabes Unidos",
-        description: "Emiratos Árabes Unidos",
-      },
-      {
-        locale: "fr",
-        name: "Émirats arabes unis",
-        description: "Émirats arabes unis",
-      },
-    ],
-  },
-  {
-    country: {
-      code: "GBR",
-      continent: "Europe",
-      region: "Northern Europe",
-      isActive: true,
-    },
-    translations: [
-      {
-        locale: "en",
-        name: "United Kingdom",
-        description: "United Kingdom of Great Britain and Northern Ireland",
-      },
-      {
-        locale: "ar",
-        name: "المملكة المتحدة",
-        description: "المملكة المتحدة لبريطانيا العظمى وأيرلندا الشمالية",
-      },
-      {
-        locale: "es",
-        name: "Reino Unido",
-        description: "Reino Unido de Gran Bretaña e Irlanda del Norte",
-      },
-      {
-        locale: "fr",
-        name: "Royaume-Uni",
-        description: "Royaume-Uni de Grande-Bretagne et d'Irlande du Nord",
-      },
-    ],
-  },
-  {
-    country: {
-      code: "DEU",
-      continent: "Europe",
-      region: "Western Europe",
-      isActive: true,
-    },
-    translations: [
-      {
-        locale: "en",
-        name: "Germany",
-        description: "Federal Republic of Germany",
-      },
-      {
-        locale: "ar",
-        name: "ألمانيا",
-        description: "جمهورية ألمانيا الاتحادية",
-      },
-      {
-        locale: "es",
-        name: "Alemania",
-        description: "República Federal de Alemania",
-      },
-      {
-        locale: "fr",
-        name: "Allemagne",
-        description: "République fédérale d'Allemagne",
-      },
-    ],
-  },
-  {
-    country: {
-      code: "JPN",
-      continent: "Asia",
-      region: "Eastern Asia",
-      isActive: true,
-    },
-    translations: [
-      { locale: "en", name: "Japan", description: "Japan" },
-      { locale: "ar", name: "اليابان", description: "اليابان" },
-      { locale: "es", name: "Japón", description: "Japón" },
-      { locale: "fr", name: "Japon", description: "Japon" },
-    ],
-  },
+// Import all countries data
+import { allCountriesData } from "./countries-data-africa";
+import { asianCountriesData } from "./countries-data-asia";
+import { europeanCountriesData } from "./countries-data-europe";
+import { americasCountriesData } from "./countries-data-americas";
+import { oceaniaCountriesData } from "./countries-data-oceania";
+
+// Combine all countries data
+const allWorldCountries = [
+  ...allCountriesData, // Africa
+  ...asianCountriesData, // Asia
+  ...europeanCountriesData, // Europe
+  ...americasCountriesData, // North & South America
+  ...oceaniaCountriesData, // Oceania
 ];
 
 // Visa type data with translations (for UAE)
@@ -334,135 +219,254 @@ const visaEligibilityDataWithTranslations = [
   },
 ];
 
+function createDatabase() {
+  const dbPath = `${process.cwd()}/${getLocalDbPath()}`;
+  const client = createClient({
+    url: `file:${dbPath}`,
+  });
+  return drizzle(client, { schema });
+}
+
+async function insertCountriesWithRobustHandling(
+  db: ReturnType<typeof createDatabase>,
+  clearExisting = false,
+  showDetailedStats = false
+) {
+  if (clearExisting) {
+    console.log("🧹 Clearing existing data...");
+    try {
+      await db.delete(countriesI18n);
+      await db.delete(visaEligibilityI18n);
+      await db.delete(visaTypesI18n);
+      await db.delete(visaEligibility);
+      await db.delete(visaTypes);
+      await db.delete(countries);
+      console.log("✅ Existing data cleared");
+    } catch (error) {
+      console.log(`⚠️ Error clearing data: ${error}`);
+      console.log("ℹ️ Continuing with seeding...");
+    }
+  }
+
+  console.log("📍 Inserting data...");
+  console.log(`📊 Total countries to seed: ${allWorldCountries.length}`);
+
+  const insertedCountries: Record<string, number> = {};
+  let successCount = 0;
+  let errorCount = 0;
+
+  for (const countryData of allWorldCountries) {
+    try {
+      const [insertedCountry] = await db
+        .insert(countries)
+        .values({
+          code: countryData.code,
+          continent: countryData.continent,
+          region: countryData.region,
+          isActive: countryData.isActive,
+        })
+        .returning();
+
+      insertedCountries[countryData.code] = insertedCountry.id;
+
+      // Insert country translations
+      const countryTranslations: NewCountryI18n[] =
+        countryData.translations.map(t => ({
+          countryId: insertedCountry.id,
+          locale: t.locale,
+          name: t.name,
+          description: t.description,
+        }));
+
+      await db.insert(countriesI18n).values(countryTranslations);
+      successCount++;
+
+      if (successCount % 50 === 0) {
+        console.log(
+          `   ✅ Processed ${successCount}/${allWorldCountries.length} countries...`
+        );
+      }
+    } catch (error) {
+      errorCount++;
+      console.error(`❌ Error inserting country ${countryData.code}:`, error);
+    }
+  }
+
+  // Calculate actual translation count
+  const totalTranslations = allWorldCountries.reduce((total, country) => {
+    return total + country.translations.length;
+  }, 0);
+
+  console.log(`✅ Countries seeding completed!`);
+  console.log(`   • Successfully inserted: ${successCount} countries`);
+  console.log(`   • Errors: ${errorCount} countries`);
+  console.log(
+    `   • Total translations: ${totalTranslations} (${languages.length} supported locales)`
+  );
+
+  if (showDetailedStats) {
+    // Display summary by continent
+    const continentSummary = allWorldCountries.reduce(
+      (acc, country) => {
+        acc[country.continent] = (acc[country.continent] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>
+    );
+
+    console.log("\n📊 Summary by continent:");
+    Object.entries(continentSummary).forEach(([continent, count]) => {
+      console.log(`   • ${continent}: ${count} countries`);
+    });
+
+    console.log(
+      "\n🎉 All countries have been successfully seeded with multilingual support!"
+    );
+    console.log("🌐 Supported locales: en, ar, es, fr, pt, ru, de, it");
+  }
+
+  return insertedCountries;
+}
+
+async function insertVisaTypesWithTranslations(
+  db: ReturnType<typeof createDatabase>,
+  insertedCountries: Record<string, number>
+) {
+  console.log("🛂 Inserting visa types...");
+  const insertedVisaTypes: number[] = [];
+
+  for (const { visaType, translations } of visaTypeDataWithTranslations) {
+    const destinationId = insertedCountries[visaType.destinationCode];
+    if (!destinationId) {
+      console.warn(
+        `⚠️ Destination ${visaType.destinationCode} not found, skipping visa type`
+      );
+      continue;
+    }
+
+    const visaTypeData: NewVisaType = {
+      destinationId,
+      type: visaType.type,
+      duration: visaType.duration,
+      processingTime: visaType.processingTime,
+      fee: visaType.fee,
+      currency: visaType.currency,
+      requiresInterview: visaType.requiresInterview,
+      isMultiEntry: visaType.isMultiEntry,
+      requirements: visaType.requirements,
+      documents: visaType.documents,
+      isActive: visaType.isActive,
+    };
+
+    const [insertedVisaType] = await db
+      .insert(visaTypes)
+      .values(visaTypeData)
+      .returning();
+    insertedVisaTypes.push(insertedVisaType.id);
+
+    // Insert visa type translations
+    const visaTypeTranslations: NewVisaTypeI18n[] = translations.map(t => ({
+      visaTypeId: insertedVisaType.id,
+      locale: t.locale,
+      name: t.name,
+      description: t.description,
+    }));
+
+    await db.insert(visaTypesI18n).values(visaTypeTranslations);
+  }
+
+  console.log(
+    `✅ Inserted ${insertedVisaTypes.length} visa types with translations`
+  );
+  return insertedVisaTypes;
+}
+
+async function insertVisaEligibilityWithTranslations(
+  db: ReturnType<typeof createDatabase>,
+  insertedCountries: Record<string, number>,
+  insertedVisaTypes: number[]
+) {
+  console.log("📋 Inserting visa eligibility...");
+  let eligibilityCount = 0;
+
+  for (const {
+    eligibility,
+    translations,
+  } of visaEligibilityDataWithTranslations) {
+    const destinationId = insertedCountries[eligibility.destinationCode];
+    const passportId = insertedCountries[eligibility.passportCode];
+    const visaTypeId = insertedVisaTypes[eligibility.visaTypeIndex];
+
+    if (!destinationId || !passportId || !visaTypeId) {
+      console.warn(`⚠️ Missing IDs for eligibility rule, skipping`);
+      continue;
+    }
+
+    const eligibilityData: NewVisaEligibility = {
+      destinationId,
+      passportId,
+      visaTypeId,
+      eligibilityStatus: eligibility.eligibilityStatus,
+      maxStayDays: eligibility.maxStayDays,
+      isActive: eligibility.isActive,
+    };
+
+    const [insertedEligibility] = await db
+      .insert(visaEligibility)
+      .values(eligibilityData)
+      .returning();
+    eligibilityCount++;
+
+    // Insert eligibility translations
+    const eligibilityTranslations: NewVisaEligibilityI18n[] = translations.map(
+      t => ({
+        visaEligibilityId: insertedEligibility.id,
+        locale: t.locale,
+        notes: t.notes,
+      })
+    );
+
+    await db.insert(visaEligibilityI18n).values(eligibilityTranslations);
+  }
+
+  console.log(
+    `✅ Inserted ${eligibilityCount} visa eligibility rules with translations`
+  );
+  return eligibilityCount;
+}
+
+async function seedCountries() {
+  console.log("🌍 Starting comprehensive countries seeding...");
+
+  try {
+    const db = createDatabase();
+    await insertCountriesWithRobustHandling(db, true, true);
+  } catch (error) {
+    console.error("❌ Error seeding countries:", error);
+    throw error;
+  }
+}
+
 async function seed() {
   console.log("🌱 Starting database seeding with i18n structure...");
 
   try {
-    // Create LibSQL client for seed script
-    const client = createClient({
-      url: `file:${process.cwd()}/.wrangler/state/v3/d1/miniflare-D1DatabaseObject/3bcf51c707c15e397cc3c101eb947a49c4300992dbbb79335dbd86cdcd72a4f1.sqlite`,
-    });
-    const db = drizzle(client, { schema });
+    const db = createDatabase();
 
-    // Insert countries
-    console.log("📍 Inserting countries...");
-    const insertedCountries: Record<string, number> = {};
+    // Insert countries using robust handler with clearing enabled
+    const insertedCountries = await insertCountriesWithRobustHandling(db, true);
 
-    for (const { country, translations } of countryDataWithTranslations) {
-      const [insertedCountry] = await db
-        .insert(countries)
-        .values(country)
-        .returning();
-      insertedCountries[country.code] = insertedCountry.id;
-
-      // Insert country translations
-      const countryTranslations: NewCountryI18n[] = translations.map(t => ({
-        countryId: insertedCountry.id,
-        locale: t.locale,
-        name: t.name,
-        description: t.description,
-      }));
-
-      await db.insert(countriesI18n).values(countryTranslations);
-    }
-
-    console.log(
-      `✅ Inserted ${Object.keys(insertedCountries).length} countries with translations`
+    // Insert visa types with translations
+    const insertedVisaTypes = await insertVisaTypesWithTranslations(
+      db,
+      insertedCountries
     );
 
-    // Insert visa types
-    console.log("🛂 Inserting visa types...");
-    const insertedVisaTypes: number[] = [];
-
-    for (const { visaType, translations } of visaTypeDataWithTranslations) {
-      const destinationId = insertedCountries[visaType.destinationCode];
-      if (!destinationId) {
-        console.warn(
-          `⚠️ Destination ${visaType.destinationCode} not found, skipping visa type`
-        );
-        continue;
-      }
-
-      const visaTypeData: NewVisaType = {
-        destinationId,
-        type: visaType.type,
-        duration: visaType.duration,
-        processingTime: visaType.processingTime,
-        fee: visaType.fee,
-        currency: visaType.currency,
-        requiresInterview: visaType.requiresInterview,
-        isMultiEntry: visaType.isMultiEntry,
-        requirements: visaType.requirements,
-        documents: visaType.documents,
-        isActive: visaType.isActive,
-      };
-
-      const [insertedVisaType] = await db
-        .insert(visaTypes)
-        .values(visaTypeData)
-        .returning();
-      insertedVisaTypes.push(insertedVisaType.id);
-
-      // Insert visa type translations
-      const visaTypeTranslations: NewVisaTypeI18n[] = translations.map(t => ({
-        visaTypeId: insertedVisaType.id,
-        locale: t.locale,
-        name: t.name,
-        description: t.description,
-      }));
-
-      await db.insert(visaTypesI18n).values(visaTypeTranslations);
-    }
-
-    console.log(
-      `✅ Inserted ${insertedVisaTypes.length} visa types with translations`
-    );
-
-    // Insert visa eligibility
-    console.log("📋 Inserting visa eligibility...");
-    let eligibilityCount = 0;
-
-    for (const {
-      eligibility,
-      translations,
-    } of visaEligibilityDataWithTranslations) {
-      const destinationId = insertedCountries[eligibility.destinationCode];
-      const passportId = insertedCountries[eligibility.passportCode];
-      const visaTypeId = insertedVisaTypes[eligibility.visaTypeIndex];
-
-      if (!destinationId || !passportId || !visaTypeId) {
-        console.warn(`⚠️ Missing IDs for eligibility rule, skipping`);
-        continue;
-      }
-
-      const eligibilityData: NewVisaEligibility = {
-        destinationId,
-        passportId,
-        visaTypeId,
-        eligibilityStatus: eligibility.eligibilityStatus,
-        maxStayDays: eligibility.maxStayDays,
-        isActive: eligibility.isActive,
-      };
-
-      const [insertedEligibility] = await db
-        .insert(visaEligibility)
-        .values(eligibilityData)
-        .returning();
-      eligibilityCount++;
-
-      // Insert eligibility translations
-      const eligibilityTranslations: NewVisaEligibilityI18n[] =
-        translations.map(t => ({
-          visaEligibilityId: insertedEligibility.id,
-          locale: t.locale,
-          notes: t.notes,
-        }));
-
-      await db.insert(visaEligibilityI18n).values(eligibilityTranslations);
-    }
-
-    console.log(
-      `✅ Inserted ${eligibilityCount} visa eligibility rules with translations`
+    // Insert visa eligibility with translations
+    const eligibilityCount = await insertVisaEligibilityWithTranslations(
+      db,
+      insertedCountries,
+      insertedVisaTypes
     );
 
     console.log("🎉 Database seeding completed successfully!");
@@ -477,13 +481,28 @@ async function seed() {
   }
 }
 
-// Run the seed function
-seed()
-  .then(() => {
-    console.log("✨ Seeding process finished");
-    process.exit(0);
-  })
-  .catch(error => {
-    console.error("💥 Seeding failed:", error);
-    process.exit(1);
-  });
+// Choose which seeding function to run based on command line arguments
+const seedType = process.argv[2];
+
+if (seedType === "countries") {
+  seedCountries()
+    .then(() => {
+      console.log("✨ Countries seeding process finished");
+      process.exit(0);
+    })
+    .catch(error => {
+      console.error("💥 Countries seeding failed:", error);
+      process.exit(1);
+    });
+} else {
+  // Run the full seed function by default
+  seed()
+    .then(() => {
+      console.log("✨ Seeding process finished");
+      process.exit(0);
+    })
+    .catch(error => {
+      console.error("💥 Seeding failed:", error);
+      process.exit(1);
+    });
+}

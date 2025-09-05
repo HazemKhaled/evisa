@@ -24,3 +24,21 @@ export function getOptions(lng = fallbackLng, ns = defaultNS) {
     ns,
   };
 }
+
+/**
+ * Get locale with region for OpenGraph and other metadata
+ */
+export function getLocaleWithRegion(locale: string): string {
+  const localeMap: Record<string, string> = {
+    en: "en_US",
+    es: "es_ES",
+    ar: "ar_SA",
+    pt: "pt_PT",
+    ru: "ru_RU",
+    de: "de_DE",
+    fr: "fr_FR",
+    it: "it_IT",
+  };
+
+  return localeMap[locale] || "en_US";
+}
