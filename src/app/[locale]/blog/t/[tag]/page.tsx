@@ -11,6 +11,7 @@ import {
   generateBreadcrumbListJsonLd,
   generateBreadcrumbData,
 } from "@/lib/json-ld";
+import { getTranslation } from "@/app/i18n";
 
 // Generate static params for basic tag routes only
 export async function generateStaticParams() {
