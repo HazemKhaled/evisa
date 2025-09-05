@@ -11,10 +11,22 @@ export const oceaniaCountriesData: CountryData[] = [
     region: "Australia and New Zealand",
     isActive: true,
     translations: [
-      { locale: "en", name: "Australia", description: "Commonwealth of Australia" },
+      {
+        locale: "en",
+        name: "Australia",
+        description: "Commonwealth of Australia",
+      },
       { locale: "ar", name: "أستراليا", description: "كومنولث أستراليا" },
-      { locale: "es", name: "Australia", description: "Commonwealth de Australia" },
-      { locale: "fr", name: "Australie", description: "Commonwealth d'Australie" },
+      {
+        locale: "es",
+        name: "Australia",
+        description: "Commonwealth de Australia",
+      },
+      {
+        locale: "fr",
+        name: "Australie",
+        description: "Commonwealth d'Australie",
+      },
     ],
   },
   {
@@ -47,10 +59,22 @@ export const oceaniaCountriesData: CountryData[] = [
     region: "Micronesia",
     isActive: true,
     translations: [
-      { locale: "en", name: "Marshall Islands", description: "Republic of the Marshall Islands" },
+      {
+        locale: "en",
+        name: "Marshall Islands",
+        description: "Republic of the Marshall Islands",
+      },
       { locale: "ar", name: "جزر مارشال", description: "جمهورية جزر مارشال" },
-      { locale: "es", name: "Islas Marshall", description: "República de las Islas Marshall" },
-      { locale: "fr", name: "Îles Marshall", description: "République des Îles Marshall" },
+      {
+        locale: "es",
+        name: "Islas Marshall",
+        description: "República de las Islas Marshall",
+      },
+      {
+        locale: "fr",
+        name: "Îles Marshall",
+        description: "République des Îles Marshall",
+      },
     ],
   },
   {
@@ -59,10 +83,26 @@ export const oceaniaCountriesData: CountryData[] = [
     region: "Micronesia",
     isActive: true,
     translations: [
-      { locale: "en", name: "Micronesia", description: "Federated States of Micronesia" },
-      { locale: "ar", name: "ميكرونيزيا", description: "ولايات ميكرونيزيا الموحدة" },
-      { locale: "es", name: "Micronesia", description: "Estados Federados de Micronesia" },
-      { locale: "fr", name: "Micronésie", description: "États fédérés de Micronésie" },
+      {
+        locale: "en",
+        name: "Micronesia",
+        description: "Federated States of Micronesia",
+      },
+      {
+        locale: "ar",
+        name: "ميكرونيزيا",
+        description: "ولايات ميكرونيزيا الموحدة",
+      },
+      {
+        locale: "es",
+        name: "Micronesia",
+        description: "Estados Federados de Micronesia",
+      },
+      {
+        locale: "fr",
+        name: "Micronésie",
+        description: "États fédérés de Micronésie",
+      },
     ],
   },
   {
@@ -86,7 +126,11 @@ export const oceaniaCountriesData: CountryData[] = [
       { locale: "en", name: "New Zealand", description: "New Zealand" },
       { locale: "ar", name: "نيوزيلندا", description: "نيوزيلندا" },
       { locale: "es", name: "Nueva Zelanda", description: "Nueva Zelanda" },
-      { locale: "fr", name: "Nouvelle-Zélande", description: "Nouvelle-Zélande" },
+      {
+        locale: "fr",
+        name: "Nouvelle-Zélande",
+        description: "Nouvelle-Zélande",
+      },
     ],
   },
   {
@@ -107,10 +151,26 @@ export const oceaniaCountriesData: CountryData[] = [
     region: "Melanesia",
     isActive: true,
     translations: [
-      { locale: "en", name: "Papua New Guinea", description: "Independent State of Papua New Guinea" },
-      { locale: "ar", name: "بابوا غينيا الجديدة", description: "دولة بابوا غينيا الجديدة المستقلة" },
-      { locale: "es", name: "Papúa Nueva Guinea", description: "Estado Independiente de Papúa Nueva Guinea" },
-      { locale: "fr", name: "Papouasie-Nouvelle-Guinée", description: "État indépendant de Papouasie-Nouvelle-Guinée" },
+      {
+        locale: "en",
+        name: "Papua New Guinea",
+        description: "Independent State of Papua New Guinea",
+      },
+      {
+        locale: "ar",
+        name: "بابوا غينيا الجديدة",
+        description: "دولة بابوا غينيا الجديدة المستقلة",
+      },
+      {
+        locale: "es",
+        name: "Papúa Nueva Guinea",
+        description: "Estado Independiente de Papúa Nueva Guinea",
+      },
+      {
+        locale: "fr",
+        name: "Papouasie-Nouvelle-Guinée",
+        description: "État indépendant de Papouasie-Nouvelle-Guinée",
+      },
     ],
   },
   {
@@ -119,10 +179,22 @@ export const oceaniaCountriesData: CountryData[] = [
     region: "Polynesia",
     isActive: true,
     translations: [
-      { locale: "en", name: "Samoa", description: "Independent State of Samoa" },
+      {
+        locale: "en",
+        name: "Samoa",
+        description: "Independent State of Samoa",
+      },
       { locale: "ar", name: "ساموا", description: "دولة ساموا المستقلة" },
-      { locale: "es", name: "Samoa", description: "Estado Independiente de Samoa" },
-      { locale: "fr", name: "Samoa", description: "État indépendant des Samoa" },
+      {
+        locale: "es",
+        name: "Samoa",
+        description: "Estado Independiente de Samoa",
+      },
+      {
+        locale: "fr",
+        name: "Samoa",
+        description: "État indépendant des Samoa",
+      },
     ],
   },
   {

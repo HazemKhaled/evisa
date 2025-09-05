@@ -33,6 +33,10 @@ function validateProductionEnv(): {
   };
 }
 
+if (LOCAL_DB_PATH) {
+  console.debug("Drizzle: Using local SQLite database");
+}
+
 // Use local SQLite driver for development, d1-http for production
 export default LOCAL_DB_PATH
   ? ({

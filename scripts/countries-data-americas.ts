@@ -25,7 +25,11 @@ export const americasCountriesData: CountryData[] = [
     isActive: true,
     translations: [
       { locale: "en", name: "Mexico", description: "United Mexican States" },
-      { locale: "ar", name: "المكسيك", description: "الولايات المكسيكية المتحدة" },
+      {
+        locale: "ar",
+        name: "المكسيك",
+        description: "الولايات المكسيكية المتحدة",
+      },
       { locale: "es", name: "México", description: "Estados Unidos Mexicanos" },
       { locale: "fr", name: "Mexique", description: "États-Unis mexicains" },
     ],
@@ -36,13 +40,29 @@ export const americasCountriesData: CountryData[] = [
     region: "Northern America",
     isActive: true,
     translations: [
-      { locale: "en", name: "United States", description: "United States of America" },
-      { locale: "ar", name: "الولايات المتحدة", description: "الولايات المتحدة الأمريكية" },
-      { locale: "es", name: "Estados Unidos", description: "Estados Unidos de América" },
-      { locale: "fr", name: "États-Unis", description: "États-Unis d'Amérique" },
+      {
+        locale: "en",
+        name: "United States",
+        description: "United States of America",
+      },
+      {
+        locale: "ar",
+        name: "الولايات المتحدة",
+        description: "الولايات المتحدة الأمريكية",
+      },
+      {
+        locale: "es",
+        name: "Estados Unidos",
+        description: "Estados Unidos de América",
+      },
+      {
+        locale: "fr",
+        name: "États-Unis",
+        description: "États-Unis d'Amérique",
+      },
     ],
   },
-  
+
   // Central America
   {
     code: "BLZ",
@@ -62,10 +82,22 @@ export const americasCountriesData: CountryData[] = [
     region: "Central America",
     isActive: true,
     translations: [
-      { locale: "en", name: "Costa Rica", description: "Republic of Costa Rica" },
+      {
+        locale: "en",
+        name: "Costa Rica",
+        description: "Republic of Costa Rica",
+      },
       { locale: "ar", name: "كوستاريكا", description: "جمهورية كوستاريكا" },
-      { locale: "es", name: "Costa Rica", description: "República de Costa Rica" },
-      { locale: "fr", name: "Costa Rica", description: "République du Costa Rica" },
+      {
+        locale: "es",
+        name: "Costa Rica",
+        description: "República de Costa Rica",
+      },
+      {
+        locale: "fr",
+        name: "Costa Rica",
+        description: "République du Costa Rica",
+      },
     ],
   },
   {
@@ -74,9 +106,17 @@ export const americasCountriesData: CountryData[] = [
     region: "Central America",
     isActive: true,
     translations: [
-      { locale: "en", name: "El Salvador", description: "Republic of El Salvador" },
+      {
+        locale: "en",
+        name: "El Salvador",
+        description: "Republic of El Salvador",
+      },
       { locale: "ar", name: "السلفادور", description: "جمهورية السلفادور" },
-      { locale: "es", name: "El Salvador", description: "República de El Salvador" },
+      {
+        locale: "es",
+        name: "El Salvador",
+        description: "República de El Salvador",
+      },
       { locale: "fr", name: "Salvador", description: "République du Salvador" },
     ],
   },
@@ -88,8 +128,16 @@ export const americasCountriesData: CountryData[] = [
     translations: [
       { locale: "en", name: "Guatemala", description: "Republic of Guatemala" },
       { locale: "ar", name: "غواتيمالا", description: "جمهورية غواتيمالا" },
-      { locale: "es", name: "Guatemala", description: "República de Guatemala" },
-      { locale: "fr", name: "Guatemala", description: "République du Guatemala" },
+      {
+        locale: "es",
+        name: "Guatemala",
+        description: "República de Guatemala",
+      },
+      {
+        locale: "fr",
+        name: "Guatemala",
+        description: "République du Guatemala",
+      },
     ],
   },
   {
@@ -112,8 +160,16 @@ export const americasCountriesData: CountryData[] = [
     translations: [
       { locale: "en", name: "Nicaragua", description: "Republic of Nicaragua" },
       { locale: "ar", name: "نيكاراغوا", description: "جمهورية نيكاراغوا" },
-      { locale: "es", name: "Nicaragua", description: "República de Nicaragua" },
-      { locale: "fr", name: "Nicaragua", description: "République du Nicaragua" },
+      {
+        locale: "es",
+        name: "Nicaragua",
+        description: "República de Nicaragua",
+      },
+      {
+        locale: "fr",
+        name: "Nicaragua",
+        description: "République du Nicaragua",
+      },
     ],
   },
   {
@@ -128,7 +184,7 @@ export const americasCountriesData: CountryData[] = [
       { locale: "fr", name: "Panama", description: "République du Panama" },
     ],
   },
-  
+
   // Caribbean
   {
     code: "ATG",
@@ -136,10 +192,26 @@ export const americasCountriesData: CountryData[] = [
     region: "Caribbean",
     isActive: true,
     translations: [
-      { locale: "en", name: "Antigua and Barbuda", description: "Antigua and Barbuda" },
-      { locale: "ar", name: "أنتيغوا وباربودا", description: "أنتيغوا وباربودا" },
-      { locale: "es", name: "Antigua y Barbuda", description: "Antigua y Barbuda" },
-      { locale: "fr", name: "Antigua-et-Barbuda", description: "Antigua-et-Barbuda" },
+      {
+        locale: "en",
+        name: "Antigua and Barbuda",
+        description: "Antigua and Barbuda",
+      },
+      {
+        locale: "ar",
+        name: "أنتيغوا وباربودا",
+        description: "أنتيغوا وباربودا",
+      },
+      {
+        locale: "es",
+        name: "Antigua y Barbuda",
+        description: "Antigua y Barbuda",
+      },
+      {
+        locale: "fr",
+        name: "Antigua-et-Barbuda",
+        description: "Antigua-et-Barbuda",
+      },
     ],
   },
   {
@@ -148,10 +220,22 @@ export const americasCountriesData: CountryData[] = [
     region: "Caribbean",
     isActive: true,
     translations: [
-      { locale: "en", name: "Bahamas", description: "Commonwealth of the Bahamas" },
+      {
+        locale: "en",
+        name: "Bahamas",
+        description: "Commonwealth of the Bahamas",
+      },
       { locale: "ar", name: "الباهاما", description: "كومنولث الباهاما" },
-      { locale: "es", name: "Bahamas", description: "Commonwealth de las Bahamas" },
-      { locale: "fr", name: "Bahamas", description: "Commonwealth des Bahamas" },
+      {
+        locale: "es",
+        name: "Bahamas",
+        description: "Commonwealth de las Bahamas",
+      },
+      {
+        locale: "fr",
+        name: "Bahamas",
+        description: "Commonwealth des Bahamas",
+      },
     ],
   },
   {
@@ -184,10 +268,22 @@ export const americasCountriesData: CountryData[] = [
     region: "Caribbean",
     isActive: true,
     translations: [
-      { locale: "en", name: "Dominica", description: "Commonwealth of Dominica" },
+      {
+        locale: "en",
+        name: "Dominica",
+        description: "Commonwealth of Dominica",
+      },
       { locale: "ar", name: "دومينيكا", description: "كومنولث دومينيكا" },
-      { locale: "es", name: "Dominica", description: "Commonwealth de Dominica" },
-      { locale: "fr", name: "Dominique", description: "Commonwealth de Dominique" },
+      {
+        locale: "es",
+        name: "Dominica",
+        description: "Commonwealth de Dominica",
+      },
+      {
+        locale: "fr",
+        name: "Dominique",
+        description: "Commonwealth de Dominique",
+      },
     ],
   },
   {
@@ -196,10 +292,26 @@ export const americasCountriesData: CountryData[] = [
     region: "Caribbean",
     isActive: true,
     translations: [
-      { locale: "en", name: "Dominican Republic", description: "Dominican Republic" },
-      { locale: "ar", name: "جمهورية الدومينيكان", description: "جمهورية الدومينيكان" },
-      { locale: "es", name: "República Dominicana", description: "República Dominicana" },
-      { locale: "fr", name: "République dominicaine", description: "République dominicaine" },
+      {
+        locale: "en",
+        name: "Dominican Republic",
+        description: "Dominican Republic",
+      },
+      {
+        locale: "ar",
+        name: "جمهورية الدومينيكان",
+        description: "جمهورية الدومينيكان",
+      },
+      {
+        locale: "es",
+        name: "República Dominicana",
+        description: "República Dominicana",
+      },
+      {
+        locale: "fr",
+        name: "République dominicaine",
+        description: "République dominicaine",
+      },
     ],
   },
   {
@@ -244,10 +356,26 @@ export const americasCountriesData: CountryData[] = [
     region: "Caribbean",
     isActive: true,
     translations: [
-      { locale: "en", name: "Saint Kitts and Nevis", description: "Federation of Saint Kitts and Nevis" },
-      { locale: "ar", name: "سانت كيتس ونيفيس", description: "اتحاد سانت كيتس ونيفيس" },
-      { locale: "es", name: "San Cristóbal y Nieves", description: "Federación de San Cristóbal y Nieves" },
-      { locale: "fr", name: "Saint-Kitts-et-Nevis", description: "Fédération de Saint-Kitts-et-Nevis" },
+      {
+        locale: "en",
+        name: "Saint Kitts and Nevis",
+        description: "Federation of Saint Kitts and Nevis",
+      },
+      {
+        locale: "ar",
+        name: "سانت كيتس ونيفيس",
+        description: "اتحاد سانت كيتس ونيفيس",
+      },
+      {
+        locale: "es",
+        name: "San Cristóbal y Nieves",
+        description: "Federación de San Cristóbal y Nieves",
+      },
+      {
+        locale: "fr",
+        name: "Saint-Kitts-et-Nevis",
+        description: "Fédération de Saint-Kitts-et-Nevis",
+      },
     ],
   },
   {
@@ -268,10 +396,26 @@ export const americasCountriesData: CountryData[] = [
     region: "Caribbean",
     isActive: true,
     translations: [
-      { locale: "en", name: "Saint Vincent and the Grenadines", description: "Saint Vincent and the Grenadines" },
-      { locale: "ar", name: "سانت فنسنت والغرينادين", description: "سانت فنسنت والغرينادين" },
-      { locale: "es", name: "San Vicente y las Granadinas", description: "San Vicente y las Granadinas" },
-      { locale: "fr", name: "Saint-Vincent-et-les-Grenadines", description: "Saint-Vincent-et-les-Grenadines" },
+      {
+        locale: "en",
+        name: "Saint Vincent and the Grenadines",
+        description: "Saint Vincent and the Grenadines",
+      },
+      {
+        locale: "ar",
+        name: "سانت فنسنت والغرينادين",
+        description: "سانت فنسنت والغرينادين",
+      },
+      {
+        locale: "es",
+        name: "San Vicente y las Granadinas",
+        description: "San Vicente y las Granadinas",
+      },
+      {
+        locale: "fr",
+        name: "Saint-Vincent-et-les-Grenadines",
+        description: "Saint-Vincent-et-les-Grenadines",
+      },
     ],
   },
   {
@@ -280,13 +424,29 @@ export const americasCountriesData: CountryData[] = [
     region: "Caribbean",
     isActive: true,
     translations: [
-      { locale: "en", name: "Trinidad and Tobago", description: "Republic of Trinidad and Tobago" },
-      { locale: "ar", name: "ترينيداد وتوباغو", description: "جمهورية ترينيداد وتوباغو" },
-      { locale: "es", name: "Trinidad y Tobago", description: "República de Trinidad y Tobago" },
-      { locale: "fr", name: "Trinité-et-Tobago", description: "République de Trinité-et-Tobago" },
+      {
+        locale: "en",
+        name: "Trinidad and Tobago",
+        description: "Republic of Trinidad and Tobago",
+      },
+      {
+        locale: "ar",
+        name: "ترينيداد وتوباغو",
+        description: "جمهورية ترينيداد وتوباغو",
+      },
+      {
+        locale: "es",
+        name: "Trinidad y Tobago",
+        description: "República de Trinidad y Tobago",
+      },
+      {
+        locale: "fr",
+        name: "Trinité-et-Tobago",
+        description: "République de Trinité-et-Tobago",
+      },
     ],
   },
-  
+
   // South America
   {
     code: "ARG",
@@ -306,10 +466,26 @@ export const americasCountriesData: CountryData[] = [
     region: "South America",
     isActive: true,
     translations: [
-      { locale: "en", name: "Bolivia", description: "Plurinational State of Bolivia" },
-      { locale: "ar", name: "بوليفيا", description: "دولة بوليفيا المتعددة القوميات" },
-      { locale: "es", name: "Bolivia", description: "Estado Plurinacional de Bolivia" },
-      { locale: "fr", name: "Bolivie", description: "État plurinational de Bolivie" },
+      {
+        locale: "en",
+        name: "Bolivia",
+        description: "Plurinational State of Bolivia",
+      },
+      {
+        locale: "ar",
+        name: "بوليفيا",
+        description: "دولة بوليفيا المتعددة القوميات",
+      },
+      {
+        locale: "es",
+        name: "Bolivia",
+        description: "Estado Plurinacional de Bolivia",
+      },
+      {
+        locale: "fr",
+        name: "Bolivie",
+        description: "État plurinational de Bolivie",
+      },
     ],
   },
   {
@@ -318,10 +494,26 @@ export const americasCountriesData: CountryData[] = [
     region: "South America",
     isActive: true,
     translations: [
-      { locale: "en", name: "Brazil", description: "Federative Republic of Brazil" },
-      { locale: "ar", name: "البرازيل", description: "جمهورية البرازيل الاتحادية" },
-      { locale: "es", name: "Brasil", description: "República Federativa del Brasil" },
-      { locale: "fr", name: "Brésil", description: "République fédérative du Brésil" },
+      {
+        locale: "en",
+        name: "Brazil",
+        description: "Federative Republic of Brazil",
+      },
+      {
+        locale: "ar",
+        name: "البرازيل",
+        description: "جمهورية البرازيل الاتحادية",
+      },
+      {
+        locale: "es",
+        name: "Brasil",
+        description: "República Federativa del Brasil",
+      },
+      {
+        locale: "fr",
+        name: "Brésil",
+        description: "République fédérative du Brésil",
+      },
     ],
   },
   {
@@ -357,7 +549,11 @@ export const americasCountriesData: CountryData[] = [
       { locale: "en", name: "Ecuador", description: "Republic of Ecuador" },
       { locale: "ar", name: "الإكوادور", description: "جمهورية الإكوادور" },
       { locale: "es", name: "Ecuador", description: "República del Ecuador" },
-      { locale: "fr", name: "Équateur", description: "République de l'Équateur" },
+      {
+        locale: "fr",
+        name: "Équateur",
+        description: "République de l'Équateur",
+      },
     ],
   },
   {
@@ -366,10 +562,22 @@ export const americasCountriesData: CountryData[] = [
     region: "South America",
     isActive: true,
     translations: [
-      { locale: "en", name: "Guyana", description: "Co-operative Republic of Guyana" },
+      {
+        locale: "en",
+        name: "Guyana",
+        description: "Co-operative Republic of Guyana",
+      },
       { locale: "ar", name: "غيانا", description: "جمهورية غيانا التعاونية" },
-      { locale: "es", name: "Guyana", description: "República Cooperativa de Guyana" },
-      { locale: "fr", name: "Guyana", description: "République coopérative du Guyana" },
+      {
+        locale: "es",
+        name: "Guyana",
+        description: "República Cooperativa de Guyana",
+      },
+      {
+        locale: "fr",
+        name: "Guyana",
+        description: "République coopérative du Guyana",
+      },
     ],
   },
   {
@@ -414,10 +622,26 @@ export const americasCountriesData: CountryData[] = [
     region: "South America",
     isActive: true,
     translations: [
-      { locale: "en", name: "Uruguay", description: "Oriental Republic of Uruguay" },
-      { locale: "ar", name: "أوروغواي", description: "جمهورية أوروغواي الشرقية" },
-      { locale: "es", name: "Uruguay", description: "República Oriental del Uruguay" },
-      { locale: "fr", name: "Uruguay", description: "République orientale de l'Uruguay" },
+      {
+        locale: "en",
+        name: "Uruguay",
+        description: "Oriental Republic of Uruguay",
+      },
+      {
+        locale: "ar",
+        name: "أوروغواي",
+        description: "جمهورية أوروغواي الشرقية",
+      },
+      {
+        locale: "es",
+        name: "Uruguay",
+        description: "República Oriental del Uruguay",
+      },
+      {
+        locale: "fr",
+        name: "Uruguay",
+        description: "République orientale de l'Uruguay",
+      },
     ],
   },
   {
@@ -426,10 +650,26 @@ export const americasCountriesData: CountryData[] = [
     region: "South America",
     isActive: true,
     translations: [
-      { locale: "en", name: "Venezuela", description: "Bolivarian Republic of Venezuela" },
-      { locale: "ar", name: "فنزويلا", description: "جمهورية فنزويلا البوليفارية" },
-      { locale: "es", name: "Venezuela", description: "República Bolivariana de Venezuela" },
-      { locale: "fr", name: "Venezuela", description: "République bolivarienne du Venezuela" },
+      {
+        locale: "en",
+        name: "Venezuela",
+        description: "Bolivarian Republic of Venezuela",
+      },
+      {
+        locale: "ar",
+        name: "فنزويلا",
+        description: "جمهورية فنزويلا البوليفارية",
+      },
+      {
+        locale: "es",
+        name: "Venezuela",
+        description: "República Bolivariana de Venezuela",
+      },
+      {
+        locale: "fr",
+        name: "Venezuela",
+        description: "République bolivarienne du Venezuela",
+      },
     ],
   },
 ];

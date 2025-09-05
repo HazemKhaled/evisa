@@ -23,10 +23,26 @@ export const allCountriesData: CountryData[] = [
     region: "Northern Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Algeria", description: "People's Democratic Republic of Algeria" },
-      { locale: "ar", name: "الجزائر", description: "الجمهورية الجزائرية الديمقراطية الشعبية" },
-      { locale: "es", name: "Argelia", description: "República Argelina Democrática y Popular" },
-      { locale: "fr", name: "Algérie", description: "République algérienne démocratique et populaire" },
+      {
+        locale: "en",
+        name: "Algeria",
+        description: "People's Democratic Republic of Algeria",
+      },
+      {
+        locale: "ar",
+        name: "الجزائر",
+        description: "الجمهورية الجزائرية الديمقراطية الشعبية",
+      },
+      {
+        locale: "es",
+        name: "Argelia",
+        description: "República Argelina Democrática y Popular",
+      },
+      {
+        locale: "fr",
+        name: "Algérie",
+        description: "République algérienne démocratique et populaire",
+      },
     ],
   },
   {
@@ -107,9 +123,21 @@ export const allCountriesData: CountryData[] = [
     region: "Western Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Cape Verde", description: "Republic of Cabo Verde" },
-      { locale: "ar", name: "الرأس الأخضر", description: "جمهورية الرأس الأخضر" },
-      { locale: "es", name: "Cabo Verde", description: "República de Cabo Verde" },
+      {
+        locale: "en",
+        name: "Cape Verde",
+        description: "Republic of Cabo Verde",
+      },
+      {
+        locale: "ar",
+        name: "الرأس الأخضر",
+        description: "جمهورية الرأس الأخضر",
+      },
+      {
+        locale: "es",
+        name: "Cabo Verde",
+        description: "República de Cabo Verde",
+      },
       { locale: "fr", name: "Cap-Vert", description: "République du Cap-Vert" },
     ],
   },
@@ -119,10 +147,26 @@ export const allCountriesData: CountryData[] = [
     region: "Middle Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Central African Republic", description: "Central African Republic" },
-      { locale: "ar", name: "جمهورية أفريقيا الوسطى", description: "جمهورية أفريقيا الوسطى" },
-      { locale: "es", name: "República Centroafricana", description: "República Centroafricana" },
-      { locale: "fr", name: "République centrafricaine", description: "République centrafricaine" },
+      {
+        locale: "en",
+        name: "Central African Republic",
+        description: "Central African Republic",
+      },
+      {
+        locale: "ar",
+        name: "جمهورية أفريقيا الوسطى",
+        description: "جمهورية أفريقيا الوسطى",
+      },
+      {
+        locale: "es",
+        name: "República Centroafricana",
+        description: "República Centroafricana",
+      },
+      {
+        locale: "fr",
+        name: "République centrafricaine",
+        description: "République centrafricaine",
+      },
     ],
   },
   {
@@ -167,10 +211,26 @@ export const allCountriesData: CountryData[] = [
     region: "Middle Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Democratic Republic of the Congo", description: "Democratic Republic of the Congo" },
-      { locale: "ar", name: "جمهورية الكونغو الديمقراطية", description: "جمهورية الكونغو الديمقراطية" },
-      { locale: "es", name: "República Democrática del Congo", description: "República Democrática del Congo" },
-      { locale: "fr", name: "République démocratique du Congo", description: "République démocratique du Congo" },
+      {
+        locale: "en",
+        name: "Democratic Republic of the Congo",
+        description: "Democratic Republic of the Congo",
+      },
+      {
+        locale: "ar",
+        name: "جمهورية الكونغو الديمقراطية",
+        description: "جمهورية الكونغو الديمقراطية",
+      },
+      {
+        locale: "es",
+        name: "República Democrática del Congo",
+        description: "República Democrática del Congo",
+      },
+      {
+        locale: "fr",
+        name: "République démocratique du Congo",
+        description: "République démocratique du Congo",
+      },
     ],
   },
   {
@@ -179,10 +239,22 @@ export const allCountriesData: CountryData[] = [
     region: "Western Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Côte d'Ivoire", description: "Republic of Côte d'Ivoire" },
+      {
+        locale: "en",
+        name: "Côte d'Ivoire",
+        description: "Republic of Côte d'Ivoire",
+      },
       { locale: "ar", name: "ساحل العاج", description: "جمهورية ساحل العاج" },
-      { locale: "es", name: "Costa de Marfil", description: "República de Côte d'Ivoire" },
-      { locale: "fr", name: "Côte d'Ivoire", description: "République de Côte d'Ivoire" },
+      {
+        locale: "es",
+        name: "Costa de Marfil",
+        description: "República de Côte d'Ivoire",
+      },
+      {
+        locale: "fr",
+        name: "Côte d'Ivoire",
+        description: "République de Côte d'Ivoire",
+      },
     ],
   },
   {
@@ -205,8 +277,16 @@ export const allCountriesData: CountryData[] = [
     translations: [
       { locale: "en", name: "Egypt", description: "Arab Republic of Egypt" },
       { locale: "ar", name: "مصر", description: "جمهورية مصر العربية" },
-      { locale: "es", name: "Egipto", description: "República Árabe de Egipto" },
-      { locale: "fr", name: "Égypte", description: "République arabe d'Égypte" },
+      {
+        locale: "es",
+        name: "Egipto",
+        description: "República Árabe de Egipto",
+      },
+      {
+        locale: "fr",
+        name: "Égypte",
+        description: "République arabe d'Égypte",
+      },
     ],
   },
   {
@@ -215,10 +295,26 @@ export const allCountriesData: CountryData[] = [
     region: "Middle Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Equatorial Guinea", description: "Republic of Equatorial Guinea" },
-      { locale: "ar", name: "غينيا الاستوائية", description: "جمهورية غينيا الاستوائية" },
-      { locale: "es", name: "Guinea Ecuatorial", description: "República de Guinea Ecuatorial" },
-      { locale: "fr", name: "Guinée équatoriale", description: "République de Guinée équatoriale" },
+      {
+        locale: "en",
+        name: "Equatorial Guinea",
+        description: "Republic of Equatorial Guinea",
+      },
+      {
+        locale: "ar",
+        name: "غينيا الاستوائية",
+        description: "جمهورية غينيا الاستوائية",
+      },
+      {
+        locale: "es",
+        name: "Guinea Ecuatorial",
+        description: "República de Guinea Ecuatorial",
+      },
+      {
+        locale: "fr",
+        name: "Guinée équatoriale",
+        description: "République de Guinée équatoriale",
+      },
     ],
   },
   {
@@ -251,10 +347,26 @@ export const allCountriesData: CountryData[] = [
     region: "Eastern Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Ethiopia", description: "Federal Democratic Republic of Ethiopia" },
-      { locale: "ar", name: "إثيوبيا", description: "جمهورية إثيوبيا الفيدرالية الديمقراطية" },
-      { locale: "es", name: "Etiopía", description: "República Democrática Federal de Etiopía" },
-      { locale: "fr", name: "Éthiopie", description: "République fédérale démocratique d'Éthiopie" },
+      {
+        locale: "en",
+        name: "Ethiopia",
+        description: "Federal Democratic Republic of Ethiopia",
+      },
+      {
+        locale: "ar",
+        name: "إثيوبيا",
+        description: "جمهورية إثيوبيا الفيدرالية الديمقراطية",
+      },
+      {
+        locale: "es",
+        name: "Etiopía",
+        description: "República Democrática Federal de Etiopía",
+      },
+      {
+        locale: "fr",
+        name: "Éthiopie",
+        description: "République fédérale démocratique d'Éthiopie",
+      },
     ],
   },
   {
@@ -311,10 +423,22 @@ export const allCountriesData: CountryData[] = [
     region: "Western Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Guinea-Bissau", description: "Republic of Guinea-Bissau" },
+      {
+        locale: "en",
+        name: "Guinea-Bissau",
+        description: "Republic of Guinea-Bissau",
+      },
       { locale: "ar", name: "غينيا بيساو", description: "جمهورية غينيا بيساو" },
-      { locale: "es", name: "Guinea-Bisáu", description: "República de Guinea-Bisáu" },
-      { locale: "fr", name: "Guinée-Bissau", description: "République de Guinée-Bissau" },
+      {
+        locale: "es",
+        name: "Guinea-Bisáu",
+        description: "República de Guinea-Bisáu",
+      },
+      {
+        locale: "fr",
+        name: "Guinée-Bissau",
+        description: "République de Guinée-Bissau",
+      },
     ],
   },
   {
@@ -371,10 +495,22 @@ export const allCountriesData: CountryData[] = [
     region: "Eastern Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Madagascar", description: "Republic of Madagascar" },
+      {
+        locale: "en",
+        name: "Madagascar",
+        description: "Republic of Madagascar",
+      },
       { locale: "ar", name: "مدغشقر", description: "جمهورية مدغشقر" },
-      { locale: "es", name: "Madagascar", description: "República de Madagascar" },
-      { locale: "fr", name: "Madagascar", description: "République de Madagascar" },
+      {
+        locale: "es",
+        name: "Madagascar",
+        description: "República de Madagascar",
+      },
+      {
+        locale: "fr",
+        name: "Madagascar",
+        description: "République de Madagascar",
+      },
     ],
   },
   {
@@ -407,10 +543,26 @@ export const allCountriesData: CountryData[] = [
     region: "Western Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Mauritania", description: "Islamic Republic of Mauritania" },
-      { locale: "ar", name: "موريتانيا", description: "الجمهورية الإسلامية الموريتانية" },
-      { locale: "es", name: "Mauritania", description: "República Islámica de Mauritania" },
-      { locale: "fr", name: "Mauritanie", description: "République islamique de Mauritanie" },
+      {
+        locale: "en",
+        name: "Mauritania",
+        description: "Islamic Republic of Mauritania",
+      },
+      {
+        locale: "ar",
+        name: "موريتانيا",
+        description: "الجمهورية الإسلامية الموريتانية",
+      },
+      {
+        locale: "es",
+        name: "Mauritania",
+        description: "República Islámica de Mauritania",
+      },
+      {
+        locale: "fr",
+        name: "Mauritanie",
+        description: "République islamique de Mauritanie",
+      },
     ],
   },
   {
@@ -443,10 +595,22 @@ export const allCountriesData: CountryData[] = [
     region: "Eastern Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Mozambique", description: "Republic of Mozambique" },
+      {
+        locale: "en",
+        name: "Mozambique",
+        description: "Republic of Mozambique",
+      },
       { locale: "ar", name: "موزمبيق", description: "جمهورية موزمبيق" },
-      { locale: "es", name: "Mozambique", description: "República de Mozambique" },
-      { locale: "fr", name: "Mozambique", description: "République du Mozambique" },
+      {
+        locale: "es",
+        name: "Mozambique",
+        description: "República de Mozambique",
+      },
+      {
+        locale: "fr",
+        name: "Mozambique",
+        description: "République du Mozambique",
+      },
     ],
   },
   {
@@ -479,10 +643,26 @@ export const allCountriesData: CountryData[] = [
     region: "Western Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Nigeria", description: "Federal Republic of Nigeria" },
-      { locale: "ar", name: "نيجيريا", description: "جمهورية نيجيريا الاتحادية" },
-      { locale: "es", name: "Nigeria", description: "República Federal de Nigeria" },
-      { locale: "fr", name: "Nigéria", description: "République fédérale du Nigéria" },
+      {
+        locale: "en",
+        name: "Nigeria",
+        description: "Federal Republic of Nigeria",
+      },
+      {
+        locale: "ar",
+        name: "نيجيريا",
+        description: "جمهورية نيجيريا الاتحادية",
+      },
+      {
+        locale: "es",
+        name: "Nigeria",
+        description: "República Federal de Nigeria",
+      },
+      {
+        locale: "fr",
+        name: "Nigéria",
+        description: "République fédérale du Nigéria",
+      },
     ],
   },
   {
@@ -503,10 +683,26 @@ export const allCountriesData: CountryData[] = [
     region: "Middle Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "São Tomé and Príncipe", description: "Democratic Republic of São Tomé and Príncipe" },
-      { locale: "ar", name: "ساو تومي وبرينسيبي", description: "جمهورية ساو تومي وبرينسيبي الديمقراطية" },
-      { locale: "es", name: "Santo Tomé y Príncipe", description: "República Democrática de Santo Tomé y Príncipe" },
-      { locale: "fr", name: "Sao Tomé-et-Principe", description: "République démocratique de Sao Tomé-et-Principe" },
+      {
+        locale: "en",
+        name: "São Tomé and Príncipe",
+        description: "Democratic Republic of São Tomé and Príncipe",
+      },
+      {
+        locale: "ar",
+        name: "ساو تومي وبرينسيبي",
+        description: "جمهورية ساو تومي وبرينسيبي الديمقراطية",
+      },
+      {
+        locale: "es",
+        name: "Santo Tomé y Príncipe",
+        description: "República Democrática de Santo Tomé y Príncipe",
+      },
+      {
+        locale: "fr",
+        name: "Sao Tomé-et-Principe",
+        description: "République démocratique de Sao Tomé-et-Principe",
+      },
     ],
   },
   {
@@ -527,10 +723,22 @@ export const allCountriesData: CountryData[] = [
     region: "Eastern Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Seychelles", description: "Republic of Seychelles" },
+      {
+        locale: "en",
+        name: "Seychelles",
+        description: "Republic of Seychelles",
+      },
       { locale: "ar", name: "سيشل", description: "جمهورية سيشل" },
-      { locale: "es", name: "Seychelles", description: "República de Seychelles" },
-      { locale: "fr", name: "Seychelles", description: "République des Seychelles" },
+      {
+        locale: "es",
+        name: "Seychelles",
+        description: "República de Seychelles",
+      },
+      {
+        locale: "fr",
+        name: "Seychelles",
+        description: "République des Seychelles",
+      },
     ],
   },
   {
@@ -539,10 +747,22 @@ export const allCountriesData: CountryData[] = [
     region: "Western Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Sierra Leone", description: "Republic of Sierra Leone" },
+      {
+        locale: "en",
+        name: "Sierra Leone",
+        description: "Republic of Sierra Leone",
+      },
       { locale: "ar", name: "سيراليون", description: "جمهورية سيراليون" },
-      { locale: "es", name: "Sierra Leona", description: "República de Sierra Leona" },
-      { locale: "fr", name: "Sierra Leone", description: "République de Sierra Leone" },
+      {
+        locale: "es",
+        name: "Sierra Leona",
+        description: "República de Sierra Leona",
+      },
+      {
+        locale: "fr",
+        name: "Sierra Leone",
+        description: "République de Sierra Leone",
+      },
     ],
   },
   {
@@ -551,10 +771,26 @@ export const allCountriesData: CountryData[] = [
     region: "Eastern Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Somalia", description: "Federal Republic of Somalia" },
-      { locale: "ar", name: "الصومال", description: "جمهورية الصومال الفيدرالية" },
-      { locale: "es", name: "Somalia", description: "República Federal de Somalia" },
-      { locale: "fr", name: "Somalie", description: "République fédérale de Somalie" },
+      {
+        locale: "en",
+        name: "Somalia",
+        description: "Federal Republic of Somalia",
+      },
+      {
+        locale: "ar",
+        name: "الصومال",
+        description: "جمهورية الصومال الفيدرالية",
+      },
+      {
+        locale: "es",
+        name: "Somalia",
+        description: "República Federal de Somalia",
+      },
+      {
+        locale: "fr",
+        name: "Somalie",
+        description: "République fédérale de Somalie",
+      },
     ],
   },
   {
@@ -563,10 +799,26 @@ export const allCountriesData: CountryData[] = [
     region: "Southern Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "South Africa", description: "Republic of South Africa" },
-      { locale: "ar", name: "جنوب أفريقيا", description: "جمهورية جنوب أفريقيا" },
-      { locale: "es", name: "Sudáfrica", description: "República de Sudáfrica" },
-      { locale: "fr", name: "Afrique du Sud", description: "République d'Afrique du Sud" },
+      {
+        locale: "en",
+        name: "South Africa",
+        description: "Republic of South Africa",
+      },
+      {
+        locale: "ar",
+        name: "جنوب أفريقيا",
+        description: "جمهورية جنوب أفريقيا",
+      },
+      {
+        locale: "es",
+        name: "Sudáfrica",
+        description: "República de Sudáfrica",
+      },
+      {
+        locale: "fr",
+        name: "Afrique du Sud",
+        description: "République d'Afrique du Sud",
+      },
     ],
   },
   {
@@ -575,10 +827,26 @@ export const allCountriesData: CountryData[] = [
     region: "Eastern Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "South Sudan", description: "Republic of South Sudan" },
-      { locale: "ar", name: "جنوب السودان", description: "جمهورية جنوب السودان" },
-      { locale: "es", name: "Sudán del Sur", description: "República de Sudán del Sur" },
-      { locale: "fr", name: "Soudan du Sud", description: "République du Soudan du Sud" },
+      {
+        locale: "en",
+        name: "South Sudan",
+        description: "Republic of South Sudan",
+      },
+      {
+        locale: "ar",
+        name: "جنوب السودان",
+        description: "جمهورية جنوب السودان",
+      },
+      {
+        locale: "es",
+        name: "Sudán del Sur",
+        description: "República de Sudán del Sur",
+      },
+      {
+        locale: "fr",
+        name: "Soudan du Sud",
+        description: "République du Soudan du Sud",
+      },
     ],
   },
   {
@@ -599,10 +867,26 @@ export const allCountriesData: CountryData[] = [
     region: "Eastern Africa",
     isActive: true,
     translations: [
-      { locale: "en", name: "Tanzania", description: "United Republic of Tanzania" },
-      { locale: "ar", name: "تنزانيا", description: "جمهورية تنزانيا الاتحادية" },
-      { locale: "es", name: "Tanzania", description: "República Unida de Tanzania" },
-      { locale: "fr", name: "Tanzanie", description: "République unie de Tanzanie" },
+      {
+        locale: "en",
+        name: "Tanzania",
+        description: "United Republic of Tanzania",
+      },
+      {
+        locale: "ar",
+        name: "تنزانيا",
+        description: "جمهورية تنزانيا الاتحادية",
+      },
+      {
+        locale: "es",
+        name: "Tanzania",
+        description: "República Unida de Tanzania",
+      },
+      {
+        locale: "fr",
+        name: "Tanzanie",
+        description: "République unie de Tanzanie",
+      },
     ],
   },
   {

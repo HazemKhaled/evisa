@@ -1,10 +1,7 @@
 /**
  * Setup script to create local SQLite database with schema
  */
-import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
-import { migrate } from "drizzle-orm/libsql/migrator";
-import * as schema from "../src/lib/db/schema";
 
 async function setupLocalDatabase() {
   console.log("🔧 Setting up local SQLite database...");
@@ -15,16 +12,12 @@ async function setupLocalDatabase() {
     const client = createClient({
       url: `file:${dbPath}`,
     });
-    const db = drizzle(client, { schema });
 
     console.log(`📁 Database path: ${dbPath}`);
 
     // Create tables using the schema
     console.log("📋 Creating database tables...");
-    
-    // Import the schema and create tables
-    const { countries, countriesI18n, visaTypes, visaTypesI18n, visaEligibility, visaEligibilityI18n } = schema;
-    
+
     // Create tables manually since we don't have migrations
     await client.execute(`
       CREATE TABLE IF NOT EXISTS countries (
@@ -121,7 +114,6 @@ async function setupLocalDatabase() {
 
     console.log("✅ Database tables created successfully!");
     console.log("🎉 Local database setup completed!");
-
   } catch (error) {
     console.error("❌ Error setting up local database:", error);
     throw error;

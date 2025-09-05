@@ -20,142 +20,20 @@ import {
 } from "../src/lib/db/schema";
 import * as schema from "../src/lib/db/schema";
 
-// Country data with translations
-const countryDataWithTranslations = [
-  {
-    country: {
-      code: "USA",
-      continent: "North America",
-      region: "Northern America",
-      isActive: true,
-    },
-    translations: [
-      {
-        locale: "en",
-        name: "United States",
-        description: "United States of America",
-      },
-      {
-        locale: "ar",
-        name: "الولايات المتحدة",
-        description: "الولايات المتحدة الأمريكية",
-      },
-      {
-        locale: "es",
-        name: "Estados Unidos",
-        description: "Estados Unidos de América",
-      },
-      {
-        locale: "fr",
-        name: "États-Unis",
-        description: "États-Unis d'Amérique",
-      },
-    ],
-  },
-  {
-    country: {
-      code: "ARE",
-      continent: "Asia",
-      region: "Western Asia",
-      isActive: true,
-    },
-    translations: [
-      {
-        locale: "en",
-        name: "United Arab Emirates",
-        description: "United Arab Emirates",
-      },
-      {
-        locale: "ar",
-        name: "الإمارات العربية المتحدة",
-        description: "دولة الإمارات العربية المتحدة",
-      },
-      {
-        locale: "es",
-        name: "Emiratos Árabes Unidos",
-        description: "Emiratos Árabes Unidos",
-      },
-      {
-        locale: "fr",
-        name: "Émirats arabes unis",
-        description: "Émirats arabes unis",
-      },
-    ],
-  },
-  {
-    country: {
-      code: "GBR",
-      continent: "Europe",
-      region: "Northern Europe",
-      isActive: true,
-    },
-    translations: [
-      {
-        locale: "en",
-        name: "United Kingdom",
-        description: "United Kingdom of Great Britain and Northern Ireland",
-      },
-      {
-        locale: "ar",
-        name: "المملكة المتحدة",
-        description: "المملكة المتحدة لبريطانيا العظمى وأيرلندا الشمالية",
-      },
-      {
-        locale: "es",
-        name: "Reino Unido",
-        description: "Reino Unido de Gran Bretaña e Irlanda del Norte",
-      },
-      {
-        locale: "fr",
-        name: "Royaume-Uni",
-        description: "Royaume-Uni de Grande-Bretagne et d'Irlande du Nord",
-      },
-    ],
-  },
-  {
-    country: {
-      code: "DEU",
-      continent: "Europe",
-      region: "Western Europe",
-      isActive: true,
-    },
-    translations: [
-      {
-        locale: "en",
-        name: "Germany",
-        description: "Federal Republic of Germany",
-      },
-      {
-        locale: "ar",
-        name: "ألمانيا",
-        description: "جمهورية ألمانيا الاتحادية",
-      },
-      {
-        locale: "es",
-        name: "Alemania",
-        description: "República Federal de Alemania",
-      },
-      {
-        locale: "fr",
-        name: "Allemagne",
-        description: "République fédérale d'Allemagne",
-      },
-    ],
-  },
-  {
-    country: {
-      code: "JPN",
-      continent: "Asia",
-      region: "Eastern Asia",
-      isActive: true,
-    },
-    translations: [
-      { locale: "en", name: "Japan", description: "Japan" },
-      { locale: "ar", name: "اليابان", description: "اليابان" },
-      { locale: "es", name: "Japón", description: "Japón" },
-      { locale: "fr", name: "Japon", description: "Japon" },
-    ],
-  },
+// Import all countries data
+import { allCountriesData } from "./countries-data";
+import { asianCountriesData } from "./countries-data-asia";
+import { europeanCountriesData } from "./countries-data-europe";
+import { americasCountriesData } from "./countries-data-americas";
+import { oceaniaCountriesData } from "./countries-data-oceania";
+
+// Combine all countries data
+const allWorldCountries = [
+  ...allCountriesData, // Africa
+  ...asianCountriesData, // Asia
+  ...europeanCountriesData, // Europe
+  ...americasCountriesData, // North & South America
+  ...oceaniaCountriesData, // Oceania
 ];
 
 // Visa type data with translations (for UAE)
@@ -334,13 +212,106 @@ const visaEligibilityDataWithTranslations = [
   },
 ];
 
+async function seedCountries() {
+  console.log("🌍 Starting comprehensive countries seeding...");
+  console.log(`📊 Total countries to seed: ${allWorldCountries.length}`);
+
+  try {
+    // Create LibSQL client for seed script using local SQLite file
+    const dbPath = `${process.cwd()}/local-db.sqlite`;
+    const client = createClient({
+      url: `file:${dbPath}`,
+    });
+    const db = drizzle(client, { schema });
+
+    // Clear existing countries data (optional - comment out if you want to keep existing data)
+    console.log("🧹 Clearing existing countries data...");
+    await db.delete(countriesI18n);
+    await db.delete(countries);
+    console.log("✅ Existing countries data cleared");
+
+    // Insert countries
+    console.log("📍 Inserting countries...");
+    const insertedCountries: Record<string, number> = {};
+    let successCount = 0;
+    let errorCount = 0;
+
+    for (const countryData of allWorldCountries) {
+      try {
+        const [insertedCountry] = await db
+          .insert(countries)
+          .values({
+            code: countryData.code,
+            continent: countryData.continent,
+            region: countryData.region,
+            isActive: countryData.isActive,
+          })
+          .returning();
+
+        insertedCountries[countryData.code] = insertedCountry.id;
+
+        // Insert country translations
+        const countryTranslations: NewCountryI18n[] =
+          countryData.translations.map(t => ({
+            countryId: insertedCountry.id,
+            locale: t.locale,
+            name: t.name,
+            description: t.description,
+          }));
+
+        await db.insert(countriesI18n).values(countryTranslations);
+        successCount++;
+
+        if (successCount % 50 === 0) {
+          console.log(
+            `   ✅ Processed ${successCount}/${allWorldCountries.length} countries...`
+          );
+        }
+      } catch (error) {
+        errorCount++;
+        console.error(`❌ Error inserting country ${countryData.code}:`, error);
+      }
+    }
+
+    console.log(`✅ Countries seeding completed!`);
+    console.log(`   • Successfully inserted: ${successCount} countries`);
+    console.log(`   • Errors: ${errorCount} countries`);
+    console.log(
+      `   • Total translations: ${successCount * 8} (8 locales per country)`
+    );
+
+    // Display summary by continent
+    const continentSummary = allWorldCountries.reduce(
+      (acc, country) => {
+        acc[country.continent] = (acc[country.continent] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>
+    );
+
+    console.log("\n📊 Summary by continent:");
+    Object.entries(continentSummary).forEach(([continent, count]) => {
+      console.log(`   • ${continent}: ${count} countries`);
+    });
+
+    console.log(
+      "\n🎉 All countries have been successfully seeded with multilingual support!"
+    );
+    console.log("🌐 Supported locales: en, ar, es, fr, pt, ru, de, it");
+  } catch (error) {
+    console.error("❌ Error seeding countries:", error);
+    throw error;
+  }
+}
+
 async function seed() {
   console.log("🌱 Starting database seeding with i18n structure...");
 
   try {
-    // Create LibSQL client for seed script
+    // Create LibSQL client for seed script using local SQLite file
+    const dbPath = `${process.cwd()}/local-db.sqlite`;
     const client = createClient({
-      url: `file:${process.cwd()}/.wrangler/state/v3/d1/miniflare-D1DatabaseObject/3bcf51c707c15e397cc3c101eb947a49c4300992dbbb79335dbd86cdcd72a4f1.sqlite`,
+      url: `file:${dbPath}`,
     });
     const db = drizzle(client, { schema });
 
@@ -348,26 +319,32 @@ async function seed() {
     console.log("📍 Inserting countries...");
     const insertedCountries: Record<string, number> = {};
 
-    for (const { country, translations } of countryDataWithTranslations) {
+    for (const countryData of allWorldCountries) {
       const [insertedCountry] = await db
         .insert(countries)
-        .values(country)
+        .values({
+          code: countryData.code,
+          continent: countryData.continent,
+          region: countryData.region,
+          isActive: countryData.isActive,
+        })
         .returning();
-      insertedCountries[country.code] = insertedCountry.id;
+      insertedCountries[countryData.code] = insertedCountry.id;
 
       // Insert country translations
-      const countryTranslations: NewCountryI18n[] = translations.map(t => ({
-        countryId: insertedCountry.id,
-        locale: t.locale,
-        name: t.name,
-        description: t.description,
-      }));
+      const countryTranslations: NewCountryI18n[] =
+        countryData.translations.map(t => ({
+          countryId: insertedCountry.id,
+          locale: t.locale,
+          name: t.name,
+          description: t.description,
+        }));
 
       await db.insert(countriesI18n).values(countryTranslations);
     }
 
     console.log(
-      `✅ Inserted ${Object.keys(insertedCountries).length} countries with translations`
+      `✅ Inserted ${Object.keys(insertedCountries).length} countries with translations (${allWorldCountries.length} total)`
     );
 
     // Insert visa types
@@ -477,13 +454,28 @@ async function seed() {
   }
 }
 
-// Run the seed function
-seed()
-  .then(() => {
-    console.log("✨ Seeding process finished");
-    process.exit(0);
-  })
-  .catch(error => {
-    console.error("💥 Seeding failed:", error);
-    process.exit(1);
-  });
+// Choose which seeding function to run based on command line arguments
+const seedType = process.argv[2];
+
+if (seedType === "countries") {
+  seedCountries()
+    .then(() => {
+      console.log("✨ Countries seeding process finished");
+      process.exit(0);
+    })
+    .catch(error => {
+      console.error("💥 Countries seeding failed:", error);
+      process.exit(1);
+    });
+} else {
+  // Run the full seed function by default
+  seed()
+    .then(() => {
+      console.log("✨ Seeding process finished");
+      process.exit(0);
+    })
+    .catch(error => {
+      console.error("💥 Seeding failed:", error);
+      process.exit(1);
+    });
+}

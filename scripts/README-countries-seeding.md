@@ -5,8 +5,9 @@ This directory contains comprehensive scripts for seeding the database with all 
 ## Overview
 
 The countries seeding system provides:
-- **192 countries** from all continents
-- **768 translations** across 4 locales (en, ar, es, fr)
+
+- **190+ countries** from all continents
+- **1,536+ translations** across 8 locales (en, ar, es, fr, pt, ru, de, it)
 - **ISO 3166-1 alpha-3** country codes
 - **Continent and region** classification
 - **Multilingual support** for internationalization
@@ -16,19 +17,19 @@ The countries seeding system provides:
 ```
 scripts/
 ├── countries-data.ts              # African countries data
-├── countries-data-asia.ts         # Asian countries data  
+├── countries-data-asia.ts         # Asian countries data
 ├── countries-data-europe.ts       # European countries data
 ├── countries-data-americas.ts     # North & South American countries data
 ├── countries-data-oceania.ts      # Oceanian countries data
-├── seed-countries.ts              # Main seeding script
+├── seed.ts                        # Main seeding script (includes countries seeding)
 ├── setup-local-db.ts              # Database schema setup
-├── verify-countries.ts            # Data verification script
 └── README-countries-seeding.md    # This documentation
 ```
 
 ## Database Schema
 
 ### Countries Table
+
 - `id`: Primary key (auto-increment)
 - `code`: ISO 3166-1 alpha-3 country code (e.g., "USA", "ARE")
 - `continent`: Continent name (e.g., "North America", "Asia")
@@ -37,6 +38,7 @@ scripts/
 - `createdAt`, `updatedAt`, `deletedAt`: Timestamps
 
 ### Countries I18n Table
+
 - `id`: Primary key (auto-increment)
 - `countryId`: Foreign key to countries table
 - `locale`: Language code (en, ar, es, fr)
@@ -47,52 +49,97 @@ scripts/
 ## Usage
 
 ### 1. Setup Local Database
+
 ```bash
 pnpm db:local:setup-schema
 ```
+
 Creates the local SQLite database with all required tables.
 
 ### 2. Seed Countries Data
-```bash
-pnpm db:seed:countries
-```
-Populates the database with all 192 countries and their translations.
 
-### 3. Verify Data
 ```bash
-pnpm db:verify:countries
+# Seed only countries (190+ countries)
+pnpm tsx scripts/seed.ts countries
+
+# Or seed everything including sample visa data
+pnpm tsx scripts/seed.ts
 ```
-Verifies the seeded data and shows statistics.
+
+Populates the database with all 190+ countries and their translations in 8 languages.
 
 ## Data Statistics
 
 ### Countries by Continent
+
 - **Africa**: 54 countries
-- **Europe**: 45 countries  
+- **Europe**: 45 countries
 - **Asia**: 44 countries
 - **North America**: 23 countries
 - **Oceania**: 14 countries
 - **South America**: 12 countries
 
 ### Supported Locales
+
 - `en`: English
 - `ar`: Arabic (العربية)
 - `es`: Spanish (Español)
 - `fr`: French (Français)
+- `pt`: Portuguese (Português)
+- `ru`: Russian (Русский)
+- `de`: German (Deutsch)
+- `it`: Italian (Italiano)
 
 ## Sample Data
 
 ### Country Example: United Arab Emirates (ARE)
+
 ```json
 {
   "code": "ARE",
-  "continent": "Asia", 
+  "continent": "Asia",
   "region": "Western Asia",
   "translations": [
-    { "locale": "en", "name": "United Arab Emirates", "description": "United Arab Emirates" },
-    { "locale": "ar", "name": "الإمارات العربية المتحدة", "description": "دولة الإمارات العربية المتحدة" },
-    { "locale": "es", "name": "Emiratos Árabes Unidos", "description": "Emiratos Árabes Unidos" },
-    { "locale": "fr", "name": "Émirats arabes unis", "description": "Émirats arabes unis" }
+    {
+      "locale": "en",
+      "name": "United Arab Emirates",
+      "description": "United Arab Emirates"
+    },
+    {
+      "locale": "ar",
+      "name": "الإمارات العربية المتحدة",
+      "description": "دولة الإمارات العربية المتحدة"
+    },
+    {
+      "locale": "es",
+      "name": "Emiratos Árabes Unidos",
+      "description": "Emiratos Árabes Unidos"
+    },
+    {
+      "locale": "fr",
+      "name": "Émirats arabes unis",
+      "description": "Émirats arabes unis"
+    },
+    {
+      "locale": "pt",
+      "name": "Emirados Árabes Unidos",
+      "description": "Emirados Árabes Unidos"
+    },
+    {
+      "locale": "ru",
+      "name": "Объединенные Арабские Эмираты",
+      "description": "Объединенные Арабские Эмираты"
+    },
+    {
+      "locale": "de",
+      "name": "Vereinigte Arabische Emirate",
+      "description": "Vereinigte Arabische Emirate"
+    },
+    {
+      "locale": "it",
+      "name": "Emirati Arabi Uniti",
+      "description": "Emirati Arabi Uniti"
+    }
   ]
 }
 ```
@@ -115,30 +162,34 @@ The seeded countries data integrates with the GetTravelVisa.com platform for:
 ## Maintenance
 
 ### Adding New Countries
+
 1. Add country data to appropriate continent file
 2. Include all 4 locale translations
 3. Run seed script to update database
 
 ### Adding New Locales
+
 1. Update all country data files with new locale
 2. Update database schema if needed
 3. Re-run seed script
 
 ### Updating Country Information
+
 1. Modify country data in appropriate file
 2. Re-run seed script (clears and re-inserts all data)
 
 ## Error Handling
 
 The seeding script includes comprehensive error handling:
+
 - Individual country insertion errors don't stop the process
 - Detailed logging of success/failure counts
 - Verification script to ensure data integrity
 
 ## Performance
 
-- **Seeding Time**: ~2-3 seconds for all 192 countries
-- **Database Size**: ~500KB for countries + translations
+- **Seeding Time**: ~3-5 seconds for all 190+ countries with 8 languages
+- **Database Size**: ~1MB for countries + translations
 - **Memory Usage**: Minimal, processes countries in batches
 
 ## Troubleshooting
@@ -150,25 +201,24 @@ The seeding script includes comprehensive error handling:
    - Check file permissions on `local-db.sqlite`
 
 2. **Translation Missing**
-   - Verify all countries have 4 locale translations
-   - Check for typos in locale codes (en, ar, es, fr)
+   - Verify all countries have 8 locale translations
+   - Check for typos in locale codes (en, ar, es, fr, pt, ru, de, it)
 
 3. **Duplicate Country Codes**
    - Ensure each country has unique ISO 3166-1 alpha-3 code
    - Check for case sensitivity issues
 
 ### Verification Commands
-```bash
-# Check total counts
-pnpm db:verify:countries
 
-# Check specific country
-# (Modify verify script to filter by specific country code)
+```bash
+# Check database by running seed script in countries mode
+pnpm tsx scripts/seed.ts countries
 ```
 
 ## Future Enhancements
 
-- [ ] Add more locales (de, it, pt, ru, zh, etc.)
+- [x] Support for 8 languages (en, ar, es, fr, pt, ru, de, it) - **COMPLETED**
+- [ ] Add additional locales (zh, ja, ko, hi, etc.)
 - [ ] Include country flags/emoji data
 - [ ] Add country calling codes
 - [ ] Include currency information
