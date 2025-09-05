@@ -93,15 +93,15 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   ]);
   const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
 
-  // Call the existing blog page component with the modified search params and tag route flag
+  // Use the existing blog page component with the modified search params and tag route flag
   return (
     <>
       <JsonLd data={webpageJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
-      {BlogHome({
-        params,
-        searchParams: Promise.resolve(modifiedSearchParams),
-      })}
+      <BlogHome
+        params={params}
+        searchParams={Promise.resolve(modifiedSearchParams)}
+      />
     </>
   );
 }
