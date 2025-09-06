@@ -16,10 +16,14 @@ export function VisaTypeCard({
   tCommon,
 }: VisaTypeCardProps) {
   const visaUrl = `/${locale}/d/${visaType.destinationCode.toLowerCase()}/v/${visaType.type}`;
+  const descriptionId = `visa-desc-${visaType.id}`;
 
   return (
     <Link href={visaUrl} className={cn("group", className)}>
-      <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg">
+      <div
+        className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg"
+        aria-describedby={visaType.description ? descriptionId : undefined}
+      >
         <div className="p-6">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-lg font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
@@ -92,7 +96,10 @@ export function VisaTypeCard({
           </div>
 
           {visaType.description && (
-            <p className="mt-3 line-clamp-2 text-sm text-gray-600">
+            <p
+              id={descriptionId}
+              className="mt-3 line-clamp-2 text-sm text-gray-600"
+            >
               {visaType.description}
             </p>
           )}
