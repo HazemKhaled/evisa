@@ -54,8 +54,7 @@ export default function sitemap({
       );
 
       if (equivalentPost || lang === locale) {
-        postAlternates[lang] =
-          `${baseUrl}/${lang}/blog/${post.slug}`;
+        postAlternates[lang] = `${baseUrl}/${lang}/blog/${post.slug}`;
       }
     });
 

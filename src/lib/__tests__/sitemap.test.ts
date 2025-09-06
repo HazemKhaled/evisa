@@ -10,40 +10,40 @@ global.Request = class Request {
     public url: string,
     public init?: RequestInit
   ) {}
-} as any;
+} as unknown as typeof Request;
 
 global.Response = class Response {
   constructor(
-    public body: any,
+    public body: string,
     public init?: ResponseInit
   ) {}
   text() {
     return Promise.resolve(this.body);
   }
-  headers = new Map();
+  headers = new Map<string, string>();
   get(name: string) {
     return this.headers.get(name);
   }
-} as any;
+} as unknown as typeof Response;
 
 // Mock NextResponse
 jest.mock("next/server", () => ({
   NextResponse: class NextResponse {
     constructor(
-      public body: any,
+      public body: string,
       public init?: ResponseInit
     ) {
-      this.headers = new Map();
+      this.headers = new Map<string, string>();
       if (init?.headers) {
         Object.entries(init.headers).forEach(([key, value]) => {
-          this.headers.set(key, value);
+          this.headers.set(key, value as string);
         });
       }
     }
     text() {
       return Promise.resolve(this.body);
     }
-    headers = new Map();
+    headers = new Map<string, string>();
     get(name: string) {
       return this.headers.get(name);
     }
