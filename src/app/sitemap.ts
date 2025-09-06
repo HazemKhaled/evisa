@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { languages } from "@/app/i18n/settings";
 import { env } from "@/lib/consts";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = env.baseUrl;
 
