@@ -29,14 +29,14 @@ Create the blog as required
 - [ ] Show blog post destination in blog post page as a nice looking card, with call to action to apply a visa.
 - [x] In the blog post page, show random 3 other articles as a related article.
 - [x] Create real blog posts for different destinations (Japan, Canada, Europe, UK, USA, UAE, KSA, France, Turkiye), at least every destination should have 4 posts, and every language should have 15 post
-- [ ] Pagination is broken because of force-static, find a way to fix it without using dynamic
+- [x] Pagination is broken because of force-static, find a way to fix it without using dynamic
 
 ## SEO
 
-- [ ] Create all required sitemaps
-- [ ] Create robots.txt, deny all traffic except on production domain
-- [ ] Enhance SEO metadata or add it if not exists for all pages
-- [ ] Add JSON-LD in all pages, consider each page should have it in it's own language
+- [x] Create all required sitemaps
+- [x] Create robots.txt, deny all traffic except on production domain
+- [x] Enhance SEO metadata or add it if not exists for all pages
+- [x] Add JSON-LD in all pages, consider each page should have it in it's own language
 
 ## Visa Catalog
 
@@ -46,5 +46,5 @@ TBD
 
 - [x] Remove UI duplication code, header and foo
 - [x] Review and fix any RTL test alignment error
-- [ ] Remove any code duplication. decrease the complexity and increase the testability
-- [ ] Add more unit tests if needed, but never cover UI components
+- [x] Remove any code duplication. decrease the complexity and increase the testability
+- [x] Add more unit tests if needed, but never cover UI components

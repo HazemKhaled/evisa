@@ -6,7 +6,7 @@
 
 - [x] Add website to Google Search Console
 - [x] Verify ownership (DNS, HTML file, or Google Analytics)
-- [ ] Submit sitemap.xml for indexing
+- [x] Submit sitemap.xml for indexing
 
 ### Google Analytics
 
@@ -19,15 +19,13 @@
 
 - [x] Add website to Bing Webmaster Tools
 - [x] Verify ownership
-- [ ] Submit sitemap.xml
+- [x] Submit sitemap.xml
 
 ### Yandex Webmaster
 
-- [ ] Add website to Yandex Webmaster
-- [ ] Verify ownership
-- [ ] Submit sitemap.xml
-- [ ] Configure regional targeting
-- [ ] Set up Yandex Metrica for analytics
+- [x] Add website to Yandex Webmaster
+- [x] Verify ownership
+- [x] Submit sitemap.xml
 
 ### Baidu Webmaster Tools
 
