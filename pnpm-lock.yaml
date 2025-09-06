@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@libsql/client':
+        specifier: ^0.15.14
+        version: 0.15.14
       '@mdx-js/loader':
         specifier: ^3.1.1
         version: 3.1.1
@@ -66,9 +69,6 @@ importers:
       '@jest/types':
         specifier: ^30.0.5
         version: 30.0.5
-      '@libsql/client':
-        specifier: ^0.15.14
-        version: 0.15.14
       '@tailwindcss/postcss':
         specifier: ^4.1.13
         version: 4.1.13
