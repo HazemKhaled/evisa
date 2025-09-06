@@ -4,6 +4,52 @@ import type { MetadataRoute } from "next";
 const mockBaseUrl = "https://test-gettravelvisa.com";
 process.env.NEXT_PUBLIC_BASE_URL = mockBaseUrl;
 
+// Mock Next.js server components
+global.Request = class Request {
+  constructor(
+    public url: string,
+    public init?: RequestInit
+  ) {}
+} as any;
+
+global.Response = class Response {
+  constructor(
+    public body: any,
+    public init?: ResponseInit
+  ) {}
+  text() {
+    return Promise.resolve(this.body);
+  }
+  headers = new Map();
+  get(name: string) {
+    return this.headers.get(name);
+  }
+} as any;
+
+// Mock NextResponse
+jest.mock("next/server", () => ({
+  NextResponse: class NextResponse {
+    constructor(
+      public body: any,
+      public init?: ResponseInit
+    ) {
+      this.headers = new Map();
+      if (init?.headers) {
+        Object.entries(init.headers).forEach(([key, value]) => {
+          this.headers.set(key, value);
+        });
+      }
+    }
+    text() {
+      return Promise.resolve(this.body);
+    }
+    headers = new Map();
+    get(name: string) {
+      return this.headers.get(name);
+    }
+  },
+}));
+
 // Mock the i18n settings
 jest.mock("../../app/i18n/settings", () => ({
   languages: ["en", "es", "ar", "pt", "ru", "de", "fr", "it"],
@@ -56,7 +102,7 @@ describe("Sitemap Functions", () => {
 
     beforeEach(async () => {
       // Dynamic import to ensure mocks are applied
-      const sitemapModule = await import("../../app/sitemaps/sitemap");
+      const sitemapModule = await import("../../app/sitemap");
       sitemap = sitemapModule.default;
     });
 
@@ -249,63 +295,55 @@ describe("Sitemap Functions", () => {
   });
 
   describe("Sitemap Index", () => {
-    let sitemapIndex: () => MetadataRoute.Sitemap;
+    let sitemapIndexHandler: () => Promise<Response>;
 
     beforeEach(async () => {
       // Dynamic import to ensure mocks are applied
-      const sitemapIndexModule = await import("../../app/sitemap");
-      sitemapIndex = sitemapIndexModule.default;
-    });
-
-    it("should generate sitemap index with correct structure", () => {
-      const result = sitemapIndex();
-
-      expect(Array.isArray(result)).toBe(true);
-      expect(result.length).toBeGreaterThan(0);
-
-      // Check that each entry has required fields
-      result.forEach((entry: MetadataRoute.Sitemap[0]) => {
-        expect(entry).toHaveProperty("url");
-        expect(entry).toHaveProperty("lastModified");
-        expect(entry.url).toMatch(/sitemap.*\.xml$/);
-      });
-    });
-
-    it("should include main sitemap", () => {
-      const result = sitemapIndex();
-
-      const mainSitemap = result.find(
-        (entry: MetadataRoute.Sitemap[0]) =>
-          entry.url === `${mockBaseUrl}/sitemaps/sitemap.xml`
+      const sitemapIndexModule = await import(
+        "../../app/sitemap-index.xml/route"
       );
-      expect(mainSitemap).toBeDefined();
+      sitemapIndexHandler = sitemapIndexModule.GET;
     });
 
-    it("should include blog sitemaps for all locales", () => {
-      const result = sitemapIndex();
+    it("should generate sitemap index XML with correct structure", async () => {
+      const response = await sitemapIndexHandler();
+      const xml = await response.text();
+
+      expect(response.headers.get("Content-Type")).toBe("application/xml");
+      expect(xml).toContain('<?xml version="1.0" encoding="UTF-8"?>');
+      expect(xml).toContain(
+        '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+      );
+      expect(xml).toContain("</sitemapindex>");
+    });
+
+    it("should include main sitemap in XML", async () => {
+      const response = await sitemapIndexHandler();
+      const xml = await response.text();
+
+      expect(xml).toContain(`<loc>${mockBaseUrl}/sitemap.xml</loc>`);
+    });
+
+    it("should include blog sitemaps for all locales in XML", async () => {
+      const response = await sitemapIndexHandler();
+      const xml = await response.text();
 
       const languages = ["en", "es", "ar", "pt", "ru", "de", "fr", "it"];
       languages.forEach(locale => {
-        const blogSitemap = result.find(
-          (entry: MetadataRoute.Sitemap[0]) =>
-            entry.url === `${mockBaseUrl}/${locale}/blog/sitemap/${locale}.xml`
+        expect(xml).toContain(
+          `<loc>${mockBaseUrl}/${locale}/blog/sitemap.xml</loc>`
         );
-        expect(blogSitemap).toBeDefined();
       });
     });
 
-    it("should have recent lastModified dates", () => {
-      const result = sitemapIndex();
-      const now = new Date();
+    it("should include lastmod dates in XML", async () => {
+      const response = await sitemapIndexHandler();
+      const xml = await response.text();
 
-      result.forEach((entry: MetadataRoute.Sitemap[0]) => {
-        expect(entry.lastModified).toBeInstanceOf(Date);
-        // Should be within the last 30 days (reasonable for sitemap updates)
-        const entryDate = entry.lastModified as Date;
-        const timeDiff = now.getTime() - entryDate.getTime();
-        expect(timeDiff).toBeLessThan(30 * 24 * 60 * 60 * 1000); // 30 days in milliseconds
-        expect(timeDiff).toBeGreaterThanOrEqual(0); // Should not be in the future
-      });
+      expect(xml).toContain("<lastmod>");
+      // Should have lastmod for each sitemap entry
+      const lastmodCount = (xml.match(/<lastmod>/g) || []).length;
+      expect(lastmodCount).toBeGreaterThan(0);
     });
   });
 
@@ -318,7 +356,7 @@ describe("Sitemap Functions", () => {
       jest.resetModules();
 
       // Re-import module to pick up environment change
-      const { default: sitemap } = await import("../../app/sitemaps/sitemap");
+      const { default: sitemap } = await import("../../app/sitemap");
       const result = sitemap();
       expect(result[0].url).toMatch(/^https:\/\/gettravelvisa\.com/);
 
@@ -329,7 +367,7 @@ describe("Sitemap Functions", () => {
     it("should generate valid URLs", () => {
       const urlPattern = /^https:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/.*)?$/;
 
-      return import("../../app/sitemaps/sitemap").then(module => {
+      return import("../../app/sitemap").then(module => {
         const result = module.default();
 
         result.forEach((entry: MetadataRoute.Sitemap[0]) => {

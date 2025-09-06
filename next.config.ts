@@ -16,6 +16,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  rewrites: async () => [
+    {
+      source: "/:locale/blog/sitemap.xml",
+      destination: "/:locale/blog/sitemap/:locale.xml",
+    },
+  ],
 };
 
 const withMDX = createMDX({
