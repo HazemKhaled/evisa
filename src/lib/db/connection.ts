@@ -1,41 +1,44 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { drizzle } from "drizzle-orm/d1";
-import { drizzle as drizzleLibsql } from "drizzle-orm/libsql";
-import { createClient } from "@libsql/client";
 import { cache } from "react";
 import type { DrizzleD1Database } from "drizzle-orm/d1";
-import type { LibSQLDatabase } from "drizzle-orm/libsql";
-import { shouldUseLocalDb, getLocalDbPath } from "../consts/env";
+import { shouldUseLocalD1, validateLocalD1Env } from "../consts/env";
 import * as schema from "./schema";
 
 // Types for our database instances
 export type CloudflareDatabase = DrizzleD1Database<typeof schema>;
-export type LocalDatabase = LibSQLDatabase<typeof schema>;
-export type Database = CloudflareDatabase | LocalDatabase;
+export type LocalD1Database = DrizzleD1Database<typeof schema>;
+export type Database = CloudflareDatabase | LocalD1Database;
 
 /**
- * Get local SQLite database connection for development
+ * Get local D1 database connection for development
  * Uses React cache for optimization
  *
- * This function provides a cached local SQLite database connection for development.
+ * This function provides a cached local D1 database connection for development.
  * It uses React's `cache()` function to ensure that multiple calls within the same
  * request return the same database instance.
  *
- * @returns LocalDatabase - A cached Drizzle database instance with local SQLite
+ * @returns LocalD1Database - A cached Drizzle database instance with local D1
  *
- * @throws {Error} When LOCAL_DB_PATH is not configured or file cannot be accessed
+ * @throws {Error} When D1 binding 'DB' is not configured in local development
  *
  * @note This function is synchronous and should not be awaited
- * @note Only used when shouldUseLocalDb is true (development environment)
+ * @note Only used when shouldUseLocalD1 is true (development environment)
+ * @note Requires running within wrangler dev environment for local D1 access
  */
-export const getLocalDb = cache((): LocalDatabase => {
+export const getLocalD1Db = cache((): LocalD1Database => {
   try {
-    const dbPath = getLocalDbPath();
-    const client = createClient({ url: `file:${dbPath}` });
-    return drizzleLibsql(client, { schema });
+    validateLocalD1Env(); // Ensure database ID is configured
+    const { env } = getCloudflareContext();
+    if (!env.DB) {
+      throw new Error(
+        "Local D1 database not available - ensure you're running within 'wrangler dev' environment"
+      );
+    }
+    return drizzle(env.DB, { schema });
   } catch (error) {
     throw new Error(
-      `Local SQLite database not available: ${error instanceof Error ? error.message : "Unknown error"}`
+      `Local D1 database not available: ${error instanceof Error ? error.message : "Unknown error"}`
     );
   }
 });
@@ -67,14 +70,14 @@ export const getCloudflareDb = cache((): CloudflareDatabase => {
 
 /**
  * Get database connection (environment-aware)
- * Automatically chooses between local SQLite and Cloudflare D1
+ * Automatically chooses between local D1 and production D1
  *
  * This function provides a unified database connection interface that automatically
  * selects the appropriate database based on the environment configuration.
  *
  * **Environment Detection:**
- * - **Local Development**: Uses SQLite when `shouldUseLocalDb` is true
- * - **Production**: Uses Cloudflare D1 when `shouldUseLocalDb` is false
+ * - **Local Development**: Uses local D1 via wrangler dev when `shouldUseLocalD1` is true
+ * - **Production**: Uses production Cloudflare D1 when `shouldUseLocalD1` is false
  *
  * @returns Database - A cached Drizzle database instance
  *
@@ -82,7 +85,7 @@ export const getCloudflareDb = cache((): CloudflareDatabase => {
  *
  * @example
  * ```typescript
- * // Works in both development (SQLite) and production (D1)
+ * // Works in both development (local D1) and production (D1)
  * export default async function UserProfile({ userId }: { userId: string }) {
  *   const db = getDb();
  *   const user = await db.query.users.findFirst({
@@ -93,8 +96,8 @@ export const getCloudflareDb = cache((): CloudflareDatabase => {
  * ```
  */
 export const getDb = cache((): Database => {
-  if (shouldUseLocalDb) {
-    return getLocalDb();
+  if (shouldUseLocalD1) {
+    return getLocalD1Db();
   } else {
     return getCloudflareDb();
   }
@@ -105,11 +108,11 @@ export const getDb = cache((): Database => {
  * Uses async Cloudflare context for static generation in production
  *
  * This function provides an asynchronous database connection for static routes.
- * In development, it returns the local SQLite connection synchronously.
+ * In development, it returns the local D1 connection synchronously.
  * In production, it uses async Cloudflare context for static generation.
  *
  * **Environment Handling:**
- * - **Local Development**: Returns local SQLite connection (no async needed)
+ * - **Local Development**: Returns local D1 connection (no async needed)
  * - **Production**: Uses async Cloudflare D1 context for static generation
  *
  * @returns Promise<Database> - A cached Drizzle database instance
@@ -127,13 +130,13 @@ export const getDb = cache((): Database => {
  * ```
  *
  * @note This function must be awaited as it returns a Promise
- * @note In development, it resolves immediately with local SQLite
+ * @note In development, it resolves immediately with local D1
  * @note In production, requires async Cloudflare context
  */
 export const getDbAsync = cache(async (): Promise<Database> => {
-  if (shouldUseLocalDb) {
-    // In development, return local SQLite connection
-    return getLocalDb();
+  if (shouldUseLocalD1) {
+    // In development, return local D1 connection
+    return getLocalD1Db();
   } else {
     // In production, use async Cloudflare context
     const { env } = await getCloudflareContext({ async: true });
@@ -152,12 +155,13 @@ export const getDbAsync = cache(async (): Promise<Database> => {
  */
 export const isDatabaseAvailable = (): boolean => {
   try {
-    if (shouldUseLocalDb) {
-      // Check if local database path is configured
-      getLocalDbPath();
-      return true;
+    if (shouldUseLocalD1) {
+      // Check if local D1 database is configured and available
+      validateLocalD1Env();
+      const { env } = getCloudflareContext();
+      return !!env.DB;
     } else {
-      // Check if Cloudflare D1 is available
+      // Check if production Cloudflare D1 is available
       const { env } = getCloudflareContext();
       return !!env.DB;
     }
@@ -172,12 +176,13 @@ export const isDatabaseAvailable = (): boolean => {
  */
 export const isDatabaseAvailableAsync = async (): Promise<boolean> => {
   try {
-    if (shouldUseLocalDb) {
-      // Check if local database path is configured
-      getLocalDbPath();
-      return true;
+    if (shouldUseLocalD1) {
+      // Check if local D1 database is configured
+      validateLocalD1Env();
+      const { env } = await getCloudflareContext({ async: true });
+      return !!env.DB;
     } else {
-      // Check if Cloudflare D1 is available
+      // Check if production Cloudflare D1 is available
       const { env } = await getCloudflareContext({ async: true });
       return !!env.DB;
     }

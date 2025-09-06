@@ -13,17 +13,27 @@ This guide explains how to set up Drizzle ORM with Cloudflare D1 database for th
 
 ### Local Development Setup (Recommended)
 
+**Prerequisites:**
+
+- Wrangler CLI installed and authenticated
+- Cloudflare D1 database created
+- Environment variables configured in `.env.local`
+
 ```bash
-# Generate and apply migrations
+# Start local development with Wrangler
+pnpm wrangler:dev
+
+# In a separate terminal, generate and apply migrations
 pnpm db:generate
-pnpm db:migrate
+pnpm db:local:apply
 ```
 
 This sequence will:
 
-1. Generate migrations from schema changes
-2. Apply all migrations to the database
-3. Seed with countries and sample visa data
+1. Start local D1 database via Wrangler
+2. Generate migrations from schema changes
+3. Apply all migrations to the local D1 database
+4. Ready for local development with D1 parity
 
 ## Environment Configuration
 
@@ -32,7 +42,7 @@ This sequence will:
 Create or update `.env.local`:
 
 ```env
-# Cloudflare Configuration
+# Cloudflare Configuration (Required for both local and production)
 CLOUDFLARE_ACCOUNT_ID=your-account-id
 CLOUDFLARE_D1_DATABASE_ID=your-database-id
 CLOUDFLARE_API_TOKEN=your-api-token
@@ -50,20 +60,25 @@ NODE_ENV=development
 
 ### Smart Configuration
 
-The project uses intelligent configuration in `drizzle.config.ts` that automatically switches between local and production:
+The project uses intelligent configuration in `drizzle.config.ts` that automatically switches between local D1 and production D1:
 
 ```typescript
 // Automatic environment validation and switching
-LOCAL_DB_PATH
+shouldUseLocalD1
   ? {
       dialect: "sqlite",
-      dbCredentials: { url: LOCAL_DB_PATH },
+      driver: "d1-http",
+      dbCredentials: {
+        ...validateLocalD1Env(), // Only requires database ID for local
+        accountId: undefined, // Wrangler handles auth locally
+        token: undefined,
+      },
     }
   : {
       // Production with Cloudflare D1 HTTP API
       dialect: "sqlite",
       driver: "d1-http",
-      dbCredentials: validateProductionEnv(), // Throws descriptive error if vars missing
+      dbCredentials: validateCloudflareEnv(), // Full credentials required
     };
 ```
 
@@ -72,24 +87,29 @@ LOCAL_DB_PATH
 ### Database Management
 
 ```bash
+# Start local development environment
+pnpm wrangler:dev           # Start local D1 server (run in background)
+
 # Schema and migrations
 pnpm db:generate            # Generate migrations from schema changes
-pnpm db:migrate             # Apply migrations to database
+pnpm db:local:apply         # Apply migrations to local D1
 pnpm db:push                # Push schema directly (dev only)
 
 # Database exploration
 pnpm db:studio              # Open Drizzle Studio GUI
+pnpm db:local:list          # List local migrations
 ```
 
 ### Development Workflow
 
 1. **First Setup**:
    ```bash
-   pnpm db:migrate    # Apply existing migrations
+   pnpm wrangler:dev       # Start local D1 (background terminal)
+   pnpm db:local:apply     # Apply existing migrations to local D1
    ```
 2. **Schema Changes**: Modify files in `src/lib/db/schema/`
 3. **Generate Migration**: `pnpm db:generate`
-4. **Apply Migration**: `pnpm db:migrate`
+4. **Apply Migration**: `pnpm db:local:apply`
 5. **Test with Studio**: `pnpm db:studio`
 
 ## Production Commands
@@ -97,11 +117,12 @@ pnpm db:studio              # Open Drizzle Studio GUI
 ```bash
 # Schema and migrations
 pnpm db:generate            # Generate migrations from schema changes
-pnpm db:migrate             # Apply migrations to production
+pnpm db:prod:apply          # Apply migrations to production D1
 pnpm db:push               # Push schema directly (dev only)
 
 # Database management
-pnpm db:studio             # Open Drizzle Studio for production (port 4983)
+pnpm db:studio             # Open Drizzle Studio for production
+pnpm db:prod:list          # List production migrations
 
 # Code quality
 pnpm lint                  # ESLint checks
@@ -114,8 +135,8 @@ pnpm format               # Prettier formatting
 ### Database Studio
 
 - **Command**: `pnpm db:studio`
-- **Connection**: Automatically detects local or production based on environment
-- **Local Mode**: Direct SQLite file access via `@libsql/client`
+- **Connection**: Automatically detects local D1 or production D1 based on environment
+- **Local Mode**: Local D1 via Wrangler (requires `pnpm wrangler:dev` running)
 - **Production Mode**: Cloudflare D1 HTTP API
 - **Authentication**: Uses environment variables from `.env.local`
 
@@ -179,9 +200,9 @@ drizzle/                    # Drizzle Kit generated files
 1. **Modify Schema**: Edit files in `src/lib/db/schema/`
 2. **Generate**: `pnpm db:generate` creates new migration
 3. **Review**: Check generated SQL in `drizzle/` directory
-4. **Apply Locally**: `pnpm db:local:migrate`
-5. **Test**: Use `pnpm db:local:studio` to verify changes
-6. **Deploy**: `pnpm db:migrate` for production
+4. **Apply Locally**: `pnpm db:local:apply`
+5. **Test**: Use `pnpm db:studio` to verify changes (with wrangler:dev running)
+6. **Deploy**: `pnpm db:prod:apply` for production
 
 ## Production Deployment
 

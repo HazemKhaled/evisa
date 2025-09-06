@@ -29,6 +29,7 @@
       "binding": "DB",
       "database_name": "gtv-db-staging",
       "database_id": "de85b8f1-81b0-4263-b69d-0b82e9d48875",
+      "migrations_dir": "drizzle",
     },
     // OpenNext cache
     {
