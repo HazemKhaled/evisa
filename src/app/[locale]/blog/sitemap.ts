@@ -55,7 +55,7 @@ export default function sitemap({
 
       if (equivalentPost || lang === locale) {
         postAlternates[lang] =
-          `${baseUrl}/${lang}/blog/${lang === locale ? post.slug : post.slug}`;
+          `${baseUrl}/${lang}/blog/${post.slug}`;
       }
     });
 
