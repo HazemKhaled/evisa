@@ -4,7 +4,7 @@ import { GENERATED_BLOG_DATA } from "@/lib/generated-blog-data";
 import { env } from "@/lib/consts";
 
 export async function generateSitemaps() {
-  // Fetch the total number of products and calculate the number of sitemaps needed
+  // Generate sitemap entries for each supported locale for blog posts and tags
   return languages.map(locale => {
     return {
       id: locale,
