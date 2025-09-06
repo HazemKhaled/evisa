@@ -7,15 +7,15 @@ import { getAllCountries } from "@/lib/services/country-service";
 import { DestinationCard } from "@/components/ui/destination-card";
 import type { CountryWithI18n } from "@/lib/services/country-service";
 
-// Group countries by continent
+// Group countries by continent code
 function groupCountriesByContinent(countries: CountryWithI18n[]) {
   const continentGroups = countries.reduce(
     (groups, country) => {
-      const continent = country.continent || "Other";
-      if (!groups[continent]) {
-        groups[continent] = [];
+      const continentCode = country.continent || "other";
+      if (!groups[continentCode]) {
+        groups[continentCode] = [];
       }
-      groups[continent].push(country);
+      groups[continentCode].push(country);
       return groups;
     },
     {} as Record<string, CountryWithI18n[]>
@@ -30,17 +30,6 @@ function groupCountriesByContinent(countries: CountryWithI18n[]) {
 
   return continentGroups;
 }
-
-// Define continent order for display
-const CONTINENT_ORDER = [
-  "Asia",
-  "Europe",
-  "North America",
-  "South America",
-  "Africa",
-  "Oceania",
-  "Other",
-];
 
 export default async function DestinationsPage({
   params,
@@ -94,39 +83,36 @@ export default async function DestinationsPage({
         {/* Destinations Grid by Continent */}
         <div className="bg-gray-50 py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {CONTINENT_ORDER.filter(
-              continent => continentGroups[continent]?.length > 0
-            ).map(continent => (
-              <div key={continent} className="mb-16 last:mb-0">
-                <div className={cn("mb-8 text-center")}>
-                  <h2
+            {Object.entries(continentGroups)
+              .sort(([a], [b]) => a.localeCompare(b)) // Sort continents alphabetically
+              .map(([continent, countries]) => (
+                <div key={continent} className="mb-16 last:mb-0">
+                  <div className={cn("mb-8 text-center")}>
+                    <h2
+                      className={cn(
+                        "text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl"
+                      )}
+                    >
+                      {t(`continents.${continent}`)}
+                    </h2>
+                    <div className="mx-auto mt-2 h-1 w-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"></div>
+                  </div>
+
+                  <div
                     className={cn(
-                      "text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl"
+                      "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                     )}
                   >
-                    {t(
-                      `continents.${continent.toLowerCase().replace(/\s+/g, "")}`,
-                      continent
-                    )}
-                  </h2>
-                  <div className="mx-auto mt-2 h-1 w-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"></div>
+                    {countries.map(destination => (
+                      <DestinationCard
+                        key={destination.id}
+                        destination={destination}
+                        locale={locale}
+                      />
+                    ))}
+                  </div>
                 </div>
-
-                <div
-                  className={cn(
-                    "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-                  )}
-                >
-                  {continentGroups[continent].map(destination => (
-                    <DestinationCard
-                      key={destination.id}
-                      destination={destination}
-                      locale={locale}
-                    />
-                  ))}
-                </div>
-              </div>
-            ))}
+              ))}
 
             {allCountries.length === 0 && (
               <div className="py-16 text-center">

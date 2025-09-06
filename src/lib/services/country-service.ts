@@ -5,11 +5,26 @@ import {
   isDatabaseAvailableAsync,
   type Database,
 } from "../db/connection";
+import { languages } from "@/app/i18n/settings";
 
 /**
  * Service for country-related database operations
  * Provides testable, reusable database query abstractions
  */
+
+/**
+ * Validate and normalize locale code
+ * Returns primary locale code (e.g., "en" from "en-US")
+ */
+function normalizeLocale(locale: string): string {
+  if (!locale || typeof locale !== "string") {
+    return "en";
+  }
+
+  const primaryLocale = locale.toLowerCase().split("-")[0];
+
+  return languages.includes(primaryLocale) ? primaryLocale : "en";
+}
 
 export interface Country {
   id: number;
@@ -81,8 +96,9 @@ export async function getCountryNames(
     return countryCodes; // Fallback to codes if queries fail
   }
 }
+
 /**
- * Get all countries for a specific locale
+ * Get all countries for a specific locale with fallback support
  */
 export async function getAllCountries(
   locale: string
@@ -96,7 +112,9 @@ export async function getAllCountries(
 
   try {
     const db = (await getDbAsync()) as Database;
+    const normalizedLocale = normalizeLocale(locale);
 
+    // Get data in the requested locale
     const results = await db
       .select({
         id: countries.id,
@@ -112,10 +130,51 @@ export async function getAllCountries(
         countriesI18n,
         and(
           eq(countries.id, countriesI18n.countryId),
-          eq(countriesI18n.locale, locale)
+          eq(countriesI18n.locale, normalizedLocale)
         )
       )
-      .where(isNull(countries.deletedAt));
+      .where(and(eq(countries.isActive, true), isNull(countries.deletedAt)));
+
+    // If not using English and some translations are missing, get English fallbacks
+    if (normalizedLocale !== "en") {
+      const missingTranslations = results.filter(r => !r.localizedName);
+
+      if (missingTranslations.length > 0) {
+        // Get English fallback data for countries
+        const englishCountryResults = await db
+          .select({
+            countryId: countriesI18n.countryId,
+            localizedName: countriesI18n.name,
+            about: countriesI18n.about,
+          })
+          .from(countriesI18n)
+          .where(eq(countriesI18n.locale, "en"));
+
+        // Create map for quick lookup
+        const englishCountryMap = new Map<
+          number,
+          { name: string; about: string | null }
+        >();
+
+        englishCountryResults.forEach(er => {
+          englishCountryMap.set(er.countryId, {
+            name: er.localizedName,
+            about: er.about,
+          });
+        });
+
+        // Apply fallbacks
+        results.forEach(result => {
+          if (!result.localizedName && englishCountryMap.has(result.id)) {
+            const englishData = englishCountryMap.get(result.id)!;
+            result.localizedName = englishData.name;
+            if (!result.about) {
+              result.about = englishData.about;
+            }
+          }
+        });
+      }
+    }
 
     return results.map(result => ({
       id: result.id,
@@ -134,11 +193,11 @@ export async function getAllCountries(
 }
 
 /**
- * Get country by code
+ * Get country by code with fallback support
  */
 export async function getCountryByCode(
   countryCode: string,
-  locale?: string
+  locale: string = "en"
 ): Promise<CountryWithI18n | null> {
   const isDatabaseReady = await isDatabaseAvailableAsync();
   if (!isDatabaseReady) {
@@ -149,6 +208,7 @@ export async function getCountryByCode(
 
   try {
     const db = (await getDbAsync()) as Database;
+    const normalizedLocale = normalizeLocale(locale);
 
     const results = await db
       .select({
@@ -163,14 +223,18 @@ export async function getCountryByCode(
       .from(countries)
       .leftJoin(
         countriesI18n,
-        locale
-          ? and(
-              eq(countries.id, countriesI18n.countryId),
-              eq(countriesI18n.locale, locale)
-            )
-          : eq(countries.id, countriesI18n.countryId)
+        and(
+          eq(countries.id, countriesI18n.countryId),
+          eq(countriesI18n.locale, normalizedLocale)
+        )
       )
-      .where(and(eq(countries.code, countryCode), isNull(countries.deletedAt)))
+      .where(
+        and(
+          eq(countries.code, countryCode),
+          eq(countries.isActive, true),
+          isNull(countries.deletedAt)
+        )
+      )
       .limit(1);
 
     if (results.length === 0) {
@@ -178,6 +242,31 @@ export async function getCountryByCode(
     }
 
     const result = results[0];
+
+    // If missing translations and not using English, try English fallback
+    if (!result.localizedName && normalizedLocale !== "en") {
+      const englishCountryResult = await db
+        .select({
+          localizedName: countriesI18n.name,
+          about: countriesI18n.about,
+        })
+        .from(countriesI18n)
+        .where(
+          and(
+            eq(countriesI18n.countryId, result.id),
+            eq(countriesI18n.locale, "en")
+          )
+        )
+        .limit(1);
+
+      // Apply English fallbacks
+      if (englishCountryResult.length > 0) {
+        result.localizedName =
+          result.localizedName || englishCountryResult[0].localizedName;
+        result.about = result.about || englishCountryResult[0].about;
+      }
+    }
+
     return {
       id: result.id,
       code: result.code,
@@ -215,6 +304,7 @@ export async function searchCountries(
 
   try {
     const db = (await getDbAsync()) as Database;
+    const normalizedLocale = normalizeLocale(locale);
 
     const results = await db
       .select({
@@ -231,10 +321,10 @@ export async function searchCountries(
         countriesI18n,
         and(
           eq(countries.id, countriesI18n.countryId),
-          eq(countriesI18n.locale, locale)
+          eq(countriesI18n.locale, normalizedLocale)
         )
       )
-      .where(isNull(countries.deletedAt))
+      .where(and(eq(countries.isActive, true), isNull(countries.deletedAt)))
       .limit(limit);
 
     // Filter results by query on the application side for now
@@ -306,6 +396,7 @@ export async function getCountriesByCodes(
 
   try {
     const db = (await getDbAsync()) as Database;
+    const normalizedLocale = normalizeLocale(locale);
 
     const results = await db
       .select({
@@ -322,11 +413,15 @@ export async function getCountriesByCodes(
         countriesI18n,
         and(
           eq(countries.id, countriesI18n.countryId),
-          eq(countriesI18n.locale, locale)
+          eq(countriesI18n.locale, normalizedLocale)
         )
       )
       .where(
-        and(inArray(countries.code, countryCodes), isNull(countries.deletedAt))
+        and(
+          inArray(countries.code, countryCodes),
+          eq(countries.isActive, true),
+          isNull(countries.deletedAt)
+        )
       );
 
     // Maintain order from input array

@@ -4,7 +4,7 @@ import { integer, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
 export const countries = sqliteTable("countries", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   code: text("code", { length: 3 }).notNull().unique(), // ISO 3166-1 alpha-3
-  continent: text("continent").notNull(), // e.g., "Africa", "Asia", "Europe"
+  continent: text("continent").notNull(), // Continent code (e.g., "asia", "europe", "northamerica")
   region: text("region"), // e.g., "Western Europe", "Southeast Asia"
   heroImage: text("hero_image"), // Unsplash or other hero image URL
   isActive: integer("is_active", { mode: "boolean" }).default(true).notNull(),
@@ -25,7 +25,7 @@ export const countriesI18n = sqliteTable(
     countryId: integer("country_id")
       .references(() => countries.id)
       .notNull(),
-    locale: text("locale", { length: 2 }).notNull(), // e.g., "en", "ar", "es"
+    locale: text("locale", { length: 5 }).notNull(), // e.g., "en", "ar", "es", "en-US", "ar-SA"
     name: text("name").notNull(),
     name_long: text("name_long"), // Official/formal country name
     about: text("about"), // 2-line catchy description

@@ -37,14 +37,15 @@ Create the blog as required
 - [x] Create robots.txt, deny all traffic except on production domain
 - [x] Enhance SEO metadata or add it if not exists for all pages
 - [x] Add JSON-LD in all pages, consider each page should have it in it's own language
+- [ ] Countries sitemaps
 
 ## Home Page
 
-- [ ] Enrich current home page blocks, fix UI, add random destinations, random visa types, recent blog posts
+- [x] Enrich current home page blocks, fix UI, add random destinations, random visa types, recent blog posts
 
 ## Visa Catalog
 
-- [ ] Destinations page should list all destinations cards, on click open destination details page
+- [x] Destinations page should list all destinations cards, on click open destination details page
 - [ ] Home page visa check form should
 
 ## Background tasks

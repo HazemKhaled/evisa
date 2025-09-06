@@ -12,6 +12,21 @@ import {
  * Provides testable, reusable database query abstractions
  */
 
+/**
+ * Validate and normalize locale code
+ * Returns primary locale code (e.g., "en" from "en-US")
+ */
+function normalizeLocale(locale: string): string {
+  if (!locale || typeof locale !== "string") {
+    return "en";
+  }
+
+  const supportedLocales = ["en", "es", "ar", "pt", "ru", "de", "fr", "it"];
+  const primaryLocale = locale.toLowerCase().split("-")[0];
+
+  return supportedLocales.includes(primaryLocale) ? primaryLocale : "en";
+}
+
 export interface VisaType {
   id: number;
   destinationId: number;
@@ -50,6 +65,7 @@ export async function getRandomVisaTypes(
 
   try {
     const db = (await getDbAsync()) as Database;
+    const normalizedLocale = normalizeLocale(locale);
 
     const results = await db
       .select({
@@ -75,7 +91,7 @@ export async function getRandomVisaTypes(
         visaTypesI18n,
         and(
           eq(visaTypes.id, visaTypesI18n.visaTypeId),
-          eq(visaTypesI18n.locale, locale)
+          eq(visaTypesI18n.locale, normalizedLocale)
         )
       )
       .innerJoin(countries, eq(visaTypes.destinationId, countries.id))
@@ -83,7 +99,7 @@ export async function getRandomVisaTypes(
         countriesI18n,
         and(
           eq(countries.id, countriesI18n.countryId),
-          eq(countriesI18n.locale, locale)
+          eq(countriesI18n.locale, normalizedLocale)
         )
       )
       .where(
@@ -96,6 +112,81 @@ export async function getRandomVisaTypes(
       )
       .orderBy(sql`RANDOM()`)
       .limit(limit);
+
+    // Apply English fallback if needed and not using English
+    if (normalizedLocale !== "en") {
+      const missingTranslations = results.filter(
+        r => !r.name || !r.destinationName
+      );
+
+      if (missingTranslations.length > 0) {
+        const missingVisaIds = missingTranslations
+          .filter(r => !r.name)
+          .map(r => r.id);
+        const missingCountryIds = missingTranslations
+          .filter(r => !r.destinationName)
+          .map(r => r.destinationId);
+
+        const englishVisaResults =
+          missingVisaIds.length > 0
+            ? await db
+                .select({
+                  visaTypeId: visaTypesI18n.visaTypeId,
+                  name: visaTypesI18n.name,
+                  description: visaTypesI18n.description,
+                })
+                .from(visaTypesI18n)
+                .where(eq(visaTypesI18n.locale, "en"))
+            : [];
+
+        const englishCountryResults =
+          missingCountryIds.length > 0
+            ? await db
+                .select({
+                  countryId: countriesI18n.countryId,
+                  name: countriesI18n.name,
+                })
+                .from(countriesI18n)
+                .where(eq(countriesI18n.locale, "en"))
+            : [];
+
+        // Create maps for quick lookup
+        const englishVisaMap = new Map<
+          number,
+          { name: string; description: string | null }
+        >();
+        englishVisaResults.forEach(ev => {
+          englishVisaMap.set(ev.visaTypeId, {
+            name: ev.name,
+            description: ev.description,
+          });
+        });
+
+        const englishCountryMap = new Map<number, string>();
+        englishCountryResults.forEach(ec => {
+          englishCountryMap.set(ec.countryId, ec.name);
+        });
+
+        // Apply fallbacks
+        results.forEach(result => {
+          if (!result.name && englishVisaMap.has(result.id)) {
+            const englishVisa = englishVisaMap.get(result.id)!;
+            result.name = englishVisa.name;
+            if (!result.description) {
+              result.description = englishVisa.description;
+            }
+          }
+          if (
+            !result.destinationName &&
+            englishCountryMap.has(result.destinationId)
+          ) {
+            result.destinationName = englishCountryMap.get(
+              result.destinationId
+            )!;
+          }
+        });
+      }
+    }
 
     return results.map(result => ({
       id: result.id,
@@ -141,6 +232,7 @@ export async function getVisaTypesByDestination(
 
   try {
     const db = (await getDbAsync()) as Database;
+    const normalizedLocale = normalizeLocale(locale);
 
     const results = await db
       .select({
@@ -166,7 +258,7 @@ export async function getVisaTypesByDestination(
         visaTypesI18n,
         and(
           eq(visaTypes.id, visaTypesI18n.visaTypeId),
-          eq(visaTypesI18n.locale, locale)
+          eq(visaTypesI18n.locale, normalizedLocale)
         )
       )
       .innerJoin(countries, eq(visaTypes.destinationId, countries.id))
@@ -174,7 +266,7 @@ export async function getVisaTypesByDestination(
         countriesI18n,
         and(
           eq(countries.id, countriesI18n.countryId),
-          eq(countriesI18n.locale, locale)
+          eq(countriesI18n.locale, normalizedLocale)
         )
       )
       .where(

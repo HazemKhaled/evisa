@@ -87,7 +87,8 @@ export default async function DestinationPage({
                       {destination.localizedName}
                     </h1>
                     <p className="text-sm font-medium tracking-wide text-white/80 uppercase">
-                      {destination.code} • {destination.continent}
+                      {destination.code} •{" "}
+                      {t(`continents.${destination.continent}`)}
                     </p>
                   </div>
                 </div>
@@ -105,7 +106,8 @@ export default async function DestinationPage({
                   {destination.localizedName}
                 </h1>
                 <p className="mt-2 text-lg text-gray-600">
-                  {destination.code} • {destination.continent}
+                  {destination.code} •{" "}
+                  {t(`continents.${destination.continent}`)}
                 </p>
               </div>
             )}

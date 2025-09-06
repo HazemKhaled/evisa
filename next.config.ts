@@ -37,6 +37,6 @@ export default withMDX(nextConfig);
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 initOpenNextCloudflareForDev({
   experimental: {
-    remoteBindings: process.env.WORKERS_CI ? true : false,
+    remoteBindings: process.env.WORKERS_CI !== undefined,
   },
 });
