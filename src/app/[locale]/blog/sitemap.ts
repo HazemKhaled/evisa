@@ -4,7 +4,7 @@ import { GENERATED_BLOG_DATA } from "@/lib/generated-blog-data";
 import { env } from "@/lib/consts";
 
 export async function generateSitemaps() {
-  // Fetch the total number of products and calculate the number of sitemaps needed
+  // Generate sitemap entries for each supported locale for blog posts and tags
   return languages.map(locale => {
     return {
       id: locale,
@@ -55,7 +55,7 @@ export default function sitemap({
 
       if (equivalentPost || lang === locale) {
         postAlternates[lang] =
-          `${baseUrl}/${lang}/blog/${lang === locale ? post.slug : post.slug}`;
+          `${baseUrl}/${lang}/blog/${post.slug}`;
       }
     });
 
