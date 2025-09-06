@@ -10,91 +10,211 @@ export const americasCountriesData: CountryData[] = [
     code: "CAN",
     continent: "North America",
     region: "Northern America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Canada", description: "Canada" },
-      { locale: "ar", name: "كندا", description: "كندا" },
-      { locale: "es", name: "Canadá", description: "Canadá" },
-      { locale: "fr", name: "Canada", description: "Canada" },
-      { locale: "pt", name: "Canadá", description: "Canadá" },
-      { locale: "ru", name: "Канада", description: "Канада" },
-      { locale: "de", name: "Kanada", description: "Kanada" },
-      { locale: "it", name: "Canada", description: "Canada" },
+      {
+        locale: "en",
+        name: "Canada",
+        name_long: "Canada",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "كندا",
+        name_long: "كندا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Canadá",
+        name_long: "Canadá",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Canada",
+        name_long: "Canada",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Canadá",
+        name_long: "Canadá",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Канада",
+        name_long: "Канада",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Kanada",
+        name_long: "Kanada",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Canada",
+        name_long: "Canada",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "MEX",
     continent: "North America",
     region: "Central America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Mexico", description: "United Mexican States" },
+      {
+        locale: "en",
+        name: "Mexico",
+        name_long: "United Mexican States",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "ar",
         name: "المكسيك",
-        description: "الولايات المكسيكية المتحدة",
+        name_long: "الولايات المكسيكية المتحدة",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "es", name: "México", description: "Estados Unidos Mexicanos" },
-      { locale: "fr", name: "Mexique", description: "États-Unis mexicains" },
-      { locale: "pt", name: "México", description: "Estados Unidos Mexicanos" },
+      {
+        locale: "es",
+        name: "México",
+        name_long: "Estados Unidos Mexicanos",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Mexique",
+        name_long: "États-Unis mexicains",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "México",
+        name_long: "Estados Unidos Mexicanos",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "ru",
         name: "Мексика",
-        description: "Мексиканские Соединённые Штаты",
+        name_long: "Мексиканские Соединённые Штаты",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Mexiko",
-        description: "Vereinigte Mexikanische Staaten",
+        name_long: "Vereinigte Mexikanische Staaten",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "it", name: "Messico", description: "Stati Uniti Messicani" },
+      {
+        locale: "it",
+        name: "Messico",
+        name_long: "Stati Uniti Messicani",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "USA",
     continent: "North America",
     region: "Northern America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "United States",
-        description: "United States of America",
+        name_long: "United States of America",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "الولايات المتحدة",
-        description: "الولايات المتحدة الأمريكية",
+        name_long: "الولايات المتحدة الأمريكية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Estados Unidos",
-        description: "Estados Unidos de América",
+        name_long: "Estados Unidos de América",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "États-Unis",
-        description: "États-Unis d'Amérique",
+        name_long: "États-Unis d'Amérique",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Estados Unidos",
-        description: "Estados Unidos da América",
+        name_long: "Estados Unidos da América",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Соединённые Штаты",
-        description: "Соединённые Штаты Америки",
+        name_long: "Соединённые Штаты Америки",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Vereinigte Staaten",
-        description: "Vereinigte Staaten von Amerika",
+        name_long: "Vereinigte Staaten von Amerika",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Stati Uniti",
-        description: "Stati Uniti d'America",
+        name_long: "Stati Uniti d'America",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -104,59 +224,140 @@ export const americasCountriesData: CountryData[] = [
     code: "BLZ",
     continent: "North America",
     region: "Central America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Belize", description: "Belize" },
-      { locale: "ar", name: "بليز", description: "بليز" },
-      { locale: "es", name: "Belice", description: "Belice" },
-      { locale: "fr", name: "Belize", description: "Belize" },
-      { locale: "pt", name: "Belize", description: "Belize" },
-      { locale: "ru", name: "Белиз", description: "Белиз" },
-      { locale: "de", name: "Belize", description: "Belize" },
-      { locale: "it", name: "Belize", description: "Belize" },
+      {
+        locale: "en",
+        name: "Belize",
+        name_long: "Belize",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بليز",
+        name_long: "بليز",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Belice",
+        name_long: "Belice",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Belize",
+        name_long: "Belize",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Belize",
+        name_long: "Belize",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Белиз",
+        name_long: "Белиз",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Belize",
+        name_long: "Belize",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Belize",
+        name_long: "Belize",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "CRI",
     continent: "North America",
     region: "Central America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Costa Rica",
-        description: "Republic of Costa Rica",
+        name_long: "Republic of Costa Rica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "كوستاريكا", description: "جمهورية كوستاريكا" },
+      {
+        locale: "ar",
+        name: "كوستاريكا",
+        name_long: "جمهورية كوستاريكا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Costa Rica",
-        description: "República de Costa Rica",
+        name_long: "República de Costa Rica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Costa Rica",
-        description: "République du Costa Rica",
+        name_long: "République du Costa Rica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Costa Rica",
-        description: "República da Costa Rica",
+        name_long: "República da Costa Rica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Коста-Рика",
-        description: "Республика Коста-Рика",
+        name_long: "Республика Коста-Рика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Costa Rica",
-        description: "Republik Costa Rica",
+        name_long: "Republik Costa Rica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Costa Rica",
-        description: "Repubblica di Costa Rica",
+        name_long: "Repubblica di Costa Rica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -164,35 +365,71 @@ export const americasCountriesData: CountryData[] = [
     code: "SLV",
     continent: "North America",
     region: "Central America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "El Salvador",
-        description: "Republic of El Salvador",
+        name_long: "Republic of El Salvador",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "السلفادور", description: "جمهورية السلفادور" },
+      {
+        locale: "ar",
+        name: "السلفادور",
+        name_long: "جمهورية السلفادور",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "El Salvador",
-        description: "República de El Salvador",
+        name_long: "República de El Salvador",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "fr", name: "Salvador", description: "République du Salvador" },
+      {
+        locale: "fr",
+        name: "Salvador",
+        name_long: "République du Salvador",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "pt",
         name: "El Salvador",
-        description: "República de El Salvador",
+        name_long: "República de El Salvador",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ru", name: "Сальвадор", description: "Республика Сальвадор" },
+      {
+        locale: "ru",
+        name: "Сальвадор",
+        name_long: "Республика Сальвадор",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "de",
         name: "El Salvador",
-        description: "Republik El Salvador",
+        name_long: "Republik El Salvador",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "El Salvador",
-        description: "Repubblica di El Salvador",
+        name_long: "Repubblica di El Salvador",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -200,39 +437,72 @@ export const americasCountriesData: CountryData[] = [
     code: "GTM",
     continent: "North America",
     region: "Central America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Guatemala", description: "Republic of Guatemala" },
-      { locale: "ar", name: "غواتيمالا", description: "جمهورية غواتيمالا" },
+      {
+        locale: "en",
+        name: "Guatemala",
+        name_long: "Republic of Guatemala",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "غواتيمالا",
+        name_long: "جمهورية غواتيمالا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Guatemala",
-        description: "República de Guatemala",
+        name_long: "República de Guatemala",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Guatemala",
-        description: "République du Guatemala",
+        name_long: "République du Guatemala",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Guatemala",
-        description: "República da Guatemala",
+        name_long: "República da Guatemala",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Гватемала",
-        description: "Республика Гватемала",
+        name_long: "Республика Гватемала",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Guatemala",
-        description: "Republik Guatemala",
+        name_long: "Republik Guatemala",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Guatemala",
-        description: "Repubblica del Guatemala",
+        name_long: "Repubblica del Guatemala",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -240,19 +510,67 @@ export const americasCountriesData: CountryData[] = [
     code: "HND",
     continent: "North America",
     region: "Central America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Honduras", description: "Republic of Honduras" },
-      { locale: "ar", name: "هندوراس", description: "جمهورية هندوراس" },
-      { locale: "es", name: "Honduras", description: "República de Honduras" },
-      { locale: "fr", name: "Honduras", description: "République du Honduras" },
-      { locale: "pt", name: "Honduras", description: "República de Honduras" },
-      { locale: "ru", name: "Гондурас", description: "Республика Гондурас" },
-      { locale: "de", name: "Honduras", description: "Republik Honduras" },
+      {
+        locale: "en",
+        name: "Honduras",
+        name_long: "Republic of Honduras",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "هندوراس",
+        name_long: "جمهورية هندوراس",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Honduras",
+        name_long: "República de Honduras",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Honduras",
+        name_long: "République du Honduras",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Honduras",
+        name_long: "República de Honduras",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Гондурас",
+        name_long: "Республика Гондурас",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Honduras",
+        name_long: "Republik Honduras",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "it",
         name: "Honduras",
-        description: "Repubblica dell'Honduras",
+        name_long: "Repubblica dell'Honduras",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -260,39 +578,72 @@ export const americasCountriesData: CountryData[] = [
     code: "NIC",
     continent: "North America",
     region: "Central America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Nicaragua", description: "Republic of Nicaragua" },
-      { locale: "ar", name: "نيكاراغوا", description: "جمهورية نيكاراغوا" },
+      {
+        locale: "en",
+        name: "Nicaragua",
+        name_long: "Republic of Nicaragua",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "نيكاراغوا",
+        name_long: "جمهورية نيكاراغوا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Nicaragua",
-        description: "República de Nicaragua",
+        name_long: "República de Nicaragua",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Nicaragua",
-        description: "République du Nicaragua",
+        name_long: "République du Nicaragua",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Nicarágua",
-        description: "República da Nicarágua",
+        name_long: "República da Nicarágua",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Никарагуа",
-        description: "Республика Никарагуа",
+        name_long: "Республика Никарагуа",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Nicaragua",
-        description: "Republik Nicaragua",
+        name_long: "Republik Nicaragua",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Nicaragua",
-        description: "Repubblica del Nicaragua",
+        name_long: "Repubblica del Nicaragua",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -300,16 +651,67 @@ export const americasCountriesData: CountryData[] = [
     code: "PAN",
     continent: "North America",
     region: "Central America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Panama", description: "Republic of Panama" },
-      { locale: "ar", name: "بنما", description: "جمهورية بنما" },
-      { locale: "es", name: "Panamá", description: "República de Panamá" },
-      { locale: "fr", name: "Panama", description: "République du Panama" },
-      { locale: "pt", name: "Panamá", description: "República do Panamá" },
-      { locale: "ru", name: "Панама", description: "Республика Панама" },
-      { locale: "de", name: "Panama", description: "Republik Panama" },
-      { locale: "it", name: "Panama", description: "Repubblica di Panama" },
+      {
+        locale: "en",
+        name: "Panama",
+        name_long: "Republic of Panama",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بنما",
+        name_long: "جمهورية بنما",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Panamá",
+        name_long: "República de Panamá",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Panama",
+        name_long: "République du Panama",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Panamá",
+        name_long: "República do Panamá",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Панама",
+        name_long: "Республика Панама",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Panama",
+        name_long: "Republik Panama",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Panama",
+        name_long: "Repubblica di Panama",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
 
@@ -318,47 +720,74 @@ export const americasCountriesData: CountryData[] = [
     code: "ATG",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Antigua and Barbuda",
-        description: "Antigua and Barbuda",
+        name_long: "Antigua and Barbuda",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "أنتيغوا وباربودا",
-        description: "أنتيغوا وباربودا",
+        name_long: "أنتيغوا وباربودا",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Antigua y Barbuda",
-        description: "Antigua y Barbuda",
+        name_long: "Antigua y Barbuda",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Antigua-et-Barbuda",
-        description: "Antigua-et-Barbuda",
+        name_long: "Antigua-et-Barbuda",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Antígua e Barbuda",
-        description: "Antígua e Barbuda",
+        name_long: "Antígua e Barbuda",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Антигуа и Барбуда",
-        description: "Антигуа и Барбуда",
+        name_long: "Антигуа и Барбуда",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Antigua und Barbuda",
-        description: "Antigua und Barbuda",
+        name_long: "Antigua und Barbuda",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Antigua e Barbuda",
-        description: "Antigua e Barbuda",
+        name_long: "Antigua e Barbuda",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -366,43 +795,73 @@ export const americasCountriesData: CountryData[] = [
     code: "BHS",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Bahamas",
-        description: "Commonwealth of the Bahamas",
+        name_long: "Commonwealth of the Bahamas",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "الباهاما", description: "كومنولث الباهاما" },
+      {
+        locale: "ar",
+        name: "الباهاما",
+        name_long: "كومنولث الباهاما",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Bahamas",
-        description: "Commonwealth de las Bahamas",
+        name_long: "Commonwealth de las Bahamas",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Bahamas",
-        description: "Commonwealth des Bahamas",
+        name_long: "Commonwealth des Bahamas",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Bahamas",
-        description: "Commonwealth das Bahamas",
+        name_long: "Commonwealth das Bahamas",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Багамы",
-        description: "Содружество Багамских Островов",
+        name_long: "Содружество Багамских Островов",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Bahamas",
-        description: "Commonwealth der Bahamas",
+        name_long: "Commonwealth der Bahamas",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Bahamas",
-        description: "Commonwealth delle Bahamas",
+        name_long: "Commonwealth delle Bahamas",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -410,75 +869,207 @@ export const americasCountriesData: CountryData[] = [
     code: "BRB",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Barbados", description: "Barbados" },
-      { locale: "ar", name: "بربادوس", description: "بربادوس" },
-      { locale: "es", name: "Barbados", description: "Barbados" },
-      { locale: "fr", name: "Barbade", description: "Barbade" },
-      { locale: "pt", name: "Barbados", description: "Barbados" },
-      { locale: "ru", name: "Барбадос", description: "Барбадос" },
-      { locale: "de", name: "Barbados", description: "Barbados" },
-      { locale: "it", name: "Barbados", description: "Barbados" },
+      {
+        locale: "en",
+        name: "Barbados",
+        name_long: "Barbados",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بربادوس",
+        name_long: "بربادوس",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Barbados",
+        name_long: "Barbados",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Barbade",
+        name_long: "Barbade",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Barbados",
+        name_long: "Barbados",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Барбадос",
+        name_long: "Барбадос",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Barbados",
+        name_long: "Barbados",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Barbados",
+        name_long: "Barbados",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "CUB",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Cuba", description: "Republic of Cuba" },
-      { locale: "ar", name: "كوبا", description: "جمهورية كوبا" },
-      { locale: "es", name: "Cuba", description: "República de Cuba" },
-      { locale: "fr", name: "Cuba", description: "République de Cuba" },
-      { locale: "pt", name: "Cuba", description: "República de Cuba" },
-      { locale: "ru", name: "Куба", description: "Республика Куба" },
-      { locale: "de", name: "Kuba", description: "Republik Kuba" },
-      { locale: "it", name: "Cuba", description: "Repubblica di Cuba" },
+      {
+        locale: "en",
+        name: "Cuba",
+        name_long: "Republic of Cuba",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "كوبا",
+        name_long: "جمهورية كوبا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Cuba",
+        name_long: "República de Cuba",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Cuba",
+        name_long: "République de Cuba",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Cuba",
+        name_long: "República de Cuba",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Куба",
+        name_long: "Республика Куба",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Kuba",
+        name_long: "Republik Kuba",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Cuba",
+        name_long: "Repubblica di Cuba",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "DMA",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Dominica",
-        description: "Commonwealth of Dominica",
+        name_long: "Commonwealth of Dominica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "دومينيكا", description: "كومنولث دومينيكا" },
+      {
+        locale: "ar",
+        name: "دومينيكا",
+        name_long: "كومنولث دومينيكا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Dominica",
-        description: "Commonwealth de Dominica",
+        name_long: "Commonwealth de Dominica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Dominique",
-        description: "Commonwealth de Dominique",
+        name_long: "Commonwealth de Dominique",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Dominica",
-        description: "Commonwealth de Dominica",
+        name_long: "Commonwealth de Dominica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Доминика",
-        description: "Содружество Доминика",
+        name_long: "Содружество Доминика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Dominica",
-        description: "Commonwealth Dominica",
+        name_long: "Commonwealth Dominica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Dominica",
-        description: "Commonwealth di Dominica",
+        name_long: "Commonwealth di Dominica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -486,47 +1077,74 @@ export const americasCountriesData: CountryData[] = [
     code: "DOM",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Dominican Republic",
-        description: "Dominican Republic",
+        name_long: "Dominican Republic",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "جمهورية الدومينيكان",
-        description: "جمهورية الدومينيكان",
+        name_long: "جمهورية الدومينيكان",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "República Dominicana",
-        description: "República Dominicana",
+        name_long: "República Dominicana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "République dominicaine",
-        description: "République dominicaine",
+        name_long: "République dominicaine",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "República Dominicana",
-        description: "República Dominicana",
+        name_long: "República Dominicana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Доминиканская Республика",
-        description: "Доминиканская Республика",
+        name_long: "Доминиканская Республика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Dominikanische Republik",
-        description: "Dominikanische Republik",
+        name_long: "Dominikanische Republik",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Repubblica Dominicana",
-        description: "Repubblica Dominicana",
+        name_long: "Repubblica Dominicana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -534,95 +1152,275 @@ export const americasCountriesData: CountryData[] = [
     code: "GRD",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Grenada", description: "Grenada" },
-      { locale: "ar", name: "غرينادا", description: "غرينادا" },
-      { locale: "es", name: "Granada", description: "Granada" },
-      { locale: "fr", name: "Grenade", description: "Grenade" },
-      { locale: "pt", name: "Granada", description: "Granada" },
-      { locale: "ru", name: "Гренада", description: "Гренада" },
-      { locale: "de", name: "Grenada", description: "Grenada" },
-      { locale: "it", name: "Grenada", description: "Grenada" },
+      {
+        locale: "en",
+        name: "Grenada",
+        name_long: "Grenada",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "غرينادا",
+        name_long: "غرينادا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Granada",
+        name_long: "Granada",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Grenade",
+        name_long: "Grenade",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Granada",
+        name_long: "Granada",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Гренада",
+        name_long: "Гренада",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Grenada",
+        name_long: "Grenada",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Grenada",
+        name_long: "Grenada",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "HTI",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Haiti", description: "Republic of Haiti" },
-      { locale: "ar", name: "هايتي", description: "جمهورية هايتي" },
-      { locale: "es", name: "Haití", description: "República de Haití" },
-      { locale: "fr", name: "Haïti", description: "République d'Haïti" },
-      { locale: "pt", name: "Haiti", description: "República do Haiti" },
-      { locale: "ru", name: "Гаити", description: "Республика Гаити" },
-      { locale: "de", name: "Haiti", description: "Republik Haiti" },
-      { locale: "it", name: "Haiti", description: "Repubblica di Haiti" },
+      {
+        locale: "en",
+        name: "Haiti",
+        name_long: "Republic of Haiti",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "هايتي",
+        name_long: "جمهورية هايتي",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Haití",
+        name_long: "República de Haití",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Haïti",
+        name_long: "République d'Haïti",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Haiti",
+        name_long: "República do Haiti",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Гаити",
+        name_long: "Республика Гаити",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Haiti",
+        name_long: "Republik Haiti",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Haiti",
+        name_long: "Repubblica di Haiti",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "JAM",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Jamaica", description: "Jamaica" },
-      { locale: "ar", name: "جامايكا", description: "جامايكا" },
-      { locale: "es", name: "Jamaica", description: "Jamaica" },
-      { locale: "fr", name: "Jamaïque", description: "Jamaïque" },
-      { locale: "pt", name: "Jamaica", description: "Jamaica" },
-      { locale: "ru", name: "Ямайка", description: "Ямайка" },
-      { locale: "de", name: "Jamaika", description: "Jamaika" },
-      { locale: "it", name: "Giamaica", description: "Giamaica" },
+      {
+        locale: "en",
+        name: "Jamaica",
+        name_long: "Jamaica",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "جامايكا",
+        name_long: "جامايكا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Jamaica",
+        name_long: "Jamaica",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Jamaïque",
+        name_long: "Jamaïque",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Jamaica",
+        name_long: "Jamaica",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Ямайка",
+        name_long: "Ямайка",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Jamaika",
+        name_long: "Jamaika",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Giamaica",
+        name_long: "Giamaica",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "KNA",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Saint Kitts and Nevis",
-        description: "Federation of Saint Kitts and Nevis",
+        name_long: "Federation of Saint Kitts and Nevis",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "سانت كيتس ونيفيس",
-        description: "اتحاد سانت كيتس ونيفيس",
+        name_long: "اتحاد سانت كيتس ونيفيس",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "San Cristóbal y Nieves",
-        description: "Federación de San Cristóbal y Nieves",
+        name_long: "Federación de San Cristóbal y Nieves",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Saint-Kitts-et-Nevis",
-        description: "Fédération de Saint-Kitts-et-Nevis",
+        name_long: "Fédération de Saint-Kitts-et-Nevis",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "São Cristóvão e Névis",
-        description: "Federação de São Cristóvão e Névis",
+        name_long: "Federação de São Cristóvão e Névis",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Сент-Китс и Невис",
-        description: "Федерация Сент-Китс и Невис",
+        name_long: "Федерация Сент-Китс и Невис",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "St. Kitts und Nevis",
-        description: "Föderation St. Kitts und Nevis",
+        name_long: "Föderation St. Kitts und Nevis",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Saint Kitts e Nevis",
-        description: "Federazione di Saint Kitts e Nevis",
+        name_long: "Federazione di Saint Kitts e Nevis",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -630,63 +1428,141 @@ export const americasCountriesData: CountryData[] = [
     code: "LCA",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Saint Lucia", description: "Saint Lucia" },
-      { locale: "ar", name: "سانت لوسيا", description: "سانت لوسيا" },
-      { locale: "es", name: "Santa Lucía", description: "Santa Lucía" },
-      { locale: "fr", name: "Sainte-Lucie", description: "Sainte-Lucie" },
-      { locale: "pt", name: "Santa Lúcia", description: "Santa Lúcia" },
-      { locale: "ru", name: "Сент-Люсия", description: "Сент-Люсия" },
-      { locale: "de", name: "St. Lucia", description: "St. Lucia" },
-      { locale: "it", name: "Santa Lucia", description: "Santa Lucia" },
+      {
+        locale: "en",
+        name: "Saint Lucia",
+        name_long: "Saint Lucia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "سانت لوسيا",
+        name_long: "سانت لوسيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Santa Lucía",
+        name_long: "Santa Lucía",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Sainte-Lucie",
+        name_long: "Sainte-Lucie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Santa Lúcia",
+        name_long: "Santa Lúcia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Сент-Люсия",
+        name_long: "Сент-Люсия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "St. Lucia",
+        name_long: "St. Lucia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Santa Lucia",
+        name_long: "Santa Lucia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "VCT",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Saint Vincent and the Grenadines",
-        description: "Saint Vincent and the Grenadines",
+        name_long: "Saint Vincent and the Grenadines",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "سانت فنسنت والغرينادين",
-        description: "سانت فنسنت والغرينادين",
+        name_long: "سانت فنسنت والغرينادين",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "San Vicente y las Granadinas",
-        description: "San Vicente y las Granadinas",
+        name_long: "San Vicente y las Granadinas",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Saint-Vincent-et-les-Grenadines",
-        description: "Saint-Vincent-et-les-Grenadines",
+        name_long: "Saint-Vincent-et-les-Grenadines",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "São Vicente e Granadinas",
-        description: "São Vicente e Granadinas",
+        name_long: "São Vicente e Granadinas",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Сент-Винсент и Гренадины",
-        description: "Сент-Винсент и Гренадины",
+        name_long: "Сент-Винсент и Гренадины",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "St. Vincent und die Grenadinen",
-        description: "St. Vincent und die Grenadinen",
+        name_long: "St. Vincent und die Grenadinen",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Saint Vincent e Grenadine",
-        description: "Saint Vincent e Grenadine",
+        name_long: "Saint Vincent e Grenadine",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -694,47 +1570,74 @@ export const americasCountriesData: CountryData[] = [
     code: "TTO",
     continent: "North America",
     region: "Caribbean",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Trinidad and Tobago",
-        description: "Republic of Trinidad and Tobago",
+        name_long: "Republic of Trinidad and Tobago",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "ترينيداد وتوباغو",
-        description: "جمهورية ترينيداد وتوباغو",
+        name_long: "جمهورية ترينيداد وتوباغو",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Trinidad y Tobago",
-        description: "República de Trinidad y Tobago",
+        name_long: "República de Trinidad y Tobago",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Trinité-et-Tobago",
-        description: "République de Trinité-et-Tobago",
+        name_long: "République de Trinité-et-Tobago",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Trinidad e Tobago",
-        description: "República de Trinidad e Tobago",
+        name_long: "República de Trinidad e Tobago",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Тринидад и Тобаго",
-        description: "Республика Тринидад и Тобаго",
+        name_long: "Республика Тринидад и Тобаго",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Trinidad und Tobago",
-        description: "Republik Trinidad und Tobago",
+        name_long: "Republik Trinidad und Tobago",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Trinidad e Tobago",
-        description: "Repubblica di Trinidad e Tobago",
+        name_long: "Repubblica di Trinidad e Tobago",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -744,71 +1647,143 @@ export const americasCountriesData: CountryData[] = [
     code: "ARG",
     continent: "South America",
     region: "South America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Argentina", description: "Argentine Republic" },
-      { locale: "ar", name: "الأرجنتين", description: "جمهورية الأرجنتين" },
-      { locale: "es", name: "Argentina", description: "República Argentina" },
-      { locale: "fr", name: "Argentine", description: "République argentine" },
-      { locale: "pt", name: "Argentina", description: "República Argentina" },
+      {
+        locale: "en",
+        name: "Argentina",
+        name_long: "Argentine Republic",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "الأرجنتين",
+        name_long: "جمهورية الأرجنتين",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Argentina",
+        name_long: "República Argentina",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Argentine",
+        name_long: "République argentine",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Argentina",
+        name_long: "República Argentina",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "ru",
         name: "Аргентина",
-        description: "Аргентинская Республика",
+        name_long: "Аргентинская Республика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Argentinien",
-        description: "Argentinische Republik",
+        name_long: "Argentinische Republik",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "it", name: "Argentina", description: "Repubblica Argentina" },
+      {
+        locale: "it",
+        name: "Argentina",
+        name_long: "Repubblica Argentina",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "BOL",
     continent: "South America",
     region: "South America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Bolivia",
-        description: "Plurinational State of Bolivia",
+        name_long: "Plurinational State of Bolivia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "بوليفيا",
-        description: "دولة بوليفيا المتعددة القوميات",
+        name_long: "دولة بوليفيا المتعددة القوميات",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Bolivia",
-        description: "Estado Plurinacional de Bolivia",
+        name_long: "Estado Plurinacional de Bolivia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Bolivie",
-        description: "État plurinational de Bolivie",
+        name_long: "État plurinational de Bolivie",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Bolívia",
-        description: "Estado Plurinacional da Bolívia",
+        name_long: "Estado Plurinacional da Bolívia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Боливия",
-        description: "Многонациональное государство Боливия",
+        name_long: "Многонациональное государство Боливия",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Bolivien",
-        description: "Plurinationaler Staat Bolivien",
+        name_long: "Plurinationaler Staat Bolivien",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Bolivia",
-        description: "Stato Plurinazionale di Bolivia",
+        name_long: "Stato Plurinazionale di Bolivia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -816,47 +1791,74 @@ export const americasCountriesData: CountryData[] = [
     code: "BRA",
     continent: "South America",
     region: "South America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Brazil",
-        description: "Federative Republic of Brazil",
+        name_long: "Federative Republic of Brazil",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "البرازيل",
-        description: "جمهورية البرازيل الاتحادية",
+        name_long: "جمهورية البرازيل الاتحادية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Brasil",
-        description: "República Federativa del Brasil",
+        name_long: "República Federativa del Brasil",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Brésil",
-        description: "République fédérative du Brésil",
+        name_long: "République fédérative du Brésil",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Brasil",
-        description: "República Federativa do Brasil",
+        name_long: "República Federativa do Brasil",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Бразилия",
-        description: "Федеративная Республика Бразилия",
+        name_long: "Федеративная Республика Бразилия",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Brasilien",
-        description: "Föderative Republik Brasilien",
+        name_long: "Föderative Republik Brasilien",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Brasile",
-        description: "Repubblica Federativa del Brasile",
+        name_long: "Repubblica Federativa del Brasile",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -864,95 +1866,275 @@ export const americasCountriesData: CountryData[] = [
     code: "CHL",
     continent: "South America",
     region: "South America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Chile", description: "Republic of Chile" },
-      { locale: "ar", name: "تشيلي", description: "جمهورية تشيلي" },
-      { locale: "es", name: "Chile", description: "República de Chile" },
-      { locale: "fr", name: "Chili", description: "République du Chili" },
-      { locale: "pt", name: "Chile", description: "República do Chile" },
-      { locale: "ru", name: "Чили", description: "Республика Чили" },
-      { locale: "de", name: "Chile", description: "Republik Chile" },
-      { locale: "it", name: "Cile", description: "Repubblica del Cile" },
+      {
+        locale: "en",
+        name: "Chile",
+        name_long: "Republic of Chile",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "تشيلي",
+        name_long: "جمهورية تشيلي",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Chile",
+        name_long: "República de Chile",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Chili",
+        name_long: "République du Chili",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Chile",
+        name_long: "República do Chile",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Чили",
+        name_long: "Республика Чили",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Chile",
+        name_long: "Republik Chile",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Cile",
+        name_long: "Repubblica del Cile",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "COL",
     continent: "South America",
     region: "South America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Colombia", description: "Republic of Colombia" },
-      { locale: "ar", name: "كولومبيا", description: "جمهورية كولومبيا" },
-      { locale: "es", name: "Colombia", description: "República de Colombia" },
-      { locale: "fr", name: "Colombie", description: "République de Colombie" },
-      { locale: "pt", name: "Colômbia", description: "República da Colômbia" },
-      { locale: "ru", name: "Колумбия", description: "Республика Колумбия" },
-      { locale: "de", name: "Kolumbien", description: "Republik Kolumbien" },
-      { locale: "it", name: "Colombia", description: "Repubblica di Colombia" },
+      {
+        locale: "en",
+        name: "Colombia",
+        name_long: "Republic of Colombia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "كولومبيا",
+        name_long: "جمهورية كولومبيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Colombia",
+        name_long: "República de Colombia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Colombie",
+        name_long: "République de Colombie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Colômbia",
+        name_long: "República da Colômbia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Колумбия",
+        name_long: "Республика Колумбия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Kolumbien",
+        name_long: "Republik Kolumbien",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Colombia",
+        name_long: "Repubblica di Colombia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "ECU",
     continent: "South America",
     region: "South America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Ecuador", description: "Republic of Ecuador" },
-      { locale: "ar", name: "الإكوادور", description: "جمهورية الإكوادور" },
-      { locale: "es", name: "Ecuador", description: "República del Ecuador" },
+      {
+        locale: "en",
+        name: "Ecuador",
+        name_long: "Republic of Ecuador",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "الإكوادور",
+        name_long: "جمهورية الإكوادور",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Ecuador",
+        name_long: "República del Ecuador",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "fr",
         name: "Équateur",
-        description: "République de l'Équateur",
+        name_long: "République de l'Équateur",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "pt", name: "Equador", description: "República do Equador" },
-      { locale: "ru", name: "Эквадор", description: "Республика Эквадор" },
-      { locale: "de", name: "Ecuador", description: "Republik Ecuador" },
-      { locale: "it", name: "Ecuador", description: "Repubblica dell'Ecuador" },
+      {
+        locale: "pt",
+        name: "Equador",
+        name_long: "República do Equador",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Эквадор",
+        name_long: "Республика Эквадор",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Ecuador",
+        name_long: "Republik Ecuador",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Ecuador",
+        name_long: "Repubblica dell'Ecuador",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "GUY",
     continent: "South America",
     region: "South America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Guyana",
-        description: "Co-operative Republic of Guyana",
+        name_long: "Co-operative Republic of Guyana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "غيانا", description: "جمهورية غيانا التعاونية" },
+      {
+        locale: "ar",
+        name: "غيانا",
+        name_long: "جمهورية غيانا التعاونية",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Guyana",
-        description: "República Cooperativa de Guyana",
+        name_long: "República Cooperativa de Guyana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Guyana",
-        description: "République coopérative du Guyana",
+        name_long: "République coopérative du Guyana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Guiana",
-        description: "República Cooperativa da Guiana",
+        name_long: "República Cooperativa da Guiana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Гайана",
-        description: "Кооперативная Республика Гайана",
+        name_long: "Кооперативная Республика Гайана",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Guyana",
-        description: "Kooperative Republik Guyana",
+        name_long: "Kooperative Republik Guyana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Guyana",
-        description: "Repubblica Cooperativa della Guyana",
+        name_long: "Repubblica Cooperativa della Guyana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -960,19 +2142,67 @@ export const americasCountriesData: CountryData[] = [
     code: "PRY",
     continent: "South America",
     region: "South America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Paraguay", description: "Republic of Paraguay" },
-      { locale: "ar", name: "باراغواي", description: "جمهورية باراغواي" },
-      { locale: "es", name: "Paraguay", description: "República del Paraguay" },
-      { locale: "fr", name: "Paraguay", description: "République du Paraguay" },
-      { locale: "pt", name: "Paraguai", description: "República do Paraguai" },
-      { locale: "ru", name: "Парагвай", description: "Республика Парагвай" },
-      { locale: "de", name: "Paraguay", description: "Republik Paraguay" },
+      {
+        locale: "en",
+        name: "Paraguay",
+        name_long: "Republic of Paraguay",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "باراغواي",
+        name_long: "جمهورية باراغواي",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Paraguay",
+        name_long: "República del Paraguay",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Paraguay",
+        name_long: "République du Paraguay",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Paraguai",
+        name_long: "República do Paraguai",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Парагвай",
+        name_long: "Республика Парагвай",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Paraguay",
+        name_long: "Republik Paraguay",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "it",
         name: "Paraguay",
-        description: "Repubblica del Paraguay",
+        name_long: "Repubblica del Paraguay",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -980,35 +2210,134 @@ export const americasCountriesData: CountryData[] = [
     code: "PER",
     continent: "South America",
     region: "South America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Peru", description: "Republic of Peru" },
-      { locale: "ar", name: "بيرو", description: "جمهورية بيرو" },
-      { locale: "es", name: "Perú", description: "República del Perú" },
-      { locale: "fr", name: "Pérou", description: "République du Pérou" },
-      { locale: "pt", name: "Peru", description: "República do Peru" },
-      { locale: "ru", name: "Перу", description: "Республика Перу" },
-      { locale: "de", name: "Peru", description: "Republik Peru" },
-      { locale: "it", name: "Perù", description: "Repubblica del Perù" },
+      {
+        locale: "en",
+        name: "Peru",
+        name_long: "Republic of Peru",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بيرو",
+        name_long: "جمهورية بيرو",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Perú",
+        name_long: "República del Perú",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Pérou",
+        name_long: "République du Pérou",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Peru",
+        name_long: "República do Peru",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Перу",
+        name_long: "Республика Перу",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Peru",
+        name_long: "Republik Peru",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Perù",
+        name_long: "Repubblica del Perù",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "SUR",
     continent: "South America",
     region: "South America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Suriname", description: "Republic of Suriname" },
-      { locale: "ar", name: "سورينام", description: "جمهورية سورينام" },
-      { locale: "es", name: "Surinam", description: "República de Surinam" },
-      { locale: "fr", name: "Suriname", description: "République du Suriname" },
-      { locale: "pt", name: "Suriname", description: "República do Suriname" },
-      { locale: "ru", name: "Суринам", description: "Республика Суринам" },
-      { locale: "de", name: "Suriname", description: "Republik Suriname" },
+      {
+        locale: "en",
+        name: "Suriname",
+        name_long: "Republic of Suriname",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "سورينام",
+        name_long: "جمهورية سورينام",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Surinam",
+        name_long: "República de Surinam",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Suriname",
+        name_long: "République du Suriname",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Suriname",
+        name_long: "República do Suriname",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Суринам",
+        name_long: "Республика Суринам",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Suriname",
+        name_long: "Republik Suriname",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "it",
         name: "Suriname",
-        description: "Repubblica del Suriname",
+        name_long: "Repubblica del Suriname",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1016,47 +2345,74 @@ export const americasCountriesData: CountryData[] = [
     code: "URY",
     continent: "South America",
     region: "South America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Uruguay",
-        description: "Oriental Republic of Uruguay",
+        name_long: "Oriental Republic of Uruguay",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "أوروغواي",
-        description: "جمهورية أوروغواي الشرقية",
+        name_long: "جمهورية أوروغواي الشرقية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Uruguay",
-        description: "República Oriental del Uruguay",
+        name_long: "República Oriental del Uruguay",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Uruguay",
-        description: "République orientale de l'Uruguay",
+        name_long: "République orientale de l'Uruguay",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Uruguai",
-        description: "República Oriental do Uruguai",
+        name_long: "República Oriental do Uruguai",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Уругвай",
-        description: "Восточная Республика Уругвай",
+        name_long: "Восточная Республика Уругвай",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Uruguay",
-        description: "Republik Östlich des Uruguay",
+        name_long: "Republik Östlich des Uruguay",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Uruguay",
-        description: "Repubblica Orientale dell'Uruguay",
+        name_long: "Repubblica Orientale dell'Uruguay",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1064,47 +2420,74 @@ export const americasCountriesData: CountryData[] = [
     code: "VEN",
     continent: "South America",
     region: "South America",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Venezuela",
-        description: "Bolivarian Republic of Venezuela",
+        name_long: "Bolivarian Republic of Venezuela",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "فنزويلا",
-        description: "جمهورية فنزويلا البوليفارية",
+        name_long: "جمهورية فنزويلا البوليفارية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Venezuela",
-        description: "República Bolivariana de Venezuela",
+        name_long: "República Bolivariana de Venezuela",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Venezuela",
-        description: "République bolivarienne du Venezuela",
+        name_long: "République bolivarienne du Venezuela",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Venezuela",
-        description: "República Bolivariana da Venezuela",
+        name_long: "República Bolivariana da Venezuela",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Венесуэла",
-        description: "Боливарианская Республика Венесуэла",
+        name_long: "Боливарианская Республика Венесуэла",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Venezuela",
-        description: "Bolivarische Republik Venezuela",
+        name_long: "Bolivarische Republik Venezuela",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Venezuela",
-        description: "Repubblica Bolivariana del Venezuela",
+        name_long: "Repubblica Bolivariana del Venezuela",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },

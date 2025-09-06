@@ -9,79 +9,271 @@ export const europeanCountriesData: CountryData[] = [
     code: "ALB",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Albania", description: "Republic of Albania" },
-      { locale: "ar", name: "ألبانيا", description: "جمهورية ألبانيا" },
-      { locale: "es", name: "Albania", description: "República de Albania" },
-      { locale: "fr", name: "Albanie", description: "République d'Albanie" },
-      { locale: "pt", name: "Albânia", description: "República da Albânia" },
-      { locale: "ru", name: "Албания", description: "Республика Албания" },
-      { locale: "de", name: "Albanien", description: "Republik Albanien" },
-      { locale: "it", name: "Albania", description: "Repubblica d'Albania" },
+      {
+        locale: "en",
+        name: "Albania",
+        name_long: "Republic of Albania",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "ألبانيا",
+        name_long: "جمهورية ألبانيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Albania",
+        name_long: "República de Albania",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Albanie",
+        name_long: "République d'Albanie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Albânia",
+        name_long: "República da Albânia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Албания",
+        name_long: "Республика Албания",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Albanien",
+        name_long: "Republik Albanien",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Albania",
+        name_long: "Repubblica d'Albania",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "AND",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Andorra", description: "Principality of Andorra" },
-      { locale: "ar", name: "أندورا", description: "إمارة أندورا" },
-      { locale: "es", name: "Andorra", description: "Principado de Andorra" },
-      { locale: "fr", name: "Andorre", description: "Principauté d'Andorre" },
-      { locale: "pt", name: "Andorra", description: "Principado de Andorra" },
-      { locale: "ru", name: "Андорра", description: "Княжество Андорра" },
-      { locale: "de", name: "Andorra", description: "Fürstentum Andorra" },
-      { locale: "it", name: "Andorra", description: "Principato di Andorra" },
+      {
+        locale: "en",
+        name: "Andorra",
+        name_long: "Principality of Andorra",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "أندورا",
+        name_long: "إمارة أندورا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Andorra",
+        name_long: "Principado de Andorra",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Andorre",
+        name_long: "Principauté d'Andorre",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Andorra",
+        name_long: "Principado de Andorra",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Андорра",
+        name_long: "Княжество Андорра",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Andorra",
+        name_long: "Fürstentum Andorra",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Andorra",
+        name_long: "Principato di Andorra",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "AUT",
     continent: "Europe",
     region: "Western Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Austria", description: "Republic of Austria" },
-      { locale: "ar", name: "النمسا", description: "جمهورية النمسا" },
-      { locale: "es", name: "Austria", description: "República de Austria" },
-      { locale: "fr", name: "Autriche", description: "République d'Autriche" },
-      { locale: "pt", name: "Áustria", description: "República da Áustria" },
-      { locale: "ru", name: "Австрия", description: "Республика Австрия" },
-      { locale: "de", name: "Österreich", description: "Republik Österreich" },
-      { locale: "it", name: "Austria", description: "Repubblica d'Austria" },
+      {
+        locale: "en",
+        name: "Austria",
+        name_long: "Republic of Austria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "النمسا",
+        name_long: "جمهورية النمسا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Austria",
+        name_long: "República de Austria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Autriche",
+        name_long: "République d'Autriche",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Áustria",
+        name_long: "República da Áustria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Австрия",
+        name_long: "Республика Австрия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Österreich",
+        name_long: "Republik Österreich",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Austria",
+        name_long: "Repubblica d'Austria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "BLR",
     continent: "Europe",
     region: "Eastern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Belarus", description: "Republic of Belarus" },
-      { locale: "ar", name: "بيلاروسيا", description: "جمهورية بيلاروسيا" },
+      {
+        locale: "en",
+        name: "Belarus",
+        name_long: "Republic of Belarus",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بيلاروسيا",
+        name_long: "جمهورية بيلاروسيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Bielorrusia",
-        description: "República de Belarús",
+        name_long: "República de Belarús",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Biélorussie",
-        description: "République de Biélorussie",
+        name_long: "République de Biélorussie",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Bielorrússia",
-        description: "República da Bielorrússia",
+        name_long: "República da Bielorrússia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ru", name: "Беларусь", description: "Республика Беларусь" },
-      { locale: "de", name: "Belarus", description: "Republik Belarus" },
+      {
+        locale: "ru",
+        name: "Беларусь",
+        name_long: "Республика Беларусь",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Belarus",
+        name_long: "Republik Belarus",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "it",
         name: "Bielorussia",
-        description: "Repubblica di Bielorussia",
+        name_long: "Repubblica di Bielorussia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -89,59 +281,140 @@ export const europeanCountriesData: CountryData[] = [
     code: "BEL",
     continent: "Europe",
     region: "Western Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Belgium", description: "Kingdom of Belgium" },
-      { locale: "ar", name: "بلجيكا", description: "مملكة بلجيكا" },
-      { locale: "es", name: "Bélgica", description: "Reino de Bélgica" },
-      { locale: "fr", name: "Belgique", description: "Royaume de Belgique" },
-      { locale: "pt", name: "Bélgica", description: "Reino da Bélgica" },
-      { locale: "ru", name: "Бельгия", description: "Королевство Бельгия" },
-      { locale: "de", name: "Belgien", description: "Königreich Belgien" },
-      { locale: "it", name: "Belgio", description: "Regno del Belgio" },
+      {
+        locale: "en",
+        name: "Belgium",
+        name_long: "Kingdom of Belgium",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بلجيكا",
+        name_long: "مملكة بلجيكا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Bélgica",
+        name_long: "Reino de Bélgica",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Belgique",
+        name_long: "Royaume de Belgique",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Bélgica",
+        name_long: "Reino da Bélgica",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Бельгия",
+        name_long: "Королевство Бельгия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Belgien",
+        name_long: "Königreich Belgien",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Belgio",
+        name_long: "Regno del Belgio",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "BIH",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Bosnia and Herzegovina",
-        description: "Bosnia and Herzegovina",
+        name_long: "Bosnia and Herzegovina",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "البوسنة والهرسك", description: "البوسنة والهرسك" },
+      {
+        locale: "ar",
+        name: "البوسنة والهرسك",
+        name_long: "البوسنة والهرسك",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Bosnia y Herzegovina",
-        description: "Bosnia y Herzegovina",
+        name_long: "Bosnia y Herzegovina",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Bosnie-Herzégovine",
-        description: "Bosnie-Herzégovine",
+        name_long: "Bosnie-Herzégovine",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Bósnia e Herzegovina",
-        description: "Bósnia e Herzegovina",
+        name_long: "Bósnia e Herzegovina",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Босния и Герцеговина",
-        description: "Босния и Герцеговина",
+        name_long: "Босния и Герцеговина",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Bosnien und Herzegowina",
-        description: "Bosnien und Herzegowina",
+        name_long: "Bosnien und Herzegowina",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Bosnia ed Erzegovina",
-        description: "Bosnia ed Erzegovina",
+        name_long: "Bosnia ed Erzegovina",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -149,135 +422,474 @@ export const europeanCountriesData: CountryData[] = [
     code: "BGR",
     continent: "Europe",
     region: "Eastern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Bulgaria", description: "Republic of Bulgaria" },
-      { locale: "ar", name: "بلغاريا", description: "جمهورية بلغاريا" },
-      { locale: "es", name: "Bulgaria", description: "República de Bulgaria" },
-      { locale: "fr", name: "Bulgarie", description: "République de Bulgarie" },
-      { locale: "pt", name: "Bulgária", description: "República da Bulgária" },
-      { locale: "ru", name: "Болгария", description: "Республика Болгария" },
-      { locale: "de", name: "Bulgarien", description: "Republik Bulgarien" },
-      { locale: "it", name: "Bulgaria", description: "Repubblica di Bulgaria" },
+      {
+        locale: "en",
+        name: "Bulgaria",
+        name_long: "Republic of Bulgaria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بلغاريا",
+        name_long: "جمهورية بلغاريا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Bulgaria",
+        name_long: "República de Bulgaria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Bulgarie",
+        name_long: "République de Bulgarie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Bulgária",
+        name_long: "República da Bulgária",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Болгария",
+        name_long: "Республика Болгария",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Bulgarien",
+        name_long: "Republik Bulgarien",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Bulgaria",
+        name_long: "Repubblica di Bulgaria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "HRV",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Croatia", description: "Republic of Croatia" },
-      { locale: "ar", name: "كرواتيا", description: "جمهورية كرواتيا" },
-      { locale: "es", name: "Croacia", description: "República de Croacia" },
-      { locale: "fr", name: "Croatie", description: "République de Croatie" },
-      { locale: "pt", name: "Croácia", description: "República da Croácia" },
-      { locale: "ru", name: "Хорватия", description: "Республика Хорватия" },
-      { locale: "de", name: "Kroatien", description: "Republik Kroatien" },
-      { locale: "it", name: "Croazia", description: "Repubblica di Croazia" },
+      {
+        locale: "en",
+        name: "Croatia",
+        name_long: "Republic of Croatia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "كرواتيا",
+        name_long: "جمهورية كرواتيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Croacia",
+        name_long: "República de Croacia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Croatie",
+        name_long: "République de Croatie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Croácia",
+        name_long: "República da Croácia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Хорватия",
+        name_long: "Республика Хорватия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Kroatien",
+        name_long: "Republik Kroatien",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Croazia",
+        name_long: "Repubblica di Croazia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "CYP",
     continent: "Europe",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Cyprus", description: "Republic of Cyprus" },
-      { locale: "ar", name: "قبرص", description: "جمهورية قبرص" },
-      { locale: "es", name: "Chipre", description: "República de Chipre" },
-      { locale: "fr", name: "Chypre", description: "République de Chypre" },
-      { locale: "pt", name: "Chipre", description: "República de Chipre" },
-      { locale: "ru", name: "Кипр", description: "Республика Кипр" },
-      { locale: "de", name: "Zypern", description: "Republik Zypern" },
-      { locale: "it", name: "Cipro", description: "Repubblica di Cipro" },
+      {
+        locale: "en",
+        name: "Cyprus",
+        name_long: "Republic of Cyprus",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "قبرص",
+        name_long: "جمهورية قبرص",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Chipre",
+        name_long: "República de Chipre",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Chypre",
+        name_long: "République de Chypre",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Chipre",
+        name_long: "República de Chipre",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Кипр",
+        name_long: "Республика Кипр",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Zypern",
+        name_long: "Republik Zypern",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Cipro",
+        name_long: "Repubblica di Cipro",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "CZE",
     continent: "Europe",
     region: "Eastern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Czech Republic", description: "Czech Republic" },
-      { locale: "ar", name: "التشيك", description: "جمهورية التشيك" },
-      { locale: "es", name: "República Checa", description: "República Checa" },
+      {
+        locale: "en",
+        name: "Czech Republic",
+        name_long: "Czech Republic",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "التشيك",
+        name_long: "جمهورية التشيك",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "República Checa",
+        name_long: "República Checa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "fr",
         name: "République tchèque",
-        description: "République tchèque",
+        name_long: "République tchèque",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "pt", name: "República Checa", description: "República Checa" },
-      { locale: "ru", name: "Чехия", description: "Чешская Республика" },
+      {
+        locale: "pt",
+        name: "República Checa",
+        name_long: "República Checa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Чехия",
+        name_long: "Чешская Республика",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "de",
         name: "Tschechien",
-        description: "Tschechische Republik",
+        name_long: "Tschechische Republik",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "it", name: "Repubblica Ceca", description: "Repubblica Ceca" },
+      {
+        locale: "it",
+        name: "Repubblica Ceca",
+        name_long: "Repubblica Ceca",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "DNK",
     continent: "Europe",
     region: "Northern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Denmark", description: "Kingdom of Denmark" },
-      { locale: "ar", name: "الدنمارك", description: "مملكة الدنمارك" },
-      { locale: "es", name: "Dinamarca", description: "Reino de Dinamarca" },
-      { locale: "fr", name: "Danemark", description: "Royaume du Danemark" },
-      { locale: "pt", name: "Dinamarca", description: "Reino da Dinamarca" },
-      { locale: "ru", name: "Дания", description: "Королевство Дания" },
-      { locale: "de", name: "Dänemark", description: "Königreich Dänemark" },
-      { locale: "it", name: "Danimarca", description: "Regno di Danimarca" },
+      {
+        locale: "en",
+        name: "Denmark",
+        name_long: "Kingdom of Denmark",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "الدنمارك",
+        name_long: "مملكة الدنمارك",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Dinamarca",
+        name_long: "Reino de Dinamarca",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Danemark",
+        name_long: "Royaume du Danemark",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Dinamarca",
+        name_long: "Reino da Dinamarca",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Дания",
+        name_long: "Королевство Дания",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Dänemark",
+        name_long: "Königreich Dänemark",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Danimarca",
+        name_long: "Regno di Danimarca",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "EST",
     continent: "Europe",
     region: "Northern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Estonia", description: "Republic of Estonia" },
-      { locale: "ar", name: "إستونيا", description: "جمهورية إستونيا" },
-      { locale: "es", name: "Estonia", description: "República de Estonia" },
-      { locale: "fr", name: "Estonie", description: "République d'Estonie" },
-      { locale: "pt", name: "Estônia", description: "República da Estônia" },
-      { locale: "ru", name: "Эстония", description: "Эстонская Республика" },
-      { locale: "de", name: "Estland", description: "Republik Estland" },
-      { locale: "it", name: "Estonia", description: "Repubblica di Estonia" },
+      {
+        locale: "en",
+        name: "Estonia",
+        name_long: "Republic of Estonia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "إستونيا",
+        name_long: "جمهورية إستونيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Estonia",
+        name_long: "República de Estonia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Estonie",
+        name_long: "République d'Estonie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Estônia",
+        name_long: "República da Estônia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Эстония",
+        name_long: "Эстонская Республика",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Estland",
+        name_long: "Republik Estland",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Estonia",
+        name_long: "Repubblica di Estonia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "FIN",
     continent: "Europe",
     region: "Northern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Finland", description: "Republic of Finland" },
-      { locale: "ar", name: "فنلندا", description: "جمهورية فنلندا" },
+      {
+        locale: "en",
+        name: "Finland",
+        name_long: "Republic of Finland",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "فنلندا",
+        name_long: "جمهورية فنلندا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Finlandia",
-        description: "República de Finlandia",
+        name_long: "República de Finlandia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "fr", name: "Finlande", description: "République de Finlande" },
+      {
+        locale: "fr",
+        name: "Finlande",
+        name_long: "République de Finlande",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "pt",
         name: "Finlândia",
-        description: "República da Finlândia",
+        name_long: "República da Finlândia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Финляндия",
-        description: "Финляндская Республика",
+        name_long: "Финляндская Республика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "de", name: "Finnland", description: "Republik Finnland" },
+      {
+        locale: "de",
+        name: "Finnland",
+        name_long: "Republik Finnland",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "it",
         name: "Finlandia",
-        description: "Repubblica di Finlandia",
+        name_long: "Repubblica di Finlandia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -285,67 +897,142 @@ export const europeanCountriesData: CountryData[] = [
     code: "FRA",
     continent: "Europe",
     region: "Western Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "France", description: "French Republic" },
-      { locale: "ar", name: "فرنسا", description: "الجمهورية الفرنسية" },
-      { locale: "es", name: "Francia", description: "República Francesa" },
-      { locale: "fr", name: "France", description: "République française" },
-      { locale: "pt", name: "França", description: "República Francesa" },
-      { locale: "ru", name: "Франция", description: "Французская Республика" },
+      {
+        locale: "en",
+        name: "France",
+        name_long: "French Republic",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "فرنسا",
+        name_long: "الجمهورية الفرنسية",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Francia",
+        name_long: "República Francesa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "France",
+        name_long: "République française",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "França",
+        name_long: "República Francesa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Франция",
+        name_long: "Французская Республика",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "de",
         name: "Frankreich",
-        description: "Französische Republik",
+        name_long: "Französische Republik",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "it", name: "Francia", description: "Repubblica Francese" },
+      {
+        locale: "it",
+        name: "Francia",
+        name_long: "Repubblica Francese",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "DEU",
     continent: "Europe",
     region: "Western Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Germany",
-        description: "Federal Republic of Germany",
+        name_long: "Federal Republic of Germany",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "ألمانيا",
-        description: "جمهورية ألمانيا الاتحادية",
+        name_long: "جمهورية ألمانيا الاتحادية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Alemania",
-        description: "República Federal de Alemania",
+        name_long: "República Federal de Alemania",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Allemagne",
-        description: "République fédérale d'Allemagne",
+        name_long: "République fédérale d'Allemagne",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Alemanha",
-        description: "República Federal da Alemanha",
+        name_long: "República Federal da Alemanha",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Германия",
-        description: "Федеративная Республика Германия",
+        name_long: "Федеративная Республика Германия",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Deutschland",
-        description: "Bundesrepublik Deutschland",
+        name_long: "Bundesrepublik Deutschland",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Germania",
-        description: "Repubblica Federale di Germania",
+        name_long: "Repubblica Federale di Germania",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -353,143 +1040,476 @@ export const europeanCountriesData: CountryData[] = [
     code: "GRC",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Greece", description: "Hellenic Republic" },
-      { locale: "ar", name: "اليونان", description: "الجمهورية الهيلينية" },
-      { locale: "es", name: "Grecia", description: "República Helénica" },
-      { locale: "fr", name: "Grèce", description: "République hellénique" },
-      { locale: "pt", name: "Grécia", description: "República Helênica" },
-      { locale: "ru", name: "Греция", description: "Греческая Республика" },
+      {
+        locale: "en",
+        name: "Greece",
+        name_long: "Hellenic Republic",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "اليونان",
+        name_long: "الجمهورية الهيلينية",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Grecia",
+        name_long: "República Helénica",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Grèce",
+        name_long: "République hellénique",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Grécia",
+        name_long: "República Helênica",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Греция",
+        name_long: "Греческая Республика",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "de",
         name: "Griechenland",
-        description: "Hellenische Republik",
+        name_long: "Hellenische Republik",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "it", name: "Grecia", description: "Repubblica Ellenica" },
+      {
+        locale: "it",
+        name: "Grecia",
+        name_long: "Repubblica Ellenica",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "HUN",
     continent: "Europe",
     region: "Eastern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Hungary", description: "Hungary" },
-      { locale: "ar", name: "المجر", description: "المجر" },
-      { locale: "es", name: "Hungría", description: "Hungría" },
-      { locale: "fr", name: "Hongrie", description: "Hongrie" },
-      { locale: "pt", name: "Hungria", description: "Hungria" },
-      { locale: "ru", name: "Венгрия", description: "Венгрия" },
-      { locale: "de", name: "Ungarn", description: "Ungarn" },
-      { locale: "it", name: "Ungheria", description: "Ungheria" },
+      {
+        locale: "en",
+        name: "Hungary",
+        name_long: "Hungary",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "المجر",
+        name_long: "المجر",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Hungría",
+        name_long: "Hungría",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Hongrie",
+        name_long: "Hongrie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Hungria",
+        name_long: "Hungria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Венгрия",
+        name_long: "Венгрия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Ungarn",
+        name_long: "Ungarn",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Ungheria",
+        name_long: "Ungheria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "ISL",
     continent: "Europe",
     region: "Northern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Iceland", description: "Iceland" },
-      { locale: "ar", name: "آيسلندا", description: "آيسلندا" },
-      { locale: "es", name: "Islandia", description: "Islandia" },
-      { locale: "fr", name: "Islande", description: "Islande" },
-      { locale: "pt", name: "Islândia", description: "Islândia" },
-      { locale: "ru", name: "Исландия", description: "Исландия" },
-      { locale: "de", name: "Island", description: "Island" },
-      { locale: "it", name: "Islanda", description: "Islanda" },
+      {
+        locale: "en",
+        name: "Iceland",
+        name_long: "Iceland",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "آيسلندا",
+        name_long: "آيسلندا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Islandia",
+        name_long: "Islandia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Islande",
+        name_long: "Islande",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Islândia",
+        name_long: "Islândia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Исландия",
+        name_long: "Исландия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Island",
+        name_long: "Island",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Islanda",
+        name_long: "Islanda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "IRL",
     continent: "Europe",
     region: "Northern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Ireland", description: "Ireland" },
-      { locale: "ar", name: "أيرلندا", description: "أيرلندا" },
-      { locale: "es", name: "Irlanda", description: "Irlanda" },
-      { locale: "fr", name: "Irlande", description: "Irlande" },
-      { locale: "pt", name: "Irlanda", description: "Irlanda" },
-      { locale: "ru", name: "Ирландия", description: "Ирландия" },
-      { locale: "de", name: "Irland", description: "Irland" },
-      { locale: "it", name: "Irlanda", description: "Irlanda" },
+      {
+        locale: "en",
+        name: "Ireland",
+        name_long: "Ireland",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "أيرلندا",
+        name_long: "أيرلندا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Irlanda",
+        name_long: "Irlanda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Irlande",
+        name_long: "Irlande",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Irlanda",
+        name_long: "Irlanda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Ирландия",
+        name_long: "Ирландия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Irland",
+        name_long: "Irland",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Irlanda",
+        name_long: "Irlanda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "ITA",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Italy", description: "Italian Republic" },
-      { locale: "ar", name: "إيطاليا", description: "الجمهورية الإيطالية" },
-      { locale: "es", name: "Italia", description: "República Italiana" },
-      { locale: "fr", name: "Italie", description: "République italienne" },
-      { locale: "pt", name: "Itália", description: "República Italiana" },
-      { locale: "ru", name: "Италия", description: "Итальянская Республика" },
-      { locale: "de", name: "Italien", description: "Italienische Republik" },
-      { locale: "it", name: "Italia", description: "Repubblica Italiana" },
+      {
+        locale: "en",
+        name: "Italy",
+        name_long: "Italian Republic",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "إيطاليا",
+        name_long: "الجمهورية الإيطالية",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Italia",
+        name_long: "República Italiana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Italie",
+        name_long: "République italienne",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Itália",
+        name_long: "República Italiana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Италия",
+        name_long: "Итальянская Республика",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Italien",
+        name_long: "Italienische Republik",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Italia",
+        name_long: "Repubblica Italiana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "LVA",
     continent: "Europe",
     region: "Northern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Latvia", description: "Republic of Latvia" },
-      { locale: "ar", name: "لاتفيا", description: "جمهورية لاتفيا" },
-      { locale: "es", name: "Letonia", description: "República de Letonia" },
-      { locale: "fr", name: "Lettonie", description: "République de Lettonie" },
-      { locale: "pt", name: "Letônia", description: "República da Letônia" },
-      { locale: "ru", name: "Латвия", description: "Латвийская Республика" },
-      { locale: "de", name: "Lettland", description: "Republik Lettland" },
-      { locale: "it", name: "Lettonia", description: "Repubblica di Lettonia" },
+      {
+        locale: "en",
+        name: "Latvia",
+        name_long: "Republic of Latvia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "لاتفيا",
+        name_long: "جمهورية لاتفيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Letonia",
+        name_long: "República de Letonia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Lettonie",
+        name_long: "République de Lettonie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Letônia",
+        name_long: "República da Letônia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Латвия",
+        name_long: "Латвийская Республика",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Lettland",
+        name_long: "Republik Lettland",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Lettonia",
+        name_long: "Repubblica di Lettonia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "LIE",
     continent: "Europe",
     region: "Western Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Liechtenstein",
-        description: "Principality of Liechtenstein",
+        name_long: "Principality of Liechtenstein",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "ليختنشتاين", description: "إمارة ليختنشتاين" },
+      {
+        locale: "ar",
+        name: "ليختنشتاين",
+        name_long: "إمارة ليختنشتاين",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Liechtenstein",
-        description: "Principado de Liechtenstein",
+        name_long: "Principado de Liechtenstein",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Liechtenstein",
-        description: "Principauté du Liechtenstein",
+        name_long: "Principauté du Liechtenstein",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Liechtenstein",
-        description: "Principado de Liechtenstein",
+        name_long: "Principado de Liechtenstein",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Лихтенштейн",
-        description: "Княжество Лихтенштейн",
+        name_long: "Княжество Лихтенштейн",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Liechtenstein",
-        description: "Fürstentum Liechtenstein",
+        name_long: "Fürstentum Liechtenstein",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Liechtenstein",
-        description: "Principato del Liechtenstein",
+        name_long: "Principato del Liechtenstein",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -497,63 +1517,141 @@ export const europeanCountriesData: CountryData[] = [
     code: "LTU",
     continent: "Europe",
     region: "Northern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Lithuania", description: "Republic of Lithuania" },
-      { locale: "ar", name: "ليتوانيا", description: "جمهورية ليتوانيا" },
-      { locale: "es", name: "Lituania", description: "República de Lituania" },
-      { locale: "fr", name: "Lituanie", description: "République de Lituanie" },
-      { locale: "pt", name: "Lituânia", description: "República da Lituânia" },
-      { locale: "ru", name: "Литва", description: "Литовская Республика" },
-      { locale: "de", name: "Litauen", description: "Republik Litauen" },
-      { locale: "it", name: "Lituania", description: "Repubblica di Lituania" },
+      {
+        locale: "en",
+        name: "Lithuania",
+        name_long: "Republic of Lithuania",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "ليتوانيا",
+        name_long: "جمهورية ليتوانيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Lituania",
+        name_long: "República de Lituania",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Lituanie",
+        name_long: "République de Lituanie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Lituânia",
+        name_long: "República da Lituânia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Литва",
+        name_long: "Литовская Республика",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Litauen",
+        name_long: "Republik Litauen",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Lituania",
+        name_long: "Repubblica di Lituania",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "LUX",
     continent: "Europe",
     region: "Western Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Luxembourg",
-        description: "Grand Duchy of Luxembourg",
+        name_long: "Grand Duchy of Luxembourg",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "لوكسمبورغ",
-        description: "دوقية لوكسمبورغ الكبرى",
+        name_long: "دوقية لوكسمبورغ الكبرى",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Luxemburgo",
-        description: "Gran Ducado de Luxemburgo",
+        name_long: "Gran Ducado de Luxemburgo",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Luxembourg",
-        description: "Grand-Duché de Luxembourg",
+        name_long: "Grand-Duché de Luxembourg",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Luxemburgo",
-        description: "Grão-Ducado do Luxemburgo",
+        name_long: "Grão-Ducado do Luxemburgo",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Люксембург",
-        description: "Великое Герцогство Люксембург",
+        name_long: "Великое Герцогство Люксембург",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Luxemburg",
-        description: "Großherzogtum Luxemburg",
+        name_long: "Großherzogtum Luxemburg",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Lussemburgo",
-        description: "Granducato di Lussemburgo",
+        name_long: "Granducato di Lussemburgo",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -561,103 +1659,340 @@ export const europeanCountriesData: CountryData[] = [
     code: "MLT",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Malta", description: "Republic of Malta" },
-      { locale: "ar", name: "مالطا", description: "جمهورية مالطا" },
-      { locale: "es", name: "Malta", description: "República de Malta" },
-      { locale: "fr", name: "Malte", description: "République de Malte" },
-      { locale: "pt", name: "Malta", description: "República de Malta" },
-      { locale: "ru", name: "Мальта", description: "Республика Мальта" },
-      { locale: "de", name: "Malta", description: "Republik Malta" },
-      { locale: "it", name: "Malta", description: "Repubblica di Malta" },
+      {
+        locale: "en",
+        name: "Malta",
+        name_long: "Republic of Malta",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "مالطا",
+        name_long: "جمهورية مالطا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Malta",
+        name_long: "República de Malta",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Malte",
+        name_long: "République de Malte",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Malta",
+        name_long: "República de Malta",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Мальта",
+        name_long: "Республика Мальта",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Malta",
+        name_long: "Republik Malta",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Malta",
+        name_long: "Repubblica di Malta",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "MDA",
     continent: "Europe",
     region: "Eastern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Moldova", description: "Republic of Moldova" },
-      { locale: "ar", name: "مولدوفا", description: "جمهورية مولدوفا" },
-      { locale: "es", name: "Moldavia", description: "República de Moldavia" },
-      { locale: "fr", name: "Moldavie", description: "République de Moldavie" },
-      { locale: "pt", name: "Moldávia", description: "República da Moldávia" },
-      { locale: "ru", name: "Молдова", description: "Республика Молдова" },
-      { locale: "de", name: "Moldau", description: "Republik Moldau" },
-      { locale: "it", name: "Moldova", description: "Repubblica di Moldova" },
+      {
+        locale: "en",
+        name: "Moldova",
+        name_long: "Republic of Moldova",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "مولدوفا",
+        name_long: "جمهورية مولدوفا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Moldavia",
+        name_long: "República de Moldavia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Moldavie",
+        name_long: "République de Moldavie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Moldávia",
+        name_long: "República da Moldávia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Молдова",
+        name_long: "Республика Молдова",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Moldau",
+        name_long: "Republik Moldau",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Moldova",
+        name_long: "Repubblica di Moldova",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "MCO",
     continent: "Europe",
     region: "Western Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Monaco", description: "Principality of Monaco" },
-      { locale: "ar", name: "موناكو", description: "إمارة موناكو" },
-      { locale: "es", name: "Mónaco", description: "Principado de Mónaco" },
-      { locale: "fr", name: "Monaco", description: "Principauté de Monaco" },
-      { locale: "pt", name: "Mônaco", description: "Principado do Mônaco" },
-      { locale: "ru", name: "Монако", description: "Княжество Монако" },
-      { locale: "de", name: "Monaco", description: "Fürstentum Monaco" },
-      { locale: "it", name: "Monaco", description: "Principato di Monaco" },
+      {
+        locale: "en",
+        name: "Monaco",
+        name_long: "Principality of Monaco",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "موناكو",
+        name_long: "إمارة موناكو",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Mónaco",
+        name_long: "Principado de Mónaco",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Monaco",
+        name_long: "Principauté de Monaco",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Mônaco",
+        name_long: "Principado do Mônaco",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Монако",
+        name_long: "Княжество Монако",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Monaco",
+        name_long: "Fürstentum Monaco",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Monaco",
+        name_long: "Principato di Monaco",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "MNE",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Montenegro", description: "Montenegro" },
-      { locale: "ar", name: "الجبل الأسود", description: "الجبل الأسود" },
-      { locale: "es", name: "Montenegro", description: "Montenegro" },
-      { locale: "fr", name: "Monténégro", description: "Monténégro" },
-      { locale: "pt", name: "Montenegro", description: "Montenegro" },
-      { locale: "ru", name: "Черногория", description: "Черногория" },
-      { locale: "de", name: "Montenegro", description: "Montenegro" },
-      { locale: "it", name: "Montenegro", description: "Montenegro" },
+      {
+        locale: "en",
+        name: "Montenegro",
+        name_long: "Montenegro",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "الجبل الأسود",
+        name_long: "الجبل الأسود",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Montenegro",
+        name_long: "Montenegro",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Monténégro",
+        name_long: "Monténégro",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Montenegro",
+        name_long: "Montenegro",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Черногория",
+        name_long: "Черногория",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Montenegro",
+        name_long: "Montenegro",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Montenegro",
+        name_long: "Montenegro",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "NLD",
     continent: "Europe",
     region: "Western Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Netherlands",
-        description: "Kingdom of the Netherlands",
+        name_long: "Kingdom of the Netherlands",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "هولندا", description: "مملكة هولندا" },
+      {
+        locale: "ar",
+        name: "هولندا",
+        name_long: "مملكة هولندا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Países Bajos",
-        description: "Reino de los Países Bajos",
+        name_long: "Reino de los Países Bajos",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "fr", name: "Pays-Bas", description: "Royaume des Pays-Bas" },
+      {
+        locale: "fr",
+        name: "Pays-Bas",
+        name_long: "Royaume des Pays-Bas",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "pt",
         name: "Países Baixos",
-        description: "Reino dos Países Baixos",
+        name_long: "Reino dos Países Baixos",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Нидерланды",
-        description: "Королевство Нидерландов",
+        name_long: "Королевство Нидерландов",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Niederlande",
-        description: "Königreich der Niederlande",
+        name_long: "Königreich der Niederlande",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Paesi Bassi",
-        description: "Regno dei Paesi Bassi",
+        name_long: "Regno dei Paesi Bassi",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -665,47 +2000,74 @@ export const europeanCountriesData: CountryData[] = [
     code: "MKD",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "North Macedonia",
-        description: "Republic of North Macedonia",
+        name_long: "Republic of North Macedonia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "مقدونيا الشمالية",
-        description: "جمهورية مقدونيا الشمالية",
+        name_long: "جمهورية مقدونيا الشمالية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Macedonia del Norte",
-        description: "República de Macedonia del Norte",
+        name_long: "República de Macedonia del Norte",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Macédoine du Nord",
-        description: "République de Macédoine du Nord",
+        name_long: "République de Macédoine du Nord",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Macedônia do Norte",
-        description: "República da Macedônia do Norte",
+        name_long: "República da Macedônia do Norte",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Северная Македония",
-        description: "Республика Северная Македония",
+        name_long: "Республика Северная Македония",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Nordmazedonien",
-        description: "Republik Nordmazedonien",
+        name_long: "Republik Nordmazedonien",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Macedonia del Nord",
-        description: "Repubblica di Macedonia del Nord",
+        name_long: "Repubblica di Macedonia del Nord",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -713,59 +2075,203 @@ export const europeanCountriesData: CountryData[] = [
     code: "NOR",
     continent: "Europe",
     region: "Northern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Norway", description: "Kingdom of Norway" },
-      { locale: "ar", name: "النرويج", description: "مملكة النرويج" },
-      { locale: "es", name: "Noruega", description: "Reino de Noruega" },
-      { locale: "fr", name: "Norvège", description: "Royaume de Norvège" },
-      { locale: "pt", name: "Noruega", description: "Reino da Noruega" },
-      { locale: "ru", name: "Норвегия", description: "Королевство Норвегия" },
-      { locale: "de", name: "Norwegen", description: "Königreich Norwegen" },
-      { locale: "it", name: "Norvegia", description: "Regno di Norvegia" },
+      {
+        locale: "en",
+        name: "Norway",
+        name_long: "Kingdom of Norway",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "النرويج",
+        name_long: "مملكة النرويج",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Noruega",
+        name_long: "Reino de Noruega",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Norvège",
+        name_long: "Royaume de Norvège",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Noruega",
+        name_long: "Reino da Noruega",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Норвегия",
+        name_long: "Королевство Норвегия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Norwegen",
+        name_long: "Königreich Norwegen",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Norvegia",
+        name_long: "Regno di Norvegia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "POL",
     continent: "Europe",
     region: "Eastern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Poland", description: "Republic of Poland" },
-      { locale: "ar", name: "بولندا", description: "جمهورية بولندا" },
-      { locale: "es", name: "Polonia", description: "República de Polonia" },
-      { locale: "fr", name: "Pologne", description: "République de Pologne" },
-      { locale: "pt", name: "Polônia", description: "República da Polônia" },
-      { locale: "ru", name: "Польша", description: "Республика Польша" },
-      { locale: "de", name: "Polen", description: "Republik Polen" },
-      { locale: "it", name: "Polonia", description: "Repubblica di Polonia" },
+      {
+        locale: "en",
+        name: "Poland",
+        name_long: "Republic of Poland",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بولندا",
+        name_long: "جمهورية بولندا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Polonia",
+        name_long: "República de Polonia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Pologne",
+        name_long: "République de Pologne",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Polônia",
+        name_long: "República da Polônia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Польша",
+        name_long: "Республика Польша",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Polen",
+        name_long: "Republik Polen",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Polonia",
+        name_long: "Repubblica di Polonia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "PRT",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Portugal", description: "Portuguese Republic" },
-      { locale: "ar", name: "البرتغال", description: "الجمهورية البرتغالية" },
-      { locale: "es", name: "Portugal", description: "República Portuguesa" },
-      { locale: "fr", name: "Portugal", description: "République portugaise" },
-      { locale: "pt", name: "Portugal", description: "República Portuguesa" },
+      {
+        locale: "en",
+        name: "Portugal",
+        name_long: "Portuguese Republic",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "البرتغال",
+        name_long: "الجمهورية البرتغالية",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Portugal",
+        name_long: "República Portuguesa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Portugal",
+        name_long: "République portugaise",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Portugal",
+        name_long: "República Portuguesa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "ru",
         name: "Португалия",
-        description: "Португальская Республика",
+        name_long: "Португальская Республика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Portugal",
-        description: "Portugiesische Republik",
+        name_long: "Portugiesische Republik",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Portogallo",
-        description: "Repubblica Portoghese",
+        name_long: "Repubblica Portoghese",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -773,71 +2279,206 @@ export const europeanCountriesData: CountryData[] = [
     code: "ROU",
     continent: "Europe",
     region: "Eastern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Romania", description: "Romania" },
-      { locale: "ar", name: "رومانيا", description: "رومانيا" },
-      { locale: "es", name: "Rumania", description: "Rumania" },
-      { locale: "fr", name: "Roumanie", description: "Roumanie" },
-      { locale: "pt", name: "Romênia", description: "Romênia" },
-      { locale: "ru", name: "Румыния", description: "Румыния" },
-      { locale: "de", name: "Rumänien", description: "Rumänien" },
-      { locale: "it", name: "Romania", description: "Romania" },
+      {
+        locale: "en",
+        name: "Romania",
+        name_long: "Romania",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "رومانيا",
+        name_long: "رومانيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Rumania",
+        name_long: "Rumania",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Roumanie",
+        name_long: "Roumanie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Romênia",
+        name_long: "Romênia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Румыния",
+        name_long: "Румыния",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Rumänien",
+        name_long: "Rumänien",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Romania",
+        name_long: "Romania",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "RUS",
     continent: "Europe",
     region: "Eastern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Russia", description: "Russian Federation" },
-      { locale: "ar", name: "روسيا", description: "الاتحاد الروسي" },
-      { locale: "es", name: "Rusia", description: "Federación de Rusia" },
-      { locale: "fr", name: "Russie", description: "Fédération de Russie" },
-      { locale: "pt", name: "Rússia", description: "Federação Russa" },
-      { locale: "ru", name: "Россия", description: "Российская Федерация" },
-      { locale: "de", name: "Russland", description: "Russische Föderation" },
-      { locale: "it", name: "Russia", description: "Federazione Russa" },
+      {
+        locale: "en",
+        name: "Russia",
+        name_long: "Russian Federation",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "روسيا",
+        name_long: "الاتحاد الروسي",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Rusia",
+        name_long: "Federación de Rusia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Russie",
+        name_long: "Fédération de Russie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Rússia",
+        name_long: "Federação Russa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Россия",
+        name_long: "Российская Федерация",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Russland",
+        name_long: "Russische Föderation",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Russia",
+        name_long: "Federazione Russa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "SMR",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "San Marino",
-        description: "Republic of San Marino",
+        name_long: "Republic of San Marino",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "سان مارينو", description: "جمهورية سان مارينو" },
+      {
+        locale: "ar",
+        name: "سان مارينو",
+        name_long: "جمهورية سان مارينو",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "San Marino",
-        description: "República de San Marino",
+        name_long: "República de San Marino",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Saint-Marin",
-        description: "République de Saint-Marin",
+        name_long: "République de Saint-Marin",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "San Marino",
-        description: "República de San Marino",
+        name_long: "República de San Marino",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Сан-Марино",
-        description: "Республика Сан-Марино",
+        name_long: "Республика Сан-Марино",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "de", name: "San Marino", description: "Republik San Marino" },
+      {
+        locale: "de",
+        name: "San Marino",
+        name_long: "Republik San Marino",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "it",
         name: "San Marino",
-        description: "Repubblica di San Marino",
+        name_long: "Repubblica di San Marino",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -845,115 +2486,406 @@ export const europeanCountriesData: CountryData[] = [
     code: "SRB",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Serbia", description: "Republic of Serbia" },
-      { locale: "ar", name: "صربيا", description: "جمهورية صربيا" },
-      { locale: "es", name: "Serbia", description: "República de Serbia" },
-      { locale: "fr", name: "Serbie", description: "République de Serbie" },
-      { locale: "pt", name: "Sérvia", description: "República da Sérvia" },
-      { locale: "ru", name: "Сербия", description: "Республика Сербия" },
-      { locale: "de", name: "Serbien", description: "Republik Serbien" },
-      { locale: "it", name: "Serbia", description: "Repubblica di Serbia" },
+      {
+        locale: "en",
+        name: "Serbia",
+        name_long: "Republic of Serbia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "صربيا",
+        name_long: "جمهورية صربيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Serbia",
+        name_long: "República de Serbia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Serbie",
+        name_long: "République de Serbie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Sérvia",
+        name_long: "República da Sérvia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Сербия",
+        name_long: "Республика Сербия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Serbien",
+        name_long: "Republik Serbien",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Serbia",
+        name_long: "Repubblica di Serbia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "SVK",
     continent: "Europe",
     region: "Eastern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Slovakia", description: "Slovak Republic" },
-      { locale: "ar", name: "سلوفاكيا", description: "جمهورية سلوفاكيا" },
-      { locale: "es", name: "Eslovaquia", description: "República Eslovaca" },
-      { locale: "fr", name: "Slovaquie", description: "République slovaque" },
-      { locale: "pt", name: "Eslováquia", description: "República Eslovaca" },
-      { locale: "ru", name: "Словакия", description: "Словацкая Республика" },
-      { locale: "de", name: "Slowakei", description: "Slowakische Republik" },
-      { locale: "it", name: "Slovacchia", description: "Repubblica Slovacca" },
+      {
+        locale: "en",
+        name: "Slovakia",
+        name_long: "Slovak Republic",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "سلوفاكيا",
+        name_long: "جمهورية سلوفاكيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Eslovaquia",
+        name_long: "República Eslovaca",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Slovaquie",
+        name_long: "République slovaque",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Eslováquia",
+        name_long: "República Eslovaca",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Словакия",
+        name_long: "Словацкая Республика",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Slowakei",
+        name_long: "Slowakische Republik",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Slovacchia",
+        name_long: "Repubblica Slovacca",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "SVN",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Slovenia", description: "Republic of Slovenia" },
-      { locale: "ar", name: "سلوفينيا", description: "جمهورية سلوفينيا" },
+      {
+        locale: "en",
+        name: "Slovenia",
+        name_long: "Republic of Slovenia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "سلوفينيا",
+        name_long: "جمهورية سلوفينيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Eslovenia",
-        description: "República de Eslovenia",
+        name_long: "República de Eslovenia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "fr", name: "Slovénie", description: "République de Slovénie" },
+      {
+        locale: "fr",
+        name: "Slovénie",
+        name_long: "République de Slovénie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "pt",
         name: "Eslovênia",
-        description: "República da Eslovênia",
+        name_long: "República da Eslovênia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ru", name: "Словения", description: "Республика Словения" },
-      { locale: "de", name: "Slowenien", description: "Republik Slowenien" },
-      { locale: "it", name: "Slovenia", description: "Repubblica di Slovenia" },
+      {
+        locale: "ru",
+        name: "Словения",
+        name_long: "Республика Словения",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Slowenien",
+        name_long: "Republik Slowenien",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Slovenia",
+        name_long: "Repubblica di Slovenia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "ESP",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Spain", description: "Kingdom of Spain" },
-      { locale: "ar", name: "إسبانيا", description: "مملكة إسبانيا" },
-      { locale: "es", name: "España", description: "Reino de España" },
-      { locale: "fr", name: "Espagne", description: "Royaume d'Espagne" },
-      { locale: "pt", name: "Espanha", description: "Reino de Espanha" },
-      { locale: "ru", name: "Испания", description: "Королевство Испания" },
-      { locale: "de", name: "Spanien", description: "Königreich Spanien" },
-      { locale: "it", name: "Spagna", description: "Regno di Spagna" },
+      {
+        locale: "en",
+        name: "Spain",
+        name_long: "Kingdom of Spain",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "إسبانيا",
+        name_long: "مملكة إسبانيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "España",
+        name_long: "Reino de España",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Espagne",
+        name_long: "Royaume d'Espagne",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Espanha",
+        name_long: "Reino de Espanha",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Испания",
+        name_long: "Королевство Испания",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Spanien",
+        name_long: "Königreich Spanien",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Spagna",
+        name_long: "Regno di Spagna",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "SWE",
     continent: "Europe",
     region: "Northern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Sweden", description: "Kingdom of Sweden" },
-      { locale: "ar", name: "السويد", description: "مملكة السويد" },
-      { locale: "es", name: "Suecia", description: "Reino de Suecia" },
-      { locale: "fr", name: "Suède", description: "Royaume de Suède" },
-      { locale: "pt", name: "Suécia", description: "Reino da Suécia" },
-      { locale: "ru", name: "Швеция", description: "Королевство Швеция" },
-      { locale: "de", name: "Schweden", description: "Königreich Schweden" },
-      { locale: "it", name: "Svezia", description: "Regno di Svezia" },
+      {
+        locale: "en",
+        name: "Sweden",
+        name_long: "Kingdom of Sweden",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "السويد",
+        name_long: "مملكة السويد",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Suecia",
+        name_long: "Reino de Suecia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Suède",
+        name_long: "Royaume de Suède",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Suécia",
+        name_long: "Reino da Suécia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Швеция",
+        name_long: "Королевство Швеция",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Schweden",
+        name_long: "Königreich Schweden",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Svezia",
+        name_long: "Regno di Svezia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "CHE",
     continent: "Europe",
     region: "Western Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Switzerland", description: "Swiss Confederation" },
-      { locale: "ar", name: "سويسرا", description: "الاتحاد السويسري" },
-      { locale: "es", name: "Suiza", description: "Confederación Suiza" },
-      { locale: "fr", name: "Suisse", description: "Confédération suisse" },
-      { locale: "pt", name: "Suíça", description: "Confederação Suíça" },
+      {
+        locale: "en",
+        name: "Switzerland",
+        name_long: "Swiss Confederation",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "سويسرا",
+        name_long: "الاتحاد السويسري",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Suiza",
+        name_long: "Confederación Suiza",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Suisse",
+        name_long: "Confédération suisse",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Suíça",
+        name_long: "Confederação Suíça",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "ru",
         name: "Швейцария",
-        description: "Швейцарская Конфедерация",
+        name_long: "Швейцарская Конфедерация",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Schweiz",
-        description: "Schweizerische Eidgenossenschaft",
+        name_long: "Schweizerische Eidgenossenschaft",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Svizzera",
-        description: "Confederazione Svizzera",
+        name_long: "Confederazione Svizzera",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -961,64 +2893,140 @@ export const europeanCountriesData: CountryData[] = [
     code: "UKR",
     continent: "Europe",
     region: "Eastern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Ukraine", description: "Ukraine" },
-      { locale: "ar", name: "أوكرانيا", description: "أوكرانيا" },
-      { locale: "es", name: "Ucrania", description: "Ucrania" },
-      { locale: "fr", name: "Ukraine", description: "Ukraine" },
-      { locale: "pt", name: "Ucrânia", description: "Ucrânia" },
-      { locale: "ru", name: "Украина", description: "Украина" },
-      { locale: "de", name: "Ukraine", description: "Ukraine" },
-      { locale: "it", name: "Ucraina", description: "Ucraina" },
+      {
+        locale: "en",
+        name: "Ukraine",
+        name_long: "Ukraine",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "أوكرانيا",
+        name_long: "أوكرانيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Ucrania",
+        name_long: "Ucrania",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Ukraine",
+        name_long: "Ukraine",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Ucrânia",
+        name_long: "Ucrânia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Украина",
+        name_long: "Украина",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Ukraine",
+        name_long: "Ukraine",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Ucraina",
+        name_long: "Ucraina",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "GBR",
     continent: "Europe",
     region: "Northern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "United Kingdom",
-        description: "United Kingdom of Great Britain and Northern Ireland",
+        name_long: "United Kingdom of Great Britain and Northern Ireland",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "المملكة المتحدة",
-        description: "المملكة المتحدة لبريطانيا العظمى وأيرلندا الشمالية",
+        name_long: "المملكة المتحدة لبريطانيا العظمى وأيرلندا الشمالية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Reino Unido",
-        description: "Reino Unido de Gran Bretaña e Irlanda del Norte",
+        name_long: "Reino Unido de Gran Bretaña e Irlanda del Norte",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Royaume-Uni",
-        description: "Royaume-Uni de Grande-Bretagne et d'Irlande du Nord",
+        name_long: "Royaume-Uni de Grande-Bretagne et d'Irlande du Nord",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Reino Unido",
-        description: "Reino Unido da Grã-Bretanha e Irlanda do Norte",
+        name_long: "Reino Unido da Grã-Bretanha e Irlanda do Norte",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Великобритания",
-        description:
-          "Соединенное Королевство Великобритании и Северной Ирландии",
+        name_long: "Соединенное Королевство Великобритании и Северной Ирландии",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Vereinigtes Königreich",
-        description: "Vereinigtes Königreich Großbritannien und Nordirland",
+        name_long: "Vereinigtes Königreich Großbritannien und Nordirland",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Regno Unito",
-        description: "Regno Unito di Gran Bretagna e Irlanda del Nord",
+        name_long: "Regno Unito di Gran Bretagna e Irlanda del Nord",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1026,35 +3034,71 @@ export const europeanCountriesData: CountryData[] = [
     code: "VAT",
     continent: "Europe",
     region: "Southern Europe",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Vatican City", description: "Vatican City State" },
-      { locale: "ar", name: "الفاتيكان", description: "دولة الفاتيكان" },
+      {
+        locale: "en",
+        name: "Vatican City",
+        name_long: "Vatican City State",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "الفاتيكان",
+        name_long: "دولة الفاتيكان",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Ciudad del Vaticano",
-        description: "Estado de la Ciudad del Vaticano",
+        name_long: "Estado de la Ciudad del Vaticano",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Vatican",
-        description: "État de la Cité du Vatican",
+        name_long: "État de la Cité du Vatican",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Vaticano",
-        description: "Estado da Cidade do Vaticano",
+        name_long: "Estado da Cidade do Vaticano",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Ватикан",
-        description: "Государство-город Ватикан",
+        name_long: "Государство-город Ватикан",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "de", name: "Vatikan", description: "Vatikanstadt" },
+      {
+        locale: "de",
+        name: "Vatikan",
+        name_long: "Vatikanstadt",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "it",
         name: "Vaticano",
-        description: "Stato della Città del Vaticano",
+        name_long: "Stato della Città del Vaticano",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },

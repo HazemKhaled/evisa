@@ -9,47 +9,74 @@ export const asianCountriesData: CountryData[] = [
     code: "AFG",
     continent: "Asia",
     region: "Southern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Afghanistan",
-        description: "Islamic Emirate of Afghanistan",
+        name_long: "Islamic Emirate of Afghanistan",
+
+        about:
+          "Ancient crossroads of civilizations with breathtaking mountain landscapes. Home to the legendary Hindu Kush and rich cultural heritage spanning millennia.",
       },
       {
         locale: "ar",
         name: "أفغانستان",
-        description: "إمارة أفغانستان الإسلامية",
+        name_long: "إمارة أفغانستان الإسلامية",
+
+        about:
+          "مفترق طرق الحضارات القديمة مع المناظر الجبلية الخلابة. موطن هندو كوش الأسطوري والتراث الثقافي الغني الذي يمتد لآلاف السنين.",
       },
       {
         locale: "es",
         name: "Afganistán",
-        description: "Emirato Islámico de Afganistán",
+        name_long: "Emirato Islámico de Afganistán",
+
+        about:
+          "Antiguo cruce de civilizaciones con paisajes montañosos impresionantes. Hogar del legendario Hindu Kush y rico patrimonio cultural que abarca milenios.",
       },
       {
         locale: "fr",
         name: "Afghanistan",
-        description: "Émirat islamique d'Afghanistan",
+        name_long: "Émirat islamique d'Afghanistan",
+
+        about:
+          "Ancien carrefour de civilisations aux paysages montagneux époustouflants. Berceau de l'legendaire Hindu Kush et d'un riche patrimoine culturel millénaire.",
       },
       {
         locale: "pt",
         name: "Afeganistão",
-        description: "Emirado Islâmico do Afeganistão",
+        name_long: "Emirado Islâmico do Afeganistão",
+
+        about:
+          "Antigo cruzamento de civilizações com paisagens montanhosas deslumbrantes. Lar do lendário Hindu Kush e rico patrimônio cultural que abrange milênios.",
       },
       {
         locale: "ru",
         name: "Афганистан",
-        description: "Исламский эмират Афганистан",
+        name_long: "Исламский эмират Афганистан",
+
+        about:
+          "Древний перекресток цивилизаций с захватывающими горными пейзажами. Родина легендарного Гиндукуша и богатого культурного наследия, охватывающего тысячелетия.",
       },
       {
         locale: "de",
         name: "Afghanistan",
-        description: "Islamisches Emirat Afghanistan",
+        name_long: "Islamisches Emirat Afghanistan",
+
+        about:
+          "Altes Kreuz der Zivilisationen mit atemberaubenden Berglandschaften. Heimat des legendären Hindu Kush und reichen kulturellen Erbes über Jahrtausende.",
       },
       {
         locale: "it",
         name: "Afghanistan",
-        description: "Emirato Islamico dell'Afghanistan",
+        name_long: "Emirato Islamico dell'Afghanistan",
+
+        about:
+          "Antico crocevia di civiltà con paesaggi montani mozzafiato. Casa del leggendario Hindu Kush e ricco patrimonio culturale che abbraccia millenni.",
       },
     ],
   },
@@ -57,47 +84,74 @@ export const asianCountriesData: CountryData[] = [
     code: "BGD",
     continent: "Asia",
     region: "Southern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Bangladesh",
-        description: "People's Republic of Bangladesh",
+        name_long: "People's Republic of Bangladesh",
+
+        about:
+          "Vibrant delta nation where the Ganges meets the Bay of Bengal. A land of lush green fields, bustling cities, and warm hospitality in South Asia.",
       },
       {
         locale: "ar",
         name: "بنغلاديش",
-        description: "جمهورية بنغلاديش الشعبية",
+        name_long: "جمهورية بنغلاديش الشعبية",
+
+        about:
+          "دولة دلتا نابضة بالحياة حيث يلتقي نهر الغانج بخليج البنغال. أرض الحقول الخضراء المورقة والمدن الصاخبة والضيافة الدافئة في جنوب آسيا.",
       },
       {
         locale: "es",
         name: "Bangladesh",
-        description: "República Popular de Bangladesh",
+        name_long: "República Popular de Bangladesh",
+
+        about:
+          "Nación delta vibrante donde el Ganges se encuentra con la Bahía de Bengala. Una tierra de campos verdes exuberantes, ciudades bulliciosas y hospitalidad cálida en el sur de Asia.",
       },
       {
         locale: "fr",
         name: "Bangladesh",
-        description: "République populaire du Bangladesh",
+        name_long: "République populaire du Bangladesh",
+
+        about:
+          "Nation delta dynamique où le Gange rencontre la baie du Bengale. Une terre de champs verts luxuriants, de villes animées et d'hospitalité chaleureuse en Asie du Sud.",
       },
       {
         locale: "pt",
         name: "Bangladesh",
-        description: "República Popular do Bangladesh",
+        name_long: "República Popular do Bangladesh",
+
+        about:
+          "Nação delta vibrante onde o Ganges encontra a Baía de Bengala. Uma terra de campos verdes exuberantes, cidades movimentadas e hospitalidade calorosa no sul da Ásia.",
       },
       {
         locale: "ru",
         name: "Бангладеш",
-        description: "Народная Республика Бангладеш",
+        name_long: "Народная Республика Бангладеш",
+
+        about:
+          "Жизнерадостная дельта-нация, где Ганг встречается с Бенгальским заливом. Земля пышных зеленых полей, оживленных городов и теплого гостеприимства в Южной Азии.",
       },
       {
         locale: "de",
         name: "Bangladesch",
-        description: "Volksrepublik Bangladesch",
+        name_long: "Volksrepublik Bangladesch",
+
+        about:
+          "Lebendige Delta-Nation, wo der Ganges auf die Bucht von Bengalen trifft. Ein Land üppiger grüner Felder, geschäftiger Städte und warmer Gastfreundschaft in Südasien.",
       },
       {
         locale: "it",
         name: "Bangladesh",
-        description: "Repubblica Popolare del Bangladesh",
+        name_long: "Repubblica Popolare del Bangladesh",
+
+        about:
+          "Nazione delta vibrante dove il Gange incontra la Baia del Bengala. Una terra di campi verdi rigogliosi, città animate e ospitalità calorosa nell'Asia meridionale.",
       },
     ],
   },
@@ -105,91 +159,274 @@ export const asianCountriesData: CountryData[] = [
     code: "BTN",
     continent: "Asia",
     region: "Southern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Bhutan", description: "Kingdom of Bhutan" },
-      { locale: "ar", name: "بوتان", description: "مملكة بوتان" },
-      { locale: "es", name: "Bután", description: "Reino de Bután" },
-      { locale: "fr", name: "Bhoutan", description: "Royaume du Bhoutan" },
-      { locale: "pt", name: "Butão", description: "Reino do Butão" },
-      { locale: "ru", name: "Бутан", description: "Королевство Бутан" },
-      { locale: "de", name: "Bhutan", description: "Königreich Bhutan" },
-      { locale: "it", name: "Bhutan", description: "Regno del Bhutan" },
+      {
+        locale: "en",
+        name: "Bhutan",
+        name_long: "Kingdom of Bhutan",
+        about:
+          "Last Shangri-La nestled in the Himalayas. A Buddhist kingdom measuring happiness over wealth, with pristine landscapes and ancient monasteries.",
+      },
+      {
+        locale: "ar",
+        name: "بوتان",
+        name_long: "مملكة بوتان",
+        about:
+          "آخر شانغريلا متكئة في جبال الهيمالايا. مملكة بوذية تقيس السعادة على الثروة، مع مناظر طبيعية نقية وأديرة قديمة.",
+      },
+      {
+        locale: "es",
+        name: "Bután",
+        name_long: "Reino de Bután",
+        about:
+          "Último Shangri-La anidado en el Himalaya. Un reino budista que mide la felicidad sobre la riqueza, con paisajes prístinos y monasterios antiguos.",
+      },
+      {
+        locale: "fr",
+        name: "Bhoutan",
+        name_long: "Royaume du Bhoutan",
+        about:
+          "Dernier Shangri-La niché dans l'Himalaya. Un royaume bouddhiste mesurant le bonheur plutôt que la richesse, avec des paysages immaculés et d'anciens monastères.",
+      },
+      {
+        locale: "pt",
+        name: "Butão",
+        name_long: "Reino do Butão",
+        about:
+          "Último Shangri-La aninhado no Himalaia. Um reino budista que mede a felicidade sobre a riqueza, com paisagens intocadas e mosteiros antigos.",
+      },
+      {
+        locale: "ru",
+        name: "Бутан",
+        name_long: "Королевство Бутан",
+        about:
+          "Последний Шангри-Ла, уютно устроившийся в Гималаях. Буддийское королевство, измеряющее счастье вместо богатства, с нетронутыми пейзажами и древними монастырями.",
+      },
+      {
+        locale: "de",
+        name: "Bhutan",
+        name_long: "Königreich Bhutan",
+        about:
+          "Letztes Shangri-La im Himalaya versteckt. Ein buddhistisches Königreich, das Glück über Reichtum misst, mit unberührten Landschaften und alten Klöstern.",
+      },
+      {
+        locale: "it",
+        name: "Bhutan",
+        name_long: "Regno del Bhutan",
+        about:
+          "Ultimo Shangri-La annidato nell'Himalaya. Un regno buddista che misura la felicità sulla ricchezza, con paesaggi incontaminati e antichi monasteri.",
+      },
     ],
   },
   {
     code: "BRN",
     continent: "Asia",
     region: "South-Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Brunei", description: "Brunei Darussalam" },
-      { locale: "ar", name: "بروناي", description: "بروناي دار السلام" },
-      { locale: "es", name: "Brunéi", description: "Brunéi Darussalam" },
-      { locale: "fr", name: "Brunéi", description: "Brunéi Darussalam" },
-      { locale: "pt", name: "Brunei", description: "Brunei Darussalam" },
-      { locale: "ru", name: "Бруней", description: "Бруней-Даруссалам" },
-      { locale: "de", name: "Brunei", description: "Brunei Darussalam" },
-      { locale: "it", name: "Brunei", description: "Brunei Darussalam" },
+      {
+        locale: "en",
+        name: "Brunei",
+        name_long: "Brunei Darussalam",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بروناي",
+        name_long: "بروناي دار السلام",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Brunéi",
+        name_long: "Brunéi Darussalam",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Brunéi",
+        name_long: "Brunéi Darussalam",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Brunei",
+        name_long: "Brunei Darussalam",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Бруней",
+        name_long: "Бруней-Даруссалам",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Brunei",
+        name_long: "Brunei Darussalam",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Brunei",
+        name_long: "Brunei Darussalam",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "KHM",
     continent: "Asia",
     region: "South-Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Cambodia", description: "Kingdom of Cambodia" },
-      { locale: "ar", name: "كمبوديا", description: "مملكة كمبوديا" },
-      { locale: "es", name: "Camboya", description: "Reino de Camboya" },
-      { locale: "fr", name: "Cambodge", description: "Royaume du Cambodge" },
-      { locale: "pt", name: "Camboja", description: "Reino do Camboja" },
-      { locale: "ru", name: "Камбоджа", description: "Королевство Камбоджа" },
+      {
+        locale: "en",
+        name: "Cambodia",
+        name_long: "Kingdom of Cambodia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "كمبوديا",
+        name_long: "مملكة كمبوديا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Camboya",
+        name_long: "Reino de Camboya",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Cambodge",
+        name_long: "Royaume du Cambodge",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Camboja",
+        name_long: "Reino do Camboja",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Камбоджа",
+        name_long: "Королевство Камбоджа",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "de",
         name: "Kambodscha",
-        description: "Königreich Kambodscha",
+        name_long: "Königreich Kambodscha",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "it", name: "Cambogia", description: "Regno di Cambogia" },
+      {
+        locale: "it",
+        name: "Cambogia",
+        name_long: "Regno di Cambogia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "CHN",
     continent: "Asia",
     region: "Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "China",
-        description: "People's Republic of China",
+        name_long: "People's Republic of China",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "الصين", description: "جمهورية الصين الشعبية" },
-      { locale: "es", name: "China", description: "República Popular China" },
+      {
+        locale: "ar",
+        name: "الصين",
+        name_long: "جمهورية الصين الشعبية",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "China",
+        name_long: "República Popular China",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "fr",
         name: "Chine",
-        description: "République populaire de Chine",
+        name_long: "République populaire de Chine",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "China",
-        description: "República Popular da China",
+        name_long: "República Popular da China",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Китай",
-        description: "Китайская Народная Республика",
+        name_long: "Китайская Народная Республика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "China",
-        description: "Volksrepublik China",
+        name_long: "Volksrepublik China",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Cina",
-        description: "Repubblica Popolare Cinese",
+        name_long: "Repubblica Popolare Cinese",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -197,47 +434,74 @@ export const asianCountriesData: CountryData[] = [
     code: "TLS",
     continent: "Asia",
     region: "South-Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "East Timor",
-        description: "Democratic Republic of Timor-Leste",
+        name_long: "Democratic Republic of Timor-Leste",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "تيمور الشرقية",
-        description: "جمهورية تيمور الشرقية الديمقراطية",
+        name_long: "جمهورية تيمور الشرقية الديمقراطية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Timor Oriental",
-        description: "República Democrática de Timor Oriental",
+        name_long: "República Democrática de Timor Oriental",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Timor oriental",
-        description: "République démocratique du Timor oriental",
+        name_long: "République démocratique du Timor oriental",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Timor-Leste",
-        description: "República Democrática de Timor-Leste",
+        name_long: "República Democrática de Timor-Leste",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Восточный Тимор",
-        description: "Демократическая Республика Тимор-Лешти",
+        name_long: "Демократическая Республика Тимор-Лешти",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Osttimor",
-        description: "Demokratische Republik Timor-Leste",
+        name_long: "Demokratische Republik Timor-Leste",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Timor Est",
-        description: "Repubblica Democratica di Timor Est",
+        name_long: "Repubblica Democratica di Timor Est",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -245,71 +509,206 @@ export const asianCountriesData: CountryData[] = [
     code: "GEO",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Georgia", description: "Georgia" },
-      { locale: "ar", name: "جورجيا", description: "جورجيا" },
-      { locale: "es", name: "Georgia", description: "Georgia" },
-      { locale: "fr", name: "Géorgie", description: "Géorgie" },
-      { locale: "pt", name: "Geórgia", description: "Geórgia" },
-      { locale: "ru", name: "Грузия", description: "Грузия" },
-      { locale: "de", name: "Georgien", description: "Georgien" },
-      { locale: "it", name: "Georgia", description: "Georgia" },
+      {
+        locale: "en",
+        name: "Georgia",
+        name_long: "Georgia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "جورجيا",
+        name_long: "جورجيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Georgia",
+        name_long: "Georgia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Géorgie",
+        name_long: "Géorgie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Geórgia",
+        name_long: "Geórgia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Грузия",
+        name_long: "Грузия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Georgien",
+        name_long: "Georgien",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Georgia",
+        name_long: "Georgia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "IND",
     continent: "Asia",
     region: "Southern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "India", description: "Republic of India" },
-      { locale: "ar", name: "الهند", description: "جمهورية الهند" },
-      { locale: "es", name: "India", description: "República de la India" },
-      { locale: "fr", name: "Inde", description: "République de l'Inde" },
-      { locale: "pt", name: "Índia", description: "República da Índia" },
-      { locale: "ru", name: "Индия", description: "Республика Индия" },
-      { locale: "de", name: "Indien", description: "Republik Indien" },
-      { locale: "it", name: "India", description: "Repubblica dell'India" },
+      {
+        locale: "en",
+        name: "India",
+        name_long: "Republic of India",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "الهند",
+        name_long: "جمهورية الهند",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "India",
+        name_long: "República de la India",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Inde",
+        name_long: "République de l'Inde",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Índia",
+        name_long: "República da Índia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Индия",
+        name_long: "Республика Индия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Indien",
+        name_long: "Republik Indien",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "India",
+        name_long: "Repubblica dell'India",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "IDN",
     continent: "Asia",
     region: "South-Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Indonesia", description: "Republic of Indonesia" },
-      { locale: "ar", name: "إندونيسيا", description: "جمهورية إندونيسيا" },
+      {
+        locale: "en",
+        name: "Indonesia",
+        name_long: "Republic of Indonesia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "إندونيسيا",
+        name_long: "جمهورية إندونيسيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Indonesia",
-        description: "República de Indonesia",
+        name_long: "República de Indonesia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Indonésie",
-        description: "République d'Indonésie",
+        name_long: "République d'Indonésie",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Indonésia",
-        description: "República da Indonésia",
+        name_long: "República da Indonésia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Индонезия",
-        description: "Республика Индонезия",
+        name_long: "Республика Индонезия",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Indonesien",
-        description: "Republik Indonesien",
+        name_long: "Republik Indonesien",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Indonesia",
-        description: "Repubblica di Indonesia",
+        name_long: "Repubblica di Indonesia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -317,35 +716,71 @@ export const asianCountriesData: CountryData[] = [
     code: "IRN",
     continent: "Asia",
     region: "Southern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Iran", description: "Islamic Republic of Iran" },
-      { locale: "ar", name: "إيران", description: "جمهورية إيران الإسلامية" },
-      { locale: "es", name: "Irán", description: "República Islámica de Irán" },
+      {
+        locale: "en",
+        name: "Iran",
+        name_long: "Islamic Republic of Iran",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "إيران",
+        name_long: "جمهورية إيران الإسلامية",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Irán",
+        name_long: "República Islámica de Irán",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "fr",
         name: "Iran",
-        description: "République islamique d'Iran",
+        name_long: "République islamique d'Iran",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Irã",
-        description: "República Islâmica do Irã",
+        name_long: "República Islâmica do Irã",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Иран",
-        description: "Исламская Республика Иран",
+        name_long: "Исламская Республика Иран",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Iran",
-        description: "Islamische Republik Iran",
+        name_long: "Islamische Republik Iran",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Iran",
-        description: "Repubblica Islamica dell'Iran",
+        name_long: "Repubblica Islamica dell'Iran",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -353,95 +788,275 @@ export const asianCountriesData: CountryData[] = [
     code: "IRQ",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Iraq", description: "Republic of Iraq" },
-      { locale: "ar", name: "العراق", description: "جمهورية العراق" },
-      { locale: "es", name: "Irak", description: "República de Irak" },
-      { locale: "fr", name: "Irak", description: "République d'Irak" },
-      { locale: "pt", name: "Iraque", description: "República do Iraque" },
-      { locale: "ru", name: "Ирак", description: "Республика Ирак" },
-      { locale: "de", name: "Irak", description: "Republik Irak" },
-      { locale: "it", name: "Iraq", description: "Repubblica dell'Iraq" },
+      {
+        locale: "en",
+        name: "Iraq",
+        name_long: "Republic of Iraq",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "العراق",
+        name_long: "جمهورية العراق",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Irak",
+        name_long: "República de Irak",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Irak",
+        name_long: "République d'Irak",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Iraque",
+        name_long: "República do Iraque",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Ирак",
+        name_long: "Республика Ирак",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Irak",
+        name_long: "Republik Irak",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Iraq",
+        name_long: "Repubblica dell'Iraq",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "ISR",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Israel", description: "State of Israel" },
-      { locale: "ar", name: "إسرائيل", description: "دولة إسرائيل" },
-      { locale: "es", name: "Israel", description: "Estado de Israel" },
-      { locale: "fr", name: "Israël", description: "État d'Israël" },
-      { locale: "pt", name: "Israel", description: "Estado de Israel" },
-      { locale: "ru", name: "Израиль", description: "Государство Израиль" },
-      { locale: "de", name: "Israel", description: "Staat Israel" },
-      { locale: "it", name: "Israele", description: "Stato di Israele" },
+      {
+        locale: "en",
+        name: "Israel",
+        name_long: "State of Israel",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "إسرائيل",
+        name_long: "دولة إسرائيل",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Israel",
+        name_long: "Estado de Israel",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Israël",
+        name_long: "État d'Israël",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Israel",
+        name_long: "Estado de Israel",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Израиль",
+        name_long: "Государство Израиль",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Israel",
+        name_long: "Staat Israel",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Israele",
+        name_long: "Stato di Israele",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "JPN",
     continent: "Asia",
     region: "Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Japan", description: "Japan" },
-      { locale: "ar", name: "اليابان", description: "اليابان" },
-      { locale: "es", name: "Japón", description: "Japón" },
-      { locale: "fr", name: "Japon", description: "Japon" },
-      { locale: "pt", name: "Japão", description: "Japão" },
-      { locale: "ru", name: "Япония", description: "Япония" },
-      { locale: "de", name: "Japan", description: "Japan" },
-      { locale: "it", name: "Giappone", description: "Giappone" },
+      {
+        locale: "en",
+        name: "Japan",
+        name_long: "Japan",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "اليابان",
+        name_long: "اليابان",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Japón",
+        name_long: "Japón",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Japon",
+        name_long: "Japon",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Japão",
+        name_long: "Japão",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Япония",
+        name_long: "Япония",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Japan",
+        name_long: "Japan",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Giappone",
+        name_long: "Giappone",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "JOR",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Jordan",
-        description: "Hashemite Kingdom of Jordan",
+        name_long: "Hashemite Kingdom of Jordan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "الأردن",
-        description: "المملكة الأردنية الهاشمية",
+        name_long: "المملكة الأردنية الهاشمية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Jordania",
-        description: "Reino Hachemita de Jordania",
+        name_long: "Reino Hachemita de Jordania",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Jordanie",
-        description: "Royaume hachémite de Jordanie",
+        name_long: "Royaume hachémite de Jordanie",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Jordânia",
-        description: "Reino Hachemita da Jordânia",
+        name_long: "Reino Hachemita da Jordânia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Иордания",
-        description: "Иорданское Хашимитское Королевство",
+        name_long: "Иорданское Хашимитское Королевство",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Jordanien",
-        description: "Haschemitisches Königreich Jordanien",
+        name_long: "Haschemitisches Königreich Jordanien",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Giordania",
-        description: "Regno Hascemita di Giordania",
+        name_long: "Regno Hascemita di Giordania",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -449,43 +1064,73 @@ export const asianCountriesData: CountryData[] = [
     code: "KAZ",
     continent: "Asia",
     region: "Central Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Kazakhstan",
-        description: "Republic of Kazakhstan",
+        name_long: "Republic of Kazakhstan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "كازاخستان", description: "جمهورية كازاخستان" },
+      {
+        locale: "ar",
+        name: "كازاخستان",
+        name_long: "جمهورية كازاخستان",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Kazajistán",
-        description: "República de Kazajistán",
+        name_long: "República de Kazajistán",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Kazakhstan",
-        description: "République du Kazakhstan",
+        name_long: "République du Kazakhstan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Cazaquistão",
-        description: "República do Cazaquistão",
+        name_long: "República do Cazaquistão",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Казахстан",
-        description: "Республика Казахстан",
+        name_long: "Республика Казахстан",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Kasachstan",
-        description: "Republik Kasachstan",
+        name_long: "Republik Kasachstan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Kazakistan",
-        description: "Repubblica del Kazakistan",
+        name_long: "Repubblica del Kazakistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -493,51 +1138,138 @@ export const asianCountriesData: CountryData[] = [
     code: "KWT",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Kuwait", description: "State of Kuwait" },
-      { locale: "ar", name: "الكويت", description: "دولة الكويت" },
-      { locale: "es", name: "Kuwait", description: "Estado de Kuwait" },
-      { locale: "fr", name: "Koweït", description: "État du Koweït" },
-      { locale: "pt", name: "Kuwait", description: "Estado do Kuwait" },
-      { locale: "ru", name: "Кувейт", description: "Государство Кувейт" },
-      { locale: "de", name: "Kuwait", description: "Staat Kuwait" },
-      { locale: "it", name: "Kuwait", description: "Stato del Kuwait" },
+      {
+        locale: "en",
+        name: "Kuwait",
+        name_long: "State of Kuwait",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "الكويت",
+        name_long: "دولة الكويت",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Kuwait",
+        name_long: "Estado de Kuwait",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Koweït",
+        name_long: "État du Koweït",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Kuwait",
+        name_long: "Estado do Kuwait",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Кувейт",
+        name_long: "Государство Кувейт",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Kuwait",
+        name_long: "Staat Kuwait",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Kuwait",
+        name_long: "Stato del Kuwait",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "KGZ",
     continent: "Asia",
     region: "Central Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Kyrgyzstan", description: "Kyrgyz Republic" },
-      { locale: "ar", name: "قيرغيزستان", description: "جمهورية قيرغيزستان" },
-      { locale: "es", name: "Kirguistán", description: "República Kirguisa" },
+      {
+        locale: "en",
+        name: "Kyrgyzstan",
+        name_long: "Kyrgyz Republic",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "قيرغيزستان",
+        name_long: "جمهورية قيرغيزستان",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Kirguistán",
+        name_long: "República Kirguisa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "fr",
         name: "Kirghizistan",
-        description: "République kirghize",
+        name_long: "République kirghize",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Quirguistão",
-        description: "República Quirguiz",
+        name_long: "República Quirguiz",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Кыргызстан",
-        description: "Кыргызская Республика",
+        name_long: "Кыргызская Республика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Kirgisistan",
-        description: "Kirgisische Republik",
+        name_long: "Kirgisische Republik",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Kirghizistan",
-        description: "Repubblica del Kirghizistan",
+        name_long: "Repubblica del Kirghizistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -545,47 +1277,74 @@ export const asianCountriesData: CountryData[] = [
     code: "LAO",
     continent: "Asia",
     region: "South-Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Laos",
-        description: "Lao People's Democratic Republic",
+        name_long: "Lao People's Democratic Republic",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "لاوس",
-        description: "جمهورية لاوس الديمقراطية الشعبية",
+        name_long: "جمهورية لاوس الديمقراطية الشعبية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Laos",
-        description: "República Democrática Popular Lao",
+        name_long: "República Democrática Popular Lao",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Laos",
-        description: "République démocratique populaire lao",
+        name_long: "République démocratique populaire lao",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Laos",
-        description: "República Democrática Popular do Laos",
+        name_long: "República Democrática Popular do Laos",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Лаос",
-        description: "Лаосская Народно-Демократическая Республика",
+        name_long: "Лаосская Народно-Демократическая Республика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Laos",
-        description: "Demokratische Volksrepublik Laos",
+        name_long: "Demokratische Volksrepublik Laos",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Laos",
-        description: "Repubblica Democratica Popolare del Laos",
+        name_long: "Repubblica Democratica Popolare del Laos",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -593,75 +1352,207 @@ export const asianCountriesData: CountryData[] = [
     code: "LBN",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Lebanon", description: "Lebanese Republic" },
-      { locale: "ar", name: "لبنان", description: "الجمهورية اللبنانية" },
-      { locale: "es", name: "Líbano", description: "República Libanesa" },
-      { locale: "fr", name: "Liban", description: "République libanaise" },
-      { locale: "pt", name: "Líbano", description: "República Libanesa" },
-      { locale: "ru", name: "Ливан", description: "Ливанская Республика" },
-      { locale: "de", name: "Libanon", description: "Libanesische Republik" },
-      { locale: "it", name: "Libano", description: "Repubblica Libanese" },
+      {
+        locale: "en",
+        name: "Lebanon",
+        name_long: "Lebanese Republic",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "لبنان",
+        name_long: "الجمهورية اللبنانية",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Líbano",
+        name_long: "República Libanesa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Liban",
+        name_long: "République libanaise",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Líbano",
+        name_long: "República Libanesa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Ливан",
+        name_long: "Ливанская Республика",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Libanon",
+        name_long: "Libanesische Republik",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Libano",
+        name_long: "Repubblica Libanese",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "MYS",
     continent: "Asia",
     region: "South-Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Malaysia", description: "Malaysia" },
-      { locale: "ar", name: "ماليزيا", description: "ماليزيا" },
-      { locale: "es", name: "Malasia", description: "Malasia" },
-      { locale: "fr", name: "Malaisie", description: "Malaisie" },
-      { locale: "pt", name: "Malásia", description: "Malásia" },
-      { locale: "ru", name: "Малайзия", description: "Малайзия" },
-      { locale: "de", name: "Malaysia", description: "Malaysia" },
-      { locale: "it", name: "Malesia", description: "Malesia" },
+      {
+        locale: "en",
+        name: "Malaysia",
+        name_long: "Malaysia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "ماليزيا",
+        name_long: "ماليزيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Malasia",
+        name_long: "Malasia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Malaisie",
+        name_long: "Malaisie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Malásia",
+        name_long: "Malásia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Малайзия",
+        name_long: "Малайзия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Malaysia",
+        name_long: "Malaysia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Malesia",
+        name_long: "Malesia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "MDV",
     continent: "Asia",
     region: "Southern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Maldives", description: "Republic of Maldives" },
+      {
+        locale: "en",
+        name: "Maldives",
+        name_long: "Republic of Maldives",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "ar",
         name: "جزر المالديف",
-        description: "جمهورية جزر المالديف",
+        name_long: "جمهورية جزر المالديف",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Maldivas",
-        description: "República de las Maldivas",
+        name_long: "República de las Maldivas",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Maldives",
-        description: "République des Maldives",
+        name_long: "République des Maldives",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Maldivas",
-        description: "República das Maldivas",
+        name_long: "República das Maldivas",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Мальдивы",
-        description: "Республика Мальдивы",
+        name_long: "Республика Мальдивы",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Malediven",
-        description: "Republik Malediven",
+        name_long: "Republik Malediven",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Maldive",
-        description: "Repubblica delle Maldive",
+        name_long: "Repubblica delle Maldive",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -669,59 +1560,140 @@ export const asianCountriesData: CountryData[] = [
     code: "MNG",
     continent: "Asia",
     region: "Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Mongolia", description: "Mongolia" },
-      { locale: "ar", name: "منغوليا", description: "منغوليا" },
-      { locale: "es", name: "Mongolia", description: "Mongolia" },
-      { locale: "fr", name: "Mongolie", description: "Mongolie" },
-      { locale: "pt", name: "Mongólia", description: "Mongólia" },
-      { locale: "ru", name: "Монголия", description: "Монголия" },
-      { locale: "de", name: "Mongolei", description: "Mongolei" },
-      { locale: "it", name: "Mongolia", description: "Mongolia" },
+      {
+        locale: "en",
+        name: "Mongolia",
+        name_long: "Mongolia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "منغوليا",
+        name_long: "منغوليا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Mongolia",
+        name_long: "Mongolia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Mongolie",
+        name_long: "Mongolie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Mongólia",
+        name_long: "Mongólia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Монголия",
+        name_long: "Монголия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Mongolei",
+        name_long: "Mongolei",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Mongolia",
+        name_long: "Mongolia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "MMR",
     continent: "Asia",
     region: "South-Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Myanmar",
-        description: "Republic of the Union of Myanmar",
+        name_long: "Republic of the Union of Myanmar",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "ميانمار", description: "جمهورية اتحاد ميانمار" },
+      {
+        locale: "ar",
+        name: "ميانمار",
+        name_long: "جمهورية اتحاد ميانمار",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Myanmar",
-        description: "República de la Unión de Myanmar",
+        name_long: "República de la Unión de Myanmar",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Myanmar",
-        description: "République de l'Union du Myanmar",
+        name_long: "République de l'Union du Myanmar",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Myanmar",
-        description: "República da União de Myanmar",
+        name_long: "República da União de Myanmar",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Мьянма",
-        description: "Республика Союз Мьянма",
+        name_long: "Республика Союз Мьянма",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Myanmar",
-        description: "Republik der Union Myanmar",
+        name_long: "Republik der Union Myanmar",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Myanmar",
-        description: "Repubblica dell'Unione del Myanmar",
+        name_long: "Repubblica dell'Unione del Myanmar",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -729,47 +1701,74 @@ export const asianCountriesData: CountryData[] = [
     code: "NPL",
     continent: "Asia",
     region: "Southern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Nepal",
-        description: "Federal Democratic Republic of Nepal",
+        name_long: "Federal Democratic Republic of Nepal",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "نيبال",
-        description: "جمهورية نيبال الديمقراطية الاتحادية",
+        name_long: "جمهورية نيبال الديمقراطية الاتحادية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Nepal",
-        description: "República Federal Democrática de Nepal",
+        name_long: "República Federal Democrática de Nepal",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Népal",
-        description: "République fédérale démocratique du Népal",
+        name_long: "République fédérale démocratique du Népal",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Nepal",
-        description: "República Federal Democrática do Nepal",
+        name_long: "República Federal Democrática do Nepal",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Непал",
-        description: "Федеративная Демократическая Республика Непал",
+        name_long: "Федеративная Демократическая Республика Непал",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Nepal",
-        description: "Demokratische Bundesrepublik Nepal",
+        name_long: "Demokratische Bundesrepublik Nepal",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Nepal",
-        description: "Repubblica Federale Democratica del Nepal",
+        name_long: "Repubblica Federale Democratica del Nepal",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -777,47 +1776,74 @@ export const asianCountriesData: CountryData[] = [
     code: "PRK",
     continent: "Asia",
     region: "Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "North Korea",
-        description: "Democratic People's Republic of Korea",
+        name_long: "Democratic People's Republic of Korea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "كوريا الشمالية",
-        description: "جمهورية كوريا الديمقراطية الشعبية",
+        name_long: "جمهورية كوريا الديمقراطية الشعبية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Corea del Norte",
-        description: "República Popular Democrática de Corea",
+        name_long: "República Popular Democrática de Corea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Corée du Nord",
-        description: "République populaire démocratique de Corée",
+        name_long: "République populaire démocratique de Corée",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Coreia do Norte",
-        description: "República Popular Democrática da Coreia",
+        name_long: "República Popular Democrática da Coreia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Северная Корея",
-        description: "Корейская Народно-Демократическая Республика",
+        name_long: "Корейская Народно-Демократическая Республика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Nordkorea",
-        description: "Demokratische Volksrepublik Korea",
+        name_long: "Demokratische Volksrepublik Korea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Corea del Nord",
-        description: "Repubblica Popolare Democratica di Corea",
+        name_long: "Repubblica Popolare Democratica di Corea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -825,63 +1851,141 @@ export const asianCountriesData: CountryData[] = [
     code: "OMN",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Oman", description: "Sultanate of Oman" },
-      { locale: "ar", name: "عُمان", description: "سلطنة عُمان" },
-      { locale: "es", name: "Omán", description: "Sultanato de Omán" },
-      { locale: "fr", name: "Oman", description: "Sultanat d'Oman" },
-      { locale: "pt", name: "Omã", description: "Sultanato de Omã" },
-      { locale: "ru", name: "Оман", description: "Султанат Оман" },
-      { locale: "de", name: "Oman", description: "Sultanat Oman" },
-      { locale: "it", name: "Oman", description: "Sultanato dell'Oman" },
+      {
+        locale: "en",
+        name: "Oman",
+        name_long: "Sultanate of Oman",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "عُمان",
+        name_long: "سلطنة عُمان",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Omán",
+        name_long: "Sultanato de Omán",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Oman",
+        name_long: "Sultanat d'Oman",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Omã",
+        name_long: "Sultanato de Omã",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Оман",
+        name_long: "Султанат Оман",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Oman",
+        name_long: "Sultanat Oman",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Oman",
+        name_long: "Sultanato dell'Oman",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "PAK",
     continent: "Asia",
     region: "Southern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Pakistan",
-        description: "Islamic Republic of Pakistan",
+        name_long: "Islamic Republic of Pakistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "باكستان",
-        description: "جمهورية باكستان الإسلامية",
+        name_long: "جمهورية باكستان الإسلامية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Pakistán",
-        description: "República Islámica de Pakistán",
+        name_long: "República Islámica de Pakistán",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Pakistan",
-        description: "République islamique du Pakistan",
+        name_long: "République islamique du Pakistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Paquistão",
-        description: "República Islâmica do Paquistão",
+        name_long: "República Islâmica do Paquistão",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Пакистан",
-        description: "Исламская Республика Пакистан",
+        name_long: "Исламская Республика Пакистан",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Pakistan",
-        description: "Islamische Republik Pakistan",
+        name_long: "Islamische Republik Pakistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Pakistan",
-        description: "Repubblica Islamica del Pakistan",
+        name_long: "Repubblica Islamica del Pakistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -889,59 +1993,140 @@ export const asianCountriesData: CountryData[] = [
     code: "PSE",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Palestine", description: "State of Palestine" },
-      { locale: "ar", name: "فلسطين", description: "دولة فلسطين" },
-      { locale: "es", name: "Palestina", description: "Estado de Palestina" },
-      { locale: "fr", name: "Palestine", description: "État de Palestine" },
-      { locale: "pt", name: "Palestina", description: "Estado da Palestina" },
-      { locale: "ru", name: "Палестина", description: "Государство Палестина" },
-      { locale: "de", name: "Palästina", description: "Staat Palästina" },
-      { locale: "it", name: "Palestina", description: "Stato di Palestina" },
+      {
+        locale: "en",
+        name: "Palestine",
+        name_long: "State of Palestine",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "فلسطين",
+        name_long: "دولة فلسطين",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Palestina",
+        name_long: "Estado de Palestina",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Palestine",
+        name_long: "État de Palestine",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Palestina",
+        name_long: "Estado da Palestina",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Палестина",
+        name_long: "Государство Палестина",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Palästina",
+        name_long: "Staat Palästina",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Palestina",
+        name_long: "Stato di Palestina",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "PHL",
     continent: "Asia",
     region: "South-Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Philippines",
-        description: "Republic of the Philippines",
+        name_long: "Republic of the Philippines",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "الفلبين", description: "جمهورية الفلبين" },
+      {
+        locale: "ar",
+        name: "الفلبين",
+        name_long: "جمهورية الفلبين",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Filipinas",
-        description: "República de Filipinas",
+        name_long: "República de Filipinas",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Philippines",
-        description: "République des Philippines",
+        name_long: "République des Philippines",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Filipinas",
-        description: "República das Filipinas",
+        name_long: "República das Filipinas",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Филиппины",
-        description: "Республика Филиппины",
+        name_long: "Республика Филиппины",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Philippinen",
-        description: "Republik der Philippinen",
+        name_long: "Republik der Philippinen",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Filippine",
-        description: "Repubblica delle Filippine",
+        name_long: "Repubblica delle Filippine",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -949,63 +2134,141 @@ export const asianCountriesData: CountryData[] = [
     code: "QAT",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Qatar", description: "State of Qatar" },
-      { locale: "ar", name: "قطر", description: "دولة قطر" },
-      { locale: "es", name: "Catar", description: "Estado de Catar" },
-      { locale: "fr", name: "Qatar", description: "État du Qatar" },
-      { locale: "pt", name: "Catar", description: "Estado do Catar" },
-      { locale: "ru", name: "Катар", description: "Государство Катар" },
-      { locale: "de", name: "Katar", description: "Staat Katar" },
-      { locale: "it", name: "Qatar", description: "Stato del Qatar" },
+      {
+        locale: "en",
+        name: "Qatar",
+        name_long: "State of Qatar",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "قطر",
+        name_long: "دولة قطر",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Catar",
+        name_long: "Estado de Catar",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Qatar",
+        name_long: "État du Qatar",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Catar",
+        name_long: "Estado do Catar",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Катар",
+        name_long: "Государство Катар",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Katar",
+        name_long: "Staat Katar",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Qatar",
+        name_long: "Stato del Qatar",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "SAU",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Saudi Arabia",
-        description: "Kingdom of Saudi Arabia",
+        name_long: "Kingdom of Saudi Arabia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "السعودية",
-        description: "المملكة العربية السعودية",
+        name_long: "المملكة العربية السعودية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Arabia Saudí",
-        description: "Reino de Arabia Saudí",
+        name_long: "Reino de Arabia Saudí",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Arabie saoudite",
-        description: "Royaume d'Arabie saoudite",
+        name_long: "Royaume d'Arabie saoudite",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Arábia Saudita",
-        description: "Reino da Arábia Saudita",
+        name_long: "Reino da Arábia Saudita",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Саудовская Аравия",
-        description: "Королевство Саудовская Аравия",
+        name_long: "Королевство Саудовская Аравия",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Saudi-Arabien",
-        description: "Königreich Saudi-Arabien",
+        name_long: "Königreich Saudi-Arabien",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Arabia Saudita",
-        description: "Regno dell'Arabia Saudita",
+        name_long: "Regno dell'Arabia Saudita",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1013,35 +2276,71 @@ export const asianCountriesData: CountryData[] = [
     code: "SGP",
     continent: "Asia",
     region: "South-Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Singapore", description: "Republic of Singapore" },
-      { locale: "ar", name: "سنغافورة", description: "جمهورية سنغافورة" },
-      { locale: "es", name: "Singapur", description: "República de Singapur" },
+      {
+        locale: "en",
+        name: "Singapore",
+        name_long: "Republic of Singapore",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "سنغافورة",
+        name_long: "جمهورية سنغافورة",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Singapur",
+        name_long: "República de Singapur",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "fr",
         name: "Singapour",
-        description: "République de Singapour",
+        name_long: "République de Singapour",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Singapura",
-        description: "República de Singapura",
+        name_long: "República de Singapura",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Сингапур",
-        description: "Республика Сингапур",
+        name_long: "Республика Сингапур",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Singapur",
-        description: "Republik Singapur",
+        name_long: "Republik Singapur",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Singapore",
-        description: "Repubblica di Singapore",
+        name_long: "Repubblica di Singapore",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1049,39 +2348,72 @@ export const asianCountriesData: CountryData[] = [
     code: "KOR",
     continent: "Asia",
     region: "Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "South Korea", description: "Republic of Korea" },
-      { locale: "ar", name: "كوريا الجنوبية", description: "جمهورية كوريا" },
+      {
+        locale: "en",
+        name: "South Korea",
+        name_long: "Republic of Korea",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "كوريا الجنوبية",
+        name_long: "جمهورية كوريا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Corea del Sur",
-        description: "República de Corea",
+        name_long: "República de Corea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Corée du Sud",
-        description: "République de Corée",
+        name_long: "République de Corée",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Coreia do Sul",
-        description: "República da Coreia",
+        name_long: "República da Coreia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Южная Корея",
-        description: "Республика Корея",
+        name_long: "Республика Корея",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Südkorea",
-        description: "Republik Korea",
+        name_long: "Republik Korea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Corea del Sud",
-        description: "Repubblica di Corea",
+        name_long: "Repubblica di Corea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1089,47 +2421,74 @@ export const asianCountriesData: CountryData[] = [
     code: "LKA",
     continent: "Asia",
     region: "Southern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Sri Lanka",
-        description: "Democratic Socialist Republic of Sri Lanka",
+        name_long: "Democratic Socialist Republic of Sri Lanka",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "سريلانكا",
-        description: "جمهورية سريلانكا الديمقراطية الاشتراكية",
+        name_long: "جمهورية سريلانكا الديمقراطية الاشتراكية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Sri Lanka",
-        description: "República Democrática Socialista de Sri Lanka",
+        name_long: "República Democrática Socialista de Sri Lanka",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Sri Lanka",
-        description: "République démocratique socialiste du Sri Lanka",
+        name_long: "République démocratique socialiste du Sri Lanka",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Sri Lanka",
-        description: "República Democrática Socialista do Sri Lanka",
+        name_long: "República Democrática Socialista do Sri Lanka",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Шри-Ланка",
-        description: "Демократическая Социалистическая Республика Шри-Ланка",
+        name_long: "Демократическая Социалистическая Республика Шри-Ланка",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Sri Lanka",
-        description: "Demokratische Sozialistische Republik Sri Lanka",
+        name_long: "Demokratische Sozialistische Republik Sri Lanka",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Sri Lanka",
-        description: "Repubblica Democratica Socialista dello Sri Lanka",
+        name_long: "Repubblica Democratica Socialista dello Sri Lanka",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1137,67 +2496,142 @@ export const asianCountriesData: CountryData[] = [
     code: "SYR",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Syria", description: "Syrian Arab Republic" },
-      { locale: "ar", name: "سوريا", description: "الجمهورية العربية السورية" },
-      { locale: "es", name: "Siria", description: "República Árabe Siria" },
-      { locale: "fr", name: "Syrie", description: "République arabe syrienne" },
-      { locale: "pt", name: "Síria", description: "República Árabe Síria" },
+      {
+        locale: "en",
+        name: "Syria",
+        name_long: "Syrian Arab Republic",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "سوريا",
+        name_long: "الجمهورية العربية السورية",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Siria",
+        name_long: "República Árabe Siria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Syrie",
+        name_long: "République arabe syrienne",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Síria",
+        name_long: "República Árabe Síria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "ru",
         name: "Сирия",
-        description: "Сирийская Арабская Республика",
+        name_long: "Сирийская Арабская Республика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Syrien",
-        description: "Arabische Republik Syrien",
+        name_long: "Arabische Republik Syrien",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "it", name: "Siria", description: "Repubblica Araba Siriana" },
+      {
+        locale: "it",
+        name: "Siria",
+        name_long: "Repubblica Araba Siriana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "TJK",
     continent: "Asia",
     region: "Central Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Tajikistan",
-        description: "Republic of Tajikistan",
+        name_long: "Republic of Tajikistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "طاجيكستان", description: "جمهورية طاجيكستان" },
+      {
+        locale: "ar",
+        name: "طاجيكستان",
+        name_long: "جمهورية طاجيكستان",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Tayikistán",
-        description: "República de Tayikistán",
+        name_long: "República de Tayikistán",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Tadjikistan",
-        description: "République du Tadjikistan",
+        name_long: "République du Tadjikistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Tajiquistão",
-        description: "República do Tajiquistão",
+        name_long: "República do Tajiquistão",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Таджикистан",
-        description: "Республика Таджикистан",
+        name_long: "Республика Таджикистан",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Tadschikistan",
-        description: "Republik Tadschikistan",
+        name_long: "Republik Tadschikistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Tagikistan",
-        description: "Repubblica del Tagikistan",
+        name_long: "Repubblica del Tagikistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1205,95 +2639,275 @@ export const asianCountriesData: CountryData[] = [
     code: "THA",
     continent: "Asia",
     region: "South-Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Thailand", description: "Kingdom of Thailand" },
-      { locale: "ar", name: "تايلاند", description: "مملكة تايلاند" },
-      { locale: "es", name: "Tailandia", description: "Reino de Tailandia" },
-      { locale: "fr", name: "Thaïlande", description: "Royaume de Thaïlande" },
-      { locale: "pt", name: "Tailândia", description: "Reino da Tailândia" },
-      { locale: "ru", name: "Таиланд", description: "Королевство Таиланд" },
-      { locale: "de", name: "Thailand", description: "Königreich Thailand" },
-      { locale: "it", name: "Tailandia", description: "Regno di Tailandia" },
+      {
+        locale: "en",
+        name: "Thailand",
+        name_long: "Kingdom of Thailand",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "تايلاند",
+        name_long: "مملكة تايلاند",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Tailandia",
+        name_long: "Reino de Tailandia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Thaïlande",
+        name_long: "Royaume de Thaïlande",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Tailândia",
+        name_long: "Reino da Tailândia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Таиланд",
+        name_long: "Королевство Таиланд",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Thailand",
+        name_long: "Königreich Thailand",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Tailandia",
+        name_long: "Regno di Tailandia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "TUR",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Turkey", description: "Republic of Turkey" },
-      { locale: "ar", name: "تركيا", description: "جمهورية تركيا" },
-      { locale: "es", name: "Turquía", description: "República de Turquía" },
-      { locale: "fr", name: "Turquie", description: "République de Turquie" },
-      { locale: "pt", name: "Turquia", description: "República da Turquia" },
-      { locale: "ru", name: "Турция", description: "Республика Турция" },
-      { locale: "de", name: "Türkei", description: "Republik Türkei" },
-      { locale: "it", name: "Turchia", description: "Repubblica di Turchia" },
+      {
+        locale: "en",
+        name: "Turkey",
+        name_long: "Republic of Turkey",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "تركيا",
+        name_long: "جمهورية تركيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Turquía",
+        name_long: "República de Turquía",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Turquie",
+        name_long: "République de Turquie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Turquia",
+        name_long: "República da Turquia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Турция",
+        name_long: "Республика Турция",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Türkei",
+        name_long: "Republik Türkei",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Turchia",
+        name_long: "Repubblica di Turchia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "TKM",
     continent: "Asia",
     region: "Central Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Turkmenistan", description: "Turkmenistan" },
-      { locale: "ar", name: "تركمانستان", description: "تركمانستان" },
-      { locale: "es", name: "Turkmenistán", description: "Turkmenistán" },
-      { locale: "fr", name: "Turkménistan", description: "Turkménistan" },
-      { locale: "pt", name: "Turcomenistão", description: "Turcomenistão" },
-      { locale: "ru", name: "Туркменистан", description: "Туркменистан" },
-      { locale: "de", name: "Turkmenistan", description: "Turkmenistan" },
-      { locale: "it", name: "Turkmenistan", description: "Turkmenistan" },
+      {
+        locale: "en",
+        name: "Turkmenistan",
+        name_long: "Turkmenistan",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "تركمانستان",
+        name_long: "تركمانستان",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Turkmenistán",
+        name_long: "Turkmenistán",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Turkménistan",
+        name_long: "Turkménistan",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Turcomenistão",
+        name_long: "Turcomenistão",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Туркменистан",
+        name_long: "Туркменистан",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Turkmenistan",
+        name_long: "Turkmenistan",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Turkmenistan",
+        name_long: "Turkmenistan",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "ARE",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "United Arab Emirates",
-        description: "United Arab Emirates",
+        name_long: "United Arab Emirates",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "الإمارات العربية المتحدة",
-        description: "دولة الإمارات العربية المتحدة",
+        name_long: "دولة الإمارات العربية المتحدة",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Emiratos Árabes Unidos",
-        description: "Emiratos Árabes Unidos",
+        name_long: "Emiratos Árabes Unidos",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Émirats arabes unis",
-        description: "Émirats arabes unis",
+        name_long: "Émirats arabes unis",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Emirados Árabes Unidos",
-        description: "Emirados Árabes Unidos",
+        name_long: "Emirados Árabes Unidos",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Объединенные Арабские Эмираты",
-        description: "Объединенные Арабские Эмираты",
+        name_long: "Объединенные Арабские Эмираты",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Vereinigte Arabische Emirate",
-        description: "Vereinigte Arabische Emirate",
+        name_long: "Vereinigte Arabische Emirate",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Emirati Arabi Uniti",
-        description: "Emirati Arabi Uniti",
+        name_long: "Emirati Arabi Uniti",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1301,43 +2915,73 @@ export const asianCountriesData: CountryData[] = [
     code: "UZB",
     continent: "Asia",
     region: "Central Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Uzbekistan",
-        description: "Republic of Uzbekistan",
+        name_long: "Republic of Uzbekistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "أوزبكستان", description: "جمهورية أوزبكستان" },
+      {
+        locale: "ar",
+        name: "أوزبكستان",
+        name_long: "جمهورية أوزبكستان",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Uzbekistán",
-        description: "República de Uzbekistán",
+        name_long: "República de Uzbekistán",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Ouzbékistan",
-        description: "République d'Ouzbékistan",
+        name_long: "République d'Ouzbékistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Uzbequistão",
-        description: "República do Uzbequistão",
+        name_long: "República do Uzbequistão",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Узбекистан",
-        description: "Республика Узбекистан",
+        name_long: "Республика Узбекистан",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Usbekistan",
-        description: "Republik Usbekistan",
+        name_long: "Republik Usbekistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Uzbekistan",
-        description: "Repubblica dell'Uzbekistan",
+        name_long: "Repubblica dell'Uzbekistan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1345,47 +2989,74 @@ export const asianCountriesData: CountryData[] = [
     code: "VNM",
     continent: "Asia",
     region: "South-Eastern Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Vietnam",
-        description: "Socialist Republic of Vietnam",
+        name_long: "Socialist Republic of Vietnam",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "فيتنام",
-        description: "جمهورية فيتنام الاشتراكية",
+        name_long: "جمهورية فيتنام الاشتراكية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Vietnam",
-        description: "República Socialista de Vietnam",
+        name_long: "República Socialista de Vietnam",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Vietnam",
-        description: "République socialiste du Vietnam",
+        name_long: "République socialiste du Vietnam",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Vietnã",
-        description: "República Socialista do Vietnã",
+        name_long: "República Socialista do Vietnã",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Вьетнам",
-        description: "Социалистическая Республика Вьетнам",
+        name_long: "Социалистическая Республика Вьетнам",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Vietnam",
-        description: "Sozialistische Republik Vietnam",
+        name_long: "Sozialistische Republik Vietnam",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Vietnam",
-        description: "Repubblica Socialista del Vietnam",
+        name_long: "Repubblica Socialista del Vietnam",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1393,16 +3064,67 @@ export const asianCountriesData: CountryData[] = [
     code: "YEM",
     continent: "Asia",
     region: "Western Asia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Yemen", description: "Republic of Yemen" },
-      { locale: "ar", name: "اليمن", description: "جمهورية اليمن" },
-      { locale: "es", name: "Yemen", description: "República de Yemen" },
-      { locale: "fr", name: "Yémen", description: "République du Yémen" },
-      { locale: "pt", name: "Iêmen", description: "República do Iêmen" },
-      { locale: "ru", name: "Йемен", description: "Республика Йемен" },
-      { locale: "de", name: "Jemen", description: "Republik Jemen" },
-      { locale: "it", name: "Yemen", description: "Repubblica dello Yemen" },
+      {
+        locale: "en",
+        name: "Yemen",
+        name_long: "Republic of Yemen",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "اليمن",
+        name_long: "جمهورية اليمن",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Yemen",
+        name_long: "República de Yemen",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Yémen",
+        name_long: "République du Yémen",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Iêmen",
+        name_long: "República do Iêmen",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Йемен",
+        name_long: "Республика Йемен",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Jemen",
+        name_long: "Republik Jemen",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Yemen",
+        name_long: "Repubblica dello Yemen",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
 ];

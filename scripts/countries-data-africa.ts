@@ -7,11 +7,13 @@ export interface CountryData {
   code: string; // ISO 3166-1 alpha-3
   continent: string;
   region: string;
+  heroImage: string; // Unsplash or other hero image URL
   isActive: boolean;
   translations: {
     locale: string;
     name: string;
-    description: string;
+    name_long: string; // Official/formal country name
+    about: string; // 2-line catchy description
   }[];
 }
 
@@ -21,47 +23,65 @@ export const allCountriesData: CountryData[] = [
     code: "DZA",
     continent: "Africa",
     region: "Northern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1539650116574-75c0c6d73c6e?w=800&h=600&fit=crop",
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Algeria",
-        description: "People's Democratic Republic of Algeria",
+        name_long: "People's Democratic Republic of Algeria",
+        about:
+          "Land of ancient Berber heritage and stunning Saharan landscapes. Where Mediterranean coastline meets endless golden dunes.",
       },
       {
         locale: "ar",
         name: "الجزائر",
-        description: "الجمهورية الجزائرية الديمقراطية الشعبية",
+        name_long: "الجمهورية الجزائرية الديمقراطية الشعبية",
+        about:
+          "أرض التراث الأمازيغي العريق والمناظر الصحراوية الخلابة. حيث يلتقي الساحل المتوسطي بالكثبان الذهبية اللامتناهية.",
       },
       {
         locale: "es",
         name: "Argelia",
-        description: "República Argelina Democrática y Popular",
+        name_long: "República Argelina Democrática y Popular",
+        about:
+          "Tierra de antigua herencia bereber y impresionantes paisajes saharianos. Donde la costa mediterránea se encuentra con dunas doradas infinitas.",
       },
       {
         locale: "fr",
         name: "Algérie",
-        description: "République algérienne démocratique et populaire",
+        name_long: "République algérienne démocratique et populaire",
+        about:
+          "Terre d'héritage berbère ancien et de paysages sahariens époustouflants. Où la côte méditerranéenne rencontre des dunes dorées infinies.",
       },
       {
         locale: "pt",
         name: "Argélia",
-        description: "República Argelina Democrática e Popular",
+        name_long: "República Argelina Democrática e Popular",
+        about:
+          "Terra de antiga herança berbere e paisagens saharianas deslumbrantes. Onde a costa mediterrânea encontra dunas douradas infinitas.",
       },
       {
         locale: "ru",
         name: "Алжир",
-        description: "Алжирская Народно-Демократическая Республика",
+        name_long: "Алжирская Народно-Демократическая Республика",
+        about:
+          "Земля древнего берберского наследия и потрясающих сахарских пейзажей. Где средиземноморское побережье встречается с бесконечными золотыми дюнами.",
       },
       {
         locale: "de",
         name: "Algerien",
-        description: "Demokratische Volksrepublik Algerien",
+        name_long: "Demokratische Volksrepublik Algerien",
+        about:
+          "Land des alten Berber-Erbes und atemberaubender Sahara-Landschaften. Wo die Mittelmeerküste auf endlose goldene Dünen trifft.",
       },
       {
         locale: "it",
         name: "Algeria",
-        description: "Repubblica Algerina Democratica e Popolare",
+        name_long: "Repubblica Algerina Democratica e Popolare",
+        about:
+          "Terra di antica eredità berbera e paesaggi sahariani mozzafiato. Dove la costa mediterranea incontra dune dorate infinite.",
       },
     ],
   },
@@ -69,51 +89,201 @@ export const allCountriesData: CountryData[] = [
     code: "AGO",
     continent: "Africa",
     region: "Middle Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Angola", description: "Republic of Angola" },
-      { locale: "ar", name: "أنغولا", description: "جمهورية أنغولا" },
-      { locale: "es", name: "Angola", description: "República de Angola" },
-      { locale: "fr", name: "Angola", description: "République d'Angola" },
-      { locale: "pt", name: "Angola", description: "República de Angola" },
-      { locale: "ru", name: "Ангола", description: "Республика Ангола" },
-      { locale: "de", name: "Angola", description: "Republik Angola" },
-      { locale: "it", name: "Angola", description: "Repubblica dell'Angola" },
+      {
+        locale: "en",
+        name: "Angola",
+        name_long: "Republic of Angola",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "أنغولا",
+        name_long: "جمهورية أنغولا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Angola",
+        name_long: "República de Angola",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Angola",
+        name_long: "République d'Angola",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Angola",
+        name_long: "República de Angola",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Ангола",
+        name_long: "Республика Ангола",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Angola",
+        name_long: "Republik Angola",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Angola",
+        name_long: "Repubblica dell'Angola",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "BEN",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Benin", description: "Republic of Benin" },
-      { locale: "ar", name: "بنين", description: "جمهورية بنين" },
-      { locale: "es", name: "Benín", description: "República de Benín" },
-      { locale: "fr", name: "Bénin", description: "République du Bénin" },
-      { locale: "pt", name: "Benin", description: "República do Benin" },
-      { locale: "ru", name: "Бенин", description: "Республика Бенин" },
-      { locale: "de", name: "Benin", description: "Republik Benin" },
-      { locale: "it", name: "Benin", description: "Repubblica del Benin" },
+      {
+        locale: "en",
+        name: "Benin",
+        name_long: "Republic of Benin",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بنين",
+        name_long: "جمهورية بنين",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Benín",
+        name_long: "República de Benín",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Bénin",
+        name_long: "République du Bénin",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Benin",
+        name_long: "República do Benin",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Бенин",
+        name_long: "Республика Бенин",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Benin",
+        name_long: "Republik Benin",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Benin",
+        name_long: "Repubblica del Benin",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "BWA",
     continent: "Africa",
     region: "Southern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Botswana", description: "Republic of Botswana" },
-      { locale: "ar", name: "بوتسوانا", description: "جمهورية بوتسوانا" },
-      { locale: "es", name: "Botsuana", description: "República de Botsuana" },
-      { locale: "fr", name: "Botswana", description: "République du Botswana" },
-      { locale: "pt", name: "Botsuana", description: "República do Botsuana" },
-      { locale: "ru", name: "Ботсвана", description: "Республика Ботсвана" },
-      { locale: "de", name: "Botswana", description: "Republik Botswana" },
+      {
+        locale: "en",
+        name: "Botswana",
+        name_long: "Republic of Botswana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بوتسوانا",
+        name_long: "جمهورية بوتسوانا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Botsuana",
+        name_long: "República de Botsuana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Botswana",
+        name_long: "République du Botswana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Botsuana",
+        name_long: "República do Botsuana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Ботсвана",
+        name_long: "Республика Ботсвана",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Botswana",
+        name_long: "Republik Botswana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "it",
         name: "Botswana",
-        description: "Repubblica del Botswana",
+        name_long: "Repubblica del Botswana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -121,87 +291,273 @@ export const allCountriesData: CountryData[] = [
     code: "BFA",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Burkina Faso", description: "Burkina Faso" },
-      { locale: "ar", name: "بوركينا فاسو", description: "بوركينا فاسو" },
-      { locale: "es", name: "Burkina Faso", description: "Burkina Faso" },
-      { locale: "fr", name: "Burkina Faso", description: "Burkina Faso" },
-      { locale: "pt", name: "Burkina Faso", description: "Burkina Faso" },
-      { locale: "ru", name: "Буркина-Фасо", description: "Буркина-Фасо" },
-      { locale: "de", name: "Burkina Faso", description: "Burkina Faso" },
-      { locale: "it", name: "Burkina Faso", description: "Burkina Faso" },
+      {
+        locale: "en",
+        name: "Burkina Faso",
+        name_long: "Burkina Faso",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بوركينا فاسو",
+        name_long: "بوركينا فاسو",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Burkina Faso",
+        name_long: "Burkina Faso",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Burkina Faso",
+        name_long: "Burkina Faso",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Burkina Faso",
+        name_long: "Burkina Faso",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Буркина-Фасо",
+        name_long: "Буркина-Фасо",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Burkina Faso",
+        name_long: "Burkina Faso",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Burkina Faso",
+        name_long: "Burkina Faso",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "BDI",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Burundi", description: "Republic of Burundi" },
-      { locale: "ar", name: "بوروندي", description: "جمهورية بوروندي" },
-      { locale: "es", name: "Burundi", description: "República de Burundi" },
-      { locale: "fr", name: "Burundi", description: "République du Burundi" },
-      { locale: "pt", name: "Burundi", description: "República do Burundi" },
-      { locale: "ru", name: "Бурунди", description: "Республика Бурунди" },
-      { locale: "de", name: "Burundi", description: "Republik Burundi" },
-      { locale: "it", name: "Burundi", description: "Repubblica del Burundi" },
+      {
+        locale: "en",
+        name: "Burundi",
+        name_long: "Republic of Burundi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بوروندي",
+        name_long: "جمهورية بوروندي",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Burundi",
+        name_long: "República de Burundi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Burundi",
+        name_long: "République du Burundi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Burundi",
+        name_long: "República do Burundi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Бурунди",
+        name_long: "Республика Бурунди",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Burundi",
+        name_long: "Republik Burundi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Burundi",
+        name_long: "Repubblica del Burundi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "CMR",
     continent: "Africa",
     region: "Middle Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Cameroon", description: "Republic of Cameroon" },
-      { locale: "ar", name: "الكاميرون", description: "جمهورية الكاميرون" },
-      { locale: "es", name: "Camerún", description: "República de Camerún" },
-      { locale: "fr", name: "Cameroun", description: "République du Cameroun" },
-      { locale: "pt", name: "Camarões", description: "República dos Camarões" },
-      { locale: "ru", name: "Камерун", description: "Республика Камерун" },
-      { locale: "de", name: "Kamerun", description: "Republik Kamerun" },
-      { locale: "it", name: "Camerun", description: "Repubblica del Camerun" },
+      {
+        locale: "en",
+        name: "Cameroon",
+        name_long: "Republic of Cameroon",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "الكاميرون",
+        name_long: "جمهورية الكاميرون",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Camerún",
+        name_long: "República de Camerún",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Cameroun",
+        name_long: "République du Cameroun",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Camarões",
+        name_long: "República dos Camarões",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Камерун",
+        name_long: "Республика Камерун",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Kamerun",
+        name_long: "Republik Kamerun",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Camerun",
+        name_long: "Repubblica del Camerun",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "CPV",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Cape Verde",
-        description: "Republic of Cabo Verde",
+        name_long: "Republic of Cabo Verde",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "الرأس الأخضر",
-        description: "جمهورية الرأس الأخضر",
+        name_long: "جمهورية الرأس الأخضر",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Cabo Verde",
-        description: "República de Cabo Verde",
+        name_long: "República de Cabo Verde",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "fr", name: "Cap-Vert", description: "République du Cap-Vert" },
+      {
+        locale: "fr",
+        name: "Cap-Vert",
+        name_long: "République du Cap-Vert",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "pt",
         name: "Cabo Verde",
-        description: "República de Cabo Verde",
+        name_long: "República de Cabo Verde",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Кабо-Верде",
-        description: "Республика Кабо-Верде",
+        name_long: "Республика Кабо-Верде",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "de", name: "Kap Verde", description: "Republik Kap Verde" },
+      {
+        locale: "de",
+        name: "Kap Verde",
+        name_long: "Republik Kap Verde",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "it",
         name: "Capo Verde",
-        description: "Repubblica di Capo Verde",
+        name_long: "Repubblica di Capo Verde",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -209,47 +565,74 @@ export const allCountriesData: CountryData[] = [
     code: "CAF",
     continent: "Africa",
     region: "Middle Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Central African Republic",
-        description: "Central African Republic",
+        name_long: "Central African Republic",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "جمهورية أفريقيا الوسطى",
-        description: "جمهورية أفريقيا الوسطى",
+        name_long: "جمهورية أفريقيا الوسطى",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "República Centroafricana",
-        description: "República Centroafricana",
+        name_long: "República Centroafricana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "République centrafricaine",
-        description: "République centrafricaine",
+        name_long: "République centrafricaine",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "República Centro-Africana",
-        description: "República Centro-Africana",
+        name_long: "República Centro-Africana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Центральноафриканская Республика",
-        description: "Центральноафриканская Республика",
+        name_long: "Центральноафриканская Республика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Zentralafrikanische Republik",
-        description: "Zentralafrikanische Republik",
+        name_long: "Zentralafrikanische Republik",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Repubblica Centrafricana",
-        description: "Repubblica Centrafricana",
+        name_long: "Repubblica Centrafricana",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -257,95 +640,275 @@ export const allCountriesData: CountryData[] = [
     code: "TCD",
     continent: "Africa",
     region: "Middle Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Chad", description: "Republic of Chad" },
-      { locale: "ar", name: "تشاد", description: "جمهورية تشاد" },
-      { locale: "es", name: "Chad", description: "República del Chad" },
-      { locale: "fr", name: "Tchad", description: "République du Tchad" },
-      { locale: "pt", name: "Chade", description: "República do Chade" },
-      { locale: "ru", name: "Чад", description: "Республика Чад" },
-      { locale: "de", name: "Tschad", description: "Republik Tschad" },
-      { locale: "it", name: "Ciad", description: "Repubblica del Ciad" },
+      {
+        locale: "en",
+        name: "Chad",
+        name_long: "Republic of Chad",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "تشاد",
+        name_long: "جمهورية تشاد",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Chad",
+        name_long: "República del Chad",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Tchad",
+        name_long: "République du Tchad",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Chade",
+        name_long: "República do Chade",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Чад",
+        name_long: "Республика Чад",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Tschad",
+        name_long: "Republik Tschad",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Ciad",
+        name_long: "Repubblica del Ciad",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "COM",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Comoros", description: "Union of the Comoros" },
-      { locale: "ar", name: "جزر القمر", description: "اتحاد جزر القمر" },
-      { locale: "es", name: "Comoras", description: "Unión de las Comoras" },
-      { locale: "fr", name: "Comores", description: "Union des Comores" },
-      { locale: "pt", name: "Comores", description: "União das Comores" },
-      { locale: "ru", name: "Коморы", description: "Союз Коморских Островов" },
-      { locale: "de", name: "Komoren", description: "Union der Komoren" },
-      { locale: "it", name: "Comore", description: "Unione delle Comore" },
+      {
+        locale: "en",
+        name: "Comoros",
+        name_long: "Union of the Comoros",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "جزر القمر",
+        name_long: "اتحاد جزر القمر",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Comoras",
+        name_long: "Unión de las Comoras",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Comores",
+        name_long: "Union des Comores",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Comores",
+        name_long: "União das Comores",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Коморы",
+        name_long: "Союз Коморских Островов",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Komoren",
+        name_long: "Union der Komoren",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Comore",
+        name_long: "Unione delle Comore",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "COG",
     continent: "Africa",
     region: "Middle Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Congo", description: "Republic of the Congo" },
-      { locale: "ar", name: "الكونغو", description: "جمهورية الكونغو" },
-      { locale: "es", name: "Congo", description: "República del Congo" },
-      { locale: "fr", name: "Congo", description: "République du Congo" },
-      { locale: "pt", name: "Congo", description: "República do Congo" },
-      { locale: "ru", name: "Конго", description: "Республика Конго" },
-      { locale: "de", name: "Kongo", description: "Republik Kongo" },
-      { locale: "it", name: "Congo", description: "Repubblica del Congo" },
+      {
+        locale: "en",
+        name: "Congo",
+        name_long: "Republic of the Congo",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "الكونغو",
+        name_long: "جمهورية الكونغو",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Congo",
+        name_long: "República del Congo",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Congo",
+        name_long: "République du Congo",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Congo",
+        name_long: "República do Congo",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Конго",
+        name_long: "Республика Конго",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Kongo",
+        name_long: "Republik Kongo",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Congo",
+        name_long: "Repubblica del Congo",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "COD",
     continent: "Africa",
     region: "Middle Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Democratic Republic of the Congo",
-        description: "Democratic Republic of the Congo",
+        name_long: "Democratic Republic of the Congo",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "جمهورية الكونغو الديمقراطية",
-        description: "جمهورية الكونغو الديمقراطية",
+        name_long: "جمهورية الكونغو الديمقراطية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "República Democrática del Congo",
-        description: "República Democrática del Congo",
+        name_long: "República Democrática del Congo",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "République démocratique du Congo",
-        description: "République démocratique du Congo",
+        name_long: "République démocratique du Congo",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "República Democrática do Congo",
-        description: "República Democrática do Congo",
+        name_long: "República Democrática do Congo",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Демократическая Республика Конго",
-        description: "Демократическая Республика Конго",
+        name_long: "Демократическая Республика Конго",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Demokratische Republik Kongo",
-        description: "Demokratische Republik Kongo",
+        name_long: "Demokratische Republik Kongo",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Repubblica Democratica del Congo",
-        description: "Repubblica Democratica del Congo",
+        name_long: "Repubblica Democratica del Congo",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -353,43 +916,73 @@ export const allCountriesData: CountryData[] = [
     code: "CIV",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Côte d'Ivoire",
-        description: "Republic of Côte d'Ivoire",
+        name_long: "Republic of Côte d'Ivoire",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "ساحل العاج", description: "جمهورية ساحل العاج" },
+      {
+        locale: "ar",
+        name: "ساحل العاج",
+        name_long: "جمهورية ساحل العاج",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Costa de Marfil",
-        description: "República de Côte d'Ivoire",
+        name_long: "República de Côte d'Ivoire",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Côte d'Ivoire",
-        description: "République de Côte d'Ivoire",
+        name_long: "République de Côte d'Ivoire",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Costa do Marfim",
-        description: "República da Costa do Marfim",
+        name_long: "República da Costa do Marfim",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Кот-д'Ивуар",
-        description: "Республика Кот-д'Ивуар",
+        name_long: "Республика Кот-д'Ивуар",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Elfenbeinküste",
-        description: "Republik Côte d'Ivoire",
+        name_long: "Republik Côte d'Ivoire",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Costa d'Avorio",
-        description: "Repubblica della Costa d'Avorio",
+        name_long: "Repubblica della Costa d'Avorio",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -397,55 +990,139 @@ export const allCountriesData: CountryData[] = [
     code: "DJI",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Djibouti", description: "Republic of Djibouti" },
-      { locale: "ar", name: "جيبوتي", description: "جمهورية جيبوتي" },
-      { locale: "es", name: "Yibuti", description: "República de Yibuti" },
-      { locale: "fr", name: "Djibouti", description: "République de Djibouti" },
-      { locale: "pt", name: "Djibuti", description: "República do Djibuti" },
-      { locale: "ru", name: "Джибути", description: "Республика Джибути" },
-      { locale: "de", name: "Dschibuti", description: "Republik Dschibuti" },
-      { locale: "it", name: "Gibuti", description: "Repubblica di Gibuti" },
+      {
+        locale: "en",
+        name: "Djibouti",
+        name_long: "Republic of Djibouti",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "جيبوتي",
+        name_long: "جمهورية جيبوتي",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Yibuti",
+        name_long: "República de Yibuti",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Djibouti",
+        name_long: "République de Djibouti",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Djibuti",
+        name_long: "República do Djibuti",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Джибути",
+        name_long: "Республика Джибути",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Dschibuti",
+        name_long: "Republik Dschibuti",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Gibuti",
+        name_long: "Repubblica di Gibuti",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "EGY",
     continent: "Africa",
     region: "Northern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Egypt", description: "Arab Republic of Egypt" },
-      { locale: "ar", name: "مصر", description: "جمهورية مصر العربية" },
+      {
+        locale: "en",
+        name: "Egypt",
+        name_long: "Arab Republic of Egypt",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "مصر",
+        name_long: "جمهورية مصر العربية",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Egipto",
-        description: "República Árabe de Egipto",
+        name_long: "República Árabe de Egipto",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Égypte",
-        description: "République arabe d'Égypte",
+        name_long: "République arabe d'Égypte",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Egito",
-        description: "República Árabe do Egito",
+        name_long: "República Árabe do Egito",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Египет",
-        description: "Арабская Республика Египет",
+        name_long: "Арабская Республика Египет",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Ägypten",
-        description: "Arabische Republik Ägypten",
+        name_long: "Arabische Republik Ägypten",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Egitto",
-        description: "Repubblica Araba d'Egitto",
+        name_long: "Repubblica Araba d'Egitto",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -453,47 +1130,74 @@ export const allCountriesData: CountryData[] = [
     code: "GNQ",
     continent: "Africa",
     region: "Middle Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Equatorial Guinea",
-        description: "Republic of Equatorial Guinea",
+        name_long: "Republic of Equatorial Guinea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "غينيا الاستوائية",
-        description: "جمهورية غينيا الاستوائية",
+        name_long: "جمهورية غينيا الاستوائية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Guinea Ecuatorial",
-        description: "República de Guinea Ecuatorial",
+        name_long: "República de Guinea Ecuatorial",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Guinée équatoriale",
-        description: "République de Guinée équatoriale",
+        name_long: "République de Guinée équatoriale",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Guiné Equatorial",
-        description: "República da Guiné Equatorial",
+        name_long: "República da Guiné Equatorial",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Экваториальная Гвинея",
-        description: "Республика Экваториальная Гвинея",
+        name_long: "Республика Экваториальная Гвинея",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Äquatorialguinea",
-        description: "Republik Äquatorialguinea",
+        name_long: "Republik Äquatorialguinea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Guinea Equatoriale",
-        description: "Repubblica della Guinea Equatoriale",
+        name_long: "Repubblica della Guinea Equatoriale",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -501,79 +1205,208 @@ export const allCountriesData: CountryData[] = [
     code: "ERI",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Eritrea", description: "State of Eritrea" },
-      { locale: "ar", name: "إريتريا", description: "دولة إريتريا" },
-      { locale: "es", name: "Eritrea", description: "Estado de Eritrea" },
-      { locale: "fr", name: "Érythrée", description: "État d'Érythrée" },
-      { locale: "pt", name: "Eritreia", description: "Estado da Eritreia" },
-      { locale: "ru", name: "Эритрея", description: "Государство Эритрея" },
-      { locale: "de", name: "Eritrea", description: "Staat Eritrea" },
-      { locale: "it", name: "Eritrea", description: "Stato dell'Eritrea" },
+      {
+        locale: "en",
+        name: "Eritrea",
+        name_long: "State of Eritrea",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "إريتريا",
+        name_long: "دولة إريتريا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Eritrea",
+        name_long: "Estado de Eritrea",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Érythrée",
+        name_long: "État d'Érythrée",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Eritreia",
+        name_long: "Estado da Eritreia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Эритрея",
+        name_long: "Государство Эритрея",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Eritrea",
+        name_long: "Staat Eritrea",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Eritrea",
+        name_long: "Stato dell'Eritrea",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "SWZ",
     continent: "Africa",
     region: "Southern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Eswatini", description: "Kingdom of Eswatini" },
-      { locale: "ar", name: "إسواتيني", description: "مملكة إسواتيني" },
-      { locale: "es", name: "Esuatini", description: "Reino de Esuatini" },
-      { locale: "fr", name: "Eswatini", description: "Royaume d'Eswatini" },
-      { locale: "pt", name: "Eswatini", description: "Reino de Eswatini" },
-      { locale: "ru", name: "Эсватини", description: "Королевство Эсватини" },
-      { locale: "de", name: "Eswatini", description: "Königreich Eswatini" },
-      { locale: "it", name: "Eswatini", description: "Regno di Eswatini" },
+      {
+        locale: "en",
+        name: "Eswatini",
+        name_long: "Kingdom of Eswatini",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "إسواتيني",
+        name_long: "مملكة إسواتيني",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Esuatini",
+        name_long: "Reino de Esuatini",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Eswatini",
+        name_long: "Royaume d'Eswatini",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Eswatini",
+        name_long: "Reino de Eswatini",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Эсватини",
+        name_long: "Королевство Эсватини",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Eswatini",
+        name_long: "Königreich Eswatini",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Eswatini",
+        name_long: "Regno di Eswatini",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "ETH",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Ethiopia",
-        description: "Federal Democratic Republic of Ethiopia",
+        name_long: "Federal Democratic Republic of Ethiopia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "إثيوبيا",
-        description: "جمهورية إثيوبيا الفيدرالية الديمقراطية",
+        name_long: "جمهورية إثيوبيا الفيدرالية الديمقراطية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Etiopía",
-        description: "República Democrática Federal de Etiopía",
+        name_long: "República Democrática Federal de Etiopía",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Éthiopie",
-        description: "République fédérale démocratique d'Éthiopie",
+        name_long: "République fédérale démocratique d'Éthiopie",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Etiópia",
-        description: "República Democrática Federal da Etiópia",
+        name_long: "República Democrática Federal da Etiópia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Эфиопия",
-        description: "Федеративная Демократическая Республика Эфиопия",
+        name_long: "Федеративная Демократическая Республика Эфиопия",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Äthiopien",
-        description: "Demokratische Bundesrepublik Äthiopien",
+        name_long: "Demokratische Bundesrepublik Äthiopien",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Etiopia",
-        description: "Repubblica Federale Democratica d'Etiopia",
+        name_long: "Repubblica Federale Democratica d'Etiopia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -581,107 +1414,341 @@ export const allCountriesData: CountryData[] = [
     code: "GAB",
     continent: "Africa",
     region: "Middle Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Gabon", description: "Gabonese Republic" },
-      { locale: "ar", name: "الغابون", description: "جمهورية الغابون" },
-      { locale: "es", name: "Gabón", description: "República Gabonesa" },
-      { locale: "fr", name: "Gabon", description: "République gabonaise" },
-      { locale: "pt", name: "Gabão", description: "República Gabonesa" },
-      { locale: "ru", name: "Габон", description: "Габонская Республика" },
-      { locale: "de", name: "Gabun", description: "Gabunische Republik" },
-      { locale: "it", name: "Gabon", description: "Repubblica Gabonese" },
+      {
+        locale: "en",
+        name: "Gabon",
+        name_long: "Gabonese Republic",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "الغابون",
+        name_long: "جمهورية الغابون",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Gabón",
+        name_long: "República Gabonesa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Gabon",
+        name_long: "République gabonaise",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Gabão",
+        name_long: "República Gabonesa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Габон",
+        name_long: "Габонская Республика",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Gabun",
+        name_long: "Gabunische Republik",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Gabon",
+        name_long: "Repubblica Gabonese",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "GMB",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Gambia", description: "Republic of the Gambia" },
-      { locale: "ar", name: "غامبيا", description: "جمهورية غامبيا" },
-      { locale: "es", name: "Gambia", description: "República de Gambia" },
-      { locale: "fr", name: "Gambie", description: "République de Gambie" },
-      { locale: "pt", name: "Gâmbia", description: "República da Gâmbia" },
-      { locale: "ru", name: "Гамбия", description: "Республика Гамбия" },
-      { locale: "de", name: "Gambia", description: "Republik Gambia" },
-      { locale: "it", name: "Gambia", description: "Repubblica del Gambia" },
+      {
+        locale: "en",
+        name: "Gambia",
+        name_long: "Republic of the Gambia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "غامبيا",
+        name_long: "جمهورية غامبيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Gambia",
+        name_long: "República de Gambia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Gambie",
+        name_long: "République de Gambie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Gâmbia",
+        name_long: "República da Gâmbia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Гамбия",
+        name_long: "Республика Гамбия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Gambia",
+        name_long: "Republik Gambia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Gambia",
+        name_long: "Repubblica del Gambia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "GHA",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Ghana", description: "Republic of Ghana" },
-      { locale: "ar", name: "غانا", description: "جمهورية غانا" },
-      { locale: "es", name: "Ghana", description: "República de Ghana" },
-      { locale: "fr", name: "Ghana", description: "République du Ghana" },
-      { locale: "pt", name: "Gana", description: "República do Gana" },
-      { locale: "ru", name: "Гана", description: "Республика Гана" },
-      { locale: "de", name: "Ghana", description: "Republik Ghana" },
-      { locale: "it", name: "Ghana", description: "Repubblica del Ghana" },
+      {
+        locale: "en",
+        name: "Ghana",
+        name_long: "Republic of Ghana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "غانا",
+        name_long: "جمهورية غانا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Ghana",
+        name_long: "República de Ghana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Ghana",
+        name_long: "République du Ghana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Gana",
+        name_long: "República do Gana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Гана",
+        name_long: "Республика Гана",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Ghana",
+        name_long: "Republik Ghana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Ghana",
+        name_long: "Repubblica del Ghana",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "GIN",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Guinea", description: "Republic of Guinea" },
-      { locale: "ar", name: "غينيا", description: "جمهورية غينيا" },
-      { locale: "es", name: "Guinea", description: "República de Guinea" },
-      { locale: "fr", name: "Guinée", description: "République de Guinée" },
-      { locale: "pt", name: "Guiné", description: "República da Guiné" },
-      { locale: "ru", name: "Гвинея", description: "Республика Гвинея" },
-      { locale: "de", name: "Guinea", description: "Republik Guinea" },
-      { locale: "it", name: "Guinea", description: "Repubblica di Guinea" },
+      {
+        locale: "en",
+        name: "Guinea",
+        name_long: "Republic of Guinea",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "غينيا",
+        name_long: "جمهورية غينيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Guinea",
+        name_long: "República de Guinea",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Guinée",
+        name_long: "République de Guinée",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Guiné",
+        name_long: "República da Guiné",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Гвинея",
+        name_long: "Республика Гвинея",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Guinea",
+        name_long: "Republik Guinea",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Guinea",
+        name_long: "Repubblica di Guinea",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "GNB",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Guinea-Bissau",
-        description: "Republic of Guinea-Bissau",
+        name_long: "Republic of Guinea-Bissau",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "غينيا بيساو", description: "جمهورية غينيا بيساو" },
+      {
+        locale: "ar",
+        name: "غينيا بيساو",
+        name_long: "جمهورية غينيا بيساو",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Guinea-Bisáu",
-        description: "República de Guinea-Bisáu",
+        name_long: "República de Guinea-Bisáu",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Guinée-Bissau",
-        description: "République de Guinée-Bissau",
+        name_long: "République de Guinée-Bissau",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Guiné-Bissau",
-        description: "República da Guiné-Bissau",
+        name_long: "República da Guiné-Bissau",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Гвинея-Бисау",
-        description: "Республика Гвинея-Бисау",
+        name_long: "Республика Гвинея-Бисау",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Guinea-Bissau",
-        description: "Republik Guinea-Bissau",
+        name_long: "Republik Guinea-Bissau",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Guinea-Bissau",
-        description: "Repubblica della Guinea-Bissau",
+        name_long: "Repubblica della Guinea-Bissau",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -689,107 +1756,341 @@ export const allCountriesData: CountryData[] = [
     code: "KEN",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Kenya", description: "Republic of Kenya" },
-      { locale: "ar", name: "كينيا", description: "جمهورية كينيا" },
-      { locale: "es", name: "Kenia", description: "República de Kenia" },
-      { locale: "fr", name: "Kenya", description: "République du Kenya" },
-      { locale: "pt", name: "Quênia", description: "República do Quênia" },
-      { locale: "ru", name: "Кения", description: "Республика Кения" },
-      { locale: "de", name: "Kenia", description: "Republik Kenia" },
-      { locale: "it", name: "Kenya", description: "Repubblica del Kenya" },
+      {
+        locale: "en",
+        name: "Kenya",
+        name_long: "Republic of Kenya",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "كينيا",
+        name_long: "جمهورية كينيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Kenia",
+        name_long: "República de Kenia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Kenya",
+        name_long: "République du Kenya",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Quênia",
+        name_long: "República do Quênia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Кения",
+        name_long: "Республика Кения",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Kenia",
+        name_long: "Republik Kenia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Kenya",
+        name_long: "Repubblica del Kenya",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "LSO",
     continent: "Africa",
     region: "Southern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Lesotho", description: "Kingdom of Lesotho" },
-      { locale: "ar", name: "ليسوتو", description: "مملكة ليسوتو" },
-      { locale: "es", name: "Lesoto", description: "Reino de Lesoto" },
-      { locale: "fr", name: "Lesotho", description: "Royaume du Lesotho" },
-      { locale: "pt", name: "Lesoto", description: "Reino do Lesoto" },
-      { locale: "ru", name: "Лесото", description: "Королевство Лесото" },
-      { locale: "de", name: "Lesotho", description: "Königreich Lesotho" },
-      { locale: "it", name: "Lesotho", description: "Regno del Lesotho" },
+      {
+        locale: "en",
+        name: "Lesotho",
+        name_long: "Kingdom of Lesotho",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "ليسوتو",
+        name_long: "مملكة ليسوتو",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Lesoto",
+        name_long: "Reino de Lesoto",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Lesotho",
+        name_long: "Royaume du Lesotho",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Lesoto",
+        name_long: "Reino do Lesoto",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Лесото",
+        name_long: "Королевство Лесото",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Lesotho",
+        name_long: "Königreich Lesotho",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Lesotho",
+        name_long: "Regno del Lesotho",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "LBR",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Liberia", description: "Republic of Liberia" },
-      { locale: "ar", name: "ليبيريا", description: "جمهورية ليبيريا" },
-      { locale: "es", name: "Liberia", description: "República de Liberia" },
-      { locale: "fr", name: "Libéria", description: "République du Libéria" },
-      { locale: "pt", name: "Libéria", description: "República da Libéria" },
-      { locale: "ru", name: "Либерия", description: "Республика Либерия" },
-      { locale: "de", name: "Liberia", description: "Republik Liberia" },
-      { locale: "it", name: "Liberia", description: "Repubblica di Liberia" },
+      {
+        locale: "en",
+        name: "Liberia",
+        name_long: "Republic of Liberia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "ليبيريا",
+        name_long: "جمهورية ليبيريا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Liberia",
+        name_long: "República de Liberia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Libéria",
+        name_long: "République du Libéria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Libéria",
+        name_long: "República da Libéria",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Либерия",
+        name_long: "Республика Либерия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Liberia",
+        name_long: "Republik Liberia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Liberia",
+        name_long: "Repubblica di Liberia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "LBY",
     continent: "Africa",
     region: "Northern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Libya", description: "State of Libya" },
-      { locale: "ar", name: "ليبيا", description: "دولة ليبيا" },
-      { locale: "es", name: "Libia", description: "Estado de Libia" },
-      { locale: "fr", name: "Libye", description: "État de Libye" },
-      { locale: "pt", name: "Líbia", description: "Estado da Líbia" },
-      { locale: "ru", name: "Ливия", description: "Государство Ливия" },
-      { locale: "de", name: "Libyen", description: "Staat Libyen" },
-      { locale: "it", name: "Libia", description: "Stato di Libia" },
+      {
+        locale: "en",
+        name: "Libya",
+        name_long: "State of Libya",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "ليبيا",
+        name_long: "دولة ليبيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Libia",
+        name_long: "Estado de Libia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Libye",
+        name_long: "État de Libye",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Líbia",
+        name_long: "Estado da Líbia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Ливия",
+        name_long: "Государство Ливия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Libyen",
+        name_long: "Staat Libyen",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Libia",
+        name_long: "Stato di Libia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "MDG",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Madagascar",
-        description: "Republic of Madagascar",
+        name_long: "Republic of Madagascar",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "مدغشقر", description: "جمهورية مدغشقر" },
+      {
+        locale: "ar",
+        name: "مدغشقر",
+        name_long: "جمهورية مدغشقر",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Madagascar",
-        description: "República de Madagascar",
+        name_long: "República de Madagascar",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Madagascar",
-        description: "République de Madagascar",
+        name_long: "République de Madagascar",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Madagascar",
-        description: "República de Madagascar",
+        name_long: "República de Madagascar",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Мадагаскар",
-        description: "Республика Мадагаскар",
+        name_long: "Республика Мадагаскар",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Madagaskar",
-        description: "Republik Madagaskar",
+        name_long: "Republik Madagaskar",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Madagascar",
-        description: "Repubblica del Madagascar",
+        name_long: "Repubblica del Madagascar",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -797,79 +2098,208 @@ export const allCountriesData: CountryData[] = [
     code: "MWI",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Malawi", description: "Republic of Malawi" },
-      { locale: "ar", name: "مالاوي", description: "جمهورية مالاوي" },
-      { locale: "es", name: "Malaui", description: "República de Malaui" },
-      { locale: "fr", name: "Malawi", description: "République du Malawi" },
-      { locale: "pt", name: "Malawi", description: "República do Malawi" },
-      { locale: "ru", name: "Малави", description: "Республика Малави" },
-      { locale: "de", name: "Malawi", description: "Republik Malawi" },
-      { locale: "it", name: "Malawi", description: "Repubblica del Malawi" },
+      {
+        locale: "en",
+        name: "Malawi",
+        name_long: "Republic of Malawi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "مالاوي",
+        name_long: "جمهورية مالاوي",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Malaui",
+        name_long: "República de Malaui",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Malawi",
+        name_long: "République du Malawi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Malawi",
+        name_long: "República do Malawi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Малави",
+        name_long: "Республика Малави",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Malawi",
+        name_long: "Republik Malawi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Malawi",
+        name_long: "Repubblica del Malawi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "MLI",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Mali", description: "Republic of Mali" },
-      { locale: "ar", name: "مالي", description: "جمهورية مالي" },
-      { locale: "es", name: "Malí", description: "República de Malí" },
-      { locale: "fr", name: "Mali", description: "République du Mali" },
-      { locale: "pt", name: "Mali", description: "República do Mali" },
-      { locale: "ru", name: "Мали", description: "Республика Мали" },
-      { locale: "de", name: "Mali", description: "Republik Mali" },
-      { locale: "it", name: "Mali", description: "Repubblica del Mali" },
+      {
+        locale: "en",
+        name: "Mali",
+        name_long: "Republic of Mali",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "مالي",
+        name_long: "جمهورية مالي",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Malí",
+        name_long: "República de Malí",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Mali",
+        name_long: "République du Mali",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Mali",
+        name_long: "República do Mali",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Мали",
+        name_long: "Республика Мали",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Mali",
+        name_long: "Republik Mali",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Mali",
+        name_long: "Repubblica del Mali",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "MRT",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Mauritania",
-        description: "Islamic Republic of Mauritania",
+        name_long: "Islamic Republic of Mauritania",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "موريتانيا",
-        description: "الجمهورية الإسلامية الموريتانية",
+        name_long: "الجمهورية الإسلامية الموريتانية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Mauritania",
-        description: "República Islámica de Mauritania",
+        name_long: "República Islámica de Mauritania",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Mauritanie",
-        description: "République islamique de Mauritanie",
+        name_long: "République islamique de Mauritanie",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Mauritânia",
-        description: "República Islâmica da Mauritânia",
+        name_long: "República Islâmica da Mauritânia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Мавритания",
-        description: "Исламская Республика Мавритания",
+        name_long: "Исламская Республика Мавритания",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Mauretanien",
-        description: "Islamische Republik Mauretanien",
+        name_long: "Islamische Republik Mauretanien",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Mauritania",
-        description: "Repubblica Islamica di Mauritania",
+        name_long: "Repubblica Islamica di Mauritania",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -877,19 +2307,67 @@ export const allCountriesData: CountryData[] = [
     code: "MUS",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Mauritius", description: "Republic of Mauritius" },
-      { locale: "ar", name: "موريشيوس", description: "جمهورية موريشيوس" },
-      { locale: "es", name: "Mauricio", description: "República de Mauricio" },
-      { locale: "fr", name: "Maurice", description: "République de Maurice" },
-      { locale: "pt", name: "Maurícia", description: "República de Maurícia" },
-      { locale: "ru", name: "Маврикий", description: "Республика Маврикий" },
-      { locale: "de", name: "Mauritius", description: "Republik Mauritius" },
+      {
+        locale: "en",
+        name: "Mauritius",
+        name_long: "Republic of Mauritius",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "موريشيوس",
+        name_long: "جمهورية موريشيوس",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Mauricio",
+        name_long: "República de Mauricio",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Maurice",
+        name_long: "République de Maurice",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Maurícia",
+        name_long: "República de Maurícia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Маврикий",
+        name_long: "Республика Маврикий",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Mauritius",
+        name_long: "Republik Mauritius",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "it",
         name: "Mauritius",
-        description: "Repubblica di Mauritius",
+        name_long: "Repubblica di Mauritius",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -897,59 +2375,140 @@ export const allCountriesData: CountryData[] = [
     code: "MAR",
     continent: "Africa",
     region: "Northern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Morocco", description: "Kingdom of Morocco" },
-      { locale: "ar", name: "المغرب", description: "المملكة المغربية" },
-      { locale: "es", name: "Marruecos", description: "Reino de Marruecos" },
-      { locale: "fr", name: "Maroc", description: "Royaume du Maroc" },
-      { locale: "pt", name: "Marrocos", description: "Reino de Marrocos" },
-      { locale: "ru", name: "Марокко", description: "Королевство Марокко" },
-      { locale: "de", name: "Marokko", description: "Königreich Marokko" },
-      { locale: "it", name: "Marocco", description: "Regno del Marocco" },
+      {
+        locale: "en",
+        name: "Morocco",
+        name_long: "Kingdom of Morocco",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "المغرب",
+        name_long: "المملكة المغربية",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Marruecos",
+        name_long: "Reino de Marruecos",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Maroc",
+        name_long: "Royaume du Maroc",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Marrocos",
+        name_long: "Reino de Marrocos",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Марокко",
+        name_long: "Королевство Марокко",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Marokko",
+        name_long: "Königreich Marokko",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Marocco",
+        name_long: "Regno del Marocco",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "MOZ",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Mozambique",
-        description: "Republic of Mozambique",
+        name_long: "Republic of Mozambique",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "موزمبيق", description: "جمهورية موزمبيق" },
+      {
+        locale: "ar",
+        name: "موزمبيق",
+        name_long: "جمهورية موزمبيق",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Mozambique",
-        description: "República de Mozambique",
+        name_long: "República de Mozambique",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Mozambique",
-        description: "République du Mozambique",
+        name_long: "République du Mozambique",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Moçambique",
-        description: "República de Moçambique",
+        name_long: "República de Moçambique",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Мозамбик",
-        description: "Республика Мозамбик",
+        name_long: "Республика Мозамбик",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Mosambik",
-        description: "Republik Mosambik",
+        name_long: "Republik Mosambik",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Mozambico",
-        description: "Repubblica del Mozambico",
+        name_long: "Repubblica del Mozambico",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -957,19 +2516,67 @@ export const allCountriesData: CountryData[] = [
     code: "NAM",
     continent: "Africa",
     region: "Southern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Namibia", description: "Republic of Namibia" },
-      { locale: "ar", name: "ناميبيا", description: "جمهورية ناميبيا" },
-      { locale: "es", name: "Namibia", description: "República de Namibia" },
-      { locale: "fr", name: "Namibie", description: "République de Namibie" },
-      { locale: "pt", name: "Namíbia", description: "República da Namíbia" },
-      { locale: "ru", name: "Намибия", description: "Республика Намибия" },
-      { locale: "de", name: "Namibia", description: "Republik Namibia" },
+      {
+        locale: "en",
+        name: "Namibia",
+        name_long: "Republic of Namibia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "ناميبيا",
+        name_long: "جمهورية ناميبيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Namibia",
+        name_long: "República de Namibia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Namibie",
+        name_long: "République de Namibie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Namíbia",
+        name_long: "República da Namíbia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Намибия",
+        name_long: "Республика Намибия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Namibia",
+        name_long: "Republik Namibia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "it",
         name: "Namibia",
-        description: "Repubblica della Namibia",
+        name_long: "Repubblica della Namibia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -977,63 +2584,141 @@ export const allCountriesData: CountryData[] = [
     code: "NER",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Niger", description: "Republic of the Niger" },
-      { locale: "ar", name: "النيجر", description: "جمهورية النيجر" },
-      { locale: "es", name: "Níger", description: "República del Níger" },
-      { locale: "fr", name: "Niger", description: "République du Niger" },
-      { locale: "pt", name: "Níger", description: "República do Níger" },
-      { locale: "ru", name: "Нигер", description: "Республика Нигер" },
-      { locale: "de", name: "Niger", description: "Republik Niger" },
-      { locale: "it", name: "Niger", description: "Repubblica del Niger" },
+      {
+        locale: "en",
+        name: "Niger",
+        name_long: "Republic of the Niger",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "النيجر",
+        name_long: "جمهورية النيجر",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Níger",
+        name_long: "República del Níger",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Niger",
+        name_long: "République du Niger",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Níger",
+        name_long: "República do Níger",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Нигер",
+        name_long: "Республика Нигер",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Niger",
+        name_long: "Republik Niger",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Niger",
+        name_long: "Repubblica del Niger",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "NGA",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Nigeria",
-        description: "Federal Republic of Nigeria",
+        name_long: "Federal Republic of Nigeria",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "نيجيريا",
-        description: "جمهورية نيجيريا الاتحادية",
+        name_long: "جمهورية نيجيريا الاتحادية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Nigeria",
-        description: "República Federal de Nigeria",
+        name_long: "República Federal de Nigeria",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Nigéria",
-        description: "République fédérale du Nigéria",
+        name_long: "République fédérale du Nigéria",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Nigéria",
-        description: "República Federal da Nigéria",
+        name_long: "República Federal da Nigéria",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Нигерия",
-        description: "Федеративная Республика Нигерия",
+        name_long: "Федеративная Республика Нигерия",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Nigeria",
-        description: "Bundesrepublik Nigeria",
+        name_long: "Bundesrepublik Nigeria",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Nigeria",
-        description: "Repubblica Federale di Nigeria",
+        name_long: "Repubblica Federale di Nigeria",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1041,63 +2726,141 @@ export const allCountriesData: CountryData[] = [
     code: "RWA",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Rwanda", description: "Republic of Rwanda" },
-      { locale: "ar", name: "رواندا", description: "جمهورية رواندا" },
-      { locale: "es", name: "Ruanda", description: "República de Ruanda" },
-      { locale: "fr", name: "Rwanda", description: "République du Rwanda" },
-      { locale: "pt", name: "Ruanda", description: "República do Ruanda" },
-      { locale: "ru", name: "Руанда", description: "Республика Руанда" },
-      { locale: "de", name: "Ruanda", description: "Republik Ruanda" },
-      { locale: "it", name: "Ruanda", description: "Repubblica del Ruanda" },
+      {
+        locale: "en",
+        name: "Rwanda",
+        name_long: "Republic of Rwanda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "رواندا",
+        name_long: "جمهورية رواندا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Ruanda",
+        name_long: "República de Ruanda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Rwanda",
+        name_long: "République du Rwanda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Ruanda",
+        name_long: "República do Ruanda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Руанда",
+        name_long: "Республика Руанда",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Ruanda",
+        name_long: "Republik Ruanda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Ruanda",
+        name_long: "Repubblica del Ruanda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "STP",
     continent: "Africa",
     region: "Middle Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "São Tomé and Príncipe",
-        description: "Democratic Republic of São Tomé and Príncipe",
+        name_long: "Democratic Republic of São Tomé and Príncipe",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "ساو تومي وبرينسيبي",
-        description: "جمهورية ساو تومي وبرينسيبي الديمقراطية",
+        name_long: "جمهورية ساو تومي وبرينسيبي الديمقراطية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Santo Tomé y Príncipe",
-        description: "República Democrática de Santo Tomé y Príncipe",
+        name_long: "República Democrática de Santo Tomé y Príncipe",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Sao Tomé-et-Principe",
-        description: "République démocratique de Sao Tomé-et-Principe",
+        name_long: "République démocratique de Sao Tomé-et-Principe",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "São Tomé e Príncipe",
-        description: "República Democrática de São Tomé e Príncipe",
+        name_long: "República Democrática de São Tomé e Príncipe",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Сан-Томе и Принсипи",
-        description: "Демократическая Республика Сан-Томе и Принсипи",
+        name_long: "Демократическая Республика Сан-Томе и Принсипи",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "São Tomé und Príncipe",
-        description: "Demokratische Republik São Tomé und Príncipe",
+        name_long: "Demokratische Republik São Tomé und Príncipe",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "São Tomé e Príncipe",
-        description: "Repubblica Democratica di São Tomé e Príncipe",
+        name_long: "Repubblica Democratica di São Tomé e Príncipe",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1105,59 +2868,140 @@ export const allCountriesData: CountryData[] = [
     code: "SEN",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Senegal", description: "Republic of Senegal" },
-      { locale: "ar", name: "السنغال", description: "جمهورية السنغال" },
-      { locale: "es", name: "Senegal", description: "República de Senegal" },
-      { locale: "fr", name: "Sénégal", description: "République du Sénégal" },
-      { locale: "pt", name: "Senegal", description: "República do Senegal" },
-      { locale: "ru", name: "Сенегал", description: "Республика Сенегал" },
-      { locale: "de", name: "Senegal", description: "Republik Senegal" },
-      { locale: "it", name: "Senegal", description: "Repubblica del Senegal" },
+      {
+        locale: "en",
+        name: "Senegal",
+        name_long: "Republic of Senegal",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "السنغال",
+        name_long: "جمهورية السنغال",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Senegal",
+        name_long: "República de Senegal",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Sénégal",
+        name_long: "République du Sénégal",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Senegal",
+        name_long: "República do Senegal",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Сенегал",
+        name_long: "Республика Сенегал",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Senegal",
+        name_long: "Republik Senegal",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Senegal",
+        name_long: "Repubblica del Senegal",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "SYC",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Seychelles",
-        description: "Republic of Seychelles",
+        name_long: "Republic of Seychelles",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "سيشل", description: "جمهورية سيشل" },
+      {
+        locale: "ar",
+        name: "سيشل",
+        name_long: "جمهورية سيشل",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Seychelles",
-        description: "República de Seychelles",
+        name_long: "República de Seychelles",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Seychelles",
-        description: "République des Seychelles",
+        name_long: "République des Seychelles",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Seychelles",
-        description: "República das Seychelles",
+        name_long: "República das Seychelles",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Сейшельские Острова",
-        description: "Республика Сейшельские Острова",
+        name_long: "Республика Сейшельские Острова",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Seychellen",
-        description: "Republik Seychellen",
+        name_long: "Republik Seychellen",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Seychelles",
-        description: "Repubblica delle Seychelles",
+        name_long: "Repubblica delle Seychelles",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1165,43 +3009,73 @@ export const allCountriesData: CountryData[] = [
     code: "SLE",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Sierra Leone",
-        description: "Republic of Sierra Leone",
+        name_long: "Republic of Sierra Leone",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "سيراليون", description: "جمهورية سيراليون" },
+      {
+        locale: "ar",
+        name: "سيراليون",
+        name_long: "جمهورية سيراليون",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Sierra Leona",
-        description: "República de Sierra Leona",
+        name_long: "República de Sierra Leona",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Sierra Leone",
-        description: "République de Sierra Leone",
+        name_long: "République de Sierra Leone",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Serra Leoa",
-        description: "República da Serra Leoa",
+        name_long: "República da Serra Leoa",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Сьерра-Леоне",
-        description: "Республика Сьерра-Леоне",
+        name_long: "Республика Сьерра-Леоне",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Sierra Leone",
-        description: "Republik Sierra Leone",
+        name_long: "Republik Sierra Leone",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Sierra Leone",
-        description: "Repubblica della Sierra Leone",
+        name_long: "Repubblica della Sierra Leone",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1209,47 +3083,74 @@ export const allCountriesData: CountryData[] = [
     code: "SOM",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Somalia",
-        description: "Federal Republic of Somalia",
+        name_long: "Federal Republic of Somalia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "الصومال",
-        description: "جمهورية الصومال الفيدرالية",
+        name_long: "جمهورية الصومال الفيدرالية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Somalia",
-        description: "República Federal de Somalia",
+        name_long: "República Federal de Somalia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Somalie",
-        description: "République fédérale de Somalie",
+        name_long: "République fédérale de Somalie",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Somália",
-        description: "República Federal da Somália",
+        name_long: "República Federal da Somália",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Сомали",
-        description: "Федеративная Республика Сомали",
+        name_long: "Федеративная Республика Сомали",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Somalia",
-        description: "Bundesrepublik Somalia",
+        name_long: "Bundesrepublik Somalia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Somalia",
-        description: "Repubblica Federale di Somalia",
+        name_long: "Repubblica Federale di Somalia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1257,47 +3158,74 @@ export const allCountriesData: CountryData[] = [
     code: "ZAF",
     continent: "Africa",
     region: "Southern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "South Africa",
-        description: "Republic of South Africa",
+        name_long: "Republic of South Africa",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "جنوب أفريقيا",
-        description: "جمهورية جنوب أفريقيا",
+        name_long: "جمهورية جنوب أفريقيا",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Sudáfrica",
-        description: "República de Sudáfrica",
+        name_long: "República de Sudáfrica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Afrique du Sud",
-        description: "République d'Afrique du Sud",
+        name_long: "République d'Afrique du Sud",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "África do Sul",
-        description: "República da África do Sul",
+        name_long: "República da África do Sul",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Южная Африка",
-        description: "Южно-Африканская Республика",
+        name_long: "Южно-Африканская Республика",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Südafrika",
-        description: "Republik Südafrika",
+        name_long: "Republik Südafrika",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Sudafrica",
-        description: "Repubblica del Sudafrica",
+        name_long: "Repubblica del Sudafrica",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1305,47 +3233,74 @@ export const allCountriesData: CountryData[] = [
     code: "SSD",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "South Sudan",
-        description: "Republic of South Sudan",
+        name_long: "Republic of South Sudan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "جنوب السودان",
-        description: "جمهورية جنوب السودان",
+        name_long: "جمهورية جنوب السودان",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Sudán del Sur",
-        description: "República de Sudán del Sur",
+        name_long: "República de Sudán del Sur",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Soudan du Sud",
-        description: "République du Soudan du Sud",
+        name_long: "République du Soudan du Sud",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Sudão do Sul",
-        description: "República do Sudão do Sul",
+        name_long: "República do Sudão do Sul",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Южный Судан",
-        description: "Республика Южный Судан",
+        name_long: "Республика Южный Судан",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Südsudan",
-        description: "Republik Südsudan",
+        name_long: "Republik Südsudan",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Sudan del Sud",
-        description: "Repubblica del Sudan del Sud",
+        name_long: "Repubblica del Sudan del Sud",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1353,63 +3308,141 @@ export const allCountriesData: CountryData[] = [
     code: "SDN",
     continent: "Africa",
     region: "Northern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Sudan", description: "Republic of the Sudan" },
-      { locale: "ar", name: "السودان", description: "جمهورية السودان" },
-      { locale: "es", name: "Sudán", description: "República del Sudán" },
-      { locale: "fr", name: "Soudan", description: "République du Soudan" },
-      { locale: "pt", name: "Sudão", description: "República do Sudão" },
-      { locale: "ru", name: "Судан", description: "Республика Судан" },
-      { locale: "de", name: "Sudan", description: "Republik Sudan" },
-      { locale: "it", name: "Sudan", description: "Repubblica del Sudan" },
+      {
+        locale: "en",
+        name: "Sudan",
+        name_long: "Republic of the Sudan",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "السودان",
+        name_long: "جمهورية السودان",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Sudán",
+        name_long: "República del Sudán",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Soudan",
+        name_long: "République du Soudan",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Sudão",
+        name_long: "República do Sudão",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Судан",
+        name_long: "Республика Судан",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Sudan",
+        name_long: "Republik Sudan",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Sudan",
+        name_long: "Repubblica del Sudan",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "TZA",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Tanzania",
-        description: "United Republic of Tanzania",
+        name_long: "United Republic of Tanzania",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "تنزانيا",
-        description: "جمهورية تنزانيا الاتحادية",
+        name_long: "جمهورية تنزانيا الاتحادية",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Tanzania",
-        description: "República Unida de Tanzania",
+        name_long: "República Unida de Tanzania",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Tanzanie",
-        description: "République unie de Tanzanie",
+        name_long: "République unie de Tanzanie",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Tanzânia",
-        description: "República Unida da Tanzânia",
+        name_long: "República Unida da Tanzânia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Танзания",
-        description: "Объединённая Республика Танзания",
+        name_long: "Объединённая Республика Танзания",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Tansania",
-        description: "Vereinigte Republik Tansania",
+        name_long: "Vereinigte Republik Tansania",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Tanzania",
-        description: "Repubblica Unita di Tanzania",
+        name_long: "Repubblica Unita di Tanzania",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -1417,83 +3450,335 @@ export const allCountriesData: CountryData[] = [
     code: "TGO",
     continent: "Africa",
     region: "Western Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Togo", description: "Togolese Republic" },
-      { locale: "ar", name: "توغو", description: "جمهورية توغو" },
-      { locale: "es", name: "Togo", description: "República Togolesa" },
-      { locale: "fr", name: "Togo", description: "République togolaise" },
-      { locale: "pt", name: "Togo", description: "República Togolesa" },
-      { locale: "ru", name: "Того", description: "Тоголезская Республика" },
-      { locale: "de", name: "Togo", description: "Republik Togo" },
-      { locale: "it", name: "Togo", description: "Repubblica Togolese" },
+      {
+        locale: "en",
+        name: "Togo",
+        name_long: "Togolese Republic",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "توغو",
+        name_long: "جمهورية توغو",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Togo",
+        name_long: "República Togolesa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Togo",
+        name_long: "République togolaise",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Togo",
+        name_long: "República Togolesa",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Того",
+        name_long: "Тоголезская Республика",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Togo",
+        name_long: "Republik Togo",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Togo",
+        name_long: "Repubblica Togolese",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "TUN",
     continent: "Africa",
     region: "Northern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Tunisia", description: "Republic of Tunisia" },
-      { locale: "ar", name: "تونس", description: "الجمهورية التونسية" },
-      { locale: "es", name: "Túnez", description: "República de Túnez" },
-      { locale: "fr", name: "Tunisie", description: "République tunisienne" },
-      { locale: "pt", name: "Tunísia", description: "República da Tunísia" },
-      { locale: "ru", name: "Тунис", description: "Тунисская Республика" },
-      { locale: "de", name: "Tunesien", description: "Republik Tunesien" },
-      { locale: "it", name: "Tunisia", description: "Repubblica Tunisina" },
+      {
+        locale: "en",
+        name: "Tunisia",
+        name_long: "Republic of Tunisia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "تونس",
+        name_long: "الجمهورية التونسية",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Túnez",
+        name_long: "República de Túnez",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Tunisie",
+        name_long: "République tunisienne",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Tunísia",
+        name_long: "República da Tunísia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Тунис",
+        name_long: "Тунисская Республика",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Tunesien",
+        name_long: "Republik Tunesien",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Tunisia",
+        name_long: "Repubblica Tunisina",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "UGA",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Uganda", description: "Republic of Uganda" },
-      { locale: "ar", name: "أوغندا", description: "جمهورية أوغندا" },
-      { locale: "es", name: "Uganda", description: "República de Uganda" },
-      { locale: "fr", name: "Ouganda", description: "République d'Ouganda" },
-      { locale: "pt", name: "Uganda", description: "República do Uganda" },
-      { locale: "ru", name: "Уганда", description: "Республика Уганда" },
-      { locale: "de", name: "Uganda", description: "Republik Uganda" },
-      { locale: "it", name: "Uganda", description: "Repubblica dell'Uganda" },
+      {
+        locale: "en",
+        name: "Uganda",
+        name_long: "Republic of Uganda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "أوغندا",
+        name_long: "جمهورية أوغندا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Uganda",
+        name_long: "República de Uganda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Ouganda",
+        name_long: "République d'Ouganda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Uganda",
+        name_long: "República do Uganda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Уганда",
+        name_long: "Республика Уганда",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Uganda",
+        name_long: "Republik Uganda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Uganda",
+        name_long: "Repubblica dell'Uganda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "ZMB",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Zambia", description: "Republic of Zambia" },
-      { locale: "ar", name: "زامبيا", description: "جمهورية زامبيا" },
-      { locale: "es", name: "Zambia", description: "República de Zambia" },
-      { locale: "fr", name: "Zambie", description: "République de Zambie" },
-      { locale: "pt", name: "Zâmbia", description: "República da Zâmbia" },
-      { locale: "ru", name: "Замбия", description: "Республика Замбия" },
-      { locale: "de", name: "Sambia", description: "Republik Sambia" },
-      { locale: "it", name: "Zambia", description: "Repubblica dello Zambia" },
+      {
+        locale: "en",
+        name: "Zambia",
+        name_long: "Republic of Zambia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "زامبيا",
+        name_long: "جمهورية زامبيا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Zambia",
+        name_long: "República de Zambia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Zambie",
+        name_long: "République de Zambie",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Zâmbia",
+        name_long: "República da Zâmbia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Замбия",
+        name_long: "Республика Замбия",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Sambia",
+        name_long: "Republik Sambia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Zambia",
+        name_long: "Repubblica dello Zambia",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "ZWE",
     continent: "Africa",
     region: "Eastern Africa",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Zimbabwe", description: "Republic of Zimbabwe" },
-      { locale: "ar", name: "زيمبابوي", description: "جمهورية زيمبابوي" },
-      { locale: "es", name: "Zimbabue", description: "República de Zimbabue" },
-      { locale: "fr", name: "Zimbabwe", description: "République du Zimbabwe" },
-      { locale: "pt", name: "Zimbabué", description: "República do Zimbabué" },
-      { locale: "ru", name: "Зимбабве", description: "Республика Зимбабве" },
-      { locale: "de", name: "Simbabwe", description: "Republik Simbabwe" },
+      {
+        locale: "en",
+        name: "Zimbabwe",
+        name_long: "Republic of Zimbabwe",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "زيمبابوي",
+        name_long: "جمهورية زيمبابوي",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Zimbabue",
+        name_long: "República de Zimbabue",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Zimbabwe",
+        name_long: "République du Zimbabwe",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Zimbabué",
+        name_long: "República do Zimbabué",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Зимбабве",
+        name_long: "Республика Зимбабве",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Simbabwe",
+        name_long: "Republik Simbabwe",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "it",
         name: "Zimbabwe",
-        description: "Repubblica dello Zimbabwe",
+        name_long: "Repubblica dello Zimbabwe",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },

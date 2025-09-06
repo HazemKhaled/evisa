@@ -1,7 +1,11 @@
 import { and, eq, isNull, desc, sql } from "drizzle-orm";
 import { visaTypes, visaTypesI18n } from "../db/schema/visa-types";
 import { countries, countriesI18n } from "../db/schema/countries";
-import { getDbAsync, isDatabaseAvailableAsync } from "../db/connection";
+import {
+  getDbAsync,
+  isDatabaseAvailableAsync,
+  type Database,
+} from "../db/connection";
 
 /**
  * Service for visa-related database operations
@@ -45,9 +49,9 @@ export async function getRandomVisaTypes(
   }
 
   try {
-    const db = await getDbAsync();
+    const db = (await getDbAsync()) as Database;
 
-    const results = await db
+    const results = await (db as any)
       .select({
         id: visaTypes.id,
         destinationId: visaTypes.destinationId,
@@ -93,7 +97,7 @@ export async function getRandomVisaTypes(
       .orderBy(sql`RANDOM()`)
       .limit(limit);
 
-    return results.map(result => ({
+    return results.map((result: any) => ({
       id: result.id,
       destinationId: result.destinationId,
       type: result.type,
@@ -136,9 +140,9 @@ export async function getVisaTypesByDestination(
   }
 
   try {
-    const db = await getDbAsync();
+    const db = (await getDbAsync()) as Database;
 
-    const results = await db
+    const results = await (db as any)
       .select({
         id: visaTypes.id,
         destinationId: visaTypes.destinationId,
@@ -184,7 +188,7 @@ export async function getVisaTypesByDestination(
       )
       .orderBy(desc(visaTypes.createdAt));
 
-    return results.map(result => ({
+    return results.map((result: any) => ({
       id: result.id,
       destinationId: result.destinationId,
       type: result.type,
@@ -226,9 +230,9 @@ export async function getAllVisaTypes(
   }
 
   try {
-    const db = await getDbAsync();
+    const db = (await getDbAsync()) as Database;
 
-    const results = await db
+    const results = await (db as any)
       .select({
         id: visaTypes.id,
         destinationId: visaTypes.destinationId,
@@ -273,7 +277,7 @@ export async function getAllVisaTypes(
       )
       .orderBy(desc(visaTypes.createdAt));
 
-    return results.map(result => ({
+    return results.map((result: any) => ({
       id: result.id,
       destinationId: result.destinationId,
       type: result.type,
@@ -313,9 +317,9 @@ export async function getVisaTypeById(
   }
 
   try {
-    const db = await getDbAsync();
+    const db = (await getDbAsync()) as Database;
 
-    const results = await db
+    const results = await (db as any)
       .select({
         id: visaTypes.id,
         destinationId: visaTypes.destinationId,

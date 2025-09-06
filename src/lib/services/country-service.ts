@@ -1,6 +1,10 @@
 import { and, eq, inArray, isNull } from "drizzle-orm";
 import { countries, countriesI18n } from "../db/schema/countries";
-import { getDbAsync, isDatabaseAvailableAsync } from "../db/connection";
+import {
+  getDbAsync,
+  isDatabaseAvailableAsync,
+  type Database,
+} from "../db/connection";
 
 /**
  * Service for country-related database operations
@@ -15,6 +19,8 @@ export interface Country {
 
 export interface CountryWithI18n extends Country {
   localizedName: string;
+  heroImage: string | null;
+  about: string | null;
 }
 
 /**
@@ -38,10 +44,10 @@ export async function getCountryNames(
   }
 
   try {
-    const db = await getDbAsync();
+    const db = (await getDbAsync()) as Database;
 
     // Use a single query to get all country names at once
-    const results = await db
+    const results = await (db as any)
       .select({
         code: countries.code,
         name: countriesI18n.name,
@@ -57,7 +63,7 @@ export async function getCountryNames(
 
     // Create a map for quick lookups
     const countryMap = new Map<string, string>();
-    results.forEach(result => {
+    results.forEach((result: any) => {
       if (result.code && result.name) {
         countryMap.set(result.code, result.name);
       }
@@ -88,14 +94,16 @@ export async function getAllCountries(
   }
 
   try {
-    const db = await getDbAsync();
+    const db = (await getDbAsync()) as Database;
 
-    const results = await db
+    const results = await (db as any)
       .select({
         id: countries.id,
         code: countries.code,
         name: countries.code, // Use code as fallback name since countries table doesn't have name field
+        heroImage: countries.heroImage,
         localizedName: countriesI18n.name,
+        about: countriesI18n.about,
       })
       .from(countries)
       .leftJoin(
@@ -107,11 +115,13 @@ export async function getAllCountries(
       )
       .where(isNull(countries.deletedAt));
 
-    return results.map(result => ({
+    return results.map((result: any) => ({
       id: result.id,
       code: result.code,
       name: result.name,
+      heroImage: result.heroImage,
       localizedName: result.localizedName || result.name,
+      about: result.about,
     }));
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -135,14 +145,16 @@ export async function getCountryByCode(
   }
 
   try {
-    const db = await getDbAsync();
+    const db = (await getDbAsync()) as Database;
 
-    const results = await db
+    const results = await (db as any)
       .select({
         id: countries.id,
         code: countries.code,
         name: countries.code, // Use code as fallback name since countries table doesn't have name field
+        heroImage: countries.heroImage,
         localizedName: countriesI18n.name,
+        about: countriesI18n.about,
       })
       .from(countries)
       .leftJoin(
@@ -166,7 +178,9 @@ export async function getCountryByCode(
       id: result.id,
       code: result.code,
       name: result.name,
+      heroImage: result.heroImage,
       localizedName: result.localizedName || result.name,
+      about: result.about,
     };
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -195,14 +209,16 @@ export async function searchCountries(
   }
 
   try {
-    const db = await getDbAsync();
+    const db = (await getDbAsync()) as Database;
 
-    const results = await db
+    const results = await (db as any)
       .select({
         id: countries.id,
         code: countries.code,
         name: countries.code, // Use code as fallback name since countries table doesn't have name field
+        heroImage: countries.heroImage,
         localizedName: countriesI18n.name,
+        about: countriesI18n.about,
       })
       .from(countries)
       .leftJoin(
@@ -218,7 +234,7 @@ export async function searchCountries(
     // Filter results by query on the application side for now
     // In production, you'd want to do this in the database with proper search
     return results
-      .filter(result => {
+      .filter((result: any) => {
         const localizedName = (
           result.localizedName || result.name
         ).toLowerCase();
@@ -231,11 +247,13 @@ export async function searchCountries(
           result.code.toLowerCase().includes(searchQuery)
         );
       })
-      .map(result => ({
+      .map((result: any) => ({
         id: result.id,
         code: result.code,
         name: result.name,
+        heroImage: result.heroImage,
         localizedName: result.localizedName || result.name,
+        about: result.about,
       }));
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -280,14 +298,16 @@ export async function getCountriesByCodes(
   }
 
   try {
-    const db = await getDbAsync();
+    const db = (await getDbAsync()) as Database;
 
-    const results = await db
+    const results = await (db as any)
       .select({
         id: countries.id,
         code: countries.code,
         name: countries.code, // Use code as fallback name since countries table doesn't have name field
+        heroImage: countries.heroImage,
         localizedName: countriesI18n.name,
+        about: countriesI18n.about,
       })
       .from(countries)
       .leftJoin(
@@ -303,12 +323,14 @@ export async function getCountriesByCodes(
 
     // Maintain order from input array
     const countryMap = new Map<string, CountryWithI18n>();
-    results.forEach(result => {
+    results.forEach((result: any) => {
       countryMap.set(result.code, {
         id: result.id,
         code: result.code,
         name: result.name,
+        heroImage: result.heroImage,
         localizedName: result.localizedName || result.name,
+        about: result.about,
       });
     });
 

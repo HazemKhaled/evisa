@@ -9,43 +9,73 @@ export const oceaniaCountriesData: CountryData[] = [
     code: "AUS",
     continent: "Oceania",
     region: "Australia and New Zealand",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Australia",
-        description: "Commonwealth of Australia",
+        name_long: "Commonwealth of Australia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "أستراليا", description: "كومنولث أستراليا" },
+      {
+        locale: "ar",
+        name: "أستراليا",
+        name_long: "كومنولث أستراليا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Australia",
-        description: "Commonwealth de Australia",
+        name_long: "Commonwealth de Australia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Australie",
-        description: "Commonwealth d'Australie",
+        name_long: "Commonwealth d'Australie",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Austrália",
-        description: "Commonwealth da Austrália",
+        name_long: "Commonwealth da Austrália",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Австралия",
-        description: "Содружество Австралии",
+        name_long: "Содружество Австралии",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Australien",
-        description: "Commonwealth von Australien",
+        name_long: "Commonwealth von Australien",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Australia",
-        description: "Commonwealth d'Australia",
+        name_long: "Commonwealth d'Australia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -53,75 +83,207 @@ export const oceaniaCountriesData: CountryData[] = [
     code: "FJI",
     continent: "Oceania",
     region: "Melanesia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Fiji", description: "Republic of Fiji" },
-      { locale: "ar", name: "فيجي", description: "جمهورية فيجي" },
-      { locale: "es", name: "Fiyi", description: "República de Fiyi" },
-      { locale: "fr", name: "Fidji", description: "République des Fidji" },
-      { locale: "pt", name: "Fiji", description: "República de Fiji" },
-      { locale: "ru", name: "Фиджи", description: "Республика Фиджи" },
-      { locale: "de", name: "Fidschi", description: "Republik Fidschi" },
-      { locale: "it", name: "Fiji", description: "Repubblica delle Fiji" },
+      {
+        locale: "en",
+        name: "Fiji",
+        name_long: "Republic of Fiji",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "فيجي",
+        name_long: "جمهورية فيجي",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Fiyi",
+        name_long: "República de Fiyi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Fidji",
+        name_long: "République des Fidji",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Fiji",
+        name_long: "República de Fiji",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Фиджи",
+        name_long: "Республика Фиджи",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Fidschi",
+        name_long: "Republik Fidschi",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Fiji",
+        name_long: "Repubblica delle Fiji",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "KIR",
     continent: "Oceania",
     region: "Micronesia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Kiribati", description: "Republic of Kiribati" },
-      { locale: "ar", name: "كيريباتي", description: "جمهورية كيريباتي" },
-      { locale: "es", name: "Kiribati", description: "República de Kiribati" },
-      { locale: "fr", name: "Kiribati", description: "République de Kiribati" },
-      { locale: "pt", name: "Kiribati", description: "República de Kiribati" },
-      { locale: "ru", name: "Кирибати", description: "Республика Кирибати" },
-      { locale: "de", name: "Kiribati", description: "Republik Kiribati" },
-      { locale: "it", name: "Kiribati", description: "Repubblica di Kiribati" },
+      {
+        locale: "en",
+        name: "Kiribati",
+        name_long: "Republic of Kiribati",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "كيريباتي",
+        name_long: "جمهورية كيريباتي",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Kiribati",
+        name_long: "República de Kiribati",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Kiribati",
+        name_long: "République de Kiribati",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Kiribati",
+        name_long: "República de Kiribati",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Кирибати",
+        name_long: "Республика Кирибати",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Kiribati",
+        name_long: "Republik Kiribati",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Kiribati",
+        name_long: "Repubblica di Kiribati",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "MHL",
     continent: "Oceania",
     region: "Micronesia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Marshall Islands",
-        description: "Republic of the Marshall Islands",
+        name_long: "Republic of the Marshall Islands",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "جزر مارشال", description: "جمهورية جزر مارشال" },
+      {
+        locale: "ar",
+        name: "جزر مارشال",
+        name_long: "جمهورية جزر مارشال",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Islas Marshall",
-        description: "República de las Islas Marshall",
+        name_long: "República de las Islas Marshall",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Îles Marshall",
-        description: "République des Îles Marshall",
+        name_long: "République des Îles Marshall",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Ilhas Marshall",
-        description: "República das Ilhas Marshall",
+        name_long: "República das Ilhas Marshall",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Маршалловы Острова",
-        description: "Республика Маршалловы Острова",
+        name_long: "Республика Маршалловы Острова",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Marshallinseln",
-        description: "Republik der Marshallinseln",
+        name_long: "Republik der Marshallinseln",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Isole Marshall",
-        description: "Repubblica delle Isole Marshall",
+        name_long: "Repubblica delle Isole Marshall",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -129,47 +291,74 @@ export const oceaniaCountriesData: CountryData[] = [
     code: "FSM",
     continent: "Oceania",
     region: "Micronesia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Micronesia",
-        description: "Federated States of Micronesia",
+        name_long: "Federated States of Micronesia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "ميكرونيزيا",
-        description: "ولايات ميكرونيزيا الموحدة",
+        name_long: "ولايات ميكرونيزيا الموحدة",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Micronesia",
-        description: "Estados Federados de Micronesia",
+        name_long: "Estados Federados de Micronesia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Micronésie",
-        description: "États fédérés de Micronésie",
+        name_long: "États fédérés de Micronésie",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Micronésia",
-        description: "Estados Federados da Micronésia",
+        name_long: "Estados Federados da Micronésia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Микронезия",
-        description: "Федеративные Штаты Микронезии",
+        name_long: "Федеративные Штаты Микронезии",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Mikronesien",
-        description: "Föderierte Staaten von Mikronesien",
+        name_long: "Föderierte Staaten von Mikronesien",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Micronesia",
-        description: "Stati Federati di Micronesia",
+        name_long: "Stati Federati di Micronesia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -177,51 +366,138 @@ export const oceaniaCountriesData: CountryData[] = [
     code: "NRU",
     continent: "Oceania",
     region: "Micronesia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Nauru", description: "Republic of Nauru" },
-      { locale: "ar", name: "ناورو", description: "جمهورية ناورو" },
-      { locale: "es", name: "Nauru", description: "República de Nauru" },
-      { locale: "fr", name: "Nauru", description: "République de Nauru" },
-      { locale: "pt", name: "Nauru", description: "República de Nauru" },
-      { locale: "ru", name: "Науру", description: "Республика Науру" },
-      { locale: "de", name: "Nauru", description: "Republik Nauru" },
-      { locale: "it", name: "Nauru", description: "Repubblica di Nauru" },
+      {
+        locale: "en",
+        name: "Nauru",
+        name_long: "Republic of Nauru",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "ناورو",
+        name_long: "جمهورية ناورو",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Nauru",
+        name_long: "República de Nauru",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Nauru",
+        name_long: "République de Nauru",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Nauru",
+        name_long: "República de Nauru",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Науру",
+        name_long: "Республика Науру",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Nauru",
+        name_long: "Republik Nauru",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Nauru",
+        name_long: "Repubblica di Nauru",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "NZL",
     continent: "Oceania",
     region: "Australia and New Zealand",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "New Zealand", description: "New Zealand" },
-      { locale: "ar", name: "نيوزيلندا", description: "نيوزيلندا" },
-      { locale: "es", name: "Nueva Zelanda", description: "Nueva Zelanda" },
+      {
+        locale: "en",
+        name: "New Zealand",
+        name_long: "New Zealand",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "نيوزيلندا",
+        name_long: "نيوزيلندا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Nueva Zelanda",
+        name_long: "Nueva Zelanda",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "fr",
         name: "Nouvelle-Zélande",
-        description: "Nouvelle-Zélande",
+        name_long: "Nouvelle-Zélande",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Nova Zelândia",
-        description: "Nova Zelândia",
+        name_long: "Nova Zelândia",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Новая Зеландия",
-        description: "Новая Зеландия",
+        name_long: "Новая Зеландия",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Neuseeland",
-        description: "Neuseeland",
+        name_long: "Neuseeland",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Nuova Zelanda",
-        description: "Nuova Zelanda",
+        name_long: "Nuova Zelanda",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -229,63 +505,141 @@ export const oceaniaCountriesData: CountryData[] = [
     code: "PLW",
     continent: "Oceania",
     region: "Micronesia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Palau", description: "Republic of Palau" },
-      { locale: "ar", name: "بالاو", description: "جمهورية بالاو" },
-      { locale: "es", name: "Palau", description: "República de Palau" },
-      { locale: "fr", name: "Palaos", description: "République des Palaos" },
-      { locale: "pt", name: "Palau", description: "República de Palau" },
-      { locale: "ru", name: "Палау", description: "Республика Палау" },
-      { locale: "de", name: "Palau", description: "Republik Palau" },
-      { locale: "it", name: "Palau", description: "Repubblica di Palau" },
+      {
+        locale: "en",
+        name: "Palau",
+        name_long: "Republic of Palau",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "بالاو",
+        name_long: "جمهورية بالاو",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Palau",
+        name_long: "República de Palau",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Palaos",
+        name_long: "République des Palaos",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Palau",
+        name_long: "República de Palau",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Палау",
+        name_long: "Республика Палау",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Palau",
+        name_long: "Republik Palau",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Palau",
+        name_long: "Repubblica di Palau",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "PNG",
     continent: "Oceania",
     region: "Melanesia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Papua New Guinea",
-        description: "Independent State of Papua New Guinea",
+        name_long: "Independent State of Papua New Guinea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ar",
         name: "بابوا غينيا الجديدة",
-        description: "دولة بابوا غينيا الجديدة المستقلة",
+        name_long: "دولة بابوا غينيا الجديدة المستقلة",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "es",
         name: "Papúa Nueva Guinea",
-        description: "Estado Independiente de Papúa Nueva Guinea",
+        name_long: "Estado Independiente de Papúa Nueva Guinea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Papouasie-Nouvelle-Guinée",
-        description: "État indépendant de Papouasie-Nouvelle-Guinée",
+        name_long: "État indépendant de Papouasie-Nouvelle-Guinée",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Papua-Nova Guiné",
-        description: "Estado Independente da Papua-Nova Guiné",
+        name_long: "Estado Independente da Papua-Nova Guiné",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Папуа-Новая Гвинея",
-        description: "Независимое Государство Папуа-Новая Гвинея",
+        name_long: "Независимое Государство Папуа-Новая Гвинея",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Papua-Neuguinea",
-        description: "Unabhängiger Staat Papua-Neuguinea",
+        name_long: "Unabhängiger Staat Papua-Neuguinea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Papua Nuova Guinea",
-        description: "Stato Indipendente di Papua Nuova Guinea",
+        name_long: "Stato Indipendente di Papua Nuova Guinea",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -293,43 +647,73 @@ export const oceaniaCountriesData: CountryData[] = [
     code: "WSM",
     continent: "Oceania",
     region: "Polynesia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
       {
         locale: "en",
         name: "Samoa",
-        description: "Independent State of Samoa",
+        name_long: "Independent State of Samoa",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "ar", name: "ساموا", description: "دولة ساموا المستقلة" },
+      {
+        locale: "ar",
+        name: "ساموا",
+        name_long: "دولة ساموا المستقلة",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "es",
         name: "Samoa",
-        description: "Estado Independiente de Samoa",
+        name_long: "Estado Independiente de Samoa",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "fr",
         name: "Samoa",
-        description: "État indépendant des Samoa",
+        name_long: "État indépendant des Samoa",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "pt",
         name: "Samoa",
-        description: "Estado Independente de Samoa",
+        name_long: "Estado Independente de Samoa",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "ru",
         name: "Самоа",
-        description: "Независимое Государство Самоа",
+        name_long: "Независимое Государство Самоа",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "de",
         name: "Samoa",
-        description: "Unabhängiger Staat Samoa",
+        name_long: "Unabhängiger Staat Samoa",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
       {
         locale: "it",
         name: "Samoa",
-        description: "Stato Indipendente di Samoa",
+        name_long: "Stato Indipendente di Samoa",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
     ],
   },
@@ -337,68 +721,269 @@ export const oceaniaCountriesData: CountryData[] = [
     code: "SLB",
     continent: "Oceania",
     region: "Melanesia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Solomon Islands", description: "Solomon Islands" },
-      { locale: "ar", name: "جزر سليمان", description: "جزر سليمان" },
-      { locale: "es", name: "Islas Salomón", description: "Islas Salomón" },
-      { locale: "fr", name: "Îles Salomon", description: "Îles Salomon" },
-      { locale: "pt", name: "Ilhas Salomão", description: "Ilhas Salomão" },
+      {
+        locale: "en",
+        name: "Solomon Islands",
+        name_long: "Solomon Islands",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "جزر سليمان",
+        name_long: "جزر سليمان",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Islas Salomón",
+        name_long: "Islas Salomón",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Îles Salomon",
+        name_long: "Îles Salomon",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Ilhas Salomão",
+        name_long: "Ilhas Salomão",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
       {
         locale: "ru",
         name: "Соломоновы Острова",
-        description: "Соломоновы Острова",
+        name_long: "Соломоновы Острова",
+
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
       },
-      { locale: "de", name: "Salomonen", description: "Salomonen" },
-      { locale: "it", name: "Isole Salomone", description: "Isole Salomone" },
+      {
+        locale: "de",
+        name: "Salomonen",
+        name_long: "Salomonen",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Isole Salomone",
+        name_long: "Isole Salomone",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "TON",
     continent: "Oceania",
     region: "Polynesia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Tonga", description: "Kingdom of Tonga" },
-      { locale: "ar", name: "تونغا", description: "مملكة تونغا" },
-      { locale: "es", name: "Tonga", description: "Reino de Tonga" },
-      { locale: "fr", name: "Tonga", description: "Royaume des Tonga" },
-      { locale: "pt", name: "Tonga", description: "Reino de Tonga" },
-      { locale: "ru", name: "Тонга", description: "Королевство Тонга" },
-      { locale: "de", name: "Tonga", description: "Königreich Tonga" },
-      { locale: "it", name: "Tonga", description: "Regno di Tonga" },
+      {
+        locale: "en",
+        name: "Tonga",
+        name_long: "Kingdom of Tonga",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "تونغا",
+        name_long: "مملكة تونغا",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Tonga",
+        name_long: "Reino de Tonga",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Tonga",
+        name_long: "Royaume des Tonga",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Tonga",
+        name_long: "Reino de Tonga",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Тонга",
+        name_long: "Королевство Тонга",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Tonga",
+        name_long: "Königreich Tonga",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Tonga",
+        name_long: "Regno di Tonga",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "TUV",
     continent: "Oceania",
     region: "Polynesia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Tuvalu", description: "Tuvalu" },
-      { locale: "ar", name: "توفالو", description: "توفالو" },
-      { locale: "es", name: "Tuvalu", description: "Tuvalu" },
-      { locale: "fr", name: "Tuvalu", description: "Tuvalu" },
-      { locale: "pt", name: "Tuvalu", description: "Tuvalu" },
-      { locale: "ru", name: "Тувалу", description: "Тувалу" },
-      { locale: "de", name: "Tuvalu", description: "Tuvalu" },
-      { locale: "it", name: "Tuvalu", description: "Tuvalu" },
+      {
+        locale: "en",
+        name: "Tuvalu",
+        name_long: "Tuvalu",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "توفالو",
+        name_long: "توفالو",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Tuvalu",
+        name_long: "Tuvalu",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Tuvalu",
+        name_long: "Tuvalu",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Tuvalu",
+        name_long: "Tuvalu",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Тувалу",
+        name_long: "Тувалу",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Tuvalu",
+        name_long: "Tuvalu",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Tuvalu",
+        name_long: "Tuvalu",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
   {
     code: "VUT",
     continent: "Oceania",
     region: "Melanesia",
+    heroImage:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+
     isActive: true,
     translations: [
-      { locale: "en", name: "Vanuatu", description: "Republic of Vanuatu" },
-      { locale: "ar", name: "فانواتو", description: "جمهورية فانواتو" },
-      { locale: "es", name: "Vanuatu", description: "República de Vanuatu" },
-      { locale: "fr", name: "Vanuatu", description: "République de Vanuatu" },
-      { locale: "pt", name: "Vanuatu", description: "República de Vanuatu" },
-      { locale: "ru", name: "Вануату", description: "Республика Вануату" },
-      { locale: "de", name: "Vanuatu", description: "Republik Vanuatu" },
-      { locale: "it", name: "Vanuatu", description: "Repubblica di Vanuatu" },
+      {
+        locale: "en",
+        name: "Vanuatu",
+        name_long: "Republic of Vanuatu",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ar",
+        name: "فانواتو",
+        name_long: "جمهورية فانواتو",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "es",
+        name: "Vanuatu",
+        name_long: "República de Vanuatu",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "fr",
+        name: "Vanuatu",
+        name_long: "République de Vanuatu",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "pt",
+        name: "Vanuatu",
+        name_long: "República de Vanuatu",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "ru",
+        name: "Вануату",
+        name_long: "Республика Вануату",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "de",
+        name: "Vanuatu",
+        name_long: "Republik Vanuatu",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
+      {
+        locale: "it",
+        name: "Vanuatu",
+        name_long: "Repubblica di Vanuatu",
+        about:
+          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+      },
     ],
   },
 ];

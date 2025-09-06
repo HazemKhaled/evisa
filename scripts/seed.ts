@@ -86,6 +86,26 @@ const visaTypeDataWithTranslations = [
         name: "Visa de Tourisme",
         description: "Visa touristique de 30 jours pour les voyages de loisir",
       },
+      {
+        locale: "pt",
+        name: "Visto de Turismo",
+        description: "Visto de turismo de 30 dias para viagens de lazer",
+      },
+      {
+        locale: "ru",
+        name: "Туристическая виза",
+        description: "30-дневная туристическая виза для отдыха",
+      },
+      {
+        locale: "de",
+        name: "Touristenvisum",
+        description: "30-tägiges Touristenvisum für Freizeitreisen",
+      },
+      {
+        locale: "it",
+        name: "Visto Turistico",
+        description: "Visto turistico di 30 giorni per viaggi di piacere",
+      },
     ],
   },
   {
@@ -133,6 +153,26 @@ const visaTypeDataWithTranslations = [
         name: "Visa d'Affaires",
         description: "Visa d'affaires de 30 jours pour activités commerciales",
       },
+      {
+        locale: "pt",
+        name: "Visto de Negócios",
+        description: "Visto de negócios de 30 dias para atividades comerciais",
+      },
+      {
+        locale: "ru",
+        name: "Деловая виза",
+        description: "30-дневная деловая виза для коммерческой деятельности",
+      },
+      {
+        locale: "de",
+        name: "Geschäftsvisum",
+        description: "30-tägiges Geschäftsvisum für kommerzielle Aktivitäten",
+      },
+      {
+        locale: "it",
+        name: "Visto d'Affari",
+        description: "Visto d'affari di 30 giorni per attività commerciali",
+      },
     ],
   },
 ];
@@ -157,6 +197,36 @@ const visaEligibilityDataWithTranslations = [
         locale: "ar",
         notes: "يمكن لحاملي الجواز الأمريكي دخول الإمارات بدون تأشيرة للسياحة",
       },
+      {
+        locale: "es",
+        notes:
+          "Los titulares de pasaporte estadounidense pueden entrar a los EAU sin visa para turismo",
+      },
+      {
+        locale: "fr",
+        notes:
+          "Les détenteurs de passeport américain peuvent entrer aux EAU sans visa pour le tourisme",
+      },
+      {
+        locale: "pt",
+        notes:
+          "Portadores de passaporte americano podem entrar nos EAU sem visto para turismo",
+      },
+      {
+        locale: "ru",
+        notes:
+          "Владельцы американского паспорта могут въезжать в ОАЭ без визы для туризма",
+      },
+      {
+        locale: "de",
+        notes:
+          "US-Passinhaber können ohne Visum zu touristischen Zwecken in die VAE einreisen",
+      },
+      {
+        locale: "it",
+        notes:
+          "I titolari di passaporto americano possono entrare negli EAU senza visto per turismo",
+      },
     ],
   },
   {
@@ -176,6 +246,35 @@ const visaEligibilityDataWithTranslations = [
       {
         locale: "ar",
         notes: "تأشيرة العمل متاحة عند الوصول لحاملي الجواز الأمريكي",
+      },
+      {
+        locale: "es",
+        notes:
+          "Visa de negocios disponible a la llegada para titulares de pasaporte estadounidense",
+      },
+      {
+        locale: "fr",
+        notes:
+          "Visa d'affaires disponible à l'arrivée pour les détenteurs de passeport américain",
+      },
+      {
+        locale: "pt",
+        notes:
+          "Visto de negócios disponível na chegada para portadores de passaporte americano",
+      },
+      {
+        locale: "ru",
+        notes:
+          "Деловая виза доступна по прибытии для владельцев американского паспорта",
+      },
+      {
+        locale: "de",
+        notes: "Geschäftsvisum bei Ankunft für US-Passinhaber verfügbar",
+      },
+      {
+        locale: "it",
+        notes:
+          "Visto d'affari disponibile all'arrivo per titolari di passaporto americano",
       },
     ],
   },
@@ -197,6 +296,36 @@ const visaEligibilityDataWithTranslations = [
         locale: "ar",
         notes: "يمكن لحاملي الجواز البريطاني دخول الإمارات بدون تأشيرة للسياحة",
       },
+      {
+        locale: "es",
+        notes:
+          "Los titulares de pasaporte británico pueden entrar a los EAU sin visa para turismo",
+      },
+      {
+        locale: "fr",
+        notes:
+          "Les détenteurs de passeport britannique peuvent entrer aux EAU sans visa pour le tourisme",
+      },
+      {
+        locale: "pt",
+        notes:
+          "Portadores de passaporte britânico podem entrar nos EAU sem visto para turismo",
+      },
+      {
+        locale: "ru",
+        notes:
+          "Владельцы британского паспорта могут въезжать в ОАЭ без визы для туризма",
+      },
+      {
+        locale: "de",
+        notes:
+          "UK-Passinhaber können ohne Visum zu touristischen Zwecken in die VAE einreisen",
+      },
+      {
+        locale: "it",
+        notes:
+          "I titolari di passaporto britannico possono entrare negli EAU senza visto per turismo",
+      },
     ],
   },
   {
@@ -209,8 +338,41 @@ const visaEligibilityDataWithTranslations = [
       isActive: true,
     },
     translations: [
-      { locale: "en", notes: "Business visa required for UK passport holders" },
-      { locale: "ar", notes: "تأشيرة العمل مطلوبة لحاملي الجواز البريطاني" },
+      {
+        locale: "en",
+        notes: "Business visa required for UK passport holders",
+      },
+      {
+        locale: "ar",
+        notes: "تأشيرة العمل مطلوبة لحاملي الجواز البريطاني",
+      },
+      {
+        locale: "es",
+        notes:
+          "Visa de negocios requerida para titulares de pasaporte británico",
+      },
+      {
+        locale: "fr",
+        notes:
+          "Visa d'affaires requis pour les détenteurs de passeport britannique",
+      },
+      {
+        locale: "pt",
+        notes:
+          "Visto de negócios necessário para portadores de passaporte britânico",
+      },
+      {
+        locale: "ru",
+        notes: "Деловая виза требуется для владельцев британского паспорта",
+      },
+      {
+        locale: "de",
+        notes: "Geschäftsvisum für UK-Passinhaber erforderlich",
+      },
+      {
+        locale: "it",
+        notes: "Visto d'affari richiesto per titolari di passaporto britannico",
+      },
     ],
   },
 ];
@@ -259,6 +421,7 @@ async function insertCountriesWithRobustHandling(
           code: countryData.code,
           continent: countryData.continent,
           region: countryData.region,
+          heroImage: countryData.heroImage,
           isActive: countryData.isActive,
         })
         .returning();
@@ -271,7 +434,8 @@ async function insertCountriesWithRobustHandling(
           countryId: insertedCountry.id,
           locale: t.locale,
           name: t.name,
-          description: t.description,
+          name_long: t.name_long,
+          about: t.about,
         }));
 
       await db.insert(countriesI18n).values(countryTranslations);
