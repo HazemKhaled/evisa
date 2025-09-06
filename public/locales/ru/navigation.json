@@ -22,6 +22,11 @@
     "phone": "Телефон",
     "address": "Адрес офиса",
     "social_media": "Социальные сети",
-    "copyright": "© {{year}} Платформа GetTravelVisa.com. Все права защищены."
+    "copyright": "© {{year}} GetTravelVisa.com. Все права защищены."
+  },
+  "breadcrumb": {
+    "home": "Главная",
+    "blog": "Блог о путешествиях",
+    "contact": "Свяжитесь с нами"
   }
 }

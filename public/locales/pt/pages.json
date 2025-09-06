@@ -21,11 +21,15 @@
       "submit": "Send Message"
     },
     "info": {
-      "title": "Get in Touch",
+      "title": "Entre em Contato",
+      "email_label": "Email",
+      "phone_label": "Telefone",
+      "address_label": "Endereço",
+      "hours_label": "Horários",
       "email": "hello@gettravelvisa.com",
       "phone": "+1 (555) 123-4567",
       "address": "123 Travel Street, Visa City, VC 12345",
-      "hours": "Monday - Friday: 9:00 AM - 6:00 PM (UTC)"
+      "hours": "Segunda - Sexta: 9:00 - 18:00 (UTC)"
     },
     "questions": {
       "title": "Questions About Visa Requirements?",
@@ -37,6 +41,20 @@
     }
   },
   "blog": {
+    "title": "Blog de Viagem",
+    "subtitle": "Guias especializados de viagem, dicas de visto e percepções de destinos para ajudar você a planejar sua viagem perfeita.",
+    "keywords": "blog de viagem, guias de visto, dicas de viagem, guias de destinos, assistência de viagem",
+    "empty_state": "Ainda não há artigos de blog disponíveis. Volte em breve!",
+    "filters": {
+      "tag_prefix": "Tag:",
+      "destination_prefix": "Destino:"
+    },
+    "aria": {
+      "article_tags": "Tags do Artigo",
+      "blog_navigation": "Navegação do Blog",
+      "return_to_listing": "Retornar à listagem do blog",
+      "related_articles": "Artigos Relacionados"
+    },
     "post": {
       "published": "Publicado",
       "updated": "Atualizado",
@@ -47,6 +65,9 @@
       "related_articles": "Artigos relacionados"
     },
     "meta": {
+      "tag_title_template": "{{tag}} - {{title}}",
+      "tag_description_template": "Guias de viagem e informações de visto relacionadas a {{tag}}. Conselhos especializados de viagem e percepções de destinos.",
+      "tag_keywords_template": "{{tag}}, blog de viagem, guias de visto, dicas de viagem, guias de destinos",
       "post_not_found": "Artigo não encontrado",
       "post_not_found_description": "O artigo do blog solicitado não foi encontrado."
     },
@@ -57,5 +78,35 @@
       "previous": "Anterior",
       "next": "Próximo"
     }
+  },
+  "jsonld": {
+    "organization": {
+      "name": "GetTravelVisa.com",
+      "description": "Seu parceiro confiável para pedidos de visto. Simplifique seu processo de pedido de visto com nossos serviços abrangentes de verificação e pedido de visto.",
+      "contact_type": "atendimento ao cliente"
+    },
+    "website": {
+      "name": "GetTravelVisa.com",
+      "description": "Simplifique seu processo de pedido de visto com nossos serviços abrangentes de verificação e pedido de visto. Obtenha orientação especializada para vistos de viagem em todo o mundo."
+    },
+    "service": {
+      "name": "Serviços de pedido de visto",
+      "description": "Serviços abrangentes de verificação e pedido de visto para viagens internacionais",
+      "area_served": "Mundial",
+      "service_type": "Serviços de viagem"
+    },
+    "blog": {
+      "title": "Blog de viagem - GetTravelVisa.com",
+      "description": "Guias de viagem especializados, dicas de visto e insights de destinos para ajudá-lo a planejar sua viagem perfeita.",
+      "article_section": "Blog de viagem"
+    },
+    "contact": {
+      "title": "Entre em contato",
+      "description": "Entre em contato com nossa equipe. Estamos aqui para ajudá-lo com suas perguntas sobre vistos e necessidades de planejamento de viagem."
+    }
+  },
+  "errors": {
+    "page_not_found": "Página não encontrada",
+    "page_not_found_description": "A página solicitada não foi encontrada."
   }
 }

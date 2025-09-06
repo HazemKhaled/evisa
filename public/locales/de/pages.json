@@ -1,42 +1,60 @@
 {
   "contact": {
-    "title": "Contact Us",
-    "subtitle": "Get in touch with our team. We're here to help you with your visa questions and travel planning needs.",
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Kontaktieren Sie unser Team. Wir sind hier, um Ihnen bei Ihren Visa-Fragen und Reiseplanungsbedrüfnissen zu helfen.",
     "form": {
-      "title": "Send us a message",
-      "name_label": "Full Name",
-      "name_placeholder": "Enter your full name",
-      "email_label": "Email Address",
-      "email_placeholder": "Enter your email address",
-      "phone_label": "Phone Number",
-      "phone_placeholder": "Enter your phone number (optional)",
-      "reason_label": "Reason for Contact",
-      "reason_question": "General Question",
-      "reason_partnership": "Partnership Inquiry",
-      "reason_other": "Other",
-      "subject_label": "Subject",
-      "subject_placeholder": "Brief description of your inquiry",
-      "message_label": "Message",
-      "message_placeholder": "Please provide details about your inquiry...",
-      "submit": "Send Message"
+      "title": "Senden Sie uns eine Nachricht",
+      "name_label": "Vollständiger Name",
+      "name_placeholder": "Geben Sie Ihren vollständigen Namen ein",
+      "email_label": "E-Mail-Adresse",
+      "email_placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+      "phone_label": "Telefonnummer",
+      "phone_placeholder": "Geben Sie Ihre Telefonnummer ein (optional)",
+      "reason_label": "Grund für Kontakt",
+      "reason_question": "Allgemeine Frage",
+      "reason_partnership": "Partnerschaftsanfrage",
+      "reason_other": "Andere",
+      "subject_label": "Betreff",
+      "subject_placeholder": "Kurze Beschreibung Ihrer Anfrage",
+      "message_label": "Nachricht",
+      "message_placeholder": "Bitte geben Sie Details zu Ihrer Anfrage an...",
+      "submit": "Nachricht senden"
     },
     "info": {
-      "title": "Get in Touch",
+      "title": "Kontakt aufnehmen",
+      "email_label": "E-Mail",
+      "phone_label": "Telefon",
+      "address_label": "Adresse",
+      "hours_label": "Öffnungszeiten",
       "email": "hello@gettravelvisa.com",
       "phone": "+1 (555) 123-4567",
       "address": "123 Travel Street, Visa City, VC 12345",
-      "hours": "Monday - Friday: 9:00 AM - 6:00 PM (UTC)"
+      "hours": "Montag - Freitag: 9:00 - 18:00 Uhr (UTC)"
     },
     "questions": {
-      "title": "Questions About Visa Requirements?",
-      "description": "Our team of visa experts is ready to help you understand the requirements for your destination and guide you through the application process."
+      "title": "Fragen zu Visa-Anforderungen?",
+      "description": "Unser Team von Visa-Experten ist bereit, Ihnen dabei zu helfen, die Anforderungen für Ihr Reiseziel zu verstehen und Sie durch den Antragsprozess zu führen."
     },
     "partnerships": {
-      "title": "Partnership Opportunities",
-      "description": "We're always looking to partner with travel agencies, visa service providers, and tourism organizations to better serve travelers worldwide."
+      "title": "Partnerschaftsmöglichkeiten",
+      "description": "Wir suchen immer nach Partnerschaften mit Reiseagenturen, Visa-Dienstleistern und Tourismusorganisationen, um Reisenden weltweit bessere Dienste zu bieten."
     }
   },
   "blog": {
+    "title": "Reise-Blog",
+    "subtitle": "Experten-Reiseführer, Visa-Tipps und Reiseziel-Einblicke, um Ihnen bei der Planung Ihrer perfekten Reise zu helfen.",
+    "keywords": "Reise-Blog, Visa-Führer, Reisetipps, Reiseziel-Führer, Reiseberatung",
+    "empty_state": "Noch keine Blog-Beiträge verfügbar. Schauen Sie bald wieder vorbei!",
+    "filters": {
+      "tag_prefix": "Tag:",
+      "destination_prefix": "Reiseziel:"
+    },
+    "aria": {
+      "article_tags": "Artikel-Tags",
+      "blog_navigation": "Blog-Navigation",
+      "return_to_listing": "Zurück zur Blog-Liste",
+      "related_articles": "Verwandte Artikel"
+    },
     "post": {
       "published": "Veröffentlicht",
       "updated": "Aktualisiert",
@@ -47,6 +65,9 @@
       "related_articles": "Verwandte Artikel"
     },
     "meta": {
+      "tag_title_template": "{{tag}} - {{title}}",
+      "tag_description_template": "Reiseführer und Visa-Informationen zu {{tag}}. Experten-Reisetipps und Reiseziel-Einblicke.",
+      "tag_keywords_template": "{{tag}}, Reise-Blog, Visa-Führer, Reisetipps, Reiseziel-Führer",
       "post_not_found": "Beitrag nicht gefunden",
       "post_not_found_description": "Der angeforderte Blogbeitrag konnte nicht gefunden werden."
     },
@@ -57,5 +78,35 @@
       "previous": "Zurück",
       "next": "Weiter"
     }
+  },
+  "jsonld": {
+    "organization": {
+      "name": "GetTravelVisa.com",
+      "description": "Ihr vertrauenswürdiger Partner für Visa-Anträge. Vereinfachen Sie Ihren Visa-Antragsprozess mit unseren umfassenden Visa-Prüf- und Antragsdienstleistungen.",
+      "contact_type": "Kundendienst"
+    },
+    "website": {
+      "name": "GetTravelVisa.com",
+      "description": "Vereinfachen Sie Ihren Visa-Antragsprozess mit unseren umfassenden Visa-Prüf- und Antragsdienstleistungen. Erhalten Sie fachkundige Beratung für Reisevisa weltweit."
+    },
+    "service": {
+      "name": "Visa-Antragsdienstleistungen",
+      "description": "Umfassende Visa-Prüf- und Antragsdienstleistungen für internationale Reisen",
+      "area_served": "Weltweit",
+      "service_type": "Reisedienstleistungen"
+    },
+    "blog": {
+      "title": "Reise-Blog - GetTravelVisa.com",
+      "description": "Fachkundige Reiseführer, Visa-Tipps und Zielort-Einblicke, um Ihnen bei der Planung Ihrer perfekten Reise zu helfen.",
+      "article_section": "Reise-Blog"
+    },
+    "contact": {
+      "title": "Kontaktieren Sie uns",
+      "description": "Nehmen Sie Kontakt mit unserem Team auf. Wir sind hier, um Ihnen bei Ihren Visa-Fragen und Reiseplanungsbedürfnissen zu helfen."
+    }
+  },
+  "errors": {
+    "page_not_found": "Seite nicht gefunden",
+    "page_not_found_description": "Die angeforderte Seite konnte nicht gefunden werden."
   }
 }

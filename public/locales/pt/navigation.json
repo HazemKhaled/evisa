@@ -22,6 +22,11 @@
     "phone": "Telefone",
     "address": "Endereço do Escritório",
     "social_media": "Redes Sociais",
-    "copyright": "© {{year}} Plataforma GetTravelVisa.com. Todos os direitos reservados."
+    "copyright": "© {{year}} GetTravelVisa.com. Todos os direitos reservados."
+  },
+  "breadcrumb": {
+    "home": "Início",
+    "blog": "Blog de Viagem",
+    "contact": "Entre em Contato"
   }
 }

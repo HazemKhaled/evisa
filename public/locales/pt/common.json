@@ -1,7 +1,13 @@
 {
   "site": {
-    "title": "Plataforma GetTravelVisa.com - Viaje com Requisitos Mínimos de Visto",
-    "description": "Simplifique sua viagem com nossa plataforma abrangente de processamento de vistos. Obtenha informações de vistos baseadas no destino, verificação de elegibilidade e serviços de solicitação perfeitos."
+    "name": "Get Travel Visa",
+    "title": "Get Travel Visa - Viaje com Requisitos Mínimos de Visto",
+    "description": "Simplifique sua viagem com nossa plataforma abrangente de processamento de vistos. Obtenha informações de vistos baseadas no destino, verificação de elegibilidade e serviços de solicitação perfeitos.",
+    "keywords": "solicitação de visto, visto de viagem, verificador de visto, serviços de visto, viagens internacionais, requisitos de visto, documentos de viagem, serviços de passaporte, processamento de visto, assistência de viagem",
+    "ogTitle": "Get Travel Visa - Seu Parceiro de Confiança para Solicitações de Visto",
+    "ogDescription": "Simplifique seu processo de solicitação de visto com nossos serviços abrangentes de verificação e solicitação de vistos. Obtenha orientação especializada para vistos de viagem em todo o mundo.",
+    "twitterTitle": "Get Travel Visa - Seu Parceiro de Confiança para Solicitações de Visto",
+    "twitterDescription": "Simplifique seu processo de solicitação de visto com nossos serviços abrangentes de verificação e solicitação de vistos. Obtenha orientação especializada para vistos de viagem em todo o mundo."
   },
   "buttons": {
     "startApplication": "Iniciar Solicitação",

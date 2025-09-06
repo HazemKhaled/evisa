@@ -12,8 +12,8 @@ export const getCloudflareContext = jest.fn().mockResolvedValue({
   },
 });
 
-const mockModule = {
+const opennextjsCloudflare = {
   getCloudflareContext,
 };
 
-export default mockModule;
+export default opennextjsCloudflare;
