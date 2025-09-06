@@ -50,5 +50,9 @@
   "latestPosts": {
     "title": "Latest Travel Insights",
     "subtitle": "Stay updated with travel tips and destination guides"
+  },
+  "popularVisaTypes": {
+    "title": "Popular Visa Types",
+    "subtitle": "Explore different visa options for your travel needs"
   }
 }

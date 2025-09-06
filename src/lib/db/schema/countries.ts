@@ -6,6 +6,7 @@ export const countries = sqliteTable("countries", {
   code: text("code", { length: 3 }).notNull().unique(), // ISO 3166-1 alpha-3
   continent: text("continent").notNull(), // e.g., "Africa", "Asia", "Europe"
   region: text("region"), // e.g., "Western Europe", "Southeast Asia"
+  heroImage: text("hero_image"), // Unsplash or other hero image URL
   isActive: integer("is_active", { mode: "boolean" }).default(true).notNull(),
   createdAt: integer("created_at", { mode: "timestamp" })
     .default(sql`(unixepoch())`)
@@ -24,9 +25,10 @@ export const countriesI18n = sqliteTable(
     countryId: integer("country_id")
       .references(() => countries.id)
       .notNull(),
-    locale: text("locale", { length: 5 }).notNull(), // e.g., "en", "ar", "es"
+    locale: text("locale", { length: 2 }).notNull(), // e.g., "en", "ar", "es"
     name: text("name").notNull(),
-    description: text("description"),
+    name_long: text("name_long"), // Official/formal country name
+    about: text("about"), // 2-line catchy description
     createdAt: integer("created_at", { mode: "timestamp" })
       .default(sql`(unixepoch())`)
       .notNull(),

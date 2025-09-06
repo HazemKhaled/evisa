@@ -38,9 +38,14 @@ Create the blog as required
 - [x] Enhance SEO metadata or add it if not exists for all pages
 - [x] Add JSON-LD in all pages, consider each page should have it in it's own language
 
+## Home Page
+
+- [ ] Enrich current home page blocks, fix UI, add random destinations, random visa types, recent blog posts
+
 ## Visa Catalog
 
-TBD
+- [ ] Destinations page should list all destinations cards, on click open destination details page
+- [ ] Home page visa check form should
 
 ## Background tasks
 

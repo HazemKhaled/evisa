@@ -22,9 +22,6 @@ interface Environment {
     apiToken: string | undefined;
   };
 
-  // Database configuration
-  localDbPath: string | undefined;
-
   // Public application URLs
   baseUrl: string;
 
@@ -41,7 +38,6 @@ const rawEnv = {
   CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID,
   CLOUDFLARE_D1_DATABASE_ID: process.env.CLOUDFLARE_D1_DATABASE_ID,
   CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN,
-  LOCAL_DB_PATH: process.env.LOCAL_DB_PATH,
   NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
   NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
 } as const;
@@ -58,8 +54,6 @@ export const env: Environment = {
     databaseId: rawEnv.CLOUDFLARE_D1_DATABASE_ID,
     apiToken: rawEnv.CLOUDFLARE_API_TOKEN,
   },
-
-  localDbPath: rawEnv.LOCAL_DB_PATH,
 
   baseUrl: rawEnv.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com",
 
@@ -107,18 +101,26 @@ export const isProduction = env.NODE_ENV === "production";
 export const isTest = env.NODE_ENV === "test";
 
 /**
- * Check if we should use local database (development mode)
+ * Check if we're in local development mode with D1
+ * Uses NODE_ENV to determine if we should use local D1 development setup
  */
-export const shouldUseLocalDb = Boolean(env.localDbPath);
+export const shouldUseLocalD1 = isDevelopment;
 
 /**
- * Get the appropriate database path for local development
+ * Validate environment variables for local D1 development
+ * Requires at least database ID for local operations
  */
-export function getLocalDbPath(): string {
-  if (!env.localDbPath) {
-    throw new Error("LOCAL_DB_PATH is not configured for local database usage");
+export function validateLocalD1Env(): { databaseId: string } {
+  if (!env.cloudflare.databaseId) {
+    throw new Error(
+      "Missing CLOUDFLARE_D1_DATABASE_ID environment variable for local D1 development.\n" +
+        "Please set this variable in your .env.local file."
+    );
   }
-  return env.localDbPath;
+
+  return {
+    databaseId: env.cloudflare.databaseId,
+  };
 }
 
 /**
@@ -130,7 +132,6 @@ export const {
   CLOUDFLARE_ACCOUNT_ID,
   CLOUDFLARE_D1_DATABASE_ID,
   CLOUDFLARE_API_TOKEN,
-  LOCAL_DB_PATH,
   NEXT_PUBLIC_BASE_URL,
   NEXT_PUBLIC_SENTRY_DSN,
 } = rawEnv;

@@ -40,5 +40,18 @@
     "error": "حدث خطأ",
     "success": "نجح",
     "notFound": "غير موجود"
+  },
+  "labels": {
+    "by": "بواسطة",
+    "destinations": "الوجهات",
+    "destination": "الوجهة",
+    "processingTime": "وقت المعالجة",
+    "duration": "المدة",
+    "fee": "الرسوم",
+    "maxStay": "أقصى مدة إقامة",
+    "multiEntry": "دخول متعدد",
+    "interviewRequired": "مقابلة مطلوبة",
+    "day": "يوم",
+    "days": "أيام"
   }
 }

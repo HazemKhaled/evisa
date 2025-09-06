@@ -6,7 +6,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "gtv-staging",
   "main": ".open-next/worker.js",
-  "compatibility_date": "2025-08-15",
+  "compatibility_date": "2025-09-05",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   // Minification helps to keep the Worker bundle size down and improve start up time.
   "minify": true,
@@ -29,6 +29,8 @@
       "binding": "DB",
       "database_name": "gtv-db-staging",
       "database_id": "de85b8f1-81b0-4263-b69d-0b82e9d48875",
+      "migrations_dir": "drizzle",
+      "experimental_remote": true,
     },
     // OpenNext cache
     {

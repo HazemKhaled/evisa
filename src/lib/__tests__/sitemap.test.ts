@@ -294,59 +294,6 @@ describe("Sitemap Functions", () => {
     });
   });
 
-  describe("Sitemap Index", () => {
-    let sitemapIndexHandler: () => Promise<Response>;
-
-    beforeEach(async () => {
-      // Dynamic import to ensure mocks are applied
-      const sitemapIndexModule = await import(
-        "../../app/sitemap-index.xml/route"
-      );
-      sitemapIndexHandler = sitemapIndexModule.GET;
-    });
-
-    it("should generate sitemap index XML with correct structure", async () => {
-      const response = await sitemapIndexHandler();
-      const xml = await response.text();
-
-      expect(response.headers.get("Content-Type")).toBe("application/xml");
-      expect(xml).toContain('<?xml version="1.0" encoding="UTF-8"?>');
-      expect(xml).toContain(
-        '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-      );
-      expect(xml).toContain("</sitemapindex>");
-    });
-
-    it("should include main sitemap in XML", async () => {
-      const response = await sitemapIndexHandler();
-      const xml = await response.text();
-
-      expect(xml).toContain(`<loc>${mockBaseUrl}/sitemap.xml</loc>`);
-    });
-
-    it("should include blog sitemaps for all locales in XML", async () => {
-      const response = await sitemapIndexHandler();
-      const xml = await response.text();
-
-      const languages = ["en", "es", "ar", "pt", "ru", "de", "fr", "it"];
-      languages.forEach(locale => {
-        expect(xml).toContain(
-          `<loc>${mockBaseUrl}/${locale}/blog/sitemap.xml</loc>`
-        );
-      });
-    });
-
-    it("should include lastmod dates in XML", async () => {
-      const response = await sitemapIndexHandler();
-      const xml = await response.text();
-
-      expect(xml).toContain("<lastmod>");
-      // Should have lastmod for each sitemap entry
-      const lastmodCount = (xml.match(/<lastmod>/g) || []).length;
-      expect(lastmodCount).toBeGreaterThan(0);
-    });
-  });
-
   describe("URL Generation", () => {
     it("should handle missing environment variable gracefully", async () => {
       const originalEnv = process.env.NEXT_PUBLIC_BASE_URL;

@@ -13,20 +13,27 @@ This guide explains how to set up Drizzle ORM with Cloudflare D1 database for th
 
 ### Local Development Setup (Recommended)
 
-```bash
-# Generate and apply migrations
-pnpm db:generate
-pnpm db:migrate
+**Prerequisites:**
 
-# Seed the database with sample data
-pnpm db:seed
+- Wrangler CLI installed and authenticated
+- Cloudflare D1 database created
+- Environment variables configured in `.env.local`
+
+```bash
+# Start local development with Wrangler
+pnpm wrangler:dev
+
+# In a separate terminal, generate and apply migrations
+pnpm db:generate
+pnpm db:local:apply
 ```
 
 This sequence will:
 
-1. Generate migrations from schema changes
-2. Apply all migrations to the database
-3. Seed with countries and sample visa data
+1. Start local D1 database via Wrangler
+2. Generate migrations from schema changes
+3. Apply all migrations to the local D1 database
+4. Ready for local development with D1 parity
 
 ## Environment Configuration
 
@@ -35,7 +42,7 @@ This sequence will:
 Create or update `.env.local`:
 
 ```env
-# Cloudflare Configuration
+# Cloudflare Configuration (Required for both local and production)
 CLOUDFLARE_ACCOUNT_ID=your-account-id
 CLOUDFLARE_D1_DATABASE_ID=your-database-id
 CLOUDFLARE_API_TOKEN=your-api-token
@@ -53,20 +60,25 @@ NODE_ENV=development
 
 ### Smart Configuration
 
-The project uses intelligent configuration in `drizzle.config.ts` that automatically switches between local and production:
+The project uses intelligent configuration in `drizzle.config.ts` that automatically switches between local D1 and production D1:
 
 ```typescript
 // Automatic environment validation and switching
-LOCAL_DB_PATH
+shouldUseLocalD1
   ? {
       dialect: "sqlite",
-      dbCredentials: { url: LOCAL_DB_PATH },
+      driver: "d1-http",
+      dbCredentials: {
+        ...validateLocalD1Env(), // Only requires database ID for local
+        accountId: undefined, // Wrangler handles auth locally
+        token: undefined,
+      },
     }
   : {
       // Production with Cloudflare D1 HTTP API
       dialect: "sqlite",
       driver: "d1-http",
-      dbCredentials: validateProductionEnv(), // Throws descriptive error if vars missing
+      dbCredentials: validateCloudflareEnv(), // Full credentials required
     };
 ```
 
@@ -75,29 +87,29 @@ LOCAL_DB_PATH
 ### Database Management
 
 ```bash
+# Start local development environment
+pnpm wrangler:dev           # Start local D1 server (run in background)
+
 # Schema and migrations
 pnpm db:generate            # Generate migrations from schema changes
-pnpm db:migrate             # Apply migrations to database
+pnpm db:local:apply         # Apply migrations to local D1
 pnpm db:push                # Push schema directly (dev only)
-
-# Database seeding
-pnpm db:seed                # Seed database with countries and sample data
-pnpm tsx scripts/seed.ts countries  # Seed only countries data
 
 # Database exploration
 pnpm db:studio              # Open Drizzle Studio GUI
+pnpm db:local:list          # List local migrations
 ```
 
 ### Development Workflow
 
 1. **First Setup**:
    ```bash
-   pnpm db:migrate    # Apply existing migrations
-   pnpm db:seed       # Seed with sample data
+   pnpm wrangler:dev       # Start local D1 (background terminal)
+   pnpm db:local:apply     # Apply existing migrations to local D1
    ```
 2. **Schema Changes**: Modify files in `src/lib/db/schema/`
 3. **Generate Migration**: `pnpm db:generate`
-4. **Apply Migration**: `pnpm db:migrate`
+4. **Apply Migration**: `pnpm db:local:apply`
 5. **Test with Studio**: `pnpm db:studio`
 
 ## Production Commands
@@ -105,12 +117,12 @@ pnpm db:studio              # Open Drizzle Studio GUI
 ```bash
 # Schema and migrations
 pnpm db:generate            # Generate migrations from schema changes
-pnpm db:migrate             # Apply migrations to production
+pnpm db:prod:apply          # Apply migrations to production D1
 pnpm db:push               # Push schema directly (dev only)
 
 # Database management
-pnpm db:studio             # Open Drizzle Studio for production (port 4983)
-pnpm db:seed               # Seed production with data
+pnpm db:studio             # Open Drizzle Studio for production
+pnpm db:prod:list          # List production migrations
 
 # Code quality
 pnpm lint                  # ESLint checks
@@ -123,8 +135,8 @@ pnpm format               # Prettier formatting
 ### Database Studio
 
 - **Command**: `pnpm db:studio`
-- **Connection**: Automatically detects local or production based on environment
-- **Local Mode**: Direct SQLite file access via `@libsql/client`
+- **Connection**: Automatically detects local D1 or production D1 based on environment
+- **Local Mode**: Local D1 via Wrangler (requires `pnpm wrangler:dev` running)
 - **Production Mode**: Cloudflare D1 HTTP API
 - **Authentication**: Uses environment variables from `.env.local`
 
@@ -164,11 +176,11 @@ The GetTravelVisa.com platform uses a comprehensive i18n database architecture:
 
 ### Sample Data Included
 
-The seed script populates:
+The seed migration populates:
 
-- 5 countries with full translations
-- 9 visa types across multiple destinations
-- 12 visa eligibility rules
+- 192 countries with full translations across 8 locales
+- 2 visa types for UAE destination
+- 4 visa eligibility rules
 - Complete i18n translations for all content
 
 ## Migration Management
@@ -178,11 +190,9 @@ The seed script populates:
 ```
 drizzle/                    # Drizzle Kit generated files
 ├── 0000_*.sql             # Schema migrations (sequential)
+├── 0002_seed_initial_data.sql  # Data seeding migration
+├── seed-migration.ts      # TypeScript seed migration script
 └── meta/                  # Migration metadata
-
-migrations/                 # Wrangler migration files (copied from drizzle/)
-scripts/
-├── seed.ts                # TypeScript seed script
 ```
 
 ### Migration Workflow
@@ -190,9 +200,9 @@ scripts/
 1. **Modify Schema**: Edit files in `src/lib/db/schema/`
 2. **Generate**: `pnpm db:generate` creates new migration
 3. **Review**: Check generated SQL in `drizzle/` directory
-4. **Apply Locally**: `pnpm db:local:migrate`
-5. **Test**: Use `pnpm db:local:studio` to verify changes
-6. **Deploy**: `pnpm db:migrate` for production
+4. **Apply Locally**: `pnpm db:local:apply`
+5. **Test**: Use `pnpm db:studio` to verify changes (with wrangler:dev running)
+6. **Deploy**: `pnpm db:prod:apply` for production
 
 ## Production Deployment
 
@@ -320,13 +330,9 @@ The countries seeding system provides:
 ## Countries Files Structure
 
 ```
-scripts/
-├── countries-data-africa.ts       # African countries data
-├── countries-data-asia.ts         # Asian countries data
-├── countries-data-europe.ts       # European countries data
-├── countries-data-americas.ts     # North & South American countries data
-├── countries-data-oceania.ts      # Oceanian countries data
-├── seed.ts                        # Main seeding script (includes countries seeding)
+drizzle/
+├── seed-migration.ts              # Main seeding migration script
+└── 0002_seed_initial_data.sql    # Data seeding migration placeholder
 ```
 
 ## Countries Database Schema
@@ -359,17 +365,7 @@ pnpm db:migrate
 
 Applies all migrations to create the required database tables.
 
-### 2. Seed Countries Data
-
-```bash
-# Seed only countries (190+ countries)
-pnpm tsx scripts/seed.ts countries
-
-# Or seed everything including sample visa data
-pnpm db:seed
-```
-
-Populates the database with all 190+ countries and their translations in 8 languages.
+Populates the database with all 192 countries and their translations in 8 languages.
 
 ## Countries Data Statistics
 
@@ -461,24 +457,24 @@ The seeded countries data integrates with the GetTravelVisa.com platform for:
 
 ### Adding New Countries
 
-1. Add country data to appropriate continent file
+1. Add country data to the seed-migration.ts file
 2. Include all 8 locale translations
-3. Run seed script to update database
+3. Run seed migration to update database
 
 ### Adding New Locales
 
-1. Update all country data files with new locale
+1. Update the seed-migration.ts file with new locale
 2. Update database schema if needed
-3. Re-run seed script
+3. Re-run seed migration
 
 ### Updating Country Information
 
-1. Modify country data in appropriate file
-2. Re-run seed script (clears and re-inserts all data)
+1. Modify country data in seed-migration.ts file
+2. Re-run seed migration (clears and re-inserts all data)
 
 ## Countries Error Handling
 
-The seeding script includes comprehensive error handling:
+The seed migration includes comprehensive error handling:
 
 - Individual country insertion errors don't stop the process
 - Detailed logging of success/failure counts
@@ -505,13 +501,6 @@ The seeding script includes comprehensive error handling:
 3. **Duplicate Country Codes**
    - Ensure each country has unique ISO 3166-1 alpha-3 code
    - Check for case sensitivity issues
-
-### Countries Verification Commands
-
-```bash
-# Check database by running seed script in countries mode
-pnpm tsx scripts/seed.ts countries
-```
 
 ## Countries Future Enhancements
 

@@ -3,6 +3,7 @@ CREATE TABLE `countries` (
 	`code` text(3) NOT NULL,
 	`continent` text NOT NULL,
 	`region` text,
+	`hero_image` text,
 	`is_active` integer DEFAULT true NOT NULL,
 	`created_at` integer DEFAULT (unixepoch()) NOT NULL,
 	`updated_at` integer DEFAULT (unixepoch()) NOT NULL,
@@ -13,9 +14,10 @@ CREATE UNIQUE INDEX `countries_code_unique` ON `countries` (`code`);--> statemen
 CREATE TABLE `countries_i18n` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`country_id` integer NOT NULL,
-	`locale` text(5) NOT NULL,
+	`locale` text(2) NOT NULL,
 	`name` text NOT NULL,
-	`description` text,
+	`name_long` text,
+	`about` text,
 	`created_at` integer DEFAULT (unixepoch()) NOT NULL,
 	`updated_at` integer DEFAULT (unixepoch()) NOT NULL,
 	FOREIGN KEY (`country_id`) REFERENCES `countries`(`id`) ON UPDATE no action ON DELETE no action
