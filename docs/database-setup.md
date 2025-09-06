@@ -17,9 +17,6 @@ This guide explains how to set up Drizzle ORM with Cloudflare D1 database for th
 # Generate and apply migrations
 pnpm db:generate
 pnpm db:migrate
-
-# Seed the database with sample data
-pnpm db:seed
 ```
 
 This sequence will:
@@ -80,10 +77,6 @@ pnpm db:generate            # Generate migrations from schema changes
 pnpm db:migrate             # Apply migrations to database
 pnpm db:push                # Push schema directly (dev only)
 
-# Database seeding
-pnpm db:seed                # Seed database with countries and sample data
-pnpm tsx scripts/seed.ts countries  # Seed only countries data
-
 # Database exploration
 pnpm db:studio              # Open Drizzle Studio GUI
 ```
@@ -93,7 +86,6 @@ pnpm db:studio              # Open Drizzle Studio GUI
 1. **First Setup**:
    ```bash
    pnpm db:migrate    # Apply existing migrations
-   pnpm db:seed       # Seed with sample data
    ```
 2. **Schema Changes**: Modify files in `src/lib/db/schema/`
 3. **Generate Migration**: `pnpm db:generate`
@@ -110,7 +102,6 @@ pnpm db:push               # Push schema directly (dev only)
 
 # Database management
 pnpm db:studio             # Open Drizzle Studio for production (port 4983)
-pnpm db:seed               # Seed production with data
 
 # Code quality
 pnpm lint                  # ESLint checks
@@ -164,11 +155,11 @@ The GetTravelVisa.com platform uses a comprehensive i18n database architecture:
 
 ### Sample Data Included
 
-The seed script populates:
+The seed migration populates:
 
-- 5 countries with full translations
-- 9 visa types across multiple destinations
-- 12 visa eligibility rules
+- 192 countries with full translations across 8 locales
+- 2 visa types for UAE destination
+- 4 visa eligibility rules
 - Complete i18n translations for all content
 
 ## Migration Management
@@ -178,11 +169,9 @@ The seed script populates:
 ```
 drizzle/                    # Drizzle Kit generated files
 ├── 0000_*.sql             # Schema migrations (sequential)
+├── 0002_seed_initial_data.sql  # Data seeding migration
+├── seed-migration.ts      # TypeScript seed migration script
 └── meta/                  # Migration metadata
-
-migrations/                 # Wrangler migration files (copied from drizzle/)
-scripts/
-├── seed.ts                # TypeScript seed script
 ```
 
 ### Migration Workflow
@@ -320,13 +309,9 @@ The countries seeding system provides:
 ## Countries Files Structure
 
 ```
-scripts/
-├── countries-data-africa.ts       # African countries data
-├── countries-data-asia.ts         # Asian countries data
-├── countries-data-europe.ts       # European countries data
-├── countries-data-americas.ts     # North & South American countries data
-├── countries-data-oceania.ts      # Oceanian countries data
-├── seed.ts                        # Main seeding script (includes countries seeding)
+drizzle/
+├── seed-migration.ts              # Main seeding migration script
+└── 0002_seed_initial_data.sql    # Data seeding migration placeholder
 ```
 
 ## Countries Database Schema
@@ -359,17 +344,7 @@ pnpm db:migrate
 
 Applies all migrations to create the required database tables.
 
-### 2. Seed Countries Data
-
-```bash
-# Seed only countries (190+ countries)
-pnpm tsx scripts/seed.ts countries
-
-# Or seed everything including sample visa data
-pnpm db:seed
-```
-
-Populates the database with all 190+ countries and their translations in 8 languages.
+Populates the database with all 192 countries and their translations in 8 languages.
 
 ## Countries Data Statistics
 
@@ -461,24 +436,24 @@ The seeded countries data integrates with the GetTravelVisa.com platform for:
 
 ### Adding New Countries
 
-1. Add country data to appropriate continent file
+1. Add country data to the seed-migration.ts file
 2. Include all 8 locale translations
-3. Run seed script to update database
+3. Run seed migration to update database
 
 ### Adding New Locales
 
-1. Update all country data files with new locale
+1. Update the seed-migration.ts file with new locale
 2. Update database schema if needed
-3. Re-run seed script
+3. Re-run seed migration
 
 ### Updating Country Information
 
-1. Modify country data in appropriate file
-2. Re-run seed script (clears and re-inserts all data)
+1. Modify country data in seed-migration.ts file
+2. Re-run seed migration (clears and re-inserts all data)
 
 ## Countries Error Handling
 
-The seeding script includes comprehensive error handling:
+The seed migration includes comprehensive error handling:
 
 - Individual country insertion errors don't stop the process
 - Detailed logging of success/failure counts
@@ -505,13 +480,6 @@ The seeding script includes comprehensive error handling:
 3. **Duplicate Country Codes**
    - Ensure each country has unique ISO 3166-1 alpha-3 code
    - Check for case sensitivity issues
-
-### Countries Verification Commands
-
-```bash
-# Check database by running seed script in countries mode
-pnpm tsx scripts/seed.ts countries
-```
 
 ## Countries Future Enhancements
 

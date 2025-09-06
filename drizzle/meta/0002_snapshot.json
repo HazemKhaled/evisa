@@ -1,8 +1,8 @@
 {
+  "id": "280eece9-c21b-466c-9363-5e558e3475f3",
+  "prevId": "1706512e-4998-44dd-9de2-02657e8cbcfa",
   "version": "6",
   "dialect": "sqlite",
-  "id": "d5ec36b4-2863-4834-86ee-18bbbe3be0e2",
-  "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "countries": {
       "name": "countries",
@@ -159,11 +159,11 @@
         "countries_i18n_country_id_countries_id_fk": {
           "name": "countries_i18n_country_id_countries_id_fk",
           "tableFrom": "countries_i18n",
-          "tableTo": "countries",
           "columnsFrom": ["country_id"],
+          "tableTo": "countries",
           "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -266,29 +266,29 @@
         "visa_eligibility_destination_id_countries_id_fk": {
           "name": "visa_eligibility_destination_id_countries_id_fk",
           "tableFrom": "visa_eligibility",
-          "tableTo": "countries",
           "columnsFrom": ["destination_id"],
+          "tableTo": "countries",
           "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         },
         "visa_eligibility_passport_id_countries_id_fk": {
           "name": "visa_eligibility_passport_id_countries_id_fk",
           "tableFrom": "visa_eligibility",
-          "tableTo": "countries",
           "columnsFrom": ["passport_id"],
+          "tableTo": "countries",
           "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         },
         "visa_eligibility_visa_type_id_visa_types_id_fk": {
           "name": "visa_eligibility_visa_type_id_visa_types_id_fk",
           "tableFrom": "visa_eligibility",
-          "tableTo": "visa_types",
           "columnsFrom": ["visa_type_id"],
+          "tableTo": "visa_types",
           "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -354,11 +354,11 @@
         "visa_eligibility_i18n_visa_eligibility_id_visa_eligibility_id_fk": {
           "name": "visa_eligibility_i18n_visa_eligibility_id_visa_eligibility_id_fk",
           "tableFrom": "visa_eligibility_i18n",
-          "tableTo": "visa_eligibility",
           "columnsFrom": ["visa_eligibility_id"],
+          "tableTo": "visa_eligibility",
           "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -492,11 +492,11 @@
         "visa_types_destination_id_countries_id_fk": {
           "name": "visa_types_destination_id_countries_id_fk",
           "tableFrom": "visa_types",
-          "tableTo": "countries",
           "columnsFrom": ["destination_id"],
+          "tableTo": "countries",
           "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -569,11 +569,11 @@
         "visa_types_i18n_visa_type_id_visa_types_id_fk": {
           "name": "visa_types_i18n_visa_type_id_visa_types_id_fk",
           "tableFrom": "visa_types_i18n",
-          "tableTo": "visa_types",
           "columnsFrom": ["visa_type_id"],
+          "tableTo": "visa_types",
           "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -584,9 +584,9 @@
   "views": {},
   "enums": {},
   "_meta": {
+    "columns": {},
     "schemas": {},
-    "tables": {},
-    "columns": {}
+    "tables": {}
   },
   "internal": {
     "indexes": {}
