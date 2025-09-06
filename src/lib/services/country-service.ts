@@ -47,7 +47,7 @@ export async function getCountryNames(
     const db = (await getDbAsync()) as Database;
 
     // Use a single query to get all country names at once
-    const results = await (db as any)
+    const results = await db
       .select({
         code: countries.code,
         name: countriesI18n.name,
@@ -63,7 +63,7 @@ export async function getCountryNames(
 
     // Create a map for quick lookups
     const countryMap = new Map<string, string>();
-    results.forEach((result: any) => {
+    results.forEach(result => {
       if (result.code && result.name) {
         countryMap.set(result.code, result.name);
       }
@@ -96,7 +96,7 @@ export async function getAllCountries(
   try {
     const db = (await getDbAsync()) as Database;
 
-    const results = await (db as any)
+    const results = await db
       .select({
         id: countries.id,
         code: countries.code,
@@ -115,7 +115,7 @@ export async function getAllCountries(
       )
       .where(isNull(countries.deletedAt));
 
-    return results.map((result: any) => ({
+    return results.map(result => ({
       id: result.id,
       code: result.code,
       name: result.name,
@@ -147,7 +147,7 @@ export async function getCountryByCode(
   try {
     const db = (await getDbAsync()) as Database;
 
-    const results = await (db as any)
+    const results = await db
       .select({
         id: countries.id,
         code: countries.code,
@@ -211,7 +211,7 @@ export async function searchCountries(
   try {
     const db = (await getDbAsync()) as Database;
 
-    const results = await (db as any)
+    const results = await db
       .select({
         id: countries.id,
         code: countries.code,
@@ -234,7 +234,7 @@ export async function searchCountries(
     // Filter results by query on the application side for now
     // In production, you'd want to do this in the database with proper search
     return results
-      .filter((result: any) => {
+      .filter(result => {
         const localizedName = (
           result.localizedName || result.name
         ).toLowerCase();
@@ -247,7 +247,7 @@ export async function searchCountries(
           result.code.toLowerCase().includes(searchQuery)
         );
       })
-      .map((result: any) => ({
+      .map(result => ({
         id: result.id,
         code: result.code,
         name: result.name,
@@ -300,7 +300,7 @@ export async function getCountriesByCodes(
   try {
     const db = (await getDbAsync()) as Database;
 
-    const results = await (db as any)
+    const results = await db
       .select({
         id: countries.id,
         code: countries.code,
@@ -323,7 +323,7 @@ export async function getCountriesByCodes(
 
     // Maintain order from input array
     const countryMap = new Map<string, CountryWithI18n>();
-    results.forEach((result: any) => {
+    results.forEach(result => {
       countryMap.set(result.code, {
         id: result.id,
         code: result.code,

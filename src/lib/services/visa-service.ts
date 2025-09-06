@@ -51,7 +51,7 @@ export async function getRandomVisaTypes(
   try {
     const db = (await getDbAsync()) as Database;
 
-    const results = await (db as any)
+    const results = await db
       .select({
         id: visaTypes.id,
         destinationId: visaTypes.destinationId,
@@ -97,7 +97,7 @@ export async function getRandomVisaTypes(
       .orderBy(sql`RANDOM()`)
       .limit(limit);
 
-    return results.map((result: any) => ({
+    return results.map(result => ({
       id: result.id,
       destinationId: result.destinationId,
       type: result.type,
@@ -142,7 +142,7 @@ export async function getVisaTypesByDestination(
   try {
     const db = (await getDbAsync()) as Database;
 
-    const results = await (db as any)
+    const results = await db
       .select({
         id: visaTypes.id,
         destinationId: visaTypes.destinationId,
@@ -188,7 +188,7 @@ export async function getVisaTypesByDestination(
       )
       .orderBy(desc(visaTypes.createdAt));
 
-    return results.map((result: any) => ({
+    return results.map(result => ({
       id: result.id,
       destinationId: result.destinationId,
       type: result.type,
@@ -232,7 +232,7 @@ export async function getAllVisaTypes(
   try {
     const db = (await getDbAsync()) as Database;
 
-    const results = await (db as any)
+    const results = await db
       .select({
         id: visaTypes.id,
         destinationId: visaTypes.destinationId,
@@ -277,7 +277,7 @@ export async function getAllVisaTypes(
       )
       .orderBy(desc(visaTypes.createdAt));
 
-    return results.map((result: any) => ({
+    return results.map(result => ({
       id: result.id,
       destinationId: result.destinationId,
       type: result.type,
@@ -319,7 +319,7 @@ export async function getVisaTypeById(
   try {
     const db = (await getDbAsync()) as Database;
 
-    const results = await (db as any)
+    const results = await db
       .select({
         id: visaTypes.id,
         destinationId: visaTypes.destinationId,
