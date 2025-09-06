@@ -40,6 +40,30 @@
       "description": "Cerchiamo sempre di collaborare con agenzie di viaggio, fornitori di servizi per visti e organizzazioni turistiche per servire meglio i viaggiatori di tutto il mondo."
     }
   },
+  "destinations": {
+    "title": "Tutte le Destinazioni",
+    "description": "Esplora i requisiti per il visto per le destinazioni di tutto il mondo. Trova la destinazione perfetta per la tua prossima avventura e comprendi i requisiti per il visto per il tuo passaporto.",
+    "noDestinations": "Nessuna destinazione disponibile al momento. Si prega di riprovare più tardi."
+  },
+  "continents": {
+    "asia": "Asia",
+    "europe": "Europa",
+    "northamerica": "Nord America",
+    "southamerica": "Sud America",
+    "africa": "Africa",
+    "oceania": "Oceania",
+    "other": "Altro"
+  },
+  "destination": {
+    "visaOptions": "Opzioni Visto",
+    "visaOptionsDesc": "Scegli tra i tipi di visto disponibili e i requisiti per il tuo viaggio verso questa destinazione.",
+    "noVisaOptions": "Nessuna opzione visto disponibile",
+    "noVisaOptionsDesc": "Le informazioni sui visti per questa destinazione non sono ancora disponibili. Si prega di riprovare più tardi.",
+    "relatedArticles": "Articoli Correlati",
+    "relatedArticlesDesc": "Guide di viaggio, consigli e approfondimenti per il tuo viaggio verso questa destinazione.",
+    "readyToApply": "Pronto a richiedere il tuo visto?",
+    "readyToApplyDesc": "Inizia oggi il tuo processo di richiesta del visto e avvicinati ai tuoi obiettivi di viaggio."
+  },
   "blog": {
     "title": "Blog di Viaggio",
     "subtitle": "Guide di viaggio esperte, consigli sui visti e informazioni sulle destinazioni per aiutarti a pianificare il tuo viaggio perfetto.",

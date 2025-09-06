@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "p/about-us", // About us
     "p/terms-n-conditions", // Terms and conditions
     "p/privacy-policy", // Privacy policy
+    "p/d",
   ];
 
   const urls: MetadataRoute.Sitemap = [];

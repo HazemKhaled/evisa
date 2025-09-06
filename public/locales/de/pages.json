@@ -40,6 +40,30 @@
       "description": "Wir suchen immer nach Partnerschaften mit Reiseagenturen, Visa-Dienstleistern und Tourismusorganisationen, um Reisenden weltweit bessere Dienste zu bieten."
     }
   },
+  "destinations": {
+    "title": "Alle Reiseziele",
+    "description": "Entdecken Sie Visa-Anforderungen für Reiseziele weltweit. Finden Sie das perfekte Reiseziel für Ihr nächstes Abenteuer und verstehen Sie die Visa-Anforderungen für Ihren Reisepass.",
+    "noDestinations": "Derzeit sind keine Reiseziele verfügbar. Bitte versuchen Sie es später erneut."
+  },
+  "continents": {
+    "asia": "Asien",
+    "europe": "Europa",
+    "northamerica": "Nordamerika",
+    "southamerica": "Südamerika",
+    "africa": "Afrika",
+    "oceania": "Ozeanien",
+    "other": "Andere"
+  },
+  "destination": {
+    "visaOptions": "Visa-Optionen",
+    "visaOptionsDesc": "Wählen Sie aus verfügbaren Visa-Typen und Anforderungen für Ihre Reise zu diesem Reiseziel.",
+    "noVisaOptions": "Keine Visa-Optionen verfügbar",
+    "noVisaOptionsDesc": "Visa-Informationen für dieses Reiseziel sind noch nicht verfügbar. Bitte versuchen Sie es später erneut.",
+    "relatedArticles": "Verwandte Artikel",
+    "relatedArticlesDesc": "Reiseführer, Tipps und Einblicke für Ihre Reise zu diesem Reiseziel.",
+    "readyToApply": "Bereit, Ihr Visa zu beantragen?",
+    "readyToApplyDesc": "Beginnen Sie noch heute Ihren Visa-Antragsprozess und kommen Sie Ihren Reisezielen näher."
+  },
   "blog": {
     "title": "Reise-Blog",
     "subtitle": "Experten-Reiseführer, Visa-Tipps und Reiseziel-Einblicke, um Ihnen bei der Planung Ihrer perfekten Reise zu helfen.",

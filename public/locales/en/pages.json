@@ -40,6 +40,30 @@
       "description": "We're always looking to partner with travel agencies, visa service providers, and tourism organizations to better serve travelers worldwide."
     }
   },
+  "destinations": {
+    "title": "All Destinations",
+    "description": "Explore visa requirements for destinations worldwide. Find the perfect destination for your next adventure and understand the visa requirements for your passport.",
+    "noDestinations": "No destinations available at the moment. Please check back later."
+  },
+  "continents": {
+    "asia": "Asia",
+    "europe": "Europe",
+    "northamerica": "North America",
+    "southamerica": "South America",
+    "africa": "Africa",
+    "oceania": "Oceania",
+    "other": "Other"
+  },
+  "destination": {
+    "visaOptions": "Visa Options",
+    "visaOptionsDesc": "Choose from available visa types and requirements for your travel to this destination.",
+    "noVisaOptions": "No visa options available",
+    "noVisaOptionsDesc": "Visa information for this destination is not available yet. Please check back later.",
+    "relatedArticles": "Related Articles",
+    "relatedArticlesDesc": "Travel guides, tips, and insights for your journey to this destination.",
+    "readyToApply": "Ready to apply for your visa?",
+    "readyToApplyDesc": "Start your visa application process today and get closer to your travel goals."
+  },
   "blog": {
     "title": "Travel Blog",
     "subtitle": "Expert travel guides, visa tips, and destination insights to help you plan your perfect trip.",

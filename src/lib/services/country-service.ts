@@ -21,6 +21,7 @@ export interface CountryWithI18n extends Country {
   localizedName: string;
   heroImage: string | null;
   about: string | null;
+  continent: string;
 }
 
 /**
@@ -102,6 +103,7 @@ export async function getAllCountries(
         code: countries.code,
         name: countries.code, // Use code as fallback name since countries table doesn't have name field
         heroImage: countries.heroImage,
+        continent: countries.continent,
         localizedName: countriesI18n.name,
         about: countriesI18n.about,
       })
@@ -120,6 +122,7 @@ export async function getAllCountries(
       code: result.code,
       name: result.name,
       heroImage: result.heroImage,
+      continent: result.continent,
       localizedName: result.localizedName || result.name,
       about: result.about,
     }));
@@ -153,6 +156,7 @@ export async function getCountryByCode(
         code: countries.code,
         name: countries.code, // Use code as fallback name since countries table doesn't have name field
         heroImage: countries.heroImage,
+        continent: countries.continent,
         localizedName: countriesI18n.name,
         about: countriesI18n.about,
       })
@@ -179,6 +183,7 @@ export async function getCountryByCode(
       code: result.code,
       name: result.name,
       heroImage: result.heroImage,
+      continent: result.continent,
       localizedName: result.localizedName || result.name,
       about: result.about,
     };
@@ -217,6 +222,7 @@ export async function searchCountries(
         code: countries.code,
         name: countries.code, // Use code as fallback name since countries table doesn't have name field
         heroImage: countries.heroImage,
+        continent: countries.continent,
         localizedName: countriesI18n.name,
         about: countriesI18n.about,
       })
@@ -252,6 +258,7 @@ export async function searchCountries(
         code: result.code,
         name: result.name,
         heroImage: result.heroImage,
+        continent: result.continent,
         localizedName: result.localizedName || result.name,
         about: result.about,
       }));
@@ -306,6 +313,7 @@ export async function getCountriesByCodes(
         code: countries.code,
         name: countries.code, // Use code as fallback name since countries table doesn't have name field
         heroImage: countries.heroImage,
+        continent: countries.continent,
         localizedName: countriesI18n.name,
         about: countriesI18n.about,
       })
@@ -329,6 +337,7 @@ export async function getCountriesByCodes(
         code: result.code,
         name: result.name,
         heroImage: result.heroImage,
+        continent: result.continent,
         localizedName: result.localizedName || result.name,
         about: result.about,
       });
