@@ -40,5 +40,18 @@
     "error": "An error occurred",
     "success": "Success",
     "notFound": "Not found"
+  },
+  "labels": {
+    "by": "By",
+    "destinations": "Destinations",
+    "destination": "Destination",
+    "processingTime": "Processing Time",
+    "duration": "Duration",
+    "fee": "Fee",
+    "maxStay": "Max Stay",
+    "multiEntry": "Multi-entry",
+    "interviewRequired": "Interview required",
+    "day": "day",
+    "days": "days"
   }
 }

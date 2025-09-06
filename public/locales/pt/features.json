@@ -50,5 +50,9 @@
   "latestPosts": {
     "title": "Últimas perspectivas de viagem",
     "subtitle": "Mantenha-se atualizado com dicas de viagem e guias de destino"
+  },
+  "popularVisaTypes": {
+    "title": "Tipos de Visto Populares",
+    "subtitle": "Explore diferentes opções de visto para suas necessidades de viagem"
   }
 }

@@ -8,6 +8,12 @@ import {
   generateOrganizationData,
   generateServiceData,
 } from "@/lib/json-ld";
+import { getPopularDestinations } from "@/lib/services/country-service";
+import { getRandomVisaTypes } from "@/lib/services/visa-service";
+import { getBlogPostsForLocale } from "@/lib/blog";
+import { DestinationCard } from "@/components/ui/destination-card";
+import { VisaTypeCard } from "@/components/ui/visa-type-card";
+import { RelatedArticleCard } from "@/components/ui/related-article-card";
 
 export default async function LocalePage({
   params,
@@ -19,6 +25,13 @@ export default async function LocalePage({
   const { t: tHero } = await getTranslation(locale, "hero");
   const { t: tFeatures } = await getTranslation(locale, "features");
   const { t } = await getTranslation(locale, "pages");
+
+  // Fetch data for homepage sections
+  const [destinations, visaTypes, blogPosts] = await Promise.all([
+    getPopularDestinations(locale, 8),
+    getRandomVisaTypes(locale, 6),
+    getBlogPostsForLocale(locale).then(posts => posts.slice(0, 6)),
+  ]);
 
   const baseUrl = env.baseUrl;
   const pageUrl = `${baseUrl}/${locale}`;
@@ -142,9 +155,263 @@ export default async function LocalePage({
                   {tFeatures("howItWorks.steps.check.description")}
                 </p>
               </div>
+              <div className={cn("text-center")}>
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-600">
+                  <span className="font-bold text-white">2</span>
+                </div>
+                <h3 className="mt-4 text-lg font-semibold text-gray-900">
+                  {tFeatures("howItWorks.steps.apply.title")}
+                </h3>
+                <p className="mt-2 text-sm text-gray-600">
+                  {tFeatures("howItWorks.steps.apply.description")}
+                </p>
+              </div>
+              <div className={cn("text-center")}>
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-purple-600">
+                  <span className="font-bold text-white">3</span>
+                </div>
+                <h3 className="mt-4 text-lg font-semibold text-gray-900">
+                  {tFeatures("howItWorks.steps.documents.title")}
+                </h3>
+                <p className="mt-2 text-sm text-gray-600">
+                  {tFeatures("howItWorks.steps.documents.description")}
+                </p>
+              </div>
+              <div className={cn("text-center")}>
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-orange-600">
+                  <span className="font-bold text-white">4</span>
+                </div>
+                <h3 className="mt-4 text-lg font-semibold text-gray-900">
+                  {tFeatures("howItWorks.steps.approval.title")}
+                </h3>
+                <p className="mt-2 text-sm text-gray-600">
+                  {tFeatures("howItWorks.steps.approval.description")}
+                </p>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* Top Destinations Section */}
+        <div className="bg-gray-50 py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className={cn("mb-12 text-center")}>
+              <h2
+                className={cn(
+                  "text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                )}
+              >
+                {tFeatures("topDestinations.title")}
+              </h2>
+              <p className={cn("mx-auto mt-4 max-w-2xl text-lg text-gray-600")}>
+                {tFeatures("topDestinations.subtitle")}
+              </p>
+            </div>
+
+            <div
+              className={cn(
+                "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+              )}
+            >
+              {destinations.map(destination => (
+                <DestinationCard
+                  key={destination.id}
+                  destination={destination}
+                  locale={locale}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Random Visa Types Section */}
+        <div className="bg-white py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className={cn("mb-12 text-center")}>
+              <h2
+                className={cn(
+                  "text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                )}
+              >
+                {tFeatures("popularVisaTypes.title")}
+              </h2>
+              <p className={cn("mx-auto mt-4 max-w-2xl text-lg text-gray-600")}>
+                {tFeatures("popularVisaTypes.subtitle")}
+              </p>
+            </div>
+
+            <div
+              className={cn(
+                "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+              )}
+            >
+              {visaTypes.map(visaType => (
+                <VisaTypeCard
+                  key={visaType.id}
+                  visaType={visaType}
+                  locale={locale}
+                  tCommon={tCommon}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Why Choose Us Section */}
+        <div className="bg-blue-50 py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className={cn("mb-12 text-center")}>
+              <h2
+                className={cn(
+                  "text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                )}
+              >
+                {tFeatures("whyChooseUs.title")}
+              </h2>
+              <p className={cn("mx-auto mt-4 max-w-2xl text-lg text-gray-600")}>
+                {tFeatures("whyChooseUs.subtitle")}
+              </p>
+            </div>
+
+            <div
+              className={cn(
+                "grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
+              )}
+            >
+              <div className={cn("text-center")}>
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-600">
+                  <svg
+                    className="h-8 w-8 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                  {tFeatures("whyChooseUs.features.speed.title")}
+                </h3>
+                <p className="text-gray-600">
+                  {tFeatures("whyChooseUs.features.speed.description")}
+                </p>
+              </div>
+
+              <div className={cn("text-center")}>
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-600">
+                  <svg
+                    className="h-8 w-8 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                  {tFeatures("whyChooseUs.features.trust.title")}
+                </h3>
+                <p className="text-gray-600">
+                  {tFeatures("whyChooseUs.features.trust.description")}
+                </p>
+              </div>
+
+              <div className={cn("text-center")}>
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-purple-600">
+                  <svg
+                    className="h-8 w-8 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                  {tFeatures("whyChooseUs.features.global.title")}
+                </h3>
+                <p className="text-gray-600">
+                  {tFeatures("whyChooseUs.features.global.description")}
+                </p>
+              </div>
+
+              <div className={cn("text-center")}>
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange-600">
+                  <svg
+                    className="h-8 w-8 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25v19.5M21.75 12H2.25"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                  {tFeatures("whyChooseUs.features.support.title")}
+                </h3>
+                <p className="text-gray-600">
+                  {tFeatures("whyChooseUs.features.support.description")}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Recent Blog Posts Section */}
+        {blogPosts.length > 0 && (
+          <div className="bg-white py-16">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className={cn("mb-12 text-center")}>
+                <h2
+                  className={cn(
+                    "text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                  )}
+                >
+                  {tFeatures("latestPosts.title")}
+                </h2>
+                <p
+                  className={cn("mx-auto mt-4 max-w-2xl text-lg text-gray-600")}
+                >
+                  {tFeatures("latestPosts.subtitle")}
+                </p>
+              </div>
+
+              <div
+                className={cn(
+                  "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                )}
+              >
+                {blogPosts.map(post => (
+                  <RelatedArticleCard
+                    key={post.slug}
+                    post={post}
+                    locale={locale}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </main>
     </>
   );

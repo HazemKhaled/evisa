@@ -40,5 +40,18 @@
     "error": "Ocurrió un error",
     "success": "Éxito",
     "notFound": "No encontrado"
+  },
+  "labels": {
+    "by": "Por",
+    "destinations": "Destinos",
+    "destination": "Destino",
+    "processingTime": "Tiempo de Procesamiento",
+    "duration": "Duración",
+    "fee": "Tarifa",
+    "maxStay": "Estancia Máxima",
+    "multiEntry": "Entrada múltiple",
+    "interviewRequired": "Entrevista requerida",
+    "day": "día",
+    "days": "días"
   }
 }

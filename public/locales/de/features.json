@@ -50,5 +50,9 @@
   "latestPosts": {
     "title": "Neueste Reiseeinblicke",
     "subtitle": "Bleiben Sie auf dem Laufenden mit Reisetipps und Zielleitfäden"
+  },
+  "popularVisaTypes": {
+    "title": "Beliebte Visa-Typen",
+    "subtitle": "Entdecken Sie verschiedene Visa-Optionen für Ihre Reisebedürfnisse"
   }
 }

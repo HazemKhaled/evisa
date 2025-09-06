@@ -40,5 +40,18 @@
     "error": "Ein Fehler ist aufgetreten",
     "success": "Erfolg",
     "notFound": "Nicht gefunden"
+  },
+  "labels": {
+    "by": "Von",
+    "destinations": "Reiseziele",
+    "destination": "Reiseziel",
+    "processingTime": "Bearbeitungszeit",
+    "duration": "Dauer",
+    "fee": "Gebühr",
+    "maxStay": "Maximaler Aufenthalt",
+    "multiEntry": "Mehrfacheinreise",
+    "interviewRequired": "Interview erforderlich",
+    "day": "Tag",
+    "days": "Tage"
   }
 }
