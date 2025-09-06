@@ -69,9 +69,6 @@ importers:
       '@libsql/client':
         specifier: ^0.15.14
         version: 0.15.14
-      '@next/env':
-        specifier: ^15.5.2
-        version: 15.5.2
       '@tailwindcss/postcss':
         specifier: ^4.1.13
         version: 4.1.13
@@ -1728,9 +1725,6 @@ packages:
 
   '@next/env@15.4.7':
     resolution: {integrity: sha512-PrBIpO8oljZGTOe9HH0miix1w5MUiGJ/q83Jge03mHEE0E3pyqzAy2+l5G6aJDbXoobmxPJTVhbCuwlLtjSHwg==}
-
-  '@next/env@15.5.2':
-    resolution: {integrity: sha512-Qe06ew4zt12LeO6N7j8/nULSOe3fMXE4dM6xgpBQNvdzyK1sv5y4oAP3bq4LamrvGCZtmRYnW8URFCeX5nFgGg==}
 
   '@next/eslint-plugin-next@15.4.7':
     resolution: {integrity: sha512-asj3RRiEruRLVr+k2ZC4hll9/XBzegMpFMr8IIRpNUYypG86m/a76339X2WETl1C53A512w2INOc2KZV769KPA==}
@@ -8231,8 +8225,6 @@ snapshots:
   '@neon-rs/load@0.0.4': {}
 
   '@next/env@15.4.7': {}
-
-  '@next/env@15.5.2': {}
 
   '@next/eslint-plugin-next@15.4.7':
     dependencies:

@@ -3,14 +3,10 @@
  * This script populates the database with initial data for countries, visa types, and eligibility
  * using the new normalized i18n table structure
  */
-import { loadEnvConfig } from "@next/env";
 import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
 import { getLocalDbPath } from "../src/lib/consts";
 
-// Load environment variables from .env.local
-const projectDir = process.cwd();
-loadEnvConfig(projectDir);
 import {
   countries,
   countriesI18n,

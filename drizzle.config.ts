@@ -1,14 +1,9 @@
-import { loadEnvConfig } from "@next/env";
-
 import type { Config } from "drizzle-kit";
 import {
   shouldUseLocalDb,
   getLocalDbPath,
   validateCloudflareEnv,
 } from "./src/lib/consts";
-
-const projectDir = process.cwd();
-loadEnvConfig(projectDir);
 
 if (shouldUseLocalDb) {
   console.debug("Drizzle: Using local SQLite database");
