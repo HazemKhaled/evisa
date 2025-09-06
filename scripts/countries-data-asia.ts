@@ -236,7 +236,7 @@ export const asianCountriesData: CountryData[] = [
         name: "Brunei",
         name_long: "Brunei Darussalam",
         about:
-          "Beautiful destination with rich culture and heritage. Discover the wonders of this amazing place.",
+          "Tiny oil-rich sultanate on Borneo's northern coast. A peaceful Islamic kingdom with pristine rainforests, opulent mosques, and traditional water villages.",
       },
       {
         locale: "ar",
