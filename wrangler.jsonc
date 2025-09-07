@@ -48,6 +48,10 @@
       "pattern": "gettravelvisa.com",
       "custom_domain": true,
     },
+    {
+      "pattern": "www.gettravelvisa.com",
+      "custom_domain": true,
+    },
   ],
   // Cache
   /**
