@@ -48,7 +48,7 @@
 - Multiple interconnected features across catalog, destinations, and affiliate systems
 - Architectural impact on existing foundation
 
-**Enhancement Description**: Complete the implementation of the destination-driven visa catalog system, including destination pages with visa options, passport-based eligibility checking, affiliate partner integration, travel blog content system, and comprehensive SEO optimization with sitemap generation.
+**Enhancement Description**: Complete the implementation of the destination-driven visa catalog system, including destination pages with visa options, passport-based eligibility checking, travel blog content system, and comprehensive SEO optimization with sitemap generation.
 
 **Impact Assessment**: ✓ Significant Impact (substantial existing code changes and additions required)
 
@@ -56,13 +56,12 @@
 
 **Goals**:
 • Complete destination catalog with visa eligibility checking functionality
-• Implement partner affiliate integration system with UTM tracking
 • Launch comprehensive travel blog system with destination-focused content
 • Deploy advanced SEO optimization including country-specific sitemaps
 • Enable multilingual destination-specific content across 8 languages
-• Establish revenue generation through affiliate partnership model
+• Establish solid foundation for future revenue generation features
 
-**Background Context**: The platform has solid technical foundations with internationalization, database schema, and UI components implemented. However, the core business functionality - the destination catalog with visa eligibility checking and partner integrations - remains incomplete. The enhancement bridges the gap between technical foundation and business value delivery, transforming the platform from a static homepage into a comprehensive visa intelligence platform.
+**Background Context**: The platform has solid technical foundations with internationalization, database schema, and UI components implemented. However, the core business functionality - the destination catalog with visa eligibility checking - remains incomplete. The enhancement bridges the gap between technical foundation and business value delivery, transforming the platform from a static homepage into a comprehensive visa intelligence platform.
 
 **Change Log**:
 | Change | Date | Version | Description | Author |
@@ -79,7 +78,7 @@
 
 **FR2**: Users shall be able to input their passport country to view personalized visa eligibility with unavailable visa options clearly marked/dimmed and available options prominently displayed with detailed requirements.
 
-**FR3**: The system shall integrate with affiliate visa service providers through "Apply Now" buttons that redirect to partner URLs with dynamic placeholders (country, passport) and UTM tracking for commission attribution.
+**FR3**: Users shall access visa-specific information pages at `/d/{DESTINATION_NAME}/v/{VISA_OPTION}` and passport-specific eligibility pages at `/d/{DESTINATION_NAME}/p/{PASSPORT_COUNTRY}` with full SEO optimization.
 
 **FR4**: The platform shall generate comprehensive destination-specific sitemaps at `/d/{DESTINATION_COUNTRY}/sitemap.xml` including all visa options, passport-specific pages, and related travel blog articles for each destination.
 
@@ -101,7 +100,7 @@
 
 **NFR4**: RTL language support (Arabic) shall maintain identical functionality and user experience as LTR languages with proper text direction, layout mirroring, and navigation flow.
 
-**NFR5**: The affiliate integration system shall handle partner API failures gracefully with fallback messaging and error tracking through Sentry monitoring.
+**NFR5**: All visa information content shall be updateable without code deployment through database management interface and content management workflows.
 
 **NFR6**: All visa information content shall be updateable without code deployment through database management interface and content management workflows.
 
@@ -112,8 +111,6 @@
 **CR2**: New destination catalog components must integrate seamlessly with existing UI component library using established Tailwind CSS design tokens and responsive patterns.
 
 **CR3**: Database schema modifications must be backward compatible and use proper Drizzle ORM migrations without data loss during deployment.
-
-**CR4**: Affiliate partner integration must support various URL template formats and UTM parameter configurations across different visa service providers.
 
 ---
 
@@ -323,7 +320,7 @@ This epic structure aligns with brownfield best practices by ensuring existing f
 
 ## 6. Epic 1: Complete Destination-Driven Visa Catalog System
 
-**Epic Goal**: Transform GetTravelVisa.com from a static homepage into a comprehensive destination-driven visa catalog platform with affiliate partner integration, travel blog system, and advanced SEO optimization.
+**Epic Goal**: Transform GetTravelVisa.com from a static homepage into a comprehensive destination-driven visa catalog platform with travel blog system and advanced SEO optimization.
 
 **Integration Requirements**:
 
@@ -392,27 +389,7 @@ so that **I can access precise requirements and application details**.
 - IV2: Language switching functionality works correctly across all new page types
 - IV3: Navigation breadcrumbs integrate with existing header component
 
-### Story 1.4: Integrate Affiliate Partner System with UTM Tracking
-
-As a **business stakeholder**,
-I want **affiliate partner integration with tracking capabilities**,
-so that **the platform generates revenue through visa application referrals**.
-
-**Acceptance Criteria:**
-
-1. "Apply Now" buttons display only when affiliate partners are available for visa type
-2. Partner URL generation with dynamic placeholders (country, passport, visa type)
-3. UTM parameter injection for affiliate tracking and commission attribution
-4. Partner management system in database with URL templates and tracking codes
-5. Graceful handling of partner API failures with user-friendly messaging
-
-**Integration Verification:**
-
-- IV1: Existing visa information display remains functional when partner integration fails
-- IV2: Partner links open in new tabs without disrupting user's research session
-- IV3: Analytics tracking integrates with existing Google Tag Manager setup
-
-### Story 1.5: Implement Travel Blog System with Destination Integration
+### Story 1.4: Implement Travel Blog System with Destination Integration
 
 As a **content-driven traveler**,
 I want **destination-focused blog content and filtering capabilities**,
@@ -432,7 +409,7 @@ so that **I can access relevant travel information alongside visa requirements**
 - IV2: Blog posts maintain existing responsive design and typography patterns
 - IV3: Multilingual blog content integrates with existing i18next translation system
 
-### Story 1.6: Implement All Destinations Listing and Search Functionality
+### Story 1.5: Implement All Destinations Listing and Search Functionality
 
 As a **traveler exploring visa options**,
 I want **a comprehensive destinations listing with search and filtering**,
@@ -452,7 +429,7 @@ so that **I can discover visa-friendly destinations for my passport**.
 - IV2: Existing search form on homepage integrates with new destination filtering
 - IV3: Destination listing maintains performance standards with large dataset
 
-### Story 1.7: Deploy Advanced SEO System with Country-Specific Sitemaps
+### Story 1.6: Deploy Advanced SEO System with Country-Specific Sitemaps
 
 As a **marketing stakeholder**,
 I want **comprehensive SEO optimization with dynamic sitemap generation**,
@@ -472,7 +449,7 @@ so that **the platform achieves high search rankings for visa-related queries**.
 - IV2: New sitemaps integrate with current robots.txt and search console setup
 - IV3: Site performance remains under 3-second load times with SEO enhancements
 
-### Story 1.8: Implement Country Subdomain System with Canonical URLs
+### Story 1.7: Implement Country Subdomain System with Canonical URLs
 
 As a **SEO-focused stakeholder**,
 I want **country-specific subdomains with proper canonical implementation**,
@@ -491,6 +468,36 @@ so that **the platform maximizes search visibility in country-specific markets**
 - IV1: Main domain functionality unaffected by subdomain implementation
 - IV2: Existing internationalization works correctly with subdomain redirects
 - IV3: Search engine crawling optimized without impacting current rankings
+
+---
+
+## Future Enhancement: Affiliate Partner Integration System
+
+**Post-MVP Enhancement**: Integrate affiliate partner system for revenue generation
+
+As a **business stakeholder**,
+I want **affiliate partner integration with tracking capabilities**,
+so that **the platform generates revenue through visa application referrals**.
+
+**Future Acceptance Criteria:**
+
+1. "Apply Now" buttons display when affiliate partners are available for visa type
+2. Partner URL generation with dynamic placeholders (country, passport, visa type)
+3. UTM parameter injection for affiliate tracking and commission attribution
+4. Partner management system in database with URL templates and tracking codes
+5. Graceful handling of partner API failures with user-friendly messaging
+
+**Future Integration Requirements:**
+
+- Integrate with existing visa information display without disrupting user experience
+- Partner links open in new tabs maintaining current research session
+- Analytics tracking integrates with existing Google Tag Manager setup
+- Revenue attribution and commission tracking system
+- Admin interface for partner management and URL template configuration
+
+**Implementation Notes:**
+
+This feature has been moved to post-MVP to simplify initial launch and focus on core destination catalog functionality. The affiliate integration will build upon the solid foundation established by the MVP stories above.
 
 ---
 

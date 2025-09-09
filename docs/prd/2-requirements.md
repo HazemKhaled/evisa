@@ -6,17 +6,15 @@
 
 **FR2**: Users shall be able to input their passport country to view personalized visa eligibility with unavailable visa options clearly marked/dimmed and available options prominently displayed with detailed requirements.
 
-**FR3**: The system shall integrate with affiliate visa service providers through "Apply Now" buttons that redirect to partner URLs with dynamic placeholders (country, passport) and UTM tracking for commission attribution.
+**FR3**: Users shall access visa-specific information pages at `/d/{DESTINATION_NAME}/v/{VISA_OPTION}` and passport-specific eligibility pages at `/d/{DESTINATION_NAME}/p/{PASSPORT_COUNTRY}` with full SEO optimization.
 
-**FR4**: The platform shall generate comprehensive destination-specific sitemaps at `/d/{DESTINATION_COUNTRY}/sitemap.xml` including all visa options, passport-specific pages, and related travel blog articles for each destination.
+**FR4**: The system shall implement a destination-focused travel blog system with article listing at `/blog`, destination filtering at `/d/{DESTINATION_COUNTRY}/blog`, tag filtering at `/blog/t/{TAG}`, and individual articles with MDX support and multilingual content.
 
-**FR5**: Users shall access visa-specific information pages at `/d/{DESTINATION_NAME}/v/{VISA_OPTION}` and passport-specific eligibility pages at `/d/{DESTINATION_NAME}/p/{PASSPORT_COUNTRY}` with full SEO optimization.
+**FR5**: The homepage shall display dynamically populated top destinations, popular visa types, and recent travel blog posts fetched from the database and content system.
 
-**FR6**: The system shall implement a destination-focused travel blog system with article listing at `/blog`, destination filtering at `/d/{DESTINATION_COUNTRY}/blog`, tag filtering at `/blog/t/{TAG}`, and individual articles with MDX support and multilingual content.
+**FR6**: The platform shall maintain comprehensive visa eligibility relationships in the database supporting many-to-many connections between destinations, passport countries, and visa types.
 
-**FR7**: The homepage shall display dynamically populated top destinations, popular visa types, and recent travel blog posts fetched from the database and content system.
-
-**FR8**: The platform shall maintain comprehensive visa eligibility relationships in the database supporting many-to-many connections between destinations, passport countries, and visa types.
+**FR7**: The platform shall generate comprehensive destination-specific sitemaps at `/d/{DESTINATION_COUNTRY}/sitemap.xml` including all visa options, passport-specific pages, and related travel blog articles for each destination.
 
 ## Non-Functional Requirements
 
@@ -28,9 +26,7 @@
 
 **NFR4**: RTL language support (Arabic) shall maintain identical functionality and user experience as LTR languages with proper text direction, layout mirroring, and navigation flow.
 
-**NFR5**: The affiliate integration system shall handle partner API failures gracefully with fallback messaging and error tracking through Sentry monitoring.
-
-**NFR6**: All visa information content shall be updateable without code deployment through database management interface and content management workflows.
+**NFR5**: All visa information content shall be updateable without code deployment through database management interface and content management workflows.
 
 ## Compatibility Requirements
 
@@ -39,7 +35,5 @@
 **CR2**: New destination catalog components must integrate seamlessly with existing UI component library using established Tailwind CSS design tokens and responsive patterns.
 
 **CR3**: Database schema modifications must be backward compatible and use proper Drizzle ORM migrations without data loss during deployment.
-
-**CR4**: Affiliate partner integration must support various URL template formats and UTM parameter configurations across different visa service providers.
 
 ---
