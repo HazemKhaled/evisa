@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import type { CountryWithI18n } from "@/lib/services/country-service";
+import type { DestinationMetadata } from "@/lib/services/country-service";
 
 interface DestinationCardProps {
-  destination: CountryWithI18n;
+  destination: DestinationMetadata;
   locale: string;
   className?: string;
 }

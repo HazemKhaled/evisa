@@ -8,7 +8,7 @@ import {
   generateOrganizationData,
   generateServiceData,
 } from "@/lib/json-ld";
-import { getPopularDestinations } from "@/lib/services/country-service";
+import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
 import { getRandomVisaTypes } from "@/lib/services/visa-service";
 import { getBlogPostsForLocale } from "@/lib/blog";
 import { DestinationCard } from "@/components/ui/destination-card";
@@ -28,7 +28,7 @@ export default async function LocalePage({
 
   // Fetch data for homepage sections
   const [destinations, visaTypes, blogPosts] = await Promise.all([
-    getPopularDestinations(locale, 8),
+    getDestinationsListWithMetadata(locale, 8, "popular"),
     getRandomVisaTypes(locale, 6),
     getBlogPostsForLocale(locale).then(posts => posts.slice(0, 6)),
   ]);
