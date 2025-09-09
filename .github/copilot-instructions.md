@@ -80,6 +80,8 @@ Use conventional commit message format as following:
 - Format: `<type>(<scope>): <description>`
 - Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
 - Scope: Required, use slug for current module
+  - For any change in .bmad folder use `bmad` as scope
+  - For any change in docs folder use `docs` as scope
 - Description: use imperative, present tense ("add" not "added" or "adds")
 - Examples:
   - `fix(catalog): resolve null reference in address selection`
