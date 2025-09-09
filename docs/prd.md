@@ -349,47 +349,7 @@ so that **the platform can dynamically serve visa information based on passport-
 - IV2: Current internationalization system works with new database-driven content
 - IV3: Homepage destination cards can be populated from database without breaking layout
 
-### Story 1.2: Build Destination Catalog Pages with Visa Options Display
-
-As a **traveler researching visa requirements**,
-I want **destination-specific pages showing all available visa options for my passport**,
-so that **I can understand visa requirements before booking travel**.
-
-**Acceptance Criteria:**
-
-1. Destination pages at `/d/{DESTINATION_COUNTRY}` display comprehensive visa information
-2. Visa options show fees, processing times, validity periods, entry restrictions
-3. Passport-based filtering dims unavailable options and highlights available ones
-4. Multilingual support for all destination content across 8 supported languages
-5. Responsive design maintains homepage design consistency and mobile usability
-
-**Integration Verification:**
-
-- IV1: Homepage destination cards link correctly to new destination pages
-- IV2: Existing header/footer navigation integrates seamlessly with new pages
-- IV3: RTL language support maintains identical functionality for Arabic users
-
-### Story 1.3: Implement Visa-Specific and Passport-Specific Detail Pages
-
-As a **traveler planning to apply for a specific visa**,
-I want **detailed visa-specific pages and passport-specific eligibility information**,
-so that **I can access precise requirements and application details**.
-
-**Acceptance Criteria:**
-
-1. Visa detail pages at `/d/{DESTINATION_NAME}/v/{VISA_OPTION}` with complete application information
-2. Passport eligibility pages at `/d/{DESTINATION_NAME}/p/{PASSPORT_COUNTRY}` showing available options
-3. Cross-linking between destination, visa, and passport-specific pages
-4. Structured data (JSON-LD) implementation for search engine optimization
-5. Canonical URL implementation to prevent duplicate content issues
-
-**Integration Verification:**
-
-- IV1: All new pages maintain existing UI component consistency and styling
-- IV2: Language switching functionality works correctly across all new page types
-- IV3: Navigation breadcrumbs integrate with existing header component
-
-### Story 1.4: Implement Travel Blog System with Destination Integration
+### Story 1.2: Implement Travel Blog System with Destination Integration
 
 As a **content-driven traveler**,
 I want **destination-focused blog content and filtering capabilities**,
@@ -409,7 +369,7 @@ so that **I can access relevant travel information alongside visa requirements**
 - IV2: Blog posts maintain existing responsive design and typography patterns
 - IV3: Multilingual blog content integrates with existing i18next translation system
 
-### Story 1.5: Implement All Destinations Listing and Search Functionality
+### Story 1.3: Implement All Destinations Listing and Search Functionality
 
 As a **traveler exploring visa options**,
 I want **a comprehensive destinations listing with search and filtering**,
@@ -428,6 +388,48 @@ so that **I can discover visa-friendly destinations for my passport**.
 - IV1: Homepage destination cards link correctly to comprehensive destinations listing
 - IV2: Existing search form on homepage integrates with new destination filtering
 - IV3: Destination listing maintains performance standards with large dataset
+
+### Story 1.4: Build Destination Catalog Pages with Visa Options Display
+
+As a **traveler researching visa requirements**,
+I want **destination-specific pages showing all available visa options for my passport**,
+so that **I can understand visa requirements before booking travel**.
+
+**Acceptance Criteria:**
+
+1. Destination pages at `/d/{DESTINATION_COUNTRY}` display comprehensive visa information
+2. Visa options show fees, processing times, validity periods, entry restrictions
+3. Passport-based filtering dims unavailable options and highlights available ones
+4. Multilingual support for all destination content across 8 supported languages
+5. Responsive design maintains homepage design consistency and mobile usability
+6. Blog post integration showing related travel articles for each destination
+
+**Integration Verification:**
+
+- IV1: Homepage destination cards link correctly to new destination pages
+- IV2: Existing header/footer navigation integrates seamlessly with new pages
+- IV3: RTL language support maintains identical functionality for Arabic users
+- IV4: Blog system integration displays related articles on destination pages
+
+### Story 1.5: Implement Visa-Specific and Passport-Specific Detail Pages
+
+As a **traveler planning to apply for a specific visa**,
+I want **detailed visa-specific pages and passport-specific eligibility information**,
+so that **I can access precise requirements and application details**.
+
+**Acceptance Criteria:**
+
+1. Visa detail pages at `/d/{DESTINATION_NAME}/v/{VISA_OPTION}` with complete application information
+2. Passport eligibility pages at `/d/{DESTINATION_NAME}/p/{PASSPORT_COUNTRY}` showing available options
+3. Cross-linking between destination, visa, and passport-specific pages
+4. Structured data (JSON-LD) implementation for search engine optimization
+5. Canonical URL implementation to prevent duplicate content issues
+
+**Integration Verification:**
+
+- IV1: All new pages maintain existing UI component consistency and styling
+- IV2: Language switching functionality works correctly across all new page types
+- IV3: Navigation breadcrumbs integrate with existing header component
 
 ### Story 1.6: Deploy Advanced SEO System with Country-Specific Sitemaps
 
@@ -449,29 +451,11 @@ so that **the platform achieves high search rankings for visa-related queries**.
 - IV2: New sitemaps integrate with current robots.txt and search console setup
 - IV3: Site performance remains under 3-second load times with SEO enhancements
 
-### Story 1.7: Implement Country Subdomain System with Canonical URLs
-
-As a **SEO-focused stakeholder**,
-I want **country-specific subdomains with proper canonical implementation**,
-so that **the platform maximizes search visibility in country-specific markets**.
-
-**Acceptance Criteria:**
-
-1. Country subdomains (uae.gettravelvisa.com) redirect to main domain destination pages
-2. Canonical meta tags prevent duplicate content penalties
-3. Subdomain links maintain navigation to main domain experience
-4. Server-side redirects with proper HTTP status codes (301/302)
-5. Analytics tracking preserves user journey across subdomain transitions
-
-**Integration Verification:**
-
-- IV1: Main domain functionality unaffected by subdomain implementation
-- IV2: Existing internationalization works correctly with subdomain redirects
-- IV3: Search engine crawling optimized without impacting current rankings
-
 ---
 
-## Future Enhancement: Affiliate Partner Integration System
+## Post-MVP Enhancements
+
+### Future Enhancement: Affiliate Partner Integration System
 
 **Post-MVP Enhancement**: Integrate affiliate partner system for revenue generation
 
@@ -495,9 +479,31 @@ so that **the platform generates revenue through visa application referrals**.
 - Revenue attribution and commission tracking system
 - Admin interface for partner management and URL template configuration
 
+### Future Enhancement: Country Subdomain System
+
+**Post-MVP Enhancement**: Implement country-specific subdomains for advanced SEO
+
+As a **SEO-focused stakeholder**,
+I want **country-specific subdomains with proper canonical implementation**,
+so that **the platform maximizes search visibility in country-specific markets**.
+
+**Future Acceptance Criteria:**
+
+1. Country subdomains (uae.gettravelvisa.com) redirect to main domain destination pages
+2. Canonical meta tags prevent duplicate content penalties
+3. Subdomain links maintain navigation to main domain experience
+4. Server-side redirects with proper HTTP status codes (301/302)
+5. Analytics tracking preserves user journey across subdomain transitions
+
+**Future Integration Requirements:**
+
+- Main domain functionality unaffected by subdomain implementation
+- Existing internationalization works correctly with subdomain redirects
+- Search engine crawling optimized without impacting current rankings
+
 **Implementation Notes:**
 
-This feature has been moved to post-MVP to simplify initial launch and focus on core destination catalog functionality. The affiliate integration will build upon the solid foundation established by the MVP stories above.
+These features have been moved to post-MVP to focus on core content and catalog functionality. The subdomain system and affiliate integration will build upon the solid foundation established by the MVP stories above.
 
 ---
 
