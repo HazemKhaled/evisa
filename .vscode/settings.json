@@ -15,21 +15,39 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
   },
+  "search.exclude": {
+    ".claude": true,
+    ".cursor": true,
+    ".gemini": true,
+    ".github/chatmodes": true,
+  },
   "cSpell.words": [
     "autoincrement",
+    "bmad",
+    "bookmarkable",
+    "Contentful",
     "Frontmatter",
     "gettravelvisa",
     "Jitsu",
     "languagedetector",
     "libsql",
+    "lintstagedrc",
     "opennext",
     "opennextjs",
     "pkill",
+    "resequenced",
     "sitemapindex",
     "subheadline",
     "Turbopack",
     "Turkiye",
     "unixepoch",
+    "updateable",
     "upsell"
-  ]
+  ],
+  "chat.agent.enabled": true,
+  "chat.agent.maxRequests": 15,
+  "github.copilot.chat.agent.runTasks": true,
+  "chat.mcp.discovery.enabled": true,
+  "github.copilot.chat.agent.autoFix": true,
+  "chat.tools.autoApprove": false
 }
