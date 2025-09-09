@@ -15,6 +15,12 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
   },
+  "search.exclude": {
+    ".claude": true,
+    ".cursor": true,
+    ".gemini": true,
+    ".github/chatmodes": true,
+  },
   "cSpell.words": [
     "autoincrement",
     "bmad",
