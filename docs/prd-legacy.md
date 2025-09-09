@@ -41,14 +41,14 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
 
 #### 1.2: SEO & Sitemap
 
-1. Create a sitemap index /sitemap_index.xml, include all sitemaps
+1. Create a sitemap index /sitemap-index.xml, include all sitemaps
 2. Each destination will have its own sitemap.
    1. Route /d/{DESTINATION_COUNTRY}/sitemap.xml
    2. This should include all possible routes under this destination
-3. Add another sitemap /sitemap.xml to include all standalone pages like contact us, terms & conditions … etc.
-4. Add a subdomain for every country
+3. Implement another sitemap /sitemap.xml to include all standalone pages like contact us, terms & conditions … etc.
+4. User can open destination page by a country subdomain
    1. Each country should have a subdomain with the 3-letter ex: uae.gettravelvisa.com, usa.gettravelvisa.com
-   2. Add canonical meta tag for /d/{DESTINATION_COUNTRY}/
+   2. Implement canonical meta tag for destination page
    3. All links in the subdomain should open the main domain on click
 
 ### 2. Affiliation travel visas
@@ -58,14 +58,8 @@ By decreasing time to market, and Lean iterations! Will ensure that I adopt and 
    1. Each provider will have a URL that accepts some placeholders to be replaced on user click, for example https://visa-provider.com/apply?c={country}\&p={passport}
    2. Add UTM query params for the url.
 
-### 3. Destination Articles
+### 3. Travel Blog
 
-1. Every destination should have some articles
-2. List the latest articles in every destination page with a more button to open all articles as a blog
-   1. Articles list page route /d/{DESTINATION_COUNTRY}/a
-   2. Article details page /d/{DESTINATION_COUNTRY}/a/{ARTICLE_SLUG}
-3. Add all ar
-
-### Phase 4: In-house travel visas
-
-TBD
+1. User can see all blog posts in /blog
+2. User can filter blog posts by destination /d/{DESTINATION_COUNTRY}/blog
+3. User can filter blog posts by tag /blog/{TAG}

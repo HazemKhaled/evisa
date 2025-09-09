@@ -80,6 +80,8 @@ Use conventional commit message format as following:
 - Format: `<type>(<scope>): <description>`
 - Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
 - Scope: Required, use slug for current module
+  - For any change in .bmad folder use `bmad` as scope
+  - For any change in docs folder use `docs` as scope
 - Description: use imperative, present tense ("add" not "added" or "adds")
 - Examples:
   - `fix(catalog): resolve null reference in address selection`
@@ -96,7 +98,7 @@ Use conventional commit for pull request subject as following:
   - `feat(catalog): implement social login providers`
   - `fix(auth): add optional chaining to prevent null reference error`
 
-## When creating branch names
+## When checking out new branch names
 
 Use the following format for branch names:
 
@@ -106,11 +108,12 @@ Use the following format for branch names:
   - `bugfix`: For bug fixes.
   - `chore`: For maintenance tasks.
 - **Description**: A brief, human-readable description of the task, using kebab-case.
+  - If you know the story, start with the story number followed by a brief description.
 
 ### Examples:
 
-- `feature/add-new-checkout-flow`
-- `bugfix/gtm-event-name-normalization`
-- `chore/move-to-pages`
+- `feature/story-1.1-add-new-checkout-flow`
+- `bugfix/story-1.2-gtm-event-name-normalization`
+- `chore/story-1.3-move-to-pages`
 
 This convention ensures clarity and traceability in our development process.
