@@ -6,7 +6,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "gtv-staging",
   "main": ".open-next/worker.js",
-  "compatibility_date": "2025-09-05",
+  "compatibility_date": "2025-09-09",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   // Minification helps to keep the Worker bundle size down and improve start up time.
   "minify": true,
