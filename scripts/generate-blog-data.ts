@@ -5,8 +5,8 @@ import {
   getAllBlogPosts,
   getAllUniqueTags,
   getBlogPostsForLocale,
-} from "../src/lib/core/blog-core";
-import { languages } from "../src/app/i18n/settings";
+} from "@/lib/core/blog-core";
+import { languages } from "@/app/i18n/settings";
 import { type BlogPostData } from "@/lib/services/blog-service";
 
 /**

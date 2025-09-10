@@ -4,10 +4,10 @@ import {
   getDestinationWithVisaTypes,
   type DestinationWithVisaTypes,
 } from "../country-service";
-import * as dbConnection from "../../db/connection";
+import * as dbConnection from "@/lib/db/connection";
 
 // Mock the database connection
-jest.mock("../../db/connection");
+jest.mock("@/lib/db/connection");
 
 const mockDbConnection = dbConnection as jest.Mocked<typeof dbConnection>;
 
