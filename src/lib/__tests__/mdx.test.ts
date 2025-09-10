@@ -33,13 +33,27 @@ describe("MDX utilities", () => {
         { isDirectory: () => true, name: "generated" }, // Should be filtered out
       ];
 
-      mockedFs.readdirSync
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .mockReturnValueOnce(mockDirents as any)
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .mockReturnValueOnce(["about.mdx", "contact.mdx"] as any)
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .mockReturnValueOnce(["about.mdx", "privacy.mdx"] as any);
+      // Mock different behavior based on whether withFileTypes is used
+      // @ts-expect-error - Mock implementation allows both string[] and Dirent[] returns
+      mockedFs.readdirSync.mockImplementation((path, options) => {
+        if (
+          options &&
+          typeof options === "object" &&
+          "withFileTypes" in options
+        ) {
+          // Return Dirent objects for withFileTypes: true
+          return mockDirents;
+        } else {
+          // Return string arrays for normal readdirSync calls
+          const pathStr = String(path);
+          if (pathStr.includes("en/pages")) {
+            return ["about.mdx", "contact.mdx"];
+          } else if (pathStr.includes("ar/pages")) {
+            return ["about.mdx", "privacy.mdx"];
+          }
+          return [];
+        }
+      });
 
       mockedFs.existsSync.mockReturnValue(true);
       mockedPath.join.mockImplementation((...args) => args.join("/"));
@@ -60,12 +74,23 @@ describe("MDX utilities", () => {
         { isDirectory: () => true, name: "ar" },
       ];
 
-      mockedFs.readdirSync.mockReturnValueOnce(mockDirents as any);
+      // @ts-expect-error - Mock implementation allows both string[] and Dirent[] returns
+      mockedFs.readdirSync.mockImplementation((path, options) => {
+        if (
+          options &&
+          typeof options === "object" &&
+          "withFileTypes" in options
+        ) {
+          return mockDirents;
+        } else {
+          return ["about.mdx"];
+        }
+      });
+
       mockedFs.existsSync
         .mockReturnValueOnce(true) // en/pages exists
         .mockReturnValueOnce(false); // ar/pages doesn't exist
 
-      mockedFs.readdirSync.mockReturnValueOnce(["about.mdx"]);
       mockedPath.join.mockImplementation((...args) => args.join("/"));
 
       const result = getAllStaticPages();
@@ -76,14 +101,18 @@ describe("MDX utilities", () => {
     it("should filter out non-MDX files", () => {
       const mockDirents = [{ isDirectory: () => true, name: "en" }];
 
-      mockedFs.readdirSync
-        .mockReturnValueOnce(mockDirents as any)
-        .mockReturnValueOnce([
-          "about.mdx",
-          "contact.txt",
-          "privacy.mdx",
-          "readme.md",
-        ]);
+      // @ts-expect-error - Mock implementation allows both string[] and Dirent[] returns
+      mockedFs.readdirSync.mockImplementation((path, options) => {
+        if (
+          options &&
+          typeof options === "object" &&
+          "withFileTypes" in options
+        ) {
+          return mockDirents;
+        } else {
+          return ["about.mdx", "contact.txt", "privacy.mdx", "readme.md"];
+        }
+      });
 
       mockedFs.existsSync.mockReturnValue(true);
       mockedPath.join.mockImplementation((...args) => args.join("/"));
