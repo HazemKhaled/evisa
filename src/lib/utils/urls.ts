@@ -92,7 +92,6 @@ export const buildNavUrls = (locale: string) => ({
   destinations: buildLocalePath(locale, "destinations"),
   blog: buildLocalePath(locale, "blog"),
   contact: buildLocalePath(locale, "contact"),
-  visaChecker: buildLocalePath(locale, "visa-checker"),
   about: buildLocalePath(locale, "p/about-us"),
   terms: buildLocalePath(locale, "p/terms-n-conditions"),
   privacy: buildLocalePath(locale, "p/privacy-policy"),

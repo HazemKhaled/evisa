@@ -66,14 +66,6 @@ export async function Footer({ locale }: FooterProps) {
             <ul className="mt-4 space-y-4">
               <li>
                 <Link
-                  href={`/${locale}/visa-checker`}
-                  className="text-base text-gray-300 hover:text-white"
-                >
-                  {tNav("footer.visa_checker")}
-                </Link>
-              </li>
-              <li>
-                <Link
                   href={`/${locale}/blog`}
                   className="text-base text-gray-300 hover:text-white"
                 >
