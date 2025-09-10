@@ -1,0 +1,80 @@
+{
+  "navigation": {
+    "backToBlog": "← Retour au Blog",
+    "backToDestinationBlog": "← Retour au Blog {destination}"
+  },
+  "metadata": {
+    "updated": "Mis à jour",
+    "publishedOn": "Publié le",
+    "by": "Par",
+    "readingTime": "min de lecture",
+    "lastModified": "Dernière modification"
+  },
+  "actions": {
+    "readMore": "Lire la suite →",
+    "readFullArticle": "Lire l'article complet",
+    "viewMore": "Voir plus",
+    "loadMore": "Charger plus d'articles",
+    "showMore": "Afficher plus",
+    "showLess": "Afficher moins"
+  },
+  "search": {
+    "searchPlaceholder": "Rechercher des articles de blog...",
+    "searchResults": "Résultats de recherche",
+    "noResults": "Aucun résultat trouvé",
+    "searching": "Recherche en cours",
+    "clear": "Effacer la recherche",
+    "result": "résultat",
+    "results": "résultats",
+    "noPostsFoundFor": "Aucun article trouvé pour \"{query}\"",
+    "searchByTag": "Rechercher par tag",
+    "searchByDestination": "Rechercher par destination"
+  },
+  "content": {
+    "tags": "Tags",
+    "destinations": "Destinations",
+    "relatedArticles": "Articles connexes",
+    "latestPosts": "Derniers articles",
+    "popularPosts": "Articles populaires",
+    "featuredPosts": "Articles mis en avant",
+    "noPostsFound": "Aucun article trouvé",
+    "noPostsAvailable": "Aucun article de blog n'est actuellement disponible",
+    "comingSoon": "Nouveau contenu bientôt disponible !"
+  },
+  "pagination": {
+    "showing": "Affichage",
+    "post": "article",
+    "posts": "articles",
+    "on": "sur",
+    "page": "page",
+    "of": "de",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "firstPage": "Première page",
+    "lastPage": "Dernière page",
+    "goToPage": "Aller à la page {page}"
+  },
+  "categories": {
+    "travel": "Voyage",
+    "visa": "Visa",
+    "guide": "Guide",
+    "tips": "Conseils",
+    "culture": "Culture",
+    "food": "Nourriture",
+    "accommodation": "Hébergement",
+    "transportation": "Transport",
+    "safety": "Sécurité",
+    "budget": "Budget"
+  },
+  "aria": {
+    "articleNavigation": "Navigation de l'article",
+    "returnToBlogListing": "Retour à la liste du blog",
+    "readArticle": "Lire l'article : {title}",
+    "readFullArticle": "Lire l'article complet : {title}",
+    "viewPostsFor": "Voir les articles de blog pour {destination}",
+    "viewPostsTagged": "Voir les articles de blog tagués avec {tag}",
+    "blogPostCard": "Carte d'article de blog pour {title}",
+    "searchInput": "Rechercher des articles de blog",
+    "clearSearch": "Effacer la saisie de recherche"
+  }
+}

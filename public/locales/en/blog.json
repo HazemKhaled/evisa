@@ -1,0 +1,80 @@
+{
+  "navigation": {
+    "backToBlog": "← Back to Blog",
+    "backToDestinationBlog": "← Back to {destination} Blog"
+  },
+  "metadata": {
+    "updated": "Updated",
+    "publishedOn": "Published on",
+    "by": "By",
+    "readingTime": "min read",
+    "lastModified": "Last modified"
+  },
+  "actions": {
+    "readMore": "Read more →",
+    "readFullArticle": "Read full article",
+    "viewMore": "View more",
+    "loadMore": "Load more posts",
+    "showMore": "Show more",
+    "showLess": "Show less"
+  },
+  "search": {
+    "searchPlaceholder": "Search blog posts...",
+    "searchResults": "Search Results",
+    "noResults": "No Results Found",
+    "searching": "Searching",
+    "clear": "Clear search",
+    "result": "result",
+    "results": "results",
+    "noPostsFoundFor": "No posts found for \"{query}\"",
+    "searchByTag": "Search by tag",
+    "searchByDestination": "Search by destination"
+  },
+  "content": {
+    "tags": "Tags",
+    "destinations": "Destinations",
+    "relatedArticles": "Related Articles",
+    "latestPosts": "Latest Posts",
+    "popularPosts": "Popular Posts",
+    "featuredPosts": "Featured Posts",
+    "noPostsFound": "No Posts Found",
+    "noPostsAvailable": "No blog posts are currently available",
+    "comingSoon": "New content coming soon!"
+  },
+  "pagination": {
+    "showing": "Showing",
+    "post": "post",
+    "posts": "posts",
+    "on": "on",
+    "page": "page",
+    "of": "of",
+    "previous": "Previous",
+    "next": "Next",
+    "firstPage": "First page",
+    "lastPage": "Last page",
+    "goToPage": "Go to page {page}"
+  },
+  "categories": {
+    "travel": "Travel",
+    "visa": "Visa",
+    "guide": "Guide",
+    "tips": "Tips",
+    "culture": "Culture",
+    "food": "Food",
+    "accommodation": "Accommodation",
+    "transportation": "Transportation",
+    "safety": "Safety",
+    "budget": "Budget"
+  },
+  "aria": {
+    "articleNavigation": "Article navigation",
+    "returnToBlogListing": "Return to blog listing",
+    "readArticle": "Read article: {title}",
+    "readFullArticle": "Read full article: {title}",
+    "viewPostsFor": "View blog posts for {destination}",
+    "viewPostsTagged": "View blog posts tagged with {tag}",
+    "blogPostCard": "Blog post card for {title}",
+    "searchInput": "Search blog posts",
+    "clearSearch": "Clear search input"
+  }
+}

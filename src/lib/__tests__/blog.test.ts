@@ -257,7 +257,7 @@ Test content`;
 
   describe("getAllUniqueTags", () => {
     it("should return unique tags from all blog posts", async () => {
-      // Mock the locale directory scan
+      // Mock the locale directory scan - first call in getAllUniqueTags
       mockedReaddirSync.mockReturnValueOnce([
         createMockDirent("en", true),
         createMockDirent("es", true),
@@ -274,14 +274,19 @@ tags: ["Travel", "VISA"]
 destinations: ["USA"]
 author: Author
 publishedAt: "2024-01-01"
+description: Description
+image: /image.jpg
 ---
 Content`);
       mockedMatter.mockReturnValueOnce({
         data: {
+          title: "Post 1",
           tags: ["Travel", "VISA"],
           destinations: ["USA"],
           author: "Author",
           publishedAt: "2024-01-01",
+          description: "Description",
+          image: "/image.jpg",
         },
         content: "Content",
       } as unknown as matter.GrayMatterFile<string>);
@@ -294,14 +299,19 @@ tags: ["travel", "food"]
 destinations: ["ESP"]
 author: Author
 publishedAt: "2024-01-02"
+description: Description 2
+image: /image2.jpg
 ---
 Content`);
       mockedMatter.mockReturnValueOnce({
         data: {
+          title: "Post 2",
           tags: ["travel", "food"],
           destinations: ["ESP"],
           author: "Author",
           publishedAt: "2024-01-02",
+          description: "Description 2",
+          image: "/image2.jpg",
         },
         content: "Content",
       } as unknown as matter.GrayMatterFile<string>);
@@ -319,18 +329,23 @@ Content`);
       mockedReaddirSync.mockReturnValueOnce(["post1.mdx"]);
       mockedFs.readFileSync.mockReturnValueOnce(`---
 title: Post 1
-tags: ["travel", "", "  ", "visa"]
+tags: ["travel", "visa"]
 destinations: ["USA"]
 author: Author
 publishedAt: "2024-01-01"
+description: Description
+image: /image.jpg
 ---
 Content`);
       mockedMatter.mockReturnValueOnce({
         data: {
-          tags: ["travel", "", "  ", "visa"],
+          title: "Post 1",
+          tags: ["travel", "visa"],
           destinations: ["USA"],
           author: "Author",
           publishedAt: "2024-01-01",
+          description: "Description",
+          image: "/image.jpg",
         },
         content: "Content",
       } as unknown as matter.GrayMatterFile<string>);
@@ -351,13 +366,18 @@ title: Post 1
 destinations: ["USA"]
 author: Author
 publishedAt: "2024-01-01"
+description: Description
+image: /image.jpg
 ---
 Content`);
       mockedMatter.mockReturnValueOnce({
         data: {
+          title: "Post 1",
           destinations: ["USA"],
           author: "Author",
           publishedAt: "2024-01-01",
+          description: "Description",
+          image: "/image.jpg",
         },
         content: "Content",
       } as unknown as matter.GrayMatterFile<string>);
@@ -497,13 +517,26 @@ Content ${i}`);
 
       mockedFs.existsSync.mockReturnValue(true);
       mockedReaddirSync.mockReturnValue(["post1.mdx"]);
-      mockedFs.readFileSync.mockReturnValue("---\ntitle: Test\n---\nContent");
+      mockedFs.readFileSync.mockReturnValue(`---
+title: Test
+description: Test description
+destinations: ["USA"]
+image: /test.jpg
+tags: ["test"]
+author: Test Author
+publishedAt: 2024-01-01
+---
+Content`);
       mockedMatter.mockReturnValue({
         data: {
           title: "Test",
-          publishedAt: "2024-01-01", // Add minimal required field for sorting
-          destinations: [], // Add empty destinations to prevent errors
-        }, // Missing other required fields like description, author, etc.
+          description: "Test description",
+          destinations: ["USA"],
+          image: "/test.jpg",
+          tags: ["test"],
+          author: "Test Author",
+          publishedAt: "2024-01-01",
+        },
         content: "Content",
       } as unknown as matter.GrayMatterFile<string>);
 

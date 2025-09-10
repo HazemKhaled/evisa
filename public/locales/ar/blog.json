@@ -1,0 +1,80 @@
+{
+  "navigation": {
+    "backToBlog": "← العودة إلى المدونة",
+    "backToDestinationBlog": "← العودة إلى مدونة {destination}"
+  },
+  "metadata": {
+    "updated": "محدث",
+    "publishedOn": "نُشر في",
+    "by": "بواسطة",
+    "readingTime": "دقيقة قراءة",
+    "lastModified": "آخر تعديل"
+  },
+  "actions": {
+    "readMore": "اقرأ المزيد ←",
+    "readFullArticle": "اقرأ المقال كاملاً",
+    "viewMore": "عرض المزيد",
+    "loadMore": "تحميل المزيد من المقالات",
+    "showMore": "عرض المزيد",
+    "showLess": "عرض أقل"
+  },
+  "search": {
+    "searchPlaceholder": "البحث في مقالات المدونة...",
+    "searchResults": "نتائج البحث",
+    "noResults": "لا توجد نتائج",
+    "searching": "جاري البحث",
+    "clear": "مسح البحث",
+    "result": "نتيجة",
+    "results": "نتائج",
+    "noPostsFoundFor": "لا توجد مقالات لـ \"{query}\"",
+    "searchByTag": "البحث بالعلامة",
+    "searchByDestination": "البحث بالوجهة"
+  },
+  "content": {
+    "tags": "العلامات",
+    "destinations": "الوجهات",
+    "relatedArticles": "مقالات ذات صلة",
+    "latestPosts": "أحدث المقالات",
+    "popularPosts": "المقالات الشائعة",
+    "featuredPosts": "المقالات المميزة",
+    "noPostsFound": "لا توجد مقالات",
+    "noPostsAvailable": "لا توجد مقالات متاحة حالياً",
+    "comingSoon": "محتوى جديد قريباً!"
+  },
+  "pagination": {
+    "showing": "عرض",
+    "post": "مقال",
+    "posts": "مقالات",
+    "on": "في",
+    "page": "صفحة",
+    "of": "من",
+    "previous": "السابق",
+    "next": "التالي",
+    "firstPage": "الصفحة الأولى",
+    "lastPage": "الصفحة الأخيرة",
+    "goToPage": "انتقل إلى الصفحة {page}"
+  },
+  "categories": {
+    "travel": "السفر",
+    "visa": "التأشيرة",
+    "guide": "دليل",
+    "tips": "نصائح",
+    "culture": "الثقافة",
+    "food": "الطعام",
+    "accommodation": "الإقامة",
+    "transportation": "النقل",
+    "safety": "السلامة",
+    "budget": "الميزانية"
+  },
+  "aria": {
+    "articleNavigation": "تنقل المقال",
+    "returnToBlogListing": "العودة إلى قائمة المدونة",
+    "readArticle": "اقرأ المقال: {title}",
+    "readFullArticle": "اقرأ المقال كاملاً: {title}",
+    "viewPostsFor": "عرض مقالات المدونة لـ {destination}",
+    "viewPostsTagged": "عرض مقالات المدونة المعلمة بـ {tag}",
+    "blogPostCard": "بطاقة مقال المدونة لـ {title}",
+    "searchInput": "البحث في مقالات المدونة",
+    "clearSearch": "مسح البحث"
+  }
+}

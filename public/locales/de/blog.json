@@ -1,0 +1,80 @@
+{
+  "navigation": {
+    "backToBlog": "← Zurück zum Blog",
+    "backToDestinationBlog": "← Zurück zum {destination} Blog"
+  },
+  "metadata": {
+    "updated": "Aktualisiert",
+    "publishedOn": "Veröffentlicht am",
+    "by": "Von",
+    "readingTime": "Min. Lesezeit",
+    "lastModified": "Zuletzt geändert"
+  },
+  "actions": {
+    "readMore": "Mehr lesen →",
+    "readFullArticle": "Vollständigen Artikel lesen",
+    "viewMore": "Mehr anzeigen",
+    "loadMore": "Weitere Beiträge laden",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen"
+  },
+  "search": {
+    "searchPlaceholder": "Blog-Beiträge durchsuchen...",
+    "searchResults": "Suchergebnisse",
+    "noResults": "Keine Ergebnisse gefunden",
+    "searching": "Wird gesucht",
+    "clear": "Suche löschen",
+    "result": "Ergebnis",
+    "results": "Ergebnisse",
+    "noPostsFoundFor": "Keine Beiträge gefunden für \"{query}\"",
+    "searchByTag": "Nach Tag suchen",
+    "searchByDestination": "Nach Reiseziel suchen"
+  },
+  "content": {
+    "tags": "Tags",
+    "destinations": "Reiseziele",
+    "relatedArticles": "Verwandte Artikel",
+    "latestPosts": "Neueste Beiträge",
+    "popularPosts": "Beliebte Beiträge",
+    "featuredPosts": "Empfohlene Beiträge",
+    "noPostsFound": "Keine Beiträge gefunden",
+    "noPostsAvailable": "Derzeit sind keine Blog-Beiträge verfügbar",
+    "comingSoon": "Neue Inhalte kommen bald!"
+  },
+  "pagination": {
+    "showing": "Zeige",
+    "post": "Beitrag",
+    "posts": "Beiträge",
+    "on": "auf",
+    "page": "Seite",
+    "of": "von",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "firstPage": "Erste Seite",
+    "lastPage": "Letzte Seite",
+    "goToPage": "Gehe zu Seite {page}"
+  },
+  "categories": {
+    "travel": "Reisen",
+    "visa": "Visum",
+    "guide": "Leitfaden",
+    "tips": "Tipps",
+    "culture": "Kultur",
+    "food": "Essen",
+    "accommodation": "Unterkunft",
+    "transportation": "Transport",
+    "safety": "Sicherheit",
+    "budget": "Budget"
+  },
+  "aria": {
+    "articleNavigation": "Artikelnavigation",
+    "returnToBlogListing": "Zurück zur Blog-Übersicht",
+    "readArticle": "Artikel lesen: {title}",
+    "readFullArticle": "Vollständigen Artikel lesen: {title}",
+    "viewPostsFor": "Blog-Beiträge für {destination} anzeigen",
+    "viewPostsTagged": "Blog-Beiträge mit Tag {tag} anzeigen",
+    "blogPostCard": "Blog-Beitragskarte für {title}",
+    "searchInput": "Blog-Beiträge durchsuchen",
+    "clearSearch": "Sucheingabe löschen"
+  }
+}

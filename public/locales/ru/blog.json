@@ -1,0 +1,80 @@
+{
+  "navigation": {
+    "backToBlog": "← Назад к блогу",
+    "backToDestinationBlog": "← Назад к блогу {destination}"
+  },
+  "metadata": {
+    "updated": "Обновлено",
+    "publishedOn": "Опубликовано",
+    "by": "Автор",
+    "readingTime": "мин чтения",
+    "lastModified": "Последнее изменение"
+  },
+  "actions": {
+    "readMore": "Читать далее →",
+    "readFullArticle": "Читать полную статью",
+    "viewMore": "Показать ещё",
+    "loadMore": "Загрузить больше постов",
+    "showMore": "Показать больше",
+    "showLess": "Показать меньше"
+  },
+  "search": {
+    "searchPlaceholder": "Поиск по блогу...",
+    "searchResults": "Результаты поиска",
+    "noResults": "Результаты не найдены",
+    "searching": "Поиск",
+    "clear": "Очистить поиск",
+    "result": "результат",
+    "results": "результатов",
+    "noPostsFoundFor": "Не найдено постов для \"{query}\"",
+    "searchByTag": "Поиск по тегу",
+    "searchByDestination": "Поиск по направлению"
+  },
+  "content": {
+    "tags": "Теги",
+    "destinations": "Направления",
+    "relatedArticles": "Похожие статьи",
+    "latestPosts": "Последние посты",
+    "popularPosts": "Популярные посты",
+    "featuredPosts": "Рекомендуемые посты",
+    "noPostsFound": "Посты не найдены",
+    "noPostsAvailable": "В данный момент нет доступных постов",
+    "comingSoon": "Новый контент скоро появится!"
+  },
+  "pagination": {
+    "showing": "Показано",
+    "post": "пост",
+    "posts": "постов",
+    "on": "на",
+    "page": "странице",
+    "of": "из",
+    "previous": "Назад",
+    "next": "Далее",
+    "firstPage": "Первая страница",
+    "lastPage": "Последняя страница",
+    "goToPage": "Перейти на страницу {page}"
+  },
+  "categories": {
+    "travel": "Путешествия",
+    "visa": "Виза",
+    "guide": "Гид",
+    "tips": "Советы",
+    "culture": "Культура",
+    "food": "Еда",
+    "accommodation": "Размещение",
+    "transportation": "Транспорт",
+    "safety": "Безопасность",
+    "budget": "Бюджет"
+  },
+  "aria": {
+    "articleNavigation": "Навигация по статье",
+    "returnToBlogListing": "Вернуться к списку блога",
+    "readArticle": "Читать статью: {title}",
+    "readFullArticle": "Читать полную статью: {title}",
+    "viewPostsFor": "Посмотреть посты блога для {destination}",
+    "viewPostsTagged": "Посмотреть посты блога с тегом {tag}",
+    "blogPostCard": "Карточка поста блога для {title}",
+    "searchInput": "Поиск по постам блога",
+    "clearSearch": "Очистить поисковый ввод"
+  }
+}

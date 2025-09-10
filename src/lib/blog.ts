@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import matter from "gray-matter";
 import { filterAndPaginate, createBlogFilter } from "./utils/pagination";
+import { validateBlogPost } from "./blog-validation";
 
 export interface BlogPostData {
   content: string;
@@ -37,6 +38,14 @@ function getBlogPostsFromDirectory(blogDir: string): BlogPostData[] {
       const { data: frontmatter, content } = matter(fileContent);
       const slug = file.replace(".mdx", "");
       const frontmatterTyped = frontmatter as BlogPostData["frontmatter"];
+
+      // Validate blog post content and frontmatter
+      const validationResult = validateBlogPost(frontmatter, content, slug);
+
+      // Skip invalid posts in production to ensure site stability
+      if (!validationResult.isValid) {
+        continue;
+      }
 
       // Handle both old format (destination: string) and new format (destinations: string[])
       const destinations = frontmatterTyped.destinations;
