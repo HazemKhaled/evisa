@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MDXContent } from "@/components/mdx-content";
-import { cn, isRTL } from "@/lib/utils";
-import type { BlogPostData } from "@/lib/blog";
+import { cn } from "@/lib/utils";
+import type { BlogPostData } from "@/lib/services/blog-service";
 import { getTranslation } from "@/app/i18n";
 import { RelatedArticleCard } from "./related-article-card";
 
@@ -19,170 +19,176 @@ export async function BlogPostDetail({
   className,
   relatedPosts = [],
 }: BlogPostDetailProps) {
-  const { t } = await getTranslation(locale, "pages");
-  const isCurrentRTL = isRTL(locale);
-
+  const { t } = await getTranslation(locale, "blog");
   return (
-    <>
-      <article className={cn("mx-auto max-w-4xl", className)}>
-        {/* Hero Image - First position for maximum impact */}
-        <div className="relative mb-8 aspect-video overflow-hidden rounded-lg">
+    <article
+      className={cn("mx-auto max-w-4xl", className)}
+      aria-labelledby="article-title"
+      aria-describedby="article-description"
+    >
+      {/* Back navigation */}
+      <nav className="mb-6" aria-label={t("aria.articleNavigation")}>
+        <Link
+          href={`/${locale}/blog`}
+          className="inline-flex items-center text-blue-600 transition-colors hover:text-blue-700"
+          aria-label={t("aria.returnToBlogListing")}
+        >
+          {t("navigation.backToBlog")}
+        </Link>
+      </nav>
+
+      {/* Article header */}
+      <header className="mb-8">
+        {/* Featured image */}
+        <div className="relative mb-6 aspect-video overflow-hidden rounded-lg">
           <Image
             src={post.frontmatter.image}
             alt={post.frontmatter.title}
             fill
             className="object-cover"
             priority
+            sizes="(max-width: 1024px) 100vw, 1024px"
           />
         </div>
 
-        {/* Article Header */}
-        <header className="mb-8">
-          {/* Tags and Destinations - Before title for context */}
-          <div className={cn("mb-4 flex flex-wrap gap-2")}>
-            {post.frontmatter.destinations?.map((destination, index) => (
-              <Link
-                key={destination}
-                href={`/${locale}/d/${destination.toLowerCase()}/blog`}
-                className="inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-sm font-medium text-blue-800 hover:bg-blue-200"
-                aria-label={`View blog posts for destination: ${post.destinationNames?.[index] || destination}`}
-              >
-                📍 {post.destinationNames?.[index] || destination}
-              </Link>
-            ))}
-            {post.frontmatter.tags?.map(tag => (
-              <Link
-                key={tag}
-                href={`/${locale}/blog/t/${encodeURIComponent(tag)}`}
-                className="inline-flex items-center rounded-full bg-gray-100 px-2 py-1 text-sm font-medium text-gray-800 hover:bg-blue-200"
-                aria-label={`Filter blog posts by tag: ${tag}`}
-              >
-                #{tag}
-              </Link>
-            ))}
+        {/* Meta badges */}
+        <div className="mb-6 flex flex-wrap gap-3">
+          {/* Destinations */}
+          {post.frontmatter.destinations &&
+            post.frontmatter.destinations.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {post.frontmatter.destinations.map((destination, index) => (
+                  <Link
+                    key={destination}
+                    href={`/${locale}/d/${destination.toLowerCase()}/blog`}
+                    className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 transition-colors hover:bg-blue-200"
+                    aria-label={`View blog posts for ${post.destinationNames?.[index] || destination}`}
+                  >
+                    📍 {post.destinationNames?.[index] || destination}
+                  </Link>
+                ))}
+              </div>
+            )}
+        </div>
+
+        {/* Title */}
+        <h1
+          id="article-title"
+          className="mb-4 text-4xl leading-tight font-bold text-gray-900 sm:text-5xl"
+        >
+          {post.frontmatter.title}
+        </h1>
+
+        {/* Description */}
+        <p
+          id="article-description"
+          className="mb-6 text-xl leading-relaxed text-gray-600"
+        >
+          {post.frontmatter.description}
+        </p>
+
+        {/* Author and date info */}
+        <div className="flex flex-wrap items-center gap-4 border-b border-gray-200 pb-6 text-sm text-gray-500">
+          <div className="flex items-center">
+            <span className="font-medium">{post.frontmatter.author}</span>
           </div>
 
-          {/* Title */}
-          <h1
-            className={cn("mb-6 text-4xl font-bold text-gray-900 sm:text-5xl")}
-          >
-            {post.frontmatter.title}
-          </h1>
+          <div className="flex items-center">
+            <time dateTime={post.frontmatter.publishedAt}>
+              📅{" "}
+              {new Date(post.frontmatter.publishedAt).toLocaleDateString(
+                locale,
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                }
+              )}
+            </time>
+          </div>
 
-          {/* Meta Information */}
-          <div
-            className={cn("flex flex-wrap items-center gap-4 text-gray-600")}
-          >
-            <div className={cn("flex items-center")}>
-              <span
-                className={cn("font-medium", isCurrentRTL && "mr-0 ml-2")}
-                aria-label={`Author: ${post.frontmatter.author}`}
-              >
-                {post.frontmatter.author}
-              </span>
-            </div>
-            <div className={cn("flex items-center gap-4")}>
-              <time
-                dateTime={post.frontmatter.publishedAt}
-                aria-label={`Published on ${new Date(post.frontmatter.publishedAt).toLocaleDateString(locale)}`}
-              >
-                {t("blog.post.published")}{" "}
-                {new Date(post.frontmatter.publishedAt).toLocaleDateString(
-                  locale
-                )}
-              </time>
-              {post.frontmatter.lastUpdated && (
-                <time
-                  dateTime={post.frontmatter.lastUpdated}
-                  aria-label={`Last updated on ${new Date(post.frontmatter.lastUpdated).toLocaleDateString(locale)}`}
-                >
-                  {t("blog.post.updated")}{" "}
+          {/* Last updated */}
+          {post.frontmatter.lastUpdated &&
+            post.frontmatter.lastUpdated !== post.frontmatter.publishedAt && (
+              <div className="flex items-center">
+                <span>
+                  {t("metadata.updated")}:{" "}
                   {new Date(post.frontmatter.lastUpdated).toLocaleDateString(
-                    locale
+                    locale,
+                    {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    }
                   )}
-                </time>
-              )}
-            </div>
-          </div>
-
-          {/* Passport and Related Visas - Business critical features */}
-          {(post.frontmatter.passport || post.frontmatter.related_visas) && (
-            <div className={cn("mt-4 flex flex-wrap gap-4")}>
-              {post.frontmatter.passport && (
-                <div className="flex items-center text-sm text-gray-600">
-                  <span className="font-medium">
-                    🛂 {t("blog.post.passport")}:{" "}
-                  </span>
-                  <span className={cn("ml-1", isCurrentRTL && "mr-1 ml-0")}>
-                    {post.frontmatter.passport.toUpperCase()}
-                  </span>
-                </div>
-              )}
-              {post.frontmatter.related_visas && (
-                <div className="flex items-center text-sm text-gray-600">
-                  <span className="font-medium">
-                    📋 {t("blog.post.related_visas")}:{" "}
-                  </span>
-                  <span className={cn("ml-1", isCurrentRTL && "mr-1 ml-0")}>
-                    {post.frontmatter.related_visas.join(", ")}
-                  </span>
-                </div>
-              )}
-            </div>
-          )}
-        </header>
-
-        {/* Article Content */}
-        <div className={cn("prose prose-lg mb-12 max-w-none")}>
-          <MDXContent
-            data={{
-              content: post.content,
-              frontmatter: post.frontmatter,
-            }}
-          />
+                </span>
+              </div>
+            )}
         </div>
+      </header>
 
-        {/* Tags Section */}
-        {post.frontmatter.tags && (
-          <section
-            className={cn("mb-8 border-t border-gray-200 pt-8")}
-            aria-label={t("blog.post.tags")}
-          >
-            <h3 className="mb-3 text-lg font-semibold text-gray-900">
-              {t("blog.post.tags")}
+      {/* Article content */}
+      <div className="prose prose-lg mb-12 max-w-none">
+        <MDXContent
+          data={{
+            content: post.content,
+            frontmatter: post.frontmatter,
+          }}
+        />
+      </div>
+
+      {/* Article footer */}
+      <footer className="border-t border-gray-200 pt-8">
+        {/* Tags */}
+        {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+          <div className="mb-8">
+            <h3 className="mb-4 text-lg font-semibold text-gray-900">
+              {t("content.tags")}
             </h3>
-            <div className={cn("flex flex-wrap gap-2")}>
+            <div className="flex flex-wrap gap-2">
               {post.frontmatter.tags.map(tag => (
                 <Link
                   key={tag}
                   href={`/${locale}/blog/t/${encodeURIComponent(tag)}`}
-                  className="inline-flex items-center rounded-full bg-gray-100 px-2 py-1 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-200"
-                  aria-label={`Filter blog posts by tag: ${tag}`}
+                  className="inline-flex items-center rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200"
+                  aria-label={`View blog posts tagged with ${tag}`}
                 >
                   #{tag}
                 </Link>
               ))}
             </div>
-          </section>
-        )}
-      </article>
-
-      {/* Related Posts - Separate section with proper spacing */}
-      {relatedPosts.length > 0 && (
-        <section
-          className="mx-auto mt-16 max-w-7xl border-t border-gray-200 pt-16"
-          aria-label={`${t("blog.aria.related_articles")} - ${relatedPosts.length} similar posts`}
-        >
-          <h2 className={cn("mb-8 text-3xl font-bold text-gray-900")}>
-            {t("blog.post.related_articles")}
-          </h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {relatedPosts.map(post => (
-              <RelatedArticleCard key={post.slug} post={post} locale={locale} />
-            ))}
           </div>
-        </section>
-      )}
-    </>
+        )}
+
+        {/* Related articles */}
+        {relatedPosts.length > 0 && (
+          <div className="mb-8">
+            <h3 className="mb-6 text-2xl font-bold text-gray-900">
+              {t("content.relatedArticles")}
+            </h3>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {relatedPosts.map(post => (
+                <RelatedArticleCard
+                  key={post.slug}
+                  post={post}
+                  locale={locale}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Navigation back */}
+        <div className="text-center">
+          <Link
+            href={`/${locale}/blog`}
+            className="inline-flex items-center rounded-lg bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700"
+            aria-label="Return to blog listing"
+          >
+            {t("navigation.backToBlog")}
+          </Link>
+        </div>
+      </footer>
+    </article>
   );
 }

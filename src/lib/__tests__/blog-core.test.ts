@@ -14,7 +14,7 @@ import {
   getBlogPost,
   getAllUniqueTags,
   getPaginatedBlogPosts,
-} from "../blog";
+} from "../core/blog-core";
 import { isDatabaseAvailableAsync } from "../db/connection";
 
 // Mock dependencies
@@ -177,7 +177,7 @@ Content 2`;
       expect(result[1].frontmatter.publishedAt).toBe("2024-01-01");
       expect(result[0].slug).toBe("post2"); // post2 has newer date, so it's first
       expect(result[1].slug).toBe("post1"); // post1 has older date, so it's second
-      expect(result[0].destinationNames).toEqual(["GBR"]); // Database unavailable, fallback to country codes
+      expect(result[0].destinationNames).toEqual([]); // Core module returns empty destinationNames
     });
 
     it("should return empty array for non-existent locale", async () => {
@@ -242,7 +242,7 @@ Test content`;
           author: "Test Author",
           publishedAt: "2024-01-01",
         },
-        destinationNames: ["USA", "GBR"], // Database unavailable, fallback to destination codes
+        destinationNames: [], // Core module returns empty destinationNames
       });
     });
 
@@ -257,7 +257,7 @@ Test content`;
 
   describe("getAllUniqueTags", () => {
     it("should return unique tags from all blog posts", async () => {
-      // Mock the locale directory scan - first call in getAllUniqueTags
+      // Mock the locale directory scan
       mockedReaddirSync.mockReturnValueOnce([
         createMockDirent("en", true),
         createMockDirent("es", true),
@@ -274,19 +274,14 @@ tags: ["Travel", "VISA"]
 destinations: ["USA"]
 author: Author
 publishedAt: "2024-01-01"
-description: Description
-image: /image.jpg
 ---
 Content`);
       mockedMatter.mockReturnValueOnce({
         data: {
-          title: "Post 1",
           tags: ["Travel", "VISA"],
           destinations: ["USA"],
           author: "Author",
           publishedAt: "2024-01-01",
-          description: "Description",
-          image: "/image.jpg",
         },
         content: "Content",
       } as unknown as matter.GrayMatterFile<string>);
@@ -299,19 +294,14 @@ tags: ["travel", "food"]
 destinations: ["ESP"]
 author: Author
 publishedAt: "2024-01-02"
-description: Description 2
-image: /image2.jpg
 ---
 Content`);
       mockedMatter.mockReturnValueOnce({
         data: {
-          title: "Post 2",
           tags: ["travel", "food"],
           destinations: ["ESP"],
           author: "Author",
           publishedAt: "2024-01-02",
-          description: "Description 2",
-          image: "/image2.jpg",
         },
         content: "Content",
       } as unknown as matter.GrayMatterFile<string>);
@@ -329,23 +319,18 @@ Content`);
       mockedReaddirSync.mockReturnValueOnce(["post1.mdx"]);
       mockedFs.readFileSync.mockReturnValueOnce(`---
 title: Post 1
-tags: ["travel", "visa"]
+tags: ["travel", "", "  ", "visa"]
 destinations: ["USA"]
 author: Author
 publishedAt: "2024-01-01"
-description: Description
-image: /image.jpg
 ---
 Content`);
       mockedMatter.mockReturnValueOnce({
         data: {
-          title: "Post 1",
-          tags: ["travel", "visa"],
+          tags: ["travel", "", "  ", "visa"],
           destinations: ["USA"],
           author: "Author",
           publishedAt: "2024-01-01",
-          description: "Description",
-          image: "/image.jpg",
         },
         content: "Content",
       } as unknown as matter.GrayMatterFile<string>);
@@ -366,18 +351,13 @@ title: Post 1
 destinations: ["USA"]
 author: Author
 publishedAt: "2024-01-01"
-description: Description
-image: /image.jpg
 ---
 Content`);
       mockedMatter.mockReturnValueOnce({
         data: {
-          title: "Post 1",
           destinations: ["USA"],
           author: "Author",
           publishedAt: "2024-01-01",
-          description: "Description",
-          image: "/image.jpg",
         },
         content: "Content",
       } as unknown as matter.GrayMatterFile<string>);
@@ -517,26 +497,13 @@ Content ${i}`);
 
       mockedFs.existsSync.mockReturnValue(true);
       mockedReaddirSync.mockReturnValue(["post1.mdx"]);
-      mockedFs.readFileSync.mockReturnValue(`---
-title: Test
-description: Test description
-destinations: ["USA"]
-image: /test.jpg
-tags: ["test"]
-author: Test Author
-publishedAt: 2024-01-01
----
-Content`);
+      mockedFs.readFileSync.mockReturnValue("---\ntitle: Test\n---\nContent");
       mockedMatter.mockReturnValue({
         data: {
           title: "Test",
-          description: "Test description",
-          destinations: ["USA"],
-          image: "/test.jpg",
-          tags: ["test"],
-          author: "Test Author",
-          publishedAt: "2024-01-01",
-        },
+          publishedAt: "2024-01-01", // Add minimal required field for sorting
+          destinations: [], // Add empty destinations to prevent errors
+        }, // Missing other required fields like description, author, etc.
         content: "Content",
       } as unknown as matter.GrayMatterFile<string>);
 

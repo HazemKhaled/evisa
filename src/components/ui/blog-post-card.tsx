@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { BlogPostData } from "@/lib/blog";
+import type { BlogPostData } from "@/lib/services/blog-service";
 import { getTranslation } from "@/app/i18n";
 import {
   blogCardStyles,

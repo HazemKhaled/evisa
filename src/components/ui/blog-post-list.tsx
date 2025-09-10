@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BlogPostCard } from "./blog-post-card";
 import { cn } from "@/lib/utils";
-import type { BlogPostData } from "@/lib/blog";
+import type { BlogPostData } from "@/lib/services/blog-service";
 import { getTranslation } from "@/app/i18n";
 
 interface BlogPostListProps {
@@ -15,7 +15,6 @@ interface BlogPostListProps {
   buildPaginationUrl?: (page: number) => string;
   gridCols?: "1" | "2" | "3" | "4";
   showPagination?: boolean;
-  emptyStateMessage?: string;
 }
 
 export async function BlogPostList({
@@ -29,13 +28,8 @@ export async function BlogPostList({
   buildPaginationUrl = (page: number) => `?page=${page}`,
   gridCols = "3",
   showPagination = true,
-  emptyStateMessage,
 }: BlogPostListProps) {
   const { t } = await getTranslation(locale, "blog");
-
-  // Pagination text and arrows - extracted to avoid duplication
-  const previousText = `← ${t("pagination.previous")}`;
-  const nextText = `${t("pagination.next")} →`;
   const gridClasses = {
     "1": "grid-cols-1",
     "2": "md:grid-cols-2",
@@ -52,9 +46,7 @@ export async function BlogPostList({
           <h3 className="mb-2 text-xl font-semibold text-gray-900">
             {t("content.noPostsFound")}
           </h3>
-          <p className="text-gray-600">
-            {emptyStateMessage || t("content.noPostsAvailable")}
-          </p>
+          <p className="text-gray-600">{t("content.noPostsAvailable")}</p>
         </div>
       </div>
     );
@@ -83,11 +75,11 @@ export async function BlogPostList({
                 className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900"
                 aria-label={`Go to page ${currentPage - 1}`}
               >
-                {previousText}
+                {t("pagination.previous")}
               </Link>
             ) : (
               <span className="inline-flex cursor-not-allowed items-center rounded-lg border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400">
-                {previousText}
+                {t("pagination.previous")}
               </span>
             )}
           </div>
@@ -186,11 +178,11 @@ export async function BlogPostList({
                 className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900"
                 aria-label={`Go to page ${currentPage + 1}`}
               >
-                {nextText}
+                {t("pagination.next")}
               </Link>
             ) : (
               <span className="inline-flex cursor-not-allowed items-center rounded-lg border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400">
-                {nextText}
+                {t("pagination.next")}
               </span>
             )}
           </div>

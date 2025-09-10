@@ -1,8 +1,8 @@
 import { type Metadata } from "next";
 import {
-  getGeneratedAllUniqueTags,
-  getAllBlogPosts,
-} from "@/lib/generated-blog-data";
+  getAllUniqueTagsAcrossLocales,
+  getAllBlogPostsAcrossLocales,
+} from "@/lib/services/blog-service";
 import BlogHome from "../../page";
 import { JsonLd } from "@/components/json-ld";
 import { env } from "@/lib/consts";
@@ -15,8 +15,8 @@ import { getTranslation } from "@/app/i18n";
 
 // Generate static params for basic tag routes only
 export async function generateStaticParams() {
-  const allTags = getGeneratedAllUniqueTags();
-  const allBlogPosts = getAllBlogPosts();
+  const allTags = getAllUniqueTagsAcrossLocales();
+  const allBlogPosts = getAllBlogPostsAcrossLocales();
 
   // Get all unique locale-tag combinations
   const locales = [...new Set(allBlogPosts.map(post => post.locale))];

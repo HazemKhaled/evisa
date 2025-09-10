@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { languages } from "@/app/i18n/settings";
-import { GENERATED_BLOG_DATA } from "@/lib/generated-blog-data";
+import { getBlogDataForLocale } from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
 
 export async function generateSitemaps() {
@@ -20,7 +20,7 @@ export default function sitemap({
   const baseUrl = env.baseUrl;
 
   // Get blog data for this locale
-  const blogPosts = GENERATED_BLOG_DATA[locale] || [];
+  const blogPosts = getBlogDataForLocale(locale);
 
   const urls: MetadataRoute.Sitemap = [];
 
@@ -46,7 +46,7 @@ export default function sitemap({
 
     // Generate alternates by checking if post exists in other locales
     languages.forEach(lang => {
-      const langPosts = GENERATED_BLOG_DATA[lang] || [];
+      const langPosts = getBlogDataForLocale(lang);
       const equivalentPost = langPosts.find(p =>
         // Try to find equivalent post by matching some criteria
         // For now, we'll assume each post is only available in its original language
@@ -85,7 +85,7 @@ export default function sitemap({
 
     // Check if tag exists in other locales
     languages.forEach(lang => {
-      const langPosts = GENERATED_BLOG_DATA[lang] || [];
+      const langPosts = getBlogDataForLocale(lang);
       const tagExists = langPosts.some(post =>
         post.frontmatter.tags?.includes(tag)
       );

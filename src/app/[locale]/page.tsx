@@ -10,7 +10,7 @@ import {
 } from "@/lib/json-ld";
 import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
 import { getRandomVisaTypes } from "@/lib/services/visa-service";
-import { getBlogPostsForLocale } from "@/lib/blog";
+import { getBlogPostsForLocale } from "@/lib/services/blog-service";
 import { DestinationCard } from "@/components/ui/destination-card";
 import { VisaTypeCard } from "@/components/ui/visa-type-card";
 import { RelatedArticleCard } from "@/components/ui/related-article-card";
@@ -26,12 +26,21 @@ export default async function LocalePage({
   const { t: tFeatures } = await getTranslation(locale, "features");
   const { t } = await getTranslation(locale, "pages");
 
-  // Fetch data for homepage sections
-  const [destinations, visaTypes, blogPosts] = await Promise.all([
-    getDestinationsListWithMetadata(locale, 8, "popular"),
-    getRandomVisaTypes(locale, 6),
-    getBlogPostsForLocale(locale).then(posts => posts.slice(0, 6)),
-  ]);
+  // Fetch data for homepage sections with graceful degradation
+  const [destinationsResult, visaTypesResult, blogPostsResult] =
+    await Promise.allSettled([
+      getDestinationsListWithMetadata(locale, 8, "popular"),
+      getRandomVisaTypes(locale, 6),
+      Promise.resolve(getBlogPostsForLocale(locale).slice(0, 6)),
+    ]);
+
+  // Extract results with fallbacks for failed requests
+  const destinations =
+    destinationsResult.status === "fulfilled" ? destinationsResult.value : [];
+  const visaTypes =
+    visaTypesResult.status === "fulfilled" ? visaTypesResult.value : [];
+  const blogPosts =
+    blogPostsResult.status === "fulfilled" ? blogPostsResult.value : [];
 
   const baseUrl = env.baseUrl;
   const pageUrl = `${baseUrl}/${locale}`;

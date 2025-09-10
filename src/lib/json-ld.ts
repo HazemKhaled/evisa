@@ -1,5 +1,5 @@
-import { type BlogPostData } from "./blog";
 import { env } from "./consts";
+import { type BlogPostData } from "./services/blog-service";
 
 /**
  * JSON-LD structured data utilities for SEO

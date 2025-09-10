@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BlogSearch } from "@/components/ui/blog-search";
-import type { BlogPostData } from "@/lib/blog";
+import type { BlogPostData } from "@/lib/services/blog-service";
 
 // Mock the blog service
 import { searchBlogPosts } from "../../../lib/services/blog-service";
@@ -10,22 +10,27 @@ jest.mock("../../../lib/services/blog-service", () => ({
   searchBlogPosts: jest.fn(),
 }));
 
+// Mock the client-side translation hook
+jest.mock("../../../app/i18n/client", () => ({
+  useTranslation: jest.fn(() => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        "search.placeholder": "Search blog posts...",
+        "search.loading": "Searching...",
+        "search.results": "results",
+        "search.result": "result",
+        "search.heading": "Search Results",
+        "search.noResults": "No Results Found",
+        "aria.clearSearch": "Clear search",
+      };
+      return translations[key] || key;
+    },
+  })),
+}));
+
 const mockSearchBlogPosts = searchBlogPosts as jest.MockedFunction<
   typeof searchBlogPosts
 >;
-
-const mockTranslations = {
-  searchPlaceholder: "Search blog posts...",
-  searchResults: "Search Results",
-  noResults: "No Results Found",
-  searching: "Searching",
-  clear: "Clear",
-  readMore: "Read More",
-  updated: "Updated",
-  result: "result",
-  results: "results",
-  noPostsFoundFor: 'No posts found for "{query}"',
-};
 
 const mockPosts: BlogPostData[] = [
   {
@@ -66,13 +71,7 @@ describe("BlogSearch", () => {
   });
 
   it("renders search input with placeholder", () => {
-    render(
-      <BlogSearch
-        locale="en"
-        allPosts={mockPosts}
-        translations={mockTranslations}
-      />
-    );
+    render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
     expect(
       screen.getByPlaceholderText("Search blog posts...")
@@ -82,13 +81,7 @@ describe("BlogSearch", () => {
   it("shows searching state when typing", async () => {
     mockSearchBlogPosts.mockReturnValue(mockPosts);
 
-    render(
-      <BlogSearch
-        locale="en"
-        allPosts={mockPosts}
-        translations={mockTranslations}
-      />
-    );
+    render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
     const input = screen.getByPlaceholderText("Search blog posts...");
     fireEvent.change(input, { target: { value: "test" } });
@@ -99,13 +92,7 @@ describe("BlogSearch", () => {
   it("displays search results when query returns posts", async () => {
     mockSearchBlogPosts.mockReturnValue([mockPosts[0]]);
 
-    render(
-      <BlogSearch
-        locale="en"
-        allPosts={mockPosts}
-        translations={mockTranslations}
-      />
-    );
+    render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
     const input = screen.getByPlaceholderText("Search blog posts...");
     fireEvent.change(input, { target: { value: "test" } });
@@ -119,13 +106,7 @@ describe("BlogSearch", () => {
   it("displays no results message when query returns no posts", async () => {
     mockSearchBlogPosts.mockReturnValue([]);
 
-    render(
-      <BlogSearch
-        locale="en"
-        allPosts={mockPosts}
-        translations={mockTranslations}
-      />
-    );
+    render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
     const input = screen.getByPlaceholderText("Search blog posts...");
     fireEvent.change(input, { target: { value: "nonexistent" } });
@@ -141,13 +122,7 @@ describe("BlogSearch", () => {
   it("clears search when clear button is clicked", async () => {
     mockSearchBlogPosts.mockReturnValue([mockPosts[0]]);
 
-    render(
-      <BlogSearch
-        locale="en"
-        allPosts={mockPosts}
-        translations={mockTranslations}
-      />
-    );
+    render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
     const input = screen.getByPlaceholderText("Search blog posts...");
     fireEvent.change(input, { target: { value: "test" } });
@@ -156,7 +131,7 @@ describe("BlogSearch", () => {
       expect(screen.getByText("Search Results")).toBeInTheDocument();
     });
 
-    const clearButton = screen.getByLabelText("Clear");
+    const clearButton = screen.getByLabelText("Clear search");
     fireEvent.click(clearButton);
 
     expect(input).toHaveValue("");
@@ -166,13 +141,7 @@ describe("BlogSearch", () => {
   it("shows correct plural/singular form for results count", async () => {
     mockSearchBlogPosts.mockReturnValue(mockPosts);
 
-    render(
-      <BlogSearch
-        locale="en"
-        allPosts={mockPosts}
-        translations={mockTranslations}
-      />
-    );
+    render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
     const input = screen.getByPlaceholderText("Search blog posts...");
     fireEvent.change(input, { target: { value: "test" } });
@@ -187,13 +156,7 @@ describe("BlogSearch", () => {
       throw new Error("Search failed");
     });
 
-    render(
-      <BlogSearch
-        locale="en"
-        allPosts={mockPosts}
-        translations={mockTranslations}
-      />
-    );
+    render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
     const input = screen.getByPlaceholderText("Search blog posts...");
     fireEvent.change(input, { target: { value: "test" } });
@@ -207,13 +170,7 @@ describe("BlogSearch", () => {
     jest.useFakeTimers();
     mockSearchBlogPosts.mockReturnValue([]);
 
-    render(
-      <BlogSearch
-        locale="en"
-        allPosts={mockPosts}
-        translations={mockTranslations}
-      />
-    );
+    render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
     const input = screen.getByPlaceholderText("Search blog posts...");
 

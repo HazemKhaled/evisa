@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import type { BlogPostData } from "@/lib/blog";
+import type { BlogPostData } from "@/lib/services/blog-service";
 
 /**
  * Shared styling constants for blog card components

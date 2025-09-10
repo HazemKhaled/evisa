@@ -2,9 +2,9 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   getBlogPost,
-  getAllBlogPosts,
+  getAllBlogPostSlugs,
   getBlogPostsForLocale,
-} from "@/lib/blog";
+} from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
@@ -22,7 +22,7 @@ interface BlogPostProps {
 }
 
 export function generateStaticParams() {
-  const blogPosts = getAllBlogPosts();
+  const blogPosts = getAllBlogPostSlugs();
 
   return blogPosts.map(({ locale, slug }) => ({
     locale,
@@ -34,9 +34,17 @@ export async function generateMetadata({
   params,
 }: BlogPostProps): Promise<Metadata> {
   const { locale, slug } = await params;
+  const { t } = await getTranslation(locale, "pages");
 
   try {
-    const blogPost = await getBlogPost(slug, locale);
+    const blogPost = getBlogPost(slug, locale);
+
+    if (!blogPost) {
+      return {
+        title: t("blog.meta.post_not_found"),
+        description: t("blog.meta.post_not_found_description"),
+      };
+    }
 
     return {
       title: blogPost.frontmatter.title,
@@ -80,10 +88,21 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const { t: tNav } = await getTranslation(locale, "navigation");
 
   try {
-    const blogPost = await getBlogPost(slug, locale);
+    // Fetch blog post and all posts in parallel for better performance
+    const [blogPostResult, allPostsResult] = await Promise.allSettled([
+      getBlogPost(slug, locale),
+      getBlogPostsForLocale(locale),
+    ]);
 
-    // Get related posts (same destination or tags)
-    const allPosts = await getBlogPostsForLocale(locale);
+    // Handle blog post result
+    if (blogPostResult.status === "rejected" || !blogPostResult.value) {
+      notFound();
+    }
+    const blogPost = blogPostResult.value;
+
+    // Handle all posts result (graceful degradation if failed)
+    const allPosts =
+      allPostsResult.status === "fulfilled" ? allPostsResult.value : [];
     const relatedPosts = allPosts
       .filter(
         post =>

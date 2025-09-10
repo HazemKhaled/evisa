@@ -5,25 +5,19 @@
  * Integrates with MDX content processing and multilingual support.
  */
 
-import { type BlogPostData } from "@/lib/blog";
 import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
+import type {
+  BlogPostData,
+  BlogFilterOptions,
+  PaginatedBlogResponse,
+} from "../types/blog";
 
-export interface BlogFilterOptions {
-  locale: string;
-  limit?: number;
-  offset?: number;
-  tag?: string;
-  destination?: string;
-  author?: string;
-}
-
-export interface PaginatedBlogResponse {
-  posts: BlogPostData[];
-  total: number;
-  hasMore: boolean;
-  currentPage: number;
-  totalPages: number;
-}
+// Re-export types from shared module for application use
+export type {
+  BlogPostData,
+  BlogFilterOptions,
+  PaginatedBlogResponse,
+} from "../types/blog";
 
 /**
  * Get all blog posts for a specific locale with optional filtering and pagination
@@ -409,4 +403,90 @@ export function getFeaturedBlogPosts(
     // Graceful degradation - return empty array if content unavailable
     return [];
   }
+}
+
+/**
+ * Get a single blog post by slug and locale (runtime version using generated data)
+ */
+export function getBlogPost(slug: string, locale: string): BlogPostData | null {
+  return getBlogPostBySlug(slug, locale);
+}
+
+/**
+ * Get all blog posts for a specific locale (runtime version using generated data)
+ */
+export function getBlogPostsForLocale(locale: string): BlogPostData[] {
+  return getAllBlogPosts(locale);
+}
+
+/**
+ * Get all blog post slugs for generateStaticParams
+ */
+export function getAllBlogPostSlugs(): { locale: string; slug: string }[] {
+  try {
+    const allSlugs: { locale: string; slug: string }[] = [];
+
+    // Get all locales that have blog data
+    const locales = ["en", "es", "ar", "pt", "ru", "de", "fr", "it"]; // Add all supported locales
+
+    for (const locale of locales) {
+      const posts = getAllBlogPosts(locale);
+      for (const post of posts) {
+        allSlugs.push({ locale, slug: post.slug });
+      }
+    }
+
+    return allSlugs;
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Get all unique tags across all locales for generateStaticParams
+ */
+export function getAllUniqueTagsAcrossLocales(): string[] {
+  try {
+    const allTags = new Set<string>();
+    const locales = ["en", "es", "ar", "pt", "ru", "de", "fr", "it"];
+
+    for (const locale of locales) {
+      const localeTags = getAllTagsForLocale(locale);
+      localeTags.forEach(tag => allTags.add(tag));
+    }
+
+    return Array.from(allTags).sort();
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Get all blog posts across all locales with locale information
+ */
+export function getAllBlogPostsAcrossLocales(): (BlogPostData & {
+  locale: string;
+})[] {
+  try {
+    const allPosts: (BlogPostData & { locale: string })[] = [];
+    const locales = ["en", "es", "ar", "pt", "ru", "de", "fr", "it"];
+
+    for (const locale of locales) {
+      const localePosts = getAllBlogPosts(locale);
+      localePosts.forEach(post => {
+        allPosts.push({ ...post, locale });
+      });
+    }
+
+    return allPosts;
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Get blog posts for a specific locale (alias for getBlogPostsForLocale for sitemap compatibility)
+ */
+export function getBlogDataForLocale(locale: string): BlogPostData[] {
+  return getBlogPostsForLocale(locale);
 }

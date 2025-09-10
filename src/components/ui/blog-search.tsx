@@ -2,37 +2,29 @@
 
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import type { BlogPostData } from "@/lib/blog";
-import { searchBlogPosts } from "@/lib/services/blog-service";
+import {
+  searchBlogPosts,
+  type BlogPostData,
+} from "@/lib/services/blog-service";
+import { useTranslation } from "@/app/i18n/client";
 import { ClientBlogPostCard } from "./client-blog-post-card";
 
 interface BlogSearchProps {
   locale: string;
   allPosts: BlogPostData[];
   className?: string;
-  translations: {
-    searchPlaceholder: string;
-    searchResults: string;
-    noResults: string;
-    searching: string;
-    clear: string;
-    result: string;
-    results: string;
-    noPostsFoundFor: string;
-  };
-  destination?: string;
 }
 
 export function BlogSearch({
   locale,
   allPosts: _allPosts,
   className,
-  translations,
-  destination: _destination,
 }: BlogSearchProps) {
   const [query, setQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState<BlogPostData[]>([]);
+
+  const { t } = useTranslation(locale, "blog");
 
   // Debounced search effect
   useEffect(() => {
@@ -91,14 +83,14 @@ export function BlogSearch({
             type="text"
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder={translations.searchPlaceholder}
+            placeholder={t("search.placeholder")}
             className="block w-full rounded-lg border border-gray-300 bg-white px-10 py-3 text-sm placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
           />
           {query && (
             <button
               onClick={handleClear}
               className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
-              aria-label={translations.clear}
+              aria-label={t("aria.clearSearch")}
             >
               <svg
                 className="h-4 w-4"
@@ -120,7 +112,7 @@ export function BlogSearch({
         {/* Loading indicator */}
         {isSearching && (
           <div className="mt-2 text-center text-sm text-gray-500">
-            {translations.searching}...
+            {t("search.loading")}
           </div>
         )}
       </div>
@@ -131,13 +123,13 @@ export function BlogSearch({
           {/* Results header */}
           <div className="flex items-center justify-between border-b border-gray-200 pb-4">
             <h2 className="text-lg font-semibold text-gray-900">
-              {translations.searchResults}
+              {t("search.heading")}
             </h2>
             <span className="text-sm text-gray-500">
               {searchResults.length}{" "}
               {searchResults.length === 1
-                ? translations.result
-                : translations.results}
+                ? t("search.result")
+                : t("search.results")}
             </span>
           </div>
 
@@ -157,11 +149,10 @@ export function BlogSearch({
               <div className="mx-auto max-w-md">
                 <div className="mb-4 text-6xl opacity-50">🔍</div>
                 <h3 className="mb-2 text-xl font-semibold text-gray-900">
-                  {translations.noResults}
+                  {t("search.noResults")}
                 </h3>
                 <p className="text-gray-600">
-                  {query.trim() &&
-                    translations.noPostsFoundFor.replace("{query}", query)}
+                  {query.trim() && `No posts found for "${query}"`}
                 </p>
               </div>
             </div>

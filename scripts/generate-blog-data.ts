@@ -5,9 +5,9 @@ import {
   getAllBlogPosts,
   getAllUniqueTags,
   getBlogPostsForLocale,
-  type BlogPostData,
-} from "../src/lib/blog";
+} from "../src/lib/core/blog-core";
 import { languages } from "../src/app/i18n/settings";
+import { type BlogPostData } from "@/lib/services/blog-service";
 
 /**
  * Generate static blog data for runtime use
@@ -19,13 +19,28 @@ async function generateBlogData(): Promise<void> {
 
   const blogData: Record<string, BlogPostData[]> = {};
 
-  // Generate blog data for each language using the shared utilities
-  for (const locale of languages) {
-    const posts = await getBlogPostsForLocale(locale);
-    blogData[locale] = posts;
-    console.log(
-      `✅ Generated ${posts.length} blog posts for locale: ${locale}`
-    );
+  // Generate blog data for each language in parallel for better performance
+  const localeResults = await Promise.allSettled(
+    languages.map(async locale => ({
+      locale,
+      posts: await getBlogPostsForLocale(locale),
+    }))
+  );
+
+  // Process results with error handling
+  for (const result of localeResults) {
+    if (result.status === "fulfilled") {
+      const { locale, posts } = result.value;
+      blogData[locale] = posts;
+      console.log(
+        `✅ Generated ${posts.length} blog posts for locale: ${locale}`
+      );
+    } else {
+      console.error(
+        `❌ Failed to generate blog data for a locale:`,
+        result.reason
+      );
+    }
   }
 
   // Get all unique tags using the shared utility
@@ -45,7 +60,7 @@ async function generateBlogData(): Promise<void> {
   const tsContent = `// Auto-generated file - Do not edit manually
 // Generated at: ${new Date().toISOString()}
 
-import { type BlogPostData } from "./blog";
+import { type BlogPostData } from "./services/blog-service";
 
 // Pre-generated blog data for each locale
 export const GENERATED_BLOG_DATA: Record<string, BlogPostData[]> = ${JSON.stringify(blogData, null, 2)};

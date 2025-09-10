@@ -1,5 +1,5 @@
 import { type Metadata } from "next";
-import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
+import { getBlogPostsForLocale } from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { BlogPostList } from "@/components/ui/blog-post-list";
@@ -46,13 +46,12 @@ export default async function BlogHome({
   const { page = "1" } = await searchParams;
   const { t } = await getTranslation(locale, "pages");
   const { t: tNav } = await getTranslation(locale, "navigation");
-  const { t: tBlog } = await getTranslation(locale, "blog");
 
   const currentPage = parseInt(page, 10);
   const postsPerPage = 9;
 
-  // Get all blog posts for the locale using generated data
-  const allPosts = getGeneratedBlogPostsForLocale(locale);
+  // Get all blog posts for the locale using service layer
+  const allPosts = getBlogPostsForLocale(locale);
 
   const totalPosts = allPosts.length;
   const totalPages = Math.ceil(totalPosts / postsPerPage);
@@ -122,24 +121,7 @@ export default async function BlogHome({
 
           {/* Search */}
           <div className="mb-12">
-            <BlogSearch
-              allPosts={allPosts}
-              locale={locale}
-              translations={{
-                searchPlaceholder:
-                  tBlog("search.placeholder") || "Search blog posts...",
-                searchResults: tBlog("search.results") || "Search Results",
-                noResults:
-                  tBlog("search.noResults") ||
-                  "No posts found matching your search.",
-                searching: tBlog("search.searching") || "Searching...",
-                clear: tBlog("search.clear") || "Clear",
-                result: tBlog("search.result") || "result",
-                results: tBlog("search.results") || "results",
-                noPostsFoundFor:
-                  tBlog("search.noPostsFoundFor") || "No posts found for",
-              }}
-            />
+            <BlogSearch allPosts={allPosts} locale={locale} />
           </div>
 
           <BlogPostList

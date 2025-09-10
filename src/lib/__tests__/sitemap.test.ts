@@ -55,45 +55,77 @@ jest.mock("../../app/i18n/settings", () => ({
   languages: ["en", "es", "ar", "pt", "ru", "de", "fr", "it"],
 }));
 
+// Mock blog data
+const mockBlogData = {
+  en: [
+    {
+      slug: "test-post-1",
+      content: "Test content 1",
+      frontmatter: {
+        title: "Test Post 1",
+        publishedAt: "2024-01-01",
+        lastUpdated: "2024-01-02",
+        tags: ["travel", "visa"],
+        description: "Test description",
+        destinations: ["USA"],
+        image: "/test-image-1.jpg",
+        author: "Test Author",
+      },
+      destinationNames: [],
+    },
+    {
+      slug: "test-post-2",
+      content: "Test content 2",
+      frontmatter: {
+        title: "Test Post 2",
+        publishedAt: "2024-01-03",
+        tags: ["tourism"],
+        description: "Test description",
+        destinations: ["USA"],
+        image: "/test-image-2.jpg",
+        author: "Test Author",
+      },
+      destinationNames: [],
+    },
+  ],
+  es: [
+    {
+      slug: "test-post-es-1",
+      content: "Contenido de prueba",
+      frontmatter: {
+        title: "Post de Prueba 1",
+        publishedAt: "2024-01-01",
+        tags: ["viaje", "visa"],
+        description: "Descripción de prueba",
+        destinations: ["ESP"],
+        image: "/test-image-es-1.jpg",
+        author: "Autor de Prueba",
+      },
+      destinationNames: [],
+    },
+  ],
+  ar: [],
+  pt: [],
+  ru: [],
+  de: [],
+  fr: [],
+  it: [],
+};
+
 // Mock the generated blog data
 jest.mock("../generated-blog-data", () => ({
-  GENERATED_BLOG_DATA: {
-    en: [
-      {
-        slug: "test-post-1",
-        frontmatter: {
-          title: "Test Post 1",
-          publishedAt: "2024-01-01",
-          lastUpdated: "2024-01-02",
-          tags: ["travel", "visa"],
-        },
-      },
-      {
-        slug: "test-post-2",
-        frontmatter: {
-          title: "Test Post 2",
-          publishedAt: "2024-01-03",
-          tags: ["tourism"],
-        },
-      },
-    ],
-    es: [
-      {
-        slug: "test-post-es-1",
-        frontmatter: {
-          title: "Post de Prueba 1",
-          publishedAt: "2024-01-01",
-          tags: ["viaje", "visa"],
-        },
-      },
-    ],
-    ar: [],
-    pt: [],
-    ru: [],
-    de: [],
-    fr: [],
-    it: [],
-  },
+  GENERATED_BLOG_DATA: mockBlogData,
+  getGeneratedBlogPostsForLocale: jest.fn(
+    (locale: string) => mockBlogData[locale] || []
+  ),
+}));
+
+// Mock the blog service
+jest.mock("../services/blog-service", () => ({
+  getBlogDataForLocale: jest.fn((locale: string) => mockBlogData[locale] || []),
+  getBlogPostsForLocale: jest.fn(
+    (locale: string) => mockBlogData[locale] || []
+  ),
 }));
 
 describe("Sitemap Functions", () => {
