@@ -11,9 +11,10 @@
 
 ### **Next Critical Path - Build Core User Experience 🚀**
 
-1. **Story 1.2** - Destination Catalog Pages (Highest Priority)
-2. **Story 1.4** - All Destinations Listing (High Priority)
-3. **Story 1.3** - Visa-Specific Detail Pages (High Priority)
+1. **Story 1.2** - Complete Destination Catalog System (Highest Priority)
+   - Individual destination pages AND destinations listing page
+2. **Story 1.3** - Visa-Specific Detail Pages (High Priority)
+3. **Story 1.4** - Advanced SEO and Performance (High Priority)
 
 ### **SEO & Performance Phase 🎯**
 
@@ -47,19 +48,22 @@ so that **the platform can dynamically serve visa information based on passport-
 - ✅ IV2: Internationalization system supports database-driven content
 - ✅ IV3: Services ready for homepage destination card population
 
-## Story 1.2: Build Destination Catalog Pages with Visa Options Display
+## Story 1.2: Build Complete Destination Catalog System (Listing + Detail Pages)
 
 As a **traveler researching visa requirements**,
-I want **destination-specific pages showing all available visa options for my passport**,
-so that **I can understand visa requirements before booking travel**.
+I want **a searchable destinations listing page and detailed destination-specific pages showing all available visa options**,
+so that **I can discover and understand visa requirements before booking travel**.
 
 **Acceptance Criteria:**
 
-1. Destination pages at `/d/{DESTINATION_COUNTRY}` display comprehensive visa information
-2. Visa options show fees, processing times, validity periods, entry restrictions
-3. Passport-based filtering dims unavailable options and highlights available ones
-4. Multilingual support for all destination content across 8 supported languages
-5. Responsive design maintains homepage design consistency and mobile usability
+1. All destinations page at `/d/` with searchable country grid and filtering capabilities
+2. Individual destination pages at `/d/{DESTINATION_COUNTRY}` display comprehensive visa information
+3. Visa options show fees, processing times, validity periods, entry restrictions, and required documents
+4. Search and filtering functionality on destinations listing page
+5. Multilingual support for all destination content across 8 supported languages
+6. Responsive design maintains homepage design consistency and mobile usability
+7. Proper SEO metadata and structured data (JSON-LD) for both listing and detail pages
+8. RTL language support maintains identical functionality for Arabic users
 
 **Integration Verification:**
 
