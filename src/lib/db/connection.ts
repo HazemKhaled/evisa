@@ -142,7 +142,8 @@ export const getDbAsync = cache(async (): Promise<Database> => {
     const { env } =
       process.env.NODE_ENV === "production" && process.env.WORKERS_CI == null
         ? getCloudflareContext()
-        : await getCloudflareContext({ async: true });
+        : // Async context for ISR/SSG
+          await getCloudflareContext({ async: true });
     if (!env.DB) {
       throw new Error(
         "Database not available - ensure D1 binding 'DB' is configured"
