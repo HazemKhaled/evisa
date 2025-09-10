@@ -44,7 +44,7 @@ export default async function BlogHome({
 }: BlogHomeProps) {
   const { locale } = await params;
   const { page = "1" } = await searchParams;
-  const { t } = await getTranslation(locale, "pages");
+  const { t } = await getTranslation(locale, "blog");
   const { t: tNav } = await getTranslation(locale, "navigation");
 
   const currentPage = parseInt(page, 10);
@@ -95,7 +95,7 @@ export default async function BlogHome({
       <StaticPageLayout>
         <div className="py-16 text-center">
           <h1 className="mb-4 text-4xl font-bold text-gray-900">
-            {t("blog.title")}
+            {t("title")}
           </h1>
           <p className="text-lg text-gray-600">{t("empty_state")}</p>
         </div>
@@ -112,10 +112,10 @@ export default async function BlogHome({
           {/* Header */}
           <div className="mb-12 text-center">
             <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
-              {t("blog.title")}
+              {t("title")}
             </h1>
             <p className="mx-auto max-w-3xl text-xl text-gray-600">
-              {t("blog.subtitle")}
+              {t("subtitle")}
             </p>
           </div>
 

@@ -1,80 +1,52 @@
 {
+  "title": "Blog de Viagem",
+  "subtitle": "Guias de viagem especializados, dicas de visto e insights de destinos para ajudá-lo a planejar sua viagem perfeita.",
+  "keywords": "blog de viagem, guias de visto, dicas de viagem, guias de destinos, conselhos de viagem",
+  "empty_state": "Nenhum artigo do blog disponível ainda. Volte em breve!",
   "navigation": {
-    "backToBlog": "← Voltar ao Blog",
-    "backToDestinationBlog": "← Voltar ao Blog {destination}"
+    "backToBlog": "← Voltar ao Blog"
   },
   "metadata": {
-    "updated": "Atualizado",
-    "publishedOn": "Publicado em",
-    "by": "Por",
-    "readingTime": "min de leitura",
-    "lastModified": "Última modificação"
-  },
-  "actions": {
-    "readMore": "Ler mais →",
-    "readFullArticle": "Ler artigo completo",
-    "viewMore": "Ver mais",
-    "loadMore": "Carregar mais posts",
-    "showMore": "Mostrar mais",
-    "showLess": "Mostrar menos"
+    "updated": "Atualizado"
   },
   "search": {
-    "placeholder": "Pesquisar posts do blog...",
-    "results": "Resultados da pesquisa",
-    "noResults": "Nenhum resultado encontrado",
-    "searching": "Pesquisando",
-    "clear": "Limpar pesquisa",
-    "result": "resultado",
+    "placeholder": "Pesquisar artigos do blog...",
+    "heading": "Resultados da pesquisa",
     "results": "resultados",
-    "noPostsFoundFor": "Nenhum post encontrado para \"{query}\"",
-    "searchByTag": "Pesquisar por tag",
-    "searchByDestination": "Pesquisar por destino"
+    "noResults": "Nenhum resultado encontrado",
+    "loading": "Pesquisando...",
+    "result": "resultado"
   },
+
   "content": {
     "tags": "Tags",
-    "destinations": "Destinos",
     "relatedArticles": "Artigos relacionados",
-    "latestPosts": "Posts mais recentes",
-    "popularPosts": "Posts populares",
-    "featuredPosts": "Posts em destaque",
-    "noPostsFound": "Nenhum post encontrado",
-    "noPostsAvailable": "Nenhum post do blog está disponível no momento",
-    "comingSoon": "Novo conteúdo em breve!"
+    "noPostsFound": "Nenhum artigo encontrado",
+    "noPostsAvailable": "Atualmente não há artigos do blog disponíveis"
   },
   "pagination": {
     "showing": "Mostrando",
-    "post": "post",
-    "posts": "posts",
+    "post": "artigo",
+    "posts": "artigos",
     "on": "na",
     "page": "página",
     "of": "de",
     "previous": "Anterior",
-    "next": "Próximo",
-    "firstPage": "Primeira página",
-    "lastPage": "Última página",
-    "goToPage": "Ir para a página {page}"
-  },
-  "categories": {
-    "travel": "Viagem",
-    "visa": "Visto",
-    "guide": "Guia",
-    "tips": "Dicas",
-    "culture": "Cultura",
-    "food": "Comida",
-    "accommodation": "Acomodação",
-    "transportation": "Transporte",
-    "safety": "Segurança",
-    "budget": "Orçamento"
+    "next": "Próximo"
   },
   "aria": {
     "articleNavigation": "Navegação do artigo",
     "returnToBlogListing": "Voltar à lista do blog",
     "readArticle": "Ler artigo: {title}",
     "readFullArticle": "Ler artigo completo: {title}",
-    "viewPostsFor": "Ver posts do blog para {destination}",
-    "viewPostsTagged": "Ver posts do blog marcados com {tag}",
-    "blogPostCard": "Cartão de post do blog para {title}",
-    "searchInput": "Pesquisar posts do blog",
-    "clearSearch": "Limpar entrada de pesquisa"
+    "viewPostsFor": "Ver artigos do blog para {destination}",
+    "viewPostsTagged": "Ver artigos do blog marcados com {tag}",
+    "clearSearch": "Limpar pesquisa"
+  },
+  "homepage": {
+    "latestPosts": {
+      "title": "Últimos insights de viagem",
+      "subtitle": "Mantenha-se atualizado com dicas de viagem e guias de destinos"
+    }
   }
 }

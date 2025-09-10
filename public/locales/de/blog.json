@@ -1,45 +1,27 @@
 {
+  "title": "Reise-Blog",
+  "subtitle": "Experten-Reiseführer, Visa-Tipps und Reiseziel-Einblicke, um Ihnen bei der Planung Ihrer perfekten Reise zu helfen.",
+  "keywords": "Reise-Blog, Visa-Führer, Reisetipps, Reiseziel-Führer, Reiseberatung",
+  "empty_state": "Noch keine Blog-Beiträge verfügbar. Schauen Sie bald wieder vorbei!",
   "navigation": {
-    "backToBlog": "← Zurück zum Blog",
-    "backToDestinationBlog": "← Zurück zum {destination} Blog"
+    "backToBlog": "← Zurück zum Blog"
   },
   "metadata": {
-    "updated": "Aktualisiert",
-    "publishedOn": "Veröffentlicht am",
-    "by": "Von",
-    "readingTime": "Min. Lesezeit",
-    "lastModified": "Zuletzt geändert"
-  },
-  "actions": {
-    "readMore": "Mehr lesen →",
-    "readFullArticle": "Vollständigen Artikel lesen",
-    "viewMore": "Mehr anzeigen",
-    "loadMore": "Weitere Beiträge laden",
-    "showMore": "Mehr anzeigen",
-    "showLess": "Weniger anzeigen"
+    "updated": "Aktualisiert"
   },
   "search": {
-    "placeholder": "Blog-Beiträge durchsuchen...",
-    "searchResults": "Suchergebnisse",
-    "noResults": "Keine Ergebnisse gefunden",
-    "searching": "Wird gesucht",
-    "clear": "Suche löschen",
-    "result": "Ergebnis",
+    "placeholder": "Blog-Beiträge suchen...",
+    "heading": "Suchergebnisse",
     "results": "Ergebnisse",
-    "noPostsFoundFor": "Keine Beiträge gefunden für \"{query}\"",
-    "searchByTag": "Nach Tag suchen",
-    "searchByDestination": "Nach Reiseziel suchen"
+    "noResults": "Keine Ergebnisse gefunden",
+    "loading": "Suche...",
+    "result": "Ergebnis"
   },
   "content": {
     "tags": "Tags",
-    "destinations": "Reiseziele",
     "relatedArticles": "Verwandte Artikel",
-    "latestPosts": "Neueste Beiträge",
-    "popularPosts": "Beliebte Beiträge",
-    "featuredPosts": "Empfohlene Beiträge",
     "noPostsFound": "Keine Beiträge gefunden",
-    "noPostsAvailable": "Derzeit sind keine Blog-Beiträge verfügbar",
-    "comingSoon": "Neue Inhalte kommen bald!"
+    "noPostsAvailable": "Derzeit sind keine Blog-Beiträge verfügbar"
   },
   "pagination": {
     "showing": "Zeige",
@@ -48,33 +30,22 @@
     "on": "auf",
     "page": "Seite",
     "of": "von",
-    "previous": "Zurück",
-    "next": "Weiter",
-    "firstPage": "Erste Seite",
-    "lastPage": "Letzte Seite",
-    "goToPage": "Gehe zu Seite {page}"
-  },
-  "categories": {
-    "travel": "Reisen",
-    "visa": "Visum",
-    "guide": "Leitfaden",
-    "tips": "Tipps",
-    "culture": "Kultur",
-    "food": "Essen",
-    "accommodation": "Unterkunft",
-    "transportation": "Transport",
-    "safety": "Sicherheit",
-    "budget": "Budget"
+    "previous": "Vorherige",
+    "next": "Nächste"
   },
   "aria": {
-    "articleNavigation": "Artikelnavigation",
-    "returnToBlogListing": "Zurück zur Blog-Übersicht",
+    "articleNavigation": "Artikel-Navigation",
+    "returnToBlogListing": "Zurück zur Blog-Liste",
     "readArticle": "Artikel lesen: {title}",
     "readFullArticle": "Vollständigen Artikel lesen: {title}",
     "viewPostsFor": "Blog-Beiträge für {destination} anzeigen",
-    "viewPostsTagged": "Blog-Beiträge mit Tag {tag} anzeigen",
-    "blogPostCard": "Blog-Beitragskarte für {title}",
-    "searchInput": "Blog-Beiträge durchsuchen",
+    "viewPostsTagged": "Blog-Beiträge mit {tag} markiert anzeigen",
     "clearSearch": "Sucheingabe löschen"
+  },
+  "homepage": {
+    "latestPosts": {
+      "title": "Neueste Reise-Einblicke",
+      "subtitle": "Bleiben Sie mit Reisetipps und Reiseziel-Führern auf dem Laufenden"
+    }
   }
 }

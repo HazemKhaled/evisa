@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import type { BlogPostData } from "@/lib/services/blog-service";
+import { getTranslation } from "@/app/i18n";
 
 interface RelatedArticleCardProps {
   post: BlogPostData;
@@ -9,11 +10,12 @@ interface RelatedArticleCardProps {
   className?: string;
 }
 
-export function RelatedArticleCard({
+export async function RelatedArticleCard({
   post,
   locale,
   className,
 }: RelatedArticleCardProps) {
+  const { t } = await getTranslation(locale, "blog");
   return (
     <article
       className={cn(
@@ -25,7 +27,7 @@ export function RelatedArticleCard({
     >
       <Link
         href={`/${locale}/blog/${post.slug}`}
-        aria-label={`Read article: ${post.frontmatter.title}`}
+        aria-label={t("aria.readArticle", { title: post.frontmatter.title })}
       >
         <div className="relative aspect-video overflow-hidden">
           <Image
@@ -58,7 +60,9 @@ export function RelatedArticleCard({
           <Link
             href={`/${locale}/blog/${post.slug}`}
             className="hover:text-blue-600"
-            aria-label={`Read full article: ${post.frontmatter.title}`}
+            aria-label={t("aria.readFullArticle", {
+              title: post.frontmatter.title,
+            })}
           >
             {post.frontmatter.title}
           </Link>

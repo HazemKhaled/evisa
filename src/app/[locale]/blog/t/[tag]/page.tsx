@@ -41,13 +41,13 @@ export async function generateMetadata({
   params,
 }: TagPageProps): Promise<Metadata> {
   const { locale, tag } = await params;
-  const { t } = await getTranslation(locale, "pages");
+  const { t } = await getTranslation(locale, "blog");
   const decodedTag = decodeURIComponent(tag);
 
   return {
     title: t("blog.meta.tag_title_template", {
       tag: decodedTag,
-      title: t("blog.title"),
+      title: t("title"),
     }),
     description: t("blog.meta.tag_description_template", { tag: decodedTag }),
     keywords: t("blog.meta.tag_keywords_template", { tag: decodedTag }),

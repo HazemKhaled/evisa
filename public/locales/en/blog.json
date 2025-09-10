@@ -1,83 +1,37 @@
 {
   "title": "Travel Blog",
-  "subtitle": "Discover amazing destinations and get insider tips for your next adventure",
-  "keywords": "travel blog, destination guides, visa tips, travel advice",
-  "empty_state": "No blog posts are currently available",
+  "subtitle": "Expert travel guides, visa tips, and destination insights to help you plan your perfect trip.",
+  "keywords": "travel blog, visa guides, travel tips, destination guides, travel advice",
+  "empty_state": "No blog posts available yet. Check back soon!",
   "navigation": {
-    "backToBlog": "← Back to Blog",
-    "backToDestinationBlog": "← Back to {destination} Blog"
+    "backToBlog": "← Back to Blog"
   },
   "metadata": {
-    "updated": "Updated",
-    "publishedOn": "Published on",
-    "by": "By",
-    "readingTime": "min read",
-    "lastModified": "Last modified"
-  },
-  "actions": {
-    "readMore": "Read more →",
-    "readFullArticle": "Read full article",
-    "viewMore": "View more",
-    "loadMore": "Load more posts",
-    "showMore": "Show more",
-    "showLess": "Show less"
+    "updated": "Updated"
   },
   "search": {
     "placeholder": "Search blog posts...",
-    "results": "Search Results",
+    "heading": "Search Results",
+    "results": "results",
     "noResults": "No Results Found",
-    "searching": "Searching",
-    "clear": "Clear search",
-    "result": "result",
-    "noPostsFoundFor": "No posts found for \"{query}\"",
-    "placeholderDestination": "Search {destination} blog posts...",
-    "noResultsDestination": "No posts found matching your search in {destination}.",
-    "searchByTag": "Search by tag",
-    "searchByDestination": "Search by destination"
+    "loading": "Searching...",
+    "result": "result"
   },
   "content": {
     "tags": "Tags",
-    "destinations": "Destinations",
     "relatedArticles": "Related Articles",
-    "latestPosts": "Latest Posts",
-    "popularPosts": "Popular Posts",
-    "featuredPosts": "Featured Posts",
     "noPostsFound": "No Posts Found",
-    "noPostsAvailable": "No blog posts are currently available",
-    "comingSoon": "New content coming soon!"
+    "noPostsAvailable": "No blog posts are currently available"
   },
   "pagination": {
     "showing": "Showing",
     "post": "post",
     "posts": "posts",
-    "articles": "articles",
     "on": "on",
     "page": "page",
     "of": "of",
     "previous": "Previous",
-    "next": "Next",
-    "firstPage": "First page",
-    "lastPage": "Last page",
-    "goToPage": "Go to page {page}"
-  },
-  "categories": {
-    "travel": "Travel",
-    "visa": "Visa",
-    "guide": "Guide",
-    "tips": "Tips",
-    "culture": "Culture",
-    "food": "Food",
-    "accommodation": "Accommodation",
-    "transportation": "Transportation",
-    "safety": "Safety",
-    "budget": "Budget"
-  },
-  "post": {
-    "published": "Published",
-    "updated": "Updated",
-    "tags": "Tags",
-    "passport": "Passport",
-    "related_visas": "Related Visas"
+    "next": "Next"
   },
   "aria": {
     "articleNavigation": "Article navigation",
@@ -86,8 +40,12 @@
     "readFullArticle": "Read full article: {title}",
     "viewPostsFor": "View blog posts for {destination}",
     "viewPostsTagged": "View blog posts tagged with {tag}",
-    "blogPostCard": "Blog post card for {title}",
-    "searchInput": "Search blog posts",
     "clearSearch": "Clear search input"
+  },
+  "homepage": {
+    "latestPosts": {
+      "title": "Latest Travel Insights",
+      "subtitle": "Stay updated with travel tips and destination guides"
+    }
   }
 }
