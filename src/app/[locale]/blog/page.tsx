@@ -152,16 +152,6 @@ export default async function BlogHome({
             gridCols="3"
             showPagination={true}
           />
-
-          {/* Blog Stats */}
-          <div className="mt-12 text-center text-gray-500">
-            <p>
-              {t("blog.pagination.showing")} {startIndex + 1}-
-              {Math.min(startIndex + postsPerPage, totalPosts)}{" "}
-              {t("blog.pagination.of")} {totalPosts}{" "}
-              {t("blog.pagination.articles")}
-            </p>
-          </div>
         </div>
       </StaticPageLayout>
     </>

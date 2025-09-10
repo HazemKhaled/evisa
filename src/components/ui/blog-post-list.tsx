@@ -32,6 +32,10 @@ export async function BlogPostList({
   emptyStateMessage,
 }: BlogPostListProps) {
   const { t } = await getTranslation(locale, "blog");
+
+  // Pagination text and arrows - extracted to avoid duplication
+  const previousText = `← ${t("pagination.previous")}`;
+  const nextText = `${t("pagination.next")} →`;
   const gridClasses = {
     "1": "grid-cols-1",
     "2": "md:grid-cols-2",
@@ -79,11 +83,11 @@ export async function BlogPostList({
                 className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900"
                 aria-label={`Go to page ${currentPage - 1}`}
               >
-                ← {t("blog:pagination.previous")}
+                {previousText}
               </Link>
             ) : (
               <span className="inline-flex cursor-not-allowed items-center rounded-lg border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400">
-                ← {t("blog:pagination.previous")}
+                {previousText}
               </span>
             )}
           </div>
@@ -169,8 +173,8 @@ export async function BlogPostList({
           {/* Mobile page info */}
           <div className="flex md:hidden">
             <span className="text-sm text-gray-700">
-              {t("blog:pagination.page")} {currentPage}{" "}
-              {t("blog:pagination.of")} {totalPages}
+              {t("pagination.page")} {currentPage} {t("pagination.of")}{" "}
+              {totalPages}
             </span>
           </div>
 
@@ -182,11 +186,11 @@ export async function BlogPostList({
                 className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900"
                 aria-label={`Go to page ${currentPage + 1}`}
               >
-                {t("blog:pagination.next")} →
+                {nextText}
               </Link>
             ) : (
               <span className="inline-flex cursor-not-allowed items-center rounded-lg border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400">
-                {t("blog:pagination.next")} →
+                {nextText}
               </span>
             )}
           </div>
@@ -196,16 +200,13 @@ export async function BlogPostList({
       {/* Page info summary */}
       {showPagination && totalPages > 1 && (
         <div className="text-center text-sm text-gray-500">
-          {t("blog:pagination.showing")} {posts.length}{" "}
-          {posts.length === 1
-            ? t("blog:pagination.post")
-            : t("blog:pagination.posts")}
+          {t("pagination.showing")} {posts.length}{" "}
+          {posts.length === 1 ? t("pagination.post") : t("pagination.posts")}
           {totalPages > 1 && (
             <>
               {" "}
-              {t("blog:pagination.on")}{" "}
-              {t("blog:pagination.page").toLowerCase()} {currentPage}{" "}
-              {t("blog:pagination.of")} {totalPages}
+              {t("pagination.on")} {t("pagination.page").toLowerCase()}{" "}
+              {currentPage} {t("pagination.of")} {totalPages}
             </>
           )}
         </div>
