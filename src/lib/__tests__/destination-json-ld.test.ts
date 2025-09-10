@@ -66,7 +66,7 @@ describe("generateDestinationJsonLd", () => {
     const result = generateDestinationJsonLd(mockDestinationData, "en");
 
     expect(result).toHaveProperty("address");
-    const address = result.address as any;
+    const address = result.address as Record<string, unknown>;
     expect(address).toHaveProperty("@type", "PostalAddress");
     expect(address).toHaveProperty("addressCountry", "UAE");
     expect(address).toHaveProperty("addressRegion", "Middle East");
@@ -76,7 +76,7 @@ describe("generateDestinationJsonLd", () => {
     const result = generateDestinationJsonLd(mockDestinationData, "en");
 
     expect(result).toHaveProperty("containedInPlace");
-    const containedInPlace = result.containedInPlace as any;
+    const containedInPlace = result.containedInPlace as Record<string, unknown>;
     expect(containedInPlace).toHaveProperty("@type", "AdministrativeArea");
     expect(containedInPlace).toHaveProperty("name", "Asia");
   });
@@ -85,7 +85,7 @@ describe("generateDestinationJsonLd", () => {
     const result = generateDestinationJsonLd(mockDestinationData, "en");
 
     expect(result).toHaveProperty("containsPlace");
-    const services = result.containsPlace as any[];
+    const services = result.containsPlace as Record<string, unknown>[];
     expect(services).toHaveLength(2);
 
     const touristVisa = services[0];
@@ -100,7 +100,7 @@ describe("generateDestinationJsonLd", () => {
   it("should include offer information for visa services", () => {
     const result = generateDestinationJsonLd(mockDestinationData, "en");
 
-    const services = result.containsPlace as any[];
+    const services = result.containsPlace as Record<string, unknown>[];
     const touristVisa = services[0];
 
     expect(touristVisa).toHaveProperty("offers");
@@ -115,7 +115,7 @@ describe("generateDestinationJsonLd", () => {
     const result = generateDestinationJsonLd(mockDestinationData, "en");
 
     expect(result).toHaveProperty("mainEntity");
-    const mainEntity = result.mainEntity as any;
+    const mainEntity = result.mainEntity as Record<string, unknown>;
     expect(mainEntity).toHaveProperty("@type", "TravelAction");
     expect(mainEntity).toHaveProperty("name", "Travel to United Arab Emirates");
   });
@@ -127,7 +127,7 @@ describe("generateDestinationJsonLd", () => {
     };
     const result = generateDestinationJsonLd(visaFreeDestination, "en");
 
-    const mainEntity = result.mainEntity as any;
+    const mainEntity = result.mainEntity as Record<string, unknown>;
     expect(mainEntity).toHaveProperty(
       "additionalType",
       "https://schema.org/VisaFreeTravel"
@@ -138,7 +138,7 @@ describe("generateDestinationJsonLd", () => {
     const result = generateDestinationJsonLd(mockDestinationData, "en");
 
     expect(result).toHaveProperty("additionalProperty");
-    const properties = result.additionalProperty as any[];
+    const properties = result.additionalProperty as Record<string, unknown>[];
     expect(properties).toHaveLength(3);
 
     const visaTypesProperty = properties.find(
@@ -166,7 +166,7 @@ describe("generateDestinationJsonLd", () => {
     const destinationWithoutRegion = { ...mockDestinationData, region: null };
     const result = generateDestinationJsonLd(destinationWithoutRegion, "en");
 
-    const address = result.address as any;
+    const address = result.address as Record<string, unknown>;
     expect(address).not.toHaveProperty("addressRegion");
   });
 
@@ -202,13 +202,13 @@ describe("generateDestinationJsonLd", () => {
   it("should handle business visa with interview requirement", () => {
     const result = generateDestinationJsonLd(mockDestinationData, "en");
 
-    const services = result.containsPlace as any[];
+    const services = result.containsPlace as Record<string, unknown>[];
     const businessVisa = services.find(s => s.name === "Business Visa");
 
     expect(businessVisa).toBeDefined();
     expect(businessVisa).toHaveProperty("name", "Business Visa");
-    expect(businessVisa.offers).toHaveProperty("price", "200");
-    expect(businessVisa.offers).toHaveProperty(
+    expect(businessVisa?.offers).toHaveProperty("price", "200");
+    expect(businessVisa?.offers).toHaveProperty(
       "description",
       "Processing time: 7 days, Valid for: 90 days"
     );
@@ -217,7 +217,7 @@ describe("generateDestinationJsonLd", () => {
   it("should include service provider information", () => {
     const result = generateDestinationJsonLd(mockDestinationData, "en");
 
-    const services = result.containsPlace as any[];
+    const services = result.containsPlace as Record<string, unknown>[];
     const service = services[0];
 
     expect(service).toHaveProperty("provider");
@@ -230,7 +230,7 @@ describe("generateDestinationJsonLd", () => {
   it("should include area served information", () => {
     const result = generateDestinationJsonLd(mockDestinationData, "en");
 
-    const services = result.containsPlace as any[];
+    const services = result.containsPlace as Record<string, unknown>[];
     const service = services[0];
 
     expect(service).toHaveProperty("areaServed");

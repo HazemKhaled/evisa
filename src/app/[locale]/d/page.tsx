@@ -5,6 +5,7 @@ import { DestinationsGrid } from "@/components/ui/destinations-grid";
 import { JsonLd } from "@/components/json-ld";
 import { generateWebPageJsonLd } from "@/lib/json-ld";
 import { SearchFilterForm } from "@/components/destinations/search-filter-form";
+import { EnhancedPagination } from "@/components/ui/enhanced-pagination";
 
 // ISR configuration - revalidate every hour
 export const revalidate = 3600;
@@ -16,6 +17,7 @@ interface DestinationsPageProps {
   searchParams: Promise<{
     search?: string;
     continent?: string;
+    page?: string;
   }>;
 }
 
@@ -61,19 +63,23 @@ export default async function DestinationsPage({
   searchParams,
 }: DestinationsPageProps) {
   const { locale } = await params;
-  const { search, continent } = await searchParams;
+  const { search, continent, page } = await searchParams;
 
   const { t } = await getTranslation(locale, "destinations-list");
 
-  // Get destinations data with proper limit for initial load
-  const destinationsData = await getDestinationsListWithMetadata(
+  // Pagination constants
+  const ITEMS_PER_PAGE = 20;
+  const currentPage = parseInt(page || "1", 10);
+
+  // Get all destinations data for filtering and pagination
+  const allDestinationsData = await getDestinationsListWithMetadata(
     locale,
-    50, // Initial limit
+    1000, // Get all destinations for client-side filtering
     "alphabetical"
   );
 
   // Filter destinations based on search and continent
-  let filteredDestinations = destinationsData;
+  let filteredDestinations = allDestinationsData;
 
   if (search) {
     filteredDestinations = filteredDestinations.filter(
@@ -92,6 +98,16 @@ export default async function DestinationsPage({
     );
   }
 
+  // Calculate pagination
+  const totalItems = filteredDestinations.length;
+  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedDestinations = filteredDestinations.slice(
+    startIndex,
+    endIndex
+  );
+
   // Generate structured data
   const jsonLd = generateWebPageJsonLd({
     name: t("meta.title"),
@@ -101,8 +117,8 @@ export default async function DestinationsPage({
 
   // Get unique continents for filtering
   const continents = Array.from(
-    new Set(destinationsData.map(d => d.continent).filter(Boolean))
-  ).sort();
+    new Set(allDestinationsData.map(d => d.continent).filter(Boolean))
+  ).sort() as string[];
 
   return (
     <>
@@ -150,8 +166,8 @@ export default async function DestinationsPage({
               {/* Results Count */}
               <div className="text-muted-foreground mt-4 text-sm">
                 {t("results.showing", {
-                  count: filteredDestinations.length,
-                  total: destinationsData.length,
+                  count: totalItems,
+                  total: allDestinationsData.length,
                 })}
               </div>
             </div>
@@ -161,12 +177,23 @@ export default async function DestinationsPage({
         {/* Destinations Grid */}
         <section className="container mx-auto px-4 py-12">
           <DestinationsGrid
-            destinations={filteredDestinations}
+            destinations={paginatedDestinations}
             locale={locale}
           />
 
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-12">
+              <EnhancedPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                locale={locale}
+              />
+            </div>
+          )}
+
           {/* Empty State */}
-          {filteredDestinations.length === 0 && (
+          {totalItems === 0 && (
             <div className="py-16 text-center">
               <div className="bg-muted mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full">
                 <svg
