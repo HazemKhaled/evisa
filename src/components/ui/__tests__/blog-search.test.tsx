@@ -1,7 +1,13 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { BlogSearch } from "@/components/ui/blog-search";
-import type { BlogPostData } from "@/lib/services/blog-service";
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  act,
+} from "@testing-library/react";
+import { BlogSearch } from "../blog-search";
+import type { BlogPostData } from "../../../lib/services/blog-service";
 
 // Mock the blog service
 import { searchBlogPosts } from "../../../lib/services/blog-service";
@@ -184,7 +190,9 @@ describe("BlogSearch", () => {
     expect(mockSearchBlogPosts).not.toHaveBeenCalled();
 
     // Fast-forward time
-    jest.advanceTimersByTime(300);
+    act(() => {
+      jest.advanceTimersByTime(300);
+    });
 
     expect(mockSearchBlogPosts).toHaveBeenCalledTimes(1);
     expect(mockSearchBlogPosts).toHaveBeenCalledWith("test", "en", 12);
