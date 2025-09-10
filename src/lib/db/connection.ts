@@ -139,7 +139,10 @@ export const getDbAsync = cache(async (): Promise<Database> => {
     return getLocalD1Db();
   } else {
     // In production, use async Cloudflare context
-    const { env } = await getCloudflareContext({ async: true });
+    const { env } =
+      process.env.NODE_ENV === "production" && process.env.WORKERS_CI == null
+        ? getCloudflareContext()
+        : await getCloudflareContext({ async: true });
     if (!env.DB) {
       throw new Error(
         "Database not available - ensure D1 binding 'DB' is configured"
