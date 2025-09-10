@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Alle Reiseziele - Visa-Anforderungen und Bearbeitung",
+    "description": "Entdecken Sie Visa-Anforderungen für alle Reiseziele. Vergleichen Sie Bearbeitungszeiten, Gebühren und Dokumentenanforderungen für Ihre nächste internationale Reise.",
+    "ogTitle": "Vollständiger Leitfaden für Globale Visa-Anforderungen",
+    "ogDescription": "Finden Sie Visa-Informationen für jedes Ziel. Vergleichen Sie Anforderungen, Bearbeitungszeiten und Gebühren für die internationale Reiseplanung.",
+    "twitterTitle": "Leitfaden für Globale Visa-Anforderungen",
+    "twitterDescription": "Entdecken Sie Visa-Anforderungen für weltweite Ziele mit unserem umfassenden Reiseführer."
+  },
+  "breadcrumb": {
+    "home": "Startseite",
+    "destinations": "Ziele"
+  },
+  "hero": {
+    "title": "Entdecken Sie Globale Ziele",
+    "description": "Entdecken Sie Visa-Anforderungen und Reiseinformationen für Ziele weltweit. Finden Sie das perfekte Ziel für Ihr nächstes Abenteuer.",
+    "searchPlaceholder": "Ziele suchen..."
+  },
+  "filters": {
+    "allContinents": "Alle Kontinente"
+  },
+  "results": {
+    "showing": "{{count}} von {{total}} Zielen angezeigt"
+  },
+  "destinationCard": {
+    "visaTypes": "Visa-Typen",
+    "processingTime": "Bearbeitung",
+    "viewDetails": "Details anzeigen"
+  },
+  "empty": {
+    "title": "Keine Ziele Gefunden",
+    "description": "Wir konnten keine Ziele finden, die Ihren Suchkriterien entsprechen. Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen.",
+    "clearFilters": "Alle Filter Löschen"
+  }
+}

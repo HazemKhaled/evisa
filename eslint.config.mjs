@@ -1,10 +1,4 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
-import i18next from "eslint-plugin-i18next";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
   // import.meta.dirname is available after Node.js v20.11.0
@@ -23,6 +17,8 @@ const eslintConfig = [
   // Custom rules for better code quality
   {
     rules: {
+      "@next/next/no-img-element": "error",
+
       // TypeScript specific rules (only if @typescript-eslint is available)
       "@typescript-eslint/no-unused-vars": [
         "error",

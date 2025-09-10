@@ -51,7 +51,9 @@ describe("Generated blog data", () => {
     });
 
     it("should return empty array for undefined locale", () => {
-      const result = getGeneratedBlogPostsForLocale(undefined as any);
+      const result = getGeneratedBlogPostsForLocale(
+        undefined as unknown as string
+      );
       expect(Array.isArray(result)).toBe(true);
       expect(result).toHaveLength(0);
     });

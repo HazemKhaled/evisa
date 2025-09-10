@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Toutes les Destinations de Voyage - Exigences de Visa et Traitement",
+    "description": "Explorez les exigences de visa pour toutes les destinations de voyage. Comparez les délais de traitement, les frais et les exigences documentaires pour votre prochain voyage international.",
+    "ogTitle": "Guide Complet des Exigences de Visa Mondial",
+    "ogDescription": "Trouvez des informations de visa pour n'importe quelle destination. Comparez les exigences, les délais de traitement et les frais pour la planification de voyages internationaux.",
+    "twitterTitle": "Guide des Exigences de Visa Mondial",
+    "twitterDescription": "Découvrez les exigences de visa pour les destinations mondiales avec notre guide de voyage complet."
+  },
+  "breadcrumb": {
+    "home": "Accueil",
+    "destinations": "Destinations"
+  },
+  "hero": {
+    "title": "Explorez les Destinations Mondiales",
+    "description": "Découvrez les exigences de visa et les informations de voyage pour les destinations du monde entier. Trouvez la destination parfaite pour votre prochaine aventure.",
+    "searchPlaceholder": "Rechercher des destinations..."
+  },
+  "filters": {
+    "allContinents": "Tous les Continents"
+  },
+  "results": {
+    "showing": "Affichage de {{count}} sur {{total}} destinations"
+  },
+  "destinationCard": {
+    "visaTypes": "Types de Visa",
+    "processingTime": "Traitement",
+    "viewDetails": "Voir les Détails"
+  },
+  "empty": {
+    "title": "Aucune Destination Trouvée",
+    "description": "Nous n'avons trouvé aucune destination correspondant à vos critères de recherche. Essayez d'ajuster vos filtres ou termes de recherche.",
+    "clearFilters": "Effacer Tous les Filtres"
+  }
+}

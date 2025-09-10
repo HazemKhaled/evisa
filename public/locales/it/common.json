@@ -53,5 +53,13 @@
     "interviewRequired": "Colloquio richiesto",
     "day": "giorno",
     "days": "giorni"
+  },
+  "error": {
+    "title": "Qualcosa è andato storto",
+    "description": "Siamo spiacenti, ma c'è stato un errore nel caricamento di questa pagina di destinazione. Questo potrebbe essere un problema temporaneo.",
+    "tryAgain": "Riprova",
+    "goHome": "Vai alla home",
+    "browseDestinations": "Sfoglia destinazioni",
+    "helpText": "Se il problema persiste, contatta il nostro team di supporto."
   }
 }

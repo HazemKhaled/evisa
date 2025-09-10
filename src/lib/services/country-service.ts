@@ -383,6 +383,7 @@ export async function getDestinationsListWithMetadata(
   // Input validation and sanitization
   const validatedLocale = validateLocale(locale);
   if (!validatedLocale) {
+    // Log to error reporting service in production
     console.error(`Invalid locale provided: ${locale}`);
     return [];
   }

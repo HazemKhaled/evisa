@@ -244,7 +244,7 @@ function Card({ variant = 'default', className }: CardProps) {
 
 ```typescript
 // ✅ Good Translation Usage
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/app/i18n/client.ts';
 
 function HeroSection() {
   const t = useTranslations('Hero');

@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Exigences de visa pour {destination}",
+    "description": "Informations complètes sur les visas pour {destination}. Trouvez {visaCount} options de visa, délais de traitement, frais et exigences pour votre voyage vers {destination}.",
+    "ogTitle": "Exigences de visa et informations de voyage pour {destination}",
+    "ogDescription": "Tout ce que vous devez savoir sur la visite de {destination}. {visaCount} types de visas disponibles avec des exigences détaillées et des informations de traitement.",
+    "twitterTitle": "Guide de visa pour {destination}",
+    "twitterDescription": "Exigences complètes de visa et guide de voyage pour {destination}"
+  },
+  "breadcrumb": {
+    "home": "Accueil",
+    "destinations": "Destinations"
+  },
+  "hero": {
+    "visaTypes": "Types de visa",
+    "visaFreeAvailable": "Voyage sans visa disponible",
+    "visaOnArrivalAvailable": "Visa à l'arrivée",
+    "viewTravelGuides": "Voir les guides de voyage"
+  },
+  "visaOptions": {
+    "title": "Options de visa",
+    "description": "Explorez tous les types de visas disponibles pour {destination}. Chaque option comprend des exigences détaillées, des frais et des délais de traitement.",
+    "noVisaTypesTitle": "Aucune information de visa disponible",
+    "noVisaTypesDescription": "Nous mettons actuellement à jour les informations de visa pour {destination}. Revenez bientôt ou contactez-nous pour obtenir de l'aide.",
+    "totalOptions": "Options totales",
+    "processingDays": "Jours de traitement",
+    "feeRange": "Gamme de frais ({currency})",
+    "visaFreeCountries": "Pays sans visa",
+    "visaFreeCountriesTitle": "Entrée sans visa",
+    "visaOnArrivalTitle": "Visa à l'arrivée",
+    "more": "plus"
+  },
+  "visaCard": {
+    "multiEntry": "Entrées multiples",
+    "interviewRequired": "Entretien requis",
+    "fee": "Frais",
+    "processing": "Traitement",
+    "days": "jours",
+    "validFor": "Valide pour",
+    "entryType": "Type d'entrée",
+    "multiple": "Multiple",
+    "single": "Unique",
+    "requirements": "Exigences",
+    "interviewNote": "Entretien requis",
+    "interviewDescription": "Un entretien en personne ou virtuel peut être requis dans le cadre du processus de demande.",
+    "lastUpdated": "Dernière mise à jour",
+    "checkEligibility": "Vérifier l'éligibilité",
+    "free": "Gratuit"
+  },
+  "documents": {
+    "title": "Documents requis",
+    "commonRequirements": "Exigences communes",
+    "more": "plus",
+    "required": "Requis",
+    "passport": "Passeport valide",
+    "application": "Demande complète",
+    "photo": "Photos de passeport",
+    "financialProof": "Documents financiers",
+    "passportDescription": "Valide pendant au moins 6 mois à partir de la date de voyage avec des pages vierges",
+    "applicationDescription": "Formulaire de demande de visa entièrement rempli et signé",
+    "photoDescription": "Photographies récentes de taille passeport répondant aux exigences officielles",
+    "financialDescription": "Relevés bancaires, lettre d'emploi ou preuve de soutien financier",
+    "generalDescription": "Une documentation supplémentaire peut être requise",
+    "interviewRequired": "Entretien requis",
+    "interviewDescription": "Un entretien consulaire peut être programmé dans le cadre du processus de demande. Préparez tous les documents requis et soyez prêt à discuter de vos plans de voyage.",
+    "importantNote": "Note importante",
+    "documentNote": "Les exigences peuvent varier selon votre nationalité et vos circonstances spécifiques. Vérifiez toujours les exigences actuelles auprès du consulat le plus proche."
+  },
+  "visaFree": {
+    "title": "Sans visa et visa à l'arrivée",
+    "visaFreeTitle": "Entrée sans visa",
+    "visaFreeDescription": "Les citoyens de certains pays peuvent visiter {destination} sans obtenir un visa à l'avance. Vérifiez si votre passeport est qualifié pour l'entrée sans visa.",
+    "visaOnArrivalTitle": "Visa à l'arrivée",
+    "visaOnArrivalDescription": "Certains voyageurs peuvent obtenir leur visa à l'arrivée à {destination}. Cette option pratique élimine le besoin de traitement préalable."
+  },
+  "relatedContent": {
+    "title": "Guides de voyage et articles",
+    "description": "Découvrez des conseils de voyage, des attractions et des guides d'initiés pour {destination}.",
+    "viewBlog": "Voir le blog de voyage"
+  }
+}

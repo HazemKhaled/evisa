@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "All Travel Destinations - Visa Requirements & Processing",
+    "description": "Explore visa requirements for all travel destinations. Compare processing times, fees, and document requirements for your next international trip.",
+    "ogTitle": "Complete Guide to Global Visa Requirements",
+    "ogDescription": "Find visa information for any destination. Compare requirements, processing times, and fees for international travel planning.",
+    "twitterTitle": "Global Visa Requirements Guide",
+    "twitterDescription": "Discover visa requirements for worldwide destinations with our comprehensive travel guide."
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "destinations": "Destinations"
+  },
+  "hero": {
+    "title": "Explore Global Destinations",
+    "description": "Discover visa requirements and travel information for destinations worldwide. Find the perfect destination for your next adventure.",
+    "searchPlaceholder": "Search destinations..."
+  },
+  "filters": {
+    "allContinents": "All Continents"
+  },
+  "results": {
+    "showing": "Showing {{count}} of {{total}} destinations"
+  },
+  "destinationCard": {
+    "visaTypes": "Visa Types",
+    "processingTime": "Processing",
+    "viewDetails": "View Details",
+    "days": "days",
+    "notAvailable": "N/A"
+  },
+  "empty": {
+    "title": "No Destinations Found",
+    "description": "We couldn't find any destinations matching your search criteria. Try adjusting your filters or search terms.",
+    "clearFilters": "Clear All Filters"
+  }
+}

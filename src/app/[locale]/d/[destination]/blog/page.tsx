@@ -136,8 +136,6 @@ export default async function DestinationBlog({
             locale={locale}
             currentPage={currentPage}
             totalPages={totalPages}
-            hasNextPage={currentPage < totalPages}
-            hasPrevPage={currentPage > 1}
             buildPaginationUrl={buildPaginationUrl}
             gridCols="3"
             showPagination={true}

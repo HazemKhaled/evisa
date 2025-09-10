@@ -53,5 +53,13 @@
     "interviewRequired": "Entrevista requerida",
     "day": "día",
     "days": "días"
+  },
+  "error": {
+    "title": "Algo salió mal",
+    "description": "Lo sentimos, pero hubo un error al cargar esta página de destino. Esto podría ser un problema temporal.",
+    "tryAgain": "Intentar de Nuevo",
+    "goHome": "Ir al Inicio",
+    "browseDestinations": "Explorar Destinos",
+    "helpText": "Si el problema persiste, por favor contacta a nuestro equipo de soporte."
   }
 }
