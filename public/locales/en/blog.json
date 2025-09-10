@@ -1,4 +1,8 @@
 {
+  "title": "Travel Blog",
+  "subtitle": "Discover amazing destinations and get insider tips for your next adventure",
+  "keywords": "travel blog, destination guides, visa tips, travel advice",
+  "empty_state": "No blog posts are currently available",
   "navigation": {
     "backToBlog": "← Back to Blog",
     "backToDestinationBlog": "← Back to {destination} Blog"
@@ -19,14 +23,15 @@
     "showLess": "Show less"
   },
   "search": {
-    "searchPlaceholder": "Search blog posts...",
-    "searchResults": "Search Results",
+    "placeholder": "Search blog posts...",
+    "results": "Search Results",
     "noResults": "No Results Found",
     "searching": "Searching",
     "clear": "Clear search",
     "result": "result",
-    "results": "results",
     "noPostsFoundFor": "No posts found for \"{query}\"",
+    "placeholderDestination": "Search {destination} blog posts...",
+    "noResultsDestination": "No posts found matching your search in {destination}.",
     "searchByTag": "Search by tag",
     "searchByDestination": "Search by destination"
   },
@@ -45,6 +50,7 @@
     "showing": "Showing",
     "post": "post",
     "posts": "posts",
+    "articles": "articles",
     "on": "on",
     "page": "page",
     "of": "of",
@@ -65,6 +71,13 @@
     "transportation": "Transportation",
     "safety": "Safety",
     "budget": "Budget"
+  },
+  "post": {
+    "published": "Published",
+    "updated": "Updated",
+    "tags": "Tags",
+    "passport": "Passport",
+    "related_visas": "Related Visas"
   },
   "aria": {
     "articleNavigation": "Article navigation",

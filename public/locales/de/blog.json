@@ -19,7 +19,7 @@
     "showLess": "Weniger anzeigen"
   },
   "search": {
-    "searchPlaceholder": "Blog-Beiträge durchsuchen...",
+    "placeholder": "Blog-Beiträge durchsuchen...",
     "searchResults": "Suchergebnisse",
     "noResults": "Keine Ergebnisse gefunden",
     "searching": "Wird gesucht",

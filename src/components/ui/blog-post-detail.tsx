@@ -19,7 +19,7 @@ export async function BlogPostDetail({
   className,
   relatedPosts = [],
 }: BlogPostDetailProps) {
-  const { t } = await getTranslation(locale, "blog");
+  const { t } = await getTranslation(locale, "pages");
   const isCurrentRTL = isRTL(locale);
 
   return (
@@ -165,20 +165,6 @@ export async function BlogPostDetail({
             </div>
           </section>
         )}
-
-        {/* Navigation */}
-        <nav
-          className={cn("mb-8 border-t border-gray-200 pt-8")}
-          aria-label={t("blog.aria.blog_navigation")}
-        >
-          <Link
-            href={`/${locale}/blog`}
-            className="inline-flex items-center font-medium text-blue-600 hover:text-blue-800"
-            aria-label={t("blog.aria.return_to_listing")}
-          >
-            {t("blog.post.back_to_blog")}
-          </Link>
-        </nav>
       </article>
 
       {/* Related Posts - Separate section with proper spacing */}

@@ -19,8 +19,8 @@
     "showLess": "Показать меньше"
   },
   "search": {
-    "searchPlaceholder": "Поиск по блогу...",
-    "searchResults": "Результаты поиска",
+    "placeholder": "Поиск по блогу...",
+    "results": "Результаты поиска",
     "noResults": "Результаты не найдены",
     "searching": "Поиск",
     "clear": "Очистить поиск",

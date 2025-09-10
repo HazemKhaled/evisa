@@ -19,8 +19,8 @@
     "showLess": "Mostrar menos"
   },
   "search": {
-    "searchPlaceholder": "Pesquisar posts do blog...",
-    "searchResults": "Resultados da pesquisa",
+    "placeholder": "Pesquisar posts do blog...",
+    "results": "Resultados da pesquisa",
     "noResults": "Nenhum resultado encontrado",
     "searching": "Pesquisando",
     "clear": "Limpar pesquisa",

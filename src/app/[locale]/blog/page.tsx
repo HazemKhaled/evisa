@@ -29,12 +29,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const { t } = await getTranslation(locale, "pages");
+  const { t } = await getTranslation(locale, "blog");
 
   return {
-    title: t("blog.title"),
-    description: t("blog.subtitle"),
-    keywords: t("blog.keywords"),
+    title: t("title"),
+    description: t("subtitle"),
+    keywords: t("keywords"),
   };
 }
 
@@ -46,6 +46,7 @@ export default async function BlogHome({
   const { page = "1" } = await searchParams;
   const { t } = await getTranslation(locale, "pages");
   const { t: tNav } = await getTranslation(locale, "navigation");
+  const { t: tBlog } = await getTranslation(locale, "blog");
 
   const currentPage = parseInt(page, 10);
   const postsPerPage = 9;
@@ -97,7 +98,7 @@ export default async function BlogHome({
           <h1 className="mb-4 text-4xl font-bold text-gray-900">
             {t("blog.title")}
           </h1>
-          <p className="text-lg text-gray-600">{t("blog.empty_state")}</p>
+          <p className="text-lg text-gray-600">{t("empty_state")}</p>
         </div>
       </StaticPageLayout>
     );
@@ -126,17 +127,17 @@ export default async function BlogHome({
               locale={locale}
               translations={{
                 searchPlaceholder:
-                  t("blog.search.placeholder") || "Search blog posts...",
-                searchResults: t("blog.search.results") || "Search Results",
+                  tBlog("search.placeholder") || "Search blog posts...",
+                searchResults: tBlog("search.results") || "Search Results",
                 noResults:
-                  t("blog.search.no_results") ||
+                  tBlog("search.noResults") ||
                   "No posts found matching your search.",
-                searching: t("blog.search.searching") || "Searching...",
-                clear: t("blog.search.clear") || "Clear",
-                result: t("blog.search.result") || "result",
-                results: t("blog.search.results_plural") || "results",
+                searching: tBlog("search.searching") || "Searching...",
+                clear: tBlog("search.clear") || "Clear",
+                result: tBlog("search.result") || "result",
+                results: tBlog("search.results") || "results",
                 noPostsFoundFor:
-                  t("blog.search.no_posts_for") || "No posts found for",
+                  tBlog("search.noPostsFoundFor") || "No posts found for",
               }}
             />
           </div>

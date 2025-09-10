@@ -1,4 +1,8 @@
 {
+  "title": "مدونة السفر",
+  "subtitle": "اكتشف وجهات مذهلة واحصل على نصائح من الداخل لمغامرتك القادمة",
+  "keywords": "مدونة سفر، أدلة وجهات، نصائح تأشيرة، نصائح سفر",
+  "empty_state": "لا توجد مقالات متاحة حالياً",
   "navigation": {
     "backToBlog": "← العودة إلى المدونة",
     "backToDestinationBlog": "← العودة إلى مدونة {destination}"
@@ -19,14 +23,15 @@
     "showLess": "عرض أقل"
   },
   "search": {
-    "searchPlaceholder": "البحث في مقالات المدونة...",
-    "searchResults": "نتائج البحث",
+    "placeholder": "البحث في مقالات المدونة...",
+    "results": "نتائج البحث",
     "noResults": "لا توجد نتائج",
     "searching": "جاري البحث",
     "clear": "مسح البحث",
     "result": "نتيجة",
-    "results": "نتائج",
     "noPostsFoundFor": "لا توجد مقالات لـ \"{query}\"",
+    "placeholderDestination": "البحث في مقالات {destination}...",
+    "noResultsDestination": "لا توجد مقالات تطابق بحثك في {destination}.",
     "searchByTag": "البحث بالعلامة",
     "searchByDestination": "البحث بالوجهة"
   },
@@ -45,6 +50,7 @@
     "showing": "عرض",
     "post": "مقال",
     "posts": "مقالات",
+    "articles": "مقالات",
     "on": "في",
     "page": "صفحة",
     "of": "من",
@@ -65,6 +71,13 @@
     "transportation": "النقل",
     "safety": "السلامة",
     "budget": "الميزانية"
+  },
+  "post": {
+    "published": "نُشر",
+    "updated": "محدث",
+    "tags": "العلامات",
+    "passport": "جواز السفر",
+    "related_visas": "التأشيرات ذات الصلة"
   },
   "aria": {
     "articleNavigation": "تنقل المقال",
