@@ -11,6 +11,7 @@ import type {
   BlogFilterOptions,
   PaginatedBlogResponse,
 } from "../types/blog";
+import { languages } from "@/app/i18n/settings";
 
 // Re-export types from shared module for application use
 export type {
@@ -426,10 +427,7 @@ export function getAllBlogPostSlugs(): { locale: string; slug: string }[] {
   try {
     const allSlugs: { locale: string; slug: string }[] = [];
 
-    // Get all locales that have blog data
-    const locales = ["en", "es", "ar", "pt", "ru", "de", "fr", "it"]; // Add all supported locales
-
-    for (const locale of locales) {
+    for (const locale of languages) {
       const posts = getAllBlogPosts(locale);
       for (const post of posts) {
         allSlugs.push({ locale, slug: post.slug });
@@ -448,9 +446,8 @@ export function getAllBlogPostSlugs(): { locale: string; slug: string }[] {
 export function getAllUniqueTagsAcrossLocales(): string[] {
   try {
     const allTags = new Set<string>();
-    const locales = ["en", "es", "ar", "pt", "ru", "de", "fr", "it"];
 
-    for (const locale of locales) {
+    for (const locale of languages) {
       const localeTags = getAllTagsForLocale(locale);
       localeTags.forEach(tag => allTags.add(tag));
     }
@@ -469,9 +466,8 @@ export function getAllBlogPostsAcrossLocales(): (BlogPostData & {
 })[] {
   try {
     const allPosts: (BlogPostData & { locale: string })[] = [];
-    const locales = ["en", "es", "ar", "pt", "ru", "de", "fr", "it"];
 
-    for (const locale of locales) {
+    for (const locale of languages) {
       const localePosts = getAllBlogPosts(locale);
       localePosts.forEach(post => {
         allPosts.push({ ...post, locale });
