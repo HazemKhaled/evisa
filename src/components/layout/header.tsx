@@ -26,7 +26,7 @@ export async function Header({ locale }: HeaderProps) {
           </div>
           <nav className={cn("hidden space-x-8 md:flex")}>
             <Link
-              href={`/${locale}/destinations`}
+              href={`/${locale}/d`}
               className="text-gray-900 hover:text-blue-600"
             >
               {tNav("header.destinations")}

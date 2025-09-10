@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Requisitos de Visto para {destination}",
+    "description": "Informações completas de visto para {destination}. Encontre {visaCount} opções de visto, tempos de processamento, taxas e requisitos para sua viagem para {destination}.",
+    "ogTitle": "Requisitos de Visto e Informações de Viagem para {destination}",
+    "ogDescription": "Tudo que você precisa saber sobre visitar {destination}. {visaCount} tipos de visto disponíveis com requisitos detalhados e informações de processamento.",
+    "twitterTitle": "Guia de Visto para {destination}",
+    "twitterDescription": "Requisitos completos de visto e guia de viagem para {destination}"
+  },
+  "breadcrumb": {
+    "home": "Início",
+    "destinations": "Destinos"
+  },
+  "hero": {
+    "visaTypes": "Tipos de Visto",
+    "visaFreeAvailable": "Viagem sem visto disponível",
+    "visaOnArrivalAvailable": "Visto na chegada",
+    "viewTravelGuides": "Ver Guias de Viagem"
+  },
+  "visaOptions": {
+    "title": "Opções de Visto",
+    "description": "Explore todos os tipos de visto disponíveis para {destination}. Cada opção inclui requisitos detalhados, taxas e tempos de processamento.",
+    "noVisaTypesTitle": "Nenhuma informação de visto disponível",
+    "noVisaTypesDescription": "Estamos atualizando as informações de visto para {destination}. Verifique novamente em breve ou entre em contato conosco para assistência.",
+    "totalOptions": "Opções Totais",
+    "processingDays": "Dias de Processamento",
+    "feeRange": "Faixa de Taxas ({currency})",
+    "visaFreeCountries": "Países sem Visto",
+    "visaFreeCountriesTitle": "Entrada sem Visto",
+    "visaOnArrivalTitle": "Visto na Chegada",
+    "more": "mais"
+  },
+  "visaCard": {
+    "multiEntry": "Múltiplas Entradas",
+    "interviewRequired": "Entrevista Obrigatória",
+    "fee": "Taxa",
+    "processing": "Processamento",
+    "days": "dias",
+    "validFor": "Válido Por",
+    "entryType": "Tipo de Entrada",
+    "multiple": "Múltipla",
+    "single": "Única",
+    "requirements": "Requisitos",
+    "interviewNote": "Entrevista Obrigatória",
+    "interviewDescription": "Uma entrevista presencial ou virtual pode ser necessária como parte do processo de aplicação.",
+    "lastUpdated": "Última atualização",
+    "checkEligibility": "Verificar Elegibilidade",
+    "free": "Grátis"
+  },
+  "documents": {
+    "title": "Documentos Obrigatórios",
+    "commonRequirements": "Requisitos comuns",
+    "more": "mais",
+    "required": "Obrigatório",
+    "passport": "Passaporte Válido",
+    "application": "Aplicação Completa",
+    "photo": "Fotos de Passaporte",
+    "financialProof": "Documentos Financeiros",
+    "passportDescription": "Válido por pelo menos 6 meses da data de viagem com páginas em branco",
+    "applicationDescription": "Formulário de aplicação de visto completamente preenchido e assinado",
+    "photoDescription": "Fotografias recentes tamanho passaporte que atendam aos requisitos oficiais",
+    "financialDescription": "Extratos bancários, carta de emprego ou comprovante de apoio financeiro",
+    "generalDescription": "Documentação adicional pode ser necessária",
+    "interviewRequired": "Entrevista Obrigatória",
+    "interviewDescription": "Uma entrevista consular pode ser agendada como parte do processo de aplicação. Prepare todos os documentos necessários e esteja pronto para discutir seus planos de viagem.",
+    "importantNote": "Nota Importante",
+    "documentNote": "Os requisitos podem variar com base na sua nacionalidade e circunstâncias específicas. Sempre verifique os requisitos atuais com o consulado mais próximo."
+  },
+  "visaFree": {
+    "title": "Sem Visto e Visto na Chegada",
+    "visaFreeTitle": "Entrada sem Visto",
+    "visaFreeDescription": "Cidadãos de certos países podem visitar {destination} sem obter um visto antecipadamente. Verifique se seu passaporte se qualifica para entrada sem visto.",
+    "visaOnArrivalTitle": "Visto na Chegada",
+    "visaOnArrivalDescription": "Alguns viajantes podem obter seu visto na chegada em {destination}. Esta opção conveniente elimina a necessidade de processamento antecipado."
+  },
+  "relatedContent": {
+    "title": "Guias de Viagem e Artigos",
+    "description": "Descubra dicas de viagem, atrações e guias internos para {destination}.",
+    "viewBlog": "Ver Blog de Viagem"
+  }
+}

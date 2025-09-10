@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Todos os Destinos de Viagem - Requisitos de Visto e Processamento",
+    "description": "Explore os requisitos de visto para todos os destinos de viagem. Compare tempos de processamento, taxas e requisitos de documentos para sua próxima viagem internacional.",
+    "ogTitle": "Guia Completo de Requisitos de Visto Global",
+    "ogDescription": "Encontre informações de visto para qualquer destino. Compare requisitos, tempos de processamento e taxas para planejamento de viagens internacionais.",
+    "twitterTitle": "Guia de Requisitos de Visto Global",
+    "twitterDescription": "Descubra requisitos de visto para destinos mundiais com nosso guia de viagem abrangente."
+  },
+  "breadcrumb": {
+    "home": "Início",
+    "destinations": "Destinos"
+  },
+  "hero": {
+    "title": "Explore Destinos Globais",
+    "description": "Descubra requisitos de visto e informações de viagem para destinos ao redor do mundo. Encontre o destino perfeito para sua próxima aventura.",
+    "searchPlaceholder": "Pesquisar destinos..."
+  },
+  "filters": {
+    "allContinents": "Todos os Continentes"
+  },
+  "results": {
+    "showing": "Mostrando {{count}} de {{total}} destinos"
+  },
+  "destinationCard": {
+    "visaTypes": "Tipos de Visto",
+    "processingTime": "Processamento",
+    "viewDetails": "Ver Detalhes"
+  },
+  "empty": {
+    "title": "Nenhum Destino Encontrado",
+    "description": "Não conseguimos encontrar destinos que correspondam aos seus critérios de pesquisa. Tente ajustar seus filtros ou termos de pesquisa.",
+    "clearFilters": "Limpar Todos os Filtros"
+  }
+}

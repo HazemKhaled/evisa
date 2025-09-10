@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Requisiti del visto per {destination}",
+    "description": "Informazioni complete sui visti per {destination}. Trova {visaCount} opzioni di visto, tempi di elaborazione, tariffe e requisiti per il tuo viaggio in {destination}.",
+    "ogTitle": "Requisiti del visto e informazioni di viaggio per {destination}",
+    "ogDescription": "Tutto quello che devi sapere sulla visita di {destination}. {visaCount} tipi di visti disponibili con requisiti dettagliati e informazioni di elaborazione.",
+    "twitterTitle": "Guida al visto per {destination}",
+    "twitterDescription": "Requisiti completi del visto e guida di viaggio per {destination}"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "destinations": "Destinazioni"
+  },
+  "hero": {
+    "visaTypes": "Tipi di visto",
+    "visaFreeAvailable": "Viaggio senza visto disponibile",
+    "visaOnArrivalAvailable": "Visto all'arrivo",
+    "viewTravelGuides": "Visualizza guide di viaggio"
+  },
+  "visaOptions": {
+    "title": "Opzioni del visto",
+    "description": "Esplora tutti i tipi di visto disponibili per {destination}. Ogni opzione include requisiti dettagliati, tariffe e tempi di elaborazione.",
+    "noVisaTypesTitle": "Nessuna informazione sul visto disponibile",
+    "noVisaTypesDescription": "Stiamo attualmente aggiornando le informazioni sui visti per {destination}. Ricontrolla presto o contattaci per assistenza.",
+    "totalOptions": "Opzioni totali",
+    "processingDays": "Giorni di elaborazione",
+    "feeRange": "Gamma di tariffe ({currency})",
+    "visaFreeCountries": "Paesi senza visto",
+    "visaFreeCountriesTitle": "Ingresso senza visto",
+    "visaOnArrivalTitle": "Visto all'arrivo",
+    "more": "più"
+  },
+  "visaCard": {
+    "multiEntry": "Ingresso multiplo",
+    "interviewRequired": "Colloquio richiesto",
+    "fee": "Tariffa",
+    "processing": "Elaborazione",
+    "days": "giorni",
+    "validFor": "Valido per",
+    "entryType": "Tipo di ingresso",
+    "multiple": "Multiplo",
+    "single": "Singolo",
+    "requirements": "Requisiti",
+    "interviewNote": "Colloquio richiesto",
+    "interviewDescription": "Un colloquio di persona o virtuale potrebbe essere richiesto come parte del processo di richiesta.",
+    "lastUpdated": "Ultimo aggiornamento",
+    "checkEligibility": "Verifica idoneità",
+    "free": "Gratuito"
+  },
+  "documents": {
+    "title": "Documenti richiesti",
+    "commonRequirements": "Requisiti comuni",
+    "more": "più",
+    "required": "Richiesto",
+    "passport": "Passaporto valido",
+    "application": "Richiesta completa",
+    "photo": "Foto tessera",
+    "financialProof": "Documenti finanziari",
+    "passportDescription": "Valido per almeno 6 mesi dalla data di viaggio con pagine vuote",
+    "applicationDescription": "Modulo di richiesta del visto completamente compilato e firmato",
+    "photoDescription": "Fotografie recenti formato tessera che soddisfano i requisiti ufficiali",
+    "financialDescription": "Estratti bancari, lettera di lavoro o prova di supporto finanziario",
+    "generalDescription": "Potrebbero essere richiesti documenti aggiuntivi",
+    "interviewRequired": "Colloquio richiesto",
+    "interviewDescription": "Un colloquio consolare potrebbe essere programmato come parte del processo di richiesta. Prepara tutti i documenti richiesti e sii pronto a discutere i tuoi piani di viaggio.",
+    "importantNote": "Nota importante",
+    "documentNote": "I requisiti potrebbero variare in base alla tua nazionalità e alle circostanze specifiche. Verifica sempre i requisiti attuali presso il consolato più vicino."
+  },
+  "visaFree": {
+    "title": "Senza visto e visto all'arrivo",
+    "visaFreeTitle": "Ingresso senza visto",
+    "visaFreeDescription": "I cittadini di alcuni paesi possono visitare {destination} senza ottenere un visto in anticipo. Controlla se il tuo passaporto è qualificato per l'ingresso senza visto.",
+    "visaOnArrivalTitle": "Visto all'arrivo",
+    "visaOnArrivalDescription": "Alcuni viaggiatori possono ottenere il loro visto all'arrivo in {destination}. Questa opzione conveniente elimina la necessità di elaborazione anticipata."
+  },
+  "relatedContent": {
+    "title": "Guide di viaggio e articoli",
+    "description": "Scopri consigli di viaggio, attrazioni e guide insider per {destination}.",
+    "viewBlog": "Visualizza blog di viaggio"
+  }
+}

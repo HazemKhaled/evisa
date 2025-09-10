@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Requisitos de Visa para {destination}",
+    "description": "Información completa de visa para {destination}. Encuentra {visaCount} opciones de visa, tiempos de procesamiento, tarifas y requisitos para tu viaje a {destination}.",
+    "ogTitle": "Requisitos de Visa e Información de Viaje para {destination}",
+    "ogDescription": "Todo lo que necesitas saber sobre visitar {destination}. {visaCount} tipos de visa disponibles con requisitos detallados e información de procesamiento.",
+    "twitterTitle": "Guía de Visa para {destination}",
+    "twitterDescription": "Requisitos completos de visa y guía de viaje para {destination}"
+  },
+  "breadcrumb": {
+    "home": "Inicio",
+    "destinations": "Destinos"
+  },
+  "hero": {
+    "visaTypes": "Tipos de Visa",
+    "visaFreeAvailable": "Viaje sin visa disponible",
+    "visaOnArrivalAvailable": "Visa al llegar",
+    "viewTravelGuides": "Ver Guías de Viaje"
+  },
+  "visaOptions": {
+    "title": "Opciones de Visa",
+    "description": "Explora todos los tipos de visa disponibles para {destination}. Cada opción incluye requisitos detallados, tarifas y tiempos de procesamiento.",
+    "noVisaTypesTitle": "No hay información de visa disponible",
+    "noVisaTypesDescription": "Actualmente estamos actualizando la información de visa para {destination}. Vuelve a consultar pronto o contáctanos para obtener asistencia.",
+    "totalOptions": "Opciones Totales",
+    "processingDays": "Días de Procesamiento",
+    "feeRange": "Rango de Tarifas ({currency})",
+    "visaFreeCountries": "Países sin Visa",
+    "visaFreeCountriesTitle": "Entrada sin Visa",
+    "visaOnArrivalTitle": "Visa al Llegar",
+    "more": "más"
+  },
+  "visaCard": {
+    "multiEntry": "Entrada Múltiple",
+    "interviewRequired": "Entrevista Requerida",
+    "fee": "Tarifa",
+    "processing": "Procesamiento",
+    "days": "días",
+    "validFor": "Válida Por",
+    "entryType": "Tipo de Entrada",
+    "multiple": "Múltiple",
+    "single": "Única",
+    "requirements": "Requisitos",
+    "interviewNote": "Entrevista Requerida",
+    "interviewDescription": "Se puede requerir una entrevista en persona o virtual como parte del proceso de solicitud.",
+    "lastUpdated": "Última actualización",
+    "checkEligibility": "Verificar Elegibilidad",
+    "free": "Gratis"
+  },
+  "documents": {
+    "title": "Documentos Requeridos",
+    "commonRequirements": "Requisitos comunes",
+    "more": "más",
+    "required": "Requerido",
+    "passport": "Pasaporte Válido",
+    "application": "Solicitud Completa",
+    "photo": "Fotos de Pasaporte",
+    "financialProof": "Documentos Financieros",
+    "passportDescription": "Válido por al menos 6 meses desde la fecha de viaje con páginas en blanco",
+    "applicationDescription": "Formulario de solicitud de visa completamente llenado y firmado",
+    "photoDescription": "Fotografías recientes tamaño pasaporte que cumplan los requisitos oficiales",
+    "financialDescription": "Estados de cuenta bancarios, carta de empleo o comprobante de apoyo financiero",
+    "generalDescription": "Se puede requerir documentación adicional",
+    "interviewRequired": "Entrevista Requerida",
+    "interviewDescription": "Se puede programar una entrevista consular como parte del proceso de solicitud. Prepara todos los documentos requeridos y estate listo para discutir tus planes de viaje.",
+    "importantNote": "Nota Importante",
+    "documentNote": "Los requisitos pueden variar según tu nacionalidad y circunstancias específicas. Siempre verifica los requisitos actuales con el consulado más cercano."
+  },
+  "visaFree": {
+    "title": "Sin Visa y Visa al Llegar",
+    "visaFreeTitle": "Entrada Sin Visa",
+    "visaFreeDescription": "Los ciudadanos de ciertos países pueden visitar {destination} sin obtener una visa por adelantado. Verifica si tu pasaporte califica para entrada sin visa.",
+    "visaOnArrivalTitle": "Visa al Llegar",
+    "visaOnArrivalDescription": "Algunos viajeros pueden obtener su visa al llegar a {destination}. Esta opción conveniente elimina la necesidad de procesamiento previo."
+  },
+  "relatedContent": {
+    "title": "Guías de Viaje y Artículos",
+    "description": "Descubre consejos de viaje, atracciones y guías internas para {destination}.",
+    "viewBlog": "Ver Blog de Viajes"
+  }
+}

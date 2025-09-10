@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Visa Requirements for {destination}",
+    "description": "Complete visa information for {destination}. Find {visaCount} visa options, processing times, fees, and requirements for your travel to {destination}.",
+    "ogTitle": "{destination} Visa Requirements & Travel Information",
+    "ogDescription": "Everything you need to know about visiting {destination}. {visaCount} visa types available with detailed requirements and processing information.",
+    "twitterTitle": "{destination} Visa Guide",
+    "twitterDescription": "Complete visa requirements and travel guide for {destination}"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "destinations": "Destinations"
+  },
+  "hero": {
+    "visaTypes": "Visa Types",
+    "visaFreeAvailable": "Visa-free travel available",
+    "visaOnArrivalAvailable": "Visa on arrival",
+    "viewTravelGuides": "View Travel Guides"
+  },
+  "visaOptions": {
+    "title": "Visa Options",
+    "description": "Explore all available visa types for {destination}. Each option includes detailed requirements, fees, and processing times.",
+    "noVisaTypesTitle": "No Visa Information Available",
+    "noVisaTypesDescription": "We're currently updating visa information for {destination}. Please check back soon or contact us for assistance.",
+    "totalOptions": "Total Options",
+    "processingDays": "Days Processing",
+    "feeRange": "Fee Range ({currency})",
+    "visaFreeCountries": "Visa-Free Countries",
+    "visaFreeCountriesTitle": "Visa-Free Entry",
+    "visaOnArrivalTitle": "Visa on Arrival",
+    "more": "more"
+  },
+  "visaCard": {
+    "multiEntry": "Multi-Entry",
+    "interviewRequired": "Interview Required",
+    "fee": "Fee",
+    "processing": "Processing",
+    "days": "days",
+    "validFor": "Valid For",
+    "entryType": "Entry Type",
+    "multiple": "Multiple",
+    "single": "Single",
+    "requirements": "Requirements",
+    "interviewNote": "Interview Required",
+    "interviewDescription": "An in-person or virtual interview may be required as part of the application process.",
+    "lastUpdated": "Last updated",
+    "checkEligibility": "Check Eligibility",
+    "free": "Free"
+  },
+  "documents": {
+    "title": "Required Documents",
+    "commonRequirements": "Common requirements",
+    "more": "more",
+    "required": "Required",
+    "passport": "Valid Passport",
+    "application": "Completed Application",
+    "photo": "Passport Photos",
+    "financialProof": "Financial Documents",
+    "passportDescription": "Valid for at least 6 months from travel date with blank pages",
+    "applicationDescription": "Fully completed and signed visa application form",
+    "photoDescription": "Recent passport-size photographs meeting official requirements",
+    "financialDescription": "Bank statements, employment letter, or proof of financial support",
+    "generalDescription": "Additional documentation may be required",
+    "interviewRequired": "Interview Required",
+    "interviewDescription": "A consular interview may be scheduled as part of the application process. Prepare all required documents and be ready to discuss your travel plans.",
+    "importantNote": "Important Note",
+    "documentNote": "Requirements may vary based on your nationality and specific circumstances. Always verify current requirements with the nearest consulate."
+  },
+  "visaFree": {
+    "title": "Visa-Free & Visa on Arrival",
+    "visaFreeTitle": "Visa-Free Entry",
+    "visaFreeDescription": "Citizens of certain countries can visit {destination} without obtaining a visa in advance. Check if your passport qualifies for visa-free entry.",
+    "visaOnArrivalTitle": "Visa on Arrival",
+    "visaOnArrivalDescription": "Some travelers can obtain their visa upon arrival at {destination}. This convenient option eliminates the need for advance processing."
+  },
+  "relatedContent": {
+    "title": "Travel Guides & Articles",
+    "description": "Discover travel tips, attractions, and insider guides for {destination}.",
+    "viewBlog": "View Travel Blog"
+  }
+}

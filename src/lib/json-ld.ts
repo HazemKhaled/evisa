@@ -1,5 +1,6 @@
 import { env } from "./consts";
 import { type BlogPostData } from "./services/blog-service";
+import { type DestinationWithVisaTypes } from "./services/country-service";
 
 /**
  * JSON-LD structured data utilities for SEO
@@ -309,5 +310,110 @@ export function generateBreadcrumbData(
       name: item.name,
       item: item.url,
     })),
+  };
+}
+
+/**
+ * Destination JSON-LD interface
+ */
+export interface DestinationPlace {
+  name: string;
+  description?: string;
+  geo: {
+    latitude?: number;
+    longitude?: number;
+  };
+  address: {
+    addressCountry: string;
+    addressRegion?: string;
+  };
+  url: string;
+  image?: string;
+  containsPlace?: {
+    name: string;
+    description: string;
+    priceRange?: string;
+    processingTime?: string;
+  }[];
+}
+
+/**
+ * Generate destination place JSON-LD with visa information
+ */
+export function generateDestinationJsonLd(
+  destination: DestinationWithVisaTypes,
+  locale: string
+): Record<string, unknown> {
+  const baseUrl = env.baseUrl;
+  const destinationUrl = `${baseUrl}/${locale}/d/${destination.code.toLowerCase()}`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Place",
+    name: destination.localizedName,
+    description: destination.about,
+    url: destinationUrl,
+    ...(destination.heroImage && { image: destination.heroImage }),
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: destination.code,
+      ...(destination.region && { addressRegion: destination.region }),
+    },
+    ...(destination.continent && {
+      containedInPlace: {
+        "@type": "AdministrativeArea",
+        name: destination.continent,
+      },
+    }),
+    ...(destination.visaTypes.length > 0 && {
+      containsPlace: destination.visaTypes.map(visa => ({
+        "@type": "Service",
+        name: visa.name,
+        description: `${visa.type} visa for ${destination.localizedName}`,
+        provider: {
+          "@type": "Organization",
+          name: "GetTravelVisa.com",
+          url: baseUrl,
+        },
+        offers: {
+          "@type": "Offer",
+          price: visa.fee.toString(),
+          priceCurrency: visa.currency,
+          availability: "https://schema.org/InStock",
+          validFrom: new Date().toISOString(),
+          description: `Processing time: ${visa.processingTime} days, Valid for: ${visa.duration} days`,
+        },
+        serviceType: "Visa Application Service",
+        areaServed: {
+          "@type": "Country",
+          name: destination.localizedName,
+        },
+      })),
+    }),
+    mainEntity: {
+      "@type": "TravelAction",
+      name: `Travel to ${destination.localizedName}`,
+      description: `Visa requirements and travel information for ${destination.localizedName}`,
+      ...(destination.hasVisaFreeEntry && {
+        additionalType: "https://schema.org/VisaFreeTravel",
+      }),
+    },
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: "Total Visa Types",
+        value: destination.totalVisaTypes.toString(),
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Visa Free Entry",
+        value: destination.hasVisaFreeEntry.toString(),
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Visa on Arrival",
+        value: destination.hasVisaOnArrival.toString(),
+      },
+    ],
   };
 }

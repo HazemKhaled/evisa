@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Tutte le Destinazioni di Viaggio - Requisiti Visto e Elaborazione",
+    "description": "Esplora i requisiti per i visti di tutte le destinazioni di viaggio. Confronta i tempi di elaborazione, le tariffe e i requisiti documentali per il tuo prossimo viaggio internazionale.",
+    "ogTitle": "Guida Completa ai Requisiti Visto Globali",
+    "ogDescription": "Trova informazioni sui visti per qualsiasi destinazione. Confronta requisiti, tempi di elaborazione e tariffe per la pianificazione di viaggi internazionali.",
+    "twitterTitle": "Guida ai Requisiti Visto Globali",
+    "twitterDescription": "Scopri i requisiti per i visti per destinazioni mondiali con la nostra guida di viaggio completa."
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "destinations": "Destinazioni"
+  },
+  "hero": {
+    "title": "Esplora Destinazioni Globali",
+    "description": "Scopri i requisiti per i visti e le informazioni di viaggio per destinazioni in tutto il mondo. Trova la destinazione perfetta per la tua prossima avventura.",
+    "searchPlaceholder": "Cerca destinazioni..."
+  },
+  "filters": {
+    "allContinents": "Tutti i Continenti"
+  },
+  "results": {
+    "showing": "Mostrando {{count}} di {{total}} destinazioni"
+  },
+  "destinationCard": {
+    "visaTypes": "Tipi di Visto",
+    "processingTime": "Elaborazione",
+    "viewDetails": "Vedi Dettagli"
+  },
+  "empty": {
+    "title": "Nessuna Destinazione Trovata",
+    "description": "Non siamo riusciti a trovare destinazioni che corrispondano ai tuoi criteri di ricerca. Prova ad aggiustare i tuoi filtri o termini di ricerca.",
+    "clearFilters": "Cancella Tutti i Filtri"
+  }
+}

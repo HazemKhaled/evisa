@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "متطلبات التأشيرة لـ {destination}",
+    "description": "معلومات التأشيرة الكاملة لـ {destination}. اكتشف {visaCount} خيارات التأشيرة وأوقات المعالجة والرسوم والمتطلبات لسفرك إلى {destination}.",
+    "ogTitle": "متطلبات التأشيرة ومعلومات السفر لـ {destination}",
+    "ogDescription": "كل ما تحتاج معرفته عن زيارة {destination}. {visaCount} أنواع تأشيرة متاحة مع متطلبات مفصلة ومعلومات المعالجة.",
+    "twitterTitle": "دليل تأشيرة {destination}",
+    "twitterDescription": "متطلبات التأشيرة الكاملة ودليل السفر لـ {destination}"
+  },
+  "breadcrumb": {
+    "home": "الرئيسية",
+    "destinations": "الوجهات"
+  },
+  "hero": {
+    "visaTypes": "أنواع التأشيرات",
+    "visaFreeAvailable": "السفر بدون تأشيرة متاح",
+    "visaOnArrivalAvailable": "تأشيرة عند الوصول",
+    "viewTravelGuides": "عرض أدلة السفر"
+  },
+  "visaOptions": {
+    "title": "خيارات التأشيرة",
+    "description": "استكشف جميع أنواع التأشيرات المتاحة لـ {destination}. يتضمن كل خيار متطلبات مفصلة ورسوم وأوقات المعالجة.",
+    "noVisaTypesTitle": "لا تتوفر معلومات التأشيرة",
+    "noVisaTypesDescription": "نحن نقوم حاليًا بتحديث معلومات التأشيرة لـ {destination}. يرجى المراجعة قريبًا أو الاتصال بنا للحصول على المساعدة.",
+    "totalOptions": "إجمالي الخيارات",
+    "processingDays": "أيام المعالجة",
+    "feeRange": "نطاق الرسوم ({currency})",
+    "visaFreeCountries": "دول بدون تأشيرة",
+    "visaFreeCountriesTitle": "دخول بدون تأشيرة",
+    "visaOnArrivalTitle": "تأشيرة عند الوصول",
+    "more": "أكثر"
+  },
+  "visaCard": {
+    "multiEntry": "متعددة الدخول",
+    "interviewRequired": "مقابلة مطلوبة",
+    "fee": "الرسم",
+    "processing": "المعالجة",
+    "days": "أيام",
+    "validFor": "صالحة لـ",
+    "entryType": "نوع الدخول",
+    "multiple": "متعدد",
+    "single": "واحد",
+    "requirements": "المتطلبات",
+    "interviewNote": "مقابلة مطلوبة",
+    "interviewDescription": "قد تكون هناك حاجة لمقابلة شخصية أو افتراضية كجزء من عملية التقديم.",
+    "lastUpdated": "آخر تحديث",
+    "checkEligibility": "تحقق من الأهلية",
+    "free": "مجاني"
+  },
+  "documents": {
+    "title": "الوثائق المطلوبة",
+    "commonRequirements": "المتطلبات الشائعة",
+    "more": "أكثر",
+    "required": "مطلوب",
+    "passport": "جواز سفر صالح",
+    "application": "طلب مكتمل",
+    "photo": "صور جواز السفر",
+    "financialProof": "وثائق مالية",
+    "passportDescription": "صالح لمدة 6 أشهر على الأقل من تاريخ السفر مع صفحات فارغة",
+    "applicationDescription": "نموذج طلب التأشيرة مكتمل وموقع بالكامل",
+    "photoDescription": "صور حديثة بحجم جواز السفر تلبي المتطلبات الرسمية",
+    "financialDescription": "كشوف حسابات بنكية أو خطاب عمل أو إثبات الدعم المالي",
+    "generalDescription": "قد تكون هناك حاجة لوثائق إضافية",
+    "interviewRequired": "مقابلة مطلوبة",
+    "interviewDescription": "قد يتم تحديد موعد لمقابلة ق領صلية كجزء من عملية التقديم. استعد لجميع الوثائق المطلوبة وكن مستعدًا لمناقشة خطط سفرك.",
+    "importantNote": "ملاحظة مهمة",
+    "documentNote": "قد تختلف المتطلبات حسب جنسيتك والظروف المحددة. تحقق دائمًا من المتطلبات الحالية مع أقرب قنصلية."
+  },
+  "visaFree": {
+    "title": "بدون تأشيرة وتأشيرة عند الوصول",
+    "visaFreeTitle": "دخول بدون تأشيرة",
+    "visaFreeDescription": "يمكن لمواطني بعض البلدان زيارة {destination} دون الحصول على تأشيرة مسبقة. تحقق من أهلية جواز سفرك للدخول بدون تأشيرة.",
+    "visaOnArrivalTitle": "تأشيرة عند الوصول",
+    "visaOnArrivalDescription": "يمكن لبعض المسافرين الحصول على تأشيرتهم عند الوصول إلى {destination}. هذا الخيار المريح يلغي الحاجة للمعالجة المسبقة."
+  },
+  "relatedContent": {
+    "title": "أدلة ومقالات السفر",
+    "description": "اكتشف نصائح السفر والمعالم السياحية والأدلة الداخلية لـ {destination}.",
+    "viewBlog": "عرض مدونة السفر"
+  }
+}
