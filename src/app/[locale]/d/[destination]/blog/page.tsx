@@ -128,7 +128,7 @@ export default async function DestinationBlog({
 
           {/* Search - scoped to destination posts */}
           <div className="mb-12">
-            <BlogSearch allPosts={posts} locale={locale} />
+            <BlogSearch allPosts={allPosts} locale={locale} />
           </div>
 
           <BlogPostList
