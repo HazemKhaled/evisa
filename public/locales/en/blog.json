@@ -7,7 +7,10 @@
     "backToBlog": "← Back to Blog"
   },
   "metadata": {
-    "updated": "Updated"
+    "updated": "Updated",
+    "tag_title_template": "{tag} - {title}",
+    "tag_description_template": "Read our blog posts about {tag}.",
+    "tag_keywords_template": "{tag}, travel blog, visa guides, travel tips, destination guides, travel advice"
   },
   "search": {
     "placeholder": "Search blog posts...",

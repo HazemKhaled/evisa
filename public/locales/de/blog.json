@@ -7,7 +7,10 @@
     "backToBlog": "← Zurück zum Blog"
   },
   "metadata": {
-    "updated": "Aktualisiert"
+    "updated": "Aktualisiert",
+    "tag_title_template": "{tag} - {title}",
+    "tag_description_template": "Lesen Sie unsere Blog-Beiträge über {tag}.",
+    "tag_keywords_template": "{tag}, Reise-Blog, Visa-Führer, Reisetipps, Reiseziel-Führer, Reiseberatung"
   },
   "search": {
     "placeholder": "Blog-Beiträge suchen...",

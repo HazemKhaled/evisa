@@ -45,12 +45,12 @@ export async function generateMetadata({
   const decodedTag = decodeURIComponent(tag);
 
   return {
-    title: t("blog.meta.tag_title_template", {
+    title: t("metadata.tag_title_template", {
       tag: decodedTag,
       title: t("title"),
     }),
-    description: t("blog.meta.tag_description_template", { tag: decodedTag }),
-    keywords: t("blog.meta.tag_keywords_template", { tag: decodedTag }),
+    description: t("metadata.tag_description_template", { tag: decodedTag }),
+    keywords: t("metadata.tag_keywords_template", { tag: decodedTag }),
   };
 }
 

@@ -7,7 +7,10 @@
     "backToBlog": "← العودة إلى المدونة"
   },
   "metadata": {
-    "updated": "محدث"
+    "updated": "محدث",
+    "tag_title_template": "{tag} - {title}",
+    "tag_description_template": "اقرأ مقالات مدونتنا حول {tag}.",
+    "tag_keywords_template": "{tag}، مدونة سفر، أدلة تأشيرات، نصائح سفر، أدلة وجهات، نصائح سفر"
   },
   "search": {
     "placeholder": "البحث في مقالات المدونة...",

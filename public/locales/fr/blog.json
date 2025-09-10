@@ -7,7 +7,10 @@
     "backToBlog": "← Retour au Blog"
   },
   "metadata": {
-    "updated": "Mis à jour"
+    "updated": "Mis à jour",
+    "tag_title_template": "{tag} - {title}",
+    "tag_description_template": "Lisez nos articles de blog sur {tag}.",
+    "tag_keywords_template": "{tag}, blog de voyage, guides de visa, conseils de voyage, guides de destinations, conseils de voyage"
   },
   "search": {
     "placeholder": "Rechercher des articles de blog...",

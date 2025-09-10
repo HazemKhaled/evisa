@@ -7,7 +7,10 @@
     "backToBlog": "← Назад к блогу"
   },
   "metadata": {
-    "updated": "Обновлено"
+    "updated": "Обновлено",
+    "tag_title_template": "{tag} - {title}",
+    "tag_description_template": "Читайте наши статьи блога о {tag}.",
+    "tag_keywords_template": "{tag}, блог о путешествиях, руководства по визам, советы путешественникам, путеводители по направлениям, советы по путешествиям"
   },
   "search": {
     "placeholder": "Поиск статей блога...",
