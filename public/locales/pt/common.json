@@ -53,5 +53,13 @@
     "interviewRequired": "Entrevista obrigatória",
     "day": "dia",
     "days": "dias"
+  },
+  "error": {
+    "title": "Algo deu errado",
+    "description": "Desculpe, mas houve um erro ao carregar esta página de destino. Isso pode ser um problema temporário.",
+    "tryAgain": "Tentar Novamente",
+    "goHome": "Ir para Início",
+    "browseDestinations": "Explorar Destinos",
+    "helpText": "Se o problema persistir, entre em contato com nossa equipe de suporte."
   }
 }

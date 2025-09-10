@@ -53,5 +53,77 @@
     "interviewRequired": "Interview required",
     "day": "day",
     "days": "days"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "We're sorry, but there was an error loading this destination page. This might be a temporary issue.",
+    "errorDetails": "Error Details",
+    "digest": "Digest",
+    "tryAgain": "Try Again",
+    "goHome": "Go Home",
+    "browseDestinations": "Browse Destinations",
+    "helpText": "If the problem persists, please contact our support team."
+  },
+  "errors": {
+    "generic": {
+      "title": "Something went wrong",
+      "description": "We're sorry, but there was an error loading this page. This might be a temporary issue.",
+      "tryAgain": "Try Again",
+      "goHome": "Go Home",
+      "browseDestinations": "Browse Destinations",
+      "helpText": "If the problem persists, please contact our support team.",
+      "errorDetails": "Error Details",
+      "digest": "Digest"
+    },
+    "notFound": {
+      "title": "Page Not Found",
+      "description": "The page you're looking for doesn't exist or has been moved.",
+      "tryAgain": "Try Again",
+      "goHome": "Go Home",
+      "browseDestinations": "Browse Destinations",
+      "helpText": "If you believe this is a mistake, please contact our support team.",
+      "errorDetails": "Error Details",
+      "digest": "Digest"
+    },
+    "serverError": {
+      "title": "Server Error",
+      "description": "We're experiencing server issues. Please try again in a moment.",
+      "tryAgain": "Try Again",
+      "goHome": "Go Home",
+      "browseDestinations": "Browse Destinations",
+      "helpText": "If the problem persists, please contact our support team.",
+      "errorDetails": "Error Details",
+      "digest": "Digest"
+    },
+    "networkError": {
+      "title": "Connection Error",
+      "description": "We're having trouble connecting to our servers. Please check your internet connection.",
+      "tryAgain": "Try Again",
+      "goHome": "Go Home",
+      "browseDestinations": "Browse Destinations",
+      "helpText": "If the problem persists, please contact our support team.",
+      "errorDetails": "Error Details",
+      "digest": "Digest"
+    },
+    "clientError": {
+      "title": "Request Error",
+      "description": "There was an issue with your request. Please check your input and try again.",
+      "tryAgain": "Try Again",
+      "goHome": "Go Home",
+      "browseDestinations": "Browse Destinations",
+      "helpText": "If the problem persists, please contact our support team.",
+      "errorDetails": "Error Details",
+      "digest": "Digest"
+    },
+    "validationError": {
+      "title": "Validation Error",
+      "description": "Some of the information you provided is invalid. Please correct it and try again.",
+      "tryAgain": "Try Again",
+      "goHome": "Go Home",
+      "browseDestinations": "Browse Destinations",
+      "helpText": "If the problem persists, please contact our support team.",
+      "errorDetails": "Error Details",
+      "digest": "Digest"
+    }
   }
 }

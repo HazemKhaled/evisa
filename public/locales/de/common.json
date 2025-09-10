@@ -53,5 +53,13 @@
     "interviewRequired": "Interview erforderlich",
     "day": "Tag",
     "days": "Tage"
+  },
+  "error": {
+    "title": "Etwas ist schiefgelaufen",
+    "description": "Entschuldigung, es gab einen Fehler beim Laden dieser Zielseite. Dies könnte ein vorübergehendes Problem sein.",
+    "tryAgain": "Erneut versuchen",
+    "goHome": "Zur Startseite",
+    "browseDestinations": "Reiseziele durchsuchen",
+    "helpText": "Wenn das Problem weiterhin besteht, wenden Sie sich bitte an unser Support-Team."
   }
 }
