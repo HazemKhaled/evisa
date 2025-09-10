@@ -105,7 +105,6 @@ export const translationKeys = {
       contact_us: "footer.contact_us" as const,
       terms: "footer.terms" as const,
       privacy: "footer.privacy" as const,
-      visa_checker: "footer.visa_checker" as const,
       travel_blog: "footer.travel_blog" as const,
       copyright: "footer.copyright" as const,
     },

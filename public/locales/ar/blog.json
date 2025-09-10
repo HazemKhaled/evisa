@@ -1,0 +1,54 @@
+{
+  "title": "مدونة السفر",
+  "subtitle": "أدلة سفر متخصصة ونصائح تأشيرات ورؤى الوجهات لمساعدتك في التخطيط لرحلتك المثالية.",
+  "keywords": "مدونة سفر، أدلة تأشيرات، نصائح سفر، أدلة وجهات، نصائح سفر",
+  "empty_state": "لا توجد مقالات مدونة متاحة بعد. تحقق مرة أخرى قريباً!",
+  "navigation": {
+    "backToBlog": "← العودة إلى المدونة"
+  },
+  "metadata": {
+    "updated": "محدث",
+    "tag_title_template": "{tag} - {title}",
+    "tag_description_template": "اقرأ مقالات مدونتنا حول {tag}.",
+    "tag_keywords_template": "{tag}، مدونة سفر، أدلة تأشيرات، نصائح سفر، أدلة وجهات، نصائح سفر"
+  },
+  "search": {
+    "placeholder": "البحث في مقالات المدونة...",
+    "heading": "نتائج البحث",
+    "results": "نتائج",
+    "noResults": "لا توجد نتائج",
+    "loading": "جارٍ البحث...",
+    "result": "نتيجة"
+  },
+  "content": {
+    "tags": "العلامات",
+    "relatedArticles": "مقالات ذات صلة",
+    "noPostsFound": "لا توجد مقالات",
+    "noPostsAvailable": "لا توجد مقالات متاحة حالياً"
+  },
+  "pagination": {
+    "showing": "عرض",
+    "post": "مقال",
+    "posts": "مقالات",
+    "on": "في",
+    "page": "صفحة",
+    "of": "من",
+    "previous": "السابق",
+    "next": "التالي"
+  },
+  "aria": {
+    "articleNavigation": "تنقل المقال",
+    "returnToBlogListing": "العودة إلى قائمة المدونة",
+    "readArticle": "اقرأ المقال: {title}",
+    "readFullArticle": "اقرأ المقال كاملاً: {title}",
+    "viewPostsFor": "عرض مقالات المدونة لـ {destination}",
+    "viewPostsTagged": "عرض مقالات المدونة المعلمة بـ {tag}",
+    "clearSearch": "مسح البحث"
+  },
+  "homepage": {
+    "latestPosts": {
+      "title": "أحدث رؤى السفر",
+      "subtitle": "ابق على اطلاع بنصائح السفر وأدلة الوجهات"
+    }
+  }
+}

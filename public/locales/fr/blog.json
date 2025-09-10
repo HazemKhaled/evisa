@@ -1,0 +1,55 @@
+{
+  "title": "Blog de Voyage",
+  "subtitle": "Guides de voyage experts, conseils de visa et aperçus de destinations pour vous aider à planifier votre voyage parfait.",
+  "keywords": "blog de voyage, guides de visa, conseils de voyage, guides de destinations, conseils de voyage",
+  "empty_state": "Aucun article de blog disponible pour le moment. Revenez bientôt !",
+  "navigation": {
+    "backToBlog": "← Retour au Blog"
+  },
+  "metadata": {
+    "updated": "Mis à jour",
+    "tag_title_template": "{tag} - {title}",
+    "tag_description_template": "Lisez nos articles de blog sur {tag}.",
+    "tag_keywords_template": "{tag}, blog de voyage, guides de visa, conseils de voyage, guides de destinations, conseils de voyage"
+  },
+  "search": {
+    "placeholder": "Rechercher des articles de blog...",
+    "heading": "Résultats de recherche",
+    "results": "résultats",
+    "noResults": "Aucun résultat trouvé",
+    "loading": "Recherche...",
+    "result": "résultat"
+  },
+
+  "content": {
+    "tags": "Tags",
+    "relatedArticles": "Articles connexes",
+    "noPostsFound": "Aucun article trouvé",
+    "noPostsAvailable": "Aucun article de blog n'est actuellement disponible"
+  },
+  "pagination": {
+    "showing": "Affichage",
+    "post": "article",
+    "posts": "articles",
+    "on": "sur",
+    "page": "page",
+    "of": "de",
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
+  "aria": {
+    "articleNavigation": "Navigation de l'article",
+    "returnToBlogListing": "Retour à la liste du blog",
+    "readArticle": "Lire l'article : {title}",
+    "readFullArticle": "Lire l'article complet : {title}",
+    "viewPostsFor": "Voir les articles de blog pour {destination}",
+    "viewPostsTagged": "Voir les articles de blog étiquetés avec {tag}",
+    "clearSearch": "Effacer la recherche"
+  },
+  "homepage": {
+    "latestPosts": {
+      "title": "Derniers aperçus de voyage",
+      "subtitle": "Restez à jour avec des conseils de voyage et des guides de destinations"
+    }
+  }
+}

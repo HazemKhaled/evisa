@@ -1,0 +1,54 @@
+{
+  "title": "Travel Blog",
+  "subtitle": "Expert travel guides, visa tips, and destination insights to help you plan your perfect trip.",
+  "keywords": "travel blog, visa guides, travel tips, destination guides, travel advice",
+  "empty_state": "No blog posts available yet. Check back soon!",
+  "navigation": {
+    "backToBlog": "← Back to Blog"
+  },
+  "metadata": {
+    "updated": "Updated",
+    "tag_title_template": "{tag} - {title}",
+    "tag_description_template": "Read our blog posts about {tag}.",
+    "tag_keywords_template": "{tag}, travel blog, visa guides, travel tips, destination guides, travel advice"
+  },
+  "search": {
+    "placeholder": "Search blog posts...",
+    "heading": "Search Results",
+    "results": "results",
+    "noResults": "No Results Found",
+    "loading": "Searching...",
+    "result": "result"
+  },
+  "content": {
+    "tags": "Tags",
+    "relatedArticles": "Related Articles",
+    "noPostsFound": "No Posts Found",
+    "noPostsAvailable": "No blog posts are currently available"
+  },
+  "pagination": {
+    "showing": "Showing",
+    "post": "post",
+    "posts": "posts",
+    "on": "on",
+    "page": "page",
+    "of": "of",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "aria": {
+    "articleNavigation": "Article navigation",
+    "returnToBlogListing": "Return to blog listing",
+    "readArticle": "Read article: {title}",
+    "readFullArticle": "Read full article: {title}",
+    "viewPostsFor": "View blog posts for {destination}",
+    "viewPostsTagged": "View blog posts tagged with {tag}",
+    "clearSearch": "Clear search input"
+  },
+  "homepage": {
+    "latestPosts": {
+      "title": "Latest Travel Insights",
+      "subtitle": "Stay updated with travel tips and destination guides"
+    }
+  }
+}

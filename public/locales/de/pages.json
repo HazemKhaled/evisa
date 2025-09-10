@@ -40,45 +40,6 @@
       "description": "Wir suchen immer nach Partnerschaften mit Reiseagenturen, Visa-Dienstleistern und Tourismusorganisationen, um Reisenden weltweit bessere Dienste zu bieten."
     }
   },
-  "blog": {
-    "title": "Reise-Blog",
-    "subtitle": "Experten-Reiseführer, Visa-Tipps und Reiseziel-Einblicke, um Ihnen bei der Planung Ihrer perfekten Reise zu helfen.",
-    "keywords": "Reise-Blog, Visa-Führer, Reisetipps, Reiseziel-Führer, Reiseberatung",
-    "empty_state": "Noch keine Blog-Beiträge verfügbar. Schauen Sie bald wieder vorbei!",
-    "filters": {
-      "tag_prefix": "Tag:",
-      "destination_prefix": "Reiseziel:"
-    },
-    "aria": {
-      "article_tags": "Artikel-Tags",
-      "blog_navigation": "Blog-Navigation",
-      "return_to_listing": "Zurück zur Blog-Liste",
-      "related_articles": "Verwandte Artikel"
-    },
-    "post": {
-      "published": "Veröffentlicht",
-      "updated": "Aktualisiert",
-      "passport": "Reisepass",
-      "related_visas": "Verwandte Visa",
-      "tags": "Tags",
-      "back_to_blog": "Zurück zum Blog",
-      "related_articles": "Verwandte Artikel"
-    },
-    "meta": {
-      "tag_title_template": "{{tag}} - {{title}}",
-      "tag_description_template": "Reiseführer und Visa-Informationen zu {{tag}}. Experten-Reisetipps und Reiseziel-Einblicke.",
-      "tag_keywords_template": "{{tag}}, Reise-Blog, Visa-Führer, Reisetipps, Reiseziel-Führer",
-      "post_not_found": "Beitrag nicht gefunden",
-      "post_not_found_description": "Der angeforderte Blogbeitrag konnte nicht gefunden werden."
-    },
-    "pagination": {
-      "showing": "Zeige",
-      "articles": "Artikel",
-      "of": "von",
-      "previous": "Zurück",
-      "next": "Weiter"
-    }
-  },
   "jsonld": {
     "organization": {
       "name": "GetTravelVisa.com",

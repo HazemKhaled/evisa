@@ -1,0 +1,58 @@
+{
+  "title": "Blog de Viajes",
+  "subtitle": "Guías expertas de viaje, consejos de visa y perspectivas de destinos para ayudarte a planificar tu viaje perfecto.",
+  "keywords": "blog de viajes, guías de visa, consejos de viaje, guías de destinos, consejos de viaje",
+  "empty_state": "¡No hay publicaciones de blog disponibles aún. ¡Vuelve pronto!",
+  "navigation": {
+    "backToBlog": "← Volver al Blog"
+  },
+  "metadata": {
+    "updated": "Actualizado",
+    "tag_title_template": "{tag} - {title}",
+    "tag_description_template": "Lee nuestras publicaciones de blog sobre {tag}.",
+    "tag_keywords_template": "{tag}, blog de viajes, guías de visa, consejos de viaje, guías de destinos, consejos de viaje"
+  },
+  "search": {
+    "placeholder": "Buscar publicaciones del blog...",
+    "heading": "Resultados de búsqueda",
+    "results": "resultados",
+    "noResults": "No se encontraron resultados",
+    "loading": "Buscando...",
+    "result": "resultado"
+  },
+
+  "content": {
+    "tags": "Etiquetas",
+    "relatedArticles": "Artículos relacionados",
+    "noPostsFound": "No se encontraron publicaciones",
+    "noPostsAvailable": "No hay publicaciones de blog disponibles actualmente"
+  },
+  "pagination": {
+    "showing": "Mostrando",
+    "post": "publicación",
+    "posts": "publicaciones",
+    "on": "en",
+    "page": "página",
+    "of": "de",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "firstPage": "Primera página",
+    "lastPage": "Última página",
+    "goToPage": "Ir a la página {page}"
+  },
+  "aria": {
+    "articleNavigation": "Navegación del artículo",
+    "returnToBlogListing": "Volver a la lista del blog",
+    "readArticle": "Leer artículo: {title}",
+    "readFullArticle": "Leer artículo completo: {title}",
+    "viewPostsFor": "Ver publicaciones del blog para {destination}",
+    "viewPostsTagged": "Ver publicaciones del blog etiquetadas con {tag}",
+    "clearSearch": "Limpiar entrada de búsqueda"
+  },
+  "homepage": {
+    "latestPosts": {
+      "title": "Últimas Perspectivas de Viaje",
+      "subtitle": "Mantente actualizado con consejos de viaje y guías de destinos"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "title": "Blog de Viagem",
+  "subtitle": "Guias de viagem especializados, dicas de visto e insights de destinos para ajudá-lo a planejar sua viagem perfeita.",
+  "keywords": "blog de viagem, guias de visto, dicas de viagem, guias de destinos, conselhos de viagem",
+  "empty_state": "Nenhum artigo do blog disponível ainda. Volte em breve!",
+  "navigation": {
+    "backToBlog": "← Voltar ao Blog"
+  },
+  "metadata": {
+    "updated": "Atualizado",
+    "tag_title_template": "{tag} - {title}",
+    "tag_description_template": "Leia nossos artigos do blog sobre {tag}.",
+    "tag_keywords_template": "{tag}, blog de viagem, guias de visto, dicas de viagem, guias de destinos, conselhos de viagem"
+  },
+  "search": {
+    "placeholder": "Pesquisar artigos do blog...",
+    "heading": "Resultados da pesquisa",
+    "results": "resultados",
+    "noResults": "Nenhum resultado encontrado",
+    "loading": "Pesquisando...",
+    "result": "resultado"
+  },
+
+  "content": {
+    "tags": "Tags",
+    "relatedArticles": "Artigos relacionados",
+    "noPostsFound": "Nenhum artigo encontrado",
+    "noPostsAvailable": "Atualmente não há artigos do blog disponíveis"
+  },
+  "pagination": {
+    "showing": "Mostrando",
+    "post": "artigo",
+    "posts": "artigos",
+    "on": "na",
+    "page": "página",
+    "of": "de",
+    "previous": "Anterior",
+    "next": "Próximo"
+  },
+  "aria": {
+    "articleNavigation": "Navegação do artigo",
+    "returnToBlogListing": "Voltar à lista do blog",
+    "readArticle": "Ler artigo: {title}",
+    "readFullArticle": "Ler artigo completo: {title}",
+    "viewPostsFor": "Ver artigos do blog para {destination}",
+    "viewPostsTagged": "Ver artigos do blog marcados com {tag}",
+    "clearSearch": "Limpar pesquisa"
+  },
+  "homepage": {
+    "latestPosts": {
+      "title": "Últimos insights de viagem",
+      "subtitle": "Mantenha-se atualizado com dicas de viagem e guias de destinos"
+    }
+  }
+}

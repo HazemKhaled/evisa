@@ -10,10 +10,12 @@ import {
 } from "@/lib/json-ld";
 import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
 import { getRandomVisaTypes } from "@/lib/services/visa-service";
-import { getBlogPostsForLocale } from "@/lib/blog";
+import { getBlogPostsForLocale } from "@/lib/services/blog-service";
 import { DestinationCard } from "@/components/ui/destination-card";
 import { VisaTypeCard } from "@/components/ui/visa-type-card";
 import { RelatedArticleCard } from "@/components/ui/related-article-card";
+
+export const revalidate = 3600; // Revalidate every hour
 
 export default async function LocalePage({
   params,
@@ -24,14 +26,24 @@ export default async function LocalePage({
   const { t: tCommon } = await getTranslation(locale, "common");
   const { t: tHero } = await getTranslation(locale, "hero");
   const { t: tFeatures } = await getTranslation(locale, "features");
+  const { t: tBlog } = await getTranslation(locale, "blog");
   const { t } = await getTranslation(locale, "pages");
 
-  // Fetch data for homepage sections
-  const [destinations, visaTypes, blogPosts] = await Promise.all([
-    getDestinationsListWithMetadata(locale, 8, "popular"),
-    getRandomVisaTypes(locale, 6),
-    getBlogPostsForLocale(locale).then(posts => posts.slice(0, 6)),
-  ]);
+  // Fetch data for homepage sections with graceful degradation
+  const [destinationsResult, visaTypesResult, blogPostsResult] =
+    await Promise.allSettled([
+      getDestinationsListWithMetadata(locale, 8, "popular"),
+      getRandomVisaTypes(locale, 6),
+      Promise.resolve(getBlogPostsForLocale(locale).slice(0, 6)),
+    ]);
+
+  // Extract results with fallbacks for failed requests
+  const destinations =
+    destinationsResult.status === "fulfilled" ? destinationsResult.value : [];
+  const visaTypes =
+    visaTypesResult.status === "fulfilled" ? visaTypesResult.value : [];
+  const blogPosts =
+    blogPostsResult.status === "fulfilled" ? blogPostsResult.value : [];
 
   const baseUrl = env.baseUrl;
   const pageUrl = `${baseUrl}/${locale}`;
@@ -387,12 +399,12 @@ export default async function LocalePage({
                     "text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
                   )}
                 >
-                  {tFeatures("latestPosts.title")}
+                  {tBlog("homepage.latestPosts.title")}
                 </h2>
                 <p
                   className={cn("mx-auto mt-4 max-w-2xl text-lg text-gray-600")}
                 >
-                  {tFeatures("latestPosts.subtitle")}
+                  {tBlog("homepage.latestPosts.subtitle")}
                 </p>
               </div>
 

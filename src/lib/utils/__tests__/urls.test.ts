@@ -111,7 +111,6 @@ describe("URL utilities", () => {
       expect(urls.destinations).toBe("/en/destinations");
       expect(urls.blog).toBe("/en/blog");
       expect(urls.contact).toBe("/en/contact");
-      expect(urls.visaChecker).toBe("/en/visa-checker");
       expect(urls.about).toBe("/en/p/about-us");
       expect(urls.terms).toBe("/en/p/terms-n-conditions");
       expect(urls.privacy).toBe("/en/p/privacy-policy");

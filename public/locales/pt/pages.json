@@ -40,45 +40,6 @@
       "description": "We're always looking to partner with travel agencies, visa service providers, and tourism organizations to better serve travelers worldwide."
     }
   },
-  "blog": {
-    "title": "Blog de Viagem",
-    "subtitle": "Guias especializados de viagem, dicas de visto e percepções de destinos para ajudar você a planejar sua viagem perfeita.",
-    "keywords": "blog de viagem, guias de visto, dicas de viagem, guias de destinos, assistência de viagem",
-    "empty_state": "Ainda não há artigos de blog disponíveis. Volte em breve!",
-    "filters": {
-      "tag_prefix": "Tag:",
-      "destination_prefix": "Destino:"
-    },
-    "aria": {
-      "article_tags": "Tags do Artigo",
-      "blog_navigation": "Navegação do Blog",
-      "return_to_listing": "Retornar à listagem do blog",
-      "related_articles": "Artigos Relacionados"
-    },
-    "post": {
-      "published": "Publicado",
-      "updated": "Atualizado",
-      "passport": "Passaporte",
-      "related_visas": "Vistos relacionados",
-      "tags": "Tags",
-      "back_to_blog": "Voltar ao blog",
-      "related_articles": "Artigos relacionados"
-    },
-    "meta": {
-      "tag_title_template": "{{tag}} - {{title}}",
-      "tag_description_template": "Guias de viagem e informações de visto relacionadas a {{tag}}. Conselhos especializados de viagem e percepções de destinos.",
-      "tag_keywords_template": "{{tag}}, blog de viagem, guias de visto, dicas de viagem, guias de destinos",
-      "post_not_found": "Artigo não encontrado",
-      "post_not_found_description": "O artigo do blog solicitado não foi encontrado."
-    },
-    "pagination": {
-      "showing": "Mostrando",
-      "articles": "artigos",
-      "of": "de",
-      "previous": "Anterior",
-      "next": "Próximo"
-    }
-  },
   "jsonld": {
     "organization": {
       "name": "GetTravelVisa.com",

@@ -15,7 +15,7 @@ import {
   type Article,
   type BreadcrumbList,
 } from "../json-ld";
-import { type BlogPostData } from "../blog";
+import { type BlogPostData } from "../services/blog-service";
 import { getBaseUrl } from "../utils/urls";
 
 // Mock the i18n module
@@ -592,7 +592,7 @@ describe("JSON-LD utilities", () => {
           publishedAt: "2023-01-01",
           lastUpdated: "2023-01-02",
         },
-        destinationNames: ["United States"],
+        destinationNames: [],
       };
 
       const result = generateBlogPostJsonLd(

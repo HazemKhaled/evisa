@@ -1,8 +1,8 @@
 import { type Metadata } from "next";
 import {
-  getGeneratedAllUniqueTags,
-  getAllBlogPosts,
-} from "@/lib/generated-blog-data";
+  getAllUniqueTagsAcrossLocales,
+  getAllBlogPostsAcrossLocales,
+} from "@/lib/services/blog-service";
 import BlogHome from "../../page";
 import { JsonLd } from "@/components/json-ld";
 import { env } from "@/lib/consts";
@@ -15,8 +15,8 @@ import { getTranslation } from "@/app/i18n";
 
 // Generate static params for basic tag routes only
 export async function generateStaticParams() {
-  const allTags = getGeneratedAllUniqueTags();
-  const allBlogPosts = getAllBlogPosts();
+  const allTags = getAllUniqueTagsAcrossLocales();
+  const allBlogPosts = getAllBlogPostsAcrossLocales();
 
   // Get all unique locale-tag combinations
   const locales = [...new Set(allBlogPosts.map(post => post.locale))];
@@ -41,16 +41,16 @@ export async function generateMetadata({
   params,
 }: TagPageProps): Promise<Metadata> {
   const { locale, tag } = await params;
-  const { t } = await getTranslation(locale, "pages");
+  const { t } = await getTranslation(locale, "blog");
   const decodedTag = decodeURIComponent(tag);
 
   return {
-    title: t("blog.meta.tag_title_template", {
+    title: t("metadata.tag_title_template", {
       tag: decodedTag,
-      title: t("blog.title"),
+      title: t("title"),
     }),
-    description: t("blog.meta.tag_description_template", { tag: decodedTag }),
-    keywords: t("blog.meta.tag_keywords_template", { tag: decodedTag }),
+    description: t("metadata.tag_description_template", { tag: decodedTag }),
+    keywords: t("metadata.tag_keywords_template", { tag: decodedTag }),
   };
 }
 

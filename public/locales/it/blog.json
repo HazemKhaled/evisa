@@ -1,0 +1,55 @@
+{
+  "title": "Blog di Viaggio",
+  "subtitle": "Guide di viaggio esperte, consigli sui visti e approfondimenti sulle destinazioni per aiutarti a pianificare il tuo viaggio perfetto.",
+  "keywords": "blog di viaggio, guide sui visti, consigli di viaggio, guide alle destinazioni, consigli di viaggio",
+  "empty_state": "Nessun articolo del blog disponibile ancora. Torna presto!",
+  "navigation": {
+    "backToBlog": "← Torna al Blog"
+  },
+  "metadata": {
+    "updated": "Aggiornato",
+    "tag_title_template": "{tag} - {title}",
+    "tag_description_template": "Leggi i nostri articoli del blog su {tag}.",
+    "tag_keywords_template": "{tag}, blog di viaggio, guide sui visti, consigli di viaggio, guide alle destinazioni, consigli di viaggio"
+  },
+  "search": {
+    "placeholder": "Cerca articoli del blog...",
+    "heading": "Risultati di ricerca",
+    "results": "risultati",
+    "noResults": "Nessun risultato trovato",
+    "loading": "Ricerca...",
+    "result": "risultato"
+  },
+
+  "content": {
+    "tags": "Tag",
+    "relatedArticles": "Articoli correlati",
+    "noPostsFound": "Nessun articolo trovato",
+    "noPostsAvailable": "Attualmente non ci sono articoli del blog disponibili"
+  },
+  "pagination": {
+    "showing": "Mostrando",
+    "post": "articolo",
+    "posts": "articoli",
+    "on": "su",
+    "page": "pagina",
+    "of": "di",
+    "previous": "Precedente",
+    "next": "Successivo"
+  },
+  "aria": {
+    "articleNavigation": "Navigazione dell'articolo",
+    "returnToBlogListing": "Torna all'elenco del blog",
+    "readArticle": "Leggi l'articolo: {title}",
+    "readFullArticle": "Leggi l'articolo completo: {title}",
+    "viewPostsFor": "Visualizza articoli del blog per {destination}",
+    "viewPostsTagged": "Visualizza articoli del blog taggati con {tag}",
+    "clearSearch": "Cancella ricerca"
+  },
+  "homepage": {
+    "latestPosts": {
+      "title": "Ultimi approfondimenti di viaggio",
+      "subtitle": "Rimani aggiornato con consigli di viaggio e guide alle destinazioni"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "title": "Reise-Blog",
+  "subtitle": "Experten-Reiseführer, Visa-Tipps und Reiseziel-Einblicke, um Ihnen bei der Planung Ihrer perfekten Reise zu helfen.",
+  "keywords": "Reise-Blog, Visa-Führer, Reisetipps, Reiseziel-Führer, Reiseberatung",
+  "empty_state": "Noch keine Blog-Beiträge verfügbar. Schauen Sie bald wieder vorbei!",
+  "navigation": {
+    "backToBlog": "← Zurück zum Blog"
+  },
+  "metadata": {
+    "updated": "Aktualisiert",
+    "tag_title_template": "{tag} - {title}",
+    "tag_description_template": "Lesen Sie unsere Blog-Beiträge über {tag}.",
+    "tag_keywords_template": "{tag}, Reise-Blog, Visa-Führer, Reisetipps, Reiseziel-Führer, Reiseberatung"
+  },
+  "search": {
+    "placeholder": "Blog-Beiträge suchen...",
+    "heading": "Suchergebnisse",
+    "results": "Ergebnisse",
+    "noResults": "Keine Ergebnisse gefunden",
+    "loading": "Suche...",
+    "result": "Ergebnis"
+  },
+  "content": {
+    "tags": "Tags",
+    "relatedArticles": "Verwandte Artikel",
+    "noPostsFound": "Keine Beiträge gefunden",
+    "noPostsAvailable": "Derzeit sind keine Blog-Beiträge verfügbar"
+  },
+  "pagination": {
+    "showing": "Zeige",
+    "post": "Beitrag",
+    "posts": "Beiträge",
+    "on": "auf",
+    "page": "Seite",
+    "of": "von",
+    "previous": "Vorherige",
+    "next": "Nächste"
+  },
+  "aria": {
+    "articleNavigation": "Artikel-Navigation",
+    "returnToBlogListing": "Zurück zur Blog-Liste",
+    "readArticle": "Artikel lesen: {title}",
+    "readFullArticle": "Vollständigen Artikel lesen: {title}",
+    "viewPostsFor": "Blog-Beiträge für {destination} anzeigen",
+    "viewPostsTagged": "Blog-Beiträge mit {tag} markiert anzeigen",
+    "clearSearch": "Sucheingabe löschen"
+  },
+  "homepage": {
+    "latestPosts": {
+      "title": "Neueste Reise-Einblicke",
+      "subtitle": "Bleiben Sie mit Reisetipps und Reiseziel-Führern auf dem Laufenden"
+    }
+  }
+}
