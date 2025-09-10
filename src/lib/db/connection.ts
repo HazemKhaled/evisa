@@ -140,7 +140,7 @@ export const getDbAsync = cache(async (): Promise<Database> => {
   } else {
     // In production, use async Cloudflare context
     const { env } =
-      process.env.NODE_ENV === "production" && process.env.WORKERS_CI == null
+      process.env.WORKERS_CI === null
         ? getCloudflareContext()
         : // Async context for ISR/SSG
           await getCloudflareContext({ async: true });
