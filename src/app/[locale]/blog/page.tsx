@@ -13,6 +13,9 @@ import {
   generateBreadcrumbData,
 } from "@/lib/json-ld";
 
+// Required when use static generation with search params
+export const revalidate = 86400; // Revalidate every day
+
 // Generate static params for basic locale routes only
 export async function generateStaticParams() {
   return languages.map(locale => ({ locale }));

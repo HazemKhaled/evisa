@@ -27,6 +27,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --coverage --watchAll=false --detectOpenHandles",
+    "bundle-analyze": "ANALYZE=true pnpm build",
     "prepare": "husky"
   },
   "dependencies": {
@@ -34,12 +35,14 @@
     "@mdx-js/react": "3.1.1",
     "@next/mdx": "15.5.2",
     "@opennextjs/cloudflare": "1.8.2",
+    "@sentry/nextjs": "^10",
     "@types/mdx": "2.0.13",
     "clsx": "2.1.1",
     "gray-matter": "4.0.3",
     "i18next": "25.5.2",
     "i18next-browser-languagedetector": "8.2.0",
     "i18next-resources-to-backend": "1.2.1",
+    "import-in-the-middle": "^1.14.2",
     "next": "15.4.7",
     "next-mdx-remote": "5.0.0",
     "react": "19.1.1",
@@ -51,6 +54,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "3.3.1",
     "@jest/types": "30.0.5",
+    "@next/bundle-analyzer": "^15.5.3",
     "@tailwindcss/postcss": "4.1.13",
     "@testing-library/jest-dom": "6.8.0",
     "@testing-library/react": "16.3.0",

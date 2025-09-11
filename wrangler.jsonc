@@ -32,7 +32,9 @@
       "migrations_dir": "drizzle",
       "experimental_remote": true,
     },
-    // OpenNext cache
+
+    // D1 Tag Cache (Next mode)
+    // This is only required if you use On-demand revalidation
     {
       "binding": "NEXT_TAG_CACHE_D1",
       "database_id": "cefa7905-d1e2-4b21-8bff-14ef365c6bf6",
@@ -71,4 +73,26 @@
       "bucket_name": "gtv-staging-cache",
     },
   ],
+
+  // DO Queue
+  // "durable_objects": {
+  //   "bindings": [
+  //     {
+  //       "name": "NEXT_CACHE_DO_QUEUE",
+  //       "class_name": "DOQueueHandler",
+  //     },
+  //   ],
+  // },
+  // "migrations": [
+  //   {
+  //     "tag": "v1",
+  //     "new_sqlite_classes": ["DOQueueHandler"],
+  //   },
+  // ],
+
+  // https://docs.sentry.io/platforms/javascript/guides/cloudflare/#wrangler-configuration
+  "version_metadata": {
+    "binding": "CF_VERSION_METADATA",
+  },
+  "upload_source_maps": true,
 }

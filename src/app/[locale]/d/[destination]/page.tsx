@@ -10,6 +10,7 @@ import { DestinationHero } from "@/components/ui/destination-hero";
 import { VisaOptionsGrid } from "@/components/ui/visa-options-grid";
 import { JsonLd } from "@/components/json-ld";
 import { generateDestinationJsonLd } from "@/lib/json-ld";
+import { isCI } from "@/lib/consts";
 
 // ISR configuration - revalidate every hour
 export const revalidate = 3600;
@@ -23,6 +24,11 @@ interface DestinationPageProps {
 
 // Pre-build popular destinations at build time
 export async function generateStaticParams() {
+  // Disable SSG in CI environment for now till fix remote-binding issue
+  if (isCI) {
+    return [];
+  }
+
   // Get top 20 popular destinations for SSG
   const popularDestinations = await getDestinationsListWithMetadata(
     "en",
