@@ -63,6 +63,11 @@ export default withSentryConfig(withMDX(nextConfig), {
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
   automaticVercelMonitors: true,
+
+  sourcemaps: {
+    // Disable Sentry's source maps feature
+    disable: true,
+  },
 });
 
 // added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
