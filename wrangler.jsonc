@@ -75,20 +75,20 @@
   ],
 
   // DO Queue
-  "durable_objects": {
-    "bindings": [
-      {
-        "name": "NEXT_CACHE_DO_QUEUE",
-        "class_name": "DOQueueHandler",
-      },
-    ],
-  },
-  "migrations": [
-    {
-      "tag": "v1",
-      "new_sqlite_classes": ["DOQueueHandler"],
-    },
-  ],
+  // "durable_objects": {
+  //   "bindings": [
+  //     {
+  //       "name": "NEXT_CACHE_DO_QUEUE",
+  //       "class_name": "DOQueueHandler",
+  //     },
+  //   ],
+  // },
+  // "migrations": [
+  //   {
+  //     "tag": "v1",
+  //     "new_sqlite_classes": ["DOQueueHandler"],
+  //   },
+  // ],
 
   // https://docs.sentry.io/platforms/javascript/guides/cloudflare/#wrangler-configuration
   "version_metadata": {
