@@ -27,6 +27,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --coverage --watchAll=false --detectOpenHandles",
+    "bundle-analyze": "ANALYZE=true pnpm build",
     "prepare": "husky"
   },
   "dependencies": {
@@ -53,6 +54,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "3.3.1",
     "@jest/types": "30.0.5",
+    "@next/bundle-analyzer": "^15.5.3",
     "@tailwindcss/postcss": "4.1.13",
     "@testing-library/jest-dom": "6.8.0",
     "@testing-library/react": "16.3.0",

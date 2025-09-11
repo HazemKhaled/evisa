@@ -2,6 +2,7 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 import remarkGfm from "remark-gfm";
+import WithBundleAnalyzer from "@next/bundle-analyzer";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
@@ -32,7 +33,11 @@ const withMDX = createMDX({
   },
 });
 
-export default withSentryConfig(withMDX(nextConfig), {
+const withBundleAnalyzer = WithBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
+
+export default withSentryConfig(withMDX(withBundleAnalyzer(nextConfig)), {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 
