@@ -459,28 +459,6 @@ export function getAllUniqueTagsAcrossLocales(): string[] {
 }
 
 /**
- * Get all blog posts across all locales with locale information
- */
-export function getAllBlogPostsAcrossLocales(): (BlogPostData & {
-  locale: string;
-})[] {
-  try {
-    const allPosts: (BlogPostData & { locale: string })[] = [];
-
-    for (const locale of languages) {
-      const localePosts = getAllBlogPosts(locale);
-      localePosts.forEach(post => {
-        allPosts.push({ ...post, locale });
-      });
-    }
-
-    return allPosts;
-  } catch {
-    return [];
-  }
-}
-
-/**
  * Get blog posts for a specific locale (alias for getBlogPostsForLocale for sitemap compatibility)
  */
 export function getBlogDataForLocale(locale: string): BlogPostData[] {

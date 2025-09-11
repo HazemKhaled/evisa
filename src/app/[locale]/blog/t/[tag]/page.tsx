@@ -1,8 +1,5 @@
 import { type Metadata } from "next";
-import {
-  getAllUniqueTagsAcrossLocales,
-  getAllBlogPostsAcrossLocales,
-} from "@/lib/services/blog-service";
+import { getAllUniqueTagsAcrossLocales } from "@/lib/services/blog-service";
 import BlogHome from "../../page";
 import { JsonLd } from "@/components/json-ld";
 import { env } from "@/lib/consts";
@@ -12,19 +9,17 @@ import {
   generateBreadcrumbData,
 } from "@/lib/json-ld";
 import { getTranslation } from "@/app/i18n";
+import { languages } from "@/app/i18n/settings";
 
+// Required when use static generation with search params
 export const revalidate = 86400; // Revalidate every day
 
 // Generate static params for basic tag routes only
 export async function generateStaticParams() {
   const allTags = getAllUniqueTagsAcrossLocales();
-  const allBlogPosts = getAllBlogPostsAcrossLocales();
-
-  // Get all unique locale-tag combinations
-  const locales = [...new Set(allBlogPosts.map(post => post.locale))];
 
   const params = [];
-  for (const currentLocale of locales) {
+  for (const currentLocale of languages) {
     for (const tag of allTags) {
       // Base tag route only
       params.push({ locale: currentLocale, tag });

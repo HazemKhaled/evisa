@@ -13,6 +13,7 @@ import {
 } from "@/lib/json-ld";
 import { BlogSearch } from "@/components/ui/blog-search";
 
+// Required when use static generation with search params
 export const revalidate = 86400; // Revalidate every day
 
 // Generate static params for basic locale routes only
