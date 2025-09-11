@@ -13,6 +13,10 @@ import {
   generateBreadcrumbData,
 } from "@/lib/json-ld";
 
+// Configure dynamic rendering for search params support
+export const dynamic = "force-dynamic";
+export const revalidate = 86400; // Revalidate every day
+
 // Generate static params for basic locale routes only
 export async function generateStaticParams() {
   return languages.map(locale => ({ locale }));

@@ -7,8 +7,9 @@ import { generateWebPageJsonLd } from "@/lib/json-ld";
 import { SearchFilterForm } from "@/components/destinations/search-filter-form";
 import { EnhancedPagination } from "@/components/ui/enhanced-pagination";
 
-// ISR configuration - revalidate every hour
-export const revalidate = 3600;
+// Configure dynamic rendering for search params support
+export const dynamic = "force-dynamic";
+export const revalidate = 86400; // Revalidate every day
 
 interface DestinationsPageProps {
   params: Promise<{

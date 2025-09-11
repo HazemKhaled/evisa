@@ -13,6 +13,10 @@ import {
 } from "@/lib/json-ld";
 import { getTranslation } from "@/app/i18n";
 
+// Configure dynamic rendering for search params support
+export const dynamic = "force-dynamic";
+export const revalidate = 86400; // Revalidate every day
+
 // Generate static params for basic tag routes only
 export async function generateStaticParams() {
   const allTags = getAllUniqueTagsAcrossLocales();
