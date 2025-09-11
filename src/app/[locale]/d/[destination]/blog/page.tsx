@@ -13,8 +13,6 @@ import {
 } from "@/lib/json-ld";
 import { BlogSearch } from "@/components/ui/blog-search";
 
-// Configure dynamic rendering for search params support
-export const dynamic = "force-dynamic";
 export const revalidate = 86400; // Revalidate every day
 
 // Generate static params for basic locale routes only
