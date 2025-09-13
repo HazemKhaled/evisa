@@ -4,7 +4,7 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "gtv-staging",
+  "name": "gtv",
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-09-10",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
@@ -27,7 +27,7 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "gtv-db-staging",
+      "database_name": "gtv-db",
       "database_id": "de85b8f1-81b0-4263-b69d-0b82e9d48875",
       "migrations_dir": "drizzle",
       "remote": true,
@@ -38,7 +38,7 @@
     {
       "binding": "NEXT_TAG_CACHE_D1",
       "database_id": "cefa7905-d1e2-4b21-8bff-14ef365c6bf6",
-      "database_name": "gtv-staging-opennext-cache",
+      "database_name": "gtv-opennext-cache",
     },
   ],
   "routes": [
@@ -63,14 +63,14 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "gtv-staging",
+      "service": "gtv",
     },
   ],
   // R2 incremental cache
   "r2_buckets": [
     {
       "binding": "NEXT_INC_CACHE_R2_BUCKET",
-      "bucket_name": "gtv-staging-cache",
+      "bucket_name": "gtv-cache",
     },
   ],
 
