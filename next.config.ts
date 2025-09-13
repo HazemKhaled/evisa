@@ -73,6 +73,8 @@ export default withSentryConfig(withMDX(withBundleAnalyzer(nextConfig)), {
     // Disable Sentry's source maps feature
     disable: true,
   },
+
+  telemetry: false,
 });
 
 // added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
