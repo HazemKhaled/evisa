@@ -10,12 +10,7 @@ export function middleware(request: NextRequest) {
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/static") ||
-    pathname === "/favicon.ico" ||
-    pathname === "/icon.svg" ||
-    pathname === "/apple-icon.png" ||
-    pathname === "/robots.txt" ||
-    pathname === "/sitemap.xml" ||
-    pathname.includes(".") // This catches other files like images, etc.
+    pathname.includes(".") // This catches files like favicon.ico, etc.
   ) {
     return NextResponse.next();
   }
