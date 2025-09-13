@@ -10,7 +10,6 @@ import {
   isDatabaseAvailableAsync,
   type Database,
 } from "../db/connection";
-import { isCI } from "../consts";
 
 /**
  * Service for visa-related database operations
@@ -420,10 +419,6 @@ export async function getRandomVisaTypes(
   locale: string,
   limit: number = 6
 ): Promise<VisaTypeWithI18n[]> {
-  // Disable SSG in CI environment for now till fix remote-binding issue
-  if (isCI) {
-    return [];
-  }
   const isDatabaseReady = await isDatabaseAvailableAsync();
   if (!isDatabaseReady) {
     // eslint-disable-next-line no-console

@@ -60,7 +60,6 @@ import {
   isDatabaseAvailableAsync,
   type Database,
 } from "../db/connection";
-import { isCI } from "../consts";
 
 /**
  * Service for country-related database operations
@@ -381,11 +380,6 @@ export async function getDestinationsListWithMetadata(
     | "processing_time"
     | "visa_fee" = "popular"
 ): Promise<DestinationMetadata[]> {
-  // Disable SSG in CI environment for now till fix remote-binding issue
-  if (isCI) {
-    return [];
-  }
-
   // Input validation and sanitization
   const validatedLocale = validateLocale(locale);
   if (!validatedLocale) {
