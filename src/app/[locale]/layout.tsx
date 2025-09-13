@@ -11,8 +11,8 @@ import {
 } from "@/lib/json-ld";
 import { getTranslation } from "../i18n";
 
-export async function generateStaticParams() {
-  return languages.map(locale => ({ locale }));
+export function generateStaticParams(): Promise<{ locale: string }>[] {
+  return languages.map(locale => Promise.resolve({ locale }));
 }
 
 export async function generateMetadata({

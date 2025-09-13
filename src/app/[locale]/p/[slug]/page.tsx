@@ -9,13 +9,15 @@ interface StaticPageProps {
   params: Promise<{ locale: string; slug: string }>;
 }
 
-export function generateStaticParams() {
+export function generateStaticParams(): Array<StaticPageProps["params"]> {
   const staticPages = getAllStaticPages();
 
-  return staticPages.map(({ locale, slug }) => ({
-    locale,
-    slug,
-  }));
+  return staticPages.map(({ locale, slug }) =>
+    Promise.resolve({
+      locale,
+      slug,
+    })
+  );
 }
 
 export async function generateMetadata({

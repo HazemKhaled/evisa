@@ -17,7 +17,9 @@ import { getDestinationsListWithMetadata } from "@/lib/services";
 // Required when use static generation with search params
 export const revalidate = 86400; // Revalidate every day
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<
+  Array<DestinationBlogProps["params"]>
+> {
   // Get top 20 popular destinations for SSG
   const popularDestinations = await getDestinationsListWithMetadata(
     "en",
@@ -29,7 +31,9 @@ export async function generateStaticParams() {
   const params = [];
   for (const locale of languages) {
     for (const destination of popularDestinations) {
-      params.push({ locale, destination: destination.code.toLowerCase() });
+      params.push(
+        Promise.resolve({ locale, destination: destination.code.toLowerCase() })
+      );
     }
   }
 

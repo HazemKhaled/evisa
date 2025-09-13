@@ -17,8 +17,8 @@ import {
 export const revalidate = 86400; // Revalidate every day
 
 // Generate static params for basic locale routes only
-export async function generateStaticParams() {
-  return languages.map(locale => ({ locale }));
+export function generateStaticParams(): Promise<{ locale: string }>[] {
+  return languages.map(locale => Promise.resolve({ locale }));
 }
 
 interface BlogHomeProps {
