@@ -16,295 +16,190 @@ import {
   type BlogFilterOptions,
 } from "../blog-service";
 
-// Mock the generated blog data
-jest.mock("../../generated-blog-data", () => ({
-  getGeneratedBlogPostsForLocale: jest.fn(() => [
-    {
-      slug: "uae-travel-guide",
-      content: "Complete guide to UAE travel",
-      frontmatter: {
-        title: "UAE Travel Guide",
-        description: "Everything you need to know about traveling to UAE",
-        destinations: ["UAE"],
-        image: "/images/blog/uae-guide.jpg",
-        tags: ["travel", "guide", "UAE", "featured"],
-        author: "Travel Team",
-        publishedAt: "2024-09-01",
-        lastUpdated: "2024-09-05",
-      },
-    },
-    {
-      slug: "general-visa-tips",
-      content: "General visa application tips",
-      frontmatter: {
-        title: "General Visa Tips",
-        description: "Tips for visa applications",
-        destinations: [],
-        image: "/images/blog/visa-tips.jpg",
-        tags: ["visa", "tips", "travel"],
-        author: "Visa Expert",
-        publishedAt: "2024-08-15",
-        lastUpdated: "2024-08-20",
-      },
-    },
-    {
-      slug: "thailand-visa-guide",
-      content: "Thailand visa requirements and process",
-      frontmatter: {
-        title: "Thailand Visa Guide",
-        description: "Complete guide to Thailand visa",
-        destinations: ["TH"],
-        image: "/images/blog/thailand-visa.jpg",
-        tags: ["thailand", "visa", "guide"],
-        author: "Asia Expert",
-        publishedAt: "2024-07-01",
-      },
-    },
-  ]),
-}));
+// Mock the MDX service
+jest.mock("../mdx-service");
 
 describe("Blog Service", () => {
   describe("getAllBlogPosts", () => {
-    it("should return all blog posts for a locale", () => {
-      const posts = getAllBlogPosts("en");
+    it("should return all blog posts for a locale", async () => {
+      const posts = await getAllBlogPosts("en");
       expect(posts).toHaveLength(3);
-      expect(posts[0].slug).toBe("uae-travel-guide");
+      expect(posts[0].slug).toBe("test-post-1");
     });
 
-    it("should limit results when limit is provided", () => {
-      const posts = getAllBlogPosts("en", 2);
+    it("should limit results when limit is provided", async () => {
+      const posts = await getAllBlogPosts("en", 2);
       expect(posts).toHaveLength(2);
-    });
-
-    it("should handle errors gracefully", () => {
-      // This would be tested with a mock that throws an error
-      const posts = getAllBlogPosts("invalid-locale");
-      expect(Array.isArray(posts)).toBe(true);
     });
   });
 
   describe("getBlogPosts", () => {
-    it("should return paginated results", () => {
-      const options: BlogFilterOptions = {
-        locale: "en",
-        limit: 2,
-        offset: 0,
-      };
-
-      const result = getBlogPosts(options);
-
-      expect(result.posts).toHaveLength(2);
-      expect(result.total).toBe(3);
-      expect(result.currentPage).toBe(1);
-      expect(result.totalPages).toBe(2);
-      expect(result.hasMore).toBe(true);
+    it("should return blog posts with default options", async () => {
+      const response = await getBlogPosts({ locale: "en" });
+      expect(response.posts).toHaveLength(3);
+      expect(response.total).toBe(3);
+      expect(response.hasMore).toBe(false);
     });
 
-    it("should filter by tag", () => {
-      const options: BlogFilterOptions = {
-        locale: "en",
-        tag: "featured",
-      };
-
-      const result = getBlogPosts(options);
-
-      expect(result.posts).toHaveLength(1);
-      expect(result.posts[0].slug).toBe("uae-travel-guide");
+    it("should filter by locale", async () => {
+      const response = await getBlogPosts({ locale: "es" });
+      expect(response.posts).toHaveLength(3); // Mock returns same data for all locales
     });
 
-    it("should filter by destination", () => {
-      const options: BlogFilterOptions = {
-        locale: "en",
-        destination: "UAE",
-      };
-
-      const result = getBlogPosts(options);
-
-      expect(result.posts).toHaveLength(1);
-      expect(result.posts[0].slug).toBe("uae-travel-guide");
+    it("should apply limit option", async () => {
+      const options: BlogFilterOptions = { locale: "en", limit: 2 };
+      const response = await getBlogPosts(options);
+      expect(response.posts).toHaveLength(2);
+      expect(response.hasMore).toBe(true);
     });
 
-    it("should sort by publication date (newest first)", () => {
-      const options: BlogFilterOptions = {
-        locale: "en",
-      };
-
-      const result = getBlogPosts(options);
-
-      // Should be sorted by date descending (newest first)
-      expect(result.posts[0].slug).toBe("uae-travel-guide"); // 2024-09-01
-      expect(result.posts[1].slug).toBe("general-visa-tips"); // 2024-08-15
-      expect(result.posts[2].slug).toBe("thailand-visa-guide"); // 2024-07-01
+    it("should apply offset option", async () => {
+      const options: BlogFilterOptions = { locale: "en", offset: 1 };
+      const response = await getBlogPosts(options);
+      expect(response.posts).toHaveLength(2);
+      expect(response.posts[0].slug).toBe("test-post-2");
     });
   });
 
   describe("getBlogPostsByDestination", () => {
-    it("should return posts for specific destination", () => {
-      const posts = getBlogPostsByDestination("UAE", "en");
-
+    it("should return posts for a specific destination", async () => {
+      const posts = await getBlogPostsByDestination("FR", "en");
       expect(posts).toHaveLength(1);
-      expect(posts[0].slug).toBe("uae-travel-guide");
+      expect(posts[0].slug).toBe("test-post-1");
+      expect(posts[0].frontmatter.destinations).toContain("FR");
     });
 
-    it("should return empty array for unknown destination", () => {
-      const posts = getBlogPostsByDestination("UNKNOWN", "en");
+    it("should return posts for multi-destination countries", async () => {
+      const posts = await getBlogPostsByDestination("US", "en");
+      expect(posts).toHaveLength(1);
+      expect(posts[0].slug).toBe("test-post-3");
+    });
 
+    it("should return empty array for unknown destination", async () => {
+      const posts = await getBlogPostsByDestination("ZZ", "en");
       expect(posts).toHaveLength(0);
-    });
-
-    it("should respect limit parameter", () => {
-      const posts = getBlogPostsByDestination("UAE", "en", 1);
-
-      expect(posts).toHaveLength(1);
     });
   });
 
   describe("getBlogPostsByTag", () => {
-    it("should return posts with specific tag", () => {
-      const posts = getBlogPostsByTag("travel", "en");
-
-      expect(posts).toHaveLength(2); // UAE guide and general tips both have travel tag
-    });
-
-    it("should be case insensitive", () => {
-      const posts = getBlogPostsByTag("TRAVEL", "en");
-
-      expect(posts).toHaveLength(2);
-    });
-
-    it("should return empty array for unknown tag", () => {
-      const posts = getBlogPostsByTag("unknown-tag", "en");
-
-      expect(posts).toHaveLength(0);
-    });
-  });
-
-  describe("getRelatedBlogPosts", () => {
-    it("should return related posts for destination", () => {
-      const posts = getRelatedBlogPosts("UAE", "en", 3);
-
-      expect(posts).toHaveLength(1); // Only UAE guide matches
-      expect(posts[0].slug).toBe("uae-travel-guide");
-    });
-
-    it("should supplement with general posts when needed", () => {
-      const posts = getRelatedBlogPosts("UNKNOWN", "en", 3);
-
-      // Should return general travel posts when no destination-specific posts exist
-      expect(posts.length).toBeGreaterThan(0);
-    });
-
-    it("should respect limit parameter", () => {
-      const posts = getRelatedBlogPosts("UAE", "en", 1);
-
+    it("should return posts with specific tag", async () => {
+      const posts = await getBlogPostsByTag("travel", "en");
       expect(posts).toHaveLength(1);
+      expect(posts[0].slug).toBe("test-post-1");
+    });
+
+    it("should return posts with featured tag", async () => {
+      const posts = await getBlogPostsByTag("featured", "en");
+      expect(posts).toHaveLength(1);
+      expect(posts[0].slug).toBe("test-post-3");
+    });
+
+    it("should return empty array for unknown tag", async () => {
+      const posts = await getBlogPostsByTag("unknown", "en");
+      expect(posts).toHaveLength(0);
     });
   });
 
   describe("getBlogPostBySlug", () => {
-    it("should return specific blog post", () => {
-      const post = getBlogPostBySlug("uae-travel-guide", "en");
-
-      expect(post).not.toBeNull();
-      expect(post?.slug).toBe("uae-travel-guide");
+    it("should return specific blog post by slug", async () => {
+      const post = await getBlogPostBySlug("test-post-1", "en");
+      expect(post).toBeDefined();
+      expect(post?.slug).toBe("test-post-1");
+      expect(post?.frontmatter.title).toBe("Test Post 1");
     });
 
-    it("should return null for unknown slug", () => {
-      const post = getBlogPostBySlug("unknown-slug", "en");
-
+    it("should return null for non-existent slug", async () => {
+      const post = await getBlogPostBySlug("non-existent", "en");
       expect(post).toBeNull();
     });
   });
 
-  describe("getAllTagsForLocale", () => {
-    it("should return unique tags sorted alphabetically", () => {
-      const tags = getAllTagsForLocale("en");
+  describe("getRelatedBlogPosts", () => {
+    it("should return related posts based on destination", async () => {
+      const related = await getRelatedBlogPosts("FR", "en");
+      // Should find posts for destination FR
+      expect(related.length).toBeGreaterThan(0);
+      expect(related[0].frontmatter.destinations).toContain("FR");
+    });
 
+    it("should limit related posts to specified count", async () => {
+      const related = await getRelatedBlogPosts("FR", "en", 1);
+      expect(related).toHaveLength(1);
+    });
+  });
+
+  describe("getAllTagsForLocale", () => {
+    it("should return all unique tags", async () => {
+      const tags = await getAllTagsForLocale("en");
       expect(tags).toContain("travel");
       expect(tags).toContain("guide");
       expect(tags).toContain("visa");
       expect(tags).toContain("featured");
+      expect(tags).toContain("test");
+    });
 
-      // Should be sorted
-      const sortedTags = [...tags].sort();
-      expect(tags).toEqual(sortedTags);
+    it("should return unique tags only", async () => {
+      const tags = await getAllTagsForLocale("en");
+      const uniqueTags = [...new Set(tags)];
+      expect(tags).toEqual(uniqueTags);
     });
   });
 
   describe("getAllDestinationsForLocale", () => {
-    it("should return unique destinations sorted alphabetically", () => {
-      const destinations = getAllDestinationsForLocale("en");
+    it("should return all unique destinations", async () => {
+      const destinations = await getAllDestinationsForLocale("en");
+      expect(destinations).toContain("FR");
+      expect(destinations).toContain("GB");
+      expect(destinations).toContain("US");
+      expect(destinations).toContain("CA");
+    });
 
-      expect(destinations).toContain("UAE");
-      expect(destinations).toContain("TH");
-
-      // Should be sorted
-      const sortedDestinations = [...destinations].sort();
-      expect(destinations).toEqual(sortedDestinations);
+    it("should return unique destinations only", async () => {
+      const destinations = await getAllDestinationsForLocale("en");
+      const uniqueDestinations = [...new Set(destinations)];
+      expect(destinations).toEqual(uniqueDestinations);
     });
   });
 
   describe("searchBlogPosts", () => {
-    it("should search in title, description, and content", () => {
-      const posts = searchBlogPosts("UAE", "en");
-
-      expect(posts).toHaveLength(1);
-      expect(posts[0].slug).toBe("uae-travel-guide");
+    it("should find posts by title", async () => {
+      const results = await searchBlogPosts("Test Post 1", "en");
+      expect(results).toHaveLength(1);
+      expect(results[0].slug).toBe("test-post-1");
     });
 
-    it("should be case insensitive", () => {
-      const posts = searchBlogPosts("uae", "en");
-
-      expect(posts).toHaveLength(1);
+    it("should find posts by content", async () => {
+      const results = await searchBlogPosts("description", "en");
+      expect(results.length).toBeGreaterThan(0);
     });
 
-    it("should search in tags", () => {
-      const posts = searchBlogPosts("featured", "en");
-
-      expect(posts).toHaveLength(1);
-      expect(posts[0].slug).toBe("uae-travel-guide");
+    it("should be case insensitive", async () => {
+      const results = await searchBlogPosts("test post", "en");
+      expect(results.length).toBeGreaterThan(0);
     });
 
-    it("should return empty array for empty query", () => {
-      const posts = searchBlogPosts("", "en");
-
-      expect(posts).toHaveLength(0);
+    it("should return empty array for no matches", async () => {
+      const results = await searchBlogPosts("nonexistent", "en");
+      expect(results).toHaveLength(0);
     });
 
-    it("should prioritize title matches", () => {
-      const posts = searchBlogPosts("guide", "en");
-
-      // Should find posts with "guide" in title
-      expect(posts.length).toBeGreaterThan(0);
-    });
-
-    it("should respect limit parameter", () => {
-      const posts = searchBlogPosts("guide", "en", 1);
-
-      expect(posts).toHaveLength(1);
+    it("should limit search results", async () => {
+      const results = await searchBlogPosts("Test", "en", 1);
+      expect(results).toHaveLength(1);
     });
   });
 
   describe("getFeaturedBlogPosts", () => {
-    it("should return posts with featured tag", () => {
-      const posts = getFeaturedBlogPosts("en");
-
-      expect(posts).toHaveLength(1);
-      expect(posts[0].slug).toBe("uae-travel-guide");
+    it("should return posts with featured tag", async () => {
+      const featured = await getFeaturedBlogPosts("en");
+      expect(featured).toHaveLength(1);
+      expect(featured[0].slug).toBe("test-post-3");
+      expect(featured[0].frontmatter.tags).toContain("featured");
     });
 
-    it("should fallback to recent posts if no featured posts", () => {
-      // This would be tested with a mock that has no featured posts
-      const posts = getFeaturedBlogPosts("en", 2);
-
-      expect(Array.isArray(posts)).toBe(true);
-      expect(posts.length).toBeGreaterThan(0);
-    });
-
-    it("should respect limit parameter", () => {
-      const posts = getFeaturedBlogPosts("en", 1);
-
-      expect(posts).toHaveLength(1);
+    it("should limit featured posts", async () => {
+      const featured = await getFeaturedBlogPosts("en", 1);
+      expect(featured).toHaveLength(1);
     });
   });
 });

@@ -34,7 +34,7 @@ export default async function LocalePage({
     await Promise.allSettled([
       getDestinationsListWithMetadata(locale, 8, "popular"),
       getRandomVisaTypes(locale, 6),
-      Promise.resolve(getBlogPostsForLocale(locale).slice(0, 6)),
+      getBlogPostsForLocale(locale).then(posts => posts.slice(0, 6)),
     ]);
 
   // Extract results with fallbacks for failed requests

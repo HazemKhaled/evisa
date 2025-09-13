@@ -73,7 +73,7 @@ export default async function DestinationBlog({
   const postsPerPage = 9;
 
   // Get all blog posts for the locale using service layer
-  const allPosts = getBlogPostsByDestination(destination, locale);
+  const allPosts = await getBlogPostsByDestination(destination, locale);
 
   const totalPosts = allPosts.length;
   const totalPages = Math.ceil(totalPosts / postsPerPage);

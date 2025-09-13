@@ -42,7 +42,10 @@ function validateSortBy(
     "processing_time",
     "visa_fee",
   ] as const;
-  return validSorts.includes(sortBy as any) ? (sortBy as any) : "popular";
+  type ValidSortBy = (typeof validSorts)[number];
+  return validSorts.includes(sortBy as ValidSortBy)
+    ? (sortBy as ValidSortBy)
+    : "popular";
 }
 
 /**

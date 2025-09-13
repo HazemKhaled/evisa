@@ -13,8 +13,8 @@ import {
   generateBreadcrumbData,
 } from "@/lib/json-ld";
 
-// Required when use static generation with search params
-export const revalidate = 86400; // Revalidate every day
+// Enable ISR with daily revalidation for blog list
+export const revalidate = 86400; // 24 hours
 
 // Generate static params for basic locale routes only
 export function generateStaticParams(): { locale: string }[] {
@@ -53,8 +53,8 @@ export default async function BlogHome({
   const currentPage = parseInt(page, 10);
   const postsPerPage = 9;
 
-  // Get all blog posts for the locale using service layer
-  const allPosts = getBlogPostsForLocale(locale);
+  // Get all blog posts for the locale using async service layer
+  const allPosts = await getBlogPostsForLocale(locale);
 
   const totalPosts = allPosts.length;
   const totalPages = Math.ceil(totalPosts / postsPerPage);

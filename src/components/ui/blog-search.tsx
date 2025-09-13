@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import {
-  searchBlogPosts,
+  searchBlogPostsClient,
   type BlogPostData,
-} from "@/lib/services/blog-service";
+} from "@/lib/services/blog-service-client";
 import { useTranslation } from "@/app/i18n/client";
 import { ClientBlogPostCard } from "./client-blog-post-card";
 
@@ -15,11 +15,7 @@ interface BlogSearchProps {
   className?: string;
 }
 
-export function BlogSearch({
-  locale,
-  allPosts: _allPosts,
-  className,
-}: BlogSearchProps) {
+export function BlogSearch({ locale, allPosts, className }: BlogSearchProps) {
   const [query, setQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState<BlogPostData[]>([]);
@@ -37,9 +33,9 @@ export function BlogSearch({
     setIsSearching(true);
 
     // Debounce search
-    const timeoutId = setTimeout(async () => {
+    const timeoutId = setTimeout(() => {
       try {
-        const results = searchBlogPosts(query, locale, 12);
+        const results = searchBlogPostsClient(allPosts, query, 12);
         setSearchResults(results);
       } catch {
         setSearchResults([]);
@@ -49,7 +45,7 @@ export function BlogSearch({
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [query, locale]);
+  }, [query, allPosts]);
 
   const handleClear = () => {
     setQuery("");

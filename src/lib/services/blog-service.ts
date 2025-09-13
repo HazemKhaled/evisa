@@ -1,17 +1,25 @@
+import "server-only";
+
 /**
  * Blog Service Layer
  *
  * Handles blog post data fetching, filtering, and processing for the travel blog system.
  * Integrates with MDX content processing and multilingual support.
+ * Now uses runtime MDX compilation with ISR caching.
+ * Server-only module for MDX processing operations.
  */
 
-import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
+import {
+  getBlogPostsForLocale as getMDXBlogPostsForLocale,
+  getBlogPost as getMDXBlogPost,
+  getAllUniqueTags as getMDXAllUniqueTags,
+  getAllBlogPosts as getMDXAllBlogPosts,
+} from "./mdx-service";
 import type {
   BlogPostData,
   BlogFilterOptions,
   PaginatedBlogResponse,
 } from "../types/blog";
-import { languages } from "@/app/i18n/settings";
 
 // Re-export types from shared module for application use
 export type {
@@ -23,12 +31,12 @@ export type {
 /**
  * Get all blog posts for a specific locale with optional filtering and pagination
  */
-export function getAllBlogPosts(
+export async function getAllBlogPosts(
   locale: string,
   limit?: number
-): BlogPostData[] {
+): Promise<BlogPostData[]> {
   try {
-    const posts = getGeneratedBlogPostsForLocale(locale);
+    const posts = await getMDXBlogPostsForLocale(locale);
 
     if (limit) {
       return posts.slice(0, limit);
@@ -44,9 +52,9 @@ export function getAllBlogPosts(
 /**
  * Get blog posts with advanced filtering and pagination
  */
-export function getBlogPosts(
+export async function getBlogPosts(
   options: BlogFilterOptions
-): PaginatedBlogResponse {
+): Promise<PaginatedBlogResponse> {
   try {
     const {
       locale,
@@ -57,7 +65,7 @@ export function getBlogPosts(
       author,
     } = options;
 
-    let posts = getGeneratedBlogPostsForLocale(locale);
+    let posts = await getMDXBlogPostsForLocale(locale);
 
     // Apply filters
     if (tag) {
@@ -119,13 +127,13 @@ export function getBlogPosts(
 /**
  * Get blog posts filtered by destination
  */
-export function getBlogPostsByDestination(
+export async function getBlogPostsByDestination(
   destination: string,
   locale: string,
   limit?: number
-): BlogPostData[] {
+): Promise<BlogPostData[]> {
   try {
-    let posts = getGeneratedBlogPostsForLocale(locale);
+    let posts = await getMDXBlogPostsForLocale(locale);
 
     // Filter by destination (exact match)
     posts = posts.filter((post: BlogPostData) =>
@@ -155,13 +163,13 @@ export function getBlogPostsByDestination(
 /**
  * Get blog posts filtered by tag
  */
-export function getBlogPostsByTag(
+export async function getBlogPostsByTag(
   tag: string,
   locale: string,
   limit?: number
-): BlogPostData[] {
+): Promise<BlogPostData[]> {
   try {
-    let posts = getGeneratedBlogPostsForLocale(locale);
+    let posts = await getMDXBlogPostsForLocale(locale);
 
     // Filter by tag (case-insensitive partial match)
     posts = posts.filter((post: BlogPostData) =>
@@ -191,13 +199,13 @@ export function getBlogPostsByTag(
 /**
  * Get related blog posts for destination page integration
  */
-export function getRelatedBlogPosts(
+export async function getRelatedBlogPosts(
   destination: string,
   locale: string,
   limit: number = 3
-): BlogPostData[] {
+): Promise<BlogPostData[]> {
   try {
-    const posts = getGeneratedBlogPostsForLocale(locale);
+    const posts = await getMDXBlogPostsForLocale(locale);
 
     // Filter by destination - prioritize exact destination matches
     const destinationPosts = posts.filter((post: BlogPostData) =>
@@ -250,15 +258,12 @@ export function getRelatedBlogPosts(
 /**
  * Get a single blog post by slug
  */
-export function getBlogPostBySlug(
+export async function getBlogPostBySlug(
   slug: string,
   locale: string
-): BlogPostData | null {
+): Promise<BlogPostData | null> {
   try {
-    const posts = getGeneratedBlogPostsForLocale(locale);
-    const post = posts.find((p: BlogPostData) => p.slug === slug);
-
-    return post || null;
+    return await getMDXBlogPost(locale, slug);
   } catch {
     // Graceful degradation - return null if content unavailable
     return null;
@@ -268,15 +273,15 @@ export function getBlogPostBySlug(
 /**
  * Get all unique tags from all blog posts for a locale
  */
-export function getAllTagsForLocale(locale: string): string[] {
+export async function getAllTagsForLocale(locale: string): Promise<string[]> {
   try {
-    const posts = getGeneratedBlogPostsForLocale(locale);
+    const posts = await getMDXBlogPostsForLocale(locale);
     const allTags = posts.flatMap(
       (post: BlogPostData) => post.frontmatter.tags || []
     );
     const uniqueTags = [...new Set(allTags)];
 
-    return uniqueTags.sort();
+    return (uniqueTags as string[]).sort();
   } catch {
     // Graceful degradation - return empty array if content unavailable
     return [];
@@ -286,15 +291,17 @@ export function getAllTagsForLocale(locale: string): string[] {
 /**
  * Get all unique destinations from all blog posts for a locale
  */
-export function getAllDestinationsForLocale(locale: string): string[] {
+export async function getAllDestinationsForLocale(
+  locale: string
+): Promise<string[]> {
   try {
-    const posts = getGeneratedBlogPostsForLocale(locale);
+    const posts = await getMDXBlogPostsForLocale(locale);
     const allDestinations = posts.flatMap(
       (post: BlogPostData) => post.frontmatter.destinations || []
     );
     const uniqueDestinations = [...new Set(allDestinations)];
 
-    return uniqueDestinations.sort();
+    return (uniqueDestinations as string[]).sort();
   } catch {
     // Graceful degradation - return empty array if content unavailable
     return [];
@@ -304,18 +311,18 @@ export function getAllDestinationsForLocale(locale: string): string[] {
 /**
  * Search blog posts by text content (title, description, content)
  */
-export function searchBlogPosts(
+export async function searchBlogPosts(
   query: string,
   locale: string,
   limit?: number
-): BlogPostData[] {
+): Promise<BlogPostData[]> {
   try {
     if (!query || query.trim().length === 0) {
       return [];
     }
 
     const searchTerm = query.toLowerCase().trim();
-    let posts = getGeneratedBlogPostsForLocale(locale);
+    let posts = await getMDXBlogPostsForLocale(locale);
 
     // Search in title, description, and content
     posts = posts.filter((post: BlogPostData) => {
@@ -368,12 +375,12 @@ export function searchBlogPosts(
 /**
  * Get featured blog posts (posts marked with featured tag or most popular)
  */
-export function getFeaturedBlogPosts(
+export async function getFeaturedBlogPosts(
   locale: string,
   limit: number = 5
-): BlogPostData[] {
+): Promise<BlogPostData[]> {
   try {
-    const posts = getGeneratedBlogPostsForLocale(locale);
+    const posts = await getMDXBlogPostsForLocale(locale);
 
     // First, try to get posts with 'featured' tag
     const featuredPosts = posts.filter((post: BlogPostData) =>
@@ -407,16 +414,21 @@ export function getFeaturedBlogPosts(
 }
 
 /**
- * Get a single blog post by slug and locale (runtime version using generated data)
+ * Get a single blog post by slug and locale (runtime version using MDX service)
  */
-export function getBlogPost(slug: string, locale: string): BlogPostData | null {
+export async function getBlogPost(
+  slug: string,
+  locale: string
+): Promise<BlogPostData | null> {
   return getBlogPostBySlug(slug, locale);
 }
 
 /**
- * Get all blog posts for a specific locale (runtime version using generated data)
+ * Get all blog posts for a specific locale (runtime version using MDX service)
  */
-export function getBlogPostsForLocale(locale: string): BlogPostData[] {
+export async function getBlogPostsForLocale(
+  locale: string
+): Promise<BlogPostData[]> {
   return getAllBlogPosts(locale);
 }
 
@@ -425,16 +437,7 @@ export function getBlogPostsForLocale(locale: string): BlogPostData[] {
  */
 export function getAllBlogPostSlugs(): { locale: string; slug: string }[] {
   try {
-    const allSlugs: { locale: string; slug: string }[] = [];
-
-    for (const locale of languages) {
-      const posts = getAllBlogPosts(locale);
-      for (const post of posts) {
-        allSlugs.push({ locale, slug: post.slug });
-      }
-    }
-
-    return allSlugs;
+    return getMDXAllBlogPosts();
   } catch {
     return [];
   }
@@ -443,16 +446,9 @@ export function getAllBlogPostSlugs(): { locale: string; slug: string }[] {
 /**
  * Get all unique tags across all locales for generateStaticParams
  */
-export function getAllUniqueTagsAcrossLocales(): string[] {
+export async function getAllUniqueTagsAcrossLocales(): Promise<string[]> {
   try {
-    const allTags = new Set<string>();
-
-    for (const locale of languages) {
-      const localeTags = getAllTagsForLocale(locale);
-      localeTags.forEach(tag => allTags.add(tag));
-    }
-
-    return Array.from(allTags).sort();
+    return await getMDXAllUniqueTags();
   } catch {
     return [];
   }
@@ -461,6 +457,8 @@ export function getAllUniqueTagsAcrossLocales(): string[] {
 /**
  * Get blog posts for a specific locale (alias for getBlogPostsForLocale for sitemap compatibility)
  */
-export function getBlogDataForLocale(locale: string): BlogPostData[] {
+export async function getBlogDataForLocale(
+  locale: string
+): Promise<BlogPostData[]> {
   return getBlogPostsForLocale(locale);
 }

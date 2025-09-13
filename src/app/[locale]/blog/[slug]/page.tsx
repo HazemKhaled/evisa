@@ -2,7 +2,6 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   getBlogPost,
-  getAllBlogPostSlugs,
   getBlogPostsForLocale,
 } from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
@@ -21,14 +20,8 @@ interface BlogPostProps {
   params: Promise<{ locale: string; slug: string }>;
 }
 
-export function generateStaticParams() {
-  const blogPosts = getAllBlogPostSlugs();
-
-  return blogPosts.map(({ locale, slug }) => ({
-    locale,
-    slug,
-  }));
-}
+// Enable ISR with 1 hour revalidation
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -37,7 +30,7 @@ export async function generateMetadata({
   const { t } = await getTranslation(locale, "pages");
 
   try {
-    const blogPost = getBlogPost(slug, locale);
+    const blogPost = await getBlogPost(slug, locale);
 
     if (!blogPost) {
       return {

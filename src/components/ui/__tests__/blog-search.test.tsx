@@ -9,11 +9,11 @@ import {
 import { BlogSearch } from "../blog-search";
 import type { BlogPostData } from "../../../lib/services/blog-service";
 
-// Mock the blog service
-import { searchBlogPosts } from "../../../lib/services/blog-service";
+// Mock the blog service client
+import { searchBlogPostsClient } from "../../../lib/services/blog-service-client";
 
-jest.mock("../../../lib/services/blog-service", () => ({
-  searchBlogPosts: jest.fn(),
+jest.mock("../../../lib/services/blog-service-client", () => ({
+  searchBlogPostsClient: jest.fn(),
 }));
 
 // Mock the client-side translation hook
@@ -34,8 +34,8 @@ jest.mock("../../../app/i18n/client", () => ({
   })),
 }));
 
-const mockSearchBlogPosts = searchBlogPosts as jest.MockedFunction<
-  typeof searchBlogPosts
+const mockSearchBlogPostsClient = searchBlogPostsClient as jest.MockedFunction<
+  typeof searchBlogPostsClient
 >;
 
 const mockPosts: BlogPostData[] = [
@@ -73,7 +73,7 @@ const mockPosts: BlogPostData[] = [
 
 describe("BlogSearch", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    mockSearchBlogPostsClient.mockClear();
   });
 
   it("renders search input with placeholder", () => {
@@ -85,7 +85,7 @@ describe("BlogSearch", () => {
   });
 
   it("shows searching state when typing", async () => {
-    mockSearchBlogPosts.mockReturnValue(mockPosts);
+    mockSearchBlogPostsClient.mockReturnValue(mockPosts);
 
     render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
@@ -96,7 +96,7 @@ describe("BlogSearch", () => {
   });
 
   it("displays search results when query returns posts", async () => {
-    mockSearchBlogPosts.mockReturnValue([mockPosts[0]]);
+    mockSearchBlogPostsClient.mockReturnValue([mockPosts[0]]);
 
     render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
@@ -110,7 +110,7 @@ describe("BlogSearch", () => {
   });
 
   it("displays no results message when query returns no posts", async () => {
-    mockSearchBlogPosts.mockReturnValue([]);
+    mockSearchBlogPostsClient.mockReturnValue([]);
 
     render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
@@ -126,7 +126,7 @@ describe("BlogSearch", () => {
   });
 
   it("clears search when clear button is clicked", async () => {
-    mockSearchBlogPosts.mockReturnValue([mockPosts[0]]);
+    mockSearchBlogPostsClient.mockReturnValue([mockPosts[0]]);
 
     render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
@@ -145,7 +145,7 @@ describe("BlogSearch", () => {
   });
 
   it("shows correct plural/singular form for results count", async () => {
-    mockSearchBlogPosts.mockReturnValue(mockPosts);
+    mockSearchBlogPostsClient.mockReturnValue(mockPosts);
 
     render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
@@ -158,7 +158,7 @@ describe("BlogSearch", () => {
   });
 
   it("handles search errors gracefully", async () => {
-    mockSearchBlogPosts.mockImplementation(() => {
+    mockSearchBlogPostsClient.mockImplementation(() => {
       throw new Error("Search failed");
     });
 
@@ -174,7 +174,7 @@ describe("BlogSearch", () => {
 
   it("debounces search queries", async () => {
     jest.useFakeTimers();
-    mockSearchBlogPosts.mockReturnValue([]);
+    mockSearchBlogPostsClient.mockReturnValue([]);
 
     render(<BlogSearch locale="en" allPosts={mockPosts} />);
 
@@ -187,15 +187,19 @@ describe("BlogSearch", () => {
     fireEvent.change(input, { target: { value: "test" } });
 
     // Only one search should be called after debounce
-    expect(mockSearchBlogPosts).not.toHaveBeenCalled();
+    expect(mockSearchBlogPostsClient).not.toHaveBeenCalled();
 
     // Fast-forward time
     act(() => {
       jest.advanceTimersByTime(300);
     });
 
-    expect(mockSearchBlogPosts).toHaveBeenCalledTimes(1);
-    expect(mockSearchBlogPosts).toHaveBeenCalledWith("test", "en", 12);
+    expect(mockSearchBlogPostsClient).toHaveBeenCalledTimes(1);
+    expect(mockSearchBlogPostsClient).toHaveBeenCalledWith(
+      mockPosts,
+      "test",
+      12
+    );
 
     jest.useRealTimers();
   });
