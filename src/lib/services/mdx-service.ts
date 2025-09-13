@@ -16,8 +16,9 @@ import { validateBlogPost } from "../blog-validation";
 import { type BlogPostData } from "../types/blog";
 import { languages } from "@/app/i18n/settings";
 
-// Runtime cache for compiled MDX content
-const mdxCache = new Map<string, BlogPostData>();
+// Multi-level cache for MDX content
+const postCache = new Map<string, BlogPostData>();
+const postsListCache = new Map<string, BlogPostData[]>();
 const tagsCache = new Map<string, string[]>();
 const allPostsCache = new Map<string, { locale: string; slug: string }[]>();
 
@@ -50,6 +51,13 @@ function setCacheEntry<T>(key: string, value: T, cache: Map<string, T>): void {
 }
 
 /**
+ * Get cache entry for posts list
+ */
+function getPostsListCacheKey(locale: string): string {
+  return `posts-list:${locale}`;
+}
+
+/**
  * Get the blog content directory for a locale
  */
 function getBlogDirectory(locale: string): string {
@@ -74,10 +82,24 @@ async function parseMDXFile(
       return null;
     }
 
+    // For now, store the raw content and handle compilation at render time
+    // This avoids build-time compilation issues and allows for better error handling
+    let compiledContent: string;
+    try {
+      // Store raw content - we'll compile at render time for better flexibility
+      compiledContent = content;
+    } catch (compilationError) {
+      console.error(`MDX processing failed for ${slug}:`, compilationError);
+      // Fallback to raw content if processing fails
+      compiledContent = content;
+    }
+
     return {
-      content,
+      content: compiledContent,
       slug,
       frontmatter: frontmatter as BlogPostData["frontmatter"],
+      // Store original raw content for fallback scenarios
+      rawContent: content,
     };
   } catch (error) {
     console.error(`Error parsing MDX file ${filePath}:`, error);
@@ -86,16 +108,16 @@ async function parseMDXFile(
 }
 
 /**
- * Get all blog posts for a specific locale with caching
+ * Get all blog posts for a specific locale with proper caching
  */
 export async function getBlogPostsForLocale(
   locale: string
 ): Promise<BlogPostData[]> {
-  const cacheKey = getCacheKey(locale);
+  const cacheKey = getPostsListCacheKey(locale);
 
   // Check cache first
-  if (isCacheValid(cacheKey) && mdxCache.has(cacheKey)) {
-    return [mdxCache.get(cacheKey)!].filter(Boolean);
+  if (isCacheValid(cacheKey) && postsListCache.has(cacheKey)) {
+    return postsListCache.get(cacheKey)!;
   }
 
   const blogDir = getBlogDirectory(locale);
@@ -105,10 +127,19 @@ export async function getBlogPostsForLocale(
     // Check if directory exists
     if (!fs.existsSync(blogDir)) {
       console.warn(`Blog directory does not exist for locale: ${locale}`);
+      setCacheEntry(cacheKey, [], postsListCache);
       return [];
     }
 
     const files = fs.readdirSync(blogDir).filter(file => file.endsWith(".mdx"));
+
+    if (files.length === 0) {
+      console.warn(
+        `No MDX files found in blog directory for locale: ${locale}`
+      );
+      setCacheEntry(cacheKey, [], postsListCache);
+      return [];
+    }
 
     // Process files in parallel for better performance
     const parsePromises = files.map(async file => {
@@ -125,7 +156,7 @@ export async function getBlogPostsForLocale(
         blogPosts.push(result);
         // Cache individual posts
         const postCacheKey = getCacheKey(locale, result.slug);
-        setCacheEntry(postCacheKey, result, mdxCache);
+        setCacheEntry(postCacheKey, result, postCache);
       }
     }
 
@@ -136,9 +167,13 @@ export async function getBlogPostsForLocale(
         new Date(a.frontmatter.publishedAt).getTime()
     );
 
+    // Cache the sorted posts list
+    setCacheEntry(cacheKey, blogPosts, postsListCache);
+
     return blogPosts;
   } catch (error) {
     console.error(`Error reading blog posts for locale ${locale}:`, error);
+    setCacheEntry(cacheKey, [], postsListCache);
     return [];
   }
 }
@@ -153,8 +188,8 @@ export async function getBlogPost(
   const cacheKey = getCacheKey(locale, slug);
 
   // Check cache first
-  if (isCacheValid(cacheKey) && mdxCache.has(cacheKey)) {
-    return mdxCache.get(cacheKey) || null;
+  if (isCacheValid(cacheKey) && postCache.has(cacheKey)) {
+    return postCache.get(cacheKey) || null;
   }
 
   const blogDir = getBlogDirectory(locale);
@@ -168,7 +203,7 @@ export async function getBlogPost(
     const post = await parseMDXFile(filePath, slug);
 
     if (post) {
-      setCacheEntry(cacheKey, post, mdxCache);
+      setCacheEntry(cacheKey, post, postCache);
     }
 
     return post;
@@ -276,20 +311,26 @@ export async function compileMDX(content: string): Promise<string> {
 export function invalidateCache(locale?: string, slug?: string): void {
   if (locale && slug) {
     const cacheKey = getCacheKey(locale, slug);
-    mdxCache.delete(cacheKey);
+    postCache.delete(cacheKey);
     cacheTimestamps.delete(cacheKey);
   } else if (locale) {
     // Clear all entries for a locale
-    const keys = Array.from(mdxCache.keys()).filter(key =>
+    const postKeys = Array.from(postCache.keys()).filter(key =>
       key.startsWith(`${locale}:`)
     );
-    for (const key of keys) {
-      mdxCache.delete(key);
+    for (const key of postKeys) {
+      postCache.delete(key);
       cacheTimestamps.delete(key);
     }
+
+    // Clear posts list cache for locale
+    const postsListKey = getPostsListCacheKey(locale);
+    postsListCache.delete(postsListKey);
+    cacheTimestamps.delete(postsListKey);
   } else {
     // Clear all caches
-    mdxCache.clear();
+    postCache.clear();
+    postsListCache.clear();
     tagsCache.clear();
     allPostsCache.clear();
     cacheTimestamps.clear();
@@ -301,9 +342,14 @@ export function invalidateCache(locale?: string, slug?: string): void {
  */
 export function getCacheStats() {
   return {
-    mdxCacheSize: mdxCache.size,
+    postCacheSize: postCache.size,
+    postsListCacheSize: postsListCache.size,
     tagsCacheSize: tagsCache.size,
     allPostsCacheSize: allPostsCache.size,
-    totalCacheEntries: mdxCache.size + tagsCache.size + allPostsCache.size,
+    totalCacheEntries:
+      postCache.size +
+      postsListCache.size +
+      tagsCache.size +
+      allPostsCache.size,
   };
 }

@@ -420,7 +420,20 @@ export async function getBlogPost(
   slug: string,
   locale: string
 ): Promise<BlogPostData | null> {
-  return getBlogPostBySlug(slug, locale);
+  try {
+    if (!slug || !locale) {
+      console.warn(`Invalid parameters: slug="${slug}", locale="${locale}"`);
+      return null;
+    }
+
+    return await getMDXBlogPost(locale, slug);
+  } catch (error) {
+    console.error(
+      `Error fetching blog post ${slug} for locale ${locale}:`,
+      error
+    );
+    return null;
+  }
 }
 
 /**
@@ -429,7 +442,17 @@ export async function getBlogPost(
 export async function getBlogPostsForLocale(
   locale: string
 ): Promise<BlogPostData[]> {
-  return getAllBlogPosts(locale);
+  try {
+    if (!locale) {
+      console.warn(`Invalid locale parameter: "${locale}"`);
+      return [];
+    }
+
+    return await getAllBlogPosts(locale);
+  } catch (error) {
+    console.error(`Error fetching blog posts for locale ${locale}:`, error);
+    return [];
+  }
 }
 
 /**

@@ -26,6 +26,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </h3>
     ),
+    h4: ({ children, ...props }) => (
+      <h4
+        className="mt-6 mb-3 text-xl font-semibold tracking-tight text-gray-900"
+        {...props}
+      >
+        {children}
+      </h4>
+    ),
     p: ({ children, ...props }) => (
       <p className="mb-6 text-lg leading-relaxed text-gray-600" {...props}>
         {children}

@@ -6,7 +6,7 @@
  */
 
 export interface BlogPostData {
-  content: string;
+  content: string; // Compiled MDX content
   slug: string;
   frontmatter: {
     title: string;
@@ -21,6 +21,7 @@ export interface BlogPostData {
     lastUpdated?: string;
     [key: string]: unknown;
   };
+  rawContent?: string; // Original markdown content for fallback
 }
 
 export interface BlogFilterOptions {
