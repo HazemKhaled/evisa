@@ -21,6 +21,19 @@ import type {
   PaginatedBlogResponse,
 } from "../types/blog";
 
+/**
+ * Get all blog post slugs across all locales for generateStaticParams
+ */
+export async function getAllBlogPostSlugs(): Promise<
+  { locale: string; slug: string }[]
+> {
+  try {
+    return await getMDXAllBlogPosts();
+  } catch {
+    return [];
+  }
+}
+
 // Re-export types from shared module for application use
 export type {
   BlogPostData,
@@ -451,17 +464,6 @@ export async function getBlogPostsForLocale(
     return await getAllBlogPosts(locale);
   } catch (error) {
     console.error(`Error fetching blog posts for locale ${locale}:`, error);
-    return [];
-  }
-}
-
-/**
- * Get all blog post slugs for generateStaticParams
- */
-export function getAllBlogPostSlugs(): { locale: string; slug: string }[] {
-  try {
-    return getMDXAllBlogPosts();
-  } catch {
     return [];
   }
 }

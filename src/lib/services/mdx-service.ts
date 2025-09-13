@@ -16,45 +16,138 @@ import { validateBlogPost } from "../blog-validation";
 import { type BlogPostData } from "../types/blog";
 import { languages } from "@/app/i18n/settings";
 
-// Multi-level cache for MDX content
-const postCache = new Map<string, BlogPostData>();
-const postsListCache = new Map<string, BlogPostData[]>();
-const tagsCache = new Map<string, string[]>();
-const allPostsCache = new Map<string, { locale: string; slug: string }[]>();
+// Cloudflare Cache API configuration
+const CACHE_NAME = "mdx-service-cache";
+const CACHE_TTL = 60 * 60; // 1 hour in seconds for Cache-Control header
 
-// Cache TTL in milliseconds (1 hour for development, can be adjusted for production)
-const CACHE_TTL = 60 * 60 * 1000;
-const cacheTimestamps = new Map<string, number>();
-
-/**
- * Generate cache key for blog post
- */
-function getCacheKey(locale: string, slug?: string): string {
-  return slug ? `${locale}:${slug}` : `${locale}:all`;
+// Type for global cache fallback (development only)
+declare global {
+  var __mdx_cache:
+    | Map<string, { data: unknown; timestamp: number }>
+    | undefined;
 }
 
 /**
- * Check if cache entry is still valid
+ * Get Cloudflare Cache API instance
+ * In production (Cloudflare Workers), uses caches.default or named cache
+ * In development, uses a simple in-memory fallback
  */
-function isCacheValid(key: string): boolean {
-  const timestamp = cacheTimestamps.get(key);
-  if (!timestamp) return false;
-  return Date.now() - timestamp < CACHE_TTL;
+async function getCache(): Promise<Cache> {
+  // Check if we're in Cloudflare Workers environment
+  if (typeof caches !== "undefined") {
+    // Use named cache for better organization
+    return await caches.open(CACHE_NAME);
+  }
+
+  // Development fallback - simple in-memory cache
+  if (typeof global !== "undefined") {
+    if (!global.__mdx_cache) {
+      global.__mdx_cache = new Map();
+    }
+
+    // Return a Cache-like interface for development
+    return {
+      async match(request: RequestInfo | URL): Promise<Response | undefined> {
+        const key =
+          request instanceof Request ? request.url : request.toString();
+        const cached = global.__mdx_cache?.get(key);
+        if (!cached) return undefined;
+
+        const { data, timestamp } = cached;
+        if (Date.now() - timestamp > CACHE_TTL * 1000) {
+          global.__mdx_cache?.delete(key);
+          return undefined;
+        }
+
+        return new Response(JSON.stringify(data), {
+          headers: {
+            "content-type": "application/json",
+            "cache-control": `public, max-age=${CACHE_TTL}`,
+          },
+        });
+      },
+
+      async put(request: RequestInfo | URL, response: Response): Promise<void> {
+        const key =
+          request instanceof Request ? request.url : request.toString();
+        // Clone the response to read its data
+        const responseClone = response.clone();
+        const data = await responseClone.json();
+        global.__mdx_cache?.set(key, { data, timestamp: Date.now() });
+      },
+
+      async delete(request: RequestInfo | URL): Promise<boolean> {
+        const key =
+          request instanceof Request ? request.url : request.toString();
+        return global.__mdx_cache?.delete(key) || false;
+      },
+    } as Cache;
+  }
+
+  throw new Error("Cache API not available");
 }
 
 /**
- * Set cache entry with timestamp
+ * Generate cache key URL for blog post
+ * Uses a consistent URL pattern that works well with Cloudflare Cache API
  */
-function setCacheEntry<T>(key: string, value: T, cache: Map<string, T>): void {
-  cache.set(key, value);
-  cacheTimestamps.set(key, Date.now());
+function getCacheKey(
+  locale: string,
+  slug?: string,
+  type: string = "post"
+): string {
+  const baseKey = slug ? `${locale}/${slug}` : `${locale}/all`;
+  // Use a consistent domain that won't conflict with actual requests
+  return `https://mdx-cache.internal/${type}/${baseKey}`;
 }
 
 /**
- * Get cache entry for posts list
+ * Get data from Cloudflare Cache
  */
-function getPostsListCacheKey(locale: string): string {
-  return `posts-list:${locale}`;
+async function getFromCache<T>(cacheKey: string): Promise<T | null> {
+  try {
+    const cache = await getCache();
+    const request = new Request(cacheKey, { method: "GET" });
+    const response = await cache.match(request);
+
+    if (!response) {
+      return null;
+    }
+
+    // Parse the cached JSON data
+    const data = await response.json();
+    return data as T;
+  } catch (error) {
+    console.warn("Cache read error:", error);
+    return null;
+  }
+}
+
+/**
+ * Set data in Cloudflare Cache
+ */
+async function setInCache<T>(cacheKey: string, data: T): Promise<void> {
+  try {
+    const cache = await getCache();
+    const request = new Request(cacheKey, { method: "GET" });
+
+    // Create response with proper headers for caching
+    const response = new Response(JSON.stringify(data), {
+      status: 200,
+      headers: {
+        "content-type": "application/json",
+        "cache-control": `public, max-age=${CACHE_TTL}`,
+        // Add ETag for better cache validation
+        etag: `"${Date.now()}"`,
+        "last-modified": new Date().toUTCString(),
+      },
+    });
+
+    // Store in cache - cache.put handles cloning internally
+    await cache.put(request, response);
+  } catch (error) {
+    console.warn("Cache write error:", error);
+  }
 }
 
 /**
@@ -113,11 +206,12 @@ async function parseMDXFile(
 export async function getBlogPostsForLocale(
   locale: string
 ): Promise<BlogPostData[]> {
-  const cacheKey = getPostsListCacheKey(locale);
+  const cacheKey = getCacheKey(locale, undefined, "posts-list");
 
   // Check cache first
-  if (isCacheValid(cacheKey) && postsListCache.has(cacheKey)) {
-    return postsListCache.get(cacheKey)!;
+  const cachedPosts = await getFromCache<BlogPostData[]>(cacheKey);
+  if (cachedPosts) {
+    return cachedPosts;
   }
 
   const blogDir = getBlogDirectory(locale);
@@ -127,7 +221,7 @@ export async function getBlogPostsForLocale(
     // Check if directory exists
     if (!fs.existsSync(blogDir)) {
       console.warn(`Blog directory does not exist for locale: ${locale}`);
-      setCacheEntry(cacheKey, [], postsListCache);
+      await setInCache(cacheKey, []);
       return [];
     }
 
@@ -137,7 +231,7 @@ export async function getBlogPostsForLocale(
       console.warn(
         `No MDX files found in blog directory for locale: ${locale}`
       );
-      setCacheEntry(cacheKey, [], postsListCache);
+      await setInCache(cacheKey, []);
       return [];
     }
 
@@ -155,8 +249,8 @@ export async function getBlogPostsForLocale(
       if (result) {
         blogPosts.push(result);
         // Cache individual posts
-        const postCacheKey = getCacheKey(locale, result.slug);
-        setCacheEntry(postCacheKey, result, postCache);
+        const postCacheKey = getCacheKey(locale, result.slug, "post");
+        await setInCache(postCacheKey, result);
       }
     }
 
@@ -168,12 +262,12 @@ export async function getBlogPostsForLocale(
     );
 
     // Cache the sorted posts list
-    setCacheEntry(cacheKey, blogPosts, postsListCache);
+    await setInCache(cacheKey, blogPosts);
 
     return blogPosts;
   } catch (error) {
     console.error(`Error reading blog posts for locale ${locale}:`, error);
-    setCacheEntry(cacheKey, [], postsListCache);
+    await setInCache(cacheKey, []);
     return [];
   }
 }
@@ -185,11 +279,12 @@ export async function getBlogPost(
   locale: string,
   slug: string
 ): Promise<BlogPostData | null> {
-  const cacheKey = getCacheKey(locale, slug);
+  const cacheKey = getCacheKey(locale, slug, "post");
 
   // Check cache first
-  if (isCacheValid(cacheKey) && postCache.has(cacheKey)) {
-    return postCache.get(cacheKey) || null;
+  const cachedPost = await getFromCache<BlogPostData>(cacheKey);
+  if (cachedPost) {
+    return cachedPost;
   }
 
   const blogDir = getBlogDirectory(locale);
@@ -203,7 +298,7 @@ export async function getBlogPost(
     const post = await parseMDXFile(filePath, slug);
 
     if (post) {
-      setCacheEntry(cacheKey, post, postCache);
+      await setInCache(cacheKey, post);
     }
 
     return post;
@@ -217,11 +312,12 @@ export async function getBlogPost(
  * Get all unique tags from all blog posts across all locales
  */
 export async function getAllUniqueTags(): Promise<string[]> {
-  const cacheKey = "all-tags";
+  const cacheKey = getCacheKey("all", undefined, "tags");
 
   // Check cache first
-  if (isCacheValid(cacheKey) && tagsCache.has(cacheKey)) {
-    return tagsCache.get(cacheKey)!;
+  const cachedTags = await getFromCache<string[]>(cacheKey);
+  if (cachedTags) {
+    return cachedTags;
   }
 
   const allTags = new Set<string>();
@@ -242,7 +338,7 @@ export async function getAllUniqueTags(): Promise<string[]> {
   }
 
   const uniqueTags = Array.from(allTags).sort();
-  setCacheEntry(cacheKey, uniqueTags, tagsCache);
+  await setInCache(cacheKey, uniqueTags);
 
   return uniqueTags;
 }
@@ -250,12 +346,16 @@ export async function getAllUniqueTags(): Promise<string[]> {
 /**
  * Get all blog posts across all locales for generateStaticParams
  */
-export function getAllBlogPosts(): { locale: string; slug: string }[] {
-  const cacheKey = "all-posts";
+export async function getAllBlogPosts(): Promise<
+  { locale: string; slug: string }[]
+> {
+  const cacheKey = getCacheKey("all", undefined, "all-posts");
 
   // Check cache first
-  if (isCacheValid(cacheKey) && allPostsCache.has(cacheKey)) {
-    return allPostsCache.get(cacheKey)!;
+  const cachedAllPosts =
+    await getFromCache<{ locale: string; slug: string }[]>(cacheKey);
+  if (cachedAllPosts) {
+    return cachedAllPosts;
   }
 
   const allPosts: { locale: string; slug: string }[] = [];
@@ -284,7 +384,7 @@ export function getAllBlogPosts(): { locale: string; slug: string }[] {
     }
   }
 
-  setCacheEntry(cacheKey, allPosts, allPostsCache);
+  await setInCache(cacheKey, allPosts);
   return allPosts;
 }
 
@@ -308,32 +408,41 @@ export async function compileMDX(content: string): Promise<string> {
 /**
  * Invalidate cache for a specific entry or all entries
  */
-export function invalidateCache(locale?: string, slug?: string): void {
-  if (locale && slug) {
-    const cacheKey = getCacheKey(locale, slug);
-    postCache.delete(cacheKey);
-    cacheTimestamps.delete(cacheKey);
-  } else if (locale) {
-    // Clear all entries for a locale
-    const postKeys = Array.from(postCache.keys()).filter(key =>
-      key.startsWith(`${locale}:`)
-    );
-    for (const key of postKeys) {
-      postCache.delete(key);
-      cacheTimestamps.delete(key);
-    }
+export async function invalidateCache(
+  locale?: string,
+  slug?: string
+): Promise<void> {
+  try {
+    const cache = await getCache();
 
-    // Clear posts list cache for locale
-    const postsListKey = getPostsListCacheKey(locale);
-    postsListCache.delete(postsListKey);
-    cacheTimestamps.delete(postsListKey);
-  } else {
-    // Clear all caches
-    postCache.clear();
-    postsListCache.clear();
-    tagsCache.clear();
-    allPostsCache.clear();
-    cacheTimestamps.clear();
+    if (locale && slug) {
+      // Invalidate specific post
+      const cacheKey = getCacheKey(locale, slug, "post");
+      const request = new Request(cacheKey);
+      await cache.delete(request);
+    } else if (locale) {
+      // For Cloudflare Cache API, we need to manually track and delete entries
+      // In a real implementation, you might want to use a different strategy
+      // like cache tags or structured keys for bulk invalidation
+
+      // Invalidate posts list for locale
+      const postsListKey = getCacheKey(locale, undefined, "posts-list");
+      await cache.delete(new Request(postsListKey));
+
+      // Note: Cloudflare Cache API doesn't support wildcard deletion
+      // In production, consider using cache tags or a different approach
+      console.warn(
+        `Cache invalidation for locale ${locale} completed for known keys only`
+      );
+    } else {
+      // Clear all caches - this is limited in Cloudflare Cache API
+      // You would need to track cache keys separately for bulk deletion
+      console.warn(
+        "Full cache invalidation not fully supported with Cloudflare Cache API"
+      );
+    }
+  } catch (error) {
+    console.warn("Cache invalidation error:", error);
   }
 }
 
@@ -342,14 +451,10 @@ export function invalidateCache(locale?: string, slug?: string): void {
  */
 export function getCacheStats() {
   return {
-    postCacheSize: postCache.size,
-    postsListCacheSize: postsListCache.size,
-    tagsCacheSize: tagsCache.size,
-    allPostsCacheSize: allPostsCache.size,
-    totalCacheEntries:
-      postCache.size +
-      postsListCache.size +
-      tagsCache.size +
-      allPostsCache.size,
+    message: "Cache statistics not available with Cloudflare Cache API",
+    note: "Use Cloudflare dashboard or analytics for cache metrics",
+    cacheType: "Cloudflare Cache API",
+    fallbackInMemory:
+      typeof global !== "undefined" && Boolean(global.__mdx_cache),
   };
 }
