@@ -78,7 +78,6 @@ async function parseMDXFile(
       content,
       slug,
       frontmatter: frontmatter as BlogPostData["frontmatter"],
-      destinationNames: [], // Legacy field for compatibility
     };
   } catch (error) {
     console.error(`Error parsing MDX file ${filePath}:`, error);

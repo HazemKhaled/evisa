@@ -21,7 +21,6 @@ export interface BlogPostData {
     lastUpdated?: string;
     [key: string]: unknown;
   };
-  destinationNames?: string[]; // Legacy field - kept for compatibility
 }
 
 export interface BlogFilterOptions {

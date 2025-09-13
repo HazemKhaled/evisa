@@ -592,7 +592,6 @@ describe("JSON-LD utilities", () => {
           publishedAt: "2023-01-01",
           lastUpdated: "2023-01-02",
         },
-        destinationNames: [],
       };
 
       const result = generateBlogPostJsonLd(

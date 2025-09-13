@@ -49,8 +49,8 @@ export async function BlogPostCard({
           locale={locale}
           showDestinations={showDestinations}
           showTags={showTags}
-          destinationAriaLabel={(_, displayName) =>
-            t("aria.viewPostsFor", { destination: displayName })
+          destinationAriaLabel={destination =>
+            t("aria.viewPostsFor", { destination })
           }
           tagAriaLabel={tag => t("aria.viewPostsTagged", { tag })}
         />

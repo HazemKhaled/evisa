@@ -57,14 +57,14 @@ export async function BlogPostDetail({
           {post.frontmatter.destinations &&
             post.frontmatter.destinations.length > 0 && (
               <div className="flex flex-wrap gap-2">
-                {post.frontmatter.destinations.map((destination, index) => (
+                {post.frontmatter.destinations.map(destination => (
                   <Link
                     key={destination}
                     href={`/${locale}/d/${destination.toLowerCase()}/blog`}
                     className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 transition-colors hover:bg-blue-200"
-                    aria-label={`View blog posts for ${post.destinationNames?.[index] || destination}`}
+                    aria-label={`View blog posts for ${destination}`}
                   >
-                    📍 {post.destinationNames?.[index] || destination}
+                    📍 {destination}
                   </Link>
                 ))}
               </div>

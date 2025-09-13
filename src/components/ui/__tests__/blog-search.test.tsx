@@ -52,7 +52,6 @@ const mockPosts: BlogPostData[] = [
       publishedAt: "2024-01-01",
       lastUpdated: "2024-01-01",
     },
-    destinationNames: ["France"],
   },
   {
     slug: "test-post-2",
@@ -67,7 +66,6 @@ const mockPosts: BlogPostData[] = [
       publishedAt: "2024-01-02",
       lastUpdated: "2024-01-02",
     },
-    destinationNames: ["United Kingdom"],
   },
 ];
 

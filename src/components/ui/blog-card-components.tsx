@@ -50,15 +50,13 @@ export type ImageAspectRatio = keyof typeof blogCardStyles.image.aspectRatios;
 // Shared Badge Components
 interface DestinationBadgesProps {
   destinations?: string[];
-  destinationNames?: string[];
   locale: string;
   showDestinations: boolean;
-  ariaLabelFunction?: (destination: string, displayName: string) => string;
+  ariaLabelFunction?: (destination: string) => string;
 }
 
 export function DestinationBadges({
   destinations,
-  destinationNames,
   locale,
   showDestinations,
   ariaLabelFunction,
@@ -69,21 +67,18 @@ export function DestinationBadges({
 
   return (
     <>
-      {destinations.slice(0, 2).map((destination, index) => (
+      {destinations.slice(0, 2).map(destination => (
         <Link
           key={destination}
           href={`/${locale}/d/${destination.toLowerCase()}/blog`}
           className={blogCardStyles.badges.destination}
           aria-label={
             ariaLabelFunction
-              ? ariaLabelFunction(
-                  destination,
-                  destinationNames?.[index] || destination
-                )
-              : `View blog posts for ${destinationNames?.[index] || destination}`
+              ? ariaLabelFunction(destination)
+              : `View blog posts for ${destination}`
           }
         >
-          📍 {destinationNames?.[index] || destination}
+          📍 {destination}
         </Link>
       ))}
     </>
@@ -247,7 +242,7 @@ interface BlogCardBadgesProps {
   locale: string;
   showDestinations: boolean;
   showTags: boolean;
-  destinationAriaLabel?: (destination: string, displayName: string) => string;
+  destinationAriaLabel?: (destination: string) => string;
   tagAriaLabel?: (tag: string) => string;
 }
 
@@ -263,7 +258,6 @@ export function BlogCardBadges({
     <div className={blogCardStyles.badges.container}>
       <DestinationBadges
         destinations={post.frontmatter.destinations}
-        destinationNames={post.destinationNames}
         locale={locale}
         showDestinations={showDestinations}
         ariaLabelFunction={destinationAriaLabel}

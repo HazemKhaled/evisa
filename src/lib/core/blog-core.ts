@@ -36,7 +36,6 @@ function getBlogPostsFromDirectory(blogDir: string): BlogPostData[] {
         content,
         slug,
         frontmatter: frontmatter as BlogPostData["frontmatter"],
-        destinationNames: [],
       });
     }
 

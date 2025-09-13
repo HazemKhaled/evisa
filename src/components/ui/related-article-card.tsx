@@ -41,16 +41,14 @@ export async function RelatedArticleCard({
 
       <div className="p-6">
         <div className={cn("mb-3 flex flex-wrap gap-2")}>
-          {post.frontmatter.destinations
-            ?.slice(0, 2)
-            .map((destination, index) => (
-              <span
-                key={destination}
-                className="inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800"
-              >
-                📍 {post.destinationNames?.[index] || destination}
-              </span>
-            ))}
+          {post.frontmatter.destinations?.slice(0, 2).map(destination => (
+            <span
+              key={destination}
+              className="inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800"
+            >
+              📍 {destination}
+            </span>
+          ))}
         </div>
 
         <h3
