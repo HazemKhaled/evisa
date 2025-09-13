@@ -12,18 +12,33 @@ import {
   generateBreadcrumbData,
 } from "@/lib/json-ld";
 import { BlogSearch } from "@/components/ui/blog-search";
+import { getDestinationsListWithMetadata } from "@/lib/services";
 
 // Required when use static generation with search params
 export const revalidate = 86400; // Revalidate every day
 
-// Generate static params for basic locale routes only
 export async function generateStaticParams() {
-  return languages.map(locale => ({ locale }));
+  // Get top 20 popular destinations for SSG
+  const popularDestinations = await getDestinationsListWithMetadata(
+    "en",
+    20,
+    "popular"
+  );
+
+  // Generate params for each popular destination in each locale
+  const params = [];
+  for (const locale of languages) {
+    for (const destination of popularDestinations) {
+      params.push({ locale, destination: destination.code.toLowerCase() });
+    }
+  }
+
+  return params;
 }
 
 interface DestinationBlogProps {
   params: Promise<{ locale: string; destination: string }>;
-  searchParams: Promise<{ page?: string; tag?: string }>;
+  searchParams: Promise<{ page?: string }>;
 }
 
 export async function generateMetadata({
