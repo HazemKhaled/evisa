@@ -5,6 +5,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "gtv",
+  "account_id": "4f001bbb358404250b26da276402b564",
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-09-10",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
@@ -28,7 +29,7 @@
     {
       "binding": "DB",
       "database_name": "gtv-db",
-      "database_id": "de85b8f1-81b0-4263-b69d-0b82e9d48875",
+      "database_id": "212c10dd-e3db-4fca-85c5-97b9cdc8f1ec",
       "migrations_dir": "drizzle",
       "remote": true,
     },
@@ -37,7 +38,7 @@
     // This is only required if you use On-demand revalidation
     {
       "binding": "NEXT_TAG_CACHE_D1",
-      "database_id": "cefa7905-d1e2-4b21-8bff-14ef365c6bf6",
+      "database_id": "ee88ce2e-ccd0-4322-ad0d-5aad6446693f",
       "database_name": "gtv-opennext-cache",
     },
   ],
