@@ -37,7 +37,6 @@ The new destination catalog and travel blog features will seamlessly integrate w
 **Interaction Consistency:**
 
 - Country subdomain redirects (uae.gettravelvisa.com → /d/uae) maintain navigation flow
-- Affiliate "Apply Now" buttons follow the same styling as homepage CTA buttons
 - RTL support ensures Arabic language users experience identical interaction patterns
 
 **Responsive Design:**

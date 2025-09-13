@@ -8,13 +8,15 @@
 
 **FR3**: Users shall access visa-specific information pages at `/d/{DESTINATION_NAME}/v/{VISA_OPTION}` and passport-specific eligibility pages at `/d/{DESTINATION_NAME}/p/{PASSPORT_COUNTRY}` with full SEO optimization.
 
-**FR4**: The system shall implement a destination-focused travel blog system with article listing at `/blog`, destination filtering at `/d/{DESTINATION_COUNTRY}/blog`, tag filtering at `/blog/t/{TAG}`, and individual articles with MDX support and multilingual content.
+**FR4**: The platform shall generate comprehensive destination-specific sitemaps at `/d/{DESTINATION_COUNTRY}/sitemap.xml` including all visa options, passport-specific pages, and related travel blog articles for each destination.
 
-**FR5**: The homepage shall display dynamically populated top destinations, popular visa types, and recent travel blog posts fetched from the database and content system.
+**FR5**: Users shall access visa-specific information pages at `/d/{DESTINATION_NAME}/v/{VISA_OPTION}` and passport-specific eligibility pages at `/d/{DESTINATION_NAME}/p/{PASSPORT_COUNTRY}` with full SEO optimization.
 
-**FR6**: The platform shall maintain comprehensive visa eligibility relationships in the database supporting many-to-many connections between destinations, passport countries, and visa types.
+**FR6**: The system shall implement a destination-focused travel blog system with article listing at `/blog`, destination filtering at `/d/{DESTINATION_COUNTRY}/blog`, tag filtering at `/blog/t/{TAG}`, and individual articles with MDX support and multilingual content.
 
-**FR7**: The platform shall generate comprehensive destination-specific sitemaps at `/d/{DESTINATION_COUNTRY}/sitemap.xml` including all visa options, passport-specific pages, and related travel blog articles for each destination.
+**FR7**: The homepage shall display dynamically populated top destinations, popular visa types, and recent travel blog posts fetched from the database and content system.
+
+**FR8**: The platform shall maintain comprehensive visa eligibility relationships in the database supporting many-to-many connections between destinations, passport countries, and visa types.
 
 ## Non-Functional Requirements
 
@@ -27,6 +29,8 @@
 **NFR4**: RTL language support (Arabic) shall maintain identical functionality and user experience as LTR languages with proper text direction, layout mirroring, and navigation flow.
 
 **NFR5**: All visa information content shall be updateable without code deployment through database management interface and content management workflows.
+
+**NFR6**: All visa information content shall be updateable without code deployment through database management interface and content management workflows.
 
 ## Compatibility Requirements
 
