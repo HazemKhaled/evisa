@@ -34,16 +34,14 @@ export async function generateStaticParams(): Promise<
   );
 
   // Generate params for each popular destination in each locale
-  const params = [];
-  for (const locale of languages) {
-    for (const destination of popularDestinations) {
-      params.push(
-        Promise.resolve({ locale, destination: destination.code.toLowerCase() })
-      );
-    }
-  }
-
-  return params;
+  return languages.flatMap(locale =>
+    popularDestinations.map(destination =>
+      Promise.resolve({
+        locale,
+        destination: destination.code.toLowerCase(),
+      })
+    )
+  );
 }
 
 export async function generateMetadata({
