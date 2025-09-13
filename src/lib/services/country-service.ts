@@ -1,4 +1,4 @@
-import { and, eq, inArray, isNull } from "drizzle-orm";
+import { and, eq, inArray, isNull, or, isNotNull } from "drizzle-orm";
 
 /**
  * Input validation and sanitization utilities
@@ -395,7 +395,7 @@ export async function getDestinationsListWithMetadata(
   try {
     const db = (await getDbAsync()) as Database;
 
-    // Build comprehensive query with visa statistics
+    // Build query to get countries that have either visa types or visa-free options
     const results = await db
       .select({
         id: countries.id,
@@ -415,12 +415,48 @@ export async function getDestinationsListWithMetadata(
           eq(countriesI18n.locale, validatedLocale)
         )
       )
-      .where(and(eq(countries.isActive, true), isNull(countries.deletedAt)))
+      .leftJoin(
+        visaTypes,
+        and(
+          eq(visaTypes.destinationId, countries.id),
+          eq(visaTypes.isActive, true),
+          isNull(visaTypes.deletedAt)
+        )
+      )
+      .leftJoin(
+        visaEligibility,
+        and(
+          eq(visaEligibility.destinationId, countries.id),
+          inArray(visaEligibility.eligibilityStatus, [
+            "visa_free",
+            "on_arrival",
+          ]),
+          eq(visaEligibility.isActive, true),
+          isNull(visaEligibility.deletedAt)
+        )
+      )
+      .where(
+        and(
+          eq(countries.isActive, true),
+          isNull(countries.deletedAt),
+          // Only include countries that have either visa types OR visa-free options
+          or(
+            isNotNull(visaTypes.id), // Has visa types
+            isNotNull(visaEligibility.id) // Has visa-free/on-arrival options
+          )
+        )
+      )
       .limit(validatedLimit);
+
+    // Remove duplicates based on country ID
+    const uniqueResults = results.filter(
+      (destination, index, arr) =>
+        arr.findIndex(d => d.id === destination.id) === index
+    );
 
     // For each destination, get visa statistics
     const destinationsWithStats = await Promise.all(
-      results.map(async destination => {
+      uniqueResults.map(async destination => {
         const visaStats = await db
           .select({
             count: visaTypes.id,

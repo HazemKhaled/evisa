@@ -47,17 +47,13 @@ describe("Country Service", () => {
       ]);
       Object.assign(mockVisaStatsQuery, {
         from: jest.fn().mockReturnThis(),
-        leftJoin: jest.fn().mockReturnThis(),
         where: jest.fn().mockReturnThis(),
-        groupBy: jest.fn().mockReturnThis(),
       });
 
       const mockVisaFreeQuery = Promise.resolve([{ count: 1 }]);
       Object.assign(mockVisaFreeQuery, {
         from: jest.fn().mockReturnThis(),
-        leftJoin: jest.fn().mockReturnThis(),
         where: jest.fn().mockReturnThis(),
-        groupBy: jest.fn().mockReturnThis(),
       });
 
       const mockDb = {
@@ -130,8 +126,7 @@ describe("Country Service", () => {
         from: jest.fn().mockReturnThis(),
         leftJoin: jest.fn().mockReturnThis(),
         where: jest.fn().mockReturnThis(),
-        limit: jest.fn().mockReturnThis(),
-        orderBy: jest.fn().mockResolvedValue([]),
+        limit: jest.fn().mockResolvedValue([]),
       };
 
       const mockDb = {
