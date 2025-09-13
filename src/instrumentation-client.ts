@@ -9,7 +9,9 @@ Sentry.init({
 
   // Add optional integrations for additional features
   integrations: [
-    Sentry.replayIntegration(),
+    Sentry.replayIntegration({
+      maskAllText: false,
+    }),
     Sentry.consoleLoggingIntegration({ levels: ["warn", "error"] }),
     Sentry.browserSessionIntegration(),
     Sentry.browserTracingIntegration(),
