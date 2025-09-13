@@ -10,6 +10,7 @@ import { DestinationHero } from "@/components/ui/destination-hero";
 import { VisaOptionsGrid } from "@/components/ui/visa-options-grid";
 import { JsonLd } from "@/components/json-ld";
 import { generateDestinationJsonLd } from "@/lib/json-ld";
+import { languages } from "@/app/i18n/settings";
 
 // ISR configuration - revalidate every hour
 export const revalidate = 3600;
@@ -22,16 +23,25 @@ interface DestinationPageProps {
 }
 
 // Pre-build popular destinations at build time
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<
+  DestinationPageProps["params"][]
+> {
   // Get top 20 popular destinations for SSG
   const popularDestinations = await getDestinationsListWithMetadata(
     "en",
     20,
     "popular"
   );
-  return popularDestinations.map(destination => ({
-    destination: destination.code.toLowerCase(),
-  }));
+
+  // Generate params for each popular destination in each locale
+  return languages.flatMap(locale =>
+    popularDestinations.map(destination =>
+      Promise.resolve({
+        locale,
+        destination: destination.code.toLowerCase(),
+      })
+    )
+  );
 }
 
 export async function generateMetadata({

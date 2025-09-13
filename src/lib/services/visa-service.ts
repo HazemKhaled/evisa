@@ -421,7 +421,6 @@ export async function getRandomVisaTypes(
 ): Promise<VisaTypeWithI18n[]> {
   const isDatabaseReady = await isDatabaseAvailableAsync();
   if (!isDatabaseReady) {
-    // eslint-disable-next-line no-console
     console.warn("Database not available, returning empty visa types");
     return [];
   }
@@ -494,7 +493,6 @@ export async function getRandomVisaTypes(
       destinationName: result.destinationName || result.destinationCode,
     }));
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.warn(
       `Failed to get random visa types for locale ${locale}:`,
       error
@@ -512,7 +510,6 @@ export async function getVisaTypesByDestination(
 ): Promise<VisaTypeWithI18n[]> {
   const isDatabaseReady = await isDatabaseAvailableAsync();
   if (!isDatabaseReady) {
-    // eslint-disable-next-line no-console
     console.warn("Database not available");
     return [];
   }
@@ -585,7 +582,6 @@ export async function getVisaTypesByDestination(
       destinationName: result.destinationName || result.destinationCode,
     }));
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.warn(
       `Failed to get visa types for destination ${destinationCode}:`,
       error
@@ -602,7 +598,6 @@ export async function getAllVisaTypes(
 ): Promise<VisaTypeWithI18n[]> {
   const isDatabaseReady = await isDatabaseAvailableAsync();
   if (!isDatabaseReady) {
-    // eslint-disable-next-line no-console
     console.warn("Database not available");
     return [];
   }
@@ -674,7 +669,6 @@ export async function getAllVisaTypes(
       destinationName: result.destinationName || result.destinationCode,
     }));
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.warn(`Failed to get all visa types for locale ${locale}:`, error);
     return [];
   }
@@ -689,7 +683,6 @@ export async function getVisaTypeById(
 ): Promise<VisaTypeWithI18n | null> {
   const isDatabaseReady = await isDatabaseAvailableAsync();
   if (!isDatabaseReady) {
-    // eslint-disable-next-line no-console
     console.warn("Database not available");
     return null;
   }
@@ -767,7 +760,6 @@ export async function getVisaTypeById(
       destinationName: result.destinationName || result.destinationCode,
     };
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.warn(`Failed to get visa type by ID ${visaTypeId}:`, error);
     return null;
   }

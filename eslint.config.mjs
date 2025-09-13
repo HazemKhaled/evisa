@@ -35,7 +35,6 @@ const eslintConfig = [
       // General code quality
       "prefer-const": "error",
       "no-var": "error",
-      "no-console": "warn",
       "no-debugger": "error",
 
       // Next.js specific rules are already included in next/core-web-vitals

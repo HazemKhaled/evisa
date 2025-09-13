@@ -15,14 +15,14 @@ import { languages } from "@/app/i18n/settings";
 export const revalidate = 86400; // Revalidate every day
 
 // Generate static params for basic tag routes only
-export async function generateStaticParams() {
+export function generateStaticParams(): Array<TagPageProps["params"]> {
   const allTags = getAllUniqueTagsAcrossLocales();
 
   const params = [];
   for (const currentLocale of languages) {
     for (const tag of allTags) {
       // Base tag route only
-      params.push({ locale: currentLocale, tag });
+      params.push(Promise.resolve({ locale: currentLocale, tag }));
     }
   }
 
