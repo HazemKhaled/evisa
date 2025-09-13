@@ -60,12 +60,11 @@ export function logError(error: Error, context?: ErrorContext): void {
   };
 
   if (process.env.NODE_ENV === "development") {
-    // eslint-disable-next-line no-console
     console.error("[Error Handler]", logData);
   } else {
     // In production, you would send this to your monitoring service
     // Example: Sentry, LogRocket, etc.
-    // eslint-disable-next-line no-console
+
     console.error("[Error Handler]", JSON.stringify(logData));
   }
 }
