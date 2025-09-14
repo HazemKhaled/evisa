@@ -17,11 +17,11 @@ const mockBlogPosts: BlogPostData[] = [
       tags: ["travel", "guide"],
       destinations: ["FR"],
       passports: ["US"],
+      image: "/images/blog/test-post-1.jpg",
       publishedAt: "2023-01-01",
       author: "Test Author",
     },
     content: "# Test Post 1\n\nThis is test content.",
-    readingTime: { text: "1 min read", minutes: 1, time: 60000, words: 10 },
   },
   {
     slug: "test-post-2",
@@ -31,11 +31,11 @@ const mockBlogPosts: BlogPostData[] = [
       tags: ["visa", "guide"],
       destinations: ["GB"],
       passports: ["CA"],
+      image: "/images/blog/test-post-2.jpg",
       publishedAt: "2023-01-02",
       author: "Test Author 2",
     },
     content: "# Test Post 2\n\nThis is another test content.",
-    readingTime: { text: "2 min read", minutes: 2, time: 120000, words: 20 },
   },
   {
     slug: "test-post-3",
@@ -45,11 +45,11 @@ const mockBlogPosts: BlogPostData[] = [
       tags: ["featured", "test"],
       destinations: ["US", "CA"],
       passports: ["GB"],
+      image: "/images/blog/test-post-3.jpg",
       publishedAt: "2023-01-03",
       author: "Test Author 3",
     },
     content: "# Test Post 3\n\nThis is featured test content.",
-    readingTime: { text: "3 min read", minutes: 3, time: 180000, words: 30 },
   },
 ];
 
@@ -70,11 +70,16 @@ export const getBlogPosts = jest.fn(
   async (options: BlogFilterOptions): Promise<PaginatedBlogResponse> => {
     const { limit = 10, offset = 0 } = options;
     const posts = mockBlogPosts.slice(offset, offset + limit);
+    const total = mockBlogPosts.length;
+    const currentPage = Math.floor(offset / limit) + 1;
+    const totalPages = Math.ceil(total / limit);
 
     return {
       posts,
-      total: mockBlogPosts.length,
-      hasMore: offset + limit < mockBlogPosts.length,
+      total,
+      hasMore: offset + limit < total,
+      currentPage,
+      totalPages,
     };
   }
 );
