@@ -27,12 +27,12 @@ export async function RelatedArticleCard({
     >
       <Link
         href={`/${locale}/blog/${post.slug}`}
-        aria-label={t("aria.readArticle", { title: post.frontmatter.title })}
+        aria-label={t("aria.readArticle", { title: post.title })}
       >
         <div className="relative aspect-video overflow-hidden">
           <Image
-            src={post.frontmatter.image}
-            alt={post.frontmatter.title}
+            src={post.image}
+            alt={post.title}
             fill
             className="object-cover transition-transform duration-300 hover:scale-105"
           />
@@ -41,7 +41,7 @@ export async function RelatedArticleCard({
 
       <div className="p-6">
         <div className={cn("mb-3 flex flex-wrap gap-2")}>
-          {post.frontmatter.destinations?.slice(0, 2).map(destination => (
+          {post.destinations?.slice(0, 2).map(destination => (
             <span
               key={destination}
               className="inline-flex items-center rounded-md bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800"
@@ -59,10 +59,10 @@ export async function RelatedArticleCard({
             href={`/${locale}/blog/${post.slug}`}
             className="hover:text-blue-600"
             aria-label={t("aria.readFullArticle", {
-              title: post.frontmatter.title,
+              title: post.title,
             })}
           >
-            {post.frontmatter.title}
+            {post.title}
           </Link>
         </h3>
 
@@ -70,7 +70,7 @@ export async function RelatedArticleCard({
           id={`post-description-${post.slug}`}
           className={cn("line-clamp-2 text-sm text-gray-600")}
         >
-          {post.frontmatter.description}
+          {post.description}
         </p>
       </div>
     </article>

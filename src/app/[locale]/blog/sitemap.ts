@@ -71,9 +71,7 @@ export default async function sitemap({
     if (postAlternates[locale]) {
       urls.push({
         url: `${baseUrl}/${locale}/blog/${post.slug}`,
-        lastModified: new Date(
-          post.frontmatter.lastUpdated || post.frontmatter.publishedAt
-        ),
+        lastModified: new Date(post.lastUpdated || post.publishedAt),
         changeFrequency: "monthly",
         priority: 0.6,
         alternates: {
@@ -86,7 +84,7 @@ export default async function sitemap({
   // Add tag pages
   const allTags = new Set<string>();
   blogPosts.forEach(post => {
-    post.frontmatter.tags?.forEach(tag => allTags.add(tag));
+    post.tags?.forEach(tag => allTags.add(tag));
   });
 
   Array.from(allTags).forEach(tag => {
@@ -94,9 +92,7 @@ export default async function sitemap({
 
     // Check if tag exists in other locales
     allLocaleBlogData.forEach(({ locale: lang, posts: langPosts }) => {
-      const tagExists = langPosts.some(post =>
-        post.frontmatter.tags?.includes(tag)
-      );
+      const tagExists = langPosts.some(post => post.tags?.includes(tag));
 
       if (tagExists || lang === locale) {
         tagAlternates[lang] = `${baseUrl}/${lang}/blog/t/${tag}`;

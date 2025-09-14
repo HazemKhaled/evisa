@@ -32,31 +32,38 @@ function convertDbToBlogPostData(
 ): BlogPostData {
   const postRecord = post as Record<string, unknown>;
   const i18nRecord = i18nContent as Record<string, unknown>;
-  return {
+
+  // Create new flat structure
+  const blogPost: BlogPostData = {
+    id: postRecord.id ? Number(postRecord.id) : undefined,
     slug: String(postRecord.slug),
+    title: String(i18nRecord.title),
+    description: String(i18nRecord.description),
     content: String(i18nRecord.content),
-    frontmatter: {
-      title: String(i18nRecord.title),
-      description: String(i18nRecord.description),
-      destinations: postRecord.destinations
-        ? String(postRecord.destinations).split(",")
-        : [],
-      image: postRecord.image ? String(postRecord.image) : "",
-      tags,
-      passport: postRecord.passports ? String(postRecord.passports) : undefined,
-      related_visas: postRecord.passports
-        ? String(postRecord.passports).split(",")
-        : [],
-      author: String(postRecord.author),
-      publishedAt: new Date(
-        postRecord.publishedAt as string | Date
-      ).toISOString(),
-      lastUpdated: postRecord.updatedAt
-        ? new Date(postRecord.updatedAt as string | Date).toISOString()
-        : undefined,
-    },
-    rawContent: String(i18nRecord.content),
+    author: String(postRecord.author),
+    publishedAt: new Date(
+      postRecord.publishedAt as string | Date
+    ).toISOString(),
+    lastUpdated: postRecord.updatedAt
+      ? new Date(postRecord.updatedAt as string | Date).toISOString()
+      : undefined,
+    image: postRecord.image ? String(postRecord.image) : "",
+    destinations: postRecord.destinations
+      ? String(postRecord.destinations).split(",")
+      : [],
+    passports: postRecord.passports
+      ? String(postRecord.passports).split(",")
+      : undefined,
+    tags,
+    related_visas: postRecord.passports
+      ? String(postRecord.passports).split(",")
+      : [],
+    isPublished: postRecord.isPublished
+      ? Boolean(postRecord.isPublished)
+      : true,
   };
+
+  return blogPost;
 }
 
 /**

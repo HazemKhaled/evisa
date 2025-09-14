@@ -183,22 +183,16 @@ describe("Pagination utilities", () => {
   describe("createBlogFilter", () => {
     const blogItems = [
       {
-        frontmatter: {
-          tags: ["travel", "visa"],
-          destinations: ["USA", "UK"],
-        },
+        tags: ["travel", "visa"],
+        destinations: ["USA", "UK"],
       },
       {
-        frontmatter: {
-          tags: ["business", "visa"],
-          destinations: ["Canada", "France"],
-        },
+        tags: ["business", "visa"],
+        destinations: ["Canada", "France"],
       },
       {
-        frontmatter: {
-          tags: ["tourism"],
-          destinations: ["USA", "Spain"],
-        },
+        tags: ["tourism"],
+        destinations: ["USA", "Spain"],
       },
     ];
 
@@ -207,7 +201,7 @@ describe("Pagination utilities", () => {
       const filtered = blogItems.filter(filter);
 
       expect(filtered).toHaveLength(1);
-      expect(filtered[0].frontmatter.tags).toContain("travel");
+      expect(filtered[0].tags).toContain("travel");
     });
 
     it("filters by destination", () => {
@@ -217,9 +211,7 @@ describe("Pagination utilities", () => {
       expect(filtered).toHaveLength(2);
       expect(
         filtered.every(item =>
-          item.frontmatter.destinations?.some(dest =>
-            dest.toLowerCase().includes("usa")
-          )
+          item.destinations?.some(dest => dest.toLowerCase().includes("usa"))
         )
       ).toBe(true);
     });
@@ -229,8 +221,8 @@ describe("Pagination utilities", () => {
       const filtered = blogItems.filter(filter);
 
       expect(filtered).toHaveLength(1);
-      expect(filtered[0].frontmatter.tags).toContain("visa");
-      expect(filtered[0].frontmatter.destinations).toContain("USA");
+      expect(filtered[0].tags).toContain("visa");
+      expect(filtered[0].destinations).toContain("USA");
     });
 
     it("returns all items when no filters", () => {
@@ -242,9 +234,9 @@ describe("Pagination utilities", () => {
 
     it("handles missing tags/destinations", () => {
       const itemsWithMissing = [
-        { frontmatter: {} },
-        { frontmatter: { tags: ["travel"] } },
-        { frontmatter: { destinations: ["USA"] } },
+        {},
+        { tags: ["travel"] },
+        { destinations: ["USA"] },
       ];
 
       const filter = createBlogFilter({ tag: "travel" });

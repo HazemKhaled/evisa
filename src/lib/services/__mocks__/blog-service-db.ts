@@ -10,46 +10,46 @@ import type {
 
 const mockBlogPosts: BlogPostData[] = [
   {
+    id: 1,
     slug: "test-post-1",
-    frontmatter: {
-      title: "Test Post 1",
-      description: "A test post description",
-      tags: ["travel", "guide"],
-      destinations: ["FR"],
-      passports: ["US"],
-      image: "/images/blog/test-post-1.jpg",
-      publishedAt: "2023-01-01",
-      author: "Test Author",
-    },
+    title: "Test Post 1",
+    description: "A test post description",
     content: "# Test Post 1\n\nThis is test content.",
+    author: "Test Author",
+    publishedAt: "2023-01-01",
+    image: "/images/blog/test-post-1.jpg",
+    destinations: ["FR"],
+    passports: ["US"],
+    tags: ["travel", "guide"],
+    isPublished: true,
   },
   {
+    id: 2,
     slug: "test-post-2",
-    frontmatter: {
-      title: "Test Post 2",
-      description: "Another test post description",
-      tags: ["visa", "guide"],
-      destinations: ["GB"],
-      passports: ["CA"],
-      image: "/images/blog/test-post-2.jpg",
-      publishedAt: "2023-01-02",
-      author: "Test Author 2",
-    },
+    title: "Test Post 2",
+    description: "Another test post description",
     content: "# Test Post 2\n\nThis is another test content.",
+    author: "Test Author 2",
+    publishedAt: "2023-01-02",
+    image: "/images/blog/test-post-2.jpg",
+    destinations: ["GB"],
+    passports: ["CA"],
+    tags: ["visa", "guide"],
+    isPublished: true,
   },
   {
+    id: 3,
     slug: "test-post-3",
-    frontmatter: {
-      title: "Test Post 3",
-      description: "A featured test post description",
-      tags: ["featured", "test"],
-      destinations: ["US", "CA"],
-      passports: ["GB"],
-      image: "/images/blog/test-post-3.jpg",
-      publishedAt: "2023-01-03",
-      author: "Test Author 3",
-    },
+    title: "Test Post 3",
+    description: "A featured test post description",
     content: "# Test Post 3\n\nThis is featured test content.",
+    author: "Test Author 3",
+    publishedAt: "2023-01-03",
+    image: "/images/blog/test-post-3.jpg",
+    destinations: ["US", "CA"],
+    passports: ["GB"],
+    tags: ["featured", "test"],
+    isPublished: true,
   },
 ];
 
@@ -60,7 +60,7 @@ export const getAllBlogPostSlugs = jest.fn(async () => [
 ]);
 
 export const getAllBlogPosts = jest.fn(
-  async (locale: string, limit?: number) => {
+  async (_locale: string, limit?: number) => {
     const posts = mockBlogPosts;
     return limit ? posts.slice(0, limit) : posts;
   }
@@ -85,26 +85,24 @@ export const getBlogPosts = jest.fn(
 );
 
 export const getBlogPostsByDestination = jest.fn(
-  async (destination: string, locale: string, limit?: number) => {
+  async (destination: string, _locale: string, limit?: number) => {
     const filtered = mockBlogPosts.filter(post =>
-      post.frontmatter.destinations?.includes(destination)
+      post.destinations?.includes(destination)
     );
     return limit ? filtered.slice(0, limit) : filtered;
   }
 );
 
 export const getBlogPostsByTag = jest.fn(
-  async (tag: string, locale: string, limit?: number) => {
-    const filtered = mockBlogPosts.filter(post =>
-      post.frontmatter.tags?.includes(tag)
-    );
+  async (tag: string, _locale: string, limit?: number) => {
+    const filtered = mockBlogPosts.filter(post => post.tags?.includes(tag));
     return limit ? filtered.slice(0, limit) : filtered;
   }
 );
 
 export const getRelatedBlogPosts = jest.fn(
-  async (destination: string, locale: string, limit: number = 3) => {
-    return getBlogPostsByDestination(destination, locale, limit);
+  async (destination: string, _locale: string, limit: number = 3) => {
+    return getBlogPostsByDestination(destination, _locale, limit);
   }
 );
 
@@ -115,13 +113,13 @@ export const getBlogPostBySlug = jest.fn(
 );
 
 export const getAllTagsForLocale = jest.fn(async (_locale: string) => {
-  const allTags = mockBlogPosts.flatMap(post => post.frontmatter.tags || []);
+  const allTags = mockBlogPosts.flatMap(post => post.tags || []);
   return [...new Set(allTags)];
 });
 
 export const getAllDestinationsForLocale = jest.fn(async (_locale: string) => {
   const allDestinations = mockBlogPosts.flatMap(
-    post => post.frontmatter.destinations || []
+    post => post.destinations || []
   );
   return [...new Set(allDestinations)];
 });
@@ -131,8 +129,8 @@ export const searchBlogPosts = jest.fn(
     const lowerQuery = query.toLowerCase();
     const filtered = mockBlogPosts.filter(
       post =>
-        post.frontmatter.title.toLowerCase().includes(lowerQuery) ||
-        post.frontmatter.description?.toLowerCase().includes(lowerQuery) ||
+        post.title.toLowerCase().includes(lowerQuery) ||
+        post.description?.toLowerCase().includes(lowerQuery) ||
         post.content.toLowerCase().includes(lowerQuery)
     );
     return limit ? filtered.slice(0, limit) : filtered;
@@ -140,9 +138,9 @@ export const searchBlogPosts = jest.fn(
 );
 
 export const getFeaturedBlogPosts = jest.fn(
-  async (locale: string, limit: number = 5) => {
+  async (_locale: string, limit: number = 5) => {
     const featured = mockBlogPosts.filter(post =>
-      post.frontmatter.tags?.includes("featured")
+      post.tags?.includes("featured")
     );
     return featured.slice(0, limit);
   }

@@ -139,7 +139,7 @@ export function BlogCardImage({
   return (
     <Link
       href={`/${locale}/blog/${post.slug}`}
-      aria-label={ariaLabel || `Read article: ${post.frontmatter.title}`}
+      aria-label={ariaLabel || `Read article: ${post.title}`}
       className="block"
     >
       <div
@@ -149,8 +149,8 @@ export function BlogCardImage({
         )}
       >
         <Image
-          src={post.frontmatter.image}
-          alt={post.frontmatter.title}
+          src={post.image}
+          alt={post.title}
           fill
           className={blogCardStyles.image.image}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -186,9 +186,9 @@ export function BlogCardTitle({
       <Link
         href={`/${locale}/blog/${post.slug}`}
         className={blogCardStyles.content.titleLink}
-        aria-label={ariaLabel || `Read full article: ${post.frontmatter.title}`}
+        aria-label={ariaLabel || `Read full article: ${post.title}`}
       >
-        {post.frontmatter.title}
+        {post.title}
       </Link>
     </HeadingTag>
   );
@@ -205,7 +205,7 @@ export function BlogCardDescription({ post }: BlogCardDescriptionProps) {
       id={`post-description-${post.slug}`}
       className={blogCardStyles.content.description}
     >
-      {post.frontmatter.description}
+      {post.description}
     </p>
   );
 }
@@ -219,14 +219,9 @@ interface BlogCardMetaProps {
 export function BlogCardMeta({ post, locale }: BlogCardMetaProps) {
   return (
     <div className={blogCardStyles.meta.container}>
-      <span className={blogCardStyles.meta.author}>
-        {post.frontmatter.author}
-      </span>
-      <time
-        dateTime={post.frontmatter.publishedAt}
-        className={blogCardStyles.meta.time}
-      >
-        {new Date(post.frontmatter.publishedAt).toLocaleDateString(locale, {
+      <span className={blogCardStyles.meta.author}>{post.author}</span>
+      <time dateTime={post.publishedAt} className={blogCardStyles.meta.time}>
+        {new Date(post.publishedAt).toLocaleDateString(locale, {
           year: "numeric",
           month: "short",
           day: "numeric",
@@ -257,13 +252,13 @@ export function BlogCardBadges({
   return (
     <div className={blogCardStyles.badges.container}>
       <DestinationBadges
-        destinations={post.frontmatter.destinations}
+        destinations={post.destinations}
         locale={locale}
         showDestinations={showDestinations}
         ariaLabelFunction={destinationAriaLabel}
       />
       <TagBadges
-        tags={post.frontmatter.tags}
+        tags={post.tags}
         locale={locale}
         showTags={showTags}
         ariaLabelFunction={tagAriaLabel}

@@ -151,10 +151,8 @@ export interface BlogPaginationOptions {
 }
 
 export interface BlogItem {
-  frontmatter: {
-    tags?: string[];
-    destinations?: string[];
-  };
+  tags?: string[];
+  destinations?: string[];
 }
 
 export function createBlogFilter<T extends BlogItem>(
@@ -164,14 +162,14 @@ export function createBlogFilter<T extends BlogItem>(
     const { tag, destination } = options;
 
     // Filter by tag if specified
-    if (tag && !item.frontmatter.tags?.includes(tag.toLowerCase())) {
+    if (tag && !item.tags?.includes(tag.toLowerCase())) {
       return false;
     }
 
     // Filter by destination if specified
     if (
       destination &&
-      !item.frontmatter.destinations?.some(dest =>
+      !item.destinations?.some(dest =>
         dest.toLowerCase().includes(destination.toLowerCase())
       )
     ) {

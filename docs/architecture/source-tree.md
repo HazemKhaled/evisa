@@ -155,18 +155,6 @@ Blog content is now stored in database tables with full multilingual support:
 
 ```
 public/
-├── pages/                  # Static page content (migrated from MDX)
-│   ├── en/                 # English static pages
-│   ├── ar/                 # Arabic static pages
-│   ├── es/                 # Spanish static pages
-│   ├── pt/                 # Portuguese static pages
-│   ├── ru/                 # Russian static pages
-│   ├── de/                 # German static pages
-│   ├── fr/                 # French static pages
-│   └── it/                 # Italian static pages
-│       ├── about-us.mdx
-│       ├── privacy-policy.mdx
-│       └── terms-n-conditions.mdx
 └── locales/               # i18n translation files
     ├── en/                 # English translations
     ├── ar/                 # Arabic translations
@@ -250,12 +238,6 @@ drizzle/
 - **Component files**: `kebab-case.tsx` (e.g., `destination-card.tsx`)
 - **Component names**: `PascalCase` (e.g., `DestinationCard`)
 - **Utility files**: `kebab-case.ts` (e.g., `country-service.ts`)
-
-### Content Files
-
-- **Static pages**: `kebab-case.mdx` (e.g., `terms-n-conditions.mdx`) in `public/pages/[locale]/`
-- **Translation files**: `kebab-case.json` (e.g., `navigation.json`) in `public/locales/[locale]/`
-- **Directories**: `kebab-case` throughout
 
 ### Test Files
 

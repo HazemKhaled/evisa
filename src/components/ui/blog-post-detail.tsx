@@ -41,8 +41,8 @@ export async function BlogPostDetail({
         {/* Featured image */}
         <div className="relative mb-6 aspect-video overflow-hidden rounded-lg">
           <Image
-            src={post.frontmatter.image}
-            alt={post.frontmatter.title}
+            src={post.image}
+            alt={post.title}
             fill
             className="object-cover"
             priority
@@ -53,21 +53,20 @@ export async function BlogPostDetail({
         {/* Meta badges */}
         <div className="mb-6 flex flex-wrap gap-3">
           {/* Destinations */}
-          {post.frontmatter.destinations &&
-            post.frontmatter.destinations.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {post.frontmatter.destinations.map(destination => (
-                  <Link
-                    key={destination}
-                    href={`/${locale}/d/${destination.toLowerCase()}/blog`}
-                    className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 transition-colors hover:bg-blue-200"
-                    aria-label={`View blog posts for ${destination}`}
-                  >
-                    📍 {destination}
-                  </Link>
-                ))}
-              </div>
-            )}
+          {post.destinations && post.destinations.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {post.destinations.map(destination => (
+                <Link
+                  key={destination}
+                  href={`/${locale}/d/${destination.toLowerCase()}/blog`}
+                  className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 transition-colors hover:bg-blue-200"
+                  aria-label={`View blog posts for ${destination}`}
+                >
+                  📍 {destination}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Title */}
@@ -75,7 +74,7 @@ export async function BlogPostDetail({
           id="article-title"
           className="mb-4 text-4xl leading-tight font-bold text-gray-900 sm:text-5xl"
         >
-          {post.frontmatter.title}
+          {post.title}
         </h1>
 
         {/* Description */}
@@ -83,46 +82,39 @@ export async function BlogPostDetail({
           id="article-description"
           className="mb-6 text-xl leading-relaxed text-gray-600"
         >
-          {post.frontmatter.description}
+          {post.description}
         </p>
 
         {/* Author and date info */}
         <div className="flex flex-wrap items-center gap-4 border-b border-gray-200 pb-6 text-sm text-gray-500">
           <div className="flex items-center">
-            <span className="font-medium">{post.frontmatter.author}</span>
+            <span className="font-medium">{post.author}</span>
           </div>
 
           <div className="flex items-center">
-            <time dateTime={post.frontmatter.publishedAt}>
+            <time dateTime={post.publishedAt}>
               📅{" "}
-              {new Date(post.frontmatter.publishedAt).toLocaleDateString(
-                locale,
-                {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                }
-              )}
+              {new Date(post.publishedAt).toLocaleDateString(locale, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
             </time>
           </div>
 
           {/* Last updated */}
-          {post.frontmatter.lastUpdated &&
-            post.frontmatter.lastUpdated !== post.frontmatter.publishedAt && (
-              <div className="flex items-center">
-                <span>
-                  {t("metadata.updated")}:{" "}
-                  {new Date(post.frontmatter.lastUpdated).toLocaleDateString(
-                    locale,
-                    {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    }
-                  )}
-                </span>
-              </div>
-            )}
+          {post.lastUpdated && post.lastUpdated !== post.publishedAt && (
+            <div className="flex items-center">
+              <span>
+                {t("metadata.updated")}:{" "}
+                {new Date(post.lastUpdated).toLocaleDateString(locale, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
+            </div>
+          )}
         </div>
       </header>
 
@@ -137,13 +129,13 @@ export async function BlogPostDetail({
       {/* Article footer */}
       <footer className="border-t border-gray-200 pt-8">
         {/* Tags */}
-        {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+        {post.tags && post.tags.length > 0 && (
           <div className="mb-8">
             <h3 className="mb-4 text-lg font-semibold text-gray-900">
               {t("content.tags")}
             </h3>
             <div className="flex flex-wrap gap-2">
-              {post.frontmatter.tags.map(tag => (
+              {post.tags.map(tag => (
                 <Link
                   key={tag}
                   href={`/${locale}/blog/t/${encodeURIComponent(tag)}`}

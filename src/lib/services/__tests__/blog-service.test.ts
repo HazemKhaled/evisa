@@ -66,7 +66,7 @@ describe("Blog Service", () => {
       const posts = await getBlogPostsByDestination("FR", "en");
       expect(posts).toHaveLength(1);
       expect(posts[0].slug).toBe("test-post-1");
-      expect(posts[0].frontmatter.destinations).toContain("FR");
+      expect(posts[0].destinations).toContain("FR");
     });
 
     it("should return posts for multi-destination countries", async () => {
@@ -105,7 +105,7 @@ describe("Blog Service", () => {
       const post = await getBlogPostBySlug("test-post-1", "en");
       expect(post).toBeDefined();
       expect(post?.slug).toBe("test-post-1");
-      expect(post?.frontmatter.title).toBe("Test Post 1");
+      expect(post?.title).toBe("Test Post 1");
     });
 
     it("should return null for non-existent slug", async () => {
@@ -119,7 +119,7 @@ describe("Blog Service", () => {
       const related = await getRelatedBlogPosts("FR", "en");
       // Should find posts for destination FR
       expect(related.length).toBeGreaterThan(0);
-      expect(related[0].frontmatter.destinations).toContain("FR");
+      expect(related[0].destinations).toContain("FR");
     });
 
     it("should limit related posts to specified count", async () => {
@@ -194,7 +194,7 @@ describe("Blog Service", () => {
       const featured = await getFeaturedBlogPosts("en");
       expect(featured).toHaveLength(1);
       expect(featured[0].slug).toBe("test-post-3");
-      expect(featured[0].frontmatter.tags).toContain("featured");
+      expect(featured[0].tags).toContain("featured");
     });
 
     it("should limit featured posts", async () => {

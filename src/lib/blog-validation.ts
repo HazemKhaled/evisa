@@ -1,7 +1,7 @@
 /**
  * Blog Post Validation Utilities
  *
- * Validates blog post frontmatter and content according to schema requirements.
+ * Validates blog post database records and content according to schema requirements.
  * Provides detailed error messages for debugging and content creation.
  */
 
@@ -11,7 +11,7 @@ export interface BlogPostValidationResult {
   warnings: string[];
 }
 
-export interface RequiredFrontmatterFields {
+export interface RequiredBlogFields {
   title: string;
   description: string;
   destinations?: string[];
@@ -22,10 +22,10 @@ export interface RequiredFrontmatterFields {
 }
 
 /**
- * Validate blog post frontmatter according to schema requirements
+ * Validate blog post data according to database schema requirements
  */
-export function validateBlogPostFrontmatter(
-  frontmatter: Record<string, unknown>,
+export function validateBlogPostData(
+  blogData: Record<string, unknown>,
   slug: string
 ): BlogPostValidationResult {
   const errors: string[] = [];
@@ -42,49 +42,49 @@ export function validateBlogPostFrontmatter(
   ];
 
   for (const field of requiredFields) {
-    if (!frontmatter[field]) {
+    if (!blogData[field]) {
       errors.push(`Missing required field: ${field}`);
     } else if (
-      typeof frontmatter[field] === "string" &&
-      !frontmatter[field].toString().trim()
+      typeof blogData[field] === "string" &&
+      !blogData[field].toString().trim()
     ) {
       errors.push(`Required field '${field}' cannot be empty`);
     }
   }
 
   // Type validation
-  if (frontmatter.title && typeof frontmatter.title !== "string") {
+  if (blogData.title && typeof blogData.title !== "string") {
     errors.push(`Field 'title' must be a string`);
   }
 
-  if (frontmatter.description && typeof frontmatter.description !== "string") {
+  if (blogData.description && typeof blogData.description !== "string") {
     errors.push(`Field 'description' must be a string`);
   }
 
-  if (frontmatter.image && typeof frontmatter.image !== "string") {
+  if (blogData.image && typeof blogData.image !== "string") {
     errors.push(`Field 'image' must be a string (URL or path)`);
   }
 
-  if (frontmatter.author && typeof frontmatter.author !== "string") {
+  if (blogData.author && typeof blogData.author !== "string") {
     errors.push(`Field 'author' must be a string`);
   }
 
-  if (frontmatter.publishedAt && typeof frontmatter.publishedAt !== "string") {
+  if (blogData.publishedAt && typeof blogData.publishedAt !== "string") {
     errors.push(`Field 'publishedAt' must be a string (ISO date format)`);
   }
 
   // Array fields validation
-  if (frontmatter.tags && !Array.isArray(frontmatter.tags)) {
+  if (blogData.tags && !Array.isArray(blogData.tags)) {
     errors.push(`Field 'tags' must be an array`);
-  } else if (frontmatter.tags && Array.isArray(frontmatter.tags)) {
-    if (frontmatter.tags.length === 0) {
+  } else if (blogData.tags && Array.isArray(blogData.tags)) {
+    if (blogData.tags.length === 0) {
       warnings.push(
         `Field 'tags' is empty - consider adding relevant tags for better discoverability`
       );
     }
 
     // Validate each tag
-    frontmatter.tags.forEach((tag: unknown, index: number) => {
+    blogData.tags.forEach((tag: unknown, index: number) => {
       if (typeof tag !== "string") {
         errors.push(`Tag at index ${index} must be a string`);
       } else if (!tag.trim()) {
@@ -93,14 +93,11 @@ export function validateBlogPostFrontmatter(
     });
   }
 
-  if (frontmatter.destinations && !Array.isArray(frontmatter.destinations)) {
+  if (blogData.destinations && !Array.isArray(blogData.destinations)) {
     errors.push(`Field 'destinations' must be an array`);
-  } else if (
-    frontmatter.destinations &&
-    Array.isArray(frontmatter.destinations)
-  ) {
+  } else if (blogData.destinations && Array.isArray(blogData.destinations)) {
     // Validate each destination code
-    frontmatter.destinations.forEach((dest: unknown, index: number) => {
+    blogData.destinations.forEach((dest: unknown, index: number) => {
       if (typeof dest !== "string") {
         errors.push(`Destination at index ${index} must be a string`);
       } else if (!dest.trim()) {
@@ -113,16 +110,16 @@ export function validateBlogPostFrontmatter(
     });
   }
 
-  if (frontmatter.related_visas && !Array.isArray(frontmatter.related_visas)) {
+  if (blogData.related_visas && !Array.isArray(blogData.related_visas)) {
     errors.push(`Field 'related_visas' must be an array`);
   }
 
   // Date validation
-  if (frontmatter.publishedAt && typeof frontmatter.publishedAt === "string") {
-    const publishedDate = new Date(frontmatter.publishedAt);
+  if (blogData.publishedAt && typeof blogData.publishedAt === "string") {
+    const publishedDate = new Date(blogData.publishedAt);
     if (isNaN(publishedDate.getTime())) {
       errors.push(
-        `Field 'publishedAt' must be a valid date (received: ${frontmatter.publishedAt})`
+        `Field 'publishedAt' must be a valid date (received: ${blogData.publishedAt})`
       );
     } else {
       // Check if date is too far in the future
@@ -131,49 +128,49 @@ export function validateBlogPostFrontmatter(
 
       if (publishedDate > oneYearFromNow) {
         warnings.push(
-          `Published date is more than a year in the future: ${frontmatter.publishedAt}`
+          `Published date is more than a year in the future: ${blogData.publishedAt}`
         );
       }
     }
   }
 
-  if (frontmatter.lastUpdated && typeof frontmatter.lastUpdated === "string") {
-    const updatedDate = new Date(frontmatter.lastUpdated);
+  if (blogData.lastUpdated && typeof blogData.lastUpdated === "string") {
+    const updatedDate = new Date(blogData.lastUpdated);
     if (isNaN(updatedDate.getTime())) {
       errors.push(
-        `Field 'lastUpdated' must be a valid date (received: ${frontmatter.lastUpdated})`
+        `Field 'lastUpdated' must be a valid date (received: ${blogData.lastUpdated})`
       );
     }
   }
 
   // Content length validation
-  if (frontmatter.title && typeof frontmatter.title === "string") {
-    if (frontmatter.title.length < 10) {
+  if (blogData.title && typeof blogData.title === "string") {
+    if (blogData.title.length < 10) {
       warnings.push(
-        `Title is very short (${frontmatter.title.length} characters) - consider making it more descriptive`
+        `Title is very short (${blogData.title.length} characters) - consider making it more descriptive`
       );
-    } else if (frontmatter.title.length > 100) {
+    } else if (blogData.title.length > 100) {
       warnings.push(
-        `Title is very long (${frontmatter.title.length} characters) - consider shortening for better SEO`
+        `Title is very long (${blogData.title.length} characters) - consider shortening for better SEO`
       );
     }
   }
 
-  if (frontmatter.description && typeof frontmatter.description === "string") {
-    if (frontmatter.description.length < 50) {
+  if (blogData.description && typeof blogData.description === "string") {
+    if (blogData.description.length < 50) {
       warnings.push(
-        `Description is short (${frontmatter.description.length} characters) - consider expanding for better SEO`
+        `Description is short (${blogData.description.length} characters) - consider expanding for better SEO`
       );
-    } else if (frontmatter.description.length > 200) {
+    } else if (blogData.description.length > 200) {
       warnings.push(
-        `Description is very long (${frontmatter.description.length} characters) - consider shortening for better SEO`
+        `Description is very long (${blogData.description.length} characters) - consider shortening for better SEO`
       );
     }
   }
 
   // Image URL validation
-  if (frontmatter.image && typeof frontmatter.image === "string") {
-    const imageUrl = frontmatter.image;
+  if (blogData.image && typeof blogData.image === "string") {
+    const imageUrl = blogData.image;
     if (!imageUrl.startsWith("http") && !imageUrl.startsWith("/")) {
       warnings.push(
         `Image path should be absolute URL or start with '/' (received: ${imageUrl})`
@@ -182,15 +179,15 @@ export function validateBlogPostFrontmatter(
   }
 
   // Slug consistency check
-  if (frontmatter.title && typeof frontmatter.title === "string") {
-    const titleSlug = frontmatter.title
+  if (blogData.title && typeof blogData.title === "string") {
+    const titleSlug = blogData.title
       .toLowerCase()
       .replace(/[^a-z0-9\s-]/g, "")
       .replace(/\s+/g, "-");
 
     if (!slug.includes(titleSlug.substring(0, 20))) {
       warnings.push(
-        `Slug '${slug}' doesn't match title '${frontmatter.title}' - consider using a more descriptive filename`
+        `Slug '${slug}' doesn't match title '${blogData.title}' - consider using a more descriptive filename`
       );
     }
   }
@@ -221,7 +218,7 @@ export function validateBlogPostContent(
     );
   }
 
-  // Basic MDX structure validation
+  // Basic content structure validation
   if (content && content.includes("```")) {
     const codeBlocks = content.match(/```[\s\S]*?```/g);
     if (codeBlocks) {
@@ -280,17 +277,17 @@ export function validateBlogPostContent(
  * Comprehensive blog post validation
  */
 export function validateBlogPost(
-  frontmatter: Record<string, unknown>,
+  blogData: Record<string, unknown>,
   content: string,
   slug: string
 ): BlogPostValidationResult {
-  const frontmatterResult = validateBlogPostFrontmatter(frontmatter, slug);
+  const dataResult = validateBlogPostData(blogData, slug);
   const contentResult = validateBlogPostContent(content, slug);
 
   return {
-    isValid: frontmatterResult.isValid && contentResult.isValid,
-    errors: [...frontmatterResult.errors, ...contentResult.errors],
-    warnings: [...frontmatterResult.warnings, ...contentResult.warnings],
+    isValid: dataResult.isValid && contentResult.isValid,
+    errors: [...dataResult.errors, ...contentResult.errors],
+    warnings: [...dataResult.warnings, ...contentResult.warnings],
   };
 }
 

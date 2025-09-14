@@ -272,11 +272,11 @@ export function generateBlogPostJsonLd(
   const postUrl = `${baseUrl}/${locale}/blog/${post.slug}`;
 
   return {
-    headline: post.frontmatter.title,
-    description: post.frontmatter.description,
-    image: post.frontmatter.image,
+    headline: post.title,
+    description: post.description,
+    image: post.image,
     author: {
-      name: post.frontmatter.author,
+      name: post.author,
       type: "Person",
     },
     publisher: {
@@ -287,14 +287,14 @@ export function generateBlogPostJsonLd(
         height: 60,
       },
     },
-    datePublished: post.frontmatter.publishedAt,
-    dateModified: post.frontmatter.lastUpdated || post.frontmatter.publishedAt,
+    datePublished: post.publishedAt,
+    dateModified: post.lastUpdated || post.publishedAt,
     mainEntityOfPage: {
       type: "WebPage",
       id: postUrl,
     },
     articleSection: t("jsonld.blog.article_section"),
-    keywords: post.frontmatter.tags,
+    keywords: post.tags,
   };
 }
 

@@ -30,10 +30,10 @@ export function searchBlogPostsClient(
 
   const searchTerm = query.toLowerCase().trim();
   let filteredPosts = posts.filter((post: BlogPostData) => {
-    const title = post.frontmatter.title?.toLowerCase() || "";
-    const description = post.frontmatter.description?.toLowerCase() || "";
+    const title = post.title?.toLowerCase() || "";
+    const description = post.description?.toLowerCase() || "";
     const content = post.content?.toLowerCase() || "";
-    const tags = (post.frontmatter.tags || []).join(" ").toLowerCase();
+    const tags = (post.tags || []).join(" ").toLowerCase();
 
     return (
       title.includes(searchTerm) ||
@@ -45,10 +45,10 @@ export function searchBlogPostsClient(
 
   // Sort by relevance (title matches first, then description, then content)
   filteredPosts.sort((a: BlogPostData, b: BlogPostData) => {
-    const aTitle = a.frontmatter.title?.toLowerCase() || "";
-    const bTitle = b.frontmatter.title?.toLowerCase() || "";
-    const aDesc = a.frontmatter.description?.toLowerCase() || "";
-    const bDesc = b.frontmatter.description?.toLowerCase() || "";
+    const aTitle = a.title?.toLowerCase() || "";
+    const bTitle = b.title?.toLowerCase() || "";
+    const aDesc = a.description?.toLowerCase() || "";
+    const bDesc = b.description?.toLowerCase() || "";
 
     // Prioritize exact title matches
     if (aTitle.includes(searchTerm) && !bTitle.includes(searchTerm)) return -1;
@@ -59,8 +59,8 @@ export function searchBlogPostsClient(
     if (!aDesc.includes(searchTerm) && bDesc.includes(searchTerm)) return 1;
 
     // Finally sort by publication date
-    const dateA = new Date(a.frontmatter.publishedAt);
-    const dateB = new Date(b.frontmatter.publishedAt);
+    const dateA = new Date(a.publishedAt);
+    const dateB = new Date(b.publishedAt);
     return dateB.getTime() - dateA.getTime();
   });
 
@@ -80,15 +80,15 @@ export function filterBlogPostsByTagClient(
   limit?: number
 ): BlogPostData[] {
   let filtered = posts.filter((post: BlogPostData) =>
-    post.frontmatter.tags?.some((postTag: string) =>
+    post.tags?.some((postTag: string) =>
       postTag.toLowerCase().includes(tag.toLowerCase())
     )
   );
 
   // Sort by publication date (newest first)
   filtered.sort((a: BlogPostData, b: BlogPostData) => {
-    const dateA = new Date(a.frontmatter.publishedAt);
-    const dateB = new Date(b.frontmatter.publishedAt);
+    const dateA = new Date(a.publishedAt);
+    const dateB = new Date(b.publishedAt);
     return dateB.getTime() - dateA.getTime();
   });
 
@@ -108,15 +108,15 @@ export function filterBlogPostsByDestinationClient(
   limit?: number
 ): BlogPostData[] {
   let filtered = posts.filter((post: BlogPostData) =>
-    post.frontmatter.destinations?.some(
+    post.destinations?.some(
       (dest: string) => dest.toLowerCase() === destination.toLowerCase()
     )
   );
 
   // Sort by publication date (newest first)
   filtered.sort((a: BlogPostData, b: BlogPostData) => {
-    const dateA = new Date(a.frontmatter.publishedAt);
-    const dateB = new Date(b.frontmatter.publishedAt);
+    const dateA = new Date(a.publishedAt);
+    const dateB = new Date(b.publishedAt);
     return dateB.getTime() - dateA.getTime();
   });
 

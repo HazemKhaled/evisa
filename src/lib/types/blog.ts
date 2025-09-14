@@ -6,22 +6,29 @@
  */
 
 export interface BlogPostData {
-  content: string; // Compiled MDX content
+  // Core identifiers
+  id?: number; // Database ID (optional for compatibility)
   slug: string;
-  frontmatter: {
-    title: string;
-    description: string;
-    destinations: string[]; // Array of 3-letter country codes
-    image: string;
-    tags: string[];
-    passport?: string;
-    related_visas?: string[];
-    author: string;
-    publishedAt: string;
-    lastUpdated?: string;
-    [key: string]: unknown;
-  };
-  rawContent?: string; // Original markdown content for fallback
+
+  // Content
+  title: string;
+  description: string;
+  content: string; // Database content (HTML/markdown)
+
+  // Metadata
+  author: string;
+  publishedAt: string;
+  lastUpdated?: string;
+  image: string;
+
+  // Relationships
+  destinations: string[]; // Array of country codes
+  passports?: string[]; // Array of passport country codes
+  tags: string[];
+  related_visas?: string[];
+
+  // Status
+  isPublished?: boolean;
 }
 
 export interface BlogFilterOptions {
