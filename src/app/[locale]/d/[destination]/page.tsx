@@ -12,8 +12,7 @@ import { JsonLd } from "@/components/json-ld";
 import { generateDestinationJsonLd } from "@/lib/json-ld";
 import { languages } from "@/app/i18n/settings";
 
-// ISR configuration - revalidate every hour
-export const revalidate = 3600;
+export const revalidate = 86400; // Revalidate every 24 hours
 
 interface DestinationPageProps {
   params: Promise<{

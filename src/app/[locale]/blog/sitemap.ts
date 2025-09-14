@@ -3,6 +3,8 @@ import { languages } from "@/app/i18n/settings";
 import { getBlogDataForLocale } from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
 
+export const revalidate = 86400; // Revalidate every day
+
 export async function generateSitemaps() {
   // Generate sitemap entries for each supported locale for blog posts and tags
   return languages.map(locale => {

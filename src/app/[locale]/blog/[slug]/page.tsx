@@ -21,8 +21,7 @@ interface BlogPostProps {
   params: Promise<{ locale: string; slug: string }>;
 }
 
-// Enable ISR with 1 hour revalidation
-export const revalidate = 3600;
+export const revalidate = 2592000; // Revalidate every 30 days
 
 // Generate static params for all blog posts across all locales
 export async function generateStaticParams(): Promise<

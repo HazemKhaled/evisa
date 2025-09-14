@@ -15,7 +15,7 @@ import { DestinationCard } from "@/components/ui/destination-card";
 import { VisaTypeCard } from "@/components/ui/visa-type-card";
 import { RelatedArticleCard } from "@/components/ui/related-article-card";
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 86400; // Revalidate every 24 hours
 
 export default async function LocalePage({
   params,
