@@ -23,7 +23,7 @@ const createMockQuery = (data: unknown) => {
 describe("Visa Service", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockDbConnection.isDatabaseAvailableAsync.mockResolvedValue(true);
+    mockDbConnection.isDatabaseAvailable.mockResolvedValue(true);
   });
 
   describe("checkVisaEligibility", () => {
@@ -63,8 +63,8 @@ describe("Visa Service", () => {
           .mockReturnValueOnce(mockEligibilityQuery),
       };
 
-      mockDbConnection.getDbAsync.mockResolvedValue(
-        mockDb as unknown as ReturnType<typeof mockDbConnection.getDbAsync>
+      mockDbConnection.getDb.mockResolvedValue(
+        mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
       const result = await checkVisaEligibility("USA", "UAE", "en");
@@ -89,8 +89,8 @@ describe("Visa Service", () => {
         select: jest.fn().mockReturnValue(mockEmptyQuery),
       };
 
-      mockDbConnection.getDbAsync.mockResolvedValue(
-        mockDb as unknown as ReturnType<typeof mockDbConnection.getDbAsync>
+      mockDbConnection.getDb.mockResolvedValue(
+        mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
       const result = await checkVisaEligibility("INVALID", "UAE", "en");
@@ -98,12 +98,12 @@ describe("Visa Service", () => {
     });
 
     it("should return null when database is unavailable", async () => {
-      mockDbConnection.isDatabaseAvailableAsync.mockResolvedValue(false);
+      mockDbConnection.isDatabaseAvailable.mockResolvedValue(false);
 
       const result = await checkVisaEligibility("USA", "UAE", "en");
 
       expect(result).toBeNull();
-      expect(mockDbConnection.getDbAsync).not.toHaveBeenCalled();
+      expect(mockDbConnection.getDb).not.toHaveBeenCalled();
     });
   });
 
@@ -138,8 +138,8 @@ describe("Visa Service", () => {
         select: jest.fn().mockReturnValueOnce(mockVisaTypesQuery),
       };
 
-      mockDbConnection.getDbAsync.mockResolvedValue(
-        mockDb as unknown as ReturnType<typeof mockDbConnection.getDbAsync>
+      mockDbConnection.getDb.mockResolvedValue(
+        mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
       const result = await getRandomVisaTypes("en", 6);

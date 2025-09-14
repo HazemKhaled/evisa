@@ -58,11 +58,7 @@ function validateLimit(limit: number): number {
 import { countries, countriesI18n } from "../db/schema/countries";
 import { visaTypes, visaTypesI18n } from "../db/schema/visa-types";
 import { visaEligibility } from "../db/schema/visa-eligibility";
-import {
-  getDbAsync,
-  isDatabaseAvailableAsync,
-  type Database,
-} from "../db/connection";
+import { getDb, isDatabaseAvailable, type Database } from "../db/connection";
 
 /**
  * Service for country-related database operations
@@ -139,14 +135,14 @@ export async function getCountryNames(
   }
 
   // Check if database is available
-  const isDatabaseReady = await isDatabaseAvailableAsync();
+  const isDatabaseReady = await isDatabaseAvailable();
   if (!isDatabaseReady) {
     console.warn("Database not available, using country codes as fallback");
     return countryCodes;
   }
 
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = (await getDb()) as Database;
 
     // Use a single query to get all country names at once
     const results = await db
@@ -187,14 +183,14 @@ export async function getCountryNames(
 export async function getAllCountries(
   locale: string
 ): Promise<CountryWithI18n[]> {
-  const isDatabaseReady = await isDatabaseAvailableAsync();
+  const isDatabaseReady = await isDatabaseAvailable();
   if (!isDatabaseReady) {
     console.warn("Database not available, using country codes as fallback");
     return [];
   }
 
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = (await getDb()) as Database;
 
     const results = await db
       .select({
@@ -236,14 +232,14 @@ export async function getCountryByCode(
   countryCode: string,
   locale?: string
 ): Promise<CountryWithI18n | null> {
-  const isDatabaseReady = await isDatabaseAvailableAsync();
+  const isDatabaseReady = await isDatabaseAvailable();
   if (!isDatabaseReady) {
     console.warn("Database not available");
     return null;
   }
 
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = (await getDb()) as Database;
 
     const results = await db
       .select({
@@ -298,14 +294,14 @@ export async function searchCountries(
     return [];
   }
 
-  const isDatabaseReady = await isDatabaseAvailableAsync();
+  const isDatabaseReady = await isDatabaseAvailable();
   if (!isDatabaseReady) {
     console.warn("Database not available");
     return [];
   }
 
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = (await getDb()) as Database;
 
     const results = await db
       .select({
@@ -386,14 +382,14 @@ export async function getDestinationsListWithMetadata(
   const validatedLimit = validateLimit(limit);
   const validatedSortBy = validateSortBy(sortBy);
 
-  const isDatabaseReady = await isDatabaseAvailableAsync();
+  const isDatabaseReady = await isDatabaseAvailable();
   if (!isDatabaseReady) {
     console.warn("Database not available, returning empty destinations list");
     return [];
   }
 
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = (await getDb()) as Database;
 
     // Build query to get countries that have either visa types or visa-free options
     const results = await db
@@ -582,14 +578,14 @@ export async function getDestinationDetails(
     }
   }
 
-  const isDatabaseReady = await isDatabaseAvailableAsync();
+  const isDatabaseReady = await isDatabaseAvailable();
   if (!isDatabaseReady) {
     console.warn("Database not available");
     return null;
   }
 
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = (await getDb()) as Database;
 
     // Get destination country information
     const destinationResults = await db
@@ -740,14 +736,14 @@ export async function getCountriesByCodes(
     return [];
   }
 
-  const isDatabaseReady = await isDatabaseAvailableAsync();
+  const isDatabaseReady = await isDatabaseAvailable();
   if (!isDatabaseReady) {
     console.warn("Database not available");
     return [];
   }
 
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = (await getDb()) as Database;
 
     const results = await db
       .select({

@@ -5,14 +5,7 @@
  */
 
 // Export database connections
-export {
-  getDb,
-  getDbAsync,
-  getLocalD1Db,
-  getCloudflareDb,
-  isDatabaseAvailable,
-  isDatabaseAvailableAsync,
-} from "./connection";
+export { getDb, isDatabaseAvailable } from "./connection";
 
 // Export default database connection as 'db' for convenience
 export { getDb as db } from "./connection";

@@ -14,7 +14,7 @@ const mockDbConnection = dbConnection as jest.Mocked<typeof dbConnection>;
 describe("Country Service", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockDbConnection.isDatabaseAvailableAsync.mockResolvedValue(true);
+    mockDbConnection.isDatabaseAvailable.mockResolvedValue(true);
   });
 
   describe("getDestinationsListWithMetadata", () => {
@@ -64,8 +64,8 @@ describe("Country Service", () => {
           .mockReturnValue(mockVisaFreeQuery), // Visa-free count query
       };
 
-      mockDbConnection.getDbAsync.mockResolvedValue(
-        mockDb as unknown as ReturnType<typeof mockDbConnection.getDbAsync>
+      mockDbConnection.getDb.mockResolvedValue(
+        mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
       const result = await getDestinationsListWithMetadata("en", 10, "popular");
@@ -79,12 +79,12 @@ describe("Country Service", () => {
     });
 
     it("should return empty result when database is unavailable", async () => {
-      mockDbConnection.isDatabaseAvailableAsync.mockResolvedValue(false);
+      mockDbConnection.isDatabaseAvailable.mockResolvedValue(false);
 
       const result = await getDestinationsListWithMetadata("en", 10, "popular");
 
       expect(result).toEqual([]);
-      expect(mockDbConnection.getDbAsync).not.toHaveBeenCalled();
+      expect(mockDbConnection.getDb).not.toHaveBeenCalled();
     });
 
     it("should handle invalid locale gracefully", async () => {
@@ -95,7 +95,7 @@ describe("Country Service", () => {
       );
 
       expect(result).toEqual([]);
-      expect(mockDbConnection.isDatabaseAvailableAsync).not.toHaveBeenCalled();
+      expect(mockDbConnection.isDatabaseAvailable).not.toHaveBeenCalled();
     });
 
     it("should validate and sanitize sort criteria", async () => {
@@ -111,14 +111,14 @@ describe("Country Service", () => {
         select: jest.fn().mockReturnValue(mockQuery),
       };
 
-      mockDbConnection.getDbAsync.mockResolvedValue(
-        mockDb as unknown as ReturnType<typeof mockDbConnection.getDbAsync>
+      mockDbConnection.getDb.mockResolvedValue(
+        mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
       await getDestinationsListWithMetadata("en", 10, "alphabetical");
 
       // Should accept valid sort criteria
-      expect(mockDbConnection.getDbAsync).toHaveBeenCalled();
+      expect(mockDbConnection.getDb).toHaveBeenCalled();
     });
 
     it("should limit results to maximum 100", async () => {
@@ -133,8 +133,8 @@ describe("Country Service", () => {
         select: jest.fn().mockReturnValue(mockQuery),
       };
 
-      mockDbConnection.getDbAsync.mockResolvedValue(
-        mockDb as unknown as ReturnType<typeof mockDbConnection.getDbAsync>
+      mockDbConnection.getDb.mockResolvedValue(
+        mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
       await getDestinationsListWithMetadata("en", 1000, "popular");
@@ -144,9 +144,7 @@ describe("Country Service", () => {
     });
 
     it("should handle database errors gracefully", async () => {
-      mockDbConnection.getDbAsync.mockRejectedValue(
-        new Error("Database error")
-      );
+      mockDbConnection.getDb.mockRejectedValue(new Error("Database error"));
 
       const result = await getDestinationsListWithMetadata("en", 10, "popular");
 
@@ -184,8 +182,8 @@ describe("Country Service", () => {
         select: jest.fn().mockReturnValue(mockDestinationQuery),
       };
 
-      mockDbConnection.getDbAsync.mockResolvedValue(
-        mockDb as unknown as ReturnType<typeof mockDbConnection.getDbAsync>
+      mockDbConnection.getDb.mockResolvedValue(
+        mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
       const result = await getDestinationDetails("UAE", "en");
@@ -203,14 +201,14 @@ describe("Country Service", () => {
       const result = await getDestinationDetails("INVALID", "en");
 
       expect(result).toBeNull();
-      expect(mockDbConnection.isDatabaseAvailableAsync).not.toHaveBeenCalled();
+      expect(mockDbConnection.isDatabaseAvailable).not.toHaveBeenCalled();
     });
 
     it("should return null for invalid locale", async () => {
       const result = await getDestinationDetails("UAE", "invalid-locale");
 
       expect(result).toBeNull();
-      expect(mockDbConnection.isDatabaseAvailableAsync).not.toHaveBeenCalled();
+      expect(mockDbConnection.isDatabaseAvailable).not.toHaveBeenCalled();
     });
 
     it("should return null when destination not found in database", async () => {
@@ -224,8 +222,8 @@ describe("Country Service", () => {
         select: jest.fn().mockReturnValue(mockQuery),
       };
 
-      mockDbConnection.getDbAsync.mockResolvedValue(
-        mockDb as unknown as ReturnType<typeof mockDbConnection.getDbAsync>
+      mockDbConnection.getDb.mockResolvedValue(
+        mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
       const result = await getDestinationDetails("UAE", "en");
@@ -234,12 +232,12 @@ describe("Country Service", () => {
     });
 
     it("should handle database unavailability", async () => {
-      mockDbConnection.isDatabaseAvailableAsync.mockResolvedValue(false);
+      mockDbConnection.isDatabaseAvailable.mockResolvedValue(false);
 
       const result = await getDestinationDetails("UAE", "en");
 
       expect(result).toBeNull();
-      expect(mockDbConnection.getDbAsync).not.toHaveBeenCalled();
+      expect(mockDbConnection.getDb).not.toHaveBeenCalled();
     });
   });
 
@@ -273,8 +271,8 @@ describe("Country Service", () => {
         select: jest.fn().mockReturnValue(mockQuery),
       };
 
-      mockDbConnection.getDbAsync.mockResolvedValue(
-        mockDb as unknown as ReturnType<typeof mockDbConnection.getDbAsync>
+      mockDbConnection.getDb.mockResolvedValue(
+        mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
       const result = await getDestinationWithVisaTypes("UAE", "en");
@@ -295,7 +293,7 @@ describe("Country Service", () => {
       const result = await getDestinationDetails(maliciousInput, "en");
 
       expect(result).toBeNull();
-      expect(mockDbConnection.isDatabaseAvailableAsync).not.toHaveBeenCalled();
+      expect(mockDbConnection.isDatabaseAvailable).not.toHaveBeenCalled();
     });
 
     it("should validate country code format", async () => {
@@ -351,8 +349,8 @@ describe("Country Service", () => {
         select: jest.fn().mockReturnValue(mockQuery),
       };
 
-      mockDbConnection.getDbAsync.mockResolvedValue(
-        mockDb as unknown as ReturnType<typeof mockDbConnection.getDbAsync>
+      mockDbConnection.getDb.mockResolvedValue(
+        mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
       const promises = Array(10)
