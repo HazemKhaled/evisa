@@ -66,12 +66,11 @@ src/
 │   │   ├── meta-tags.tsx                 # Dynamic meta tags
 │   │   └── canonical-link.tsx            # Canonical URL handling
 │   ├── blog/                             # Blog-specific components
-│   │   ├── blog-post-content.tsx         # MDX content renderer
+│   │   ├── blog-post-content.tsx         # Database content renderer
 │   │   ├── blog-navigation.tsx           # Previous/next navigation
 │   │   ├── tag-list.tsx                  # Blog tag display
 │   │   └── related-posts.tsx             # Related articles
 │   ├── language-switcher.tsx             # Multi-language selector
-│   ├── mdx-content.tsx                   # MDX content wrapper
 │   └── static-page-layout.tsx            # Static page wrapper
 ├── lib/                                  # Business logic and utilities
 │   ├── db/                               # Database layer
@@ -112,9 +111,8 @@ src/
 │   │   ├── blog.ts                       # Blog content types
 │   │   ├── affiliate.ts                  # Partner integration types
 │   │   └── index.ts                      # Type exports
-│   ├── blog.ts                           # Blog content utilities
+│   ├── blog.ts                           # Blog database utilities
 │   ├── json-ld.ts                        # Structured data generators
-│   ├── mdx.ts                            # MDX processing utilities
 │   └── utils.ts                          # General utility functions
 ├── i18n/                                 # Internationalization
 │   ├── locales/                          # Translation files
@@ -134,13 +132,6 @@ src/
 │   ├── settings.ts                       # i18next configuration
 │   ├── client.ts                         # Client-side i18n
 │   └── index.ts                          # Server-side i18n
-├── content/                              # Static content
-│   └── blog/                             # Blog posts by language
-│       ├── en/                           # English blog posts
-│       │   └── *.mdx                     # Individual blog posts
-│       ├── ar/                           # Arabic blog posts
-│       ├── es/                           # Spanish blog posts
-│       └── [other-languages]/
 ├── public/                               # Static assets
 │   ├── images/                           # Image assets
 │   │   ├── flags/                        # Country flag images

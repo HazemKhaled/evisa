@@ -83,7 +83,6 @@ src/components/
 │   └── visa-type-card.tsx  # Visa option display card
 ├── json-ld.tsx             # SEO structured data component
 ├── language-switcher.tsx   # Language selection dropdown
-├── mdx-content.tsx         # MDX content wrapper component
 ├── static-page-layout.tsx  # Layout for static pages
 └── __tests__/              # Component unit tests
 ```
@@ -104,7 +103,8 @@ src/lib/
 ├── services/               # Data access and business logic
 │   ├── country-service.ts  # Country data operations
 │   ├── visa-service.ts     # Visa data operations
-│   ├── mdx-service.ts      # MDX content service (Cloudflare Workers compatible)
+│   ├── blog-service-db.ts  # Database blog service (Cloudflare Workers compatible)
+│   ├── blog-service.ts     # Blog service interface layer
 │   └── index.ts            # Service exports
 ├── db/                     # Database schema and connection
 │   ├── connection.ts       # Database connection management
@@ -128,7 +128,6 @@ src/lib/
 ├── pages-manifest.ts       # Static pages manifest
 ├── blog.ts                 # Blog data processing (legacy)
 ├── json-ld.ts              # SEO structured data generation
-├── mdx.ts                  # MDX content processing (Cloudflare Workers compatible)
 ├── utils.ts                # Core utility functions
 ├── __tests__/              # Library unit tests
 └── __mocks__/              # Test mocks
@@ -141,53 +140,64 @@ src/lib/
 - TypeScript interfaces for all data structures
 - Database abstraction through service layer
 
-### Content Management (Cloudflare Workers Compatible)
+### Content Management (Database-Driven)
 
-**Content Organization:**
+**Blog Content Architecture:**
+
+Blog content is now stored in database tables with full multilingual support:
+
+- **blog_posts**: Core blog post metadata (slug, author, destinations, image, dates)
+- **blog_posts_i18n**: Localized content (title, description, content) per language
+- **blog_tags**: Tag definitions with multilingual support
+- **blog_post_tags**: Many-to-many relationship between posts and tags
+
+**Static Page Content:**
 
 ```
 public/
-├── blog/                   # Blog content for Assets binding
-│   ├── en/                 # English blog posts
-│   ├── ar/                 # Arabic blog posts
-│   ├── es/                 # Spanish blog posts
-│   ├── pt/                 # Portuguese blog posts
-│   ├── ru/                 # Russian blog posts
-│   ├── de/                 # German blog posts
-│   ├── fr/                 # French blog posts
-│   └── it/                 # Italian blog posts
-│       ├── [destination]-*.mdx # Destination-specific posts
-│       ├── [visa-type]-*.mdx   # Visa guide posts
-│       └── [topic]-*.mdx       # General travel posts
-└── pages/                  # Static pages for Assets binding
-    ├── en/                 # English static pages
-    ├── ar/                 # Arabic static pages
-    └── [other locales]/    # Other language static pages
-        ├── about-us.mdx
-        ├── privacy-policy.mdx
-        └── terms-n-conditions.mdx
+├── pages/                  # Static page content (migrated from MDX)
+│   ├── en/                 # English static pages
+│   ├── ar/                 # Arabic static pages
+│   ├── es/                 # Spanish static pages
+│   ├── pt/                 # Portuguese static pages
+│   ├── ru/                 # Russian static pages
+│   ├── de/                 # German static pages
+│   ├── fr/                 # French static pages
+│   └── it/                 # Italian static pages
+│       ├── about-us.mdx
+│       ├── privacy-policy.mdx
+│       └── terms-n-conditions.mdx
+└── locales/               # i18n translation files
+    ├── en/                 # English translations
+    ├── ar/                 # Arabic translations
+    └── [other locales]/    # Other language translations
+        ├── common.json
+        ├── navigation.json
+        └── pages.json
 
-src/lib/
-├── blog-manifest.ts        # Static manifest of all blog posts
-├── pages-manifest.ts       # Static manifest of all static pages
-└── services/
-    └── mdx-service.ts      # Cloudflare Workers compatible service
+src/lib/services/
+├── blog-service.ts         # Blog service interface layer
+├── blog-service-db.ts      # Database blog operations
+└── blog-service-client.ts  # Client-side blog utilities
 ```
 
-**Migration from Filesystem to Assets Binding:**
+**Migration from MDX to Database:**
 
-- **Legacy**: Content stored in `src/contents/` using Node.js `fs` APIs
-- **Current**: Content stored in `public/` using Cloudflare Assets binding
-- **Benefits**: Compatible with Cloudflare Workers serverless runtime
-- **Trade-offs**: Requires static manifests for content discovery
+- **Legacy**: MDX files with frontmatter metadata stored in filesystem
+- **Current**: Blog content stored in SQLite database with Drizzle ORM
+- **Benefits**:
+  - Better performance and caching
+  - Dynamic content management
+  - Serverless compatibility
+  - Scalable content operations
+  - Real-time content updates
 
-**Content Structure:**
+**Database-Driven Content Architecture:**
 
-- MDX files with frontmatter metadata
-- Destination-focused blog organization
-- Consistent naming across languages
-- SEO-optimized content structure
-- **Static manifests** for content discovery in serverless environment
+- Blog posts stored in database tables with full multilingual support
+- Static pages use Next.js App Router with i18n translation files
+- Destination-focused blog organization maintained through database relationships
+- SEO-optimized content with proper metadata and structured data
 
 ### Middleware (`src/middleware.ts`)
 
@@ -243,8 +253,8 @@ drizzle/
 
 ### Content Files
 
-- **Blog posts**: `[topic]-[type]-guide.mdx` (e.g., `uae-tourist-visa-guide.mdx`)
-- **Static pages**: `kebab-case.mdx` (e.g., `terms-n-conditions.mdx`)
+- **Static pages**: `kebab-case.mdx` (e.g., `terms-n-conditions.mdx`) in `public/pages/[locale]/`
+- **Translation files**: `kebab-case.json` (e.g., `navigation.json`) in `public/locales/[locale]/`
 - **Directories**: `kebab-case` throughout
 
 ### Test Files

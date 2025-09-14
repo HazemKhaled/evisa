@@ -86,13 +86,13 @@ graph TB
         Countries[(Countries)]
         VisaTypes[(Visa Types)]
         Eligibility[(Visa Eligibility)]
-        BlogMDX[Blog MDX Files]
+        BlogData[Blog Database Tables]
     end
 
     D1 --> Countries
     D1 --> VisaTypes
     D1 --> Eligibility
-    R2 --> BlogMDX
+    D1 --> BlogData
 
     Services --> D1
     Components --> Services
@@ -138,7 +138,7 @@ This is the DEFINITIVE technology selection for the entire project. This table s
 | Database              | Cloudflare D1                      | Latest       | SQLite-compatible edge database               | Edge deployment, automatic replication, integrates with Cloudflare ecosystem                   |
 | ORM                   | Drizzle ORM                        | 0.44.5+      | Type-safe database operations                 | Best TypeScript integration, optimized for edge databases, excellent migration system          |
 | Cache                 | Cloudflare Workers Cache + Next.js | Built-in     | Multi-layer caching strategy                  | Workers Cache for API responses, Next.js cache for static content                              |
-| File Storage          | Cloudflare R2                      | Latest       | Object storage for images and MDX             | S3-compatible, integrates with CDN, cost-effective for global distribution                     |
+| File Storage          | Cloudflare R2                      | Latest       | Object storage for images and assets          | S3-compatible, integrates with CDN, cost-effective for global distribution                     |
 | Authentication        | NextAuth.js                        | v5 (Auth.js) | Modern authentication solution                | Latest version with improved TypeScript support, edge-compatible, excellent provider ecosystem |
 | Frontend Testing      | Jest + React Testing Library       | 29+          | Component and service testing                 | Industry standard, excellent TypeScript support, focuses on user behavior                      |
 | Backend Testing       | Jest + Supertest                   | 29+          | Server Actions and database testing           | Same framework as frontend, enables shared test utilities                                      |
@@ -330,7 +330,7 @@ interface VisaEligibility {
 - `slug`: string (primary key) - URL-friendly identifier
 - `title`: string - Blog post title
 - `description`: string - Meta description
-- `content`: string - MDX content
+- `content`: string - Blog post content (markdown/HTML)
 - `destination`: string | null - Associated destination country code
 - `passport`: string | null - Relevant passport country
 - `relatedVisas`: string[] - Related visa type IDs
@@ -663,7 +663,7 @@ interface DestinationCardProps {
 
 **Dependencies:** BlogPost data model, image optimization, reading time calculation
 
-**Technology Stack:** Next.js Image, MDX excerpt parsing, date formatting utilities
+**Technology Stack:** Next.js Image, database content processing, date formatting utilities
 
 ### Layout Components
 
@@ -770,7 +770,7 @@ class CountryService {
 
 #### BlogService
 
-**Responsibility:** MDX content processing, destination-related posts, and tag-based filtering
+**Responsibility:** Database blog content management, destination-related posts, and tag-based filtering
 
 **Key Interfaces:**
 
@@ -778,9 +778,9 @@ class CountryService {
 - `getBlogPost()` - individual post with metadata
 - `getRelatedPosts()` - content recommendation engine
 
-**Dependencies:** File system access, MDX parsing, content validation
+**Dependencies:** Database access, Drizzle ORM, content validation
 
-**Technology Stack:** gray-matter, remark-gfm, content caching, image optimization
+**Technology Stack:** Drizzle ORM, SQLite database, content caching, image optimization
 
 ### Performance-Critical Components
 

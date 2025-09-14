@@ -8,7 +8,7 @@
 - **Build Tool**: Turbopack for development (Next.js native)
 - **Styling**: Tailwind CSS 4.1.13 with custom design tokens
 - **Internationalization**: i18next 25.5.2 with 8-language support
-- **Content**: MDX support with gray-matter for blog system
+- **Content**: Database-driven blog system with Drizzle ORM
 - **UI Components**: Custom component library with DestinationCard, VisaTypeCard, etc.
 - **Database Integration**: Drizzle ORM with service layer patterns
 
