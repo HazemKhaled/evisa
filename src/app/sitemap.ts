@@ -11,9 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     "", // Home page
     "contact", // Contact page
-    "p/about-us", // About us
-    "p/terms-n-conditions", // Terms and conditions
-    "p/privacy-policy", // Privacy policy
+    "about", // About us
+    "terms", // Terms and conditions
+    "privacy", // Privacy policy
+    "d", // Destinations
   ];
 
   const urls: MetadataRoute.Sitemap = [];

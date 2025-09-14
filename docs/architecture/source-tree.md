@@ -104,6 +104,7 @@ src/lib/
 ├── services/               # Data access and business logic
 │   ├── country-service.ts  # Country data operations
 │   ├── visa-service.ts     # Visa data operations
+│   ├── mdx-service.ts      # MDX content service (Cloudflare Workers compatible)
 │   └── index.ts            # Service exports
 ├── db/                     # Database schema and connection
 │   ├── connection.ts       # Database connection management
@@ -123,9 +124,11 @@ src/lib/
 ├── consts/                 # Application constants
 │   ├── env.ts              # Environment variables
 │   └── index.ts            # Constants exports
-├── blog.ts                 # Blog data processing
+├── blog-manifest.ts        # Static blog post manifest
+├── pages-manifest.ts       # Static pages manifest
+├── blog.ts                 # Blog data processing (legacy)
 ├── json-ld.ts              # SEO structured data generation
-├── mdx.ts                  # MDX content processing
+├── mdx.ts                  # MDX content processing (Cloudflare Workers compatible)
 ├── utils.ts                # Core utility functions
 ├── __tests__/              # Library unit tests
 └── __mocks__/              # Test mocks
@@ -138,29 +141,45 @@ src/lib/
 - TypeScript interfaces for all data structures
 - Database abstraction through service layer
 
-### Content Management (`src/contents/`)
+### Content Management (Cloudflare Workers Compatible)
 
-Multilingual content organized by language:
+**Content Organization:**
 
 ```
-src/contents/
-├── ar/                     # Arabic content
-├── de/                     # German content
-├── en/                     # English content (primary)
-├── es/                     # Spanish content
-├── fr/                     # French content
-├── it/                     # Italian content
-├── pt/                     # Portuguese content
-└── ru/                     # Russian content
-    ├── blog/               # Travel blog posts
-    │   ├── [destination]-*.mdx # Destination-specific posts
-    │   ├── [visa-type]-*.mdx   # Visa guide posts
-    │   └── [topic]-*.mdx       # General travel posts
-    └── pages/              # Static page content
+public/
+├── blog/                   # Blog content for Assets binding
+│   ├── en/                 # English blog posts
+│   ├── ar/                 # Arabic blog posts
+│   ├── es/                 # Spanish blog posts
+│   ├── pt/                 # Portuguese blog posts
+│   ├── ru/                 # Russian blog posts
+│   ├── de/                 # German blog posts
+│   ├── fr/                 # French blog posts
+│   └── it/                 # Italian blog posts
+│       ├── [destination]-*.mdx # Destination-specific posts
+│       ├── [visa-type]-*.mdx   # Visa guide posts
+│       └── [topic]-*.mdx       # General travel posts
+└── pages/                  # Static pages for Assets binding
+    ├── en/                 # English static pages
+    ├── ar/                 # Arabic static pages
+    └── [other locales]/    # Other language static pages
         ├── about-us.mdx
         ├── privacy-policy.mdx
         └── terms-n-conditions.mdx
+
+src/lib/
+├── blog-manifest.ts        # Static manifest of all blog posts
+├── pages-manifest.ts       # Static manifest of all static pages
+└── services/
+    └── mdx-service.ts      # Cloudflare Workers compatible service
 ```
+
+**Migration from Filesystem to Assets Binding:**
+
+- **Legacy**: Content stored in `src/contents/` using Node.js `fs` APIs
+- **Current**: Content stored in `public/` using Cloudflare Assets binding
+- **Benefits**: Compatible with Cloudflare Workers serverless runtime
+- **Trade-offs**: Requires static manifests for content discovery
 
 **Content Structure:**
 
@@ -168,6 +187,7 @@ src/contents/
 - Destination-focused blog organization
 - Consistent naming across languages
 - SEO-optimized content structure
+- **Static manifests** for content discovery in serverless environment
 
 ### Middleware (`src/middleware.ts`)
 

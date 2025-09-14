@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import {
   getBlogPost,
   getBlogPostsForLocale,
+  getAllBlogPostSlugs,
 } from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
 import { StaticPageLayout } from "@/components/static-page-layout";
@@ -22,6 +23,18 @@ interface BlogPostProps {
 
 // Enable ISR with 1 hour revalidation
 export const revalidate = 3600;
+
+// Generate static params for all blog posts across all locales
+export async function generateStaticParams(): Promise<
+  { locale: string; slug: string }[]
+> {
+  try {
+    return await getAllBlogPostSlugs();
+  } catch (error) {
+    console.error("Error generating static params for blog posts:", error);
+    return [];
+  }
+}
 
 export async function generateMetadata({
   params,

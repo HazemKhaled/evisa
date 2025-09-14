@@ -1,11 +1,9 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
-import createMDX from "@next/mdx";
-import remarkGfm from "remark-gfm";
 import WithBundleAnalyzer from "@next/bundle-analyzer";
 
 const nextConfig: NextConfig = {
-  pageExtensions: ["mdx", "ts", "tsx"],
+  pageExtensions: ["ts", "tsx"],
   images: {
     loader: "custom",
     loaderFile: "./image-loader.ts",
@@ -24,25 +22,14 @@ const nextConfig: NextConfig = {
       destination: "/:locale/blog/sitemap/:locale.xml",
     },
   ],
-  experimental: {
-    // Enable Rust-based MDX compiler for better performance
-    mdxRs: true,
-  },
 };
-
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [],
-  },
-});
 
 const withBundleAnalyzer = WithBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
 export default withBundleAnalyzer(
-  withSentryConfig(withMDX(nextConfig), {
+  withSentryConfig(nextConfig, {
     // For all available options, see:
     // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 

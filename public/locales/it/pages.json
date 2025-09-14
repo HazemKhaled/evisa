@@ -40,6 +40,217 @@
       "description": "Cerchiamo sempre di collaborare con agenzie di viaggio, fornitori di servizi per visti e organizzazioni turistiche per servire meglio i viaggiatori di tutto il mondo."
     }
   },
+  "about": {
+    "title": "Su GetTravelVisa.com",
+    "subtitle": "Aiutiamo i viaggiatori a navigare nel complesso mondo dei requisiti per i visti con il minimo sforzo. La nostra missione è semplificare i viaggi internazionali fornendo informazioni complete sui visti, controlli di idoneità e servizi di richiesta senza problemi.",
+    "mission": {
+      "title": "La nostra missione",
+      "description": "Aiutiamo i viaggiatori a navigare nel complesso mondo dei requisiti per i visti con il minimo sforzo. La nostra missione è semplificare i viaggi internazionali fornendo informazioni complete sui visti, controlli di idoneità e servizi di richiesta senza problemi."
+    },
+    "solution": {
+      "title": "La nostra soluzione",
+      "documentCenter": {
+        "title": "Centro documenti centralizzato",
+        "description": "Raccogliamo i vostri documenti e forniamo un elenco completo delle destinazioni disponibili per la vostra situazione specifica."
+      },
+      "rapidApply": {
+        "title": "Servizio di richiesta rapida",
+        "description": "Gestiamo il processo di richiesta del visto per voi o vi mettiamo in contatto con agenzie di servizi per visti affidabili."
+      },
+      "visaCatalog": {
+        "title": "Catalogo visti completo",
+        "description": "Accesso a contenuti informativi orientati alla destinazione che vi aiutano a comprendere tutto sui requisiti per i visti per ogni paese."
+      }
+    },
+    "objectives": {
+      "title": "I nostri obiettivi",
+      "item1": "Aiutare gli utenti a viaggiare con complicazioni minime o nulle nell'elaborazione dei visti",
+      "item2": "Semplificare il processo di richiesta del visto attraverso tecnologia ed esperienza",
+      "item3": "Fornire informazioni accurate e aggiornate sui visti per tutte le destinazioni"
+    },
+    "whyChooseUs": {
+      "title": "Perché sceglierci",
+      "expertise": {
+        "title": "Supporto esperto",
+        "description": "Supporto esperto durante tutto il processo di richiesta"
+      },
+      "speed": {
+        "title": "Elaborazione veloce",
+        "description": "Elaborazione dei visti veloce ed efficiente"
+      },
+      "global": {
+        "title": "Portata globale",
+        "description": "Portata globale con copertura completa delle destinazioni"
+      },
+      "trust": {
+        "title": "Servizio affidabile",
+        "description": "Considerato affidabile da migliaia di viaggiatori in tutto il mondo"
+      }
+    }
+  },
+  "privacy": {
+    "title": "Informativa sulla privacy",
+    "subtitle": "La vostra privacy è importante per noi. Questa Informativa sulla privacy spiega come raccogliamo, utilizziamo e proteggiamo le vostre informazioni quando utilizzate i nostri servizi.",
+    "lastUpdated": "Ultimo aggiornamento: 1 gennaio 2025",
+    "dataCollection": {
+      "title": "Informazioni che raccogliamo",
+      "description": "Raccogliamo informazioni che ci fornite direttamente e informazioni che otteniamo automaticamente quando utilizzate i nostri servizi:",
+      "item1": "Informazioni personali come nome, indirizzo email e numero di telefono",
+      "item2": "Informazioni su passaporto e documenti di viaggio",
+      "item3": "Informazioni di pagamento e dettagli di fatturazione",
+      "item4": "Dati di utilizzo e preferenze quando utilizzate il nostro sito web"
+    },
+    "dataUsage": {
+      "title": "Come utilizziamo le vostre informazioni",
+      "description": "Utilizziamo le informazioni che raccogliamo per:",
+      "item1": "Elaborare richieste di visti e fornire i nostri servizi",
+      "item2": "Comunicare con voi riguardo alle vostre richieste",
+      "item3": "Migliorare i nostri servizi e le funzionalità del sito web",
+      "item4": "Inviare aggiornamenti importanti e materiali promozionali"
+    },
+    "cookies": {
+      "title": "Cookie e tecnologie di tracciamento",
+      "description": "Utilizziamo cookie e tecnologie simili per migliorare la vostra esperienza:",
+      "essential": {
+        "title": "Cookie essenziali",
+        "description": "Necessari per le funzionalità di base del sito e la sicurezza"
+      },
+      "analytics": {
+        "title": "Cookie di analisi",
+        "description": "Ci aiutano a capire come utilizzate il nostro sito web"
+      },
+      "marketing": {
+        "title": "Cookie di marketing",
+        "description": "Utilizzati per mostrarvi annunci pubblicitari pertinenti"
+      }
+    },
+    "userRights": {
+      "title": "I vostri diritti",
+      "description": "Avete i seguenti diritti riguardo ai vostri dati personali:",
+      "item1": "Accesso e ottenimento di una copia dei vostri dati personali",
+      "item2": "Correzione di dati imprecisi o incompleti",
+      "item3": "Richiesta di cancellazione dei vostri dati personali",
+      "item4": "Opposizione all'elaborazione dei vostri dati personali",
+      "item5": "Portabilità dei dati e revoca del consenso"
+    },
+    "gdprCompliance": {
+      "title": "Conformità GDPR",
+      "description": "Ci impegniamo a rispettare il Regolamento generale sulla protezione dei dati (GDPR) e a proteggere i diritti dei residenti dell'UE.",
+      "legalBasis": {
+        "title": "Base legale per l'elaborazione",
+        "description": "Elaboriamo i vostri dati in base al consenso, all'esecuzione del contratto, agli obblighi legali e agli interessi legittimi."
+      }
+    },
+    "dataSharing": {
+      "title": "Condivisione delle informazioni",
+      "description": "Potremmo condividere le vostre informazioni con:",
+      "item1": "Fornitori di servizi per visti e agenzie governative come richiesto per l'elaborazione",
+      "item2": "Fornitori di servizi che ci aiutano a gestire la nostra attività",
+      "item3": "Autorità legali quando richiesto dalla legge"
+    },
+    "security": {
+      "title": "Sicurezza",
+      "description": "Implementiamo misure di sicurezza tecniche e organizzative appropriate per proteggere le vostre informazioni personali contro accesso non autorizzato, alterazione, divulgazione o distruzione."
+    },
+    "changes": {
+      "title": "Modifiche a questa informativa",
+      "description": "Potremmo aggiornare questa Informativa sulla privacy di tanto in tanto. Vi informeremo di eventuali modifiche pubblicando la nuova informativa su questa pagina e aggiornando la data 'Ultimo aggiornamento'."
+    },
+    "contact": {
+      "title": "Contattaci",
+      "description": "Se avete domande su questa Informativa sulla privacy, contattateci:",
+      "email": "Email",
+      "address": "Indirizzo",
+      "addressValue": "123 Travel Street, Visa City, VC 12345"
+    }
+  },
+  "terms": {
+    "title": "Termini di servizio",
+    "subtitle": "Leggete attentamente questi Termini di servizio prima di utilizzare i nostri servizi. Accedendo o utilizzando i nostri servizi, accettate di essere vincolati da questi termini.",
+    "lastUpdated": "Ultimo aggiornamento: 1 gennaio 2025",
+    "acceptance": {
+      "title": "Accettazione dei termini",
+      "description": "Accedendo e utilizzando GetTravelVisa.com, accettate e acconsentite ad essere vincolati dai termini e dalle disposizioni di questo accordo."
+    },
+    "services": {
+      "title": "Descrizione dei servizi",
+      "description": "GetTravelVisa.com fornisce:",
+      "item1": "Informazioni sui visti e servizi di controllo dell'idoneità",
+      "item2": "Assistenza per richieste di visti e elaborazione documenti",
+      "item3": "Guida di viaggio e informazioni sulle destinazioni",
+      "item4": "Connessione con fornitori di servizi per visti affidabili"
+    },
+    "userResponsibilities": {
+      "title": "Responsabilità dell'utente",
+      "description": "Come utente dei nostri servizi, accettate di:",
+      "item1": "Fornire informazioni accurate e complete",
+      "item2": "Rispettare tutte le leggi e i regolamenti applicabili",
+      "item3": "Non abusare dei nostri servizi o del sito web",
+      "item4": "Rispettare i diritti di proprietà intellettuale",
+      "item5": "Mantenere la riservatezza del vostro account"
+    },
+    "acceptableUse": {
+      "title": "Politica di uso accettabile",
+      "description": "Non potete utilizzare i nostri servizi per:",
+      "prohibited": {
+        "title": "Attività proibite",
+        "item1": "Impegnarvi in attività fraudolente o illegali",
+        "item2": "Violare leggi o regolamenti",
+        "item3": "Danneggiare o tentare di danneggiare i nostri sistemi",
+        "item4": "Violare i diritti o la privacy di altri"
+      }
+    },
+    "intellectualProperty": {
+      "title": "Proprietà intellettuale",
+      "description": "Tutti i contenuti e i materiali sul nostro sito web sono protetti dalle leggi sulla proprietà intellettuale.",
+      "ownership": {
+        "title": "Proprietà",
+        "description": "Possediamo o concediamo in licenza tutti i diritti di proprietà intellettuale nel nostro sito web e nei nostri servizi."
+      },
+      "license": {
+        "title": "Licenza d'uso",
+        "description": "Vi concediamo una licenza limitata e non esclusiva per utilizzare i nostri servizi per scopi personali."
+      }
+    },
+    "disclaimers": {
+      "title": "Esclusioni di responsabilità",
+      "description": "I nostri servizi sono forniti 'così come sono' senza garanzie di alcun tipo:",
+      "item1": "Non garantiamo l'approvazione del visto o i tempi di elaborazione",
+      "item2": "Le informazioni potrebbero non essere sempre attuali o complete",
+      "item3": "Non siamo responsabili per i cambiamenti delle politiche governative",
+      "item4": "La disponibilità del servizio può variare per località"
+    },
+    "limitation": {
+      "title": "Limitazione di responsabilità",
+      "description": "Nella misura massima consentita dalla legge, non saremo responsabili per danni indiretti, incidentali, speciali, consequenziali o punitivi."
+    },
+    "indemnification": {
+      "title": "Indennizzo",
+      "description": "Accettate di indennizzare e tenerci indenni da qualsiasi rivendicazione, perdita o danno derivante dal vostro utilizzo dei nostri servizi o dalla violazione di questi termini."
+    },
+    "termination": {
+      "title": "Risoluzione",
+      "description": "Possiamo terminare o sospendere il vostro accesso ai nostri servizi in qualsiasi momento per qualsiasi motivo.",
+      "item1": "Potete terminare il vostro account in qualsiasi momento",
+      "item2": "Possiamo terminare account per violazioni di questi termini",
+      "item3": "Certe disposizioni sopravvivranno alla risoluzione"
+    },
+    "governingLaw": {
+      "title": "Legge applicabile",
+      "description": "Questi termini sono governati dalle leggi della giurisdizione dove è costituita la nostra società."
+    },
+    "changes": {
+      "title": "Modifiche ai termini",
+      "description": "Ci riserviamo il diritto di modificare questi termini in qualsiasi momento. Le modifiche saranno efficaci immediatamente dopo la pubblicazione."
+    },
+    "contact": {
+      "title": "Informazioni di contatto",
+      "description": "Per domande su questi Termini di servizio, contattateci:",
+      "email": "Email",
+      "address": "Indirizzo",
+      "addressValue": "123 Travel Street, Visa City, VC 12345"
+    }
+  },
   "jsonld": {
     "organization": {
       "name": "GetTravelVisa.com",

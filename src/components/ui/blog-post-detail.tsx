@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MDXContent } from "@/components/mdx-content";
 import { cn } from "@/lib/utils";
 import type { BlogPostData } from "@/lib/services/blog-service";
 import { getTranslation } from "@/app/i18n";
@@ -129,11 +128,9 @@ export async function BlogPostDetail({
 
       {/* Article content */}
       <div className="prose prose-lg mb-12 max-w-none">
-        <MDXContent
-          data={{
-            content: post.content,
-            frontmatter: post.frontmatter,
-          }}
+        <div
+          className="leading-relaxed text-gray-900"
+          dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </div>
 

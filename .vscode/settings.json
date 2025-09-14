@@ -47,7 +47,12 @@
   "chat.agent.enabled": true,
   "chat.agent.maxRequests": 5000,
   "github.copilot.chat.agent.runTasks": true,
-  "chat.mcp.discovery.enabled": true,
+  "chat.mcp.discovery.enabled": {
+    "claude-desktop": true,
+    "windsurf": true,
+    "cursor-global": true,
+    "cursor-workspace": true
+  },
   "github.copilot.chat.agent.autoFix": true,
   "chat.tools.terminal.autoApprove": {
     "pnpm": true,

@@ -16,8 +16,8 @@ import {
   type BlogFilterOptions,
 } from "../blog-service";
 
-// Mock the MDX service
-jest.mock("../mdx-service");
+// Mock the database blog service
+jest.mock("../blog-service-db");
 
 describe("Blog Service", () => {
   describe("getAllBlogPosts", () => {
