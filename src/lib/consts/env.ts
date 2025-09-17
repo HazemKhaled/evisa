@@ -70,11 +70,6 @@ export const isDevelopment = env.NODE_ENV === "development";
 export const isProduction = env.NODE_ENV === "production";
 
 /**
- * Check if we're in production environment
- */
-export const isCI = Boolean(process.env.WORKERS_CI);
-
-/**
  * Check if we're in test environment
  */
 export const isTest = env.NODE_ENV === "test";

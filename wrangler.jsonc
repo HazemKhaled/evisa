@@ -26,14 +26,6 @@
     "mode": "smart",
   },
   "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "gtv-db",
-      "database_id": "212c10dd-e3db-4fca-85c5-97b9cdc8f1ec",
-      "migrations_dir": "drizzle",
-      "remote": true,
-    },
-
     // D1 Tag Cache (Next mode)
     // This is only required if you use On-demand revalidation
     {
@@ -43,10 +35,6 @@
     },
   ],
   "routes": [
-    {
-      "pattern": "staging.gettravelvisa.com",
-      "custom_domain": true,
-    },
     {
       "pattern": "gettravelvisa.com",
       "custom_domain": true,
@@ -96,4 +84,8 @@
     "binding": "CF_VERSION_METADATA",
   },
   "upload_source_maps": true,
+
+  "vars": {
+    "NEXT_PUBLIC_SENTRY_DSN": "https://3b385ea99f6e37f235ec970a5e46cfad@o929566.ingest.us.sentry.io/4509917829005312",
+  },
 }

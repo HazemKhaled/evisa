@@ -72,8 +72,4 @@ export default withBundleAnalyzer(
 
 // added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-initOpenNextCloudflareForDev({
-  experimental: {
-    remoteBindings: Boolean(process.env.WORKERS_CI),
-  },
-});
+initOpenNextCloudflareForDev();
