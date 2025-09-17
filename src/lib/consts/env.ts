@@ -5,22 +5,12 @@
  * used throughout the application, with proper TypeScript typing and validation.
  */
 
-interface CloudflareCredentials {
-  accountId: string;
-  databaseId: string;
-  token: string;
-}
-
 interface Environment {
   // Node.js environment
   NODE_ENV: "development" | "production" | "test";
 
-  // Cloudflare configuration
-  cloudflare: {
-    accountId: string | undefined;
-    databaseId: string | undefined;
-    apiToken: string | undefined;
-  };
+  // Database configuration
+  databaseUrl: string | undefined;
 
   // Public application URLs
   baseUrl: string;
@@ -35,9 +25,7 @@ interface Environment {
  */
 const rawEnv = {
   NODE_ENV: (process.env.NODE_ENV as Environment["NODE_ENV"]) || "development",
-  CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID,
-  CLOUDFLARE_D1_DATABASE_ID: process.env.CLOUDFLARE_D1_DATABASE_ID,
-  CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN,
+  DATABASE_URL: process.env.DATABASE_URL,
   NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
   NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
 } as const;
@@ -49,11 +37,7 @@ const rawEnv = {
 export const env: Environment = {
   NODE_ENV: rawEnv.NODE_ENV,
 
-  cloudflare: {
-    accountId: rawEnv.CLOUDFLARE_ACCOUNT_ID,
-    databaseId: rawEnv.CLOUDFLARE_D1_DATABASE_ID,
-    apiToken: rawEnv.CLOUDFLARE_API_TOKEN,
-  },
+  databaseUrl: rawEnv.DATABASE_URL,
 
   baseUrl: rawEnv.NEXT_PUBLIC_BASE_URL || "https://gettravelvisa.com",
 
@@ -61,28 +45,18 @@ export const env: Environment = {
 } as const;
 
 /**
- * Validate that required Cloudflare environment variables are present
- * Used by drizzle.config.ts and other database-related code
+ * Validate that required database environment variables are present
+ * Used by drizzle.config.ts and database connection
  */
-export function validateCloudflareEnv(): CloudflareCredentials {
-  const missing: string[] = [];
-
-  if (!env.cloudflare.databaseId) missing.push("CLOUDFLARE_D1_DATABASE_ID");
-  if (!env.cloudflare.apiToken) missing.push("CLOUDFLARE_API_TOKEN");
-  if (!env.cloudflare.accountId) missing.push("CLOUDFLARE_ACCOUNT_ID");
-
-  if (missing.length > 0) {
+export function validateDatabaseUrl(): string {
+  if (!env.databaseUrl) {
     throw new Error(
-      `Missing required environment variables for Cloudflare D1: ${missing.join(", ")}.\n` +
-        "Please set these variables in your .env.local file or environment."
+      "Missing DATABASE_URL environment variable.\n" +
+        "Please set this variable in your .env.local file or environment."
     );
   }
 
-  return {
-    accountId: env.cloudflare.accountId as string,
-    databaseId: env.cloudflare.databaseId as string,
-    token: env.cloudflare.apiToken as string,
-  };
+  return env.databaseUrl;
 }
 
 /**
@@ -106,37 +80,12 @@ export const isCI = Boolean(process.env.WORKERS_CI);
 export const isTest = env.NODE_ENV === "test";
 
 /**
- * Check if we're in local development mode with D1
- * Uses NODE_ENV to determine if we should use local D1 development setup
- */
-export const shouldUseLocalD1 = isDevelopment;
-
-/**
- * Validate environment variables for local D1 development
- * Requires at least database ID for local operations
- */
-export function validateLocalD1Env(): { databaseId: string } {
-  if (!env.cloudflare.databaseId) {
-    throw new Error(
-      "Missing CLOUDFLARE_D1_DATABASE_ID environment variable for local D1 development.\n" +
-        "Please set this variable in your .env.local file."
-    );
-  }
-
-  return {
-    databaseId: env.cloudflare.databaseId,
-  };
-}
-
-/**
  * Legacy exports for backward compatibility
  * @deprecated Use the `env` export instead
  */
 export const {
   NODE_ENV,
-  CLOUDFLARE_ACCOUNT_ID,
-  CLOUDFLARE_D1_DATABASE_ID,
-  CLOUDFLARE_API_TOKEN,
+  DATABASE_URL,
   NEXT_PUBLIC_BASE_URL,
   NEXT_PUBLIC_SENTRY_DSN,
 } = rawEnv;

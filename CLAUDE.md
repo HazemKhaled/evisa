@@ -31,7 +31,7 @@ Use latest compatible versions from all dependencies, and never use old version 
 
 ### Database & Backend
 
-- **Drizzle ORM** with Cloudflare D1 SQLite database
+- **Drizzle ORM** with Neon PostgreSQL database
 - **Drizzle Kit** for schema management and migrations
 - Well-structured schema for destinations, and visa types
 
@@ -53,7 +53,7 @@ Use latest compatible versions from all dependencies, and never use old version 
 
 - **Cloudflare** deployment via **OpenNext.js**
 - **Wrangler** for Cloudflare Workers management
-- **Cloudflare D1** for database
+- **Neon Database** for PostgreSQL database
 
 ### CI/CD with OpenNext & Github Actions
 
@@ -202,6 +202,7 @@ pnpm format:check       # Check formatting
 pnpm db:generate        # Generate migrations
 pnpm db:migrate         # Run migrations
 pnpm db:studio          # Open Drizzle Studio
+pnpm db:push            # Push schema changes directly
 ```
 
 ### Deployment
@@ -218,7 +219,7 @@ pnpm cf-typegen         # Generate Cloudflare types
 
 - **Framework**: Next.js with App Router and Turbopack for development
 - **Styling**: Tailwind CSS (latest)
-- **Database**: Schema designed but Drizzle ORM not yet fully implemented
+- **Database**: Neon PostgreSQL with Drizzle ORM integration
 - **Internationalization**: i18next
 - **Deployment**: OpenNext.js for Cloudflare Workers
 

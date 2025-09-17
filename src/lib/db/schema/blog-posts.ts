@@ -1,44 +1,50 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
+import {
+  boolean,
+  integer,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  unique,
+} from "drizzle-orm/pg-core";
 
-export const blogPosts = sqliteTable("blog_posts", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+export const blogPosts = pgTable("blog_posts", {
+  id: serial("id").primaryKey(),
   slug: text("slug").notNull(), // Not globally unique, unique per locale
   author: text("author").notNull(),
   destinations: text("destinations"), // Comma-separated country codes like "USA,CAN,FRA"
   passports: text("passports"), // Comma-separated country codes like "USA,CAN"
   image: text("image"), // Single image URL for the post
-  publishedAt: integer("published_at", { mode: "timestamp" }).notNull(),
-  isPublished: integer("is_published", { mode: "boolean" })
-    .default(true)
+  publishedAt: timestamp("published_at").notNull(),
+  isPublished: boolean("is_published").default(true).notNull(),
+  createdAt: timestamp("created_at")
+    .default(sql`now()`)
     .notNull(),
-  createdAt: integer("created_at", { mode: "timestamp" })
-    .default(sql`(unixepoch())`)
-    .notNull(),
-  updatedAt: integer("updated_at", { mode: "timestamp" })
-    .default(sql`(unixepoch())`)
+  updatedAt: timestamp("updated_at")
+    .default(sql`now()`)
     .$onUpdate(() => new Date())
     .notNull(),
-  deletedAt: integer("deleted_at", { mode: "timestamp" }),
+  deletedAt: timestamp("deleted_at"),
 });
 
-export const blogPostsI18n = sqliteTable(
+export const blogPostsI18n = pgTable(
   "blog_posts_i18n",
   {
-    id: integer("id").primaryKey({ autoIncrement: true }),
+    id: serial("id").primaryKey(),
     postId: integer("post_id")
       .references(() => blogPosts.id)
       .notNull(),
-    locale: text("locale", { length: 2 }).notNull(), // e.g., "en", "ar", "es"
+    locale: text("locale").notNull(), // e.g., "en", "ar", "es"
     title: text("title").notNull(),
     description: text("description").notNull(),
     content: text("content").notNull(), // Full markdown/HTML content
     metaKeywords: text("meta_keywords"), // SEO keywords
-    createdAt: integer("created_at", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+    createdAt: timestamp("created_at")
+      .default(sql`now()`)
       .notNull(),
-    updatedAt: integer("updated_at", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+    updatedAt: timestamp("updated_at")
+      .default(sql`now()`)
       .$onUpdate(() => new Date())
       .notNull(),
   },
@@ -48,31 +54,31 @@ export const blogPostsI18n = sqliteTable(
   })
 );
 
-export const blogTags = sqliteTable("blog_tags", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+export const blogTags = pgTable("blog_tags", {
+  id: serial("id").primaryKey(),
   name: text("name").notNull(),
   slug: text("slug").notNull().unique(),
-  createdAt: integer("created_at", { mode: "timestamp" })
-    .default(sql`(unixepoch())`)
+  createdAt: timestamp("created_at")
+    .default(sql`now()`)
     .notNull(),
-  updatedAt: integer("updated_at", { mode: "timestamp" })
-    .default(sql`(unixepoch())`)
+  updatedAt: timestamp("updated_at")
+    .default(sql`now()`)
     .$onUpdate(() => new Date())
     .notNull(),
 });
 
-export const blogPostTags = sqliteTable(
+export const blogPostTags = pgTable(
   "blog_post_tags",
   {
-    id: integer("id").primaryKey({ autoIncrement: true }),
+    id: serial("id").primaryKey(),
     postId: integer("post_id")
       .references(() => blogPosts.id)
       .notNull(),
     tagId: integer("tag_id")
       .references(() => blogTags.id)
       .notNull(),
-    createdAt: integer("created_at", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+    createdAt: timestamp("created_at")
+      .default(sql`now()`)
       .notNull(),
   },
   table => ({

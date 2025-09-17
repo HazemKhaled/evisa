@@ -1,39 +1,47 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
+import {
+  boolean,
+  integer,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  unique,
+} from "drizzle-orm/pg-core";
 
-export const countries = sqliteTable("countries", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
-  code: text("code", { length: 3 }).notNull().unique(), // ISO 3166-1 alpha-3
+export const countries = pgTable("countries", {
+  id: serial("id").primaryKey(),
+  code: text("code").notNull().unique(), // ISO 3166-1 alpha-3
   continent: text("continent").notNull(), // e.g., "Africa", "Asia", "Europe"
   region: text("region"), // e.g., "Western Europe", "Southeast Asia"
   heroImage: text("hero_image"), // Unsplash or other hero image URL
-  isActive: integer("is_active", { mode: "boolean" }).default(true).notNull(),
-  createdAt: integer("created_at", { mode: "timestamp" })
-    .default(sql`(unixepoch())`)
+  isActive: boolean("is_active").default(true).notNull(),
+  createdAt: timestamp("created_at")
+    .default(sql`now()`)
     .notNull(),
-  updatedAt: integer("updated_at", { mode: "timestamp" })
-    .default(sql`(unixepoch())`)
+  updatedAt: timestamp("updated_at")
+    .default(sql`now()`)
     .$onUpdate(() => new Date())
     .notNull(),
-  deletedAt: integer("deleted_at", { mode: "timestamp" }),
+  deletedAt: timestamp("deleted_at"),
 });
 
-export const countriesI18n = sqliteTable(
+export const countriesI18n = pgTable(
   "countries_i18n",
   {
-    id: integer("id").primaryKey({ autoIncrement: true }),
+    id: serial("id").primaryKey(),
     countryId: integer("country_id")
       .references(() => countries.id)
       .notNull(),
-    locale: text("locale", { length: 2 }).notNull(), // e.g., "en", "ar", "es"
+    locale: text("locale").notNull(), // e.g., "en", "ar", "es"
     name: text("name").notNull(),
     name_long: text("name_long"), // Official/formal country name
     about: text("about"), // 2-line catchy description
-    createdAt: integer("created_at", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+    createdAt: timestamp("created_at")
+      .default(sql`now()`)
       .notNull(),
-    updatedAt: integer("updated_at", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+    updatedAt: timestamp("updated_at")
+      .default(sql`now()`)
       .$onUpdate(() => new Date())
       .notNull(),
   },

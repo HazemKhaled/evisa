@@ -19,10 +19,6 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "wrangler:dev": "wrangler dev",
-    "db:local:apply": "wrangler d1 migrations apply gtv-db --local",
-    "db:prod:apply": "wrangler d1 migrations apply gtv-db --remote",
-    "db:local:list": "wrangler d1 migrations list gtv-db --local",
-    "db:prod:list": "wrangler d1 migrations list gtv-db --remote",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -31,6 +27,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^0.10.3",
     "@opennextjs/cloudflare": "1.8.2",
     "@sentry/nextjs": "10.11.0",
     "clsx": "2.1.1",

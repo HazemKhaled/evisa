@@ -14,8 +14,4 @@ export { getDb as db } from "./connection";
 export * from "./schema";
 
 // Export types
-export type {
-  Database,
-  CloudflareDatabase,
-  LocalD1Database,
-} from "./connection";
+export type { Database } from "./connection";

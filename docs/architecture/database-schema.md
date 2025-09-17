@@ -2,7 +2,7 @@
 
 ## Overview
 
-The eVisa application uses **SQLite** via **Cloudflare D1** with **Drizzle ORM** for type-safe database operations. The schema is designed to support visa eligibility checking, multilingual content, and comprehensive destination information.
+The eVisa application uses **PostgreSQL** via **Neon Database** with **Drizzle ORM** for type-safe database operations. The schema is designed to support visa eligibility checking, multilingual content, and comprehensive destination information.
 
 ## Schema Design Principles
 
@@ -275,11 +275,13 @@ CREATE INDEX `idx_countries_i18n_alphabetical` ON `countries_i18n`(`locale`, `na
 **File**: `src/lib/db/connection.ts`
 
 ```typescript
-import { drizzle } from "drizzle-orm/d1";
+import { drizzle } from "drizzle-orm/neon-http";
+import { neon } from "@neondatabase/serverless";
 import * as schema from "./schema";
 
-// Cloudflare D1 database connection
-export const db = drizzle(env.DB, { schema });
+// Neon database connection
+const sql = neon(process.env.DATABASE_URL!);
+export const db = drizzle(sql, { schema });
 ```
 
 ### Schema Files
@@ -309,10 +311,10 @@ export const db = drizzle(env.DB, { schema });
 export default {
   schema: "./src/lib/db/schema/*",
   out: "./drizzle",
-  driver: "d1",
+  dialect: "postgresql",
+  driver: "neon-http",
   dbCredentials: {
-    wranglerConfigPath: "./wrangler.jsonc",
-    dbName: "evisa-db",
+    connectionString: process.env.DATABASE_URL!,
   },
 } satisfies Config;
 ```
@@ -435,7 +437,7 @@ All tables use `deletedAt` timestamp for soft deletion:
 
 ---
 
-**Last Updated**: September 2025  
-**Schema Version**: v1.0  
-**Drizzle Version**: 0.44.5+  
-**Database**: Cloudflare D1 (SQLite)
+**Last Updated**: September 2025
+**Schema Version**: v2.0
+**Drizzle Version**: 0.44.5+
+**Database**: Neon Database (PostgreSQL)
