@@ -23,7 +23,7 @@ const createMockQuery = (data: unknown) => {
 describe("Visa Service", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockDbConnection.isDatabaseAvailable.mockResolvedValue(true);
+    mockDbConnection.isDatabaseAvailable.mockReturnValue(true);
   });
 
   describe("checkVisaEligibility", () => {
@@ -63,7 +63,7 @@ describe("Visa Service", () => {
           .mockReturnValueOnce(mockEligibilityQuery),
       };
 
-      mockDbConnection.getDb.mockResolvedValue(
+      mockDbConnection.getDb.mockReturnValue(
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
@@ -89,7 +89,7 @@ describe("Visa Service", () => {
         select: jest.fn().mockReturnValue(mockEmptyQuery),
       };
 
-      mockDbConnection.getDb.mockResolvedValue(
+      mockDbConnection.getDb.mockReturnValue(
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
@@ -98,7 +98,7 @@ describe("Visa Service", () => {
     });
 
     it("should return null when database is unavailable", async () => {
-      mockDbConnection.isDatabaseAvailable.mockResolvedValue(false);
+      mockDbConnection.isDatabaseAvailable.mockReturnValue(false);
 
       const result = await checkVisaEligibility("USA", "UAE", "en");
 
@@ -138,7 +138,7 @@ describe("Visa Service", () => {
         select: jest.fn().mockReturnValueOnce(mockVisaTypesQuery),
       };
 
-      mockDbConnection.getDb.mockResolvedValue(
+      mockDbConnection.getDb.mockReturnValue(
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 

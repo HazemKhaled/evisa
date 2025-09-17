@@ -14,7 +14,7 @@ const mockDbConnection = dbConnection as jest.Mocked<typeof dbConnection>;
 describe("Country Service", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockDbConnection.isDatabaseAvailable.mockResolvedValue(true);
+    mockDbConnection.isDatabaseAvailable.mockReturnValue(true);
   });
 
   describe("getDestinationsListWithMetadata", () => {
@@ -64,7 +64,7 @@ describe("Country Service", () => {
           .mockReturnValue(mockVisaFreeQuery), // Visa-free count query
       };
 
-      mockDbConnection.getDb.mockResolvedValue(
+      mockDbConnection.getDb.mockReturnValue(
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
@@ -79,7 +79,7 @@ describe("Country Service", () => {
     });
 
     it("should return empty result when database is unavailable", async () => {
-      mockDbConnection.isDatabaseAvailable.mockResolvedValue(false);
+      mockDbConnection.isDatabaseAvailable.mockReturnValue(false);
 
       const result = await getDestinationsListWithMetadata("en", 10, "popular");
 
@@ -111,7 +111,7 @@ describe("Country Service", () => {
         select: jest.fn().mockReturnValue(mockQuery),
       };
 
-      mockDbConnection.getDb.mockResolvedValue(
+      mockDbConnection.getDb.mockReturnValue(
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
@@ -133,7 +133,7 @@ describe("Country Service", () => {
         select: jest.fn().mockReturnValue(mockQuery),
       };
 
-      mockDbConnection.getDb.mockResolvedValue(
+      mockDbConnection.getDb.mockReturnValue(
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
@@ -144,7 +144,9 @@ describe("Country Service", () => {
     });
 
     it("should handle database errors gracefully", async () => {
-      mockDbConnection.getDb.mockRejectedValue(new Error("Database error"));
+      mockDbConnection.getDb.mockImplementation(() => {
+        throw new Error("Database error");
+      });
 
       const result = await getDestinationsListWithMetadata("en", 10, "popular");
 
@@ -182,7 +184,7 @@ describe("Country Service", () => {
         select: jest.fn().mockReturnValue(mockDestinationQuery),
       };
 
-      mockDbConnection.getDb.mockResolvedValue(
+      mockDbConnection.getDb.mockReturnValue(
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
@@ -222,7 +224,7 @@ describe("Country Service", () => {
         select: jest.fn().mockReturnValue(mockQuery),
       };
 
-      mockDbConnection.getDb.mockResolvedValue(
+      mockDbConnection.getDb.mockReturnValue(
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
@@ -232,7 +234,7 @@ describe("Country Service", () => {
     });
 
     it("should handle database unavailability", async () => {
-      mockDbConnection.isDatabaseAvailable.mockResolvedValue(false);
+      mockDbConnection.isDatabaseAvailable.mockReturnValue(false);
 
       const result = await getDestinationDetails("UAE", "en");
 
@@ -271,7 +273,7 @@ describe("Country Service", () => {
         select: jest.fn().mockReturnValue(mockQuery),
       };
 
-      mockDbConnection.getDb.mockResolvedValue(
+      mockDbConnection.getDb.mockReturnValue(
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
@@ -349,7 +351,7 @@ describe("Country Service", () => {
         select: jest.fn().mockReturnValue(mockQuery),
       };
 
-      mockDbConnection.getDb.mockResolvedValue(
+      mockDbConnection.getDb.mockReturnValue(
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
