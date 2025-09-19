@@ -12,31 +12,37 @@ import {
 } from "drizzle-orm/pg-core";
 import { countries } from "./countries";
 
-export const visaTypes = pgTable("visa_types", {
-  id: serial("id").primaryKey(),
-  destinationId: integer("destination_id")
-    .references(() => countries.id)
-    .notNull(),
-  type: text("type").notNull(), // e.g., "tourist", "business", "transit", "student"
-  duration: integer("duration").notNull(), // Duration in days
-  maxStay: integer("max_stay"), // Maximum stay duration in days
-  processingTime: integer("processing_time").notNull(), // Processing time in days
-  fee: real("fee").notNull(), // Fee in USD
-  currency: text("currency").default("USD").notNull(),
-  requiresInterview: boolean("requires_interview").default(false).notNull(),
-  isMultiEntry: boolean("is_multi_entry").default(false).notNull(),
-  requirements: json("requirements").$type<string[]>(), // JSON array of requirement strings
-  documents: json("documents").$type<string[]>(), // JSON array of document type strings
-  isActive: boolean("is_active").default(true).notNull(),
-  createdAt: timestamp("created_at")
-    .default(sql`now()`)
-    .notNull(),
-  updatedAt: timestamp("updated_at")
-    .default(sql`now()`)
-    .$onUpdate(() => new Date())
-    .notNull(),
-  deletedAt: timestamp("deleted_at"),
-});
+export const visaTypes = pgTable(
+  "visa_types",
+  {
+    id: serial("id").primaryKey(),
+    destinationId: integer("destination_id")
+      .references(() => countries.id)
+      .notNull(),
+    type: text("type").notNull(), // e.g., "tourist", "business", "transit", "student"
+    duration: integer("duration").notNull(), // Duration in days
+    maxStay: integer("max_stay"), // Maximum stay duration in days
+    processingTime: integer("processing_time").notNull(), // Processing time in days
+    fee: real("fee").notNull(), // Fee in USD
+    currency: text("currency").default("USD").notNull(),
+    requiresInterview: boolean("requires_interview").default(false).notNull(),
+    isMultiEntry: boolean("is_multi_entry").default(false).notNull(),
+    requirements: json("requirements").$type<string[]>(), // JSON array of requirement strings
+    documents: json("documents").$type<string[]>(), // JSON array of document type strings
+    isActive: boolean("is_active").default(true).notNull(),
+    createdAt: timestamp("created_at")
+      .default(sql`now()`)
+      .notNull(),
+    updatedAt: timestamp("updated_at")
+      .default(sql`now()`)
+      .$onUpdate(() => new Date())
+      .notNull(),
+    deletedAt: timestamp("deleted_at"),
+  },
+  table => ({
+    uniqueDestinationType: unique().on(table.destinationId, table.type),
+  })
+);
 
 export const visaTypesI18n = pgTable(
   "visa_types_i18n",
@@ -56,11 +62,9 @@ export const visaTypesI18n = pgTable(
       .$onUpdate(() => new Date())
       .notNull(),
   },
-  table => {
-    return {
-      uniqueVisaTypeLocale: unique().on(table.visaTypeId, table.locale),
-    };
-  }
+  table => ({
+    uniqueVisaTypeLocale: unique().on(table.visaTypeId, table.locale),
+  })
 );
 
 // Type definitions for JSON fields

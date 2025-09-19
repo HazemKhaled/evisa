@@ -11,7 +11,7 @@ import {
 
 export const blogPosts = pgTable("blog_posts", {
   id: serial("id").primaryKey(),
-  slug: text("slug").notNull(), // Not globally unique, unique per locale
+  slug: text("slug").notNull().unique(), // Globally unique slug for blog posts
   author: text("author").notNull(),
   destinations: text("destinations"), // Comma-separated country codes like "USA,CAN,FRA"
   passports: text("passports"), // Comma-separated country codes like "USA,CAN"

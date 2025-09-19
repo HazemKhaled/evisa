@@ -1,0 +1,1 @@
+ALTER TABLE "visa_types" ADD CONSTRAINT "visa_types_destination_id_type_unique" UNIQUE("destination_id","type");

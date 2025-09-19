@@ -12,64 +12,15 @@
     {
       "idx": 1,
       "version": "7",
-      "when": 1758092100000,
-      "tag": "0001_insert_countries",
+      "when": 1758268860520,
+      "tag": "0001_curvy_kitty_pryde",
       "breakpoints": true
     },
     {
       "idx": 2,
       "version": "7",
-      "when": 1758092150000,
-      "tag": "0002_insert_blog_tags",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1758092200000,
-      "tag": "0003_insert_blog_posts",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1758092250000,
-      "tag": "0004_insert_blog_posts_i18n",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1758092300000,
-      "tag": "0005_insert_blog_post_tags",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1758092350000,
-      "tag": "0006_insert_visa_types",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1758092400000,
-      "tag": "0007_insert_visa_types_i18n",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "7",
-      "when": 1758092450000,
-      "tag": "0008_insert_visa_eligibility",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "7",
-      "when": 1758092500000,
-      "tag": "0009_insert_visa_eligibility_i18n",
+      "when": 1758320799056,
+      "tag": "0002_new_baron_zemo",
       "breakpoints": true
     }
   ]
