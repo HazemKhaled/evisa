@@ -200,18 +200,3 @@ INSERT INTO countries (code, continent, region, hero_image, is_active, created_a
 ('TON', 'Oceania', 'Polynesia', 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', true, now(), now()),
 ('TUV', 'Oceania', 'Polynesia', 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', true, now(), now())
 ON CONFLICT (code) DO NOTHING;
-
--- Insert countries_i18n data with conflict resolution
-INSERT INTO countries_i18n (country_id, locale, name, name_long, about, created_at, updated_at) VALUES
-((SELECT id FROM countries WHERE code = 'USA'), 'en', 'United States', 'United States of America', 'The United States is a country of 50 states covering a vast swath of North America.', now(), now()),
-((SELECT id FROM countries WHERE code = 'CAN'), 'en', 'Canada', 'Canada', 'Canada is a country in North America known for its natural beauty and multicultural society.', now(), now()),
-((SELECT id FROM countries WHERE code = 'GBR'), 'en', 'United Kingdom', 'United Kingdom of Great Britain and Northern Ireland', 'The United Kingdom consists of England, Scotland, Wales and Northern Ireland.', now(), now()),
-((SELECT id FROM countries WHERE code = 'AUS'), 'en', 'Australia', 'Commonwealth of Australia', 'Australia is a country and continent surrounded by the Indian and Pacific oceans.', now(), now()),
-((SELECT id FROM countries WHERE code = 'ARE'), 'en', 'United Arab Emirates', 'United Arab Emirates', 'The UAE is a federation of seven emirates on the eastern side of the Arabian peninsula.', now(), now()),
-((SELECT id FROM countries WHERE code = 'JPN'), 'en', 'Japan', 'Japan', 'Japan is an island country in East Asia known for its rich culture and technological advancement.', now(), now()),
-((SELECT id FROM countries WHERE code = 'DEU'), 'en', 'Germany', 'Federal Republic of Germany', 'Germany is a Western European country with a landscape of forests, rivers, mountain ranges and North Sea beaches.', now(), now()),
-((SELECT id FROM countries WHERE code = 'FRA'), 'en', 'France', 'French Republic', 'France is a country whose territory consists of metropolitan France in Western Europe and several overseas regions and territories.', now(), now()),
-((SELECT id FROM countries WHERE code = 'ITA'), 'en', 'Italy', 'Italian Republic', 'Italy is a European country consisting of a peninsula delimited by the Italian Alps and several islands.', now(), now()),
-((SELECT id FROM countries WHERE code = 'ESP'), 'en', 'Spain', 'Kingdom of Spain', 'Spain is a country on Europes Iberian Peninsula including diverse regions with distinct cultures.', now(), now()),
-((SELECT id FROM countries WHERE code = 'SAU'), 'en', 'Saudi Arabia', 'Kingdom of Saudi Arabia', 'Saudi Arabia is a desert country encompassing most of the Arabian Peninsula, with Red Sea and Persian Gulf coastlines.', now(), now())
-ON CONFLICT (country_id, locale) DO NOTHING;
