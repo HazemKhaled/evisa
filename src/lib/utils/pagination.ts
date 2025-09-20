@@ -169,9 +169,7 @@ export function createBlogFilter<T extends BlogItem>(
     // Filter by destination if specified
     if (
       destination &&
-      !item.destinations?.some(dest =>
-        dest.toLowerCase().includes(destination.toLowerCase())
-      )
+      !item.destinations?.some(dest => dest.includes(destination))
     ) {
       return false;
     }

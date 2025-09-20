@@ -108,9 +108,7 @@ export function filterBlogPostsByDestinationClient(
   limit?: number
 ): BlogPostData[] {
   let filtered = posts.filter((post: BlogPostData) =>
-    post.destinations?.some(
-      (dest: string) => dest.toLowerCase() === destination.toLowerCase()
-    )
+    post.destinations?.some((dest: string) => dest === destination)
   );
 
   // Sort by publication date (newest first)

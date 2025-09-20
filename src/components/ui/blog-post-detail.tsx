@@ -58,7 +58,7 @@ export async function BlogPostDetail({
               {post.destinations.map(destination => (
                 <Link
                   key={destination}
-                  href={`/${locale}/d/${destination.toLowerCase()}/blog`}
+                  href={`/${locale}/d/${destination}/blog`}
                   className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 transition-colors hover:bg-blue-200"
                   aria-label={`View blog posts for ${destination}`}
                 >

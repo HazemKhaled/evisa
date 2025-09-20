@@ -345,7 +345,7 @@ export function generateDestinationJsonLd(
   locale: string
 ): Record<string, unknown> {
   const baseUrl = env.baseUrl;
-  const destinationUrl = `${baseUrl}/${locale}/d/${destination.code.toLowerCase()}`;
+  const destinationUrl = `${baseUrl}/${locale}/d/${destination.code}`;
 
   return {
     "@context": "https://schema.org",

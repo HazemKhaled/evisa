@@ -142,7 +142,7 @@ export async function DestinationHero({
 
             <div className="flex items-center gap-4 ltr:ml-auto rtl:mr-auto">
               <a
-                href={`/${locale}/d/${destination.code.toLowerCase()}/blog`}
+                href={`/${locale}/d/${destination.code}/blog`}
                 className="text-primary hover:text-primary/80 text-sm transition-colors"
               >
                 {t("viewTravelGuides")}

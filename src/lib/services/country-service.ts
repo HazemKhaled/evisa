@@ -10,7 +10,7 @@ import { and, eq, inArray, isNull, or, isNotNull, sql } from "drizzle-orm";
 function validateCountryCode(code: string): string | null {
   if (!code || typeof code !== "string") return null;
 
-  const sanitized = code.trim().toUpperCase();
+  const sanitized = code.trim();
   // Basic validation for 2-3 character country codes
   if (!/^[A-Z]{2,3}$/.test(sanitized)) return null;
 
@@ -306,7 +306,7 @@ export async function searchCountries(
         return (
           localizedName.includes(searchQuery) ||
           originalName.includes(searchQuery) ||
-          result.code.toLowerCase().includes(searchQuery)
+          result.code.includes(searchQuery)
         );
       })
       .map(result => ({

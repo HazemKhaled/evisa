@@ -158,9 +158,7 @@ export async function getBlogPosts(
 
     // Add destination filter
     if (destination) {
-      whereConditions.push(
-        like(blogPosts.destinations, `%${destination.toUpperCase()}%`)
-      );
+      whereConditions.push(like(blogPosts.destinations, `%${destination}%`));
     }
 
     // Add author filter
@@ -276,7 +274,7 @@ export async function getBlogPostsByDestination(
         and(
           eq(blogPostsI18n.locale, locale),
           eq(blogPosts.isPublished, true),
-          like(blogPosts.destinations, `%${destination.toUpperCase()}%`)
+          like(blogPosts.destinations, `%${destination}%`)
         )
       )
       .orderBy(desc(blogPosts.publishedAt));

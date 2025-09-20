@@ -23,12 +23,10 @@ export async function generateMetadata({
   const { locale, destination } = await params;
   const { t } = await getTranslation(locale, "blog");
 
-  const destinationName = destination.toUpperCase();
-
   return {
-    title: `${t("title")} - ${destinationName}`,
-    description: `${t("subtitle")} for ${destinationName}`,
-    keywords: `${t("keywords")}, ${destinationName}, travel, visa`,
+    title: `${t("title")} - ${destination}`,
+    description: `${t("subtitle")} for ${destination}`,
+    keywords: `${t("keywords")}, ${destination}, travel, visa`,
   };
 }
 

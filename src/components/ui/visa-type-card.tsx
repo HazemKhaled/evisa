@@ -15,7 +15,7 @@ export function VisaTypeCard({
   className,
   tCommon,
 }: VisaTypeCardProps) {
-  const visaUrl = `/${locale}/d/${visaType.destinationCode.toLowerCase()}/v/${visaType.type}`;
+  const visaUrl = `/${locale}/d/${visaType.destinationCode}/v/${visaType.type}`;
   const descriptionId = `visa-desc-${visaType.id}`;
 
   return (

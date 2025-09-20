@@ -9,7 +9,7 @@
  * @returns URL to the flag SVG file
  */
 export function getFlagUrl(countryCode: string): string {
-  return `/flags/${countryCode.toLowerCase()}.svg`;
+  return `/flags/${countryCode}.svg`;
 }
 
 /**
@@ -18,7 +18,7 @@ export function getFlagUrl(countryCode: string): string {
  * @returns Path to the flag SVG file
  */
 export function getFlagPath(countryCode: string): string {
-  return `public/flags/${countryCode.toLowerCase()}.svg`;
+  return `public/flags/${countryCode}.svg`;
 }
 
 /**

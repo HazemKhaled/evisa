@@ -70,7 +70,7 @@ export function DestinationBadges({
       {destinations.slice(0, 2).map(destination => (
         <Link
           key={destination}
-          href={`/${locale}/d/${destination.toLowerCase()}/blog`}
+          href={`/${locale}/d/${destination}/blog`}
           className={blogCardStyles.badges.destination}
           aria-label={
             ariaLabelFunction
