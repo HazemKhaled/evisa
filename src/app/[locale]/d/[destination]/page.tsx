@@ -12,8 +12,7 @@ import { JsonLd } from "@/components/json-ld";
 import { generateDestinationJsonLd } from "@/lib/json-ld";
 import { languages } from "@/app/i18n/settings";
 
-// ISR configuration - revalidate every hour
-export const revalidate = 3600;
+export const revalidate = 86400; // Revalidate every 24 hours
 
 interface DestinationPageProps {
   params: Promise<{
@@ -38,7 +37,7 @@ export async function generateStaticParams(): Promise<
     popularDestinations.map(destination =>
       Promise.resolve({
         locale,
-        destination: destination.code.toLowerCase(),
+        destination: destination.code,
       })
     )
   );
@@ -49,10 +48,7 @@ export async function generateMetadata({
 }: DestinationPageProps): Promise<Metadata> {
   const { locale, destination } = await params;
 
-  const destinationData = await getDestinationDetails(
-    destination.toUpperCase(),
-    locale
-  );
+  const destinationData = await getDestinationDetails(destination, locale);
 
   if (!destinationData) {
     return {
@@ -117,20 +113,14 @@ export default async function DestinationPage({
   const { locale, destination } = await params;
 
   // Fetch destination data
-  const destinationData = await getDestinationDetails(
-    destination.toUpperCase(),
-    locale
-  );
+  const destinationData = await getDestinationDetails(destination, locale);
 
   if (!destinationData) {
     notFound();
   }
 
   // Fetch visa requirements
-  const visaRequirements = await getVisaRequirements(
-    destination.toUpperCase(),
-    locale
-  );
+  const visaRequirements = await getVisaRequirements(destination, locale);
 
   // Generate structured data
   const jsonLd = generateDestinationJsonLd(destinationData, locale);

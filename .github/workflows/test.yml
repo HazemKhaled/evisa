@@ -31,9 +31,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Generate blog data
-        run: pnpm tsx scripts/generate-blog-data.ts
-
       - name: Run type checking
         run: pnpm type-check
 

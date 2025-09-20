@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import {
   getBlogPost,
   getAllBlogPostSlugs,
-  getBlogPostsForLocale,
+  getRelatedBlogPostsOptimized,
 } from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
 import { StaticPageLayout } from "@/components/static-page-layout";
@@ -21,13 +21,18 @@ interface BlogPostProps {
   params: Promise<{ locale: string; slug: string }>;
 }
 
-export function generateStaticParams() {
-  const blogPosts = getAllBlogPostSlugs();
+export const revalidate = 2592000; // Revalidate every 30 days
 
-  return blogPosts.map(({ locale, slug }) => ({
-    locale,
-    slug,
-  }));
+// Generate static params for all blog posts across all locales
+export async function generateStaticParams(): Promise<
+  { locale: string; slug: string }[]
+> {
+  try {
+    return await getAllBlogPostSlugs();
+  } catch (error) {
+    console.error("Error generating static params for blog posts:", error);
+    return [];
+  }
 }
 
 export async function generateMetadata({
@@ -37,7 +42,7 @@ export async function generateMetadata({
   const { t } = await getTranslation(locale, "pages");
 
   try {
-    const blogPost = getBlogPost(slug, locale);
+    const blogPost = await getBlogPost(slug, locale);
 
     if (!blogPost) {
       return {
@@ -47,30 +52,24 @@ export async function generateMetadata({
     }
 
     return {
-      title: blogPost.frontmatter.title,
-      description: blogPost.frontmatter.description,
-      keywords: blogPost.frontmatter.tags?.join(", "),
-      authors: blogPost.frontmatter.author
-        ? [{ name: blogPost.frontmatter.author }]
-        : undefined,
+      title: blogPost.title,
+      description: blogPost.description,
+      keywords: blogPost.tags?.join(", "),
+      authors: blogPost.author ? [{ name: blogPost.author }] : undefined,
       openGraph: {
-        title: blogPost.frontmatter.title,
-        description: blogPost.frontmatter.description,
-        images: blogPost.frontmatter.image
-          ? [blogPost.frontmatter.image]
-          : undefined,
+        title: blogPost.title,
+        description: blogPost.description,
+        images: blogPost.image ? [blogPost.image] : undefined,
         type: "article",
-        publishedTime: blogPost.frontmatter.publishedAt,
-        modifiedTime: blogPost.frontmatter.lastUpdated,
-        tags: blogPost.frontmatter.tags,
+        publishedTime: blogPost.publishedAt,
+        modifiedTime: blogPost.lastUpdated,
+        tags: blogPost.tags,
       },
       twitter: {
         card: "summary_large_image",
-        title: blogPost.frontmatter.title,
-        description: blogPost.frontmatter.description,
-        images: blogPost.frontmatter.image
-          ? [blogPost.frontmatter.image]
-          : undefined,
+        title: blogPost.title,
+        description: blogPost.description,
+        images: blogPost.image ? [blogPost.image] : undefined,
       },
     };
   } catch {
@@ -88,33 +87,20 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const { t: tNav } = await getTranslation(locale, "navigation");
 
   try {
-    // Fetch blog post and all posts in parallel for better performance
-    const [blogPostResult, allPostsResult] = await Promise.allSettled([
-      getBlogPost(slug, locale),
-      getBlogPostsForLocale(locale),
-    ]);
-
-    // Handle blog post result
-    if (blogPostResult.status === "rejected" || !blogPostResult.value) {
+    // Fetch blog post first
+    const blogPost = await getBlogPost(slug, locale);
+    if (!blogPost) {
       notFound();
     }
-    const blogPost = blogPostResult.value;
 
-    // Handle all posts result (graceful degradation if failed)
-    const allPosts =
-      allPostsResult.status === "fulfilled" ? allPostsResult.value : [];
-    const relatedPosts = allPosts
-      .filter(
-        post =>
-          post.slug !== slug &&
-          (post.frontmatter.destinations?.some(dest =>
-            blogPost.frontmatter.destinations?.includes(dest)
-          ) ||
-            post.frontmatter.tags?.some(tag =>
-              blogPost.frontmatter.tags?.includes(tag)
-            ))
-      )
-      .slice(0, 3);
+    // Get related posts using optimized database query
+    const relatedPosts = await getRelatedBlogPostsOptimized(
+      slug,
+      blogPost.destinations || [],
+      blogPost.tags || [],
+      locale,
+      3
+    );
 
     const baseUrl = env.baseUrl;
     const postUrl = `${baseUrl}/${locale}/blog/${slug}`;
@@ -126,7 +112,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
     const breadcrumbData = generateBreadcrumbData([
       { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
       { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
-      { name: blogPost.frontmatter.title, url: postUrl },
+      { name: blogPost.title, url: postUrl },
     ]);
     const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
 
@@ -135,10 +121,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
         <JsonLd data={articleJsonLd} />
         <JsonLd data={breadcrumbJsonLd} />
         <StaticPageLayout>
-          <main
-            role="main"
-            aria-label={`Blog Post - ${blogPost.frontmatter.title}`}
-          >
+          <main role="main" aria-label={`Blog Post - ${blogPost.title}`}>
             <BlogPostDetail
               post={blogPost}
               locale={locale}

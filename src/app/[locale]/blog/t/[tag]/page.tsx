@@ -11,18 +11,20 @@ import {
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
 
-// Required when use static generation with search params
-export const revalidate = 86400; // Revalidate every day
+// Enable ISR with daily revalidation for tag pages
+export const revalidate = 86400; // 24 hours
 
 // Generate static params for basic tag routes only
-export function generateStaticParams(): Array<TagPageProps["params"]> {
-  const allTags = getAllUniqueTagsAcrossLocales();
+export async function generateStaticParams(): Promise<
+  Array<{ locale: string; tag: string }>
+> {
+  const allTags = await getAllUniqueTagsAcrossLocales();
 
   const params = [];
   for (const currentLocale of languages) {
     for (const tag of allTags) {
       // Base tag route only
-      params.push(Promise.resolve({ locale: currentLocale, tag }));
+      params.push({ locale: currentLocale, tag });
     }
   }
 
@@ -31,7 +33,7 @@ export function generateStaticParams(): Array<TagPageProps["params"]> {
 
 interface TagPageProps {
   params: Promise<{ locale: string; tag: string }>;
-  searchParams: Promise<{ page?: string; destination?: string }>;
+  searchParams: Promise<{ page?: string }>;
 }
 
 export async function generateMetadata({
@@ -53,7 +55,7 @@ export async function generateMetadata({
 
 export default async function TagPage({ params, searchParams }: TagPageProps) {
   const { locale, tag } = await params;
-  const { page = "1", destination } = await searchParams;
+  const { page = "1" } = await searchParams;
 
   // We need to get translations for this component
   const { t } = await getTranslation(locale, "pages");
@@ -66,7 +68,6 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   const modifiedSearchParams = {
     page,
     tag: decodedTag,
-    destination,
   };
 
   const baseUrl = env.baseUrl;

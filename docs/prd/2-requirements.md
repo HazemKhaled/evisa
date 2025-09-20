@@ -12,7 +12,7 @@
 
 **FR5**: Users shall access visa-specific information pages at `/d/{DESTINATION_NAME}/v/{VISA_OPTION}` and passport-specific eligibility pages at `/d/{DESTINATION_NAME}/p/{PASSPORT_COUNTRY}` with full SEO optimization.
 
-**FR6**: The system shall implement a destination-focused travel blog system with article listing at `/blog`, destination filtering at `/d/{DESTINATION_COUNTRY}/blog`, tag filtering at `/blog/t/{TAG}`, and individual articles with MDX support and multilingual content.
+**FR6**: The system shall implement a destination-focused travel blog system with article listing at `/blog`, destination filtering at `/d/{DESTINATION_COUNTRY}/blog`, tag filtering at `/blog/t/{TAG}`, and individual articles with database-driven content and multilingual support.
 
 **FR7**: The homepage shall display dynamically populated top destinations, popular visa types, and recent travel blog posts fetched from the database and content system.
 

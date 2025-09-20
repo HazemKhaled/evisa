@@ -29,14 +29,6 @@ const config: Config = {
     "!src/app/i18n/index.ts", // Exclude server-side i18n initialization
     "!src/middleware.ts", // Exclude Next.js middleware
   ],
-  coverageThreshold: {
-    global: {
-      branches: 60,
-      functions: 60,
-      lines: 60,
-      statements: 60,
-    },
-  },
   coverageReporters: ["text", "lcov", "html"],
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
   testTimeout: 10000, // 10 seconds

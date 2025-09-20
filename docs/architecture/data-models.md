@@ -163,41 +163,88 @@ interface VisaEligibility {
 - Many-to-one with Country (destination country)
 - Many-to-one with VisaType
 
-## BlogPost
+## Blog Schema
 
-**Purpose:** Supports destination-focused travel blog content with multilingual support and comprehensive metadata for SEO optimization.
+**Purpose:** Database-driven blog system with multilingual support, SEO optimization, and proper content management.
 
-**Key Attributes:**
+### blog_posts
 
-- `slug`: string (primary key) - URL-friendly identifier
-- `title`: string - Blog post title
-- `description`: string - Meta description
-- `content`: string - MDX content
-- `destination`: string | null - Associated destination country code
-- `passport`: string | null - Relevant passport country
-- `relatedVisas`: string[] - Related visa type IDs
-- `tags`: string[] - Content tags for categorization
-- `image`: string - Featured image URL
-- `publishedAt`: Date - Publication date
-- `locale`: string - Content language
-- `isPublished`: boolean - Publication status
+**Core blog post metadata and settings:**
 
-**TypeScript Interface:**
+- `id`: integer (primary key, auto increment)
+- `slug`: string - URL-friendly identifier (unique per locale)
+- `author`: string - Post author name
+- `destinations`: string | null - Comma-separated country codes (e.g., "USA,CAN,FRA")
+- `passports`: string | null - Comma-separated passport country codes
+- `image`: string | null - Featured image URL
+- `publishedAt`: timestamp - Publication date
+- `isPublished`: boolean - Publication status (default: true)
+- `createdAt`: timestamp - Record creation time
+- `updatedAt`: timestamp - Last modification time
+- `deletedAt`: timestamp | null - Soft delete timestamp
+
+### blog_posts_i18n
+
+**Localized content for each blog post:**
+
+- `id`: integer (primary key, auto increment)
+- `postId`: integer - Foreign key to blog_posts.id
+- `locale`: string(2) - Language code (e.g., "en", "ar", "es")
+- `title`: string - Localized post title
+- `description`: string - Localized meta description
+- `content`: text - Full post content (markdown/HTML)
+- `metaKeywords`: string | null - SEO keywords for this locale
+- `createdAt`: timestamp - Record creation time
+- `updatedAt`: timestamp - Last modification time
+
+**Constraints:** Unique(postId, locale) - one translation per language per post
+
+### blog_tags
+
+**Tag definitions for content categorization:**
+
+- `id`: integer (primary key, auto increment)
+- `name`: string - Human-readable tag name
+- `slug`: string - URL-friendly tag identifier (unique)
+- `createdAt`: timestamp - Record creation time
+- `updatedAt`: timestamp - Last modification time
+
+### blog_post_tags
+
+**Many-to-many relationship between posts and tags:**
+
+- `id`: integer (primary key, auto increment)
+- `postId`: integer - Foreign key to blog_posts.id
+- `tagId`: integer - Foreign key to blog_tags.id
+- `createdAt`: timestamp - Relationship creation time
+
+**Constraints:** Unique(postId, tagId) - prevent duplicate tag assignments
+
+**Drizzle Schema:**
 
 ```typescript
-interface BlogPost {
+interface BlogPostRecord {
+  id: number;
   slug: string;
+  author: string;
+  destinations: string | null;
+  passports: string | null;
+  image: string | null;
+  publishedAt: Date;
+  isPublished: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date | null;
+}
+
+interface BlogPostI18nRecord {
+  id: number;
+  postId: number;
+  locale: string;
   title: string;
   description: string;
   content: string;
-  destination: string | null;
-  passport: string | null;
-  relatedVisas: string[];
-  tags: string[];
-  image: string;
-  publishedAt: Date;
-  locale: string;
-  isPublished: boolean;
+  metaKeywords: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -205,8 +252,8 @@ interface BlogPost {
 
 **Relationships:**
 
-- Many-to-one with Country (destination, optional)
-- Many-to-one with Country (passport, optional)
-- Many-to-many with VisaType (via relatedVisas array)
+- blog_posts 1:many blog_posts_i18n
+- blog_posts many:many blog_tags (via blog_post_tags)
+- Country references via destinations/passports comma-separated fields
 
 ---

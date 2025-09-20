@@ -83,7 +83,6 @@ src/components/
 │   └── visa-type-card.tsx  # Visa option display card
 ├── json-ld.tsx             # SEO structured data component
 ├── language-switcher.tsx   # Language selection dropdown
-├── mdx-content.tsx         # MDX content wrapper component
 ├── static-page-layout.tsx  # Layout for static pages
 └── __tests__/              # Component unit tests
 ```
@@ -104,6 +103,8 @@ src/lib/
 ├── services/               # Data access and business logic
 │   ├── country-service.ts  # Country data operations
 │   ├── visa-service.ts     # Visa data operations
+│   ├── blog-service-db.ts  # Database blog service (Cloudflare Workers compatible)
+│   ├── blog-service.ts     # Blog service interface layer
 │   └── index.ts            # Service exports
 ├── db/                     # Database schema and connection
 │   ├── connection.ts       # Database connection management
@@ -123,9 +124,10 @@ src/lib/
 ├── consts/                 # Application constants
 │   ├── env.ts              # Environment variables
 │   └── index.ts            # Constants exports
-├── blog.ts                 # Blog data processing
+├── blog-manifest.ts        # Static blog post manifest
+├── pages-manifest.ts       # Static pages manifest
+├── blog.ts                 # Blog data processing (legacy)
 ├── json-ld.ts              # SEO structured data generation
-├── mdx.ts                  # MDX content processing
 ├── utils.ts                # Core utility functions
 ├── __tests__/              # Library unit tests
 └── __mocks__/              # Test mocks
@@ -138,36 +140,52 @@ src/lib/
 - TypeScript interfaces for all data structures
 - Database abstraction through service layer
 
-### Content Management (`src/contents/`)
+### Content Management (Database-Driven)
 
-Multilingual content organized by language:
+**Blog Content Architecture:**
+
+Blog content is now stored in database tables with full multilingual support:
+
+- **blog_posts**: Core blog post metadata (slug, author, destinations, image, dates)
+- **blog_posts_i18n**: Localized content (title, description, content) per language
+- **blog_tags**: Tag definitions with multilingual support
+- **blog_post_tags**: Many-to-many relationship between posts and tags
+
+**Static Page Content:**
 
 ```
-src/contents/
-├── ar/                     # Arabic content
-├── de/                     # German content
-├── en/                     # English content (primary)
-├── es/                     # Spanish content
-├── fr/                     # French content
-├── it/                     # Italian content
-├── pt/                     # Portuguese content
-└── ru/                     # Russian content
-    ├── blog/               # Travel blog posts
-    │   ├── [destination]-*.mdx # Destination-specific posts
-    │   ├── [visa-type]-*.mdx   # Visa guide posts
-    │   └── [topic]-*.mdx       # General travel posts
-    └── pages/              # Static page content
-        ├── about-us.mdx
-        ├── privacy-policy.mdx
-        └── terms-n-conditions.mdx
+public/
+└── locales/               # i18n translation files
+    ├── en/                 # English translations
+    ├── ar/                 # Arabic translations
+    └── [other locales]/    # Other language translations
+        ├── common.json
+        ├── navigation.json
+        └── pages.json
+
+src/lib/services/
+├── blog-service.ts         # Blog service interface layer
+├── blog-service-db.ts      # Database blog operations
+└── blog-service-client.ts  # Client-side blog utilities
 ```
 
-**Content Structure:**
+**Migration from MDX to Database:**
 
-- MDX files with frontmatter metadata
-- Destination-focused blog organization
-- Consistent naming across languages
-- SEO-optimized content structure
+- **Legacy**: MDX files with frontmatter metadata stored in filesystem
+- **Current**: Blog content stored in SQLite database with Drizzle ORM
+- **Benefits**:
+  - Better performance and caching
+  - Dynamic content management
+  - Serverless compatibility
+  - Scalable content operations
+  - Real-time content updates
+
+**Database-Driven Content Architecture:**
+
+- Blog posts stored in database tables with full multilingual support
+- Static pages use Next.js App Router with i18n translation files
+- Destination-focused blog organization maintained through database relationships
+- SEO-optimized content with proper metadata and structured data
 
 ### Middleware (`src/middleware.ts`)
 
@@ -220,12 +238,6 @@ drizzle/
 - **Component files**: `kebab-case.tsx` (e.g., `destination-card.tsx`)
 - **Component names**: `PascalCase` (e.g., `DestinationCard`)
 - **Utility files**: `kebab-case.ts` (e.g., `country-service.ts`)
-
-### Content Files
-
-- **Blog posts**: `[topic]-[type]-guide.mdx` (e.g., `uae-tourist-visa-guide.mdx`)
-- **Static pages**: `kebab-case.mdx` (e.g., `terms-n-conditions.mdx`)
-- **Directories**: `kebab-case` throughout
 
 ### Test Files
 

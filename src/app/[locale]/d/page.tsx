@@ -1,6 +1,9 @@
 import { type Metadata } from "next";
 import { getTranslation } from "@/app/i18n";
-import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
+import {
+  getDestinationsListWithMetadataPaginated,
+  getDestinationContinents,
+} from "@/lib/services/country-service";
 import { DestinationsGrid } from "@/components/ui/destinations-grid";
 import { JsonLd } from "@/components/json-ld";
 import { generateWebPageJsonLd } from "@/lib/json-ld";
@@ -69,43 +72,26 @@ export default async function DestinationsPage({
   // Pagination constants
   const ITEMS_PER_PAGE = 20;
   const currentPage = parseInt(page || "1", 10);
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
-  // Get all destinations data for filtering and pagination
-  const allDestinationsData = await getDestinationsListWithMetadata(
+  // Get paginated destinations with server-side filtering
+  const paginatedResponse = await getDestinationsListWithMetadataPaginated(
     locale,
-    1000, // Get all destinations for client-side filtering
-    "alphabetical"
+    ITEMS_PER_PAGE,
+    offset,
+    "alphabetical",
+    search,
+    continent
   );
 
-  // Filter destinations based on search and continent
-  let filteredDestinations = allDestinationsData;
+  const {
+    destinations: paginatedDestinations,
+    total: totalItems,
+    totalPages,
+  } = paginatedResponse;
 
-  if (search) {
-    filteredDestinations = filteredDestinations.filter(
-      destination =>
-        destination.localizedName
-          .toLowerCase()
-          .includes(search.toLowerCase()) ||
-        destination.code.toLowerCase().includes(search.toLowerCase())
-    );
-  }
-
-  if (continent && continent !== "all") {
-    filteredDestinations = filteredDestinations.filter(
-      destination =>
-        destination.continent?.toLowerCase() === continent.toLowerCase()
-    );
-  }
-
-  // Calculate pagination
-  const totalItems = filteredDestinations.length;
-  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  const paginatedDestinations = filteredDestinations.slice(
-    startIndex,
-    endIndex
-  );
+  // Get continents for filter options (lightweight query)
+  const continents = await getDestinationContinents(locale);
 
   // Generate structured data
   const jsonLd = generateWebPageJsonLd({
@@ -113,11 +99,6 @@ export default async function DestinationsPage({
     description: t("meta.description"),
     url: `/${locale}/d`,
   });
-
-  // Get unique continents for filtering
-  const continents = Array.from(
-    new Set(allDestinationsData.map(d => d.continent).filter(Boolean))
-  ).sort() as string[];
 
   return (
     <>
@@ -166,7 +147,7 @@ export default async function DestinationsPage({
               <div className="text-muted-foreground mt-4 text-sm">
                 {t("results.showing", {
                   count: totalItems,
-                  total: allDestinationsData.length,
+                  total: totalItems,
                 })}
               </div>
             </div>

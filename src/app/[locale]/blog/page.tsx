@@ -1,5 +1,10 @@
 import { type Metadata } from "next";
-import { getBlogPostsForLocale } from "@/lib/services/blog-service";
+import {
+  getBlogPostsForLocalePaginated,
+  getBlogPostsByTagPaginated,
+  getBlogPostsByDestinationPaginated,
+  getAllBlogPosts,
+} from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { BlogPostList } from "@/components/ui/blog-post-list";
@@ -13,8 +18,8 @@ import {
   generateBreadcrumbData,
 } from "@/lib/json-ld";
 
-// Required when use static generation with search params
-export const revalidate = 86400; // Revalidate every day
+// Enable ISR with daily revalidation for blog list
+export const revalidate = 86400; // 24 hours
 
 // Generate static params for basic locale routes only
 export function generateStaticParams(): { locale: string }[] {
@@ -23,7 +28,11 @@ export function generateStaticParams(): { locale: string }[] {
 
 interface BlogHomeProps {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{
+    page?: string;
+    tag?: string;
+    destination?: string;
+  }>;
 }
 
 export async function generateMetadata({
@@ -46,28 +55,72 @@ export default async function BlogHome({
   searchParams,
 }: BlogHomeProps) {
   const { locale } = await params;
-  const { page = "1" } = await searchParams;
+  const { page = "1", tag, destination } = await searchParams;
   const { t } = await getTranslation(locale, "blog");
   const { t: tNav } = await getTranslation(locale, "navigation");
 
   const currentPage = parseInt(page, 10);
   const postsPerPage = 9;
+  const offset = (currentPage - 1) * postsPerPage;
 
-  // Get all blog posts for the locale using service layer
-  const allPosts = getBlogPostsForLocale(locale);
+  // Get blog posts with database-level pagination
+  let paginatedResponse;
 
-  const totalPosts = allPosts.length;
-  const totalPages = Math.ceil(totalPosts / postsPerPage);
-  const startIndex = (currentPage - 1) * postsPerPage;
-  const posts = allPosts.slice(startIndex, startIndex + postsPerPage);
+  if (tag) {
+    // Filter by tag with pagination
+    paginatedResponse = await getBlogPostsByTagPaginated(
+      tag,
+      locale,
+      postsPerPage,
+      offset
+    );
+  } else if (destination) {
+    // Filter by destination with pagination
+    paginatedResponse = await getBlogPostsByDestinationPaginated(
+      destination,
+      locale,
+      postsPerPage,
+      offset
+    );
+  } else {
+    // No filter - get posts for the locale with pagination
+    paginatedResponse = await getBlogPostsForLocalePaginated(
+      locale,
+      postsPerPage,
+      offset
+    );
+  }
 
+  const { posts, totalPages } = paginatedResponse;
+
+  // Get recent posts for search functionality (limited to 100 most recent)
+  const allPostsForSearch = await getAllBlogPosts(locale, 100);
+
+  // Dynamic page title and URL based on filters
+  let pageTitle = t("title");
+  let pageSubtitle = t("subtitle");
   const baseUrl = env.baseUrl;
-  const blogUrl = `${baseUrl}/${locale}/blog`;
+  let blogUrl = `${baseUrl}/${locale}/blog`;
+
+  if (tag) {
+    pageTitle = t("tag.title", { tag }) || `Posts tagged with "${tag}"`;
+    pageSubtitle =
+      t("tag.subtitle", { tag }) ||
+      `Explore all blog posts tagged with "${tag}".`;
+    blogUrl = `${baseUrl}/${locale}/blog/t/${encodeURIComponent(tag)}`;
+  } else if (destination) {
+    pageTitle =
+      t("destination.title", { destination }) || `Posts about ${destination}`;
+    pageSubtitle =
+      t("destination.subtitle", { destination }) ||
+      `Discover travel information and guides for ${destination}.`;
+    blogUrl = `${baseUrl}/${locale}/blog/d/${encodeURIComponent(destination)}`;
+  }
 
   // Generate JSON-LD for the blog page
   const webpageJsonLd = generateWebPageJsonLd({
-    name: t("jsonld.blog.title"),
-    description: t("jsonld.blog.description"),
+    name: pageTitle,
+    description: pageSubtitle,
     url: blogUrl,
     isPartOf: {
       name: t("jsonld.organization.name"),
@@ -86,21 +139,41 @@ export default async function BlogHome({
     const searchParams = new URLSearchParams();
     searchParams.set("page", page.toString());
 
+    // Preserve filter parameters in pagination URLs
+    if (tag) {
+      searchParams.set("tag", tag);
+    }
+    if (destination) {
+      searchParams.set("destination", destination);
+    }
+
     const queryString = searchParams.toString();
     const query = queryString ? `?${queryString}` : "";
 
+    // For tag routes, maintain the tag route structure
+    if (tag) {
+      return `/${locale}/blog/t/${encodeURIComponent(tag)}${query}`;
+    }
+    // For destination routes, use destination route structure if implemented
+    if (destination) {
+      return `/${locale}/blog/d/${encodeURIComponent(destination)}${query}`;
+    }
     // For regular blog routes, use query parameter format: /en/blog?page=2
     return `/${locale}/blog${query}`;
   };
 
-  if (allPosts.length === 0) {
+  if (posts.length === 0) {
     return (
       <StaticPageLayout>
         <div className="py-16 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">
-            {t("title")}
-          </h1>
-          <p className="text-lg text-gray-600">{t("empty_state")}</p>
+          <h1 className="mb-4 text-4xl font-bold text-gray-900">{pageTitle}</h1>
+          <p className="text-lg text-gray-600">
+            {tag
+              ? `No posts found with tag "${tag}"`
+              : destination
+                ? `No posts found for destination "${destination}"`
+                : t("empty_state")}
+          </p>
         </div>
       </StaticPageLayout>
     );
@@ -115,16 +188,16 @@ export default async function BlogHome({
           {/* Header */}
           <div className="mb-12 text-center">
             <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
-              {t("title")}
+              {pageTitle}
             </h1>
             <p className="mx-auto max-w-3xl text-xl text-gray-600">
-              {t("subtitle")}
+              {pageSubtitle}
             </p>
           </div>
 
           {/* Search */}
           <div className="mb-12">
-            <BlogSearch allPosts={allPosts} locale={locale} />
+            <BlogSearch allPosts={allPostsForSearch} locale={locale} />
           </div>
 
           <BlogPostList

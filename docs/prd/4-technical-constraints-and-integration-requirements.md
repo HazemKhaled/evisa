@@ -10,7 +10,7 @@
 - **Styling**: Tailwind CSS 4.1.13 with custom design tokens, RTL support configured
 - **Internationalization**: i18next 25.5.2 with 8 language support, locale-based routing
 - **Infrastructure**: OpenNext.js 1.8.0 for Cloudflare Workers deployment
-- **Content**: MDX support with gray-matter, remark-gfm for blog system
+- **Content**: Database-driven blog system with SQLite/D1 storage and Drizzle ORM
 
 ## Integration Approach
 

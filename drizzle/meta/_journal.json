@@ -1,26 +1,26 @@
 {
   "version": "7",
-  "dialect": "sqlite",
+  "dialect": "postgresql",
   "entries": [
     {
       "idx": 0,
-      "version": "6",
-      "when": 1757161744126,
-      "tag": "0000_sleepy_northstar",
+      "version": "7",
+      "when": 1758091770055,
+      "tag": "0000_many_raza",
       "breakpoints": true
     },
     {
       "idx": 1,
-      "version": "6",
-      "when": 1757163390370,
-      "tag": "0001_seed-countries",
+      "version": "7",
+      "when": 1758268860520,
+      "tag": "0001_curvy_kitty_pryde",
       "breakpoints": true
     },
     {
       "idx": 2,
-      "version": "6",
-      "when": 1757163454568,
-      "tag": "0002_seed-visa",
+      "version": "7",
+      "when": 1758320799056,
+      "tag": "0002_new_baron_zemo",
       "breakpoints": true
     }
   ]

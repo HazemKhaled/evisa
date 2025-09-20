@@ -309,12 +309,6 @@ describe("getCountryByCode", () => {
 ```typescript
 // ✅ Good Error Handling
 export async function getVisaTypes(destination: string, locale: string) {
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available, returning empty visa types");
-    return [];
-  }
-
   try {
     // Database operation
     return results;

@@ -64,7 +64,7 @@ interface DestinationCardProps {
 
 **Dependencies:** BlogPost data model, image optimization, reading time calculation
 
-**Technology Stack:** Next.js Image, MDX excerpt parsing, date formatting utilities
+**Technology Stack:** Next.js Image, database content rendering, date formatting utilities
 
 ## Layout Components
 
@@ -171,17 +171,17 @@ class CountryService {
 
 ### BlogService
 
-**Responsibility:** MDX content processing, destination-related posts, and tag-based filtering
+**Responsibility:** Database content operations, destination-related posts, and tag-based filtering
 
 **Key Interfaces:**
 
-- `getBlogPosts()` - paginated post listing with filters
-- `getBlogPost()` - individual post with metadata
-- `getRelatedPosts()` - content recommendation engine
+- `getBlogPosts()` - paginated post listing with filters from database
+- `getBlogPost()` - individual post with metadata from database queries
+- `getRelatedPosts()` - content recommendation engine via database relations
 
-**Dependencies:** File system access, MDX parsing, content validation
+**Dependencies:** Drizzle ORM, database connections, content validation
 
-**Technology Stack:** gray-matter, remark-gfm, content caching, image optimization
+**Technology Stack:** Database queries, JOIN operations, content caching, image optimization
 
 ## Performance-Critical Components
 

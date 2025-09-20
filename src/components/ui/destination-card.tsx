@@ -14,7 +14,7 @@ export function DestinationCard({
   locale,
   className,
 }: DestinationCardProps) {
-  const destinationUrl = `/${locale}/d/${destination.code.toLowerCase()}`;
+  const destinationUrl = `/${locale}/d/${destination.code}`;
 
   return (
     <Link href={destinationUrl} className={cn("group", className)}>

@@ -84,7 +84,7 @@
 
 **FR5**: Users shall access visa-specific information pages at `/d/{DESTINATION_NAME}/v/{VISA_OPTION}` and passport-specific eligibility pages at `/d/{DESTINATION_NAME}/p/{PASSPORT_COUNTRY}` with full SEO optimization.
 
-**FR6**: The system shall implement a destination-focused travel blog system with article listing at `/blog`, destination filtering at `/d/{DESTINATION_COUNTRY}/blog`, tag filtering at `/blog/t/{TAG}`, and individual articles with MDX support and multilingual content.
+**FR6**: The system shall implement a destination-focused travel blog system with article listing at `/blog`, destination filtering at `/d/{DESTINATION_COUNTRY}/blog`, tag filtering at `/blog/t/{TAG}`, and individual articles with database-driven content and multilingual support.
 
 **FR7**: The homepage shall display dynamically populated top destinations, popular visa types, and recent travel blog posts fetched from the database and content system.
 
@@ -175,7 +175,7 @@ The new destination catalog and travel blog features will seamlessly integrate w
 - **Styling**: Tailwind CSS 4.1.13 with custom design tokens, RTL support configured
 - **Internationalization**: i18next 25.5.2 with 8 language support, locale-based routing
 - **Infrastructure**: OpenNext.js 1.8.0 for Cloudflare Workers deployment
-- **Content**: MDX support with gray-matter, remark-gfm for blog system
+- **Content**: Database-driven blog system with SQLite/D1 storage and Drizzle ORM
 
 ### Integration Approach
 
@@ -354,7 +354,7 @@ so that **I can access relevant travel information alongside visa requirements**
 1. Blog listing page at `/blog` displays all posts with pagination and search
 2. Destination-specific blog filtering at `/d/{DESTINATION_COUNTRY}/blog`
 3. Tag-based filtering at `/blog/t/{TAG}` for content categorization
-4. MDX content support with gray-matter frontmatter for metadata
+4. Database-driven content storage with structured metadata in dedicated tables
 5. Blog post integration in destination pages showing related articles
 
 **Integration Verification:**

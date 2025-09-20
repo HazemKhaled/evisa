@@ -27,7 +27,7 @@ export async function Footer({ locale }: FooterProps) {
             <ul className="mt-4 space-y-4">
               <li>
                 <Link
-                  href={`/${locale}/p/about-us`}
+                  href={`/${locale}/about`}
                   className="text-base text-gray-300 hover:text-white"
                 >
                   {tNav("footer.about")}
@@ -43,7 +43,7 @@ export async function Footer({ locale }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/p/terms-n-conditions`}
+                  href={`/${locale}/terms`}
                   className="text-base text-gray-300 hover:text-white"
                 >
                   {tNav("footer.terms")}
@@ -51,7 +51,7 @@ export async function Footer({ locale }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/p/privacy-policy`}
+                  href={`/${locale}/privacy`}
                   className="text-base text-gray-300 hover:text-white"
                 >
                   {tNav("footer.privacy")}
@@ -64,6 +64,14 @@ export async function Footer({ locale }: FooterProps) {
               {tNav("footer.services")}
             </h3>
             <ul className="mt-4 space-y-4">
+              <li>
+                <Link
+                  href={`/${locale}/d`}
+                  className="text-base text-gray-300 hover:text-white"
+                >
+                  {tNav("footer.document_center")}
+                </Link>
+              </li>
               <li>
                 <Link
                   href={`/${locale}/blog`}

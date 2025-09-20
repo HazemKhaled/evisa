@@ -5,11 +5,7 @@ import {
   visaEligibility,
   visaEligibilityI18n,
 } from "../db/schema/visa-eligibility";
-import {
-  getDbAsync,
-  isDatabaseAvailableAsync,
-  type Database,
-} from "../db/connection";
+import { getDb } from "../db/connection";
 
 /**
  * Service for visa-related database operations
@@ -100,14 +96,8 @@ export async function checkVisaEligibility(
   destinationCode: string,
   locale: string
 ): Promise<VisaEligibilityInfo | null> {
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return null;
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
     // Get destination and passport country information
     const [destinationResult, passportResult] = await Promise.all([
@@ -296,14 +286,8 @@ export async function getVisaRequirements(
   destinationCode: string,
   locale: string
 ): Promise<VisaRequirements | null> {
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return null;
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
     // Get destination information
     const destinationResult = await db
@@ -419,14 +403,8 @@ export async function getRandomVisaTypes(
   locale: string,
   limit: number = 6
 ): Promise<VisaTypeWithI18n[]> {
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available, returning empty visa types");
-    return [];
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
     const results = await db
       .select({
@@ -508,14 +486,8 @@ export async function getVisaTypesByDestination(
   destinationCode: string,
   locale: string
 ): Promise<VisaTypeWithI18n[]> {
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return [];
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
     const results = await db
       .select({
@@ -596,14 +568,8 @@ export async function getVisaTypesByDestination(
 export async function getAllVisaTypes(
   locale: string
 ): Promise<VisaTypeWithI18n[]> {
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return [];
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
     const results = await db
       .select({
@@ -681,14 +647,8 @@ export async function getVisaTypeById(
   visaTypeId: number,
   locale: string
 ): Promise<VisaTypeWithI18n | null> {
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return null;
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
     const results = await db
       .select({

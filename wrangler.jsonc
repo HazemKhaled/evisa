@@ -5,6 +5,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "gtv",
+  "account_id": "4f001bbb358404250b26da276402b564",
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-09-10",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
@@ -25,27 +26,15 @@
     "mode": "smart",
   },
   "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "gtv-db",
-      "database_id": "de85b8f1-81b0-4263-b69d-0b82e9d48875",
-      "migrations_dir": "drizzle",
-      "remote": true,
-    },
-
     // D1 Tag Cache (Next mode)
     // This is only required if you use On-demand revalidation
     {
       "binding": "NEXT_TAG_CACHE_D1",
-      "database_id": "cefa7905-d1e2-4b21-8bff-14ef365c6bf6",
+      "database_id": "ee88ce2e-ccd0-4322-ad0d-5aad6446693f",
       "database_name": "gtv-opennext-cache",
     },
   ],
   "routes": [
-    {
-      "pattern": "staging.gettravelvisa.com",
-      "custom_domain": true,
-    },
     {
       "pattern": "gettravelvisa.com",
       "custom_domain": true,
@@ -75,24 +64,28 @@
   ],
 
   // DO Queue
-  // "durable_objects": {
-  //   "bindings": [
-  //     {
-  //       "name": "NEXT_CACHE_DO_QUEUE",
-  //       "class_name": "DOQueueHandler",
-  //     },
-  //   ],
-  // },
-  // "migrations": [
-  //   {
-  //     "tag": "v1",
-  //     "new_sqlite_classes": ["DOQueueHandler"],
-  //   },
-  // ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "class_name": "DOQueueHandler",
+      },
+    ],
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["DOQueueHandler"],
+    },
+  ],
 
   // https://docs.sentry.io/platforms/javascript/guides/cloudflare/#wrangler-configuration
   "version_metadata": {
     "binding": "CF_VERSION_METADATA",
   },
   "upload_source_maps": true,
+
+  "vars": {
+    "NEXT_PUBLIC_SENTRY_DSN": "https://3b385ea99f6e37f235ec970a5e46cfad@o929566.ingest.us.sentry.io/4509917829005312",
+  },
 }

@@ -1,7 +1,17 @@
 {
   "mcpServers": {
     "Sentry": {
+      "type": "http",
       "url": "https://mcp.sentry.dev/mcp/tcf-sala/gtv"
+    },
+    "Neon": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://mcp.neon.tech/mcp"]
+    },
+    "ESLint": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@eslint/mcp@latest"]
     }
   }
 }

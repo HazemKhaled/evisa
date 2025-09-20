@@ -1,4 +1,4 @@
-import { and, eq, inArray, isNull } from "drizzle-orm";
+import { and, eq, inArray, isNull, or, isNotNull, sql } from "drizzle-orm";
 
 /**
  * Input validation and sanitization utilities
@@ -10,24 +10,11 @@ import { and, eq, inArray, isNull } from "drizzle-orm";
 function validateCountryCode(code: string): string | null {
   if (!code || typeof code !== "string") return null;
 
-  const sanitized = code.trim().toUpperCase();
+  const sanitized = code.trim();
   // Basic validation for 2-3 character country codes
   if (!/^[A-Z]{2,3}$/.test(sanitized)) return null;
 
   return sanitized;
-}
-
-/**
- * Validate locale code
- */
-function validateLocale(locale: string): string | null {
-  if (!locale || typeof locale !== "string") return null;
-
-  const sanitized = locale.trim().toLowerCase();
-  // Basic validation for locale codes (en, ar, es, etc.)
-  if (!/^[a-z]{2}(-[a-z]{2})?$/i.test(sanitized)) return null;
-
-  return sanitized.substring(0, 2); // Return just the language code
 }
 
 /**
@@ -42,7 +29,10 @@ function validateSortBy(
     "processing_time",
     "visa_fee",
   ] as const;
-  return validSorts.includes(sortBy as any) ? (sortBy as any) : "popular";
+  type ValidSortBy = (typeof validSorts)[number];
+  return validSorts.includes(sortBy as ValidSortBy)
+    ? (sortBy as ValidSortBy)
+    : "popular";
 }
 
 /**
@@ -55,11 +45,7 @@ function validateLimit(limit: number): number {
 import { countries, countriesI18n } from "../db/schema/countries";
 import { visaTypes, visaTypesI18n } from "../db/schema/visa-types";
 import { visaEligibility } from "../db/schema/visa-eligibility";
-import {
-  getDbAsync,
-  isDatabaseAvailableAsync,
-  type Database,
-} from "../db/connection";
+import { getDb } from "../db/connection";
 
 /**
  * Service for country-related database operations
@@ -123,6 +109,14 @@ export interface DestinationMetadata {
   hasVisaFreeOptions: boolean;
 }
 
+export interface PaginatedDestinationsResponse {
+  destinations: DestinationMetadata[];
+  total: number;
+  hasMore: boolean;
+  currentPage: number;
+  totalPages: number;
+}
+
 /**
  * Get country names for multiple country codes and locale from database
  * Optimized to use a single query instead of multiple individual queries
@@ -135,15 +129,8 @@ export async function getCountryNames(
     return [];
   }
 
-  // Check if database is available
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available, using country codes as fallback");
-    return countryCodes;
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
     // Use a single query to get all country names at once
     const results = await db
@@ -184,14 +171,8 @@ export async function getCountryNames(
 export async function getAllCountries(
   locale: string
 ): Promise<CountryWithI18n[]> {
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available, using country codes as fallback");
-    return [];
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
     const results = await db
       .select({
@@ -233,14 +214,8 @@ export async function getCountryByCode(
   countryCode: string,
   locale?: string
 ): Promise<CountryWithI18n | null> {
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return null;
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
     const results = await db
       .select({
@@ -295,14 +270,8 @@ export async function searchCountries(
     return [];
   }
 
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return [];
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
     const results = await db
       .select({
@@ -337,7 +306,7 @@ export async function searchCountries(
         return (
           localizedName.includes(searchQuery) ||
           originalName.includes(searchQuery) ||
-          result.code.toLowerCase().includes(searchQuery)
+          result.code.includes(searchQuery)
         );
       })
       .map(result => ({
@@ -372,27 +341,13 @@ export async function getDestinationsListWithMetadata(
     | "processing_time"
     | "visa_fee" = "popular"
 ): Promise<DestinationMetadata[]> {
-  // Input validation and sanitization
-  const validatedLocale = validateLocale(locale);
-  if (!validatedLocale) {
-    // Log to error reporting service in production
-    console.error(`Invalid locale provided: ${locale}`);
-    return [];
-  }
-
   const validatedLimit = validateLimit(limit);
   const validatedSortBy = validateSortBy(sortBy);
 
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available, returning empty destinations list");
-    return [];
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
-    // Build comprehensive query with visa statistics
+    // Build query to get countries that have either visa types or visa-free options
     const results = await db
       .select({
         id: countries.id,
@@ -409,15 +364,51 @@ export async function getDestinationsListWithMetadata(
         countriesI18n,
         and(
           eq(countries.id, countriesI18n.countryId),
-          eq(countriesI18n.locale, validatedLocale)
+          eq(countriesI18n.locale, locale)
         )
       )
-      .where(and(eq(countries.isActive, true), isNull(countries.deletedAt)))
+      .leftJoin(
+        visaTypes,
+        and(
+          eq(visaTypes.destinationId, countries.id),
+          eq(visaTypes.isActive, true),
+          isNull(visaTypes.deletedAt)
+        )
+      )
+      .leftJoin(
+        visaEligibility,
+        and(
+          eq(visaEligibility.destinationId, countries.id),
+          inArray(visaEligibility.eligibilityStatus, [
+            "visa_free",
+            "on_arrival",
+          ]),
+          eq(visaEligibility.isActive, true),
+          isNull(visaEligibility.deletedAt)
+        )
+      )
+      .where(
+        and(
+          eq(countries.isActive, true),
+          isNull(countries.deletedAt),
+          // Only include countries that have either visa types OR visa-free options
+          or(
+            isNotNull(visaTypes.id), // Has visa types
+            isNotNull(visaEligibility.id) // Has visa-free/on-arrival options
+          )
+        )
+      )
       .limit(validatedLimit);
+
+    // Remove duplicates based on country ID
+    const uniqueResults = results.filter(
+      (destination, index, arr) =>
+        arr.findIndex(d => d.id === destination.id) === index
+    );
 
     // For each destination, get visa statistics
     const destinationsWithStats = await Promise.all(
-      results.map(async destination => {
+      uniqueResults.map(async destination => {
         const visaStats = await db
           .select({
             count: visaTypes.id,
@@ -481,7 +472,7 @@ export async function getDestinationsListWithMetadata(
     switch (validatedSortBy) {
       case "alphabetical":
         return destinationsWithStats.sort((a, b) =>
-          a.localizedName.localeCompare(b.localizedName, validatedLocale)
+          a.localizedName.localeCompare(b.localizedName, locale)
         );
       case "processing_time":
         return destinationsWithStats.sort(
@@ -502,9 +493,332 @@ export async function getDestinationsListWithMetadata(
     }
   } catch (error) {
     console.error(
-      `Failed to get destinations list for locale ${validatedLocale}:`,
+      `Failed to get destinations list for locale ${locale}:`,
       error
     );
+    return [];
+  }
+}
+
+/**
+ * Get destinations list with metadata, pagination, and filtering support
+ *
+ * @param locale - Language locale for localized content
+ * @param limit - Number of destinations per page
+ * @param offset - Number of destinations to skip
+ * @param sortBy - Sort criteria: 'popular', 'alphabetical', 'processing_time', 'visa_fee'
+ * @param search - Optional search term for destination names
+ * @param continent - Optional continent filter
+ * @returns Promise<PaginatedDestinationsResponse> - Paginated destinations with metadata
+ */
+export async function getDestinationsListWithMetadataPaginated(
+  locale: string,
+  limit: number = 20,
+  offset: number = 0,
+  sortBy:
+    | "popular"
+    | "alphabetical"
+    | "processing_time"
+    | "visa_fee" = "popular",
+  search?: string,
+  continent?: string
+): Promise<PaginatedDestinationsResponse> {
+  const validatedLimit = validateLimit(limit);
+  const validatedSortBy = validateSortBy(sortBy);
+  const validatedOffset = Math.max(0, Math.floor(offset));
+
+  try {
+    const db = getDb();
+
+    // Build base where conditions
+    const baseWhereConditions = [
+      eq(countries.isActive, true),
+      isNull(countries.deletedAt),
+      // Only include countries that have either visa types OR visa-free options
+      or(
+        isNotNull(visaTypes.id), // Has visa types
+        isNotNull(visaEligibility.id) // Has visa-free/on-arrival options
+      ),
+    ];
+
+    // Add search filter
+    if (search && search.trim()) {
+      const searchTerm = `%${search.trim().toLowerCase()}%`;
+      baseWhereConditions.push(
+        or(
+          sql`LOWER(${countriesI18n.name}) LIKE ${searchTerm}`,
+          sql`LOWER(${countries.code}) LIKE ${searchTerm}`
+        )
+      );
+    }
+
+    // Add continent filter
+    if (continent && continent.toLowerCase() !== "all") {
+      baseWhereConditions.push(
+        sql`LOWER(${countries.continent}) = ${continent.toLowerCase()}`
+      );
+    }
+
+    // Get total count first
+    const totalCountQuery = db
+      .selectDistinct({ id: countries.id })
+      .from(countries)
+      .leftJoin(
+        countriesI18n,
+        and(
+          eq(countries.id, countriesI18n.countryId),
+          eq(countriesI18n.locale, locale)
+        )
+      )
+      .leftJoin(
+        visaTypes,
+        and(
+          eq(visaTypes.destinationId, countries.id),
+          eq(visaTypes.isActive, true),
+          isNull(visaTypes.deletedAt)
+        )
+      )
+      .leftJoin(
+        visaEligibility,
+        and(
+          eq(visaEligibility.destinationId, countries.id),
+          inArray(visaEligibility.eligibilityStatus, [
+            "visa_free",
+            "on_arrival",
+          ]),
+          eq(visaEligibility.isActive, true),
+          isNull(visaEligibility.deletedAt)
+        )
+      )
+      .where(and(...baseWhereConditions));
+
+    const totalCountResults = await totalCountQuery;
+    const total = totalCountResults.length;
+
+    // Calculate pagination info
+    const currentPage = Math.floor(validatedOffset / validatedLimit) + 1;
+    const totalPages = Math.ceil(total / validatedLimit);
+    const hasMore = validatedOffset + validatedLimit < total;
+
+    // Get paginated results
+    const results = await db
+      .select({
+        id: countries.id,
+        code: countries.code,
+        name: countries.code,
+        localizedName: countriesI18n.name,
+        heroImage: countries.heroImage,
+        about: countriesI18n.about,
+        continent: countries.continent,
+        region: countries.region,
+      })
+      .from(countries)
+      .leftJoin(
+        countriesI18n,
+        and(
+          eq(countries.id, countriesI18n.countryId),
+          eq(countriesI18n.locale, locale)
+        )
+      )
+      .leftJoin(
+        visaTypes,
+        and(
+          eq(visaTypes.destinationId, countries.id),
+          eq(visaTypes.isActive, true),
+          isNull(visaTypes.deletedAt)
+        )
+      )
+      .leftJoin(
+        visaEligibility,
+        and(
+          eq(visaEligibility.destinationId, countries.id),
+          inArray(visaEligibility.eligibilityStatus, [
+            "visa_free",
+            "on_arrival",
+          ]),
+          eq(visaEligibility.isActive, true),
+          isNull(visaEligibility.deletedAt)
+        )
+      )
+      .where(and(...baseWhereConditions))
+      .limit(validatedLimit)
+      .offset(validatedOffset);
+
+    // Remove duplicates based on country ID
+    const uniqueResults = results.filter(
+      (destination, index, arr) =>
+        arr.findIndex(d => d.id === destination.id) === index
+    );
+
+    // For each destination, get visa statistics
+    const destinationsWithStats = await Promise.all(
+      uniqueResults.map(async destination => {
+        const visaStats = await db
+          .select({
+            count: visaTypes.id,
+            avgProcessingTime: visaTypes.processingTime,
+            minFee: visaTypes.fee,
+          })
+          .from(visaTypes)
+          .where(
+            and(
+              eq(visaTypes.destinationId, destination.id),
+              eq(visaTypes.isActive, true),
+              isNull(visaTypes.deletedAt)
+            )
+          );
+
+        const totalVisaTypes = visaStats.length;
+        const avgProcessingTime =
+          totalVisaTypes > 0
+            ? Math.round(
+                visaStats.reduce((sum, v) => sum + v.avgProcessingTime, 0) /
+                  totalVisaTypes
+              )
+            : 0;
+        const minVisaFee =
+          totalVisaTypes > 0 ? Math.min(...visaStats.map(v => v.minFee)) : 0;
+
+        // Check for visa-free options
+        const visaFreeCount = await db
+          .select({ count: visaEligibility.id })
+          .from(visaEligibility)
+          .where(
+            and(
+              eq(visaEligibility.destinationId, destination.id),
+              inArray(visaEligibility.eligibilityStatus, [
+                "visa_free",
+                "on_arrival",
+              ]),
+              eq(visaEligibility.isActive, true),
+              isNull(visaEligibility.deletedAt)
+            )
+          );
+
+        return {
+          id: destination.id,
+          code: destination.code,
+          name: destination.name,
+          localizedName: destination.localizedName || destination.name,
+          heroImage: destination.heroImage,
+          about: destination.about,
+          continent: destination.continent,
+          region: destination.region,
+          totalVisaTypes,
+          avgProcessingTime,
+          minVisaFee,
+          hasVisaFreeOptions: visaFreeCount.length > 0,
+        };
+      })
+    );
+
+    // Apply sorting
+    let sortedDestinations: DestinationMetadata[];
+    switch (validatedSortBy) {
+      case "alphabetical":
+        sortedDestinations = destinationsWithStats.sort((a, b) =>
+          a.localizedName.localeCompare(b.localizedName, locale)
+        );
+        break;
+      case "processing_time":
+        sortedDestinations = destinationsWithStats.sort(
+          (a, b) => a.avgProcessingTime - b.avgProcessingTime
+        );
+        break;
+      case "visa_fee":
+        sortedDestinations = destinationsWithStats.sort(
+          (a, b) => a.minVisaFee - b.minVisaFee
+        );
+        break;
+      case "popular":
+      default:
+        // Sort by visa-free options first, then by total visa types
+        sortedDestinations = destinationsWithStats.sort((a, b) => {
+          if (a.hasVisaFreeOptions && !b.hasVisaFreeOptions) return -1;
+          if (!a.hasVisaFreeOptions && b.hasVisaFreeOptions) return 1;
+          return b.totalVisaTypes - a.totalVisaTypes;
+        });
+        break;
+    }
+
+    return {
+      destinations: sortedDestinations,
+      total,
+      hasMore,
+      currentPage,
+      totalPages,
+    };
+  } catch (error) {
+    console.error(
+      `Failed to get paginated destinations list for locale ${locale}:`,
+      error
+    );
+    return {
+      destinations: [],
+      total: 0,
+      hasMore: false,
+      currentPage: 1,
+      totalPages: 0,
+    };
+  }
+}
+
+/**
+ * Get unique continents for destinations filter (lightweight query)
+ *
+ * @param locale - Language locale (not used but kept for consistency)
+ * @returns Promise<string[]> - Array of unique continent names
+ */
+export async function getDestinationContinents(
+  _locale?: string
+): Promise<string[]> {
+  try {
+    const db = getDb();
+
+    const results = await db
+      .selectDistinct({ continent: countries.continent })
+      .from(countries)
+      .leftJoin(
+        visaTypes,
+        and(
+          eq(visaTypes.destinationId, countries.id),
+          eq(visaTypes.isActive, true),
+          isNull(visaTypes.deletedAt)
+        )
+      )
+      .leftJoin(
+        visaEligibility,
+        and(
+          eq(visaEligibility.destinationId, countries.id),
+          inArray(visaEligibility.eligibilityStatus, [
+            "visa_free",
+            "on_arrival",
+          ]),
+          eq(visaEligibility.isActive, true),
+          isNull(visaEligibility.deletedAt)
+        )
+      )
+      .where(
+        and(
+          eq(countries.isActive, true),
+          isNull(countries.deletedAt),
+          isNotNull(countries.continent),
+          // Only include countries that have either visa types OR visa-free options
+          or(
+            isNotNull(visaTypes.id), // Has visa types
+            isNotNull(visaEligibility.id) // Has visa-free/on-arrival options
+          )
+        )
+      )
+      .orderBy(countries.continent);
+
+    return results
+      .map(result => result.continent)
+      .filter(
+        continent => continent && continent.trim().length > 0
+      ) as string[];
+  } catch (error) {
+    console.error("Failed to get destination continents:", error);
     return [];
   }
 }
@@ -529,12 +843,6 @@ export async function getDestinationDetails(
     return null;
   }
 
-  const validatedLocale = validateLocale(locale);
-  if (!validatedLocale) {
-    console.error(`Invalid locale provided: ${locale}`);
-    return null;
-  }
-
   let validatedPassportCode: string | null = null;
   if (passportCode) {
     validatedPassportCode = validateCountryCode(passportCode);
@@ -543,14 +851,8 @@ export async function getDestinationDetails(
     }
   }
 
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return null;
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
     // Get destination country information
     const destinationResults = await db
@@ -573,7 +875,7 @@ export async function getDestinationDetails(
         countriesI18n,
         and(
           eq(countries.id, countriesI18n.countryId),
-          eq(countriesI18n.locale, validatedLocale)
+          eq(countriesI18n.locale, locale)
         )
       )
       .where(
@@ -701,14 +1003,8 @@ export async function getCountriesByCodes(
     return [];
   }
 
-  const isDatabaseReady = await isDatabaseAvailableAsync();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return [];
-  }
-
   try {
-    const db = (await getDbAsync()) as Database;
+    const db = getDb();
 
     const results = await db
       .select({

@@ -1,12 +1,20 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
+import {
+  boolean,
+  integer,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  unique,
+} from "drizzle-orm/pg-core";
 import { countries } from "./countries";
 import { visaTypes } from "./visa-types";
 
-export const visaEligibility = sqliteTable(
+export const visaEligibility = pgTable(
   "visa_eligibility",
   {
-    id: integer("id").primaryKey({ autoIncrement: true }),
+    id: serial("id").primaryKey(),
     destinationId: integer("destination_id")
       .references(() => countries.id)
       .notNull(),
@@ -18,18 +26,18 @@ export const visaEligibility = sqliteTable(
       .notNull(),
     eligibilityStatus: text("eligibility_status").notNull(), // "required", "visa_free", "on_arrival", "eta", "not_allowed"
     maxStayDays: integer("max_stay_days"), // For visa-free or visa-on-arrival
-    lastUpdated: integer("last_updated", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+    lastUpdated: timestamp("last_updated")
+      .default(sql`now()`)
       .notNull(),
-    isActive: integer("is_active", { mode: "boolean" }).default(true).notNull(),
-    createdAt: integer("created_at", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+    isActive: boolean("is_active").default(true).notNull(),
+    createdAt: timestamp("created_at")
+      .default(sql`now()`)
       .notNull(),
-    updatedAt: integer("updated_at", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+    updatedAt: timestamp("updated_at")
+      .default(sql`now()`)
       .$onUpdate(() => new Date())
       .notNull(),
-    deletedAt: integer("deleted_at", { mode: "timestamp" }),
+    deletedAt: timestamp("deleted_at"),
   },
   table => ({
     // Ensure unique eligibility rule for each destination-passport-visa combination
@@ -41,20 +49,20 @@ export const visaEligibility = sqliteTable(
   })
 );
 
-export const visaEligibilityI18n = sqliteTable(
+export const visaEligibilityI18n = pgTable(
   "visa_eligibility_i18n",
   {
-    id: integer("id").primaryKey({ autoIncrement: true }),
+    id: serial("id").primaryKey(),
     visaEligibilityId: integer("visa_eligibility_id")
       .references(() => visaEligibility.id)
       .notNull(),
-    locale: text("locale", { length: 5 }).notNull(), // e.g., "en", "ar", "es"
+    locale: text("locale").notNull(), // e.g., "en", "ar", "es"
     notes: text("notes"),
-    createdAt: integer("created_at", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+    createdAt: timestamp("created_at")
+      .default(sql`now()`)
       .notNull(),
-    updatedAt: integer("updated_at", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+    updatedAt: timestamp("updated_at")
+      .default(sql`now()`)
       .$onUpdate(() => new Date())
       .notNull(),
   },

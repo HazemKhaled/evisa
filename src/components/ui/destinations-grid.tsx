@@ -28,7 +28,7 @@ export async function DestinationsGrid({
       {destinations.map(destination => (
         <Link
           key={destination.code}
-          href={`/${locale}/d/${destination.code.toLowerCase()}`}
+          href={`/${locale}/d/${destination.code}`}
           className="group block"
         >
           <div className="bg-card hover:border-primary/20 rounded-lg border p-6 transition-all duration-200 group-hover:scale-105 hover:shadow-lg">

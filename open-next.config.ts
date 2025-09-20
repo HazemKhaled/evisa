@@ -1,11 +1,11 @@
 import { defineCloudflareConfig } from "@opennextjs/cloudflare";
-import staticAssetsIncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/static-assets-incremental-cache";
+import r2IncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/r2-incremental-cache";
 import d1NextTagCache from "@opennextjs/cloudflare/overrides/tag-cache/d1-next-tag-cache";
-// import doQueue from "@opennextjs/cloudflare/overrides/queue/do-queue";
+import doQueue from "@opennextjs/cloudflare/overrides/queue/do-queue";
 
 export default defineCloudflareConfig({
-  incrementalCache: staticAssetsIncrementalCache,
-  // queue: doQueue,
+  incrementalCache: r2IncrementalCache,
+  queue: doQueue,
   // This is only required if you use On-demand revalidation
   tagCache: d1NextTagCache,
   // If you don't use `revalidatePath`, you can also filter internal soft tags using the `softTagFilter`

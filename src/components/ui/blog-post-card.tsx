@@ -40,7 +40,7 @@ export async function BlogPostCard({
         post={post}
         locale={locale}
         imageAspectRatio={imageAspectRatio}
-        ariaLabel={t("aria.readArticle", { title: post.frontmatter.title })}
+        ariaLabel={t("aria.readArticle", { title: post.title })}
       />
 
       <div className={blogCardStyles.card.content}>
@@ -49,8 +49,8 @@ export async function BlogPostCard({
           locale={locale}
           showDestinations={showDestinations}
           showTags={showTags}
-          destinationAriaLabel={(_, displayName) =>
-            t("aria.viewPostsFor", { destination: displayName })
+          destinationAriaLabel={destination =>
+            t("aria.viewPostsFor", { destination })
           }
           tagAriaLabel={tag => t("aria.viewPostsTagged", { tag })}
         />
@@ -59,7 +59,7 @@ export async function BlogPostCard({
           post={post}
           locale={locale}
           ariaLabel={t("aria.readFullArticle", {
-            title: post.frontmatter.title,
+            title: post.title,
           })}
         />
 

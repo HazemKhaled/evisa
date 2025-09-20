@@ -580,19 +580,17 @@ describe("JSON-LD utilities", () => {
   describe("generateBlogPostJsonLd", () => {
     it("should generate blog post JSON-LD from BlogPostData", () => {
       const blogPost: BlogPostData = {
-        content: "Test content",
         slug: "test-post",
-        frontmatter: {
-          title: "Test Blog Post",
-          description: "Test blog post description",
-          destinations: ["USA"],
-          image: "https://test.com/image.jpg",
-          tags: ["travel", "test"],
-          author: "Test Author",
-          publishedAt: "2023-01-01",
-          lastUpdated: "2023-01-02",
-        },
-        destinationNames: [],
+        title: "Test Blog Post",
+        description: "Test blog post description",
+        content: "Test content",
+        author: "Test Author",
+        publishedAt: "2023-01-01",
+        lastUpdated: "2023-01-02",
+        image: "https://test.com/image.jpg",
+        destinations: ["USA"],
+        tags: ["travel", "test"],
+        isPublished: true,
       };
 
       const result = generateBlogPostJsonLd(
@@ -631,17 +629,16 @@ describe("JSON-LD utilities", () => {
 
     it("should handle blog post without lastUpdated", () => {
       const blogPost: BlogPostData = {
-        content: "Test content",
         slug: "test-post",
-        frontmatter: {
-          title: "Test Blog Post",
-          description: "Test blog post description",
-          destinations: ["USA"],
-          image: "https://test.com/image.jpg",
-          tags: ["travel"],
-          author: "Test Author",
-          publishedAt: "2023-01-01",
-        },
+        title: "Test Blog Post",
+        description: "Test blog post description",
+        content: "Test content",
+        author: "Test Author",
+        publishedAt: "2023-01-01",
+        image: "https://test.com/image.jpg",
+        destinations: ["USA"],
+        tags: ["travel"],
+        isPublished: true,
       };
 
       const result = generateBlogPostJsonLd(

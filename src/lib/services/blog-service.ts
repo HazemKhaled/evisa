@@ -1,42 +1,136 @@
+import "server-only";
+
 /**
  * Blog Service Layer
  *
- * Handles blog post data fetching, filtering, and processing for the travel blog system.
- * Integrates with MDX content processing and multilingual support.
+ * Database-Driven Blog Service using Drizzle ORM.
+ * Provides blog post data fetching, filtering, and processing for the travel blog system.
+ * Replaces MDX-based blog service with database queries using Drizzle ORM.
+ * Server-only module for database operations.
  */
 
-import { getGeneratedBlogPostsForLocale } from "@/lib/generated-blog-data";
+import { getDb } from "@/lib/db";
+import {
+  blogPosts,
+  blogPostsI18n,
+  blogTags,
+  blogPostTags,
+} from "@/lib/db/schema/blog-posts";
+import { eq, and, desc, like, inArray, sql, count, or } from "drizzle-orm";
 import type {
   BlogPostData,
   BlogFilterOptions,
   PaginatedBlogResponse,
 } from "../types/blog";
-import { languages } from "@/app/i18n/settings";
-
-// Re-export types from shared module for application use
-export type {
-  BlogPostData,
-  BlogFilterOptions,
-  PaginatedBlogResponse,
-} from "../types/blog";
 
 /**
- * Get all blog posts for a specific locale with optional filtering and pagination
+ * Convert database result to BlogPostData interface
  */
-export function getAllBlogPosts(
+function convertDbToBlogPostData(
+  post: unknown,
+  i18nContent: unknown,
+  tags: string[] = []
+): BlogPostData {
+  const postRecord = post as Record<string, unknown>;
+  const i18nRecord = i18nContent as Record<string, unknown>;
+
+  // Create new flat structure
+  const blogPost: BlogPostData = {
+    id: postRecord.id ? Number(postRecord.id) : undefined,
+    slug: String(postRecord.slug),
+    title: String(i18nRecord.title),
+    description: String(i18nRecord.description),
+    content: String(i18nRecord.content),
+    author: String(postRecord.author),
+    publishedAt: new Date(
+      postRecord.publishedAt as string | Date
+    ).toISOString(),
+    lastUpdated: postRecord.updatedAt
+      ? new Date(postRecord.updatedAt as string | Date).toISOString()
+      : undefined,
+    image: postRecord.image ? String(postRecord.image) : "",
+    destinations: postRecord.destinations
+      ? String(postRecord.destinations).split(",")
+      : [],
+    passports: postRecord.passports
+      ? String(postRecord.passports).split(",")
+      : undefined,
+    tags,
+    related_visas: postRecord.passports
+      ? String(postRecord.passports).split(",")
+      : [],
+    isPublished: postRecord.isPublished
+      ? Boolean(postRecord.isPublished)
+      : true,
+  };
+
+  return blogPost;
+}
+
+/**
+ * Get all blog post slugs across all locales for generateStaticParams
+ */
+export async function getAllBlogPostSlugs(): Promise<
+  { locale: string; slug: string }[]
+> {
+  try {
+    const db = getDb();
+    const results = await db
+      .select({
+        locale: blogPostsI18n.locale,
+        slug: blogPosts.slug,
+      })
+      .from(blogPosts)
+      .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+      .where(eq(blogPosts.isPublished, true));
+
+    return results;
+  } catch (error) {
+    console.error("Error fetching blog post slugs:", error);
+    return [];
+  }
+}
+
+/**
+ * Get all blog posts for a specific locale with optional limit
+ */
+export async function getAllBlogPosts(
   locale: string,
   limit?: number
-): BlogPostData[] {
+): Promise<BlogPostData[]> {
   try {
-    const posts = getGeneratedBlogPostsForLocale(locale);
+    const db = getDb();
+    const query = db
+      .select({
+        post: blogPosts,
+        i18n: blogPostsI18n,
+      })
+      .from(blogPosts)
+      .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+      .where(
+        and(eq(blogPostsI18n.locale, locale), eq(blogPosts.isPublished, true))
+      )
+      .orderBy(desc(blogPosts.publishedAt));
 
-    if (limit) {
-      return posts.slice(0, limit);
-    }
+    const results = limit ? await query.limit(limit) : await query;
 
-    return posts;
-  } catch {
-    // Graceful degradation - return empty array if content unavailable
+    // Get tags for each post
+    const blogPostsWithTags = await Promise.all(
+      results.map(async result => {
+        const postTags = await getDb()
+          .select({ tagSlug: blogTags.slug })
+          .from(blogPostTags)
+          .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+          .where(eq(blogPostTags.postId, result.post.id));
+
+        const tags = postTags.map(tag => tag.tagSlug);
+        return convertDbToBlogPostData(result.post, result.i18n, tags);
+      })
+    );
+
+    return blogPostsWithTags;
+  } catch (error) {
+    console.error("Error fetching all blog posts:", error);
     return [];
   }
 }
@@ -44,10 +138,11 @@ export function getAllBlogPosts(
 /**
  * Get blog posts with advanced filtering and pagination
  */
-export function getBlogPosts(
+export async function getBlogPosts(
   options: BlogFilterOptions
-): PaginatedBlogResponse {
+): Promise<PaginatedBlogResponse> {
   try {
+    const db = getDb();
     const {
       locale,
       limit = 10,
@@ -57,55 +152,98 @@ export function getBlogPosts(
       author,
     } = options;
 
-    let posts = getGeneratedBlogPostsForLocale(locale);
+    const whereConditions = [
+      eq(blogPostsI18n.locale, locale),
+      eq(blogPosts.isPublished, true),
+    ];
 
-    // Apply filters
-    if (tag) {
-      posts = posts.filter((post: BlogPostData) =>
-        post.frontmatter.tags?.some(
-          (postTag: string) => postTag.toLowerCase() === tag.toLowerCase()
-        )
-      );
-    }
-
+    // Add destination filter
     if (destination) {
-      posts = posts.filter((post: BlogPostData) =>
-        post.frontmatter.destinations?.some(
-          (dest: string) => dest.toLowerCase() === destination.toLowerCase()
-        )
-      );
+      whereConditions.push(like(blogPosts.destinations, `%${destination}%`));
     }
 
+    // Add author filter
     if (author) {
-      posts = posts.filter((post: BlogPostData) =>
-        post.frontmatter.author?.toLowerCase().includes(author.toLowerCase())
-      );
+      whereConditions.push(like(blogPosts.author, `%${author}%`));
     }
 
-    // Sort by publication date (newest first)
-    posts.sort((a: BlogPostData, b: BlogPostData) => {
-      const dateA = new Date(a.frontmatter.publishedAt);
-      const dateB = new Date(b.frontmatter.publishedAt);
-      return dateB.getTime() - dateA.getTime();
-    });
+    // Handle tag filtering separately since it requires a join
+    let results;
+    if (tag) {
+      const tagQuery = db
+        .select({
+          post: blogPosts,
+          i18n: blogPostsI18n,
+        })
+        .from(blogPosts)
+        .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+        .innerJoin(blogPostTags, eq(blogPosts.id, blogPostTags.postId))
+        .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+        .where(and(...whereConditions, eq(blogTags.slug, tag)));
+      results = await tagQuery
+        .orderBy(desc(blogPosts.publishedAt))
+        .limit(limit || 50)
+        .offset(offset || 0);
+    } else {
+      const baseQuery = db
+        .select({
+          post: blogPosts,
+          i18n: blogPostsI18n,
+        })
+        .from(blogPosts)
+        .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+        .where(and(...whereConditions));
+      results = await baseQuery
+        .orderBy(desc(blogPosts.publishedAt))
+        .limit(limit || 50)
+        .offset(offset || 0);
+    }
 
-    const total = posts.length;
+    // Get total count
+    const totalQuery = tag
+      ? db
+          .select({ count: count() })
+          .from(blogPosts)
+          .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+          .innerJoin(blogPostTags, eq(blogPosts.id, blogPostTags.postId))
+          .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+          .where(and(...whereConditions, eq(blogTags.slug, tag)))
+      : db
+          .select({ count: count() })
+          .from(blogPosts)
+          .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+          .where(and(...whereConditions));
+
+    const totalResults = await totalQuery;
+
+    const total = totalResults[0].count;
     const totalPages = Math.ceil(total / limit);
     const currentPage = Math.floor(offset / limit) + 1;
     const hasMore = offset + limit < total;
 
-    // Apply pagination
-    const paginatedPosts = posts.slice(offset, offset + limit);
+    // Get tags for each post
+    const blogPostsWithTags = await Promise.all(
+      results.map(async result => {
+        const postTags = await getDb()
+          .select({ tagSlug: blogTags.slug })
+          .from(blogPostTags)
+          .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+          .where(eq(blogPostTags.postId, result.post.id));
+
+        const tags = postTags.map(tag => tag.tagSlug);
+        return convertDbToBlogPostData(result.post, result.i18n, tags);
+      })
+    );
 
     return {
-      posts: paginatedPosts,
+      posts: blogPostsWithTags,
       total,
       hasMore,
       currentPage,
       totalPages,
     };
-  } catch {
-    // Graceful degradation - return empty result set
+  } catch (error) {
+    console.error("Error fetching blog posts with filters:", error);
     return {
       posts: [],
       total: 0,
@@ -119,35 +257,48 @@ export function getBlogPosts(
 /**
  * Get blog posts filtered by destination
  */
-export function getBlogPostsByDestination(
+export async function getBlogPostsByDestination(
   destination: string,
   locale: string,
   limit?: number
-): BlogPostData[] {
+): Promise<BlogPostData[]> {
   try {
-    let posts = getGeneratedBlogPostsForLocale(locale);
-
-    // Filter by destination (exact match)
-    posts = posts.filter((post: BlogPostData) =>
-      post.frontmatter.destinations?.some(
-        (dest: string) => dest.toLowerCase() === destination.toLowerCase()
+    const db = getDb();
+    const query = db
+      .select({
+        post: blogPosts,
+        i18n: blogPostsI18n,
+      })
+      .from(blogPosts)
+      .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+      .where(
+        and(
+          eq(blogPostsI18n.locale, locale),
+          eq(blogPosts.isPublished, true),
+          like(blogPosts.destinations, `%${destination}%`)
+        )
       )
+      .orderBy(desc(blogPosts.publishedAt));
+
+    const results = limit ? await query.limit(limit) : await query;
+
+    // Get tags for each post
+    const blogPostsWithTags = await Promise.all(
+      results.map(async result => {
+        const postTags = await getDb()
+          .select({ tagSlug: blogTags.slug })
+          .from(blogPostTags)
+          .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+          .where(eq(blogPostTags.postId, result.post.id));
+
+        const tags = postTags.map(tag => tag.tagSlug);
+        return convertDbToBlogPostData(result.post, result.i18n, tags);
+      })
     );
 
-    // Sort by publication date (newest first)
-    posts.sort((a: BlogPostData, b: BlogPostData) => {
-      const dateA = new Date(a.frontmatter.publishedAt);
-      const dateB = new Date(b.frontmatter.publishedAt);
-      return dateB.getTime() - dateA.getTime();
-    });
-
-    if (limit) {
-      posts = posts.slice(0, limit);
-    }
-
-    return posts;
-  } catch {
-    // Graceful degradation - return empty array if content unavailable
+    return blogPostsWithTags;
+  } catch (error) {
+    console.error("Error fetching blog posts by destination:", error);
     return [];
   }
 }
@@ -155,35 +306,197 @@ export function getBlogPostsByDestination(
 /**
  * Get blog posts filtered by tag
  */
-export function getBlogPostsByTag(
+export async function getBlogPostsByTag(
   tag: string,
   locale: string,
   limit?: number
-): BlogPostData[] {
+): Promise<BlogPostData[]> {
   try {
-    let posts = getGeneratedBlogPostsForLocale(locale);
-
-    // Filter by tag (case-insensitive partial match)
-    posts = posts.filter((post: BlogPostData) =>
-      post.frontmatter.tags?.some((postTag: string) =>
-        postTag.toLowerCase().includes(tag.toLowerCase())
+    const db = getDb();
+    const query = db
+      .select({
+        post: blogPosts,
+        i18n: blogPostsI18n,
+      })
+      .from(blogPosts)
+      .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+      .innerJoin(blogPostTags, eq(blogPosts.id, blogPostTags.postId))
+      .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+      .where(
+        and(
+          eq(blogPostsI18n.locale, locale),
+          eq(blogPosts.isPublished, true),
+          eq(blogTags.slug, tag)
+        )
       )
+      .orderBy(desc(blogPosts.publishedAt));
+
+    const results = limit ? await query.limit(limit) : await query;
+
+    // Get tags for each post
+    const blogPostsWithTags = await Promise.all(
+      results.map(async result => {
+        const postTags = await getDb()
+          .select({ tagSlug: blogTags.slug })
+          .from(blogPostTags)
+          .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+          .where(eq(blogPostTags.postId, result.post.id));
+
+        const tags = postTags.map(tag => tag.tagSlug);
+        return convertDbToBlogPostData(result.post, result.i18n, tags);
+      })
     );
 
-    // Sort by publication date (newest first)
-    posts.sort((a: BlogPostData, b: BlogPostData) => {
-      const dateA = new Date(a.frontmatter.publishedAt);
-      const dateB = new Date(b.frontmatter.publishedAt);
-      return dateB.getTime() - dateA.getTime();
-    });
+    return blogPostsWithTags;
+  } catch (error) {
+    console.error("Error fetching blog posts by tag:", error);
+    return [];
+  }
+}
 
-    if (limit) {
-      posts = posts.slice(0, limit);
+/**
+ * Get related blog posts based on destinations AND tags from a specific post (optimized for blog detail pages)
+ */
+export async function getRelatedBlogPostsOptimized(
+  currentPostSlug: string,
+  destinations: string[],
+  tags: string[],
+  locale: string,
+  limit: number = 3
+): Promise<BlogPostData[]> {
+  try {
+    const db = getDb();
+
+    // If no destinations or tags, fall back to recent posts
+    if (
+      (!destinations || destinations.length === 0) &&
+      (!tags || tags.length === 0)
+    ) {
+      const results = await db
+        .select({
+          post: blogPosts,
+          i18n: blogPostsI18n,
+        })
+        .from(blogPosts)
+        .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+        .where(
+          and(
+            eq(blogPostsI18n.locale, locale),
+            eq(blogPosts.isPublished, true),
+            sql`${blogPosts.slug} != ${currentPostSlug}`
+          )
+        )
+        .orderBy(desc(blogPosts.publishedAt))
+        .limit(limit);
+
+      return await Promise.all(
+        results.map(async result => {
+          const postTags = await db
+            .select({ tagSlug: blogTags.slug })
+            .from(blogPostTags)
+            .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+            .where(eq(blogPostTags.postId, result.post.id));
+
+          const tagSlugs = postTags.map(tag => tag.tagSlug);
+          return convertDbToBlogPostData(result.post, result.i18n, tagSlugs);
+        })
+      );
     }
 
-    return posts;
-  } catch {
-    // Graceful degradation - return empty array if content unavailable
+    // Build query for posts matching destinations OR tags
+    const destinationConditions =
+      destinations?.length > 0
+        ? destinations.map(
+            dest => sql`${blogPosts.destinations} LIKE ${"%" + dest + "%"}`
+          )
+        : [];
+
+    const tagConditions =
+      tags?.length > 0
+        ? [
+            sql`EXISTS (
+          SELECT 1 FROM ${blogPostTags}
+          INNER JOIN ${blogTags} ON ${blogPostTags.tagId} = ${blogTags.id}
+          WHERE ${blogPostTags.postId} = ${blogPosts.id}
+          AND ${blogTags.slug} IN (${sql.join(
+            tags.map(tag => sql`${tag}`),
+            sql`, `
+          )})
+        )`,
+          ]
+        : [];
+
+    const matchingConditions = [...destinationConditions, ...tagConditions];
+
+    if (matchingConditions.length === 0) {
+      // Fallback to recent posts if no valid conditions
+      const results = await db
+        .select({
+          post: blogPosts,
+          i18n: blogPostsI18n,
+        })
+        .from(blogPosts)
+        .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+        .where(
+          and(
+            eq(blogPostsI18n.locale, locale),
+            eq(blogPosts.isPublished, true),
+            sql`${blogPosts.slug} != ${currentPostSlug}`
+          )
+        )
+        .orderBy(desc(blogPosts.publishedAt))
+        .limit(limit);
+
+      return await Promise.all(
+        results.map(async result => {
+          const postTags = await db
+            .select({ tagSlug: blogTags.slug })
+            .from(blogPostTags)
+            .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+            .where(eq(blogPostTags.postId, result.post.id));
+
+          const tagSlugs = postTags.map(tag => tag.tagSlug);
+          return convertDbToBlogPostData(result.post, result.i18n, tagSlugs);
+        })
+      );
+    }
+
+    // Query for related posts matching destinations OR tags
+    const results = await db
+      .select({
+        post: blogPosts,
+        i18n: blogPostsI18n,
+      })
+      .from(blogPosts)
+      .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+      .where(
+        and(
+          eq(blogPostsI18n.locale, locale),
+          eq(blogPosts.isPublished, true),
+          sql`${blogPosts.slug} != ${currentPostSlug}`,
+          or(...matchingConditions)
+        )
+      )
+      .orderBy(desc(blogPosts.publishedAt))
+      .limit(limit);
+
+    // Get tags for each post
+    const blogPostsWithTags = await Promise.all(
+      results.map(async result => {
+        const postTags = await db
+          .select({ tagSlug: blogTags.slug })
+          .from(blogPostTags)
+          .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+          .where(eq(blogPostTags.postId, result.post.id));
+
+        const tagSlugs = postTags.map(tag => tag.tagSlug);
+        return convertDbToBlogPostData(result.post, result.i18n, tagSlugs);
+      })
+    );
+
+    return blogPostsWithTags;
+  } catch (error) {
+    console.error("Error fetching optimized related blog posts:", error);
     return [];
   }
 }
@@ -191,58 +504,70 @@ export function getBlogPostsByTag(
 /**
  * Get related blog posts for destination page integration
  */
-export function getRelatedBlogPosts(
+export async function getRelatedBlogPosts(
   destination: string,
   locale: string,
   limit: number = 3
-): BlogPostData[] {
+): Promise<BlogPostData[]> {
   try {
-    const posts = getGeneratedBlogPostsForLocale(locale);
-
-    // Filter by destination - prioritize exact destination matches
-    const destinationPosts = posts.filter((post: BlogPostData) =>
-      post.frontmatter.destinations?.some(
-        (dest: string) => dest.toLowerCase() === destination.toLowerCase()
+    const db = getDb();
+    // First try destination-specific posts
+    let results = await db
+      .select({
+        post: blogPosts,
+        i18n: blogPostsI18n,
+      })
+      .from(blogPosts)
+      .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+      .where(
+        and(
+          eq(blogPostsI18n.locale, locale),
+          eq(blogPosts.isPublished, true),
+          like(blogPosts.destinations, `%${destination}%`)
+        )
       )
-    );
+      .orderBy(desc(blogPosts.publishedAt))
+      .limit(limit);
 
-    // Sort destination posts by publication date (newest first)
-    destinationPosts.sort((a: BlogPostData, b: BlogPostData) => {
-      const dateA = new Date(a.frontmatter.publishedAt);
-      const dateB = new Date(b.frontmatter.publishedAt);
-      return dateB.getTime() - dateA.getTime();
-    });
-
-    // If we have any destination-specific posts, return them first
-    if (destinationPosts.length > 0) {
-      return destinationPosts.slice(
-        0,
-        Math.min(limit, destinationPosts.length)
-      );
+    // If no destination-specific posts, get general travel posts
+    if (results.length === 0) {
+      results = await db
+        .select({
+          post: blogPosts,
+          i18n: blogPostsI18n,
+        })
+        .from(blogPosts)
+        .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+        .innerJoin(blogPostTags, eq(blogPosts.id, blogPostTags.postId))
+        .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+        .where(
+          and(
+            eq(blogPostsI18n.locale, locale),
+            eq(blogPosts.isPublished, true),
+            inArray(blogTags.slug, ["travel", "visa", "guide", "tips"])
+          )
+        )
+        .orderBy(desc(blogPosts.publishedAt))
+        .limit(limit);
     }
 
-    // Only if no destination-specific posts exist, fallback to general travel posts
-    const generalPosts = posts.filter((post: BlogPostData) => {
-      const hasGeneralTags = post.frontmatter.tags?.some((tag: string) =>
-        ["travel", "visa", "guide", "tips"].includes(tag.toLowerCase())
-      );
-      const isNotDestinationSpecific =
-        !post.frontmatter.destinations?.length ||
-        post.frontmatter.destinations.length === 0;
+    // Get tags for each post
+    const blogPostsWithTags = await Promise.all(
+      results.map(async result => {
+        const postTags = await getDb()
+          .select({ tagSlug: blogTags.slug })
+          .from(blogPostTags)
+          .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+          .where(eq(blogPostTags.postId, result.post.id));
 
-      return hasGeneralTags || isNotDestinationSpecific;
-    });
+        const tags = postTags.map(tag => tag.tagSlug);
+        return convertDbToBlogPostData(result.post, result.i18n, tags);
+      })
+    );
 
-    // Sort general posts by publication date (newest first)
-    generalPosts.sort((a: BlogPostData, b: BlogPostData) => {
-      const dateA = new Date(a.frontmatter.publishedAt);
-      const dateB = new Date(b.frontmatter.publishedAt);
-      return dateB.getTime() - dateA.getTime();
-    });
-
-    return generalPosts.slice(0, limit);
-  } catch {
-    // Graceful degradation - return empty array if content unavailable
+    return blogPostsWithTags;
+  } catch (error) {
+    console.error("Error fetching related blog posts:", error);
     return [];
   }
 }
@@ -250,17 +575,45 @@ export function getRelatedBlogPosts(
 /**
  * Get a single blog post by slug
  */
-export function getBlogPostBySlug(
+export async function getBlogPostBySlug(
   slug: string,
   locale: string
-): BlogPostData | null {
+): Promise<BlogPostData | null> {
   try {
-    const posts = getGeneratedBlogPostsForLocale(locale);
-    const post = posts.find((p: BlogPostData) => p.slug === slug);
+    const db = getDb();
+    const results = await db
+      .select({
+        post: blogPosts,
+        i18n: blogPostsI18n,
+      })
+      .from(blogPosts)
+      .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+      .where(
+        and(
+          eq(blogPosts.slug, slug),
+          eq(blogPostsI18n.locale, locale),
+          eq(blogPosts.isPublished, true)
+        )
+      )
+      .limit(1);
 
-    return post || null;
-  } catch {
-    // Graceful degradation - return null if content unavailable
+    if (results.length === 0) {
+      return null;
+    }
+
+    const result = results[0];
+
+    // Get tags for the post
+    const postTags = await getDb()
+      .select({ tagSlug: blogTags.slug })
+      .from(blogPostTags)
+      .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+      .where(eq(blogPostTags.postId, result.post.id));
+
+    const tags = postTags.map(tag => tag.tagSlug);
+    return convertDbToBlogPostData(result.post, result.i18n, tags);
+  } catch (error) {
+    console.error("Error fetching blog post by slug:", error);
     return null;
   }
 }
@@ -268,17 +621,22 @@ export function getBlogPostBySlug(
 /**
  * Get all unique tags from all blog posts for a locale
  */
-export function getAllTagsForLocale(locale: string): string[] {
+export async function getAllTagsForLocale(locale: string): Promise<string[]> {
   try {
-    const posts = getGeneratedBlogPostsForLocale(locale);
-    const allTags = posts.flatMap(
-      (post: BlogPostData) => post.frontmatter.tags || []
-    );
-    const uniqueTags = [...new Set(allTags)];
+    const results = await getDb()
+      .selectDistinct({ tagSlug: blogTags.slug })
+      .from(blogTags)
+      .innerJoin(blogPostTags, eq(blogTags.id, blogPostTags.tagId))
+      .innerJoin(blogPosts, eq(blogPostTags.postId, blogPosts.id))
+      .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+      .where(
+        and(eq(blogPostsI18n.locale, locale), eq(blogPosts.isPublished, true))
+      )
+      .orderBy(blogTags.slug);
 
-    return uniqueTags.sort();
-  } catch {
-    // Graceful degradation - return empty array if content unavailable
+    return results.map(result => result.tagSlug);
+  } catch (error) {
+    console.error("Error fetching tags for locale:", error);
     return [];
   }
 }
@@ -286,17 +644,29 @@ export function getAllTagsForLocale(locale: string): string[] {
 /**
  * Get all unique destinations from all blog posts for a locale
  */
-export function getAllDestinationsForLocale(locale: string): string[] {
+export async function getAllDestinationsForLocale(
+  locale: string
+): Promise<string[]> {
   try {
-    const posts = getGeneratedBlogPostsForLocale(locale);
-    const allDestinations = posts.flatMap(
-      (post: BlogPostData) => post.frontmatter.destinations || []
-    );
-    const uniqueDestinations = [...new Set(allDestinations)];
+    const results = await getDb()
+      .selectDistinct({ destinations: blogPosts.destinations })
+      .from(blogPosts)
+      .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+      .where(
+        and(eq(blogPostsI18n.locale, locale), eq(blogPosts.isPublished, true))
+      );
 
+    // Parse comma-separated destinations and flatten
+    const allDestinations = results
+      .filter(result => result.destinations)
+      .flatMap(result => result.destinations!.split(","))
+      .map(dest => dest.trim())
+      .filter(dest => dest.length > 0);
+
+    const uniqueDestinations = [...new Set(allDestinations)];
     return uniqueDestinations.sort();
-  } catch {
-    // Graceful degradation - return empty array if content unavailable
+  } catch (error) {
+    console.error("Error fetching destinations for locale:", error);
     return [];
   }
 }
@@ -304,63 +674,66 @@ export function getAllDestinationsForLocale(locale: string): string[] {
 /**
  * Search blog posts by text content (title, description, content)
  */
-export function searchBlogPosts(
+export async function searchBlogPosts(
   query: string,
   locale: string,
   limit?: number
-): BlogPostData[] {
+): Promise<BlogPostData[]> {
   try {
     if (!query || query.trim().length === 0) {
       return [];
     }
 
-    const searchTerm = query.toLowerCase().trim();
-    let posts = getGeneratedBlogPostsForLocale(locale);
+    const db = getDb();
+    const searchTerm = `%${query.toLowerCase().trim()}%`;
 
-    // Search in title, description, and content
-    posts = posts.filter((post: BlogPostData) => {
-      const title = post.frontmatter.title?.toLowerCase() || "";
-      const description = post.frontmatter.description?.toLowerCase() || "";
-      const content = post.content?.toLowerCase() || "";
-      const tags = (post.frontmatter.tags || []).join(" ").toLowerCase();
+    const results = await db
+      .select({
+        post: blogPosts,
+        i18n: blogPostsI18n,
+      })
+      .from(blogPosts)
+      .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+      .where(
+        and(
+          eq(blogPostsI18n.locale, locale),
+          eq(blogPosts.isPublished, true),
+          sql`(
+            LOWER(${blogPostsI18n.title}) LIKE ${searchTerm} OR
+            LOWER(${blogPostsI18n.description}) LIKE ${searchTerm} OR
+            LOWER(${blogPostsI18n.content}) LIKE ${searchTerm} OR
+            LOWER(${blogPosts.author}) LIKE ${searchTerm}
+          )`
+        )
+      )
+      .orderBy(
+        // Prioritize title matches first
+        sql`CASE
+          WHEN LOWER(${blogPostsI18n.title}) LIKE ${searchTerm} THEN 1
+          WHEN LOWER(${blogPostsI18n.description}) LIKE ${searchTerm} THEN 2
+          ELSE 3
+        END`,
+        desc(blogPosts.publishedAt)
+      )
+      .limit(limit || 50);
 
-      return (
-        title.includes(searchTerm) ||
-        description.includes(searchTerm) ||
-        content.includes(searchTerm) ||
-        tags.includes(searchTerm)
-      );
-    });
+    // Get tags for each post
+    const blogPostsWithTags = await Promise.all(
+      results.map(async result => {
+        const postTags = await getDb()
+          .select({ tagSlug: blogTags.slug })
+          .from(blogPostTags)
+          .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+          .where(eq(blogPostTags.postId, result.post.id));
 
-    // Sort by relevance (title matches first, then description, then content)
-    posts.sort((a: BlogPostData, b: BlogPostData) => {
-      const aTitle = a.frontmatter.title?.toLowerCase() || "";
-      const bTitle = b.frontmatter.title?.toLowerCase() || "";
-      const aDesc = a.frontmatter.description?.toLowerCase() || "";
-      const bDesc = b.frontmatter.description?.toLowerCase() || "";
+        const tags = postTags.map(tag => tag.tagSlug);
+        return convertDbToBlogPostData(result.post, result.i18n, tags);
+      })
+    );
 
-      // Prioritize exact title matches
-      if (aTitle.includes(searchTerm) && !bTitle.includes(searchTerm))
-        return -1;
-      if (!aTitle.includes(searchTerm) && bTitle.includes(searchTerm)) return 1;
-
-      // Then prioritize description matches
-      if (aDesc.includes(searchTerm) && !bDesc.includes(searchTerm)) return -1;
-      if (!aDesc.includes(searchTerm) && bDesc.includes(searchTerm)) return 1;
-
-      // Finally sort by publication date
-      const dateA = new Date(a.frontmatter.publishedAt);
-      const dateB = new Date(b.frontmatter.publishedAt);
-      return dateB.getTime() - dateA.getTime();
-    });
-
-    if (limit) {
-      posts = posts.slice(0, limit);
-    }
-
-    return posts;
-  } catch {
-    // Graceful degradation - return empty array if search fails
+    return blogPostsWithTags;
+  } catch (error) {
+    console.error("Error searching blog posts:", error);
     return [];
   }
 }
@@ -368,92 +741,101 @@ export function searchBlogPosts(
 /**
  * Get featured blog posts (posts marked with featured tag or most popular)
  */
-export function getFeaturedBlogPosts(
+export async function getFeaturedBlogPosts(
   locale: string,
   limit: number = 5
-): BlogPostData[] {
+): Promise<BlogPostData[]> {
   try {
-    const posts = getGeneratedBlogPostsForLocale(locale);
-
-    // First, try to get posts with 'featured' tag
-    const featuredPosts = posts.filter((post: BlogPostData) =>
-      post.frontmatter.tags?.some(
-        (tag: string) => tag.toLowerCase() === "featured"
+    const db = getDb();
+    // First try to get posts with 'featured' tag
+    let results = await db
+      .select({
+        post: blogPosts,
+        i18n: blogPostsI18n,
+      })
+      .from(blogPosts)
+      .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+      .innerJoin(blogPostTags, eq(blogPosts.id, blogPostTags.postId))
+      .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+      .where(
+        and(
+          eq(blogPostsI18n.locale, locale),
+          eq(blogPosts.isPublished, true),
+          eq(blogTags.slug, "featured")
+        )
       )
-    );
+      .orderBy(desc(blogPosts.publishedAt))
+      .limit(limit);
 
-    // If we have any featured posts, prioritize them
-    if (featuredPosts.length > 0) {
-      featuredPosts.sort((a: BlogPostData, b: BlogPostData) => {
-        const dateA = new Date(a.frontmatter.publishedAt);
-        const dateB = new Date(b.frontmatter.publishedAt);
-        return dateB.getTime() - dateA.getTime();
-      });
-      return featuredPosts.slice(0, limit);
+    // If no featured posts, get most recent posts
+    if (results.length === 0) {
+      results = await db
+        .select({
+          post: blogPosts,
+          i18n: blogPostsI18n,
+        })
+        .from(blogPosts)
+        .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
+        .where(
+          and(eq(blogPostsI18n.locale, locale), eq(blogPosts.isPublished, true))
+        )
+        .orderBy(desc(blogPosts.publishedAt))
+        .limit(limit);
     }
 
-    // Only if no featured posts exist, fallback to most recent posts
-    posts.sort((a: BlogPostData, b: BlogPostData) => {
-      const dateA = new Date(a.frontmatter.publishedAt);
-      const dateB = new Date(b.frontmatter.publishedAt);
-      return dateB.getTime() - dateA.getTime();
-    });
+    // Get tags for each post
+    const blogPostsWithTags = await Promise.all(
+      results.map(async result => {
+        const postTags = await getDb()
+          .select({ tagSlug: blogTags.slug })
+          .from(blogPostTags)
+          .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
+          .where(eq(blogPostTags.postId, result.post.id));
 
-    return posts.slice(0, limit);
-  } catch {
-    // Graceful degradation - return empty array if content unavailable
+        const tags = postTags.map(tag => tag.tagSlug);
+        return convertDbToBlogPostData(result.post, result.i18n, tags);
+      })
+    );
+
+    return blogPostsWithTags;
+  } catch (error) {
+    console.error("Error fetching featured blog posts:", error);
     return [];
   }
 }
 
 /**
- * Get a single blog post by slug and locale (runtime version using generated data)
+ * Get a single blog post by slug and locale (alias for getBlogPostBySlug)
  */
-export function getBlogPost(slug: string, locale: string): BlogPostData | null {
+export async function getBlogPost(
+  slug: string,
+  locale: string
+): Promise<BlogPostData | null> {
   return getBlogPostBySlug(slug, locale);
 }
 
 /**
- * Get all blog posts for a specific locale (runtime version using generated data)
+ * Get all blog posts for a specific locale (alias for getAllBlogPosts)
  */
-export function getBlogPostsForLocale(locale: string): BlogPostData[] {
+export async function getBlogPostsForLocale(
+  locale: string
+): Promise<BlogPostData[]> {
   return getAllBlogPosts(locale);
-}
-
-/**
- * Get all blog post slugs for generateStaticParams
- */
-export function getAllBlogPostSlugs(): { locale: string; slug: string }[] {
-  try {
-    const allSlugs: { locale: string; slug: string }[] = [];
-
-    for (const locale of languages) {
-      const posts = getAllBlogPosts(locale);
-      for (const post of posts) {
-        allSlugs.push({ locale, slug: post.slug });
-      }
-    }
-
-    return allSlugs;
-  } catch {
-    return [];
-  }
 }
 
 /**
  * Get all unique tags across all locales for generateStaticParams
  */
-export function getAllUniqueTagsAcrossLocales(): string[] {
+export async function getAllUniqueTagsAcrossLocales(): Promise<string[]> {
   try {
-    const allTags = new Set<string>();
+    const results = await getDb()
+      .selectDistinct({ tagSlug: blogTags.slug })
+      .from(blogTags)
+      .orderBy(blogTags.slug);
 
-    for (const locale of languages) {
-      const localeTags = getAllTagsForLocale(locale);
-      localeTags.forEach(tag => allTags.add(tag));
-    }
-
-    return Array.from(allTags).sort();
-  } catch {
+    return results.map(result => result.tagSlug);
+  } catch (error) {
+    console.error("Error fetching all unique tags:", error);
     return [];
   }
 }
@@ -461,6 +843,64 @@ export function getAllUniqueTagsAcrossLocales(): string[] {
 /**
  * Get blog posts for a specific locale (alias for getBlogPostsForLocale for sitemap compatibility)
  */
-export function getBlogDataForLocale(locale: string): BlogPostData[] {
+export async function getBlogDataForLocale(
+  locale: string
+): Promise<BlogPostData[]> {
   return getBlogPostsForLocale(locale);
 }
+
+/**
+ * Get blog posts for a specific locale with pagination
+ */
+export async function getBlogPostsForLocalePaginated(
+  locale: string,
+  limit: number,
+  offset: number
+): Promise<PaginatedBlogResponse> {
+  return getBlogPosts({
+    locale,
+    limit,
+    offset,
+  });
+}
+
+/**
+ * Get blog posts filtered by tag with pagination
+ */
+export async function getBlogPostsByTagPaginated(
+  tag: string,
+  locale: string,
+  limit: number,
+  offset: number
+): Promise<PaginatedBlogResponse> {
+  return getBlogPosts({
+    locale,
+    limit,
+    offset,
+    tag,
+  });
+}
+
+/**
+ * Get blog posts filtered by destination with pagination
+ */
+export async function getBlogPostsByDestinationPaginated(
+  destination: string,
+  locale: string,
+  limit: number,
+  offset: number
+): Promise<PaginatedBlogResponse> {
+  return getBlogPosts({
+    locale,
+    limit,
+    offset,
+    destination,
+  });
+}
+
+// Re-export types for convenience
+export type {
+  BlogPostData,
+  BlogFilterOptions,
+  PaginatedBlogResponse,
+} from "../types/blog";

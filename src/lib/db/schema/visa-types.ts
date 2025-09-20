@@ -1,66 +1,70 @@
 import { sql } from "drizzle-orm";
 import {
+  boolean,
   integer,
-  sqliteTable,
-  text,
+  json,
+  pgTable,
   real,
+  serial,
+  text,
+  timestamp,
   unique,
-} from "drizzle-orm/sqlite-core";
+} from "drizzle-orm/pg-core";
 import { countries } from "./countries";
 
-export const visaTypes = sqliteTable("visa_types", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
-  destinationId: integer("destination_id")
-    .references(() => countries.id)
-    .notNull(),
-  type: text("type").notNull(), // e.g., "tourist", "business", "transit", "student"
-  duration: integer("duration").notNull(), // Duration in days
-  maxStay: integer("max_stay"), // Maximum stay duration in days
-  processingTime: integer("processing_time").notNull(), // Processing time in days
-  fee: real("fee").notNull(), // Fee in USD
-  currency: text("currency").default("USD").notNull(),
-  requiresInterview: integer("requires_interview", { mode: "boolean" })
-    .default(false)
-    .notNull(),
-  isMultiEntry: integer("is_multi_entry", { mode: "boolean" })
-    .default(false)
-    .notNull(),
-  requirements: text("requirements", { mode: "json" }).$type<string[]>(), // JSON array of requirement strings
-  documents: text("documents", { mode: "json" }).$type<string[]>(), // JSON array of document type strings
-  isActive: integer("is_active", { mode: "boolean" }).default(true).notNull(),
-  createdAt: integer("created_at", { mode: "timestamp" })
-    .default(sql`(unixepoch())`)
-    .notNull(),
-  updatedAt: integer("updated_at", { mode: "timestamp" })
-    .default(sql`(unixepoch())`)
-    .$onUpdate(() => new Date())
-    .notNull(),
-  deletedAt: integer("deleted_at", { mode: "timestamp" }),
-});
+export const visaTypes = pgTable(
+  "visa_types",
+  {
+    id: serial("id").primaryKey(),
+    destinationId: integer("destination_id")
+      .references(() => countries.id)
+      .notNull(),
+    type: text("type").notNull(), // e.g., "tourist", "business", "transit", "student"
+    duration: integer("duration").notNull(), // Duration in days
+    maxStay: integer("max_stay"), // Maximum stay duration in days
+    processingTime: integer("processing_time").notNull(), // Processing time in days
+    fee: real("fee").notNull(), // Fee in USD
+    currency: text("currency").default("USD").notNull(),
+    requiresInterview: boolean("requires_interview").default(false).notNull(),
+    isMultiEntry: boolean("is_multi_entry").default(false).notNull(),
+    requirements: json("requirements").$type<string[]>(), // JSON array of requirement strings
+    documents: json("documents").$type<string[]>(), // JSON array of document type strings
+    isActive: boolean("is_active").default(true).notNull(),
+    createdAt: timestamp("created_at")
+      .default(sql`now()`)
+      .notNull(),
+    updatedAt: timestamp("updated_at")
+      .default(sql`now()`)
+      .$onUpdate(() => new Date())
+      .notNull(),
+    deletedAt: timestamp("deleted_at"),
+  },
+  table => ({
+    uniqueDestinationType: unique().on(table.destinationId, table.type),
+  })
+);
 
-export const visaTypesI18n = sqliteTable(
+export const visaTypesI18n = pgTable(
   "visa_types_i18n",
   {
-    id: integer("id").primaryKey({ autoIncrement: true }),
+    id: serial("id").primaryKey(),
     visaTypeId: integer("visa_type_id")
       .references(() => visaTypes.id)
       .notNull(),
-    locale: text("locale", { length: 5 }).notNull(), // e.g., "en", "ar", "es"
+    locale: text("locale").notNull(), // e.g., "en", "ar", "es"
     name: text("name").notNull(),
     description: text("description"),
-    createdAt: integer("created_at", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+    createdAt: timestamp("created_at")
+      .default(sql`now()`)
       .notNull(),
-    updatedAt: integer("updated_at", { mode: "timestamp" })
-      .default(sql`(unixepoch())`)
+    updatedAt: timestamp("updated_at")
+      .default(sql`now()`)
       .$onUpdate(() => new Date())
       .notNull(),
   },
-  table => {
-    return {
-      uniqueVisaTypeLocale: unique().on(table.visaTypeId, table.locale),
-    };
-  }
+  table => ({
+    uniqueVisaTypeLocale: unique().on(table.visaTypeId, table.locale),
+  })
 );
 
 // Type definitions for JSON fields
