@@ -13,7 +13,7 @@ const mockDestinationData: DestinationWithVisaTypes = {
   code: "UAE",
   name: "UAE",
   localizedName: "United Arab Emirates",
-  heroImage: "https://example.com/uae.jpg",
+  heroImage: "https://example.com/UAE.jpg",
   about: "A modern Middle Eastern country known for luxury and innovation.",
   continent: "Asia",
   region: "Middle East",
@@ -53,13 +53,13 @@ describe("generateDestinationJsonLd", () => {
     expect(result).toHaveProperty("@context", "https://schema.org");
     expect(result).toHaveProperty("@type", "Place");
     expect(result).toHaveProperty("name", "United Arab Emirates");
-    expect(result).toHaveProperty("url", "https://gettravelvisa.com/en/d/uae");
+    expect(result).toHaveProperty("url", "https://gettravelvisa.com/en/d/UAE");
   });
 
   it("should include destination image when provided", () => {
     const result = generateDestinationJsonLd(mockDestinationData, "en");
 
-    expect(result).toHaveProperty("image", "https://example.com/uae.jpg");
+    expect(result).toHaveProperty("image", "https://example.com/UAE.jpg");
   });
 
   it("should include address information", () => {
@@ -194,7 +194,7 @@ describe("generateDestinationJsonLd", () => {
       const result = generateDestinationJsonLd(mockDestinationData, locale);
       expect(result).toHaveProperty(
         "url",
-        `https://gettravelvisa.com/${locale}/d/uae`
+        `https://gettravelvisa.com/${locale}/d/UAE`
       );
     });
   });

@@ -205,7 +205,7 @@ describe("Pagination utilities", () => {
     });
 
     it("filters by destination", () => {
-      const filter = createBlogFilter({ destination: "usa" });
+      const filter = createBlogFilter({ destination: "USA" });
       const filtered = blogItems.filter(filter);
 
       expect(filtered).toHaveLength(2);
@@ -217,7 +217,7 @@ describe("Pagination utilities", () => {
     });
 
     it("filters by both tag and destination", () => {
-      const filter = createBlogFilter({ tag: "visa", destination: "usa" });
+      const filter = createBlogFilter({ tag: "visa", destination: "USA" });
       const filtered = blogItems.filter(filter);
 
       expect(filtered).toHaveLength(1);

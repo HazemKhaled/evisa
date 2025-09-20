@@ -272,7 +272,7 @@ describe("Country Service", () => {
           nameEn: "United Arab Emirates",
           nameAr: "الإمارات العربية المتحدة",
           nameNative: "United Arab Emirates",
-          flagSvgPath: "/flags/uae.svg",
+          flagSvgPath: "/flags/UAE.svg",
           isActive: true,
           continent: "Asia",
           region: "Middle East",
