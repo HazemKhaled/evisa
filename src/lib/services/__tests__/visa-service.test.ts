@@ -21,11 +21,6 @@ const createMockQuery = (data: unknown) => {
 };
 
 describe("Visa Service", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    mockDbConnection.isDatabaseAvailable.mockReturnValue(true);
-  });
-
   describe("checkVisaEligibility", () => {
     it("should return visa eligibility info for valid passport-destination combination", async () => {
       const mockDestination = {
@@ -95,15 +90,6 @@ describe("Visa Service", () => {
 
       const result = await checkVisaEligibility("INVALID", "UAE", "en");
       expect(result).toBeNull();
-    });
-
-    it("should return null when database is unavailable", async () => {
-      mockDbConnection.isDatabaseAvailable.mockReturnValue(false);
-
-      const result = await checkVisaEligibility("USA", "UAE", "en");
-
-      expect(result).toBeNull();
-      expect(mockDbConnection.getDb).not.toHaveBeenCalled();
     });
   });
 

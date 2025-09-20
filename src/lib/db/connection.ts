@@ -32,19 +32,6 @@ export const getDb = cache((): Database => {
   return drizzle(sql, { schema });
 });
 
-/**
- * Check if database is available
- * Useful for static routes and error handling
- */
-export const isDatabaseAvailable = (): boolean => {
-  try {
-    validateDatabaseUrl();
-    return true;
-  } catch {
-    return false;
-  }
-};
-
 // Export schema for external use
 export * from "./schema";
 export { schema };

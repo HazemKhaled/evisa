@@ -18,19 +18,6 @@ function validateCountryCode(code: string): string | null {
 }
 
 /**
- * Validate locale code
- */
-function validateLocale(locale: string): string | null {
-  if (!locale || typeof locale !== "string") return null;
-
-  const sanitized = locale.trim().toLowerCase();
-  // Basic validation for locale codes (en, ar, es, etc.)
-  if (!/^[a-z]{2}(-[a-z]{2})?$/i.test(sanitized)) return null;
-
-  return sanitized.substring(0, 2); // Return just the language code
-}
-
-/**
  * Validate sort criteria
  */
 function validateSortBy(
@@ -58,7 +45,7 @@ function validateLimit(limit: number): number {
 import { countries, countriesI18n } from "../db/schema/countries";
 import { visaTypes, visaTypesI18n } from "../db/schema/visa-types";
 import { visaEligibility } from "../db/schema/visa-eligibility";
-import { getDb, isDatabaseAvailable, type Database } from "../db/connection";
+import { getDb } from "../db/connection";
 
 /**
  * Service for country-related database operations
@@ -142,15 +129,8 @@ export async function getCountryNames(
     return [];
   }
 
-  // Check if database is available
-  const isDatabaseReady = await isDatabaseAvailable();
-  if (!isDatabaseReady) {
-    console.warn("Database not available, using country codes as fallback");
-    return countryCodes;
-  }
-
   try {
-    const db = (await getDb()) as Database;
+    const db = getDb();
 
     // Use a single query to get all country names at once
     const results = await db
@@ -191,14 +171,8 @@ export async function getCountryNames(
 export async function getAllCountries(
   locale: string
 ): Promise<CountryWithI18n[]> {
-  const isDatabaseReady = await isDatabaseAvailable();
-  if (!isDatabaseReady) {
-    console.warn("Database not available, using country codes as fallback");
-    return [];
-  }
-
   try {
-    const db = (await getDb()) as Database;
+    const db = getDb();
 
     const results = await db
       .select({
@@ -240,14 +214,8 @@ export async function getCountryByCode(
   countryCode: string,
   locale?: string
 ): Promise<CountryWithI18n | null> {
-  const isDatabaseReady = await isDatabaseAvailable();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return null;
-  }
-
   try {
-    const db = (await getDb()) as Database;
+    const db = getDb();
 
     const results = await db
       .select({
@@ -302,14 +270,8 @@ export async function searchCountries(
     return [];
   }
 
-  const isDatabaseReady = await isDatabaseAvailable();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return [];
-  }
-
   try {
-    const db = (await getDb()) as Database;
+    const db = getDb();
 
     const results = await db
       .select({
@@ -379,25 +341,11 @@ export async function getDestinationsListWithMetadata(
     | "processing_time"
     | "visa_fee" = "popular"
 ): Promise<DestinationMetadata[]> {
-  // Input validation and sanitization
-  const validatedLocale = validateLocale(locale);
-  if (!validatedLocale) {
-    // Log to error reporting service in production
-    console.error(`Invalid locale provided: ${locale}`);
-    return [];
-  }
-
   const validatedLimit = validateLimit(limit);
   const validatedSortBy = validateSortBy(sortBy);
 
-  const isDatabaseReady = await isDatabaseAvailable();
-  if (!isDatabaseReady) {
-    console.warn("Database not available, returning empty destinations list");
-    return [];
-  }
-
   try {
-    const db = (await getDb()) as Database;
+    const db = getDb();
 
     // Build query to get countries that have either visa types or visa-free options
     const results = await db
@@ -416,7 +364,7 @@ export async function getDestinationsListWithMetadata(
         countriesI18n,
         and(
           eq(countries.id, countriesI18n.countryId),
-          eq(countriesI18n.locale, validatedLocale)
+          eq(countriesI18n.locale, locale)
         )
       )
       .leftJoin(
@@ -524,7 +472,7 @@ export async function getDestinationsListWithMetadata(
     switch (validatedSortBy) {
       case "alphabetical":
         return destinationsWithStats.sort((a, b) =>
-          a.localizedName.localeCompare(b.localizedName, validatedLocale)
+          a.localizedName.localeCompare(b.localizedName, locale)
         );
       case "processing_time":
         return destinationsWithStats.sort(
@@ -545,7 +493,7 @@ export async function getDestinationsListWithMetadata(
     }
   } catch (error) {
     console.error(
-      `Failed to get destinations list for locale ${validatedLocale}:`,
+      `Failed to get destinations list for locale ${locale}:`,
       error
     );
     return [];
@@ -575,37 +523,12 @@ export async function getDestinationsListWithMetadataPaginated(
   search?: string,
   continent?: string
 ): Promise<PaginatedDestinationsResponse> {
-  // Input validation and sanitization
-  const validatedLocale = validateLocale(locale);
-  if (!validatedLocale) {
-    console.error(`Invalid locale provided: ${locale}`);
-    return {
-      destinations: [],
-      total: 0,
-      hasMore: false,
-      currentPage: 1,
-      totalPages: 0,
-    };
-  }
-
   const validatedLimit = validateLimit(limit);
   const validatedSortBy = validateSortBy(sortBy);
   const validatedOffset = Math.max(0, Math.floor(offset));
 
-  const isDatabaseReady = await isDatabaseAvailable();
-  if (!isDatabaseReady) {
-    console.warn("Database not available, returning empty destinations list");
-    return {
-      destinations: [],
-      total: 0,
-      hasMore: false,
-      currentPage: 1,
-      totalPages: 0,
-    };
-  }
-
   try {
-    const db = (await getDb()) as Database;
+    const db = getDb();
 
     // Build base where conditions
     const baseWhereConditions = [
@@ -644,7 +567,7 @@ export async function getDestinationsListWithMetadataPaginated(
         countriesI18n,
         and(
           eq(countries.id, countriesI18n.countryId),
-          eq(countriesI18n.locale, validatedLocale)
+          eq(countriesI18n.locale, locale)
         )
       )
       .leftJoin(
@@ -694,7 +617,7 @@ export async function getDestinationsListWithMetadataPaginated(
         countriesI18n,
         and(
           eq(countries.id, countriesI18n.countryId),
-          eq(countriesI18n.locale, validatedLocale)
+          eq(countriesI18n.locale, locale)
         )
       )
       .leftJoin(
@@ -794,7 +717,7 @@ export async function getDestinationsListWithMetadataPaginated(
     switch (validatedSortBy) {
       case "alphabetical":
         sortedDestinations = destinationsWithStats.sort((a, b) =>
-          a.localizedName.localeCompare(b.localizedName, validatedLocale)
+          a.localizedName.localeCompare(b.localizedName, locale)
         );
         break;
       case "processing_time":
@@ -827,7 +750,7 @@ export async function getDestinationsListWithMetadataPaginated(
     };
   } catch (error) {
     console.error(
-      `Failed to get paginated destinations list for locale ${validatedLocale}:`,
+      `Failed to get paginated destinations list for locale ${locale}:`,
       error
     );
     return {
@@ -849,14 +772,8 @@ export async function getDestinationsListWithMetadataPaginated(
 export async function getDestinationContinents(
   _locale?: string
 ): Promise<string[]> {
-  const isDatabaseReady = await isDatabaseAvailable();
-  if (!isDatabaseReady) {
-    console.warn("Database not available, returning empty continents list");
-    return [];
-  }
-
   try {
-    const db = (await getDb()) as Database;
+    const db = getDb();
 
     const results = await db
       .selectDistinct({ continent: countries.continent })
@@ -926,12 +843,6 @@ export async function getDestinationDetails(
     return null;
   }
 
-  const validatedLocale = validateLocale(locale);
-  if (!validatedLocale) {
-    console.error(`Invalid locale provided: ${locale}`);
-    return null;
-  }
-
   let validatedPassportCode: string | null = null;
   if (passportCode) {
     validatedPassportCode = validateCountryCode(passportCode);
@@ -940,14 +851,8 @@ export async function getDestinationDetails(
     }
   }
 
-  const isDatabaseReady = await isDatabaseAvailable();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return null;
-  }
-
   try {
-    const db = (await getDb()) as Database;
+    const db = getDb();
 
     // Get destination country information
     const destinationResults = await db
@@ -970,7 +875,7 @@ export async function getDestinationDetails(
         countriesI18n,
         and(
           eq(countries.id, countriesI18n.countryId),
-          eq(countriesI18n.locale, validatedLocale)
+          eq(countriesI18n.locale, locale)
         )
       )
       .where(
@@ -1098,14 +1003,8 @@ export async function getCountriesByCodes(
     return [];
   }
 
-  const isDatabaseReady = await isDatabaseAvailable();
-  if (!isDatabaseReady) {
-    console.warn("Database not available");
-    return [];
-  }
-
   try {
-    const db = (await getDb()) as Database;
+    const db = getDb();
 
     const results = await db
       .select({

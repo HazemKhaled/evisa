@@ -12,11 +12,6 @@ jest.mock("../../db/connection");
 const mockDbConnection = dbConnection as jest.Mocked<typeof dbConnection>;
 
 describe("Country Service", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    mockDbConnection.isDatabaseAvailable.mockReturnValue(true);
-  });
-
   describe("getDestinationsListWithMetadata", () => {
     it("should return destination metadata with valid inputs", async () => {
       const mockDestinations = [
@@ -76,26 +71,6 @@ describe("Country Service", () => {
         code: "UAE",
         localizedName: "United Arab Emirates",
       });
-    });
-
-    it("should return empty result when database is unavailable", async () => {
-      mockDbConnection.isDatabaseAvailable.mockReturnValue(false);
-
-      const result = await getDestinationsListWithMetadata("en", 10, "popular");
-
-      expect(result).toEqual([]);
-      expect(mockDbConnection.getDb).not.toHaveBeenCalled();
-    });
-
-    it("should handle invalid locale gracefully", async () => {
-      const result = await getDestinationsListWithMetadata(
-        "invalid-locale",
-        10,
-        "popular"
-      );
-
-      expect(result).toEqual([]);
-      expect(mockDbConnection.isDatabaseAvailable).not.toHaveBeenCalled();
     });
 
     it("should validate and sanitize sort criteria", async () => {
@@ -203,14 +178,6 @@ describe("Country Service", () => {
       const result = await getDestinationDetails("INVALID", "en");
 
       expect(result).toBeNull();
-      expect(mockDbConnection.isDatabaseAvailable).not.toHaveBeenCalled();
-    });
-
-    it("should return null for invalid locale", async () => {
-      const result = await getDestinationDetails("UAE", "invalid-locale");
-
-      expect(result).toBeNull();
-      expect(mockDbConnection.isDatabaseAvailable).not.toHaveBeenCalled();
     });
 
     it("should return null when destination not found in database", async () => {
@@ -231,15 +198,6 @@ describe("Country Service", () => {
       const result = await getDestinationDetails("UAE", "en");
 
       expect(result).toBeNull();
-    });
-
-    it("should handle database unavailability", async () => {
-      mockDbConnection.isDatabaseAvailable.mockReturnValue(false);
-
-      const result = await getDestinationDetails("UAE", "en");
-
-      expect(result).toBeNull();
-      expect(mockDbConnection.getDb).not.toHaveBeenCalled();
     });
   });
 
@@ -295,7 +253,6 @@ describe("Country Service", () => {
       const result = await getDestinationDetails(maliciousInput, "en");
 
       expect(result).toBeNull();
-      expect(mockDbConnection.isDatabaseAvailable).not.toHaveBeenCalled();
     });
 
     it("should validate country code format", async () => {
@@ -304,19 +261,6 @@ describe("Country Service", () => {
       for (const code of invalidCodes) {
         const result = await getDestinationDetails(code, "en");
         expect(result).toBeNull();
-      }
-    });
-
-    it("should validate locale format", async () => {
-      const invalidLocales = ["", "a", "abc", "en-US-extra", "123"];
-
-      for (const locale of invalidLocales) {
-        const result = await getDestinationsListWithMetadata(
-          locale,
-          10,
-          "popular"
-        );
-        expect(result).toEqual([]);
       }
     });
 

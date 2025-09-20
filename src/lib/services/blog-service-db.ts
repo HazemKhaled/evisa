@@ -73,7 +73,7 @@ export async function getAllBlogPostSlugs(): Promise<
   { locale: string; slug: string }[]
 > {
   try {
-    const db = await getDb();
+    const db = getDb();
     const results = await db
       .select({
         locale: blogPostsI18n.locale,
@@ -98,7 +98,7 @@ export async function getAllBlogPosts(
   limit?: number
 ): Promise<BlogPostData[]> {
   try {
-    const db = await getDb();
+    const db = getDb();
     const query = db
       .select({
         post: blogPosts,
@@ -116,7 +116,7 @@ export async function getAllBlogPosts(
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
       results.map(async result => {
-        const postTags = await (await getDb())
+        const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
@@ -141,7 +141,7 @@ export async function getBlogPosts(
   options: BlogFilterOptions
 ): Promise<PaginatedBlogResponse> {
   try {
-    const db = await getDb();
+    const db = getDb();
     const {
       locale,
       limit = 10,
@@ -225,7 +225,7 @@ export async function getBlogPosts(
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
       results.map(async result => {
-        const postTags = await (await getDb())
+        const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
@@ -264,7 +264,7 @@ export async function getBlogPostsByDestination(
   limit?: number
 ): Promise<BlogPostData[]> {
   try {
-    const db = await getDb();
+    const db = getDb();
     const query = db
       .select({
         post: blogPosts,
@@ -286,7 +286,7 @@ export async function getBlogPostsByDestination(
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
       results.map(async result => {
-        const postTags = await (await getDb())
+        const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
@@ -313,7 +313,7 @@ export async function getBlogPostsByTag(
   limit?: number
 ): Promise<BlogPostData[]> {
   try {
-    const db = await getDb();
+    const db = getDb();
     const query = db
       .select({
         post: blogPosts,
@@ -337,7 +337,7 @@ export async function getBlogPostsByTag(
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
       results.map(async result => {
-        const postTags = await (await getDb())
+        const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
@@ -366,7 +366,7 @@ export async function getRelatedBlogPostsOptimized(
   limit: number = 3
 ): Promise<BlogPostData[]> {
   try {
-    const db = await getDb();
+    const db = getDb();
 
     // If no destinations or tags, fall back to recent posts
     if (
@@ -511,7 +511,7 @@ export async function getRelatedBlogPosts(
   limit: number = 3
 ): Promise<BlogPostData[]> {
   try {
-    const db = await getDb();
+    const db = getDb();
     // First try destination-specific posts
     let results = await db
       .select({
@@ -555,7 +555,7 @@ export async function getRelatedBlogPosts(
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
       results.map(async result => {
-        const postTags = await (await getDb())
+        const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
@@ -581,7 +581,7 @@ export async function getBlogPostBySlug(
   locale: string
 ): Promise<BlogPostData | null> {
   try {
-    const db = await getDb();
+    const db = getDb();
     const results = await db
       .select({
         post: blogPosts,
@@ -605,7 +605,7 @@ export async function getBlogPostBySlug(
     const result = results[0];
 
     // Get tags for the post
-    const postTags = await (await getDb())
+    const postTags = await getDb()
       .select({ tagSlug: blogTags.slug })
       .from(blogPostTags)
       .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
@@ -624,9 +624,7 @@ export async function getBlogPostBySlug(
  */
 export async function getAllTagsForLocale(locale: string): Promise<string[]> {
   try {
-    const results = await (
-      await getDb()
-    )
+    const results = await getDb()
       .selectDistinct({ tagSlug: blogTags.slug })
       .from(blogTags)
       .innerJoin(blogPostTags, eq(blogTags.id, blogPostTags.tagId))
@@ -651,9 +649,7 @@ export async function getAllDestinationsForLocale(
   locale: string
 ): Promise<string[]> {
   try {
-    const results = await (
-      await getDb()
-    )
+    const results = await getDb()
       .selectDistinct({ destinations: blogPosts.destinations })
       .from(blogPosts)
       .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
@@ -689,7 +685,7 @@ export async function searchBlogPosts(
       return [];
     }
 
-    const db = await getDb();
+    const db = getDb();
     const searchTerm = `%${query.toLowerCase().trim()}%`;
 
     const results = await db
@@ -725,7 +721,7 @@ export async function searchBlogPosts(
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
       results.map(async result => {
-        const postTags = await (await getDb())
+        const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
@@ -751,7 +747,7 @@ export async function getFeaturedBlogPosts(
   limit: number = 5
 ): Promise<BlogPostData[]> {
   try {
-    const db = await getDb();
+    const db = getDb();
     // First try to get posts with 'featured' tag
     let results = await db
       .select({
@@ -791,7 +787,7 @@ export async function getFeaturedBlogPosts(
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
       results.map(async result => {
-        const postTags = await (await getDb())
+        const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
@@ -833,7 +829,7 @@ export async function getBlogPostsForLocale(
  */
 export async function getAllUniqueTagsAcrossLocales(): Promise<string[]> {
   try {
-    const results = await (await getDb())
+    const results = await getDb()
       .selectDistinct({ tagSlug: blogTags.slug })
       .from(blogTags)
       .orderBy(blogTags.slug);

@@ -33,7 +33,7 @@ export async function generateStaticParams(): Promise<
 
 interface TagPageProps {
   params: Promise<{ locale: string; tag: string }>;
-  searchParams: Promise<{ page?: string; destination?: string }>;
+  searchParams: Promise<{ page?: string }>;
 }
 
 export async function generateMetadata({
@@ -55,7 +55,7 @@ export async function generateMetadata({
 
 export default async function TagPage({ params, searchParams }: TagPageProps) {
   const { locale, tag } = await params;
-  const { page = "1", destination } = await searchParams;
+  const { page = "1" } = await searchParams;
 
   // We need to get translations for this component
   const { t } = await getTranslation(locale, "pages");
@@ -68,7 +68,6 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   const modifiedSearchParams = {
     page,
     tag: decodedTag,
-    destination,
   };
 
   const baseUrl = env.baseUrl;
