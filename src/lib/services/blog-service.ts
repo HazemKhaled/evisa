@@ -165,3 +165,52 @@ export async function getBlogDataForLocale(
 ): Promise<BlogPostData[]> {
   return dbBlogService.getBlogDataForLocale(locale);
 }
+
+/**
+ * Get blog posts for a specific locale with pagination
+ */
+export async function getBlogPostsForLocalePaginated(
+  locale: string,
+  limit: number,
+  offset: number
+): Promise<PaginatedBlogResponse> {
+  return dbBlogService.getBlogPosts({
+    locale,
+    limit,
+    offset,
+  });
+}
+
+/**
+ * Get blog posts filtered by tag with pagination
+ */
+export async function getBlogPostsByTagPaginated(
+  tag: string,
+  locale: string,
+  limit: number,
+  offset: number
+): Promise<PaginatedBlogResponse> {
+  return dbBlogService.getBlogPosts({
+    locale,
+    limit,
+    offset,
+    tag,
+  });
+}
+
+/**
+ * Get blog posts filtered by destination with pagination
+ */
+export async function getBlogPostsByDestinationPaginated(
+  destination: string,
+  locale: string,
+  limit: number,
+  offset: number
+): Promise<PaginatedBlogResponse> {
+  return dbBlogService.getBlogPosts({
+    locale,
+    limit,
+    offset,
+    destination,
+  });
+}

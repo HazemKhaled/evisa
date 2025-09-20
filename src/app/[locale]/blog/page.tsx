@@ -1,8 +1,9 @@
 import { type Metadata } from "next";
 import {
-  getBlogPostsForLocale,
-  getBlogPostsByTag,
-  getBlogPostsByDestination,
+  getBlogPostsForLocalePaginated,
+  getBlogPostsByTagPaginated,
+  getBlogPostsByDestinationPaginated,
+  getAllBlogPosts,
 } from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
 import { StaticPageLayout } from "@/components/static-page-layout";
@@ -60,25 +61,40 @@ export default async function BlogHome({
 
   const currentPage = parseInt(page, 10);
   const postsPerPage = 9;
+  const offset = (currentPage - 1) * postsPerPage;
 
-  // Get blog posts based on filter parameters
-  let allPosts;
+  // Get blog posts with database-level pagination
+  let paginatedResponse;
 
   if (tag) {
-    // Filter by tag
-    allPosts = await getBlogPostsByTag(tag, locale);
+    // Filter by tag with pagination
+    paginatedResponse = await getBlogPostsByTagPaginated(
+      tag,
+      locale,
+      postsPerPage,
+      offset
+    );
   } else if (destination) {
-    // Filter by destination
-    allPosts = await getBlogPostsByDestination(destination, locale);
+    // Filter by destination with pagination
+    paginatedResponse = await getBlogPostsByDestinationPaginated(
+      destination,
+      locale,
+      postsPerPage,
+      offset
+    );
   } else {
-    // No filter - get all posts for the locale
-    allPosts = await getBlogPostsForLocale(locale);
+    // No filter - get posts for the locale with pagination
+    paginatedResponse = await getBlogPostsForLocalePaginated(
+      locale,
+      postsPerPage,
+      offset
+    );
   }
 
-  const totalPosts = allPosts.length;
-  const totalPages = Math.ceil(totalPosts / postsPerPage);
-  const startIndex = (currentPage - 1) * postsPerPage;
-  const posts = allPosts.slice(startIndex, startIndex + postsPerPage);
+  const { posts, totalPages } = paginatedResponse;
+
+  // Get recent posts for search functionality (limited to 100 most recent)
+  const allPostsForSearch = await getAllBlogPosts(locale, 100);
 
   // Dynamic page title and URL based on filters
   let pageTitle = t("title");
@@ -146,7 +162,7 @@ export default async function BlogHome({
     return `/${locale}/blog${query}`;
   };
 
-  if (allPosts.length === 0) {
+  if (posts.length === 0) {
     return (
       <StaticPageLayout>
         <div className="py-16 text-center">
@@ -181,7 +197,7 @@ export default async function BlogHome({
 
           {/* Search */}
           <div className="mb-12">
-            <BlogSearch allPosts={allPosts} locale={locale} />
+            <BlogSearch allPosts={allPostsForSearch} locale={locale} />
           </div>
 
           <BlogPostList
