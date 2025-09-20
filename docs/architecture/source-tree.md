@@ -103,8 +103,8 @@ src/lib/
 ├── services/               # Data access and business logic
 │   ├── country-service.ts  # Country data operations
 │   ├── visa-service.ts     # Visa data operations
-│   ├── blog-service-db.ts  # Database blog service (Cloudflare Workers compatible)
-│   ├── blog-service.ts     # Blog service interface layer
+│   ├── blog-service.ts     # Consolidated blog service (Cloudflare Workers compatible)
+│   ├── blog-service-client.ts # Client-side blog utilities
 │   └── index.ts            # Service exports
 ├── db/                     # Database schema and connection
 │   ├── connection.ts       # Database connection management
