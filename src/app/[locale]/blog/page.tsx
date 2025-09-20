@@ -1,5 +1,9 @@
 import { type Metadata } from "next";
-import { getBlogPostsForLocale } from "@/lib/services/blog-service";
+import {
+  getBlogPostsForLocale,
+  getBlogPostsByTag,
+  getBlogPostsByDestination,
+} from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { BlogPostList } from "@/components/ui/blog-post-list";
@@ -23,7 +27,11 @@ export function generateStaticParams(): { locale: string }[] {
 
 interface BlogHomeProps {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{
+    page?: string;
+    tag?: string;
+    destination?: string;
+  }>;
 }
 
 export async function generateMetadata({
@@ -46,28 +54,57 @@ export default async function BlogHome({
   searchParams,
 }: BlogHomeProps) {
   const { locale } = await params;
-  const { page = "1" } = await searchParams;
+  const { page = "1", tag, destination } = await searchParams;
   const { t } = await getTranslation(locale, "blog");
   const { t: tNav } = await getTranslation(locale, "navigation");
 
   const currentPage = parseInt(page, 10);
   const postsPerPage = 9;
 
-  // Get all blog posts for the locale using async service layer
-  const allPosts = await getBlogPostsForLocale(locale);
+  // Get blog posts based on filter parameters
+  let allPosts;
+
+  if (tag) {
+    // Filter by tag
+    allPosts = await getBlogPostsByTag(tag, locale);
+  } else if (destination) {
+    // Filter by destination
+    allPosts = await getBlogPostsByDestination(destination, locale);
+  } else {
+    // No filter - get all posts for the locale
+    allPosts = await getBlogPostsForLocale(locale);
+  }
 
   const totalPosts = allPosts.length;
   const totalPages = Math.ceil(totalPosts / postsPerPage);
   const startIndex = (currentPage - 1) * postsPerPage;
   const posts = allPosts.slice(startIndex, startIndex + postsPerPage);
 
+  // Dynamic page title and URL based on filters
+  let pageTitle = t("title");
+  let pageSubtitle = t("subtitle");
   const baseUrl = env.baseUrl;
-  const blogUrl = `${baseUrl}/${locale}/blog`;
+  let blogUrl = `${baseUrl}/${locale}/blog`;
+
+  if (tag) {
+    pageTitle = t("tag.title", { tag }) || `Posts tagged with "${tag}"`;
+    pageSubtitle =
+      t("tag.subtitle", { tag }) ||
+      `Explore all blog posts tagged with "${tag}".`;
+    blogUrl = `${baseUrl}/${locale}/blog/t/${encodeURIComponent(tag)}`;
+  } else if (destination) {
+    pageTitle =
+      t("destination.title", { destination }) || `Posts about ${destination}`;
+    pageSubtitle =
+      t("destination.subtitle", { destination }) ||
+      `Discover travel information and guides for ${destination}.`;
+    blogUrl = `${baseUrl}/${locale}/blog/d/${encodeURIComponent(destination)}`;
+  }
 
   // Generate JSON-LD for the blog page
   const webpageJsonLd = generateWebPageJsonLd({
-    name: t("jsonld.blog.title"),
-    description: t("jsonld.blog.description"),
+    name: pageTitle,
+    description: pageSubtitle,
     url: blogUrl,
     isPartOf: {
       name: t("jsonld.organization.name"),
@@ -86,9 +123,25 @@ export default async function BlogHome({
     const searchParams = new URLSearchParams();
     searchParams.set("page", page.toString());
 
+    // Preserve filter parameters in pagination URLs
+    if (tag) {
+      searchParams.set("tag", tag);
+    }
+    if (destination) {
+      searchParams.set("destination", destination);
+    }
+
     const queryString = searchParams.toString();
     const query = queryString ? `?${queryString}` : "";
 
+    // For tag routes, maintain the tag route structure
+    if (tag) {
+      return `/${locale}/blog/t/${encodeURIComponent(tag)}${query}`;
+    }
+    // For destination routes, use destination route structure if implemented
+    if (destination) {
+      return `/${locale}/blog/d/${encodeURIComponent(destination)}${query}`;
+    }
     // For regular blog routes, use query parameter format: /en/blog?page=2
     return `/${locale}/blog${query}`;
   };
@@ -97,10 +150,14 @@ export default async function BlogHome({
     return (
       <StaticPageLayout>
         <div className="py-16 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">
-            {t("title")}
-          </h1>
-          <p className="text-lg text-gray-600">{t("empty_state")}</p>
+          <h1 className="mb-4 text-4xl font-bold text-gray-900">{pageTitle}</h1>
+          <p className="text-lg text-gray-600">
+            {tag
+              ? `No posts found with tag "${tag}"`
+              : destination
+                ? `No posts found for destination "${destination}"`
+                : t("empty_state")}
+          </p>
         </div>
       </StaticPageLayout>
     );
@@ -115,10 +172,10 @@ export default async function BlogHome({
           {/* Header */}
           <div className="mb-12 text-center">
             <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
-              {t("title")}
+              {pageTitle}
             </h1>
             <p className="mx-auto max-w-3xl text-xl text-gray-600">
-              {t("subtitle")}
+              {pageSubtitle}
             </p>
           </div>
 
