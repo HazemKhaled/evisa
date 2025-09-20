@@ -5,6 +5,7 @@
 
 export * from "./country-service";
 export * from "./visa-service";
+export * from "./blog-service";
 
 // Re-export commonly used country services
 export {
@@ -30,3 +31,21 @@ export {
   getEligibleVisaTypes,
   getVisaRequirements,
 } from "./visa-service";
+
+// Re-export commonly used blog services
+export {
+  getAllBlogPosts,
+  getBlogPosts,
+  getBlogPostsByDestination,
+  getBlogPostsByTag,
+  getRelatedBlogPosts,
+  getBlogPostBySlug,
+  getAllTagsForLocale,
+  getAllDestinationsForLocale,
+  searchBlogPosts,
+  getFeaturedBlogPosts,
+  getBlogPost,
+  getBlogPostsForLocale,
+  getAllUniqueTagsAcrossLocales,
+  getBlogDataForLocale,
+} from "./blog-service";
