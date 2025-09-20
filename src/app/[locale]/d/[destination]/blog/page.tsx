@@ -1,41 +1,19 @@
 import { type Metadata } from "next";
 import { getTranslation } from "@/app/i18n";
-import { languages } from "@/app/i18n/settings";
-import { getDestinationsListWithMetadata } from "@/lib/services";
-import BlogHome from "../../../blog/page";
+import BlogHome from "@/app/[locale]/blog/page";
 
 // Required when use static generation with search params
 export const revalidate = 86400; // Revalidate every day
-
-export async function generateStaticParams(): Promise<
-  Array<DestinationBlogProps["params"]>
-> {
-  // Get top 20 popular destinations for SSG
-  const popularDestinations = await getDestinationsListWithMetadata(
-    "en",
-    20,
-    "popular"
-  );
-
-  // Generate params for each popular destination in each locale
-  return languages.flatMap(locale =>
-    popularDestinations.map(destination =>
-      Promise.resolve({
-        locale,
-        destination: destination.code.toLowerCase(),
-      })
-    )
-  );
-}
 
 interface DestinationBlogProps {
   params: Promise<{ locale: string; destination: string }>;
   searchParams: Promise<{
     page?: string;
-    tag?: string;
     destination?: string;
   }>;
 }
+
+// TODO: Use getStaticParams to pre-render this page for top 10 destinations
 
 export async function generateMetadata({
   params,
@@ -59,13 +37,12 @@ export default async function DestinationBlog({
   searchParams,
 }: DestinationBlogProps) {
   const { locale, destination } = await params;
-  const { page, tag } = await searchParams;
+  const { page } = await searchParams;
 
   // Transform params to match BlogHome interface
   const blogParams = Promise.resolve({ locale });
   const blogSearchParams = Promise.resolve({
     page,
-    tag,
     destination: destination,
   });
 
