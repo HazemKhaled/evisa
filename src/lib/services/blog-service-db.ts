@@ -274,7 +274,7 @@ export async function getBlogPostsByDestination(
         and(
           eq(blogPostsI18n.locale, locale),
           eq(blogPosts.isPublished, true),
-          like(blogPosts.destinations, `%${destination}%`)
+          like(blogPosts.destinations, `%${destination.toUpperCase()}%`)
         )
       )
       .orderBy(desc(blogPosts.publishedAt));
