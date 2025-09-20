@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@neondatabase/serverless':
-        specifier: ^0.10.4
+        specifier: 0.10.4
         version: 0.10.4
       '@opennextjs/cloudflare':
         specifier: 1.8.3
@@ -30,7 +30,7 @@ importers:
         specifier: 1.2.1
         version: 1.2.1
       import-in-the-middle:
-        specifier: ^1.14.2
+        specifier: 1.14.2
         version: 1.14.2
       next:
         specifier: 15.4.7

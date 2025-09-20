@@ -27,14 +27,14 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^0.10.4",
+    "@neondatabase/serverless": "0.10.4",
     "@opennextjs/cloudflare": "1.8.3",
     "@sentry/nextjs": "10.12.0",
     "clsx": "2.1.1",
     "i18next": "25.5.2",
     "i18next-browser-languagedetector": "8.2.0",
     "i18next-resources-to-backend": "1.2.1",
-    "import-in-the-middle": "^1.14.2",
+    "import-in-the-middle": "1.14.2",
     "next": "15.4.7",
     "react": "19.1.1",
     "react-dom": "19.1.1",
