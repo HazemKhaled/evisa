@@ -10,7 +10,7 @@ import {
 } from "@/lib/json-ld";
 import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
 import { getRandomVisaTypes } from "@/lib/services/visa-service";
-import { getBlogPostsForLocale } from "@/lib/services/blog-service";
+import { getAllBlogPosts } from "@/lib/services/blog-service";
 import { DestinationCard } from "@/components/ui/destination-card";
 import { VisaTypeCard } from "@/components/ui/visa-type-card";
 import { RelatedArticleCard } from "@/components/ui/related-article-card";
@@ -34,7 +34,7 @@ export default async function LocalePage({
     await Promise.allSettled([
       getDestinationsListWithMetadata(locale, 8, "popular"),
       getRandomVisaTypes(locale, 6),
-      getBlogPostsForLocale(locale).then(posts => posts.slice(0, 6)),
+      getAllBlogPosts(locale, 6),
     ]);
 
   // Extract results with fallbacks for failed requests

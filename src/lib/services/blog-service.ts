@@ -85,6 +85,25 @@ export async function getRelatedBlogPosts(
 }
 
 /**
+ * Get related blog posts based on destinations AND tags from a specific post (optimized for blog detail pages)
+ */
+export async function getRelatedBlogPostsOptimized(
+  currentPostSlug: string,
+  destinations: string[],
+  tags: string[],
+  locale: string,
+  limit: number = 3
+): Promise<BlogPostData[]> {
+  return dbBlogService.getRelatedBlogPostsOptimized(
+    currentPostSlug,
+    destinations,
+    tags,
+    locale,
+    limit
+  );
+}
+
+/**
  * Get a single blog post by slug
  */
 export async function getBlogPostBySlug(

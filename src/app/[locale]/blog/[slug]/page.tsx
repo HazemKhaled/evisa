@@ -2,8 +2,8 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   getBlogPost,
-  getBlogPostsForLocale,
   getAllBlogPostSlugs,
+  getRelatedBlogPostsOptimized,
 } from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
 import { StaticPageLayout } from "@/components/static-page-layout";
@@ -87,31 +87,20 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const { t: tNav } = await getTranslation(locale, "navigation");
 
   try {
-    // Fetch blog post and all posts in parallel for better performance
-    const [blogPostResult, allPostsResult] = await Promise.allSettled([
-      getBlogPost(slug, locale),
-      getBlogPostsForLocale(locale),
-    ]);
-
-    // Handle blog post result
-    if (blogPostResult.status === "rejected" || !blogPostResult.value) {
+    // Fetch blog post first
+    const blogPost = await getBlogPost(slug, locale);
+    if (!blogPost) {
       notFound();
     }
-    const blogPost = blogPostResult.value;
 
-    // Handle all posts result (graceful degradation if failed)
-    const allPosts =
-      allPostsResult.status === "fulfilled" ? allPostsResult.value : [];
-    const relatedPosts = allPosts
-      .filter(
-        post =>
-          post.slug !== slug &&
-          (post.destinations?.some(dest =>
-            blogPost.destinations?.includes(dest)
-          ) ||
-            post.tags?.some(tag => blogPost.tags?.includes(tag)))
-      )
-      .slice(0, 3);
+    // Get related posts using optimized database query
+    const relatedPosts = await getRelatedBlogPostsOptimized(
+      slug,
+      blogPost.destinations || [],
+      blogPost.tags || [],
+      locale,
+      3
+    );
 
     const baseUrl = env.baseUrl;
     const postUrl = `${baseUrl}/${locale}/blog/${slug}`;
