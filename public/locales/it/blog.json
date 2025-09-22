@@ -46,6 +46,18 @@
     "viewPostsTagged": "Visualizza articoli del blog taggati con {{tag}}",
     "clearSearch": "Cancella ricerca"
   },
+  "destination": {
+    "title": "Viaggiare verso {{destination}}",
+    "subtitle": "Scopri informazioni di viaggio e guide per {{destination}}."
+  },
+  "tag": {
+    "title": "Articoli di Viaggio {{tag}}",
+    "subtitle": "Impara sui consigli di viaggio e guide correlate a {{tag}}."
+  },
+  "meta": {
+    "post_not_found": "Articolo del Blog Non Trovato",
+    "post_not_found_description": "L'articolo del blog richiesto non è stato trovato."
+  },
   "homepage": {
     "latestPosts": {
       "title": "Ultimi approfondimenti di viaggio",

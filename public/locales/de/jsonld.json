@@ -1,0 +1,22 @@
+{
+  "organization": {
+    "name": "GetTravelVisa.com",
+    "description": "Ihr vertrauensvoller Partner für Visumanträge. Vereinfachen Sie Ihren Visumantragsverfahren mit unseren umfassenden Visa-Prüf- und Antragsdienstleistungen.",
+    "contact_type": "Kundenservice"
+  },
+  "website": {
+    "name": "GetTravelVisa.com",
+    "description": "Vereinfachen Sie Ihren Visumantragsverfahren mit unseren umfassenden Visa-Prüf- und Antragsdienstleistungen. Erhalten Sie Expertenberatung für Reisevisa weltweit."
+  },
+  "service": {
+    "name": "Visumantrags-Services",
+    "description": "Umfassende Visa-Prüf- und Antragsdienstleistungen für internationale Reisen",
+    "area_served": "Weltweit",
+    "service_type": "Reiseservices"
+  },
+  "blog": {
+    "title": "Reise-Blog",
+    "description": "Experten-Reiseführer, Visa-Tipps und Reiseziel-Einblicke, um Ihnen bei der Planung Ihrer perfekten Reise zu helfen.",
+    "article_section": "Reise-Blog"
+  }
+}

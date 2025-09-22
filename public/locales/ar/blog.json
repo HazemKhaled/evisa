@@ -45,6 +45,18 @@
     "viewPostsTagged": "عرض مقالات المدونة المعلمة بـ {{tag}}",
     "clearSearch": "مسح البحث"
   },
+  "destination": {
+    "title": "السفر إلى {{destination}}",
+    "subtitle": "اكتشف معلومات السفر والأدلة لـ{{destination}}."
+  },
+  "tag": {
+    "title": "منشورات السفر {{tag}}",
+    "subtitle": "تعلم عن نصائح السفر والأدلة المتعلقة بـ{{tag}}."
+  },
+  "meta": {
+    "post_not_found": "منشور المدونة غير موجود",
+    "post_not_found_description": "لا يمكن العثور على منشور المدونة المطلوب."
+  },
   "homepage": {
     "latestPosts": {
       "title": "أحدث رؤى السفر",

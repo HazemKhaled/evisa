@@ -45,6 +45,18 @@
     "viewPostsTagged": "View blog posts tagged with {{tag}}",
     "clearSearch": "Clear search input"
   },
+  "destination": {
+    "title": "Travel to {{destination}}",
+    "subtitle": "Discover travel information and guides for {{destination}}."
+  },
+  "tag": {
+    "title": "{{tag}} Travel Posts",
+    "subtitle": "Learn about travel tips and guides related to {{tag}}."
+  },
+  "meta": {
+    "post_not_found": "Blog Post Not Found",
+    "post_not_found_description": "The requested blog post could not be found."
+  },
   "homepage": {
     "latestPosts": {
       "title": "Latest Travel Insights",

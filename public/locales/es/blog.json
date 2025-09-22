@@ -49,6 +49,18 @@
     "viewPostsTagged": "Ver publicaciones del blog etiquetadas con {{tag}}",
     "clearSearch": "Limpiar entrada de búsqueda"
   },
+  "destination": {
+    "title": "Viajar a {{destination}}",
+    "subtitle": "Descubre información de viaje y guías para {{destination}}."
+  },
+  "tag": {
+    "title": "Publicaciones de Viaje {{tag}}",
+    "subtitle": "Aprende sobre consejos de viaje y guías relacionadas con {{tag}}."
+  },
+  "meta": {
+    "post_not_found": "Publicación del Blog No Encontrada",
+    "post_not_found_description": "La publicación del blog solicitada no se pudo encontrar."
+  },
   "homepage": {
     "latestPosts": {
       "title": "Últimas Perspectivas de Viaje",

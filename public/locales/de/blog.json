@@ -45,6 +45,18 @@
     "viewPostsTagged": "Blog-Beiträge mit {{tag}} markiert anzeigen",
     "clearSearch": "Sucheingabe löschen"
   },
+  "destination": {
+    "title": "Reisen nach {{destination}}",
+    "subtitle": "Entdecken Sie Reiseinformationen und Führer für {{destination}}."
+  },
+  "tag": {
+    "title": "{{tag}} Reise-Beiträge",
+    "subtitle": "Lernen Sie über Reisetipps und Führer im Zusammenhang mit {{tag}}."
+  },
+  "meta": {
+    "post_not_found": "Blog-Beitrag nicht gefunden",
+    "post_not_found_description": "Der angeforderte Blog-Beitrag konnte nicht gefunden werden."
+  },
   "homepage": {
     "latestPosts": {
       "title": "Neueste Reise-Einblicke",
