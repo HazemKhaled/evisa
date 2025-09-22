@@ -7,10 +7,6 @@
     "twitterTitle": "Guía de Requisitos de Visa Global",
     "twitterDescription": "Descubre los requisitos de visa para destinos mundiales con nuestra guía de viaje completa."
   },
-  "breadcrumb": {
-    "home": "Inicio",
-    "destinations": "Destinos"
-  },
   "hero": {
     "title": "Explora Destinos Globales",
     "description": "Descubre requisitos de visa e información de viaje para destinos en todo el mundo. Encuentra el destino perfecto para tu próxima aventura.",
@@ -31,5 +27,8 @@
     "title": "No se Encontraron Destinos",
     "description": "No pudimos encontrar destinos que coincidan con tus criterios de búsqueda. Intenta ajustar tus filtros o términos de búsqueda.",
     "clearFilters": "Limpiar Todos los Filtros"
+  },
+  "aria": {
+    "breadcrumb": "Navegación de migas de pan de destinos"
   }
 }

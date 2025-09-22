@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Requisiti del visto per {destination}",
-    "description": "Informazioni complete sui visti per {destination}. Trova {visaCount} opzioni di visto, tempi di elaborazione, tariffe e requisiti per il tuo viaggio in {destination}.",
-    "ogTitle": "Requisiti del visto e informazioni di viaggio per {destination}",
-    "ogDescription": "Tutto quello che devi sapere sulla visita di {destination}. {visaCount} tipi di visti disponibili con requisiti dettagliati e informazioni di elaborazione.",
-    "twitterTitle": "Guida al visto per {destination}",
-    "twitterDescription": "Requisiti completi del visto e guida di viaggio per {destination}"
+    "title": "Requisiti del visto per {{destination}}",
+    "description": "Informazioni complete sui visti per {{destination}}. Trova {{visaCount}} opzioni di visto, tempi di elaborazione, tariffe e requisiti per il tuo viaggio in {{destination}}.",
+    "ogTitle": "Requisiti del visto e informazioni di viaggio per {{destination}}",
+    "ogDescription": "Tutto quello che devi sapere sulla visita di {{destination}}. {{visaCount}} tipi di visti disponibili con requisiti dettagliati e informazioni di elaborazione.",
+    "twitterTitle": "Guida al visto per {{destination}}",
+    "twitterDescription": "Requisiti completi del visto e guida di viaggio per {{destination}}"
   },
   "breadcrumb": {
     "home": "Home",
@@ -19,12 +19,12 @@
   },
   "visaOptions": {
     "title": "Opzioni del visto",
-    "description": "Esplora tutti i tipi di visto disponibili per {destination}. Ogni opzione include requisiti dettagliati, tariffe e tempi di elaborazione.",
+    "description": "Esplora tutti i tipi di visto disponibili per {{destination}}. Ogni opzione include requisiti dettagliati, tariffe e tempi di elaborazione.",
     "noVisaTypesTitle": "Nessuna informazione sul visto disponibile",
-    "noVisaTypesDescription": "Stiamo attualmente aggiornando le informazioni sui visti per {destination}. Ricontrolla presto o contattaci per assistenza.",
+    "noVisaTypesDescription": "Stiamo attualmente aggiornando le informazioni sui visti per {{destination}}. Ricontrolla presto o contattaci per assistenza.",
     "totalOptions": "Opzioni totali",
     "processingDays": "Giorni di elaborazione",
-    "feeRange": "Gamma di tariffe ({currency})",
+    "feeRange": "Gamma di tariffe ({{currency}})",
     "visaFreeCountries": "Paesi senza visto",
     "visaFreeCountriesTitle": "Ingresso senza visto",
     "visaOnArrivalTitle": "Visto all'arrivo",
@@ -69,13 +69,16 @@
   "visaFree": {
     "title": "Senza visto e visto all'arrivo",
     "visaFreeTitle": "Ingresso senza visto",
-    "visaFreeDescription": "I cittadini di alcuni paesi possono visitare {destination} senza ottenere un visto in anticipo. Controlla se il tuo passaporto è qualificato per l'ingresso senza visto.",
+    "visaFreeDescription": "I cittadini di alcuni paesi possono visitare {{destination}} senza ottenere un visto in anticipo. Controlla se il tuo passaporto è qualificato per l'ingresso senza visto.",
     "visaOnArrivalTitle": "Visto all'arrivo",
-    "visaOnArrivalDescription": "Alcuni viaggiatori possono ottenere il loro visto all'arrivo in {destination}. Questa opzione conveniente elimina la necessità di elaborazione anticipata."
+    "visaOnArrivalDescription": "Alcuni viaggiatori possono ottenere il loro visto all'arrivo in {{destination}}. Questa opzione conveniente elimina la necessità di elaborazione anticipata."
   },
   "relatedContent": {
     "title": "Guide di viaggio e articoli",
-    "description": "Scopri consigli di viaggio, attrazioni e guide insider per {destination}.",
+    "description": "Scopri consigli di viaggio, attrazioni e guide insider per {{destination}}.",
     "viewBlog": "Visualizza blog di viaggio"
+  },
+  "aria": {
+    "breadcrumb": "Navigazione breadcrumb pagina destinazione"
   }
 }

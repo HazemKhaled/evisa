@@ -8,9 +8,9 @@
   },
   "metadata": {
     "updated": "Mis à jour",
-    "tag_title_template": "{tag} - {title}",
-    "tag_description_template": "Lisez nos articles de blog sur {tag}.",
-    "tag_keywords_template": "{tag}, blog de voyage, guides de visa, conseils de voyage, guides de destinations, conseils de voyage"
+    "tag_title_template": "{{tag}} - {{title}}",
+    "tag_description_template": "Lisez nos articles de blog sur {{tag}}.",
+    "tag_keywords_template": "{{tag}}, blog de voyage, guides de visa, conseils de voyage, guides de destinations, conseils de voyage"
   },
   "search": {
     "placeholder": "Rechercher des articles de blog...",
@@ -40,11 +40,23 @@
   "aria": {
     "articleNavigation": "Navigation de l'article",
     "returnToBlogListing": "Retour à la liste du blog",
-    "readArticle": "Lire l'article : {title}",
-    "readFullArticle": "Lire l'article complet : {title}",
-    "viewPostsFor": "Voir les articles de blog pour {destination}",
-    "viewPostsTagged": "Voir les articles de blog étiquetés avec {tag}",
+    "readArticle": "Lire l'article : {{title}}",
+    "readFullArticle": "Lire l'article complet : {{title}}",
+    "viewPostsFor": "Voir les articles de blog pour {{destination}}",
+    "viewPostsTagged": "Voir les articles de blog étiquetés avec {{tag}}",
     "clearSearch": "Effacer la recherche"
+  },
+  "destination": {
+    "title": "Voyager vers {{destination}}",
+    "subtitle": "Découvrez les informations de voyage et les guides pour {{destination}}."
+  },
+  "tag": {
+    "title": "Articles de Voyage {{tag}}",
+    "subtitle": "Apprenez sur les conseils de voyage et les guides liés à {{tag}}."
+  },
+  "meta": {
+    "post_not_found": "Article de Blog Introuvable",
+    "post_not_found_description": "L'article de blog demandé n'a pas pu être trouvé."
   },
   "homepage": {
     "latestPosts": {

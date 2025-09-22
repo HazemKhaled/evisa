@@ -61,5 +61,31 @@
     "goHome": "Vai alla home",
     "browseDestinations": "Sfoglia destinazioni",
     "helpText": "Se il problema persiste, contatta il nostro team di supporto."
+  },
+  "errors": {
+    "generic": {
+      "title": "Qualcosa è andato storto",
+      "description": "Siamo spiacenti, ma c'è stato un errore nel caricamento di questa pagina. Questo potrebbe essere un problema temporaneo.",
+      "tryAgain": "Riprova",
+      "goHome": "Vai alla home",
+      "browseDestinations": "Sfoglia destinazioni",
+      "helpText": "Se il problema persiste, contatta il nostro team di supporto.",
+      "errorDetails": "Dettagli dell'errore",
+      "digest": "Digest",
+      "messageLabel": "Messaggio:"
+    }
+  },
+  "pagination": {
+    "showing": "Mostrando",
+    "post": "articolo",
+    "posts": "articoli",
+    "on": "su",
+    "page": "pagina",
+    "of": "di",
+    "previous": "Precedente",
+    "next": "Successivo"
+  },
+  "aria": {
+    "pagination": "Paginazione"
   }
 }

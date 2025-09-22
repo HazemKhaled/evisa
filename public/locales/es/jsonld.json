@@ -1,0 +1,22 @@
+{
+  "organization": {
+    "name": "GetTravelVisa.com",
+    "description": "Tu socio confiable para solicitudes de visa. Simplifica tu proceso de solicitud de visa con nuestros servicios integrales de verificación y solicitud de visas.",
+    "contact_type": "servicio al cliente"
+  },
+  "website": {
+    "name": "GetTravelVisa.com",
+    "description": "Simplifica tu proceso de solicitud de visa con nuestros servicios integrales de verificación y solicitud de visas. Obtén orientación experta para visas de viaje en todo el mundo."
+  },
+  "service": {
+    "name": "Servicios de Solicitud de Visa",
+    "description": "Servicios integrales de verificación y solicitud de visas para viajes internacionales",
+    "area_served": "Todo el mundo",
+    "service_type": "Servicios de Viaje"
+  },
+  "blog": {
+    "title": "Blog de Viajes",
+    "description": "Guías expertas de viaje, consejos de visa y perspectivas de destinos para ayudarte a planificar tu viaje perfecto.",
+    "article_section": "Blog de Viajes"
+  }
+}

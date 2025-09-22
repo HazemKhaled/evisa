@@ -8,9 +8,9 @@
   },
   "metadata": {
     "updated": "محدث",
-    "tag_title_template": "{tag} - {title}",
-    "tag_description_template": "اقرأ مقالات مدونتنا حول {tag}.",
-    "tag_keywords_template": "{tag}، مدونة سفر، أدلة تأشيرات، نصائح سفر، أدلة وجهات، نصائح سفر"
+    "tag_title_template": "{{tag}} - {{title}}",
+    "tag_description_template": "اقرأ مقالات مدونتنا حول {{tag}}.",
+    "tag_keywords_template": "{{tag}}، مدونة سفر، أدلة تأشيرات، نصائح سفر، أدلة وجهات، نصائح سفر"
   },
   "search": {
     "placeholder": "البحث في مقالات المدونة...",
@@ -39,11 +39,23 @@
   "aria": {
     "articleNavigation": "تنقل المقال",
     "returnToBlogListing": "العودة إلى قائمة المدونة",
-    "readArticle": "اقرأ المقال: {title}",
-    "readFullArticle": "اقرأ المقال كاملاً: {title}",
-    "viewPostsFor": "عرض مقالات المدونة لـ {destination}",
-    "viewPostsTagged": "عرض مقالات المدونة المعلمة بـ {tag}",
+    "readArticle": "اقرأ المقال: {{title}}",
+    "readFullArticle": "اقرأ المقال كاملاً: {{title}}",
+    "viewPostsFor": "عرض مقالات المدونة لـ {{destination}}",
+    "viewPostsTagged": "عرض مقالات المدونة المعلمة بـ {{tag}}",
     "clearSearch": "مسح البحث"
+  },
+  "destination": {
+    "title": "السفر إلى {{destination}}",
+    "subtitle": "اكتشف معلومات السفر والأدلة لـ{{destination}}."
+  },
+  "tag": {
+    "title": "منشورات السفر {{tag}}",
+    "subtitle": "تعلم عن نصائح السفر والأدلة المتعلقة بـ{{tag}}."
+  },
+  "meta": {
+    "post_not_found": "منشور المدونة غير موجود",
+    "post_not_found_description": "لا يمكن العثور على منشور المدونة المطلوب."
   },
   "homepage": {
     "latestPosts": {

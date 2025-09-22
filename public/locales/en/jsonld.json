@@ -1,0 +1,22 @@
+{
+  "organization": {
+    "name": "GetTravelVisa.com",
+    "description": "Your trusted visa application partner. Simplify your visa application process with our comprehensive visa checking and application services.",
+    "contact_type": "customer service"
+  },
+  "website": {
+    "name": "GetTravelVisa.com",
+    "description": "Simplify your visa application process with our comprehensive visa checking and application services. Get expert guidance for travel visas worldwide."
+  },
+  "service": {
+    "name": "Visa Application Services",
+    "description": "Comprehensive visa checking and application services for international travel",
+    "area_served": "Worldwide",
+    "service_type": "Travel Services"
+  },
+  "blog": {
+    "title": "Travel Blog",
+    "description": "Expert travel guides, visa tips, and destination insights to help you plan your perfect trip.",
+    "article_section": "Travel Blog"
+  }
+}

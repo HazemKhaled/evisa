@@ -8,9 +8,9 @@
   },
   "metadata": {
     "updated": "Aktualisiert",
-    "tag_title_template": "{tag} - {title}",
-    "tag_description_template": "Lesen Sie unsere Blog-Beiträge über {tag}.",
-    "tag_keywords_template": "{tag}, Reise-Blog, Visa-Führer, Reisetipps, Reiseziel-Führer, Reiseberatung"
+    "tag_title_template": "{{tag}} - {{title}}",
+    "tag_description_template": "Lesen Sie unsere Blog-Beiträge über {{tag}}.",
+    "tag_keywords_template": "{{tag}}, Reise-Blog, Visa-Führer, Reisetipps, Reiseziel-Führer, Reiseberatung"
   },
   "search": {
     "placeholder": "Blog-Beiträge suchen...",
@@ -39,11 +39,23 @@
   "aria": {
     "articleNavigation": "Artikel-Navigation",
     "returnToBlogListing": "Zurück zur Blog-Liste",
-    "readArticle": "Artikel lesen: {title}",
-    "readFullArticle": "Vollständigen Artikel lesen: {title}",
-    "viewPostsFor": "Blog-Beiträge für {destination} anzeigen",
-    "viewPostsTagged": "Blog-Beiträge mit {tag} markiert anzeigen",
+    "readArticle": "Artikel lesen: {{title}}",
+    "readFullArticle": "Vollständigen Artikel lesen: {{title}}",
+    "viewPostsFor": "Blog-Beiträge für {{destination}} anzeigen",
+    "viewPostsTagged": "Blog-Beiträge mit {{tag}} markiert anzeigen",
     "clearSearch": "Sucheingabe löschen"
+  },
+  "destination": {
+    "title": "Reisen nach {{destination}}",
+    "subtitle": "Entdecken Sie Reiseinformationen und Führer für {{destination}}."
+  },
+  "tag": {
+    "title": "{{tag}} Reise-Beiträge",
+    "subtitle": "Lernen Sie über Reisetipps und Führer im Zusammenhang mit {{tag}}."
+  },
+  "meta": {
+    "post_not_found": "Blog-Beitrag nicht gefunden",
+    "post_not_found_description": "Der angeforderte Blog-Beitrag konnte nicht gefunden werden."
   },
   "homepage": {
     "latestPosts": {

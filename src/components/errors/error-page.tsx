@@ -21,7 +21,7 @@ export default function ErrorPage({
 }: ErrorPageComponentProps) {
   const params = useParams();
   const locale = (params?.locale as string) || "en";
-  const { t } = useTranslation("error", locale);
+  const { t } = useTranslation("common", locale);
 
   // Log the error
   useEffect(() => {
@@ -87,7 +87,7 @@ export default function ErrorPage({
                 <div className="mt-2 rounded bg-gray-100 p-3 text-xs">
                   <p>
                     <span className="font-semibold">
-                      {locale === "ar" ? "الرسالة:" : "Message:"}
+                      {t(`errors.${errorKey}.messageLabel`)}
                     </span>{" "}
                     {error.message}
                   </p>

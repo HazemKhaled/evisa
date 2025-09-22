@@ -26,6 +26,10 @@
   "breadcrumb": {
     "home": "Início",
     "blog": "Blog de Viagem",
-    "contact": "Entre em Contato"
+    "contact": "Entre em Contato",
+    "destinations": "Destinos",
+    "about": "Sobre Nós",
+    "terms": "Termos e Condições",
+    "privacy": "Política de Privacidade"
   }
 }

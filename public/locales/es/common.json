@@ -61,5 +61,31 @@
     "goHome": "Ir al Inicio",
     "browseDestinations": "Explorar Destinos",
     "helpText": "Si el problema persiste, por favor contacta a nuestro equipo de soporte."
+  },
+  "errors": {
+    "generic": {
+      "title": "Algo salió mal",
+      "description": "Lo sentimos, pero hubo un error al cargar esta página. Esto podría ser un problema temporal.",
+      "tryAgain": "Intentar de Nuevo",
+      "goHome": "Ir al Inicio",
+      "browseDestinations": "Explorar Destinos",
+      "helpText": "Si el problema persiste, por favor contacta a nuestro equipo de soporte.",
+      "errorDetails": "Detalles del Error",
+      "digest": "Digest",
+      "messageLabel": "Mensaje:"
+    }
+  },
+  "pagination": {
+    "showing": "Mostrando",
+    "post": "artículo",
+    "posts": "artículos",
+    "on": "en",
+    "page": "página",
+    "of": "de",
+    "previous": "Anterior",
+    "next": "Siguiente"
+  },
+  "aria": {
+    "pagination": "Paginación"
   }
 }
