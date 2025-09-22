@@ -7,11 +7,6 @@
     "Neon": {
       "command": "npx",
       "args": ["-y", "mcp-remote@latest", "https://mcp.neon.tech/mcp"]
-    },
-    "ESLint": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["@eslint/mcp@latest"]
     }
   }
 }
