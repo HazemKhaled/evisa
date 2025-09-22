@@ -8,9 +8,9 @@
   },
   "metadata": {
     "updated": "Actualizado",
-    "tag_title_template": "{tag} - {title}",
-    "tag_description_template": "Lee nuestras publicaciones de blog sobre {tag}.",
-    "tag_keywords_template": "{tag}, blog de viajes, guías de visa, consejos de viaje, guías de destinos, consejos de viaje"
+    "tag_title_template": "{{tag}} - {{title}}",
+    "tag_description_template": "Lee nuestras publicaciones de blog sobre {{tag}}.",
+    "tag_keywords_template": "{{tag}}, blog de viajes, guías de visa, consejos de viaje, guías de destinos, consejos de viaje"
   },
   "search": {
     "placeholder": "Buscar publicaciones del blog...",
@@ -38,15 +38,15 @@
     "next": "Siguiente",
     "firstPage": "Primera página",
     "lastPage": "Última página",
-    "goToPage": "Ir a la página {page}"
+    "goToPage": "Ir a la página {{page}}"
   },
   "aria": {
     "articleNavigation": "Navegación del artículo",
     "returnToBlogListing": "Volver a la lista del blog",
-    "readArticle": "Leer artículo: {title}",
-    "readFullArticle": "Leer artículo completo: {title}",
-    "viewPostsFor": "Ver publicaciones del blog para {destination}",
-    "viewPostsTagged": "Ver publicaciones del blog etiquetadas con {tag}",
+    "readArticle": "Leer artículo: {{title}}",
+    "readFullArticle": "Leer artículo completo: {{title}}",
+    "viewPostsFor": "Ver publicaciones del blog para {{destination}}",
+    "viewPostsTagged": "Ver publicaciones del blog etiquetadas con {{tag}}",
     "clearSearch": "Limpiar entrada de búsqueda"
   },
   "homepage": {

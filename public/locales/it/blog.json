@@ -8,9 +8,9 @@
   },
   "metadata": {
     "updated": "Aggiornato",
-    "tag_title_template": "{tag} - {title}",
-    "tag_description_template": "Leggi i nostri articoli del blog su {tag}.",
-    "tag_keywords_template": "{tag}, blog di viaggio, guide sui visti, consigli di viaggio, guide alle destinazioni, consigli di viaggio"
+    "tag_title_template": "{{tag}} - {{title}}",
+    "tag_description_template": "Leggi i nostri articoli del blog su {{tag}}.",
+    "tag_keywords_template": "{{tag}}, blog di viaggio, guide sui visti, consigli di viaggio, guide alle destinazioni, consigli di viaggio"
   },
   "search": {
     "placeholder": "Cerca articoli del blog...",
@@ -40,10 +40,10 @@
   "aria": {
     "articleNavigation": "Navigazione dell'articolo",
     "returnToBlogListing": "Torna all'elenco del blog",
-    "readArticle": "Leggi l'articolo: {title}",
-    "readFullArticle": "Leggi l'articolo completo: {title}",
-    "viewPostsFor": "Visualizza articoli del blog per {destination}",
-    "viewPostsTagged": "Visualizza articoli del blog taggati con {tag}",
+    "readArticle": "Leggi l'articolo: {{title}}",
+    "readFullArticle": "Leggi l'articolo completo: {{title}}",
+    "viewPostsFor": "Visualizza articoli del blog per {{destination}}",
+    "viewPostsTagged": "Visualizza articoli del blog taggati con {{tag}}",
     "clearSearch": "Cancella ricerca"
   },
   "homepage": {

@@ -8,9 +8,9 @@
   },
   "metadata": {
     "updated": "Updated",
-    "tag_title_template": "{tag} - {title}",
-    "tag_description_template": "Read our blog posts about {tag}.",
-    "tag_keywords_template": "{tag}, travel blog, visa guides, travel tips, destination guides, travel advice"
+    "tag_title_template": "{{tag}} - {{title}}",
+    "tag_description_template": "Read our blog posts about {{tag}}.",
+    "tag_keywords_template": "{{tag}}, travel blog, visa guides, travel tips, destination guides, travel advice"
   },
   "search": {
     "placeholder": "Search blog posts...",
@@ -39,10 +39,10 @@
   "aria": {
     "articleNavigation": "Article navigation",
     "returnToBlogListing": "Return to blog listing",
-    "readArticle": "Read article: {title}",
-    "readFullArticle": "Read full article: {title}",
-    "viewPostsFor": "View blog posts for {destination}",
-    "viewPostsTagged": "View blog posts tagged with {tag}",
+    "readArticle": "Read article: {{title}}",
+    "readFullArticle": "Read full article: {{title}}",
+    "viewPostsFor": "View blog posts for {{destination}}",
+    "viewPostsTagged": "View blog posts tagged with {{tag}}",
     "clearSearch": "Clear search input"
   },
   "homepage": {

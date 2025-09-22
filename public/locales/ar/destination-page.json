@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "متطلبات التأشيرة لـ {destination}",
-    "description": "معلومات التأشيرة الكاملة لـ {destination}. اكتشف {visaCount} خيارات التأشيرة وأوقات المعالجة والرسوم والمتطلبات لسفرك إلى {destination}.",
-    "ogTitle": "متطلبات التأشيرة ومعلومات السفر لـ {destination}",
-    "ogDescription": "كل ما تحتاج معرفته عن زيارة {destination}. {visaCount} أنواع تأشيرة متاحة مع متطلبات مفصلة ومعلومات المعالجة.",
-    "twitterTitle": "دليل تأشيرة {destination}",
-    "twitterDescription": "متطلبات التأشيرة الكاملة ودليل السفر لـ {destination}"
+    "title": "متطلبات التأشيرة لـ {{destination}}",
+    "description": "معلومات التأشيرة الكاملة لـ {{destination}}. اكتشف {{visaCount}} خيارات التأشيرة وأوقات المعالجة والرسوم والمتطلبات لسفرك إلى {{destination}}.",
+    "ogTitle": "متطلبات التأشيرة ومعلومات السفر لـ {{destination}}",
+    "ogDescription": "كل ما تحتاج معرفته عن زيارة {{destination}}. {{visaCount}} أنواع تأشيرة متاحة مع متطلبات مفصلة ومعلومات المعالجة.",
+    "twitterTitle": "دليل تأشيرة {{destination}}",
+    "twitterDescription": "متطلبات التأشيرة الكاملة ودليل السفر لـ {{destination}}"
   },
   "breadcrumb": {
     "home": "الرئيسية",
@@ -19,12 +19,12 @@
   },
   "visaOptions": {
     "title": "خيارات التأشيرة",
-    "description": "استكشف جميع أنواع التأشيرات المتاحة لـ {destination}. يتضمن كل خيار متطلبات مفصلة ورسوم وأوقات المعالجة.",
+    "description": "استكشف جميع أنواع التأشيرات المتاحة لـ {{destination}}. يتضمن كل خيار متطلبات مفصلة ورسوم وأوقات المعالجة.",
     "noVisaTypesTitle": "لا تتوفر معلومات التأشيرة",
-    "noVisaTypesDescription": "نحن نقوم حاليًا بتحديث معلومات التأشيرة لـ {destination}. يرجى المراجعة قريبًا أو الاتصال بنا للحصول على المساعدة.",
+    "noVisaTypesDescription": "نحن نقوم حاليًا بتحديث معلومات التأشيرة لـ {{destination}}. يرجى المراجعة قريبًا أو الاتصال بنا للحصول على المساعدة.",
     "totalOptions": "إجمالي الخيارات",
     "processingDays": "أيام المعالجة",
-    "feeRange": "نطاق الرسوم ({currency})",
+    "feeRange": "نطاق الرسوم ({{currency}})",
     "visaFreeCountries": "دول بدون تأشيرة",
     "visaFreeCountriesTitle": "دخول بدون تأشيرة",
     "visaOnArrivalTitle": "تأشيرة عند الوصول",
@@ -69,13 +69,13 @@
   "visaFree": {
     "title": "بدون تأشيرة وتأشيرة عند الوصول",
     "visaFreeTitle": "دخول بدون تأشيرة",
-    "visaFreeDescription": "يمكن لمواطني بعض البلدان زيارة {destination} دون الحصول على تأشيرة مسبقة. تحقق من أهلية جواز سفرك للدخول بدون تأشيرة.",
+    "visaFreeDescription": "يمكن لمواطني بعض البلدان زيارة {{destination}} دون الحصول على تأشيرة مسبقة. تحقق من أهلية جواز سفرك للدخول بدون تأشيرة.",
     "visaOnArrivalTitle": "تأشيرة عند الوصول",
-    "visaOnArrivalDescription": "يمكن لبعض المسافرين الحصول على تأشيرتهم عند الوصول إلى {destination}. هذا الخيار المريح يلغي الحاجة للمعالجة المسبقة."
+    "visaOnArrivalDescription": "يمكن لبعض المسافرين الحصول على تأشيرتهم عند الوصول إلى {{destination}}. هذا الخيار المريح يلغي الحاجة للمعالجة المسبقة."
   },
   "relatedContent": {
     "title": "أدلة ومقالات السفر",
-    "description": "اكتشف نصائح السفر والمعالم السياحية والأدلة الداخلية لـ {destination}.",
+    "description": "اكتشف نصائح السفر والمعالم السياحية والأدلة الداخلية لـ {{destination}}.",
     "viewBlog": "عرض مدونة السفر"
   },
   "aria": {

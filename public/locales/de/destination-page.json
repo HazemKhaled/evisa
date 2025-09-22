@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Visa-Anforderungen für {destination}",
-    "description": "Vollständige Visa-Informationen für {destination}. Finden Sie {visaCount} Visa-Optionen, Bearbeitungszeiten, Gebühren und Anforderungen für Ihre Reise nach {destination}.",
-    "ogTitle": "Visa-Anforderungen und Reiseinformationen für {destination}",
-    "ogDescription": "Alles was Sie über den Besuch von {destination} wissen müssen. {visaCount} Visa-Typen verfügbar mit detaillierten Anforderungen und Bearbeitungsinformationen.",
-    "twitterTitle": "Visa-Leitfaden für {destination}",
-    "twitterDescription": "Vollständige Visa-Anforderungen und Reiseführer für {destination}"
+    "title": "Visa-Anforderungen für {{destination}}",
+    "description": "Vollständige Visa-Informationen für {{destination}}. Finden Sie {{visaCount}} Visa-Optionen, Bearbeitungszeiten, Gebühren und Anforderungen für Ihre Reise nach {{destination}}.",
+    "ogTitle": "Visa-Anforderungen und Reiseinformationen für {{destination}}",
+    "ogDescription": "Alles was Sie über den Besuch von {{destination}} wissen müssen. {{visaCount}} Visa-Typen verfügbar mit detaillierten Anforderungen und Bearbeitungsinformationen.",
+    "twitterTitle": "Visa-Leitfaden für {{destination}}",
+    "twitterDescription": "Vollständige Visa-Anforderungen und Reiseführer für {{destination}}"
   },
   "breadcrumb": {
     "home": "Start",
@@ -19,12 +19,12 @@
   },
   "visaOptions": {
     "title": "Visa-Optionen",
-    "description": "Erkunden Sie alle verfügbaren Visa-Typen für {destination}. Jede Option enthält detaillierte Anforderungen, Gebühren und Bearbeitungszeiten.",
+    "description": "Erkunden Sie alle verfügbaren Visa-Typen für {{destination}}. Jede Option enthält detaillierte Anforderungen, Gebühren und Bearbeitungszeiten.",
     "noVisaTypesTitle": "Keine Visa-Informationen verfügbar",
-    "noVisaTypesDescription": "Wir aktualisieren derzeit die Visa-Informationen für {destination}. Schauen Sie bald wieder vorbei oder kontaktieren Sie uns für Unterstützung.",
+    "noVisaTypesDescription": "Wir aktualisieren derzeit die Visa-Informationen für {{destination}}. Schauen Sie bald wieder vorbei oder kontaktieren Sie uns für Unterstützung.",
     "totalOptions": "Gesamte Optionen",
     "processingDays": "Bearbeitungstage",
-    "feeRange": "Gebührenbereich ({currency})",
+    "feeRange": "Gebührenbereich ({{currency}})",
     "visaFreeCountries": "Visafreie Länder",
     "visaFreeCountriesTitle": "Visafreie Einreise",
     "visaOnArrivalTitle": "Visa bei Ankunft",
@@ -69,13 +69,13 @@
   "visaFree": {
     "title": "Visafrei und Visa bei Ankunft",
     "visaFreeTitle": "Visafreie Einreise",
-    "visaFreeDescription": "Bürger bestimmter Länder können {destination} besuchen, ohne im Voraus ein Visa zu erhalten. Prüfen Sie, ob Ihr Reisepass für die visafreie Einreise qualifiziert ist.",
+    "visaFreeDescription": "Bürger bestimmter Länder können {{destination}} besuchen, ohne im Voraus ein Visa zu erhalten. Prüfen Sie, ob Ihr Reisepass für die visafreie Einreise qualifiziert ist.",
     "visaOnArrivalTitle": "Visa bei Ankunft",
-    "visaOnArrivalDescription": "Einige Reisende können ihr Visa bei der Ankunft in {destination} erhalten. Diese praktische Option eliminiert die Notwendigkeit einer Vorabbearbeitung."
+    "visaOnArrivalDescription": "Einige Reisende können ihr Visa bei der Ankunft in {{destination}} erhalten. Diese praktische Option eliminiert die Notwendigkeit einer Vorabbearbeitung."
   },
   "relatedContent": {
     "title": "Reiseführer und Artikel",
-    "description": "Entdecken Sie Reisetipps, Sehenswürdigkeiten und Insider-Guides für {destination}.",
+    "description": "Entdecken Sie Reisetipps, Sehenswürdigkeiten und Insider-Guides für {{destination}}.",
     "viewBlog": "Reiseblog ansehen"
   },
   "aria": {

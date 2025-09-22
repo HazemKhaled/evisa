@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Visa Requirements for {destination}",
-    "description": "Complete visa information for {destination}. Find {visaCount} visa options, processing times, fees, and requirements for your travel to {destination}.",
-    "ogTitle": "{destination} Visa Requirements & Travel Information",
-    "ogDescription": "Everything you need to know about visiting {destination}. {visaCount} visa types available with detailed requirements and processing information.",
-    "twitterTitle": "{destination} Visa Guide",
-    "twitterDescription": "Complete visa requirements and travel guide for {destination}"
+    "title": "Visa Requirements for {{destination}}",
+    "description": "Complete visa information for {{destination}}. Find {{visaCount}} visa options, processing times, fees, and requirements for your travel to {{destination}}.",
+    "ogTitle": "{{destination}} Visa Requirements & Travel Information",
+    "ogDescription": "Everything you need to know about visiting {{destination}}. {{visaCount}} visa types available with detailed requirements and processing information.",
+    "twitterTitle": "{{destination}} Visa Guide",
+    "twitterDescription": "Complete visa requirements and travel guide for {{destination}}"
   },
   "hero": {
     "visaTypes": "Visa Types",
@@ -15,12 +15,12 @@
   },
   "visaOptions": {
     "title": "Visa Options",
-    "description": "Explore all available visa types for {destination}. Each option includes detailed requirements, fees, and processing times.",
+    "description": "Explore all available visa types for {{destination}}. Each option includes detailed requirements, fees, and processing times.",
     "noVisaTypesTitle": "No Visa Information Available",
-    "noVisaTypesDescription": "We're currently updating visa information for {destination}. Please check back soon or contact us for assistance.",
+    "noVisaTypesDescription": "We're currently updating visa information for {{destination}}. Please check back soon or contact us for assistance.",
     "totalOptions": "Total Options",
     "processingDays": "Days Processing",
-    "feeRange": "Fee Range ({currency})",
+    "feeRange": "Fee Range ({{currency}})",
     "visaFreeCountries": "Visa-Free Countries",
     "visaFreeCountriesTitle": "Visa-Free Entry",
     "visaOnArrivalTitle": "Visa on Arrival",
@@ -65,13 +65,13 @@
   "visaFree": {
     "title": "Visa-Free & Visa on Arrival",
     "visaFreeTitle": "Visa-Free Entry",
-    "visaFreeDescription": "Citizens of certain countries can visit {destination} without obtaining a visa in advance. Check if your passport qualifies for visa-free entry.",
+    "visaFreeDescription": "Citizens of certain countries can visit {{destination}} without obtaining a visa in advance. Check if your passport qualifies for visa-free entry.",
     "visaOnArrivalTitle": "Visa on Arrival",
-    "visaOnArrivalDescription": "Some travelers can obtain their visa upon arrival at {destination}. This convenient option eliminates the need for advance processing."
+    "visaOnArrivalDescription": "Some travelers can obtain their visa upon arrival at {{destination}}. This convenient option eliminates the need for advance processing."
   },
   "relatedContent": {
     "title": "Travel Guides & Articles",
-    "description": "Discover travel tips, attractions, and insider guides for {destination}.",
+    "description": "Discover travel tips, attractions, and insider guides for {{destination}}.",
     "viewBlog": "View Travel Blog"
   },
   "aria": {

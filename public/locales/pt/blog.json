@@ -8,9 +8,9 @@
   },
   "metadata": {
     "updated": "Atualizado",
-    "tag_title_template": "{tag} - {title}",
-    "tag_description_template": "Leia nossos artigos do blog sobre {tag}.",
-    "tag_keywords_template": "{tag}, blog de viagem, guias de visto, dicas de viagem, guias de destinos, conselhos de viagem"
+    "tag_title_template": "{{tag}} - {{title}}",
+    "tag_description_template": "Leia nossos artigos do blog sobre {{tag}}.",
+    "tag_keywords_template": "{{tag}}, blog de viagem, guias de visto, dicas de viagem, guias de destinos, conselhos de viagem"
   },
   "search": {
     "placeholder": "Pesquisar artigos do blog...",
@@ -40,10 +40,10 @@
   "aria": {
     "articleNavigation": "Navegação do artigo",
     "returnToBlogListing": "Voltar à lista do blog",
-    "readArticle": "Ler artigo: {title}",
-    "readFullArticle": "Ler artigo completo: {title}",
-    "viewPostsFor": "Ver artigos do blog para {destination}",
-    "viewPostsTagged": "Ver artigos do blog marcados com {tag}",
+    "readArticle": "Ler artigo: {{title}}",
+    "readFullArticle": "Ler artigo completo: {{title}}",
+    "viewPostsFor": "Ver artigos do blog para {{destination}}",
+    "viewPostsTagged": "Ver artigos do blog marcados com {{tag}}",
     "clearSearch": "Limpar pesquisa"
   },
   "homepage": {

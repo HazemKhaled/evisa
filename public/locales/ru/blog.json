@@ -8,9 +8,9 @@
   },
   "metadata": {
     "updated": "Обновлено",
-    "tag_title_template": "{tag} - {title}",
-    "tag_description_template": "Читайте наши статьи блога о {tag}.",
-    "tag_keywords_template": "{tag}, блог о путешествиях, руководства по визам, советы путешественникам, путеводители по направлениям, советы по путешествиям"
+    "tag_title_template": "{{tag}} - {{title}}",
+    "tag_description_template": "Читайте наши статьи блога о {{tag}}.",
+    "tag_keywords_template": "{{tag}}, блог о путешествиях, руководства по визам, советы путешественникам, путеводители по направлениям, советы по путешествиям"
   },
   "search": {
     "placeholder": "Поиск статей блога...",
@@ -40,10 +40,10 @@
   "aria": {
     "articleNavigation": "Навигация по статье",
     "returnToBlogListing": "Вернуться к списку блога",
-    "readArticle": "Прочитать статью: {title}",
-    "readFullArticle": "Прочитать полную статью: {title}",
-    "viewPostsFor": "Просмотреть статьи блога для {destination}",
-    "viewPostsTagged": "Просмотреть статьи блога с тегом {tag}",
+    "readArticle": "Прочитать статью: {{title}}",
+    "readFullArticle": "Прочитать полную статью: {{title}}",
+    "viewPostsFor": "Просмотреть статьи блога для {{destination}}",
+    "viewPostsTagged": "Просмотреть статьи блога с тегом {{tag}}",
     "clearSearch": "Очистить поиск"
   },
   "homepage": {
