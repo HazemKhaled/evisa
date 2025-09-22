@@ -77,5 +77,8 @@
     "title": "Guides de voyage et articles",
     "description": "Découvrez des conseils de voyage, des attractions et des guides d'initiés pour {destination}.",
     "viewBlog": "Voir le blog de voyage"
+  },
+  "aria": {
+    "breadcrumb": "Navigation du fil d'Ariane de la page de destination"
   }
 }

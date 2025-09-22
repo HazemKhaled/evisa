@@ -126,6 +126,7 @@ export default async function DestinationPage({
   const jsonLd = generateDestinationJsonLd(destinationData, locale);
 
   const { t } = await getTranslation(locale, "destination-page");
+  const { t: tNav } = await getTranslation(locale, "navigation");
 
   return (
     <>
@@ -133,17 +134,20 @@ export default async function DestinationPage({
 
       <main className="min-h-screen">
         {/* Breadcrumb Navigation */}
-        <nav className="container mx-auto px-4 py-4" aria-label="breadcrumb">
+        <nav
+          className="container mx-auto px-4 py-4"
+          aria-label={t("aria.breadcrumb")}
+        >
           <ol className="text-muted-foreground flex items-center space-x-2 text-sm rtl:space-x-reverse">
             <li>
               <a href={`/${locale}`} className="hover:text-primary">
-                {t("breadcrumb.home")}
+                {tNav("breadcrumb.home")}
               </a>
             </li>
             <li className="flex items-center">
               <span className="mx-2 ltr:rotate-0 rtl:rotate-180">→</span>
               <a href={`/${locale}/d`} className="hover:text-primary">
-                {t("breadcrumb.destinations")}
+                {tNav("breadcrumb.destinations")}
               </a>
             </li>
             <li className="flex items-center">

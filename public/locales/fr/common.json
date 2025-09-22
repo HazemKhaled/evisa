@@ -61,5 +61,31 @@
     "goHome": "Aller à l'accueil",
     "browseDestinations": "Parcourir les destinations",
     "helpText": "Si le problème persiste, veuillez contacter notre équipe de support."
+  },
+  "errors": {
+    "generic": {
+      "title": "Quelque chose s'est mal passé",
+      "description": "Nous sommes désolés, mais il y a eu une erreur lors du chargement de cette page. Ceci pourrait être un problème temporaire.",
+      "tryAgain": "Réessayer",
+      "goHome": "Aller à l'accueil",
+      "browseDestinations": "Parcourir les destinations",
+      "helpText": "Si le problème persiste, veuillez contacter notre équipe de support.",
+      "errorDetails": "Détails de l'erreur",
+      "digest": "Digest",
+      "messageLabel": "Message:"
+    }
+  },
+  "pagination": {
+    "showing": "Affichage",
+    "post": "article",
+    "posts": "articles",
+    "on": "sur",
+    "page": "page",
+    "of": "de",
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
+  "aria": {
+    "pagination": "Pagination"
   }
 }

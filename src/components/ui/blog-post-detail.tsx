@@ -172,7 +172,7 @@ export async function BlogPostDetail({
           <Link
             href={`/${locale}/blog`}
             className="inline-flex items-center rounded-lg bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700"
-            aria-label="Return to blog listing"
+            aria-label={t("aria.returnToBlogListing")}
           >
             {t("navigation.backToBlog")}
           </Link>

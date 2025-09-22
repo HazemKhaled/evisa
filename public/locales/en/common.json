@@ -73,7 +73,8 @@
       "browseDestinations": "Browse Destinations",
       "helpText": "If the problem persists, please contact our support team.",
       "errorDetails": "Error Details",
-      "digest": "Digest"
+      "digest": "Digest",
+      "messageLabel": "Message:"
     },
     "notFound": {
       "title": "Page Not Found",
@@ -125,5 +126,18 @@
       "errorDetails": "Error Details",
       "digest": "Digest"
     }
+  },
+  "pagination": {
+    "showing": "Showing",
+    "post": "post",
+    "posts": "posts",
+    "on": "on",
+    "page": "page",
+    "of": "of",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "aria": {
+    "pagination": "Pagination"
   }
 }

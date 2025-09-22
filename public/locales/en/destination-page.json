@@ -7,10 +7,6 @@
     "twitterTitle": "{destination} Visa Guide",
     "twitterDescription": "Complete visa requirements and travel guide for {destination}"
   },
-  "breadcrumb": {
-    "home": "Home",
-    "destinations": "Destinations"
-  },
   "hero": {
     "visaTypes": "Visa Types",
     "visaFreeAvailable": "Visa-free travel available",
@@ -77,5 +73,8 @@
     "title": "Travel Guides & Articles",
     "description": "Discover travel tips, attractions, and insider guides for {destination}.",
     "viewBlog": "View Travel Blog"
+  },
+  "aria": {
+    "breadcrumb": "Destination page breadcrumb navigation"
   }
 }

@@ -21,7 +21,7 @@ export async function EnhancedPagination({
   buildPaginationUrl,
   className,
 }: EnhancedPaginationProps) {
-  const { t } = await getTranslation(locale, "blog");
+  const { t } = await getTranslation(locale, "common");
   // Default URL builder for destinations-style pagination (server-safe)
   const defaultBuildPaginationUrl = (page: number): string => {
     // For server-side rendering, we'll just build basic pagination URLs
@@ -61,7 +61,7 @@ export async function EnhancedPagination({
         "flex items-center justify-between border-t border-gray-200 pt-8",
         className
       )}
-      aria-label="Pagination"
+      aria-label={t("aria.pagination")}
     >
       {/* Previous page */}
       <div className="flex flex-1 justify-start">

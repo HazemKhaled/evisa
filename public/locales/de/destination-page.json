@@ -77,5 +77,8 @@
     "title": "Reiseführer und Artikel",
     "description": "Entdecken Sie Reisetipps, Sehenswürdigkeiten und Insider-Guides für {destination}.",
     "viewBlog": "Reiseblog ansehen"
+  },
+  "aria": {
+    "breadcrumb": "Zielseite-Breadcrumb-Navigation"
   }
 }

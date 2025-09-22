@@ -25,7 +25,11 @@
   },
   "breadcrumb": {
     "home": "Home",
+    "destinations": "Destinations",
     "blog": "Travel Blog",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "about": "About Us",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy"
   }
 }

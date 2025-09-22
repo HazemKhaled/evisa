@@ -77,5 +77,8 @@
     "title": "Guide di viaggio e articoli",
     "description": "Scopri consigli di viaggio, attrazioni e guide insider per {destination}.",
     "viewBlog": "Visualizza blog di viaggio"
+  },
+  "aria": {
+    "breadcrumb": "Navigazione breadcrumb pagina destinazione"
   }
 }

@@ -7,10 +7,6 @@
     "twitterTitle": "Leitfaden für Globale Visa-Anforderungen",
     "twitterDescription": "Entdecken Sie Visa-Anforderungen für weltweite Ziele mit unserem umfassenden Reiseführer."
   },
-  "breadcrumb": {
-    "home": "Startseite",
-    "destinations": "Ziele"
-  },
   "hero": {
     "title": "Entdecken Sie Globale Ziele",
     "description": "Entdecken Sie Visa-Anforderungen und Reiseinformationen für Ziele weltweit. Finden Sie das perfekte Ziel für Ihr nächstes Abenteuer.",
@@ -31,5 +27,8 @@
     "title": "Keine Ziele Gefunden",
     "description": "Wir konnten keine Ziele finden, die Ihren Suchkriterien entsprechen. Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen.",
     "clearFilters": "Alle Filter Löschen"
+  },
+  "aria": {
+    "breadcrumb": "Ziele-Breadcrumb-Navigation"
   }
 }

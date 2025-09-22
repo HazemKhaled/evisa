@@ -61,5 +61,31 @@
     "goHome": "Zur Startseite",
     "browseDestinations": "Reiseziele durchsuchen",
     "helpText": "Wenn das Problem weiterhin besteht, wenden Sie sich bitte an unser Support-Team."
+  },
+  "errors": {
+    "generic": {
+      "title": "Etwas ist schiefgelaufen",
+      "description": "Entschuldigung, es gab einen Fehler beim Laden dieser Seite. Dies könnte ein vorübergehendes Problem sein.",
+      "tryAgain": "Erneut versuchen",
+      "goHome": "Zur Startseite",
+      "browseDestinations": "Reiseziele durchsuchen",
+      "helpText": "Wenn das Problem weiterhin besteht, wenden Sie sich bitte an unser Support-Team.",
+      "errorDetails": "Fehlerdetails",
+      "digest": "Digest",
+      "messageLabel": "Nachricht:"
+    }
+  },
+  "pagination": {
+    "showing": "Zeige",
+    "post": "Artikel",
+    "posts": "Artikel",
+    "on": "auf",
+    "page": "Seite",
+    "of": "von",
+    "previous": "Zurück",
+    "next": "Weiter"
+  },
+  "aria": {
+    "pagination": "Seitennummerierung"
   }
 }

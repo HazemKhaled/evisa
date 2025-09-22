@@ -77,5 +77,8 @@
     "title": "Guías de Viaje y Artículos",
     "description": "Descubre consejos de viaje, atracciones y guías internas para {destination}.",
     "viewBlog": "Ver Blog de Viajes"
+  },
+  "aria": {
+    "breadcrumb": "Navegación de migas de pan de página de destino"
   }
 }

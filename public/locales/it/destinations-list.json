@@ -7,10 +7,6 @@
     "twitterTitle": "Guida ai Requisiti Visto Globali",
     "twitterDescription": "Scopri i requisiti per i visti per destinazioni mondiali con la nostra guida di viaggio completa."
   },
-  "breadcrumb": {
-    "home": "Home",
-    "destinations": "Destinazioni"
-  },
   "hero": {
     "title": "Esplora Destinazioni Globali",
     "description": "Scopri i requisiti per i visti e le informazioni di viaggio per destinazioni in tutto il mondo. Trova la destinazione perfetta per la tua prossima avventura.",
@@ -31,5 +27,8 @@
     "title": "Nessuna Destinazione Trovata",
     "description": "Non siamo riusciti a trovare destinazioni che corrispondano ai tuoi criteri di ricerca. Prova ad aggiustare i tuoi filtri o termini di ricerca.",
     "clearFilters": "Cancella Tutti i Filtri"
+  },
+  "aria": {
+    "breadcrumb": "Navigazione breadcrumb destinazioni"
   }
 }
