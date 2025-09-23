@@ -1,6 +1,8 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 import WithBundleAnalyzer from "@next/bundle-analyzer";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+import { getBaseUrl } from "@/lib/utils/urls";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx"],
@@ -79,6 +81,4 @@ export default withBundleAnalyzer(
 );
 
 // added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-import { getBaseUrl } from "@/lib/utils/urls";
 initOpenNextCloudflareForDev();
