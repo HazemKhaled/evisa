@@ -3,12 +3,14 @@
  * Provides consistent URL generation for different parts of the app
  */
 
+import { env } from "../consts";
+
 /**
  * Get the base URL for the application from environment variables
  * Falls back to the default domain if SITE_URL is not set
  */
 export function getBaseUrl(): string {
-  return process.env.SITE_URL || "https://gettravelvisa.com";
+  return env.baseUrl;
 }
 
 export interface BlogSearchParams {

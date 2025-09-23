@@ -22,6 +22,14 @@ const nextConfig: NextConfig = {
       destination: "/:locale/blog/sitemap/:locale.xml",
     },
   ],
+  redirects: async () => [
+    {
+      source: "/:path*",
+      has: [{ type: "host", value: "www.gettravelvisa.com" }],
+      destination: getBaseUrl() + "/:path*",
+      permanent: true,
+    },
+  ],
 };
 
 const withBundleAnalyzer = WithBundleAnalyzer({
@@ -72,4 +80,5 @@ export default withBundleAnalyzer(
 
 // added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+import { getBaseUrl } from "@/lib/utils/urls";
 initOpenNextCloudflareForDev();
