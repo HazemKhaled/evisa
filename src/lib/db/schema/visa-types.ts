@@ -16,8 +16,8 @@ export const visaTypes = pgTable(
   "visa_types",
   {
     id: serial("id").primaryKey(),
-    destinationId: integer("destination_id")
-      .references(() => countries.id)
+    destinationCode: text("destination_code")
+      .references(() => countries.code)
       .notNull(),
     type: text("type").notNull(), // e.g., "tourist", "business", "transit", "student"
     duration: integer("duration").notNull(), // Duration in days
@@ -39,9 +39,7 @@ export const visaTypes = pgTable(
       .notNull(),
     deletedAt: timestamp("deleted_at"),
   },
-  table => ({
-    uniqueDestinationType: unique().on(table.destinationId, table.type),
-  })
+  table => [unique().on(table.destinationCode, table.type)]
 );
 
 export const visaTypesI18n = pgTable(
@@ -62,9 +60,7 @@ export const visaTypesI18n = pgTable(
       .$onUpdate(() => new Date())
       .notNull(),
   },
-  table => ({
-    uniqueVisaTypeLocale: unique().on(table.visaTypeId, table.locale),
-  })
+  table => [unique().on(table.visaTypeId, table.locale)]
 );
 
 // Type definitions for JSON fields

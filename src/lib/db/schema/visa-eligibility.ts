@@ -15,11 +15,11 @@ export const visaEligibility = pgTable(
   "visa_eligibility",
   {
     id: serial("id").primaryKey(),
-    destinationId: integer("destination_id")
-      .references(() => countries.id)
+    destinationCode: text("destination_code")
+      .references(() => countries.code)
       .notNull(),
-    passportId: integer("passport_id")
-      .references(() => countries.id)
+    passportCode: text("passport_code")
+      .references(() => countries.code)
       .notNull(),
     visaTypeId: integer("visa_type_id")
       .references(() => visaTypes.id)
@@ -39,14 +39,10 @@ export const visaEligibility = pgTable(
       .notNull(),
     deletedAt: timestamp("deleted_at"),
   },
-  table => ({
+  table => [
     // Ensure unique eligibility rule for each destination-passport-visa combination
-    uniqueEligibilityRule: unique().on(
-      table.destinationId,
-      table.passportId,
-      table.visaTypeId
-    ),
-  })
+    unique().on(table.destinationCode, table.passportCode, table.visaTypeId),
+  ]
 );
 
 export const visaEligibilityI18n = pgTable(
@@ -66,14 +62,7 @@ export const visaEligibilityI18n = pgTable(
       .$onUpdate(() => new Date())
       .notNull(),
   },
-  table => {
-    return {
-      uniqueEligibilityLocale: unique().on(
-        table.visaEligibilityId,
-        table.locale
-      ),
-    };
-  }
+  table => [unique().on(table.visaEligibilityId, table.locale)]
 );
 
 export type VisaEligibility = typeof visaEligibility.$inferSelect;

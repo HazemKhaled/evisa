@@ -14,7 +14,7 @@ import { getDb } from "../db/connection";
 
 export interface VisaType {
   id: number;
-  destinationId: number;
+  destinationCode: number;
   type: string;
   duration: number;
   maxStay: number | null;
@@ -27,10 +27,21 @@ export interface VisaType {
   documents: string[] | null;
 }
 
-export interface VisaTypeWithI18n extends VisaType {
+export interface VisaTypeWithI18n {
+  id: number;
+  destinationCode: string;
+  type: string;
+  duration: number;
+  maxStay: number | null;
+  processingTime: number;
+  fee: number;
+  currency: string;
+  requiresInterview: boolean;
+  isMultiEntry: boolean;
+  requirements: string[] | null;
+  documents: string[] | null;
   name: string;
   description: string | null;
-  destinationCode: string;
   destinationName: string;
 }
 
@@ -103,7 +114,6 @@ export async function checkVisaEligibility(
     const [destinationResult, passportResult] = await Promise.all([
       db
         .select({
-          id: countries.id,
           code: countries.code,
           name: countriesI18n.name,
         })
@@ -111,7 +121,7 @@ export async function checkVisaEligibility(
         .leftJoin(
           countriesI18n,
           and(
-            eq(countries.id, countriesI18n.countryId),
+            eq(countries.code, countriesI18n.countryCode),
             eq(countriesI18n.locale, locale)
           )
         )
@@ -126,7 +136,6 @@ export async function checkVisaEligibility(
 
       db
         .select({
-          id: countries.id,
           code: countries.code,
           name: countriesI18n.name,
         })
@@ -134,7 +143,7 @@ export async function checkVisaEligibility(
         .leftJoin(
           countriesI18n,
           and(
-            eq(countries.id, countriesI18n.countryId),
+            eq(countries.code, countriesI18n.countryCode),
             eq(countriesI18n.locale, locale)
           )
         )
@@ -173,8 +182,8 @@ export async function checkVisaEligibility(
       )
       .where(
         and(
-          eq(visaEligibility.destinationId, destination.id),
-          eq(visaEligibility.passportId, passport.id),
+          eq(visaEligibility.destinationCode, destination.code),
+          eq(visaEligibility.passportCode, passport.code),
           eq(visaEligibility.isActive, true),
           isNull(visaEligibility.deletedAt)
         )
@@ -292,7 +301,7 @@ export async function getVisaRequirements(
     // Get destination information
     const destinationResult = await db
       .select({
-        id: countries.id,
+        id: countries.code,
         code: countries.code,
         name: countriesI18n.name,
       })
@@ -300,7 +309,7 @@ export async function getVisaRequirements(
       .leftJoin(
         countriesI18n,
         and(
-          eq(countries.id, countriesI18n.countryId),
+          eq(countries.code, countriesI18n.countryCode),
           eq(countriesI18n.locale, locale)
         )
       )
@@ -332,10 +341,10 @@ export async function getVisaRequirements(
         passportCode: countries.code,
       })
       .from(visaEligibility)
-      .innerJoin(countries, eq(visaEligibility.passportId, countries.id))
+      .innerJoin(countries, eq(visaEligibility.passportCode, countries.code))
       .where(
         and(
-          eq(visaEligibility.destinationId, destination.id),
+          eq(visaEligibility.destinationCode, destination.id),
           eq(visaEligibility.isActive, true),
           isNull(visaEligibility.deletedAt),
           eq(countries.isActive, true),
@@ -396,8 +405,7 @@ export async function getVisaRequirements(
 }
 
 /**
- * Get random visa types with localized information (Legacy function - will be deprecated)
- * @deprecated Use getEligibleVisaTypes or getVisaRequirements instead for better eligibility-aware results
+ * Get random visa types with localized information
  */
 export async function getRandomVisaTypes(
   locale: string,
@@ -409,7 +417,7 @@ export async function getRandomVisaTypes(
     const results = await db
       .select({
         id: visaTypes.id,
-        destinationId: visaTypes.destinationId,
+        destinationCode: visaTypes.destinationCode,
         type: visaTypes.type,
         duration: visaTypes.duration,
         maxStay: visaTypes.maxStay,
@@ -422,7 +430,6 @@ export async function getRandomVisaTypes(
         documents: visaTypes.documents,
         name: visaTypesI18n.name,
         description: visaTypesI18n.description,
-        destinationCode: countries.code,
         destinationName: countriesI18n.name,
       })
       .from(visaTypes)
@@ -433,11 +440,11 @@ export async function getRandomVisaTypes(
           eq(visaTypesI18n.locale, locale)
         )
       )
-      .innerJoin(countries, eq(visaTypes.destinationId, countries.id))
+      .innerJoin(countries, eq(visaTypes.destinationCode, countries.code))
       .leftJoin(
         countriesI18n,
         and(
-          eq(countries.id, countriesI18n.countryId),
+          eq(countries.code, countriesI18n.countryCode),
           eq(countriesI18n.locale, locale)
         )
       )
@@ -454,7 +461,6 @@ export async function getRandomVisaTypes(
 
     return results.map(result => ({
       id: result.id,
-      destinationId: result.destinationId,
       type: result.type,
       duration: result.duration,
       maxStay: result.maxStay,
@@ -492,7 +498,7 @@ export async function getVisaTypesByDestination(
     const results = await db
       .select({
         id: visaTypes.id,
-        destinationId: visaTypes.destinationId,
+        destinationCode: visaTypes.destinationCode,
         type: visaTypes.type,
         duration: visaTypes.duration,
         maxStay: visaTypes.maxStay,
@@ -505,7 +511,6 @@ export async function getVisaTypesByDestination(
         documents: visaTypes.documents,
         name: visaTypesI18n.name,
         description: visaTypesI18n.description,
-        destinationCode: countries.code,
         destinationName: countriesI18n.name,
       })
       .from(visaTypes)
@@ -516,11 +521,11 @@ export async function getVisaTypesByDestination(
           eq(visaTypesI18n.locale, locale)
         )
       )
-      .innerJoin(countries, eq(visaTypes.destinationId, countries.id))
+      .innerJoin(countries, eq(visaTypes.destinationCode, countries.code))
       .leftJoin(
         countriesI18n,
         and(
-          eq(countries.id, countriesI18n.countryId),
+          eq(countries.code, countriesI18n.countryCode),
           eq(countriesI18n.locale, locale)
         )
       )
@@ -537,7 +542,6 @@ export async function getVisaTypesByDestination(
 
     return results.map(result => ({
       id: result.id,
-      destinationId: result.destinationId,
       type: result.type,
       duration: result.duration,
       maxStay: result.maxStay,
@@ -574,7 +578,7 @@ export async function getAllVisaTypes(
     const results = await db
       .select({
         id: visaTypes.id,
-        destinationId: visaTypes.destinationId,
+        destinationCode: visaTypes.destinationCode,
         type: visaTypes.type,
         duration: visaTypes.duration,
         maxStay: visaTypes.maxStay,
@@ -587,7 +591,6 @@ export async function getAllVisaTypes(
         documents: visaTypes.documents,
         name: visaTypesI18n.name,
         description: visaTypesI18n.description,
-        destinationCode: countries.code,
         destinationName: countriesI18n.name,
       })
       .from(visaTypes)
@@ -598,11 +601,11 @@ export async function getAllVisaTypes(
           eq(visaTypesI18n.locale, locale)
         )
       )
-      .innerJoin(countries, eq(visaTypes.destinationId, countries.id))
+      .innerJoin(countries, eq(visaTypes.destinationCode, countries.code))
       .leftJoin(
         countriesI18n,
         and(
-          eq(countries.id, countriesI18n.countryId),
+          eq(countries.code, countriesI18n.countryCode),
           eq(countriesI18n.locale, locale)
         )
       )
@@ -618,7 +621,6 @@ export async function getAllVisaTypes(
 
     return results.map(result => ({
       id: result.id,
-      destinationId: result.destinationId,
       type: result.type,
       duration: result.duration,
       maxStay: result.maxStay,
@@ -653,7 +655,7 @@ export async function getVisaTypeById(
     const results = await db
       .select({
         id: visaTypes.id,
-        destinationId: visaTypes.destinationId,
+        destinationCode: visaTypes.destinationCode,
         type: visaTypes.type,
         duration: visaTypes.duration,
         maxStay: visaTypes.maxStay,
@@ -666,7 +668,6 @@ export async function getVisaTypeById(
         documents: visaTypes.documents,
         name: visaTypesI18n.name,
         description: visaTypesI18n.description,
-        destinationCode: countries.code,
         destinationName: countriesI18n.name,
       })
       .from(visaTypes)
@@ -677,11 +678,11 @@ export async function getVisaTypeById(
           eq(visaTypesI18n.locale, locale)
         )
       )
-      .innerJoin(countries, eq(visaTypes.destinationId, countries.id))
+      .innerJoin(countries, eq(visaTypes.destinationCode, countries.code))
       .leftJoin(
         countriesI18n,
         and(
-          eq(countries.id, countriesI18n.countryId),
+          eq(countries.code, countriesI18n.countryCode),
           eq(countriesI18n.locale, locale)
         )
       )
@@ -703,7 +704,6 @@ export async function getVisaTypeById(
     const result = results[0];
     return {
       id: result.id,
-      destinationId: result.destinationId,
       type: result.type,
       duration: result.duration,
       maxStay: result.maxStay,

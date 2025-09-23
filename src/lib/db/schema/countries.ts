@@ -1,7 +1,6 @@
 import { sql } from "drizzle-orm";
 import {
   boolean,
-  integer,
   pgTable,
   serial,
   text,
@@ -10,8 +9,7 @@ import {
 } from "drizzle-orm/pg-core";
 
 export const countries = pgTable("countries", {
-  id: serial("id").primaryKey(),
-  code: text("code").notNull().unique(), // ISO 3166-1 alpha-3
+  code: text("code").primaryKey(), // ISO 3166-1 alpha-3
   continent: text("continent").notNull(), // e.g., "Africa", "Asia", "Europe"
   region: text("region"), // e.g., "Western Europe", "Southeast Asia"
   heroImage: text("hero_image"), // Unsplash or other hero image URL
@@ -30,8 +28,8 @@ export const countriesI18n = pgTable(
   "countries_i18n",
   {
     id: serial("id").primaryKey(),
-    countryId: integer("country_id")
-      .references(() => countries.id)
+    countryCode: text("country_code")
+      .references(() => countries.code)
       .notNull(),
     locale: text("locale").notNull(), // e.g., "en", "ar", "es"
     name: text("name").notNull(),
@@ -45,11 +43,7 @@ export const countriesI18n = pgTable(
       .$onUpdate(() => new Date())
       .notNull(),
   },
-  table => {
-    return {
-      uniqueCountryLocale: unique().on(table.countryId, table.locale),
-    };
-  }
+  table => [unique().on(table.countryCode, table.locale)]
 );
 
 export type Country = typeof countries.$inferSelect;

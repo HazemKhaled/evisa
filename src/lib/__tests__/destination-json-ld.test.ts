@@ -9,7 +9,6 @@ jest.mock("../consts", () => ({
 }));
 
 const mockDestinationData: DestinationWithVisaTypes = {
-  id: 1,
   code: "UAE",
   name: "UAE",
   localizedName: "United Arab Emirates",

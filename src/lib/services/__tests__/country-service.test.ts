@@ -67,7 +67,6 @@ describe("Country Service", () => {
 
       expect(result).toHaveLength(1);
       expect(result[0]).toMatchObject({
-        id: 1,
         code: "UAE",
         localizedName: "United Arab Emirates",
       });
@@ -204,7 +203,6 @@ describe("Country Service", () => {
   describe("getDestinationWithVisaTypes", () => {
     it("should return the same result as getDestinationDetails", async () => {
       const mockResult: DestinationWithVisaTypes = {
-        id: 1,
         code: "UAE",
         name: "United Arab Emirates",
         localizedName: "United Arab Emirates",
@@ -238,7 +236,6 @@ describe("Country Service", () => {
       const result = await getDestinationWithVisaTypes("UAE", "en");
 
       expect(result).toMatchObject({
-        id: 1,
         code: "UAE",
       });
       expect(result).toHaveProperty("totalVisaTypes");

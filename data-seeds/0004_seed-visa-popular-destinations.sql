@@ -15,54 +15,54 @@
 -- CHN appears around line 104, position ~99 = ID 99
 
 -- Insert visa types for Japan (JPN - ID 107)
-INSERT INTO "visa_types" ("destination_id", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
-(107, 'tourist', 90, 10, 0.0, 'JPY', 0, 0, '["Valid passport", "Passport photos", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "photos", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
-(107, 'business', 90, 15, 0.0, 'JPY', 0, 0, '["Valid passport", "Business invitation", "Company documents", "Flight itinerary"]', '["passport_copy", "invitation_letter", "company_registration", "flight_booking"]', 1, NOW(), NOW());
+INSERT INTO "visa_types" ("destination_code", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
+('JPN', 'tourist', 90, 10, 0.0, 'JPY', 0, 0, '["Valid passport", "Passport photos", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "photos", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
+('JPN', 'business', 90, 15, 0.0, 'JPY', 0, 0, '["Valid passport", "Business invitation", "Company documents", "Flight itinerary"]', '["passport_copy", "invitation_letter", "company_registration", "flight_booking"]', 1, NOW(), NOW());
 
 -- Insert visa types for Germany (DEU - ID 151)
-INSERT INTO "visa_types" ("destination_id", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
-(151, 'tourist', 90, 15, 80.0, 'EUR', 0, 1, '["Valid passport", "Travel insurance", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "insurance", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
-(151, 'business', 90, 20, 80.0, 'EUR', 0, 1, '["Valid passport", "Business invitation", "Travel insurance", "Company documents"]', '["passport_copy", "invitation_letter", "insurance", "company_registration"]', 1, NOW(), NOW());
+INSERT INTO "visa_types" ("destination_code", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
+('DEU', 'tourist', 90, 15, 80.0, 'EUR', 0, 1, '["Valid passport", "Travel insurance", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "insurance", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
+('DEU', 'business', 90, 20, 80.0, 'EUR', 0, 1, '["Valid passport", "Business invitation", "Travel insurance", "Company documents"]', '["passport_copy", "invitation_letter", "insurance", "company_registration"]', 1, NOW(), NOW());
 
 -- Insert visa types for France (FRA - ID 150)
-INSERT INTO "visa_types" ("destination_id", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
-(150, 'tourist', 90, 15, 80.0, 'EUR', 0, 1, '["Valid passport", "Travel insurance", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "insurance", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
-(150, 'business', 90, 20, 80.0, 'EUR', 0, 1, '["Valid passport", "Business invitation", "Travel insurance", "Company documents"]', '["passport_copy", "invitation_letter", "insurance", "company_registration"]', 1, NOW(), NOW());
+INSERT INTO "visa_types" ("destination_code", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
+('FRA', 'tourist', 90, 15, 80.0, 'EUR', 0, 1, '["Valid passport", "Travel insurance", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "insurance", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
+('FRA', 'business', 90, 20, 80.0, 'EUR', 0, 1, '["Valid passport", "Business invitation", "Travel insurance", "Company documents"]', '["passport_copy", "invitation_letter", "insurance", "company_registration"]', 1, NOW(), NOW());
 
 -- Insert visa types for Italy (ITA - ID 156)
-INSERT INTO "visa_types" ("destination_id", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
-(156, 'tourist', 90, 15, 80.0, 'EUR', 0, 1, '["Valid passport", "Travel insurance", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "insurance", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
-(156, 'business', 90, 20, 80.0, 'EUR', 0, 1, '["Valid passport", "Business invitation", "Travel insurance", "Company documents"]', '["passport_copy", "invitation_letter", "insurance", "company_registration"]', 1, NOW(), NOW());
+INSERT INTO "visa_types" ("destination_code", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
+('ITA', 'tourist', 90, 15, 80.0, 'EUR', 0, 1, '["Valid passport", "Travel insurance", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "insurance", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
+('ITA', 'business', 90, 20, 80.0, 'EUR', 0, 1, '["Valid passport", "Business invitation", "Travel insurance", "Company documents"]', '["passport_copy", "invitation_letter", "insurance", "company_registration"]', 1, NOW(), NOW());
 
 -- Insert visa types for Spain (ESP - ID 176)
-INSERT INTO "visa_types" ("destination_id", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
-(176, 'tourist', 90, 15, 80.0, 'EUR', 0, 1, '["Valid passport", "Travel insurance", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "insurance", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
-(176, 'business', 90, 20, 80.0, 'EUR', 0, 1, '["Valid passport", "Business invitation", "Travel insurance", "Company documents"]', '["passport_copy", "invitation_letter", "insurance", "company_registration"]', 1, NOW(), NOW());
+INSERT INTO "visa_types" ("destination_code", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
+('ESP', 'tourist', 90, 15, 80.0, 'EUR', 0, 1, '["Valid passport", "Travel insurance", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "insurance", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
+('ESP', 'business', 90, 20, 80.0, 'EUR', 0, 1, '["Valid passport", "Business invitation", "Travel insurance", "Company documents"]', '["passport_copy", "invitation_letter", "insurance", "company_registration"]', 1, NOW(), NOW());
 
 -- Insert visa types for Saudi Arabia (SAU - ID 125)
-INSERT INTO "visa_types" ("destination_id", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
-(125, 'tourist', 30, 5, 150.0, 'SAR', 0, 1, '["Valid passport", "Passport photos", "Flight itinerary", "Hotel booking"]', '["passport_copy", "photos", "flight_booking", "hotel_reservation"]', 1, NOW(), NOW()),
-(125, 'business', 90, 10, 300.0, 'SAR', 0, 1, '["Valid passport", "Business invitation", "Company documents", "Flight itinerary"]', '["passport_copy", "invitation_letter", "company_registration", "flight_booking"]', 1, NOW(), NOW());
+INSERT INTO "visa_types" ("destination_code", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
+('SAU', 'tourist', 30, 5, 150.0, 'SAR', 0, 1, '["Valid passport", "Passport photos", "Flight itinerary", "Hotel booking"]', '["passport_copy", "photos", "flight_booking", "hotel_reservation"]', 1, NOW(), NOW()),
+('SAU', 'business', 90, 10, 300.0, 'SAR', 0, 1, '["Valid passport", "Business invitation", "Company documents", "Flight itinerary"]', '["passport_copy", "invitation_letter", "company_registration", "flight_booking"]', 1, NOW(), NOW());
 
 -- Insert visa types for Thailand (THA - ID 131)
-INSERT INTO "visa_types" ("destination_id", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
-(131, 'tourist', 60, 7, 40.0, 'USD', 0, 0, '["Valid passport", "Passport photos", "Flight itinerary", "Hotel booking"]', '["passport_copy", "photos", "flight_booking", "hotel_reservation"]', 1, NOW(), NOW()),
-(131, 'business', 90, 15, 80.0, 'USD', 0, 0, '["Valid passport", "Business invitation", "Company documents", "Flight itinerary"]', '["passport_copy", "invitation_letter", "company_registration", "flight_booking"]', 1, NOW(), NOW());
+INSERT INTO "visa_types" ("destination_code", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
+('THA', 'tourist', 60, 7, 40.0, 'USD', 0, 0, '["Valid passport", "Passport photos", "Flight itinerary", "Hotel booking"]', '["passport_copy", "photos", "flight_booking", "hotel_reservation"]', 1, NOW(), NOW()),
+('THA', 'business', 90, 15, 80.0, 'USD', 0, 0, '["Valid passport", "Business invitation", "Company documents", "Flight itinerary"]', '["passport_copy", "invitation_letter", "company_registration", "flight_booking"]', 1, NOW(), NOW());
 
 -- Insert visa types for Singapore (SGP - ID 126)
-INSERT INTO "visa_types" ("destination_id", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
-(126, 'tourist', 30, 3, 30.0, 'SGD', 0, 0, '["Valid passport", "Passport photos", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "photos", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
-(126, 'business', 30, 5, 30.0, 'SGD', 0, 0, '["Valid passport", "Business invitation", "Company documents", "Flight itinerary"]', '["passport_copy", "invitation_letter", "company_registration", "flight_booking"]', 1, NOW(), NOW());
+INSERT INTO "visa_types" ("destination_code", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
+('SGP', 'tourist', 30, 3, 30.0, 'SGD', 0, 0, '["Valid passport", "Passport photos", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "photos", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
+('SGP', 'business', 30, 5, 30.0, 'SGD', 0, 0, '["Valid passport", "Business invitation", "Company documents", "Flight itinerary"]', '["passport_copy", "invitation_letter", "company_registration", "flight_booking"]', 1, NOW(), NOW());
 
 -- Insert visa types for India (IND - ID 102)
-INSERT INTO "visa_types" ("destination_id", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
-(102, 'tourist', 90, 10, 50.0, 'USD', 0, 0, '["Valid passport", "Passport photos", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "photos", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
-(102, 'business', 180, 15, 100.0, 'USD', 0, 1, '["Valid passport", "Business invitation", "Company documents", "Flight itinerary"]', '["passport_copy", "invitation_letter", "company_registration", "flight_booking"]', 1, NOW(), NOW());
+INSERT INTO "visa_types" ("destination_code", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
+('IND', 'tourist', 90, 10, 50.0, 'USD', 0, 0, '["Valid passport", "Passport photos", "Flight itinerary", "Hotel booking", "Financial proof"]', '["passport_copy", "photos", "flight_booking", "hotel_reservation", "bank_statement"]', 1, NOW(), NOW()),
+('IND', 'business', 180, 15, 100.0, 'USD', 0, 1, '["Valid passport", "Business invitation", "Company documents", "Flight itinerary"]', '["passport_copy", "invitation_letter", "company_registration", "flight_booking"]', 1, NOW(), NOW());
 
 -- Insert visa types for China (CHN - ID 99)
-INSERT INTO "visa_types" ("destination_id", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
-(99, 'tourist', 30, 10, 140.0, 'USD', 0, 0, '["Valid passport", "Passport photos", "Flight itinerary", "Hotel booking", "Financial proof", "Travel insurance"]', '["passport_copy", "photos", "flight_booking", "hotel_reservation", "bank_statement", "insurance"]', 1, NOW(), NOW()),
-(99, 'business', 90, 15, 140.0, 'USD', 0, 1, '["Valid passport", "Business invitation", "Company documents", "Flight itinerary", "Travel insurance"]', '["passport_copy", "invitation_letter", "company_registration", "flight_booking", "insurance"]', 1, NOW(), NOW());
+INSERT INTO "visa_types" ("destination_code", "type", "duration", "processing_time", "fee", "currency", "requires_interview", "is_multi_entry", "requirements", "documents", "is_active", "created_at", "updated_at") VALUES
+('CHN', 'tourist', 30, 10, 140.0, 'USD', 0, 0, '["Valid passport", "Passport photos", "Flight itinerary", "Hotel booking", "Financial proof", "Travel insurance"]', '["passport_copy", "photos", "flight_booking", "hotel_reservation", "bank_statement", "insurance"]', 1, NOW(), NOW()),
+('CHN', 'business', 90, 15, 140.0, 'USD', 0, 1, '["Valid passport", "Business invitation", "Company documents", "Flight itinerary", "Travel insurance"]', '["passport_copy", "invitation_letter", "company_registration", "flight_booking", "insurance"]', 1, NOW(), NOW());
 
 -- Insert visa types translations
 -- Note: visa_type_id should start from 3 since we already have 2 from the previous migration
@@ -269,66 +269,66 @@ INSERT INTO "visa_types_i18n" ("visa_type_id", "locale", "name", "description", 
 
 -- Insert visa eligibility rules for these destinations
 -- Note: visa_eligibility_id should start from 5 since we already have 4 from the previous migration
-INSERT INTO "visa_eligibility" ("destination_id", "passport_id", "visa_type_id", "eligibility_status", "max_stay_days", "last_updated", "is_active", "created_at", "updated_at") VALUES
+INSERT INTO "visa_eligibility" ("destination_code", "passport_code", "visa_type_id", "eligibility_status", "max_stay_days", "last_updated", "is_active", "created_at", "updated_at") VALUES
 -- Japan eligibility rules
-(107, 1, 3, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- USA -> Japan Tourist
-(107, 1, 4, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- USA -> Japan Business  
-(107, 3, 3, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Japan Tourist
-(107, 3, 4, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Japan Business
+('JPN', 'USA', 3, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- USA -> Japan Tourist
+('JPN', 'USA', 4, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- USA -> Japan Business  
+('JPN', 'GBR', 3, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Japan Tourist
+('JPN', 'GBR', 4, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Japan Business
 
 -- Germany eligibility rules (Schengen)
-(151, 1, 5, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Germany Tourist
-(151, 1, 6, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Germany Business
-(151, 3, 5, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Germany Tourist (post-Brexit)
-(151, 3, 6, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Germany Business
+('DEU', 'USA', 5, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Germany Tourist
+('DEU', 'USA', 6, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Germany Business
+('DEU', 'GBR', 5, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Germany Tourist (post-Brexit)
+('DEU', 'GBR', 6, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Germany Business
 
 -- France eligibility rules (Schengen)
-(150, 1, 7, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> France Tourist
-(150, 1, 8, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> France Business
-(150, 3, 7, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> France Tourist
-(150, 3, 8, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> France Business
+('FRA', 'USA', 7, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> France Tourist
+('FRA', 'USA', 8, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> France Business
+('FRA', 'GBR', 7, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> France Tourist
+('FRA', 'GBR', 8, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> France Business
 
 -- Italy eligibility rules (Schengen)
-(156, 1, 9, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Italy Tourist
-(156, 1, 10, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Italy Business
-(156, 3, 9, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Italy Tourist
-(156, 3, 10, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Italy Business
+('ITA', 'USA', 9, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Italy Tourist
+('ITA', 'USA', 10, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Italy Business
+('ITA', 'GBR', 9, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Italy Tourist
+('ITA', 'GBR', 10, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Italy Business
 
 -- Spain eligibility rules (Schengen)
-(176, 1, 11, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Spain Tourist
-(176, 1, 12, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Spain Business
-(176, 3, 11, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Spain Tourist
-(176, 3, 12, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Spain Business
+('ESP', 'USA', 11, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Spain Tourist
+('ESP', 'USA', 12, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Spain Business
+('ESP', 'GBR', 11, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Spain Tourist
+('ESP', 'GBR', 12, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Spain Business
 
 -- Saudi Arabia eligibility rules
-(125, 1, 13, 'on_arrival', 30, NOW(), 1, NOW(), NOW()), -- USA -> Saudi Arabia Tourist
-(125, 1, 14, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Saudi Arabia Business
-(125, 3, 13, 'on_arrival', 30, NOW(), 1, NOW(), NOW()), -- UK -> Saudi Arabia Tourist
-(125, 3, 14, 'required', NULL, NOW(), 1, NOW(), NOW()), -- UK -> Saudi Arabia Business
+('SAU', 'USA', 13, 'on_arrival', 30, NOW(), 1, NOW(), NOW()), -- USA -> Saudi Arabia Tourist
+('SAU', 'USA', 14, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Saudi Arabia Business
+('SAU', 'GBR', 13, 'on_arrival', 30, NOW(), 1, NOW(), NOW()), -- UK -> Saudi Arabia Tourist
+('SAU', 'GBR', 14, 'required', NULL, NOW(), 1, NOW(), NOW()), -- UK -> Saudi Arabia Business
 
 -- Thailand eligibility rules
-(131, 1, 15, 'visa_free', 30, NOW(), 1, NOW(), NOW()), -- USA -> Thailand Tourist
-(131, 1, 16, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Thailand Business
-(131, 3, 15, 'visa_free', 30, NOW(), 1, NOW(), NOW()), -- UK -> Thailand Tourist
-(131, 3, 16, 'required', NULL, NOW(), 1, NOW(), NOW()), -- UK -> Thailand Business
+('THA', 'USA', 15, 'visa_free', 30, NOW(), 1, NOW(), NOW()), -- USA -> Thailand Tourist
+('THA', 'USA', 16, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> Thailand Business
+('THA', 'GBR', 15, 'visa_free', 30, NOW(), 1, NOW(), NOW()), -- UK -> Thailand Tourist
+('THA', 'GBR', 16, 'required', NULL, NOW(), 1, NOW(), NOW()), -- UK -> Thailand Business
 
 -- Singapore eligibility rules
-(126, 1, 17, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- USA -> Singapore Tourist
-(126, 1, 18, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- USA -> Singapore Business
-(126, 3, 17, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Singapore Tourist
-(126, 3, 18, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Singapore Business
+('SGP', 'USA', 17, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- USA -> Singapore Tourist
+('SGP', 'USA', 18, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- USA -> Singapore Business
+('SGP', 'GBR', 17, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Singapore Tourist
+('SGP', 'GBR', 18, 'visa_free', 90, NOW(), 1, NOW(), NOW()), -- UK -> Singapore Business
 
 -- India eligibility rules
-(102, 1, 19, 'eta', 90, NOW(), 1, NOW(), NOW()), -- USA -> India Tourist (e-Visa)
-(102, 1, 20, 'eta', 180, NOW(), 1, NOW(), NOW()), -- USA -> India Business (e-Visa)
-(102, 3, 19, 'eta', 90, NOW(), 1, NOW(), NOW()), -- UK -> India Tourist (e-Visa)
-(102, 3, 20, 'eta', 180, NOW(), 1, NOW(), NOW()), -- UK -> India Business (e-Visa)
+('IND', 'USA', 19, 'eta', 90, NOW(), 1, NOW(), NOW()), -- USA -> India Tourist (e-Visa)
+('IND', 'USA', 20, 'eta', 180, NOW(), 1, NOW(), NOW()), -- USA -> India Business (e-Visa)
+('IND', 'GBR', 19, 'eta', 90, NOW(), 1, NOW(), NOW()), -- UK -> India Tourist (e-Visa)
+('IND', 'GBR', 20, 'eta', 180, NOW(), 1, NOW(), NOW()), -- UK -> India Business (e-Visa)
 
 -- China eligibility rules
-(99, 1, 21, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> China Tourist
-(99, 1, 22, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> China Business
-(99, 3, 21, 'required', NULL, NOW(), 1, NOW(), NOW()), -- UK -> China Tourist
-(99, 3, 22, 'required', NULL, NOW(), 1, NOW(), NOW()); -- UK -> China Business
+('CHN', 'USA', 21, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> China Tourist
+('CHN', 'USA', 22, 'required', NULL, NOW(), 1, NOW(), NOW()), -- USA -> China Business
+('CHN', 'GBR', 21, 'required', NULL, NOW(), 1, NOW(), NOW()), -- UK -> China Tourist
+('CHN', 'GBR', 22, 'required', NULL, NOW(), 1, NOW(), NOW()); -- UK -> China Business
 
 -- Insert sample visa eligibility translations
 INSERT INTO "visa_eligibility_i18n" ("visa_eligibility_id", "locale", "notes", "created_at", "updated_at") VALUES

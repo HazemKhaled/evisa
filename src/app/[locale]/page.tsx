@@ -227,7 +227,7 @@ export default async function LocalePage({
             >
               {destinations.map(destination => (
                 <DestinationCard
-                  key={destination.id}
+                  key={destination.code}
                   destination={destination}
                   locale={locale}
                 />
