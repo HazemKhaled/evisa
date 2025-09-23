@@ -10,6 +10,7 @@ import {
 } from "@/lib/json-ld";
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
+import { generateAlternatesMetadata } from "@/lib/utils";
 
 // Enable ISR with daily revalidation for tag pages
 export const revalidate = 86400; // 24 hours
@@ -42,6 +43,12 @@ export async function generateMetadata({
   const { locale, tag } = await params;
   const { t } = await getTranslation(locale, "blog");
   const decodedTag = decodeURIComponent(tag);
+  const alternates = generateAlternatesMetadata(
+    env.baseUrl,
+    `blog/t/${encodeURIComponent(tag)}`,
+    locale,
+    languages
+  );
 
   return {
     title: t("metadata.tag_title_template", {
@@ -50,6 +57,10 @@ export async function generateMetadata({
     }),
     description: t("metadata.tag_description_template", { tag: decodedTag }),
     keywords: t("metadata.tag_keywords_template", { tag: decodedTag }),
+    alternates,
+    openGraph: {
+      url: alternates.canonical,
+    },
   };
 }
 

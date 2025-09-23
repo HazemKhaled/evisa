@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTextDirection } from "@/lib/utils";
+import { getTextDirection, generateAlternatesMetadata } from "@/lib/utils";
 import { languages, getLocaleWithRegion } from "../i18n/settings";
 import { Header, Footer } from "@/components/layout";
 import { JsonLd } from "@/components/json-ld";
@@ -10,6 +10,7 @@ import {
   generateOrganizationData,
 } from "@/lib/json-ld";
 import { getTranslation } from "../i18n";
+import { env } from "@/lib/consts";
 
 export function generateStaticParams(): { locale: string }[] {
   return languages.map(locale => ({ locale }));
@@ -22,6 +23,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { t } = await getTranslation(locale, "common");
+  const alternates = generateAlternatesMetadata(
+    env.baseUrl,
+    "",
+    locale,
+    languages
+  );
 
   return {
     title: {
@@ -30,12 +37,14 @@ export async function generateMetadata({
     },
     description: t("site.description"),
     keywords: t("site.keywords").split(", "),
+    alternates,
     openGraph: {
       type: "website",
       locale: getLocaleWithRegion(locale),
       title: t("site.ogTitle"),
       description: t("site.ogDescription"),
       siteName: t("site.title"),
+      url: alternates.canonical,
     },
     twitter: {
       card: "summary_large_image",

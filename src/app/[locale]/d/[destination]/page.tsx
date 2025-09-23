@@ -11,6 +11,8 @@ import { VisaOptionsGrid } from "@/components/ui/visa-options-grid";
 import { JsonLd } from "@/components/json-ld";
 import { generateDestinationJsonLd } from "@/lib/json-ld";
 import { languages } from "@/app/i18n/settings";
+import { generateAlternatesMetadata } from "@/lib/utils";
+import { env } from "@/lib/consts";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 
@@ -60,18 +62,27 @@ export async function generateMetadata({
     keyPrefix: "meta",
   });
 
+  const alternates = generateAlternatesMetadata(
+    env.baseUrl,
+    `d/${destination}`,
+    locale,
+    languages
+  );
+
   return {
     title: t("title", { destination: destinationData.localizedName }),
     description: t("description", {
       destination: destinationData.localizedName,
       visaCount: destinationData.totalVisaTypes,
     }),
+    alternates,
     openGraph: {
       title: t("ogTitle", { destination: destinationData.localizedName }),
       description: t("ogDescription", {
         destination: destinationData.localizedName,
         visaCount: destinationData.totalVisaTypes,
       }),
+      url: alternates.canonical,
       images: destinationData.heroImage
         ? [
             {
@@ -90,19 +101,6 @@ export async function generateMetadata({
       description: t("twitterDescription", {
         destination: destinationData.localizedName,
       }),
-    },
-    alternates: {
-      canonical: `/${locale}/d/${destination}`,
-      languages: {
-        en: `/en/d/${destination}`,
-        ar: `/ar/d/${destination}`,
-        es: `/es/d/${destination}`,
-        pt: `/pt/d/${destination}`,
-        ru: `/ru/d/${destination}`,
-        de: `/de/d/${destination}`,
-        fr: `/fr/d/${destination}`,
-        it: `/it/d/${destination}`,
-      },
     },
   };
 }

@@ -1,7 +1,8 @@
 import { type Metadata } from "next";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
-import { cn } from "@/lib/utils";
+import { cn, generateAlternatesMetadata } from "@/lib/utils";
+import { languages } from "@/app/i18n/settings";
 import { env } from "@/lib/consts";
 import { JsonLd } from "@/components/json-ld";
 import {
@@ -19,10 +20,20 @@ export async function generateMetadata({
 }: TermsPageProps): Promise<Metadata> {
   const { locale } = await params;
   const { t } = await getTranslation(locale, "pages");
+  const alternates = generateAlternatesMetadata(
+    env.baseUrl,
+    "terms",
+    locale,
+    languages
+  );
 
   return {
     title: t("terms.title"),
     description: t("terms.subtitle"),
+    alternates,
+    openGraph: {
+      url: alternates.canonical,
+    },
   };
 }
 

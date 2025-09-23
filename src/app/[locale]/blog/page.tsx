@@ -6,6 +6,7 @@ import {
   getAllBlogPosts,
 } from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
+import { generateAlternatesMetadata } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { BlogPostList } from "@/components/ui/blog-post-list";
 import { BlogSearch } from "@/components/ui/blog-search";
@@ -42,11 +43,21 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { t } = await getTranslation(locale, "blog");
+  const alternates = generateAlternatesMetadata(
+    env.baseUrl,
+    "blog",
+    locale,
+    languages
+  );
 
   return {
     title: t("title"),
     description: t("subtitle"),
     keywords: t("keywords"),
+    alternates,
+    openGraph: {
+      url: alternates.canonical,
+    },
   };
 }
 
