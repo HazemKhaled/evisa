@@ -1,5 +1,5 @@
 import { getTranslation } from "../i18n";
-import { cn, generateAlternatesMetadata } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { env } from "@/lib/consts";
 import { JsonLd } from "@/components/json-ld";
 import {
@@ -8,7 +8,6 @@ import {
   generateOrganizationData,
   generateServiceData,
 } from "@/lib/json-ld";
-import type { Metadata } from "next";
 import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
 import { getRandomVisaTypes } from "@/lib/services/visa-service";
 import { getAllBlogPosts } from "@/lib/services/blog-service";
@@ -17,22 +16,6 @@ import { VisaTypeCard } from "@/components/ui/visa-type-card";
 import { RelatedArticleCard } from "@/components/ui/related-article-card";
 
 export const revalidate = 86400; // Revalidate every 24 hours
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const alternates = generateAlternatesMetadata(env.baseUrl, "", locale);
-
-  return {
-    alternates,
-    openGraph: {
-      url: alternates.canonical,
-    },
-  };
-}
 
 export default async function LocalePage({
   params,
