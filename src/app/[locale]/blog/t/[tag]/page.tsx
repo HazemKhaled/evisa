@@ -46,8 +46,7 @@ export async function generateMetadata({
   const alternates = generateAlternatesMetadata(
     env.baseUrl,
     `blog/t/${encodeURIComponent(tag)}`,
-    locale,
-    languages
+    locale
   );
 
   return {

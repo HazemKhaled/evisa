@@ -43,12 +43,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { t } = await getTranslation(locale, "blog");
-  const alternates = generateAlternatesMetadata(
-    env.baseUrl,
-    "blog",
-    locale,
-    languages
-  );
+  const alternates = generateAlternatesMetadata(env.baseUrl, "blog", locale);
 
   return {
     title: t("title"),

@@ -1,7 +1,6 @@
 import { type Metadata } from "next";
 import { getTranslation } from "@/app/i18n";
 import { generateAlternatesMetadata } from "@/lib/utils";
-import { languages } from "@/app/i18n/settings";
 import { env } from "@/lib/consts";
 import BlogHome from "@/app/[locale]/blog/page";
 
@@ -28,8 +27,7 @@ export async function generateMetadata({
   const alternates = generateAlternatesMetadata(
     env.baseUrl,
     `d/${destination}/blog`,
-    locale,
-    languages
+    locale
   );
 
   return {

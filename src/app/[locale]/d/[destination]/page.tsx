@@ -65,8 +65,7 @@ export async function generateMetadata({
   const alternates = generateAlternatesMetadata(
     env.baseUrl,
     `d/${destination}`,
-    locale,
-    languages
+    locale
   );
 
   return {

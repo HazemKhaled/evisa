@@ -17,7 +17,6 @@ import {
 } from "@/lib/json-ld";
 import { BlogPostDetail } from "@/components/ui/blog-post-detail";
 import { generateAlternatesMetadata } from "@/lib/utils";
-import { languages } from "@/app/i18n/settings";
 
 interface BlogPostProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -56,8 +55,7 @@ export async function generateMetadata({
     const alternates = generateAlternatesMetadata(
       env.baseUrl,
       `blog/${slug}`,
-      locale,
-      languages
+      locale
     );
 
     return {

@@ -1,3 +1,4 @@
+import { languages } from "@/app/i18n/settings";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -173,12 +174,9 @@ export function generateCanonicalUrl(
  */
 export function generateLanguageAlternates(
   baseUrl: string,
-  path: string = "",
-  supportedLanguages?: string[]
+  path: string = ""
 ): Record<string, string> {
   // Default to the project's supported languages if not provided
-  const defaultLanguages = ["en", "es", "ar", "pt", "ru", "de", "fr", "it"];
-  const languages = supportedLanguages || defaultLanguages;
   const standardBaseUrl = baseUrl
     .replace(/\/$/, "")
     .replace(/^https?:\/\/www\./, "https://")
@@ -202,18 +200,13 @@ export function generateLanguageAlternates(
 export function generateAlternatesMetadata(
   baseUrl: string,
   path: string = "",
-  currentLocale: string,
-  supportedLanguages?: string[]
+  currentLocale: string
 ): {
   canonical: string;
   languages: Record<string, string>;
 } {
   const canonical = generateCanonicalUrl(baseUrl, path, currentLocale);
-  const languages = generateLanguageAlternates(
-    baseUrl,
-    path,
-    supportedLanguages
-  );
+  const languages = generateLanguageAlternates(baseUrl, path);
 
   return {
     canonical,
