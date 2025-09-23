@@ -2,7 +2,6 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 import WithBundleAnalyzer from "@next/bundle-analyzer";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-import { getBaseUrl } from "@/lib/utils/urls";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx"],
@@ -28,7 +27,7 @@ const nextConfig: NextConfig = {
     {
       source: "/:path*",
       has: [{ type: "host", value: "www.gettravelvisa.com" }],
-      destination: getBaseUrl() + "/:path*",
+      destination: process.env.NEXT_PUBLIC_SENTRY_DSN + "/:path*",
       permanent: true,
     },
   ],
