@@ -8,6 +8,8 @@ import {
 } from "@/lib/services/blog-service-client";
 import { useTranslation } from "@/app/i18n/client";
 import { ClientBlogPostCard } from "./client-blog-post-card";
+import { Button } from "./button";
+import { Input } from "./input";
 
 interface BlogSearchProps {
   locale: string;
@@ -75,7 +77,7 @@ export function BlogSearch({ locale, allPosts, className }: BlogSearchProps) {
               />
             </svg>
           </div>
-          <input
+          <Input
             type="text"
             value={query}
             onChange={e => setQuery(e.target.value)}
@@ -83,7 +85,7 @@ export function BlogSearch({ locale, allPosts, className }: BlogSearchProps) {
             className="block w-full rounded-lg border border-gray-300 bg-white px-10 py-3 text-sm placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
           />
           {query && (
-            <button
+            <Button
               onClick={handleClear}
               className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
               aria-label={t("aria.clearSearch")}
@@ -101,7 +103,7 @@ export function BlogSearch({ locale, allPosts, className }: BlogSearchProps) {
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
-            </button>
+            </Button>
           )}
         </div>
 

@@ -4,6 +4,7 @@ import { useParams, useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 import { cn, isRTL } from "@/lib/utils";
 import { languagesObj } from "@/app/i18n/settings";
+import { Button } from "./ui/button";
 
 export function LanguageSwitcher() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export function LanguageSwitcher() {
 
   return (
     <div className="relative">
-      <button
+      <Button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
           "inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
@@ -67,7 +68,7 @@ export function LanguageSwitcher() {
             clipRule="evenodd"
           />
         </svg>
-      </button>
+      </Button>
 
       {isOpen && (
         <>
@@ -84,7 +85,7 @@ export function LanguageSwitcher() {
           >
             <div className="py-1">
               {languagesObj.map(language => (
-                <button
+                <Button
                   key={language.code}
                   onClick={() => handleLanguageChange(language.code)}
                   className={cn(
@@ -112,7 +113,7 @@ export function LanguageSwitcher() {
                       />
                     </svg>
                   )}
-                </button>
+                </Button>
               ))}
             </div>
           </div>

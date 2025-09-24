@@ -14,6 +14,15 @@ import { getAllBlogPosts } from "@/lib/services/blog-service";
 import { DestinationCard } from "@/components/ui/destination-card";
 import { VisaTypeCard } from "@/components/ui/visa-type-card";
 import { RelatedArticleCard } from "@/components/ui/related-article-card";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 
@@ -83,9 +92,9 @@ export default async function LocalePage({
                 {tHero("subheadline")}
               </p>
               <div className="mt-10">
-                <button className="rounded-md bg-blue-600 px-8 py-3 text-base font-medium text-white shadow hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
+                <Button className="rounded-md bg-blue-600 px-8 py-3 text-base font-medium text-white shadow hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
                   {tCommon("buttons.startApplication")}
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -99,37 +108,61 @@ export default async function LocalePage({
             </h2>
             <div className={cn("grid grid-cols-1 gap-4 sm:grid-cols-3")}>
               <div>
-                <label
+                <Label
                   htmlFor="passport"
                   className={cn("block text-sm font-medium text-gray-700")}
                 >
                   {tCommon("forms.passportCountry")}
-                </label>
-                <select
-                  id="passport"
-                  className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none sm:text-sm"
-                >
-                  <option>{tHero("search.passportPlaceholder")}</option>
-                </select>
+                </Label>
+                <Select name="passport" required>
+                  <SelectTrigger>
+                    <SelectValue
+                      placeholder={tHero("search.passportPlaceholder")}
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="aaa">
+                      {tHero("search.passportPlaceholder")}
+                    </SelectItem>
+                    <SelectItem value="aaa">
+                      {tHero("search.passportPlaceholder")}
+                    </SelectItem>
+                    <SelectItem value="aaa">
+                      {tHero("search.passportPlaceholder")}
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div>
-                <label
+                <Label
                   htmlFor="destination"
                   className={cn("block text-sm font-medium text-gray-700")}
                 >
                   {tCommon("forms.destinationCountry")}
-                </label>
-                <select
-                  id="destination"
-                  className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none sm:text-sm"
-                >
-                  <option>{tHero("search.destinationPlaceholder")}</option>
-                </select>
+                </Label>
+                <Select name="destination">
+                  <SelectTrigger>
+                    <SelectValue
+                      placeholder={tHero("search.destinationPlaceholder")}
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="aaa">
+                      {tHero("search.destinationPlaceholder")}
+                    </SelectItem>
+                    <SelectItem value="aaa">
+                      {tHero("search.destinationPlaceholder")}
+                    </SelectItem>
+                    <SelectItem value="aaa">
+                      {tHero("search.destinationPlaceholder")}
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className={cn("flex items-end")}>
-                <button className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
+                <Button className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
                   {tHero("search.checkButton")}
-                </button>
+                </Button>
               </div>
             </div>
           </div>

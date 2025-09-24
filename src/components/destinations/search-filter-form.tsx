@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { Input } from "@/components/ui/input";
 
 interface SearchFilterFormProps {
   locale: string;
@@ -64,7 +65,7 @@ export function SearchFilterForm({
         {/* Search Input */}
         <div className="flex-1">
           <form onSubmit={handleSearchSubmit} className="relative">
-            <input
+            <Input
               type="text"
               name="search"
               placeholder={translations.searchPlaceholder}

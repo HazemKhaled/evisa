@@ -5,6 +5,7 @@ import type {
   DestinationWithVisaTypes,
 } from "@/lib/services/country-service";
 import { RequiredDocuments } from "./required-documents";
+import { Button } from "./button";
 
 interface VisaTypeDetailCardProps {
   visaType: VisaTypeInfo;
@@ -159,12 +160,12 @@ export async function VisaTypeDetailCard({
             {t("lastUpdated")}: {new Date().toLocaleDateString(locale)}
           </div>
 
-          <button
+          <Button
             type="button"
             className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-4 py-2 text-sm font-medium transition-colors"
           >
             {t("checkEligibility")}
-          </button>
+          </Button>
         </div>
       </div>
     </div>
