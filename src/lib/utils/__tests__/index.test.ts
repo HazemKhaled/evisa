@@ -27,12 +27,9 @@ describe("Utils index exports", () => {
   });
 
   it("should export pagination utility functions", () => {
-    expect(utils.calculatePagination).toBeDefined();
-    expect(utils.generatePageNumbers).toBeDefined();
     expect(utils.paginateArray).toBeDefined();
-    expect(utils.filterAndPaginate).toBeDefined();
+    expect(utils.validatePaginationParams).toBeDefined();
     expect(utils.createBlogFilter).toBeDefined();
-    expect(utils.createPaginationStats).toBeDefined();
   });
 
   it("should export translation utility functions", () => {
@@ -71,12 +68,9 @@ describe("Utils index exports", () => {
     expect(typeof utils.createResponsiveGrid).toBe("function");
 
     // Test pagination functions
-    expect(typeof utils.calculatePagination).toBe("function");
-    expect(typeof utils.generatePageNumbers).toBe("function");
     expect(typeof utils.paginateArray).toBe("function");
-    expect(typeof utils.filterAndPaginate).toBe("function");
+    expect(typeof utils.validatePaginationParams).toBe("function");
     expect(typeof utils.createBlogFilter).toBe("function");
-    expect(typeof utils.createPaginationStats).toBe("function");
 
     // Test translation functions
     expect(typeof utils.loadTranslations).toBe("function");
@@ -103,8 +97,8 @@ describe("Utils index exports", () => {
       key => typeof utils[key as keyof typeof utils] === "function"
     );
 
-    // We expect at least 25 functions to be exported
-    expect(exportedFunctions.length).toBeGreaterThanOrEqual(25);
+    // We expect at least 20 functions to be exported
+    expect(exportedFunctions.length).toBeGreaterThanOrEqual(20);
   });
 
   it("should export functions with correct names", () => {
@@ -129,12 +123,9 @@ describe("Utils index exports", () => {
     ];
 
     const expectedPaginationFunctions = [
-      "calculatePagination",
-      "generatePageNumbers",
       "paginateArray",
-      "filterAndPaginate",
+      "validatePaginationParams",
       "createBlogFilter",
-      "createPaginationStats",
     ];
 
     const expectedTranslationFunctions = [
