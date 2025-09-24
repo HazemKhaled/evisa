@@ -15,9 +15,15 @@ interface BlogSearchProps {
   locale: string;
   allPosts: BlogPostData[];
   className?: string;
+  searchPlaceholder?: string;
 }
 
-export function BlogSearch({ locale, allPosts, className }: BlogSearchProps) {
+export function BlogSearch({
+  locale,
+  allPosts,
+  className,
+  searchPlaceholder,
+}: BlogSearchProps) {
   const [query, setQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState<BlogPostData[]>([]);
@@ -81,7 +87,7 @@ export function BlogSearch({ locale, allPosts, className }: BlogSearchProps) {
             type="text"
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder={t("search.placeholder")}
+            placeholder={searchPlaceholder || t("search.placeholder")}
             className="block w-full rounded-lg border border-gray-300 bg-white px-10 py-3 text-sm placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
           />
           {query && (

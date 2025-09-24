@@ -203,7 +203,11 @@ export default async function BlogHome({
 
           {/* Search */}
           <div className="mb-12">
-            <BlogSearch allPosts={allPostsForSearch} locale={locale} />
+            <BlogSearch
+              allPosts={allPostsForSearch}
+              locale={locale}
+              searchPlaceholder={t("search.placeholder")}
+            />
           </div>
 
           <BlogPostList
