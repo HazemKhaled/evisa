@@ -53,7 +53,6 @@ import { getDb } from "../db/connection";
  */
 
 export interface Country {
-  id: number;
   code: string;
   name: string;
 }
@@ -95,7 +94,6 @@ export interface VisaTypeInfo {
  * Destination metadata for catalog listings
  */
 export interface DestinationMetadata {
-  id: number;
   code: string;
   name: string;
   localizedName: string;
@@ -139,7 +137,7 @@ export async function getCountryNames(
         name: countriesI18n.name,
       })
       .from(countries)
-      .innerJoin(countriesI18n, eq(countries.id, countriesI18n.countryId))
+      .innerJoin(countriesI18n, eq(countries.code, countriesI18n.countryCode))
       .where(
         and(
           eq(countriesI18n.locale, locale),
@@ -176,7 +174,6 @@ export async function getAllCountries(
 
     const results = await db
       .select({
-        id: countries.id,
         code: countries.code,
         name: countries.code, // Use code as fallback name since countries table doesn't have name field
         heroImage: countries.heroImage,
@@ -187,14 +184,13 @@ export async function getAllCountries(
       .leftJoin(
         countriesI18n,
         and(
-          eq(countries.id, countriesI18n.countryId),
+          eq(countries.code, countriesI18n.countryCode),
           eq(countriesI18n.locale, locale)
         )
       )
       .where(isNull(countries.deletedAt));
 
     return results.map(result => ({
-      id: result.id,
       code: result.code,
       name: result.name,
       heroImage: result.heroImage,
@@ -219,7 +215,6 @@ export async function getCountryByCode(
 
     const results = await db
       .select({
-        id: countries.id,
         code: countries.code,
         name: countries.code, // Use code as fallback name since countries table doesn't have name field
         heroImage: countries.heroImage,
@@ -231,10 +226,10 @@ export async function getCountryByCode(
         countriesI18n,
         locale
           ? and(
-              eq(countries.id, countriesI18n.countryId),
+              eq(countries.code, countriesI18n.countryCode),
               eq(countriesI18n.locale, locale)
             )
-          : eq(countries.id, countriesI18n.countryId)
+          : eq(countries.code, countriesI18n.countryCode)
       )
       .where(and(eq(countries.code, countryCode), isNull(countries.deletedAt)))
       .limit(1);
@@ -245,7 +240,6 @@ export async function getCountryByCode(
 
     const result = results[0];
     return {
-      id: result.id,
       code: result.code,
       name: result.name,
       heroImage: result.heroImage,
@@ -275,7 +269,6 @@ export async function searchCountries(
 
     const results = await db
       .select({
-        id: countries.id,
         code: countries.code,
         name: countries.code, // Use code as fallback name since countries table doesn't have name field
         heroImage: countries.heroImage,
@@ -286,7 +279,7 @@ export async function searchCountries(
       .leftJoin(
         countriesI18n,
         and(
-          eq(countries.id, countriesI18n.countryId),
+          eq(countries.code, countriesI18n.countryCode),
           eq(countriesI18n.locale, locale)
         )
       )
@@ -310,7 +303,6 @@ export async function searchCountries(
         );
       })
       .map(result => ({
-        id: result.id,
         code: result.code,
         name: result.name,
         heroImage: result.heroImage,
@@ -350,7 +342,6 @@ export async function getDestinationsListWithMetadata(
     // Build query to get countries that have either visa types or visa-free options
     const results = await db
       .select({
-        id: countries.id,
         code: countries.code,
         name: countries.code,
         localizedName: countriesI18n.name,
@@ -363,14 +354,14 @@ export async function getDestinationsListWithMetadata(
       .leftJoin(
         countriesI18n,
         and(
-          eq(countries.id, countriesI18n.countryId),
+          eq(countries.code, countriesI18n.countryCode),
           eq(countriesI18n.locale, locale)
         )
       )
       .leftJoin(
         visaTypes,
         and(
-          eq(visaTypes.destinationId, countries.id),
+          eq(visaTypes.destinationCode, countries.code),
           eq(visaTypes.isActive, true),
           isNull(visaTypes.deletedAt)
         )
@@ -378,7 +369,7 @@ export async function getDestinationsListWithMetadata(
       .leftJoin(
         visaEligibility,
         and(
-          eq(visaEligibility.destinationId, countries.id),
+          eq(visaEligibility.destinationCode, countries.code),
           inArray(visaEligibility.eligibilityStatus, [
             "visa_free",
             "on_arrival",
@@ -400,10 +391,10 @@ export async function getDestinationsListWithMetadata(
       )
       .limit(validatedLimit);
 
-    // Remove duplicates based on country ID
+    // Remove duplicates based on country code
     const uniqueResults = results.filter(
       (destination, index, arr) =>
-        arr.findIndex(d => d.id === destination.id) === index
+        arr.findIndex(d => d.code === destination.code) === index
     );
 
     // For each destination, get visa statistics
@@ -418,7 +409,7 @@ export async function getDestinationsListWithMetadata(
           .from(visaTypes)
           .where(
             and(
-              eq(visaTypes.destinationId, destination.id),
+              eq(visaTypes.destinationCode, destination.code),
               eq(visaTypes.isActive, true),
               isNull(visaTypes.deletedAt)
             )
@@ -441,7 +432,7 @@ export async function getDestinationsListWithMetadata(
           .from(visaEligibility)
           .where(
             and(
-              eq(visaEligibility.destinationId, destination.id),
+              eq(visaEligibility.destinationCode, destination.code),
               inArray(visaEligibility.eligibilityStatus, [
                 "visa_free",
                 "on_arrival",
@@ -452,7 +443,6 @@ export async function getDestinationsListWithMetadata(
           );
 
         return {
-          id: destination.id,
           code: destination.code,
           name: destination.name,
           localizedName: destination.localizedName || destination.name,
@@ -561,19 +551,19 @@ export async function getDestinationsListWithMetadataPaginated(
 
     // Get total count first
     const totalCountQuery = db
-      .selectDistinct({ id: countries.id })
+      .selectDistinct({ code: countries.code })
       .from(countries)
       .leftJoin(
         countriesI18n,
         and(
-          eq(countries.id, countriesI18n.countryId),
+          eq(countries.code, countriesI18n.countryCode),
           eq(countriesI18n.locale, locale)
         )
       )
       .leftJoin(
         visaTypes,
         and(
-          eq(visaTypes.destinationId, countries.id),
+          eq(visaTypes.destinationCode, countries.code),
           eq(visaTypes.isActive, true),
           isNull(visaTypes.deletedAt)
         )
@@ -581,7 +571,7 @@ export async function getDestinationsListWithMetadataPaginated(
       .leftJoin(
         visaEligibility,
         and(
-          eq(visaEligibility.destinationId, countries.id),
+          eq(visaEligibility.destinationCode, countries.code),
           inArray(visaEligibility.eligibilityStatus, [
             "visa_free",
             "on_arrival",
@@ -603,7 +593,6 @@ export async function getDestinationsListWithMetadataPaginated(
     // Get paginated results
     const results = await db
       .select({
-        id: countries.id,
         code: countries.code,
         name: countries.code,
         localizedName: countriesI18n.name,
@@ -616,14 +605,14 @@ export async function getDestinationsListWithMetadataPaginated(
       .leftJoin(
         countriesI18n,
         and(
-          eq(countries.id, countriesI18n.countryId),
+          eq(countries.code, countriesI18n.countryCode),
           eq(countriesI18n.locale, locale)
         )
       )
       .leftJoin(
         visaTypes,
         and(
-          eq(visaTypes.destinationId, countries.id),
+          eq(visaTypes.destinationCode, countries.code),
           eq(visaTypes.isActive, true),
           isNull(visaTypes.deletedAt)
         )
@@ -631,7 +620,7 @@ export async function getDestinationsListWithMetadataPaginated(
       .leftJoin(
         visaEligibility,
         and(
-          eq(visaEligibility.destinationId, countries.id),
+          eq(visaEligibility.destinationCode, countries.code),
           inArray(visaEligibility.eligibilityStatus, [
             "visa_free",
             "on_arrival",
@@ -644,10 +633,10 @@ export async function getDestinationsListWithMetadataPaginated(
       .limit(validatedLimit)
       .offset(validatedOffset);
 
-    // Remove duplicates based on country ID
+    // Remove duplicates based on country code
     const uniqueResults = results.filter(
       (destination, index, arr) =>
-        arr.findIndex(d => d.id === destination.id) === index
+        arr.findIndex(d => d.code === destination.code) === index
     );
 
     // For each destination, get visa statistics
@@ -662,7 +651,7 @@ export async function getDestinationsListWithMetadataPaginated(
           .from(visaTypes)
           .where(
             and(
-              eq(visaTypes.destinationId, destination.id),
+              eq(visaTypes.destinationCode, destination.code),
               eq(visaTypes.isActive, true),
               isNull(visaTypes.deletedAt)
             )
@@ -685,7 +674,7 @@ export async function getDestinationsListWithMetadataPaginated(
           .from(visaEligibility)
           .where(
             and(
-              eq(visaEligibility.destinationId, destination.id),
+              eq(visaEligibility.destinationCode, destination.code),
               inArray(visaEligibility.eligibilityStatus, [
                 "visa_free",
                 "on_arrival",
@@ -696,7 +685,6 @@ export async function getDestinationsListWithMetadataPaginated(
           );
 
         return {
-          id: destination.id,
           code: destination.code,
           name: destination.name,
           localizedName: destination.localizedName || destination.name,
@@ -781,7 +769,7 @@ export async function getDestinationContinents(
       .leftJoin(
         visaTypes,
         and(
-          eq(visaTypes.destinationId, countries.id),
+          eq(visaTypes.destinationCode, countries.code),
           eq(visaTypes.isActive, true),
           isNull(visaTypes.deletedAt)
         )
@@ -789,7 +777,7 @@ export async function getDestinationContinents(
       .leftJoin(
         visaEligibility,
         and(
-          eq(visaEligibility.destinationId, countries.id),
+          eq(visaEligibility.destinationCode, countries.code),
           inArray(visaEligibility.eligibilityStatus, [
             "visa_free",
             "on_arrival",
@@ -857,7 +845,6 @@ export async function getDestinationDetails(
     // Get destination country information
     const destinationResults = await db
       .select({
-        id: countries.id,
         code: countries.code,
         name: countries.code,
         localizedName: countriesI18n.name,
@@ -874,7 +861,7 @@ export async function getDestinationDetails(
       .leftJoin(
         countriesI18n,
         and(
-          eq(countries.id, countriesI18n.countryId),
+          eq(countries.code, countriesI18n.countryCode),
           eq(countriesI18n.locale, locale)
         )
       )
@@ -916,7 +903,7 @@ export async function getDestinationDetails(
       )
       .where(
         and(
-          eq(visaTypes.destinationId, destination.id),
+          eq(visaTypes.destinationCode, destination.code),
           eq(visaTypes.isActive, true),
           isNull(visaTypes.deletedAt)
         )
@@ -931,7 +918,7 @@ export async function getDestinationDetails(
       .from(visaEligibility)
       .where(
         and(
-          eq(visaEligibility.destinationId, destination.id),
+          eq(visaEligibility.destinationCode, destination.code),
           inArray(visaEligibility.eligibilityStatus, [
             "visa_free",
             "on_arrival",
@@ -1008,7 +995,6 @@ export async function getCountriesByCodes(
 
     const results = await db
       .select({
-        id: countries.id,
         code: countries.code,
         name: countries.code, // Use code as fallback name since countries table doesn't have name field
         heroImage: countries.heroImage,
@@ -1019,7 +1005,7 @@ export async function getCountriesByCodes(
       .leftJoin(
         countriesI18n,
         and(
-          eq(countries.id, countriesI18n.countryId),
+          eq(countries.code, countriesI18n.countryCode),
           eq(countriesI18n.locale, locale)
         )
       )
@@ -1031,7 +1017,6 @@ export async function getCountriesByCodes(
     const countryMap = new Map<string, CountryWithI18n>();
     results.forEach(result => {
       countryMap.set(result.code, {
-        id: result.id,
         code: result.code,
         name: result.name,
         heroImage: result.heroImage,

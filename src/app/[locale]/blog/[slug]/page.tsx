@@ -16,6 +16,7 @@ import {
   generateBreadcrumbData,
 } from "@/lib/json-ld";
 import { BlogPostDetail } from "@/components/ui/blog-post-detail";
+import { generateAlternatesMetadata } from "@/lib/utils";
 
 interface BlogPostProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -51,11 +52,18 @@ export async function generateMetadata({
       };
     }
 
+    const alternates = generateAlternatesMetadata(
+      env.baseUrl,
+      `blog/${slug}`,
+      locale
+    );
+
     return {
       title: blogPost.title,
       description: blogPost.description,
       keywords: blogPost.tags?.join(", "),
       authors: blogPost.author ? [{ name: blogPost.author }] : undefined,
+      alternates,
       openGraph: {
         title: blogPost.title,
         description: blogPost.description,
@@ -64,6 +72,7 @@ export async function generateMetadata({
         publishedTime: blogPost.publishedAt,
         modifiedTime: blogPost.lastUpdated,
         tags: blogPost.tags,
+        url: alternates.canonical,
       },
       twitter: {
         card: "summary_large_image",

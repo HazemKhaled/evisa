@@ -20,7 +20,7 @@ La cocina de Italia varía dramáticamente de norte a sur, cada región orgullos
 **Piamonte (Turín)**
 
 - **Agnolotti del Plin**: Pequeños paquetes de pasta rellena con carne
-- **Platos de trufa*', 1757819668, 1757819668),
+- **Platos de trufa*', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (102, 6, 'es', 'Guía de Museos Culturales de Europa: Arte, Historia y Patrimonio Cultural', 'Explora los museos más prestigiosos de Europa e instituciones culturales. Guía completa de arte, historia y patrimonio cultural a través de museos europeos.', 'Europa es el museo al aire libre más grande del mundo, hogar de milenios de civilización humana, logro artístico y evolución cultural. Desde templos griegos antiguos hasta galerías de arte contemporáneo, el continente ofrece un viaje sin paralelo a través de la creatividad humana y significado histórico.
 
 ## Francia: Capital Artística del Mundo
@@ -42,7 +42,7 @@ El museo de arte más grande del mundo e institución cultural más visitada.
 
 - **Reserva anticipada**: Esencial para evitar colas largas
 - **Mejores horarios**: Horarios temprano en la mañana o tarde
-- **Planificación estratégica**: Enfócate en alas', 1757819668, 1757819668),
+- **Planificación estratégica**: Enfócate en alas', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (103, 7, 'es', 'Festivales y Eventos Estacionales de Europa: Guía Completa de Celebraciones Culturales', 'Descubre los festivales más vibrantes de Europa y eventos estacionales durante todo el año. Guía completa de celebraciones culturales y experiencias estacionales a través de Europa.', 'El calendario de festivales de Europa es una celebración durante todo el año de cultura, música, comida y tradición. Desde celebraciones religiosas ancestrales hasta festivales de artes contemporáneas de vanguardia, el continente ofrece una gama infinita de eventos que proporcionan perspectivas profundas sobre culturas locales y crean experiencias de viaje inolvidables.
 
 ## Festivales de Primavera (Marzo - Mayo)
@@ -62,7 +62,7 @@ La celebración irlandesa más famosa del mundo se extiende mucho más allá de 
 
 **Celebraciones Internacionales:**
 
-- **Londres**: Celebraciones de gran com', 1757819668, 1757819668),
+- **Londres**: Celebraciones de gran com', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (104, 8, 'es', 'Consejos de Transporte y Viaje de Europa: Guía Completa para Moverse por Europa', 'Domina el transporte europeo con nuestra guía completa de trenes, autobuses, vuelos y transporte local. Consejos esenciales para viajes sin problemas a través de Europa.', 'Europa cuenta con la red de transporte más sofisticada e interconectada del mundo, haciendo que los viajes continentales sean accesibles, eficientes y a menudo agradables. Desde trenes de alta velocidad cruzando fronteras internacionales hasta aerolíneas económicas conectando ciudades distantes, dominar el transporte europeo abre posibilidades de exploración ilimitadas.
 
 ## Red Ferroviaria Europea: La Columna Vertebral del Viaje Continental
@@ -78,7 +78,7 @@ La infraestructura ferroviaria de alta velocidad de Europa representa la cima de
 - **TGV Sud-Est**: París a Lyon, continuando a la costa mediterránea
 - **TGV Atlantique**: París al oeste de Francia (Nantes, Burdeos)
 - **TGV Nord**: París al norte de Francia, Bélgica y Países Bajos
-- **TGV Euroduplex**: Trenes de dos pisos para ru', 1757819668, 1757819668),
+- **TGV Euroduplex**: Trenes de dos pisos para ru', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (105, 9, 'es', 'Guía de Visa de Negocios de Japón: Proceso Completo de Solicitud y Requisitos', 'Navega el proceso de solicitud de visa de negocios de Japón con nuestra guía completa. Información esencial para viajeros de negocios y empresarios que visitan Japón.', '¿Planeas un viaje de negocios a Japón? Ya sea que asistas a reuniones, conferencias o explores oportunidades de asociación, entender los requisitos de visa de negocios de Japón es crucial para un viaje sin contratiempos.
 
 ## Tipos de Visas de Negocios de Japón
@@ -105,4 +105,4 @@ La infraestructura ferroviaria de alta velocidad de Europa representa la cima de
 2. **Formulario de Solicitud de Visa**: Completado y firmado
 3. **Carta Comercial**: De tu empresa explicando el propósito
 4. **Carta de Invitación**: De empresa u organización japonesa
-5. **Certificado de Elegibilidad**:', 1757819668, 1757819668);
+5. **Certificado de Elegibilidad**:', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

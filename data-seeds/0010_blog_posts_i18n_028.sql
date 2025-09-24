@@ -4,12 +4,12 @@ INSERT INTO blog_posts_i18n (id, post_id, locale, title, description, content, c
 
 Les festivals et événements saisonniers Europe offrent fenêtres extraordinaires âme culturelle continent, où traditions ancestrales rencontrent célébrations contemporaines pour créer expériences définissent identité européenne. Depuis festivals musique attirent millions jusqu''à célébrations locales intimes ont continué siècles, ces événements fournissent opportunités incomparables immersion culturelle et compréhension traditions diverses rendent Europe mosaïque culturelle si riche.
 
-**Prêt expérimenter magie festivals européens ?** Nos spécialistes festivals culturels peuvent vous aider planifier voyage autour ces célébrations spectaculaires, depuis festivals musique', 1757819668, 1757819668),
+**Prêt expérimenter magie festivals européens ?** Nos spécialistes festivals culturels peuvent vous aider planifier voyage autour ces célébrations spectaculaires, depuis festivals musique', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (137, 8, 'fr', 'Conseils Transport et Voyage Europe : Guide Complet Se Déplacer Europe', 'Maîtrisez transport européen avec notre guide complet trains, bus, vols et transport local. Conseils essentiels voyage fluide à travers Europe.', 'L''Europe se vante réseau transport plus sophistiqué et interconnecté monde, rendant voyages continentaux accessibles, efficaces et souvent agréables. Depuis trains haute vitesse traversant frontières internationales jusqu''à compagnies aériennes budget connectant villes distantes, maîtriser transport européen ouvre possibilités exploration illimitées.
 
 Le transport européen offre liberté incomparable explorer diversité culturelle, beauté paysagère et richesse historique continent votre propre rythme. Depuis efficacité trains haute vitesse jusqu''à flexibilité voyages bus, depuis commodité vols budget jusqu''à charme systèmes transport locaux, maîtriser ces options transport permet créer itinéraires parfaits maximisent efficacité et plaisir.
 
-**Prêt naviguer Europe comme voyageur expérimenté ?** Nos spécialistes transport européen peuvent vous aider optimiser stratégie voyage, depuis choisir meilleures options transport jusqu''à éviter pièges communs, assurant exploration européenne soit fl', 1757819668, 1757819668),
+**Prêt naviguer Europe comme voyageur expérimenté ?** Nos spécialistes transport européen peuvent vous aider optimiser stratégie voyage, depuis choisir meilleures options transport jusqu''à éviter pièges communs, assurant exploration européenne soit fl', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (138, 9, 'fr', 'Guide du Visa d''Affaires du Japon : Processus de Demande Complet et Exigences', 'Naviguez dans le processus de demande de visa d''affaires du Japon avec notre guide complet. Informations essentielles pour les voyageurs d''affaires et entrepreneurs visitant le Japon.', 'Planifiez-vous un voyage d''affaires au Japon ? Que vous assistiez à des réunions, conférences ou exploriez des opportunités de partenariat, comprendre les exigences de visa d''affaires du Japon est crucial pour un voyage en douceur.
 
 ## Types de Visas d''Affaires du Japon
@@ -36,7 +36,7 @@ Le transport européen offre liberté incomparable explorer diversité culturell
 2. **Formulaire de Demande de Visa** : Complété et signé
 3. **Lettre Commerciale** : De votre entreprise expliquant l''objectif
 4. **Lettre d''Invitation** : D''entreprise ou organisation japonaise
-5. **Certificat d''Éligibilité** : Req', 1757819668, 1757819668),
+5. **Certificat d''Éligibilité** : Req', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (139, 10, 'fr', 'Guide des Expériences Culturelles du Japon : Culture Traditionnelle et Traditions Modernes', 'Plongez dans le riche patrimoine culturel du Japon des cérémonies de thé traditionnelles à la culture pop moderne. Guide complet des expériences culturelles et traditions à travers le Japon.', 'Le Japon offre un mélange incroyable de traditions anciennes et d''innovations modernes. Pour les visiteurs pour la première fois, vivre la culture japonaise authentique est souvent le point culminant de leur voyage. Voici les principales expériences culturelles à ne pas manquer.
 
 ## 1. Cérémonie de Thé Traditionnelle (Chanoyu)
@@ -62,7 +62,7 @@ La cérémonie du thé japonaise est une pratique méditative centrée sur la pr
 - Habillez-vous modestement et confortablement
 - Retirez chaussures avant d''entrer dans la salle de thé
 - Suivez attentivement les conseils de votre hôte
-- App', 1757819668, 1757819668),
+- App', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (140, 11, 'fr', 'Guide Alimentaire Ultime du Japon : Un Voyage Culinaire à Travers les Spécialités Régionales', 'Explorez l''incroyable paysage culinaire du Japon du sushi à Tokyo au ramen à Sapporo. Guide complet des plats à essayer absolument et où les trouver.', 'La cuisine japonaise s''étend bien au-delà du sushi et du ramen. Des stands de nourriture de rue aux restaurants étoilés Michelin, le Japon offre l''une des expériences culinaires les plus diverses et raffinées au monde. Ce guide complet explore les spécialités régionales, l''étiquette gastronomique et les expériences alimentaires incontournables.
 
 ## Tokyo : La Capitale Culinaire
@@ -86,4 +86,4 @@ Le berceau du sushi moderne, Tokyo offre les meilleures expériences de sushi au
 - Œufs de saumon (ikura) - explosion de saveur saumâtre
 - Maquereau (saba) - correctement séché et assaisonné
 
-#### Variations de', 1757819668, 1757819668);
+#### Variations de', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

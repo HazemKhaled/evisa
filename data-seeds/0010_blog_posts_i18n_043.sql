@@ -13,7 +13,7 @@ O projeto principal do NEOM, The Line, representa uma reimaginação completa da
 **Planejamento Urbano Revolucionário**
 
 - **Comprimento**: 170 quilômetros de desenvolvimento urbano contínuo
-- **Altura**: 500 ', 1757819668, 1757819668),
+- **Altura**: 500 ', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (212, 19, 'pt', 'Requisitos de Visto Schengen: Sua Porta de Entrada para 27 Países Europeus', 'Aprenda tudo sobre os requisitos de visto Schengen, processo de solicitação e dicas para visitar 27 países europeus com um único visto.', 'O visto Schengen é seu bilhete para explorar 27 países europeus com uma única solicitação de visto. Dos românticos canais de Veneza às Luzes do Norte na Noruega, este guia abrangente o ajudará a navegar pelo processo de visto Schengen.
 
 ## O que é a Área Schengen?
@@ -35,12 +35,12 @@ A Área Schengen consiste em 27 países europeus que aboliram os controles de fr
 - **Propósito**: Turismo, negócios, visitas familiares, tratamento médico
 - **Mais comum**: Vistos de turista e negócios
 
-', 1757819668, 1757819668),
+', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (213, 20, 'pt', 'Guia Aventura Terras Altas Escócia: Experiências Épicas Ar Livre e Cultura Terras Altas', 'Descubra magia Terras Altas escocesas com nosso guia abrangente aventuras ar livre, experiências culturais e maravilhas naturais através Terras Altas.', 'As Terras Altas da Escócia representam uma das últimas grandes terras selvagens da Europa, onde montanhas ancestrais se erguem de lagos envoltos em névoa, castelos históricos coroam penhascos dramáticos, e a cultura das Terras Altas vive através de música, tradições e hospitalidade calorosa. Desde picos Munro desafiadores até caminhadas suaves pelos vales, desde destilarias de whisky até Jogos das Terras Altas, a região oferece aventuras ao ar livre sem paralelo em meio a alguns dos cenários mais espetaculares do mundo.
 
 As Terras Altas da Escócia oferecem uma mistura extraordinária de aventura natural, imersão cultural e beleza paisagística que define a experiência escocesa definitiva. Desde conquistar picos Munro até explorar castelos ancestrais, desde degustações de whisky até festivais culturais, essas terras selvagens proporcionam aventuras transformadoras que conectam visitantes com a essência selvagem e espírito indomável da Escócia.
 
-**Pronto para explorar as majestosas Terras ', 1757819668, 1757819668),
+**Pronto para explorar as majestosas Terras ', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (214, 21, 'pt', 'Guia Cultura Abu Dhabi: Patrimônio, Artes e Experiências Culturais na Capital', 'Descubra rica herança cultural Abu Dhabi desde artes tradicionais até museus modernos. Guia completo experiências culturais e sítios patrimônio capital EAU.', 'Abu Dhabi se destaca como a pulsação cultural dos Emirados Árabes Unidos, onde tradições beduínas antigas se misturam perfeitamente com inovação artística de ponta. Como capital da nação e maior emirado, Abu Dhabi investiu pesadamente em preservar sua herança enquanto se posiciona como destino cultural global. Desde a deslumbrante Mesquita Sheikh Zayed até museus de classe mundial e sítios patrimoniais tradicionais, o emirado oferece insights profundos sobre cultura árabe, arte islâmica e a transformação notável da região do Golfo.
 
 ## Arquitetura Islâmica e Patrimônio Religioso
@@ -55,9 +55,9 @@ A Grande Mesquita Sheikh Zayed representa o ápice da arquitetura islâmica e se
 
 - **Capacidade**: Acomoda 40.000+ fiéis simultaneamente
 - **Cúpulas**: 82 cúpulas em sete tamanhos diferentes adornadas com mármore pentélico
-', 1757819668, 1757819668),
+', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (215, 22, 'pt', 'Guia Aventuras Deserto EAU: Experiências Deserto Épicas e Atividades Ar Livre', 'Experimente magia deserto EAU com nosso guia abrangente safaris deserto, camping e aventuras ar livre através Emirados.', 'Os Emirados Árabes Unidos oferecem algumas das paisagens desérticas mais espetaculares do mundo e aventuras ao ar livre emocionantes. Desde as imponentes dunas vermelhas do Rub al Khali (Quarto Vazio) até as areias brancas pristinas da Região Ocidental de Abu Dhabi, os diversos ambientes desérticos dos EAU proporcionam oportunidades infinitas para buscadores de aventura e entusiastas da natureza.
 
 As aventuras do deserto dos EAU oferecem oportunidades incomparáveis para experimentar a beleza natural bruta e a rica herança cultural da Península Arábica. Desde aventuras de dune bashing que bombeiam adrenalina até experiências contemplativas de camping sob as estrelas, essas paisagens desérticas proporcionam o pano de fundo perfeito para aventuras inesquecíveis que combinam emoção com imersão cultural.
 
-**Pronto para embarcar em aventuras épicas do deserto dos EAU?** Nossos especialistas em aventuras do deserto podem ajudá-lo a planejar experiências emocionantes que equilibram aventura co', 1757819668, 1757819668);
+**Pronto para embarcar em aventuras épicas do deserto dos EAU?** Nossos especialistas em aventuras do deserto podem ajudá-lo a planejar experiências emocionantes que equilibram aventura co', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

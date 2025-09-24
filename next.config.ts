@@ -1,6 +1,7 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 import WithBundleAnalyzer from "@next/bundle-analyzer";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx"],
@@ -20,6 +21,14 @@ const nextConfig: NextConfig = {
     {
       source: "/:locale/blog/sitemap.xml",
       destination: "/:locale/blog/sitemap/:locale.xml",
+    },
+  ],
+  redirects: async () => [
+    {
+      source: "/:path*",
+      has: [{ type: "host", value: "www.gettravelvisa.com" }],
+      destination: process.env.NEXT_PUBLIC_BASE_URL + "/:path*",
+      permanent: true,
     },
   ],
 };
@@ -71,5 +80,4 @@ export default withBundleAnalyzer(
 );
 
 // added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 initOpenNextCloudflareForDev();

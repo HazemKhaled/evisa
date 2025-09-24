@@ -27,7 +27,7 @@ La ceremonia del té japonesa es una práctica meditativa centrada en la prepara
 - Sigue la guía de tu anfitrión cuidadosamente
 - Aprecia los elementos estacionales y utensilios
 
-## 2.', 1757819668, 1757819668),
+## 2.', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (107, 11, 'es', 'Guía Definitiva de Comida de Japón: Un Viaje Culinario a Través de Especialidades Regionales', 'Explora el increíble paisaje culinario de Japón desde sushi en Tokio hasta ramen en Sapporo. Guía completa de platos imperdibles y dónde encontrarlos.', 'La cocina japonesa se extiende mucho más allá del sushi y ramen. Desde puestos de comida callejera hasta restaurantes con estrellas Michelin, Japón ofrece una de las experiencias culinarias más diversas y refinadas del mundo. Esta guía completa explora especialidades regionales, etiqueta gastronómica y experiencias alimentarias imperdibles.
 
 ## Tokio: La Capital Culinaria
@@ -52,7 +52,7 @@ El lugar de nacimiento del sushi moderno, Tokio ofrece las mejores experiencias 
 - Caballa (saba) - apropiadamente curada y sazonada
 
 #### Variaciones de Ramen
-', 1757819668, 1757819668),
+', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (108, 12, 'es', 'Guía de Visa de Turista para Japón: Proceso de Solicitud Completo y Requisitos', 'Navega el proceso de solicitud de visa de turista para Japón con nuestra guía completa. Información esencial para turistas que planean visitar Japón.', '¿Planeas un viaje a la Tierra del Sol Naciente? Japón ofrece experiencias increíbles desde las bulliciosas calles de Tokio hasta los serenos templos de Kioto, pero primero, necesitarás navegar los requisitos de visa.
 
 ## ¿Necesito una Visa para Japón?
@@ -70,7 +70,7 @@ La respuesta depende de tu nacionalidad y el propósito de tu visita:
 2. **Formulario de Solicitud**: Completa el formulario de solicitud de visa para Japón
 3. **Fotografías**: Fotos recientes tamaño pasaporte (4.5cm x 4.5cm)
 4. **Itinerario de Vuelo**: Reservaciones de vuelo de ida y vuelta
-5. **Comprobante de Alojamiento**: Reservaciones de hotel o carta de inv', 1757819668, 1757819668),
+5. **Comprobante de Alojamiento**: Reservaciones de hotel o carta de inv', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (109, 13, 'es', 'Atracciones de Londres y Gemas Ocultas: Guía Completa de Lugares Imperdibles y Sitios Secretos', 'Descubre las atracciones más icónicas de Londres y gemas ocultas con nuestra guía completa. Desde monumentos famosos hasta lugares secretos, explora lo mejor de las atracciones de Londres.', 'Londres, una ciudad donde la historia ancestral se encuentra con la innovación de vanguardia, ofrece una riqueza inagotable de atracciones que van desde monumentos mundialmente famosos hasta espacios secretos conocidos solo por locales. Desde las joyas de la corona de la Torre de Londres hasta speakeasies ocultos en sótanos victorianos, desde la grandeza del Palacio de Buckingham hasta pequeñas plazas de jardín escondidas entre calles bulliciosas, Londres recompensa tanto a visitantes primerizos como a exploradores experimentados con descubrimientos infinitos.
 
 ## Atracciones Icónicas de Londres: Los Imperdibles Esenciales
@@ -84,7 +84,7 @@ La sede de trabajo de la monarquía británica y la residencia real más reconoc
 **Experiencias Esenciales:**
 
 - **Tour de Salas de Estado**: Apertura de verano (julio-octubre) revela salas de recepción opulentas
-- **Cambio de Guardia**: Ceremonia icónica a las 11:00 AM en días programados', 1757819668, 1757819668),
+- **Cambio de Guardia**: Ceremonia icónica a las 11:00 AM en días programados', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (110, 14, 'es', 'Guía de Europa Multi-País: Planificando Aventuras Épicas Multi-Destino Europeas', 'Domina el arte del viaje europeo multi-país con nuestra guía completa. Consejos esenciales para planificar aventuras épicas a través de múltiples destinos europeos.', '¡Planificar un viaje que abarca múltiples países puede ser la aventura de toda una vida! Esta guía completa te ayudará a navegar las complejidades de visitar Alemania, Reino Unido y EAU en un viaje increíble.
 
 ## ¿Por Qué Viajar Multi-Destino?
@@ -112,4 +112,4 @@ El viaje multi-destino ofrece ventajas increíbles:
 
 ### Emiratos Árabes Unidos 🇦🇪
 
-- **Mej', 1757819668, 1757819668);
+- **Mej', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

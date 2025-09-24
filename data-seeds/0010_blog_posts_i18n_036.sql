@@ -8,7 +8,7 @@ INSERT INTO blog_posts_i18n (id, post_id, locale, title, description, content, c
 
 #### Significato Geografico e Culturale
 
-Il Rub al Khali si estende per 650.000 chilometri quadrati attraverso l''Arabia Saudita, rendendolo il più grande deserto sabbioso continuo del mondo e una delle destinazioni di avventura c', 1757819668, 1757819668),
+Il Rub al Khali si estende per 650.000 chilometri quadrati attraverso l''Arabia Saudita, rendendolo il più grande deserto sabbioso continuo del mondo e una delle destinazioni di avventura c', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (177, 16, 'it', 'Guida Siti Storici Arabia Saudita: Meraviglie Antiche e Tesori Archeologici', 'Esplora la ricca eredità storica dell''Arabia Saudita dalle rovine antiche alle meraviglie archeologiche. Guida completa ai siti storici e tesori culturali attraverso il Regno.', 'L''Arabia Saudita si erge come una delle destinazioni archeologicamente più significative del Medio Oriente, ospitando millenni di civiltà umana attraverso i suoi vasti deserti e antiche rotte commerciali. Il regno preserva siti storici straordinari che spaziano dalle gallerie d''arte rupestre preistorica alle città nabatee sofisticate, capolavori architettonici islamici e la culla dello stato saudita moderno.
 
 ## Mada''in Salih (Hegra): La Città Rosa dell''Arabia
@@ -23,7 +23,7 @@ Mada''in Salih rappresenta il sito archeologico più significativo in Arabia Sau
 
 - **Eredità nabatea**: Città principale del regno nabateo (I secolo a.C. - I secolo d.C.)
 - **Importanza rotta commerciale**: Fermata critica su antiche rotte commerciali incenso e spezie
-- **Croc', 1757819668, 1757819668),
+- **Croc', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (178, 17, 'it', 'Guida Città Moderne Arabia Saudita: Sviluppo Urbano e Cultura Contemporanea', 'Scopri città moderne Arabia Saudita e sviluppo urbano da Riyadh a Jeddah. Guida completa cultura contemporanea e esperienze urbane attraverso Regno.', 'La trasformazione urbana dell''Arabia Saudita rappresenta uno degli sforzi di modernizzazione più drammatici nel Medio Oriente contemporaneo, dove la cultura araba tradizionale si fonde perfettamente con architettura all''avanguardia, affari internazionali e esperienze di stile di vita cosmopolita. Le principali città del regno—Riyadh, la capitale politica e commerciale, e Jeddah, la porta commerciale e centro culturale—mostrano l''ambiziosa iniziativa Visione 2030 attraverso grattacieli imponenti, luoghi culturali di classe mondiale, scene gastronomiche innovative e distretti di intrattenimento vibranti.
 
 ## Riyadh: Rinascimento Moderno Capitale
@@ -36,7 +36,7 @@ Il Distretto Finanziario Re Abdullah rappresenta la trasformazione di Riyadh in 
 
 **Infrastruttura Commerciale**
 
-- **Grattacieli moderni**: 59 tor', 1757819668, 1757819668),
+- **Grattacieli moderni**: 59 tor', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (179, 18, 'it', 'Guida Turismo Visione 2030 Arabia Saudita: Futuro Viaggio e Sviluppo', 'Scopri le ambiziose iniziative turistiche Visione 2030 dell''Arabia Saudita e piani sviluppo futuro. Guida completa prossime attrazioni e trasformazione turistica.', 'L''Arabia Saudita sta attraversando la trasformazione più ambiziosa nella storia moderna del Medio Oriente attraverso Visione 2030, il piano rivoluzionario del Principe Ereditario Mohammed bin Salman per diversificare l''economia del regno e creare una destinazione turistica di classe mondiale. Questa iniziativa completa comprende megaprogetti da trilioni di dollari che stanno rimodellando il paesaggio del regno, dalla futuristica città intelligente NEOM lungo la costa del Mar Rosso agli sviluppi di resort di lusso e complessi di intrattenimento massicci.
 
 ## NEOM: Il Futuro Inizia Qui
@@ -50,7 +50,7 @@ Il progetto di punta di NEOM, The Line, rappresenta una completa reimmaginazione
 **Pianificazione Urbana Rivoluzionaria**
 
 - **Lunghezza**: 170 chilometri di sviluppo urbano continuo
-- **Altezza', 1757819668, 1757819668),
+- **Altezza', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (180, 19, 'it', 'Requisiti Visto Schengen: La Tua Porta d''Accesso a 27 Paesi Europei', 'Impara tutto sui requisiti del visto Schengen, processo di domanda e consigli per visitare 27 paesi europei con un unico visto.', 'Il visto Schengen è il tuo biglietto per esplorare 27 paesi europei con una singola domanda di visto. Dai romantici canali di Venezia alle luci del nord in Norvegia, questa guida completa ti aiuterà a navigare nel processo del visto Schengen.
 
 ## Cos''è l''Area Schengen?
@@ -70,4 +70,4 @@ L''Area Schengen consiste in 27 paesi europei che hanno abolito i controlli alle
 
 - **Durata**: Fino a 90 giorni entro 180 giorni
 - **Scopo**: Turismo, affari, visite familiari, trattamento medico
-- **Più comune**:', 1757819668, 1757819668);
+- **Più comune**:', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

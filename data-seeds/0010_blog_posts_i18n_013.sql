@@ -4,17 +4,17 @@ INSERT INTO blog_posts_i18n (id, post_id, locale, title, description, content, c
 
 Die amerikanische Esskultur bietet eine außergewöhnliche Reise durch regionale Geschmäcker, Immigrationstraditionen und kulinarische Innovation, die die Vielfalt und Kreativität der Nation widerspiegelt. Von den tief verwurzelten Soul-Food-Traditionen des Südens bis zu den avantgardistischen Trends der Küsten erzählt jede Region ihre einzigartige Geschichte durch charakteristische Zutaten, Kochtechniken und gastronomische Erfahrungen, die den Geist Amerikas einfangen.
 
-**Bereit, Amerikas vielfältige kulinarische Landschaft zu erkunden?** Unsere regionalen Essens-Spezialisten können Ihnen helfen,', 1757819668, 1757819668),
+**Bereit, Amerikas vielfältige kulinarische Landschaft zu erkunden?** Unsere regionalen Essens-Spezialisten können Ihnen helfen,', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (62, 30, 'de', 'USA Nationalparks Abenteuer Leitfaden: Epische Wildnis-Erfahrungen und Outdoor-Aktivitäten', 'Entdecken Sie Amerikas spektakulärste Nationalparks mit unserem umfassenden Leitfaden zu Wandern, Wildtierbeobachtung, Camping und Outdoor-Abenteuern durch die Vereinigten Staaten.', 'Das Nationalpark-System der Vereinigten Staaten schützt einige der spektakulärsten Landschaften der Erde, von ragenden Berggipfeln bis zu antiken Wüsten, unberührten Küstenlinien bis zu sprudelnden Geysiren. Mit 63 designierten Nationalparks, die vielfältige Ökosysteme und Klimas umspannen, bieten Amerikas Parks unvergleichliche Möglichkeiten für Abenteuer, Wildtierbeobachtung und Verbindung mit der Natur.
 
 Amerikas Nationalparks bieten transformierende Erfahrungen, die Besucher mit roher natürlicher Schönheit und ökologischer Vielfalt verbinden, die den nordamerikanischen Kontinent definiert. Von den geothermalen Wundern Yellowstones bis zu den Wüstenlandschaften Utahs, von den dramatischen Küsten Kaliforniens bis zu den Bergen Alaskas bieten diese geschützten Landschaften Abenteuer, die Respekt für die natürliche Welt inspirieren und Verständnis für die Bedeutung des Naturschutzes.
 
-**Bereit, Amerikas Naturwunder zu erkunden?** Unsere Nationalpark-Spezialisten können Ihnen helfen, ep', 1757819668, 1757819668),
+**Bereit, Amerikas Naturwunder zu erkunden?** Unsere Nationalpark-Spezialisten können Ihnen helfen, ep', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (63, 31, 'de', 'Ultimativer USA Road Trip Planungs-Leitfaden: Epische Routen und Wesentliche Tipps für Amerikanische Highway-Abenteuer', 'Planen Sie den perfekten amerikanischen Road Trip mit unserem umfassenden Leitfaden zu ikonischen Routen, wesentlichen Stopps, Budget-Tipps und praktischen Ratschlägen für unvergessliche Highway-Abenteuer durch die Vereinigten Staaten.', 'Der amerikanische Road Trip repräsentiert Freiheit, Abenteuer und die offene Straße, die sich endlos zum Horizont erstreckt. Von Küste-zu-Küste-Reisen über 3,000+ Meilen bis zu landschaftlichen Schleifen durch Nationalparks bieten die Vereinigten Staaten einige der spektakulärsten Fahrstrecken der Welt.
 
 Der amerikanische Road Trip bietet unvergleichliche Freiheit, die Vielfalt, Schönheit und den Geist der Vereinigten Staaten in Ihrem eigenen Tempo zu entdecken. Von ikonischen Routen, die die amerikanische Kultur definieren, bis zu landschaftlichen Straßen, die verborgene Naturwunder enthüllen, bieten diese Straßenabenteuer einzigartige Perspektiven auf Landschaften, Kulturen und Gemeinschaften, die Amerika zu einem wahrhaft außergewöhnlichen Reiseziel machen.
 
-**Bereit, das ultimative amerikanische Road Trip Abenteuer zu beginnen?** Unsere Road Trip Spezialisten können Ihnen helfen, epische Routen zu planen, die ikonische Stätten mit versteckten Perlen ausbalancieren und sicherstellen', 1757819668, 1757819668),
+**Bereit, das ultimative amerikanische Road Trip Abenteuer zu beginnen?** Unsere Road Trip Spezialisten können Ihnen helfen, epische Routen zu planen, die ikonische Stätten mit versteckten Perlen ausbalancieren und sicherstellen', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (64, 32, 'de', 'USA Touristenvisum: Vollständiger Leitfaden zur Beantragung Ihres B-2 Visums', 'Entdecken Sie alles, was Sie wissen müssen, um Ihr Touristenvisum für die Vereinigten Staaten zu erhalten. Vollständiger Leitfaden zum Antragsprozess und den Anforderungen.', 'Träumen Sie davon, die Vereinigten Staaten zu besuchen? Ob um New York zu sehen, Nationalparks oder Kaliforniens Strände, Sie benötigen ein B-2 Touristenvisum. Dieser vollständige Leitfaden wird Ihnen helfen, den Prozess Schritt für Schritt zu durchlaufen.
 
 ## Benötige ich ein Visum für die USA?
@@ -42,7 +42,7 @@ Die Antwort hängt von Ihrer Staatsangehörigkeit ab:
 ### Wesentliche Dokumente
 
 1. **DS-160 Formular**: Vollständige Online-Bewerbung
-2. **Gültiger Reisepass**: Mi', 1757819668, 1757819668),
+2. **Gültiger Reisepass**: Mi', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (65, 1, 'en', 'Canada Business Visa Guide: Complete Application Process and Requirements', 'Navigate Canada''s business visa application process with our comprehensive guide. Essential information for business travelers and entrepreneurs visiting Canada.', 'Canada offers numerous opportunities for international business professionals and entrepreneurs. Whether you''re looking to expand your business, explore partnerships, or make investments, understanding Canada''s business visa requirements is essential for your success.
 
 ## Types of Canada Business Visas
@@ -74,4 +74,4 @@ For individuals who will work for a Canadian employer.
 
 #### Federal Self-Employed Persons Program
 
-For individuals', 1757819668, 1757819668);
+For individuals', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

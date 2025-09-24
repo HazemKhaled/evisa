@@ -12,7 +12,7 @@ Le District Financier Roi Abdullah représente la transformation de Riyad en cen
 
 **Infrastructure Commerciale**
 
-- **Gratte-ciel', 1757819668, 1757819668),
+- **Gratte-ciel', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (147, 18, 'fr', 'Guide Tourisme Vision 2030 Arabie Saoudite : Futur du Voyage et Développement', 'Découvrez les ambitieuses initiatives touristiques Vision 2030 d''Arabie Saoudite et plans développement futur. Guide complet prochaines attractions et transformation touristique.', 'L''Arabie Saoudite subit la transformation la plus ambitieuse de l''histoire moderne du Moyen-Orient à travers Vision 2030, le plan révolutionnaire du Prince Héritier Mohammed bin Salman pour diversifier l''économie du royaume et créer une destination touristique de classe mondiale. Cette initiative complète englobe des mégaprojets de billions de dollars qui remodèlent le paysage du royaume, de la futuriste ville intelligente NEOM le long de la côte de la Mer Rouge aux développements de resorts de luxe et complexes de divertissement massifs.
 
 ## NEOM : Le Futur Commence Ici
@@ -26,7 +26,7 @@ Le projet phare de NEOM, The Line, représente une réimagination complète de l
 **Planification Urbaine Révolutionnaire**
 
 - **Longueur** : 170 kilomètres de développement urbain continu
-- **Hauteur** : 500', 1757819668, 1757819668),
+- **Hauteur** : 500', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (148, 19, 'fr', 'Exigences de Visa Schengen : Votre Porte d''Entrée vers 27 Pays Européens', 'Apprenez tout sur les exigences de visa Schengen, le processus de demande et les conseils pour visiter 27 pays européens avec un seul visa.', 'Le visa Schengen est votre billet pour explorer 27 pays européens avec une seule demande de visa. Des canaux romantiques de Venise aux aurores boréales en Norvège, ce guide complet vous aidera à naviguer dans le processus de visa Schengen.
 
 ## Qu''est-ce que l''Espace Schengen ?
@@ -46,12 +46,12 @@ L''Espace Schengen se compose de 27 pays européens qui ont aboli les contrôles
 
 - **Durée** : Jusqu''à 90 jours dans une période de 180 jours
 - **Objectif** : Tourisme, affaires, visites familiales, traitement médical
--', 1757819668, 1757819668),
+-', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (149, 20, 'fr', 'Guide Aventure Highlands Écosse : Expériences Épiques Plein Air et Culture Highlands', 'Découvrez magie Highlands écossais avec notre guide complet aventures plein air, expériences culturelles et merveilles naturelles à travers Highlands.', 'Les Highlands écossais représentent une dernières grandes étendues sauvages Europe, où montagnes anciennes s''élèvent depuis lochs enveloppés brume, châteaux historiques couronnent falaises dramatiques, et culture Highlands vit à travers musique, traditions et hospitalité chaleureuse. Depuis pics Munro défis jusqu''à douces promenades vallées, depuis distilleries whisky jusqu''à Jeux Highlands, région offre aventures plein air sans parallèle parmi certains paysages plus spectaculaires monde.
 
 Les Highlands écossais offrent mélange extraordinaire aventure naturelle, immersion culturelle et beauté paysagère définit expérience écossaise ultime. Depuis conquérir pics Munro jusqu''à explorer châteaux ancestraux, depuis dégustations whisky jusqu''à festivals culturels, ces terres sauvages fournissent aventures transformatrices connectent visiteurs essence sauvage et esprit indomptable Écosse.
 
-**Prêt explorer majestueux Highlands écossais ?** Nos spécialistes aventures Highlands peuvent vous aide', 1757819668, 1757819668),
+**Prêt explorer majestueux Highlands écossais ?** Nos spécialistes aventures Highlands peuvent vous aide', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (150, 21, 'fr', 'Guide Culture Abu Dhabi : Patrimoine, Arts et Expériences Culturelles Capitale', 'Découvrez riche héritage culturel Abu Dhabi depuis arts traditionnels jusqu''à musées modernes. Guide complet expériences culturelles et sites patrimoine capitale EAU.', 'Abu Dhabi se dresse comme battement culturel Émirats Arabes Unis, où traditions bédouines anciennes se mélangent parfaitement innovation artistique pointe. Comme capitale nation et plus grand émirat, Abu Dhabi a investi lourdement préserver son héritage tout se positionnant destination culturelle globale. Depuis époustouflante Mosquée Sheikh Zayed jusqu''à musées classe mondiale et sites patrimoine traditionnels, émirat offre aperçus profonds culture arabe, art islamique et transformation remarquable région Golfe.
 
 ## Architecture Islamique et Patrimoine Religieux
@@ -66,4 +66,4 @@ Grande Mosquée Sheikh Zayed représente sommet architecture islamique et sert r
 
 - **Capacité** : Accueille 40000+ fidèles simultanément
 - **Coupoles** : 82 coupoles sept tailles différentes ornées marbre pentélique
-- **Minarets** : Quatre minarets 107 mètr', 1757819668, 1757819668);
+- **Minarets** : Quatre minarets 107 mètr', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

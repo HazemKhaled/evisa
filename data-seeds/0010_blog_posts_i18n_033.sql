@@ -27,7 +27,7 @@ La réponse dépend de votre nationalité :
 ### Documents Essentiels
 
 1. **Formulaire DS-160** : Demande en ligne complète
-2. **Passeport Valide** : Avec au moins 6 mois', 1757819668, 1757819668),
+2. **Passeport Valide** : Avec au moins 6 mois', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (162, 1, 'it', 'Guida al Visto d''Affari del Canada: Processo di Domanda Completo e Requisiti', 'Naviga nel processo di domanda del visto d''affari del Canada con la nostra guida completa. Informazioni essenziali per viaggiatori d''affari e imprenditori che visitano il Canada.', 'Il Canada offre numerose opportunità per professionisti d''affari internazionali e imprenditori. Che tu stia cercando di espandere il tuo business, esplorare partnership o fare investimenti, comprendere i requisiti del visto d''affari del Canada è essenziale per il tuo successo.
 
 ## Tipi di Visti d''Affari del Canada
@@ -57,7 +57,7 @@ Per individui che lavoreranno per un datore di lavoro canadese.
 
 ### Programmi di Residenza Permanente
 
-#### Progra', 1757819668, 1757819668),
+#### Progra', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (163, 2, 'it', 'Guida Avventura Parchi Nazionali Canada: Esplorazione Natura Selvaggia e Attività All''Aperto', 'Scopri i spettacolari parchi nazionali del Canada con la nostra guida completa a escursioni, osservazione fauna, camping e avventure all''aperto attraverso il paese.', 'Il Canada vanta alcuni dei parchi nazionali più spettacolari al mondo, coprendo ecosistemi diversi da coste aspre a cime montane imponenti. Con 48 parchi nazionali e riserve, il Canada offre opportunità infinite per avventura all''aperto, osservazione fauna e sperimentare natura selvaggia incontaminata.
 
 ## I Quattro Grandi: Parchi Nazionali Canadesi Imperdibili
@@ -77,7 +77,7 @@ Il primo e più famoso parco nazionale del Canada, stabilito nel 1885.
 
 - **Estate**: Escursioni, canoa, arrampicata roccia, osservazione fauna
 - **Inverno**: Sci, racchette neve, arrampicata ghiaccio, slitta cani
-- **Fotografia**: ', 1757819668, 1757819668),
+- **Fotografia**: ', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (164, 3, 'it', 'Guida al Visto Visitatore del Canada: Processo di Domanda Completo e Requisiti', 'Naviga nel processo di domanda del visto visitatore del Canada con la nostra guida completa. Informazioni essenziali per turisti e visitatori che pianificano di viaggiare in Canada.', 'Il Canada offre paesaggi mozzafiato, città vibranti e ricche esperienze culturali. Che tu stia pianificando di vedere le Cascate del Niagara, esplorare le Montagne Rocciose o visitare la famiglia, questa guida completa ti aiuterà a navigare nel processo del visto visitatore del Canada.
 
 ## Ho Bisogno di un Visto per il Canada?
@@ -97,9 +97,9 @@ Il tuo bisogno di visto dipende dalla tua cittadinanza:
 
 ### Autorizzazione di Viaggio Elettronica (eTA)
 
-- **Per paesi esenti da visto**: Domanda onl', 1757819668, 1757819668),
+- **Per paesi esenti da visto**: Domanda onl', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (165, 4, 'it', 'Paese Meraviglie Inverno Canada: Guida Definitiva Avventure Tempo Freddo', 'Scopri attività invernali incredibili Canada da sci Montagne Rocciose a pesca ghiaccio Quebec. Guida completa abbracciare esperienza inverno canadese.', 'Il Canada si trasforma paese meraviglie invernale magico da dicembre a marzo, offrendo attività ed esperienze invernali classe mondiale. Da stazioni sci calibro olimpico ad avventure artiche uniche, Canada fornisce esperienze tempo freddo indimenticabili ogni tipo appassionato inverno.
 
 Il Canada offre paese meraviglie invernale straordinario dove tradizioni nord incontrano innovazione moderna, creando esperienze tempo freddo vanno da avventure familiari a spedizioni artiche epiche. Dalle piste classe mondiale Whistler alla solitudine incontaminata Artico canadese, attività invernali paese forniscono opportunità incomparabili abbracciare bellezza ed eccitazione stagione più magica Canada.
 
-**Pronto sperimentare magia inverno canadese?** I nostri specialisti inverno possono aiutarti pianificare avventure tempo freddo bilanciano eccitazione sicurezza, assicurando sperimenti meglio offerte inverno Canada rimanendo caldi, sicuri e completamente immersi bellezza straordinaria paese meravigl', 1757819668, 1757819668);
+**Pronto sperimentare magia inverno canadese?** I nostri specialisti inverno possono aiutarti pianificare avventure tempo freddo bilanciano eccitazione sicurezza, assicurando sperimenti meglio offerte inverno Canada rimanendo caldi, sicuri e completamente immersi bellezza straordinaria paese meravigl', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

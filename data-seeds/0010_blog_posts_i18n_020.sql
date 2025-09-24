@@ -29,7 +29,7 @@ The answer depends on your nationality:
 1. **DS-160 Form**: Completed online application
 2. **Valid Passport**: With at least 6 months validity
 3. **Photograph**: Recent digital photo per specifications
-4. **Fee', 1757819668, 1757819668),
+4. **Fee', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (97, 1, 'es', 'Guía de Visa de Negocios de Canadá: Proceso Completo de Solicitud y Requisitos', 'Navega el proceso de solicitud de visa de negocios de Canadá con nuestra guía completa. Información esencial para viajeros de negocios y empresarios que visitan Canadá.', 'Canadá ofrece numerosas oportunidades para profesionales de negocios internacionales y empresarios. Ya sea que busques expandir tu negocio, explorar asociaciones o hacer inversiones, entender los requisitos de visa de negocios de Canadá es esencial para tu éxito.
 
 ## Tipos de Visas de Negocios de Canadá
@@ -57,7 +57,7 @@ Para individuos que trabajarán para un empleador canadiense.
 - **Profesionales NAFTA/USMCA**: Profesiones específicas de EE.UU./México
 - **Acuerdos internacionales**: Varios acuerdos bilaterales
 
-### Programas de Resi', 1757819668, 1757819668),
+### Programas de Resi', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (98, 2, 'es', 'Guía de Aventura de Parques Nacionales de Canadá: Exploración de Vida Silvestre y Actividades al Aire Libre', 'Descubre los espectaculares parques nacionales de Canadá con nuestra guía completa de senderismo, observación de vida silvestre, camping y aventuras al aire libre en todo el país.', 'Canadá cuenta con algunos de los parques nacionales más espectaculares del mundo, cubriendo ecosistemas diversos desde costas rugosas hasta picos montañosos imponentes. Con 48 parques nacionales y reservas, Canadá ofrece oportunidades infinitas para aventura al aire libre, observación de vida silvestre y experimentar vida silvestre prístina.
 
 ## Los Cuatro Grandes: Parques Nacionales Canadienses Imperdibles
@@ -76,7 +76,7 @@ El primer y más famoso parque nacional de Canadá, establecido en 1885.
 #### Mejores Actividades
 
 - **Verano**: Senderismo, canotaje, escalada en roca, observación de vida silvestre
-- **Invierno**: Esquí, ra', 1757819668, 1757819668),
+- **Invierno**: Esquí, ra', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (99, 3, 'es', 'Guía de Visa de Visitante de Canadá: Proceso Completo de Solicitud y Requisitos', 'Navega el proceso de solicitud de visa de visitante de Canadá con nuestra guía completa. Información esencial para turistas y visitantes que planean viajar a Canadá.', 'Canadá ofrece paisajes impresionantes, ciudades vibrantes y ricas experiencias culturales. Ya sea que planees ver las Cataratas del Niágara, explorar las Montañas Rocosas o visitar familia, esta guía completa te ayudará a navegar el proceso de visa de visitante de Canadá.
 
 ## ¿Necesito una Visa para Canadá?
@@ -97,7 +97,7 @@ Tu necesidad de visa depende de tu ciudadanía:
 ### Autorización Electrónica de Viaje (eTA)
 
 - **Para países exentos de visa**: Solicitud rápida en línea
-- **Validez**: Hasta 5 añ', 1757819668, 1757819668),
+- **Validez**: Hasta 5 añ', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (100, 4, 'es', 'País de las Maravillas Invernales de Canadá: Guía Definitiva de Aventuras de Clima Frío', 'Descubre las increíbles actividades invernales de Canadá desde esquí en las Rocosas hasta pesca en hielo en Quebec. Guía completa para abrazar la experiencia invernal canadiense.', 'Canadá se transforma en un país de las maravillas invernales mágico desde diciembre hasta marzo, ofreciendo actividades y experiencias invernales de clase mundial. Desde centros de esquí de calibre olímpico hasta aventuras árticas únicas, Canadá proporciona experiencias de clima frío inolvidables para cada tipo de entusiasta del invierno.
 
 ## Esquí y Snowboard de Clase Mundial
@@ -119,4 +119,4 @@ La joya de la corona de los centros de esquí canadienses y sede de los Juegos O
 
 - **Principiante**: 20% - Pendientes amplias y suaves perfectas para aprender
 - **Intermedio**: 55% - Pistas azules extensas para desarrollo de habilidades
-- **Experto**: 25% - T', 1757819668, 1757819668);
+- **Experto**: 25% - T', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

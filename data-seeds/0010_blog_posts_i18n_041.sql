@@ -4,7 +4,7 @@ INSERT INTO blog_posts_i18n (id, post_id, locale, title, description, content, c
 
 O transporte europeu oferece liberdade incomparável para explorar a diversidade cultural, beleza paisagística e riqueza histórica do continente no seu próprio ritmo. Desde a eficiência dos trens de alta velocidade até a flexibilidade das viagens de ônibus, desde a conveniência dos voos econômicos até o charme dos sistemas de transporte locais, dominar essas opções de transporte permite criar itinerários perfeitos que maximizam tanto eficiência quanto prazer.
 
-**Pronto para navegar pela Europa como um viajante experiente?** Nossos especialistas em transporte europeu podem ajudá-lo a otimizar sua estratégia de viagem, desde esco', 1757819668, 1757819668),
+**Pronto para navegar pela Europa como um viajante experiente?** Nossos especialistas em transporte europeu podem ajudá-lo a otimizar sua estratégia de viagem, desde esco', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (202, 9, 'pt', 'Guia de Visto de Negócios do Japão: Processo Completo de Solicitação e Requisitos', 'Navegue pelo processo de solicitação de visto de negócios do Japão com nosso guia abrangente. Informações essenciais para viajantes de negócios e empreendedores visitando o Japão.', 'Planejando uma viagem de negócios ao Japão? Seja participando de reuniões, conferências ou explorando oportunidades de parceria, compreender os requisitos de visto de negócios do Japão é crucial para uma jornada tranquila.
 
 ## Tipos de Vistos de Negócios do Japão
@@ -31,7 +31,7 @@ O transporte europeu oferece liberdade incomparável para explorar a diversidade
 2. **Formulário de Solicitação de Visto**: Preenchido e assinado
 3. **Carta Comercial**: Da sua empresa explicando o propósito
 4. **Carta de Convite**: De empresa ou organização japonesa
-5. **Certificado de Elegibil', 1757819668, 1757819668),
+5. **Certificado de Elegibil', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (203, 10, 'pt', 'Guia de Experiências Culturais do Japão: Cultura Tradicional e Tradições Modernas', 'Mergulhe na rica herança cultural do Japão desde cerimônias de chá tradicionais até cultura pop moderna. Guia completo de experiências culturais e tradições através do Japão.', 'O Japão oferece uma mistura incrível de tradições antigas e inovações modernas. Para visitantes de primeira viagem, experimentar a cultura japonesa autêntica é frequentemente o destaque de sua jornada. Aqui estão as principais experiências culturais que você não deve perder.
 
 ## 1. Cerimônia de Chá Tradicional (Chanoyu)
@@ -59,7 +59,7 @@ A cerimônia do chá japonesa é uma prática meditativa centrada na preparaçã
 - Siga a orientação do seu anfitrião cuidadosamente
 - Aprecie os elementos sazonais e utensílios
 
-## 2. Exp', 1757819668, 1757819668),
+## 2. Exp', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (204, 11, 'pt', 'Guia Definitivo de Comida do Japão: Uma Jornada Culinária Através de Especialidades Regionais', 'Explore a incrível paisagem culinária do Japão desde sushi em Tóquio até ramen em Sapporo. Guia completo de pratos imperdíveis e onde encontrá-los.', 'A culinária japonesa se estende muito além do sushi e ramen. De barracas de comida de rua a restaurantes com estrelas Michelin, o Japão oferece uma das experiências culinárias mais diversas e refinadas do mundo. Este guia abrangente explora especialidades regionais, etiqueta gastronômica e experiências alimentares imperdíveis.
 
 ## Tóquio: A Capital Culinária
@@ -85,7 +85,7 @@ O berço do sushi moderno, Tóquio oferece as melhores experiências de sushi do
 
 #### Variações de Ramen
 
-O ramen de Tóquio apresen', 1757819668, 1757819668),
+O ramen de Tóquio apresen', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (205, 12, 'pt', 'Guia de Visto de Turismo para o Japão: Processo Completo de Solicitação e Requisitos', 'Navegue pelo processo de solicitação de visto de turismo para o Japão com nosso guia abrangente. Informações essenciais para turistas que planejam visitar o Japão.', 'Planejando uma viagem à Terra do Sol Nascente? O Japão oferece experiências incríveis desde as ruas movimentadas de Tóquio até os templos serenos de Quioto, mas primeiro, você precisará navegar pelos requisitos de visto.
 
 ## Preciso de Visto para o Japão?
@@ -103,4 +103,4 @@ A resposta depende da sua nacionalidade e do propósito da sua visita:
 2. **Formulário de Solicitação**: Complete o formulário de solicitação de visto para o Japão
 3. **Fotografias**: Fotos recentes no tamanho do passaporte (4.5cm x 4.5cm)
 4. **Itinerário de Voo**: Reservas de voo de ida e volta
-5. **Comprovante de Hospedagem**: Reservas de hotel ou carta de c', 1757819668, 1757819668);
+5. **Comprovante de Hospedagem**: Reservas de hotel ou carta de c', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));
