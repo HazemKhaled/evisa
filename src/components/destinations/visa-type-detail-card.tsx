@@ -5,8 +5,8 @@ import type {
   DestinationWithVisaTypes,
 } from "@/lib/services/country-service";
 import { RequiredDocuments } from "./required-documents";
-import { Button } from "./button";
-import { Badge } from "./badge";
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 
 interface VisaTypeDetailCardProps {
   visaType: VisaTypeInfo;
@@ -44,11 +44,12 @@ export async function VisaTypeDetailCard({
 
         {/* Visa Type Badge */}
         <div className="inline-flex items-center gap-2">
-          <Badge variant="secondary">
-            {visaType.type}
-          </Badge>
+          <Badge variant="secondary">{visaType.type}</Badge>
           {visaType.requiresInterview && (
-            <Badge variant="destructive" className="bg-orange-100 text-orange-800 hover:bg-orange-200">
+            <Badge
+              variant="destructive"
+              className="bg-orange-100 text-orange-800 hover:bg-orange-200"
+            >
               {t("interviewRequired")}
             </Badge>
           )}

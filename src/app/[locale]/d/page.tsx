@@ -4,7 +4,7 @@ import {
   getDestinationsListWithMetadataPaginated,
   getDestinationContinents,
 } from "@/lib/services/country-service";
-import { DestinationsGrid } from "@/components/ui/destinations-grid";
+import { DestinationsGrid } from "@/components/destinations/destinations-grid";
 import { JsonLd } from "@/components/json-ld";
 import { generateWebPageJsonLd } from "@/lib/json-ld";
 import { SearchFilterForm } from "@/components/destinations/search-filter-form";

@@ -6,8 +6,8 @@ import {
   getDestinationsListWithMetadata,
 } from "@/lib/services/country-service";
 import { getVisaRequirements } from "@/lib/services/visa-service";
-import { DestinationHero } from "@/components/ui/destination-hero";
-import { VisaOptionsGrid } from "@/components/ui/visa-options-grid";
+import { DestinationHero } from "@/components/destinations/destination-hero";
+import { VisaOptionsGrid } from "@/components/destinations/visa-options-grid";
 import { JsonLd } from "@/components/json-ld";
 import { generateDestinationJsonLd } from "@/lib/json-ld";
 import { languages } from "@/app/i18n/settings";

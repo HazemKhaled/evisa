@@ -15,7 +15,7 @@ import {
   generateBlogPostJsonLd,
   generateBreadcrumbData,
 } from "@/lib/json-ld";
-import { BlogPostDetail } from "@/components/ui/blog-post-detail";
+import { BlogPostDetail } from "@/components/blog/blog-post-detail";
 import { generateAlternatesMetadata } from "@/lib/utils";
 
 interface BlogPostProps {

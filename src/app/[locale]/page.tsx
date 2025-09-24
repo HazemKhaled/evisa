@@ -11,9 +11,9 @@ import {
 import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
 import { getRandomVisaTypes } from "@/lib/services/visa-service";
 import { getAllBlogPosts } from "@/lib/services/blog-service";
-import { DestinationCard } from "@/components/ui/destination-card";
-import { VisaTypeCard } from "@/components/ui/visa-type-card";
-import { RelatedArticleCard } from "@/components/ui/related-article-card";
+import { DestinationCard } from "@/components/destinations/destination-card";
+import { VisaTypeCard } from "@/components/destinations/visa-type-card";
+import { RelatedArticleCard } from "@/components/blog/related-article-card";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
