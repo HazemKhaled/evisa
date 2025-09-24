@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
     {
       source: "/:path*",
       has: [{ type: "host", value: "www.gettravelvisa.com" }],
-      destination: process.env.NEXT_PUBLIC_SENTRY_DSN + "/:path*",
+      destination: process.env.NEXT_PUBLIC_BASE_URL + "/:path*",
       permanent: true,
     },
   ],
