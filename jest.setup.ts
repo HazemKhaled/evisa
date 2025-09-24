@@ -1,5 +1,17 @@
+/* eslint-disable @typescript-eslint/no-require-imports*/
 import "@testing-library/jest-dom";
 import * as React from "react";
+
+// Polyfill TextDecoder for Node.js environment (required by @neondatabase/serverless v1.0+)
+if (typeof globalThis.TextDecoder === "undefined") {
+  const { TextDecoder } = require("util");
+  globalThis.TextDecoder = TextDecoder;
+}
+
+if (typeof globalThis.TextEncoder === "undefined") {
+  const { TextEncoder } = require("util");
+  globalThis.TextEncoder = TextEncoder;
+}
 
 // Mock next/navigation
 jest.mock("next/navigation", () => ({

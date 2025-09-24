@@ -27,7 +27,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@neondatabase/serverless": "0.10.4",
+    "@neondatabase/serverless": "1.0.1",
     "@opennextjs/cloudflare": "1.8.5",
     "@sentry/nextjs": "10.15.0",
     "clsx": "2.1.1",
