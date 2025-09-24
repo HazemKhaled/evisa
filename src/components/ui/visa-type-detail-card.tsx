@@ -6,6 +6,7 @@ import type {
 } from "@/lib/services/country-service";
 import { RequiredDocuments } from "./required-documents";
 import { Button } from "./button";
+import { Badge } from "./badge";
 
 interface VisaTypeDetailCardProps {
   visaType: VisaTypeInfo;
@@ -35,21 +36,21 @@ export async function VisaTypeDetailCard({
         <div className="mb-2 flex items-start justify-between">
           <h3 className="text-xl font-semibold">{visaType.name}</h3>
           {visaType.isMultiEntry && (
-            <span className="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs">
+            <Badge variant="secondary" className="bg-primary/10 text-primary">
               {t("multiEntry")}
-            </span>
+            </Badge>
           )}
         </div>
 
         {/* Visa Type Badge */}
         <div className="inline-flex items-center gap-2">
-          <span className="bg-muted rounded-full px-3 py-1 text-sm">
+          <Badge variant="secondary">
             {visaType.type}
-          </span>
+          </Badge>
           {visaType.requiresInterview && (
-            <span className="rounded-full bg-orange-100 px-2 py-1 text-xs text-orange-800">
+            <Badge variant="destructive" className="bg-orange-100 text-orange-800 hover:bg-orange-200">
               {t("interviewRequired")}
-            </span>
+            </Badge>
           )}
         </div>
       </div>

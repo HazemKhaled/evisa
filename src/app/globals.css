@@ -118,6 +118,38 @@
     scroll-behavior: smooth;
   }
 
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    /* Disable all animations and transitions */
+    *,
+    *::before,
+    *::after {
+      animation-delay: -1ms !important;
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      background-attachment: initial !important;
+      scroll-behavior: auto !important;
+      transition-delay: 0s !important;
+      transition-duration: 0s !important;
+    }
+
+    /* Override specific animations */
+    .animate-pulse,
+    .animate-spin,
+    .animate-bounce,
+    .animate-fade-in,
+    .animate-slide-in {
+      animation: none !important;
+    }
+
+    /* Remove transform transitions */
+    .transition-transform,
+    .transition-all {
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
   /* Focus styles */
   *:focus-visible {
     outline: none;
@@ -144,6 +176,76 @@
 
   .rtl\:flex-row-reverse[dir="rtl"] {
     flex-direction: row-reverse;
+  }
+
+  /* Enhanced RTL support for Shadcn components */
+  [dir="rtl"] .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+    margin-left: calc(var(--space-x-reverse) * var(--tw-space-x-reverse));
+    margin-right: calc(
+      var(--space-x-reverse) * calc(1 - var(--tw-space-x-reverse))
+    );
+  }
+
+  /* RTL support for navigation menus */
+  [dir="rtl"] .navigation-menu {
+    direction: rtl;
+  }
+
+  /* RTL support for breadcrumb separators */
+  [dir="rtl"] .breadcrumb-separator {
+    transform: scaleX(-1);
+  }
+
+  /* RTL support for pagination controls */
+  [dir="rtl"] .pagination-previous,
+  [dir="rtl"] .pagination-next {
+    flex-direction: row-reverse;
+  }
+
+  /* RTL support for select dropdowns */
+  [dir="rtl"] .select-content {
+    direction: rtl;
+  }
+
+  /* RTL support for card layouts */
+  [dir="rtl"] .card-header {
+    direction: rtl;
+  }
+
+  /* RTL support for badge positioning */
+  [dir="rtl"] .badge-container {
+    direction: rtl;
+  }
+
+  /* RTL support for animations that involve horizontal movement */
+  [dir="rtl"] .animate-slide-in-left {
+    animation: slide-in-right 0.3s ease-out;
+  }
+
+  [dir="rtl"] .animate-slide-in-right {
+    animation: slide-in-left 0.3s ease-out;
+  }
+
+  @keyframes slide-in-right {
+    from {
+      transform: translate3d(10px, 0, 0);
+      opacity: 0;
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      transform: translate3d(-10px, 0, 0);
+      opacity: 0;
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
   }
 }
 
@@ -172,15 +274,28 @@
     -webkit-line-clamp: 3;
   }
 
-  /* Animation utilities */
+  /* Animation utilities optimized for 60fps performance */
   .animate-fade-in {
     animation: fade-in 0.5s ease-in-out;
+    will-change: opacity;
   }
 
   .animate-slide-in {
     animation: slide-in 0.3s ease-out;
+    will-change: transform, opacity;
   }
 
+  /* Performance-optimized animations */
+  .animate-hover-scale {
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  .animate-hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  /* GPU-accelerated keyframes */
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -192,13 +307,31 @@
 
   @keyframes slide-in {
     from {
-      transform: translateY(10px);
+      transform: translate3d(0, 10px, 0);
       opacity: 0;
     }
     to {
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
       opacity: 1;
     }
+  }
+
+  /* Optimize all transform-based animations for mobile */
+  .transition-transform {
+    will-change: transform;
+  }
+
+  /* Performance optimizations for common transform utilities */
+  .hover\:scale-\[1\.02\]:hover {
+    will-change: transform;
+  }
+
+  .hover\:scale-105:hover {
+    will-change: transform;
+  }
+
+  .hover\:-translate-y-1:hover {
+    will-change: transform;
   }
 }
 
