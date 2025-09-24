@@ -23,7 +23,7 @@ INSERT INTO blog_posts_i18n (id, post_id, locale, title, description, content, c
 ### Financial Evidence
 
 - **Bank statements**: Last 6 months showing regular income
-- **Payslips**: Recent sal', 1757819668, 1757819668),
+- **Payslips**: Recent sal', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (92, 28, 'en', 'USA Cities Urban Experiences Guide: Metropolitan Adventures and City Life Across America', 'Discover America''s most vibrant cities with our comprehensive guide to urban experiences, cultural attractions, and metropolitan adventures across the United States.', 'America''s cities represent the dynamic heart of the nation, each offering unique personalities shaped by history, geography, immigration, and innovation. From the towering skyscrapers of Manhattan to the laid-back beach culture of San Diego, American metropolitan areas provide endless opportunities for cultural exploration, culinary adventures, and urban experiences found nowhere else in the world. This comprehensive guide explores the essential characteristics, attractions, and experiences that define America''s greatest cities.
 
 ## East Coast Metropolises
@@ -38,7 +38,7 @@ America''s largest city and global cultural capital, where eight million people 
 
 - **Statue of Liberty**: Symbol of freedom accessible by ferry from Battery Park
 - **Empire State Building**: Art Deco masterpiece with observation decks
-- **Central Park**: 843-acre green oasis in urban concrete', 1757819668, 1757819668),
+- **Central Park**: 843-acre green oasis in urban concrete', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (93, 29, 'en', 'USA Food Culture Regional Guide: Culinary Traditions and Regional Cuisine Across America', 'Explore America''s diverse culinary landscape from Southern comfort food to Pacific Northwest seafood. Complete guide to regional specialties and food culture across the United States.', 'American cuisine is far more complex and diverse than many realize, shaped by centuries of immigration, regional ingredients, and cultural fusion. From the soul food traditions of the South to the farm-to-table movement of California, each region has developed distinct culinary identities that reflect local history, geography, and cultural influences. This comprehensive guide explores the rich tapestry of American food culture across all regions.
 
 ## The American South: Soul Food and BBQ Traditions
@@ -54,7 +54,7 @@ The cradle of American soul food, where African, European, and Native American c
 - **Gumbo**: Rich stew with okra, seafood, and andouille sausage
 - **Jambalaya**: Rice dish with shrimp, chicken, and spicy seasonings
 - **Po'' Boys**: Overstuffed sandwiches on French bread with fried seafood
-- **Beignets**: French-style do', 1757819668, 1757819668),
+- **Beignets**: French-style do', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (94, 30, 'en', 'USA National Parks Adventure Guide: Epic Wilderness Experiences and Outdoor Activities', 'Discover America''s most spectacular national parks with our comprehensive guide to hiking, wildlife viewing, camping, and outdoor adventures across the United States.', 'The United States National Park System protects some of the most spectacular landscapes on Earth, from towering mountain peaks to ancient deserts, pristine coastlines to bubbling geysers. With 63 designated national parks spanning diverse ecosystems and climates, America''s parks offer unparalleled opportunities for adventure, wildlife viewing, and connecting with nature.
 
 ## The Magnificent Seven: America''s Most Iconic Parks
@@ -72,7 +72,7 @@ America''s first national park, established in 1872, remains one of its most spe
 
 #### Wildlife Viewing Opportunities
 
-- **Lamar Valley**: "America''s Sere', 1757819668, 1757819668),
+- **Lamar Valley**: "America''s Sere', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (95, 31, 'en', 'Ultimate USA Road Trip Planning Guide: Epic Routes and Essential Tips for American Highway Adventures', 'Plan the perfect American road trip with our comprehensive guide to iconic routes, essential stops, budgeting tips, and practical advice for unforgettable highway adventures across the United States.', 'The American road trip represents freedom, adventure, and the open road stretching endlessly toward the horizon. From coast-to-coast journeys spanning 3,000+ miles to scenic loops through national parks, the United States offers some of the world''s most spectacular driving routes. This comprehensive guide covers everything from planning epic multi-week adventures to weekend getaways, ensuring your American road trip becomes an unforgettable journey.
 
 ## Legendary Cross-Country Routes
@@ -93,4 +93,4 @@ America''s most famous highway, symbolizing the American Dream and westward expa
 **Historical Significance**
 
 - **Established**: 1926 as part of original highway system
-- **Dus', 1757819668, 1757819668);
+- **Dus', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

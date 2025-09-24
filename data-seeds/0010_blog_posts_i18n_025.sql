@@ -13,7 +13,7 @@ El monumento prehistórico más famoso del mundo, Stonehenge continúa mistifica
 - **El Círculo de Piedra**: Monumento de 5,000 años con trilitos masivos
 - **Centro de Visitantes**: Museo galardonado con exhibiciones interactivas
 - **Casas Neolíticas Reconstruidas**: Experimenta la vida ancestral
-- **Paisaje Ancestral**: Camina entre túmulos funerarios y sitios ceremoniales', 1757819668, 1757819668),
+- **Paisaje Ancestral**: Camina entre túmulos funerarios y sitios ceremoniales', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (122, 26, 'es', 'Cultura de Comida y Pubs del Reino Unido: Guía Completa de Cocina Británica, Pubs Tradicionales y Experiencias Culinarias', 'Descubre la auténtica cultura alimentaria británica desde comidas tradicionales de pub hasta cocina moderna. Guía completa de fish and chips, asados dominicales y pubs históricos a través del Reino Unido.', 'La cultura alimentaria británica ha experimentado una transformación notable, evolucionando desde comida tradicional abundante hasta cocina moderna innovadora mientras mantiene sus clásicos queridos. Desde el icónico fish and chips hasta el sagrado asado dominical, y desde posadas de diligencias históricas hasta gastropubs contemporáneos, el Reino Unido ofrece un rico tapiz de experiencias culinarias que reflejan su patrimonio diverso y tradiciones regionales.
 
 ## Cocina Británica Tradicional: Los Clásicos
@@ -27,7 +27,7 @@ Ningún tour culinario de Gran Bretaña está completo sin experimentar fish and
 - **Selección de Pescado**: Bacalao o eglefino tradicional, platija fresca o lenguado
 - **Rebozado**: Rebozado de cerveza ligero y crujiente que no opaque el pescado
 - **Papas**: Papas cortadas gruesas, esponjosas por dentro con exterior dorado
-- **Acompaña', 1757819668, 1757819668),
+- **Acompaña', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (123, 27, 'es', 'Consejos para Solicitud de Visa del Reino Unido: Guía Esencial para Aplicaciones Exitosas de Visa Británica', 'Domina el proceso de solicitud de visa del Reino Unido con nuestra guía completa. Consejos esenciales, documentos requeridos y asesoría experta para aplicaciones exitosas de visa británica.', '¿Planeas visitar el Reino Unido? Ya sea que sueñes con explorar los sitios históricos de Londres, las tierras altas de Escocia o el campo galés, obtener tu visa del Reino Unido correctamente es crucial. Esta guía completa te ayudará a navegar exitosamente el complejo proceso de solicitud.
 
 ## Entendiendo los Tipos de Visa del Reino Unido
@@ -45,7 +45,7 @@ Ningún tour culinario de Gran Bretaña está completo sin experimentar fish and
 
 1. **Pasaporte Válido**: Al menos una página en blanco para la visa
 2. **Formulario de Solicitud**: Aplicación en línea completa
-3. **Fotografías**: Foto digital de pasaporte que cumpla los estándares del Reino Uni', 1757819668, 1757819668),
+3. **Fotografías**: Foto digital de pasaporte que cumpla los estándares del Reino Uni', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (124, 28, 'es', 'Guía de Experiencias Urbanas de Ciudades de EE.UU.: Aventuras Metropolitanas y Vida Urbana a Través de América', 'Descubre las ciudades más vibrantes de América con nuestra guía completa de experiencias urbanas, atracciones culturales y aventuras metropolitanas a través de Estados Unidos.', 'Las ciudades de América representan el corazón dinámico de la nación, cada una ofreciendo personalidades únicas moldeadas por historia, geografía, inmigración e innovación. Desde los rascacielos imponentes de Manhattan hasta la cultura playera relajada de San Diego, las áreas metropolitanas estadounidenses proporcionan oportunidades infinitas para exploración cultural, aventuras culinarias y experiencias urbanas que no se encuentran en ningún otro lugar del mundo.
 
 ## Metrópolis de la Costa Este
@@ -61,7 +61,7 @@ La ciudad más grande de América y capital cultural global, donde ocho millones
 - **Estatua de la Libertad**: Símbolo de libertad accesible por ferry desde Battery Park
 - **Empire State Building**: Obra maestra Art Deco con miradores
 - **Central Park**: Oasis verde de 843 acres en jungla de concreto urbano
-- **Times Square**: Luc', 1757819668, 1757819668),
+- **Times Square**: Luc', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (125, 29, 'es', 'Guía Regional de Cultura Alimentaria de EE.UU.: Tradiciones Culinarias y Cocina Regional a Través de América', 'Explora el paisaje culinario diverso de América desde comida sureña reconfortante hasta mariscos del Pacífico Noroeste. Guía completa de especialidades regionales y cultura alimentaria a través de Estados Unidos.', 'La cocina americana es mucho más compleja y diversa de lo que muchos se dan cuenta, moldeada por siglos de inmigración, ingredientes regionales y fusión cultural. Desde las tradiciones de soul food del Sur hasta el movimiento de granja a mesa de California, cada región ha desarrollado identidades culinarias distintas que reflejan la historia local, geografía e influencias culturales.
 
 ## El Sur Americano: Tradiciones de Soul Food y BBQ
@@ -77,4 +77,4 @@ La cuna del soul food americano, donde se fusionaron las tradiciones culinarias 
 - **Gumbo**: Guiso rico con okra, mariscos y salchicha andouille
 - **Jambalaya**: Plato de arroz con camarones, pollo y condimentos picantes
 - **Po'' Boys**: Sándwiches rellenos en pan francés con mariscos fritos
-- **Beignets**: Donuts estilo francés espolvoreados con azúcar en ', 1757819668, 1757819668);
+- **Beignets**: Donuts estilo francés espolvoreados con azúcar en ', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

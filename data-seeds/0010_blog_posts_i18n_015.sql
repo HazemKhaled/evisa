@@ -17,7 +17,7 @@ The world''s most famous Irish celebration spreads far beyond Ireland''s borders
 - **Temple Bar**: Concentrated celebration in historic district
 - **Cultural venues**: Museums and galleries with special Irish exhibitions
 
-**International Celebrations', 1757819668, 1757819668),
+**International Celebrations', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (72, 8, 'en', 'Europe Transportation Travel Tips: Complete Guide to Getting Around Europe', 'Master European transportation with our comprehensive guide to trains, buses, flights, and local transport. Essential tips for seamless travel across Europe.', 'Europe boasts the world''s most sophisticated and interconnected transportation network, making continent-wide travel accessible, efficient, and often enjoyable. From high-speed trains crossing international borders to budget airlines connecting distant cities, mastering European transportation opens up unlimited exploration possibilities. This comprehensive guide provides insider knowledge for navigating Europe''s transport systems like a seasoned traveler.
 
 ## European Rail Network: The Backbone of Continental Travel
@@ -33,7 +33,7 @@ Europe''s high-speed rail infrastructure represents the pinnacle of passenger ra
 - **TGV Sud-Est**: Paris to Lyon, continuing to Mediterranean coast
 - **TGV Atlantique**: Paris to western France (Nantes, Bordeaux)
 - **TGV Nord**: Paris to northern France, Belgium, and Netherlands
-- **TGV Euroduplex**: ', 1757819668, 1757819668),
+- **TGV Euroduplex**: ', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (73, 9, 'en', 'Japan Business Visa Guide: Complete Application Process and Requirements', 'Navigate Japan''s business visa application process with our comprehensive guide. Essential information for business travelers and entrepreneurs visiting Japan.', 'Planning a business trip to Japan? Whether you''re attending meetings, conferences, or exploring partnership opportunities, understanding Japan''s business visa requirements is crucial for a smooth journey.
 
 ## Types of Japan Business Visas
@@ -64,7 +64,7 @@ Europe''s high-speed rail infrastructure represents the pinnacle of passenger ra
 
 ### Supporting Business Documents
 
-- **Company registration**: Proof of busines', 1757819668, 1757819668),
+- **Company registration**: Proof of busines', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (74, 10, 'en', 'Japan Cultural Experiences Travel Guide: Traditional Culture and Modern Traditions', 'Immerse yourself in Japan''s rich cultural heritage from traditional tea ceremonies to modern pop culture. Complete guide to cultural experiences and traditions across Japan.', 'Japan offers an incredible blend of ancient traditions and modern innovations. For first-time visitors, experiencing authentic Japanese culture is often the highlight of their journey. Here are the top cultural experiences you shouldn''t miss.
 
 ## 1. Traditional Tea Ceremony (Chanoyu)
@@ -94,7 +94,7 @@ The Japanese tea ceremony is a meditative practice centered around the preparati
 
 ## 2. Temple Stay Experience (Shukubo)
 
-### Authentic Buddhist Livin', 1757819668, 1757819668),
+### Authentic Buddhist Livin', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (75, 11, 'en', 'Ultimate Japan Food Guide: A Culinary Journey Through Regional Specialties', 'Explore Japan''s incredible culinary landscape from sushi in Tokyo to ramen in Sapporo. Complete guide to must-try dishes and where to find them.', 'Japanese cuisine extends far beyond sushi and ramen. From street food stalls to Michelin-starred restaurants, Japan offers one of the world''s most diverse and refined culinary experiences. This comprehensive guide explores regional specialties, dining etiquette, and unmissable food experiences.
 
 ## Tokyo: The Culinary Capital
@@ -124,4 +124,4 @@ Tokyo ramen features a lighter, soy sauce-based broth.
 
 **Tokyo Ramen Styles:**
 
-- **Shoyu Ramen**: Clear, soy sauce-based', 1757819668, 1757819668);
+- **Shoyu Ramen**: Clear, soy sauce-based', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

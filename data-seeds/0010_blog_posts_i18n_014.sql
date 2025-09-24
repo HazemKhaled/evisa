@@ -20,7 +20,7 @@ Canada''s first and most famous national park, established in 1885.
 - **Summer**: Hiking, canoeing, rock climbing, wildlife viewing
 - **Winter**: Skiing, snowshoeing, ice climbing, dog sledding
 - **Photography**: Sunrise at Lake Louise, sunset at Moraine Lake
-- **Hot springs**: Banff ', 1757819668, 1757819668),
+- **Hot springs**: Banff ', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (67, 3, 'en', 'Canada Visitor Visa Guide: Complete Application Process and Requirements', 'Navigate Canada''s visitor visa application process with our comprehensive guide. Essential information for tourists and visitors planning to travel to Canada.', 'Canada offers breathtaking landscapes, vibrant cities, and rich cultural experiences. Whether you''re planning to see Niagara Falls, explore the Rocky Mountains, or visit family, this comprehensive guide will help you navigate the Canada visitor visa process.
 
 ## Do I Need a Visa for Canada?
@@ -46,7 +46,7 @@ Your need for a visa depends on your citizenship:
 
 ## Visitor Visa Requirements
 
-### Essential', 1757819668, 1757819668),
+### Essential', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (68, 4, 'en', 'Canada Winter Wonderland: Ultimate Guide to Cold-Weather Adventures', 'Discover Canada''s incredible winter activities from skiing in the Rockies to ice fishing in Quebec. Complete guide to embracing the Canadian winter experience.', 'Canada transforms into a magical winter wonderland from December through March, offering world-class winter activities and experiences. From Olympic-caliber ski resorts to unique Arctic adventures, Canada provides unforgettable cold-weather experiences for every type of winter enthusiast.
 
 ## World-Class Skiing and Snowboarding
@@ -73,7 +73,7 @@ The crown jewel of Canadian ski resorts and 2010 Winter Olympics venue.
 **Village Experience:**
 
 - **Whistler Village**: Pedestrian-only European-style village
-- **D', 1757819668, 1757819668),
+- **D', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (69, 5, 'en', 'Europe Culinary Food Guide: Regional Cuisines and Food Culture', 'Discover Europe''s diverse culinary landscape from traditional dishes to modern cuisine. Complete guide to regional specialties and food culture across Europe.', 'Europe''s culinary landscape is a tapestry of flavors, traditions, and innovations spanning centuries. From the sun-soaked shores of the Mediterranean to the hearty comfort foods of Northern Europe, each country offers unique specialties that reflect its history, geography, and culture. This comprehensive guide explores the continent''s most celebrated cuisines and unmissable food experiences.
 
 ## Italy: The Heart of Mediterranean Cuisine
@@ -93,7 +93,7 @@ Italy''s cuisine varies dramatically from north to south, each region proud of i
 
 **Piedmont (Turin)**
 
-- **Agnolotti del Plin**: Small stuffe', 1757819668, 1757819668),
+- **Agnolotti del Plin**: Small stuffe', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (70, 6, 'en', 'Europe Cultural Museums Guide: Art, History, and Cultural Heritage', 'Explore Europe''s most prestigious museums and cultural institutions. Complete guide to art, history, and cultural heritage across European museums.', 'Europe is the world''s largest open-air museum, home to millennia of human civilization, artistic achievement, and cultural evolution. From ancient Greek temples to contemporary art galleries, the continent offers an unparalleled journey through human creativity and historical significance. This comprehensive guide explores Europe''s most important cultural sites and provides practical advice for making the most of your cultural exploration.
 
 ## France: Artistic Capital of the World
@@ -114,4 +114,4 @@ The world''s largest art museum and most visited cultural institution.
 **Practical Visiting Tips:**
 
 - **Advance booking**: Essential to avoid long queues
-- **Best ', 1757819668, 1757819668);
+- **Best ', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

@@ -26,7 +26,7 @@ INSERT INTO blog_posts_i18n (id, post_id, locale, title, description, content, c
 2. **Visum-Antragsformular**: Ausgefüllt und unterschrieben
 3. **Geschäftsbrief**: Von Ihrem Unternehmen zur Erklärung des Zwecks
 4. **Einladungsschreiben**: Von japanischer Firma oder Organisation
-5. **Berechtigungsnachweis**: Erforderlich für Langzeitaufenthalt', 1757819668, 1757819668),
+5. **Berechtigungsnachweis**: Erforderlich für Langzeitaufenthalt', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (42, 10, 'de', 'Japan Kulturelle Erfahrungen Reiseführer: Traditionelle Kultur und Moderne Traditionen', 'Tauchen Sie ein in Japans reiches kulturelles Erbe von traditionellen Teezeremonien bis zur modernen Popkultur. Vollständiger Leitfaden zu kulturellen Erfahrungen und Traditionen in ganz Japan.', 'Japan bietet eine unglaubliche Mischung aus alten Traditionen und modernen Innovationen. Für Erstbesucher ist das Erleben authentischer japanischer Kultur oft das Highlight ihrer Reise. Hier sind die wichtigsten kulturellen Erfahrungen, die Sie nicht verpassen sollten.
 
 ## 1. Traditionelle Teezeremonie (Chanoyu)
@@ -52,7 +52,7 @@ Die japanische Teezeremonie ist eine meditative Praxis, die sich auf die Zuberei
 - Kleiden Sie sich bescheiden und bequem
 - Ziehen Sie Schuhe aus, bevor Sie den Teeraum betreten
 - Folgen Sie der Anleitung Ihres Gastgebers sorgfältig
-- Schät', 1757819668, 1757819668),
+- Schät', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (43, 11, 'de', 'Ultimativer Japan Food Guide: Eine Kulinarische Reise durch Regionale Spezialitäten', 'Erkunden Sie Japans unglaubliche kulinarische Landschaft von Sushi in Tokyo bis Ramen in Sapporo. Vollständiger Leitfaden zu unverzichtbaren Gerichten und wo sie zu finden sind.', 'Japanische Küche erstreckt sich weit über Sushi und Ramen hinaus. Von Straßenimbissständen bis hin zu Michelin-Stern-Restaurants bietet Japan eine der vielfältigsten und raffiniertesten kulinarischen Erfahrungen der Welt. Dieser umfassende Leitfaden erkundet regionale Spezialitäten, Tischetikette und unverzichtbare Essenserfahrungen.
 
 ## Tokyo: Die Kulinarische Hauptstadt
@@ -78,7 +78,7 @@ Die Geburtsstätte des modernen Sushi, Tokyo bietet die weltbesten Sushi-Erfahru
 
 #### Ramen-Variationen
 
-Tokyo Ramen zeichnet s', 1757819668, 1757819668),
+Tokyo Ramen zeichnet s', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (44, 12, 'de', 'Japan Touristenvisum Leitfaden: Vollständiger Antragsprozess und Anforderungen', 'Navigieren Sie durch Japans Touristenvisum-Antragsprozess mit unserem umfassenden Leitfaden. Wesentliche Informationen für Touristen, die Japan besuchen möchten.', 'Planen Sie eine Reise ins Land der aufgehenden Sonne? Japan bietet unglaubliche Erlebnisse von den geschäftigen Straßen Tokios bis zu den ruhigen Tempeln Kyotos, aber zuerst müssen Sie die Visumsanforderungen verstehen.
 
 ## Brauche ich ein Visum für Japan?
@@ -100,9 +100,9 @@ Die Antwort hängt von Ihrer Nationalität und dem Zweck Ihres Besuchs ab:
 
 ### Finanzielle Anforderungen
 
-- **Kontoausz', 1757819668, 1757819668),
+- **Kontoausz', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (45, 13, 'de', 'London Attraktionen und Versteckte Perlen: Vollständiger Leitfaden zu Unverzichtbaren Sehenswürdigkeiten und Geheimen Orten', 'Entdecken Sie Londons ikonischste Attraktionen und versteckte Perlen mit unserem umfassenden Leitfaden. Von berühmten Wahrzeichen bis zu geheimen Orten, erkunden Sie das Beste von Londons Attraktionen.', 'London, eine Stadt wo antike Geschichte auf modernste Innovation trifft, bietet einen unerschöpflichen Reichtum an Attraktionen, die von weltberühmten Wahrzeichen bis zu geheimen Räumen reichen, die nur Einheimischen bekannt sind. Von den Kronjuwelen des Tower of London bis zu versteckten Speakeasies in viktorianischen Kellern, von der Pracht des Buckingham Palace bis zu winzigen Gartenplätzen, die zwischen geschäftigen Straßen versteckt sind, belohnt London sowohl Erstbesucher als auch erfahrene Entdecker mit endlosen Entdeckungen.
 
 London bietet ein außergewöhnliches Kaleidoskop von Erfahrungen, wo königliche Majestät auf zeitgenössische Kreativität trifft, ahnenhafte Geschichte moderne Innovation umarmt und jede Straße neue Schichten der Entdeckung offenbart. Von den ikonischen Höhen des London Eye bis zu geheimen unterirdischen Tunneln, von geschäftigen Märkten bis zu ruhigen Gärten bietet die Stadt endlose Abenteuer für jeden Typ von Entdecker.
 
-**Bereit, sowohl Londons berühmte W', 1757819668, 1757819668);
+**Bereit, sowohl Londons berühmte W', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));

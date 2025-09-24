@@ -12,7 +12,7 @@ El Gran Valle divide las Tierras Altas en regiones distintas, creando un corredo
 
 - **Loch Ness**: Famoso por su leyenda del monstruo y la línea de falla del Gran Valle
 - **Fort William**: Capital al aire libre y puerta de entrada al Ben Nevis
-- **Inverness**: Capital de las Tierras Altas y cent', 1757819668, 1757819668),
+- **Inverness**: Capital de las Tierras Altas y cent', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (117, 21, 'es', 'Guía Cultural de Abu Dhabi: Patrimonio, Artes y Experiencias Culturales en la Capital', 'Descubre la rica herencia cultural de Abu Dhabi desde artes tradicionales hasta museos modernos. Guía completa de experiencias culturales y sitios patrimoniales en la capital de EAU.', 'Abu Dhabi se erige como el latido cultural de los Emiratos Árabes Unidos, donde las tradiciones beduinas ancestrales se mezclan sin problemas con la innovación artística de vanguardia. Como la capital de la nación y el emirato más grande, Abu Dhabi ha invertido fuertemente en preservar su patrimonio mientras se posiciona como un destino cultural global. Desde la impresionante Mezquita Sheikh Zayed hasta museos de clase mundial y sitios patrimoniales tradicionales, el emirato ofrece perspectivas profundas sobre la cultura árabe, el arte islámico y la transformación notable de la región del Golfo.
 
 ## Arquitectura Islámica y Patrimonio Religioso
@@ -25,7 +25,7 @@ La Gran Mezquita Sheikh Zayed representa la cima de la arquitectura islámica y 
 
 **Maravillas Arquitectónicas**
 
-- **Capacidad**: Acomoda 40,000+ fieles simultáneam', 1757819668, 1757819668),
+- **Capacidad**: Acomoda 40,000+ fieles simultáneam', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (118, 22, 'es', 'Guía de Aventuras del Desierto EAU: Experiencias Épicas del Desierto y Actividades al Aire Libre', 'Experimenta la magia del desierto de EAU con nuestra guía completa de safaris del desierto, camping y aventuras al aire libre a través de los Emiratos.', 'Los Emiratos Árabes Unidos ofrecen algunos de los paisajes desérticos más espectaculares del mundo y aventuras al aire libre emocionantes. Desde las imponentes dunas rojas del Rub al Khali (Cuarto Vacío) hasta las arenas blancas prístinas de la Región Occidental de Abu Dhabi, los diversos entornos desérticos de los EAU proporcionan oportunidades infinitas para buscadores de aventuras y entusiastas de la naturaleza. Esta guía completa explora el espectro completo de actividades del desierto disponibles a través de los Emiratos, desde dune bashing que bombea adrenalina y sandboarding hasta trekking pacífico en camello y experiencias de observación de estrellas.
 
 ## Experiencias Clásicas de Safari del Desierto
@@ -36,7 +36,7 @@ La Gran Mezquita Sheikh Zayed representa la cima de la arquitectura islámica y 
 
 El dune bashing representa la aventura del desierto más popular en los EAU, ofreciendo paseos emocionantes sobre dunas de arena masivas en vehículos 4WD especialmente modificados.
 
-**Tipos de Vehículos y Esp', 1757819668, 1757819668),
+**Tipos de Vehículos y Esp', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (119, 23, 'es', 'Guía de Atracciones de Dubai: Lugares Imperdibles y Gemas Ocultas en la Ciudad de Oro', 'Descubre las atracciones más espectaculares de Dubai desde monumentos icónicos hasta gemas ocultas. Guía completa de turismo, experiencias y destinos imperdibles en Dubai.', 'Dubai se erige como un testimonio de la ambición humana y maravilla arquitectónica, donde rascacielos futuristas perforan las nubes y las tradiciones ancestrales se mezclan sin problemas con la innovación de vanguardia. Esta guía completa explora las atracciones más espectaculares de Dubai, desde monumentos mundialmente famosos que definen el horizonte de la ciudad hasta gemas ocultas que revelan su alma auténtica.
 
 ## Monumentos Icónicos y Maravillas Arquitectónicas
@@ -52,7 +52,7 @@ Con una altura increíble de 828 metros (2,717 pies), el Burj Khalifa domina el 
 - **Nivel 124 y 125**: Miradores principales con vistas de 360 grados
 - **Nivel 148**: Experiencia premium con acceso a terraza exterior
 - **At the Top SKY**: Experiencia de lujo definitiva con refrigerios
-- **Horarios premium**: La observación del atardecer requiere re', 1757819668, 1757819668),
+- **Horarios premium**: La observación del atardecer requiere re', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668)),
   (120, 24, 'es', 'Guía de Cultura Gastronómica y Culinaria de EAU: Cocina Emiratí y Experiencias Gastronómicas Modernas', 'Descubre el rico paisaje culinario de los EAU desde platos emiratíes tradicionales hasta restaurantes de clase mundial. Guía completa de cultura alimentaria y experiencias gastronómicas a través de los Emiratos.', 'Los Emiratos Árabes Unidos han evolucionado hacia uno de los destinos culinarios más emocionantes del mundo, donde las tradiciones emiratíes auténticas se mezclan sin problemas con sabores internacionales traídos por la población diversa del país. Desde recetas beduinas humildes transmitidas a través de generaciones hasta restaurantes con estrellas Michelin dirigidos por chefs celebrity, la escena gastronómica de los EAU refleja su viaje desde la vida desértica tradicional hasta la modernidad cosmopolita.
 
 ## Cocina Emiratí Tradicional y Platos Patrimoniales
@@ -66,4 +66,4 @@ La cocina emiratí refleja el patrimonio marítimo del país, las tradiciones de
 **Al Machbous (Plato Nacional)**
 
 - **Método de preparación**: Arroz basmati fragante cocinado con carne o pescado
-- **Mezcla de especias**: Cardamomo, canela, clavos, hojas de laurel y lima seca (lo', 1757819668, 1757819668);
+- **Mezcla de especias**: Cardamomo, canela, clavos, hojas de laurel y lima seca (lo', TO_TIMESTAMP(1757819668), TO_TIMESTAMP(1757819668));
