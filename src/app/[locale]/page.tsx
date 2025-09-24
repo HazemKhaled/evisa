@@ -14,15 +14,15 @@ import { getAllBlogPosts } from "@/lib/services/blog-service";
 import { DestinationCard } from "@/components/destinations/destination-card";
 import { VisaTypeCard } from "@/components/destinations/visa-type-card";
 import { RelatedArticleCard } from "@/components/blog/related-article-card";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import {
+  Button,
+  Label,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/ui";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 

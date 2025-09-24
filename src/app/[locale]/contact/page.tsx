@@ -10,16 +10,16 @@ import {
   generateFAQJsonLd,
   generateBreadcrumbData,
 } from "@/lib/json-ld";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
+  Button,
+  Textarea,
+  Input,
+  Label,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-} from "@/components/ui/select";
+} from "@/components/ui";
 
 interface ContactPageProps {
   params: Promise<{ locale: string }>;

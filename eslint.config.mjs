@@ -36,6 +36,7 @@ const eslintConfig = [
       "prefer-const": "error",
       "no-var": "error",
       "no-debugger": "error",
+      "no-duplicate-imports": "error",
 
       // Next.js specific rules are already included in next/core-web-vitals
     },

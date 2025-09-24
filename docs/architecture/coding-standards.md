@@ -245,7 +245,7 @@ function Card({ variant = 'default', className }: CardProps) {
 ```typescript
 // ✅ Good Translation Usage
 import { useTranslations } from '@/app/i18n/client.ts';
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui"
 
 function HeroSection() {
   const t = useTranslations('Hero');

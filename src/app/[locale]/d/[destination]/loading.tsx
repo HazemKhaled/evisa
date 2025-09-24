@@ -3,8 +3,8 @@ import {
   BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Skeleton } from "@/components/ui/skeleton";
+  Skeleton,
+} from "@/components/ui";
 
 export default function DestinationLoading() {
   return (

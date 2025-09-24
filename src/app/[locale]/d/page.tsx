@@ -8,7 +8,7 @@ import { DestinationsGrid } from "@/components/destinations/destinations-grid";
 import { JsonLd } from "@/components/json-ld";
 import { generateWebPageJsonLd } from "@/lib/json-ld";
 import { SearchFilterForm } from "@/components/destinations/search-filter-form";
-import { EnhancedPagination } from "@/components/ui/enhanced-pagination";
+import { EnhancedPagination } from "@/components/ui";
 
 export const revalidate = 86400; // Revalidate every day
 

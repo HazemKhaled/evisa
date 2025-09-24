@@ -83,7 +83,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 
 // Component imports
-import { DestinationCard } from "@/components/ui/destination-card";
+import { DestinationCard } from "@/components/destinations/destination-card";
 import { JsonLd } from "@/components/seo/json-ld";
 
 // Service imports
