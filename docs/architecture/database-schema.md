@@ -229,19 +229,102 @@ ON `visa_eligibility_i18n` (`visa_eligibility_id`,`locale`);
 
 ## Entity Relationships
 
-```
 countries (1) ──────────────── (many) countries_i18n
-    │                                      │
-    │ destination_id                       │ locale-based content
-    │                                      │
-    ├── (many) visa_types (1) ────────── (many) visa_types_i18n
-    │                │                            │
-    │                └── (many) visa_eligibility │
-    │                                │            │
-    └── passport_id ─────────────────┘            │
-                                                  │
-                               visa_eligibility (1) ──── (many) visa_eligibility_i18n
-```
+│ │
+│ destination_id │ locale-based content
+│ │
+├── (many) visa_types (1) ────────── (many) visa_types_i18n
+│ │ │
+│ └── (many) visa_eligibility │
+│ │ │
+└── passport_id ─────────────────┘ │
+│
+visa_eligibility (1) ──── (many) visa_eligibility_i18n
+
+````
+
+### Entity Relationship Diagram (ERD)
+
+```mermaid
+erDiagram
+  countries ||--o{ countries_i18n : has
+  countries ||--o{ visa_types : offers
+  visa_types ||--o{ visa_types_i18n : has
+  countries ||--o{ visa_eligibility : destination_id
+  countries ||--o{ visa_eligibility : passport_id
+  visa_types ||--o{ visa_eligibility : type_for
+  visa_eligibility ||--o{ visa_eligibility_i18n : has
+
+  countries {
+    integer id PK
+    text code
+    text continent
+    text region
+    text hero_image
+    integer is_active
+    integer created_at
+    integer updated_at
+    integer deleted_at
+  }
+  countries_i18n {
+    integer id PK
+    integer country_id FK
+    text locale
+    text name
+    text name_long
+    text about
+    integer created_at
+    integer updated_at
+  }
+  visa_types {
+    integer id PK
+    integer destination_id FK
+    text type
+    integer duration
+    integer max_stay
+    integer processing_time
+    real fee
+    text currency
+    integer requires_interview
+    integer is_multi_entry
+    text requirements
+    text documents
+    integer is_active
+    integer created_at
+    integer updated_at
+    integer deleted_at
+  }
+  visa_types_i18n {
+    integer id PK
+    integer visa_type_id FK
+    text locale
+    text name
+    text description
+    integer created_at
+    integer updated_at
+  }
+  visa_eligibility {
+    integer id PK
+    integer destination_id FK
+    integer passport_id FK
+    integer visa_type_id FK
+    text eligibility_status
+    integer max_stay_days
+    integer last_updated
+    integer is_active
+    integer created_at
+    integer updated_at
+    integer deleted_at
+  }
+  visa_eligibility_i18n {
+    integer id PK
+    integer visa_eligibility_id FK
+    text locale
+    text notes
+    integer created_at
+    integer updated_at
+  }
+````
 
 ## Key Indexes
 
