@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { getTranslation } from "@/app/i18n";
 
 interface FooterProps {
@@ -13,7 +12,7 @@ export async function Footer({ locale }: FooterProps) {
   return (
     <footer className="mt-16 bg-gray-900">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className={cn("grid grid-cols-1 gap-8 md:grid-cols-4")}>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="col-span-1 md:col-span-2">
             <div className="text-2xl font-bold text-white">
               {tCommon("site.name")}
@@ -83,11 +82,7 @@ export async function Footer({ locale }: FooterProps) {
             </ul>
           </div>
         </div>
-        <div
-          className={cn(
-            "mt-8 border-t border-gray-700 pt-8 text-center text-base text-gray-400"
-          )}
-        >
+        <div className="mt-8 border-t border-gray-700 pt-8 text-center text-base text-gray-400">
           <p>
             {tNav("footer.copyright", {
               year: new Date().getFullYear(),

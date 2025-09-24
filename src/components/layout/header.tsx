@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { cn } from "@/lib/utils";
 import { getTranslation } from "@/app/i18n";
 
 interface HeaderProps {
@@ -15,8 +14,8 @@ export async function Header({ locale }: HeaderProps) {
   return (
     <header className="border-b bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className={cn("flex h-16 items-center justify-between")}>
-          <div className={cn("flex items-center")}>
+        <div className="flex h-16 items-center justify-between">
+          <div className="flex items-center">
             <Link
               href={`/${locale}`}
               className="text-2xl font-bold text-blue-600"
@@ -24,7 +23,7 @@ export async function Header({ locale }: HeaderProps) {
               {tCommon("site.name")}
             </Link>
           </div>
-          <nav className={cn("hidden space-x-8 md:flex")}>
+          <nav className="hidden space-x-8 md:flex">
             <Link
               href={`/${locale}`}
               className="text-gray-900 hover:text-blue-600"

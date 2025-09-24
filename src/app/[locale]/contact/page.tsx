@@ -1,7 +1,7 @@
 import { type Metadata } from "next";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
-import { cn, generateAlternatesMetadata } from "@/lib/utils";
+import { generateAlternatesMetadata } from "@/lib/utils";
 import { env } from "@/lib/consts";
 import { JsonLd } from "@/components/json-ld";
 import {
@@ -84,7 +84,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
       <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={faqJsonLd} />
       <StaticPageLayout>
-        <div className={cn("space-y-12")}>
+        <div className="space-y-12">
           <header>
             <h1 className="mb-8 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
               {t("contact.title")}
@@ -179,10 +179,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                   ></Textarea>
                 </div>
 
-                <Button
-                  type="submit"
-                  className="w-full rounded-md bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                >
+                <Button type="submit" className="w-full">
                   {t("contact.form.submit")}
                 </Button>
               </form>

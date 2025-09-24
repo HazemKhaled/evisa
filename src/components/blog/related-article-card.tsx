@@ -40,7 +40,7 @@ export async function RelatedArticleCard({
       </Link>
 
       <div className="p-6">
-        <div className={cn("mb-3 flex flex-wrap gap-2")}>
+        <div className="mb-3 flex flex-wrap gap-2">
           {post.destinations?.slice(0, 2).map(destination => (
             <span
               key={destination}
@@ -53,7 +53,7 @@ export async function RelatedArticleCard({
 
         <h3
           id={`post-title-${post.slug}`}
-          className={cn("mb-2 line-clamp-2 text-lg font-bold text-gray-900")}
+          className="mb-2 line-clamp-2 text-lg font-bold text-gray-900"
         >
           <Link
             href={`/${locale}/blog/${post.slug}`}
@@ -68,7 +68,7 @@ export async function RelatedArticleCard({
 
         <p
           id={`post-description-${post.slug}`}
-          className={cn("line-clamp-2 text-sm text-gray-600")}
+          className="line-clamp-2 text-sm text-gray-600"
         >
           {post.description}
         </p>

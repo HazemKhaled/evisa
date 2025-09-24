@@ -162,12 +162,7 @@ export async function VisaTypeDetailCard({
             {t("lastUpdated")}: {new Date().toLocaleDateString(locale)}
           </div>
 
-          <Button
-            type="button"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-4 py-2 text-sm font-medium transition-colors"
-          >
-            {t("checkEligibility")}
-          </Button>
+          <Button type="button">{t("checkEligibility")}</Button>
         </div>
       </div>
     </div>
