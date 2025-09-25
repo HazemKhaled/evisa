@@ -6,7 +6,7 @@ import {
   waitFor,
   act,
 } from "@testing-library/react";
-import { BlogSearch } from "../blog-search";
+import { BlogSearch } from "../../blog/blog-search";
 import type { BlogPostData } from "../../../lib/services/blog-service";
 
 // Mock the blog service client

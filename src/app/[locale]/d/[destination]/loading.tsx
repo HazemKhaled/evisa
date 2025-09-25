@@ -1,22 +1,32 @@
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbSeparator,
+  Skeleton,
+} from "@/components/ui";
+
 export default function DestinationLoading() {
   return (
     <main className="min-h-screen">
       {/* Breadcrumb Skeleton */}
-      <nav className="container mx-auto px-4 py-4" aria-label="breadcrumb">
-        <ol className="flex items-center space-x-2 text-sm rtl:space-x-reverse">
-          <li>
-            <div className="bg-muted h-4 w-12 animate-pulse rounded"></div>
-          </li>
-          <li className="flex items-center">
-            <span className="mx-2 ltr:rotate-0 rtl:rotate-180">→</span>
-            <div className="bg-muted h-4 w-20 animate-pulse rounded"></div>
-          </li>
-          <li className="flex items-center">
-            <span className="mx-2 ltr:rotate-0 rtl:rotate-180">→</span>
-            <div className="bg-muted h-4 w-24 animate-pulse rounded"></div>
-          </li>
-        </ol>
-      </nav>
+      <div className="container mx-auto px-4 py-4">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <Skeleton className="h-4 w-12" />
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <Skeleton className="h-4 w-20" />
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <Skeleton className="h-4 w-24" />
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
 
       {/* Hero Section Skeleton */}
       <section className="container mx-auto px-4 py-8">
@@ -33,41 +43,38 @@ export default function DestinationLoading() {
 
         {/* Description placeholder */}
         <div className="space-y-3">
-          <div className="bg-muted h-4 w-full animate-pulse rounded"></div>
-          <div className="bg-muted h-4 w-3/4 animate-pulse rounded"></div>
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-3/4" />
         </div>
       </section>
 
       {/* Visa Options Section Skeleton */}
       <section className="container mx-auto px-4 py-12">
         <div className="mb-8">
-          <div className="bg-muted mb-4 h-8 w-48 animate-pulse rounded"></div>
-          <div className="bg-muted h-4 w-96 animate-pulse rounded"></div>
+          <Skeleton className="mb-4 h-8 w-48" />
+          <Skeleton className="h-4 w-96" />
         </div>
 
         {/* Visa cards grid skeleton */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[...Array(6)].map((_, index) => (
-            <div
-              key={index}
-              className="bg-card animate-pulse rounded-lg border p-6"
-            >
-              <div className="bg-muted mb-4 h-6 w-32 rounded"></div>
+            <div key={index} className="bg-card rounded-lg border p-6">
+              <Skeleton className="mb-4 h-6 w-32" />
               <div className="mb-6 space-y-3">
                 <div className="flex justify-between">
-                  <div className="bg-muted h-4 w-16 rounded"></div>
-                  <div className="bg-muted h-4 w-20 rounded"></div>
+                  <Skeleton className="h-4 w-16" />
+                  <Skeleton className="h-4 w-20" />
                 </div>
                 <div className="flex justify-between">
-                  <div className="bg-muted h-4 w-20 rounded"></div>
-                  <div className="bg-muted h-4 w-16 rounded"></div>
+                  <Skeleton className="h-4 w-20" />
+                  <Skeleton className="h-4 w-16" />
                 </div>
                 <div className="flex justify-between">
-                  <div className="bg-muted h-4 w-18 rounded"></div>
-                  <div className="bg-muted h-4 w-14 rounded"></div>
+                  <Skeleton className="h-4 w-18" />
+                  <Skeleton className="h-4 w-14" />
                 </div>
               </div>
-              <div className="bg-muted h-10 w-full rounded"></div>
+              <Skeleton className="h-10 w-full" />
             </div>
           ))}
         </div>
@@ -76,12 +83,12 @@ export default function DestinationLoading() {
       {/* Related Content Section Skeleton */}
       <section className="container mx-auto px-4 py-12">
         <div className="mb-8">
-          <div className="bg-muted mb-4 h-8 w-56 animate-pulse rounded"></div>
-          <div className="bg-muted h-4 w-80 animate-pulse rounded"></div>
+          <Skeleton className="mb-4 h-8 w-56" />
+          <Skeleton className="h-4 w-80" />
         </div>
 
         <div className="py-8 text-center">
-          <div className="bg-muted mx-auto h-12 w-48 animate-pulse rounded"></div>
+          <Skeleton className="mx-auto h-12 w-48" />
         </div>
       </section>
     </main>

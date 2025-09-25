@@ -5,6 +5,7 @@
     "title": "تحقق من متطلبات التأشيرة",
     "passportPlaceholder": "اختر بلد جواز سفرك",
     "destinationPlaceholder": "اختر وجهتك",
+    "searchPlaceholder": "ابحث عن البلدان...",
     "checkButton": "فحص الأهلية"
   }
 }

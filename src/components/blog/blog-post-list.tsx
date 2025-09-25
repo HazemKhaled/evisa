@@ -2,7 +2,7 @@ import { BlogPostCard } from "./blog-post-card";
 import { cn } from "@/lib/utils";
 import type { BlogPostData } from "@/lib/services/blog-service";
 import { getTranslation } from "@/app/i18n";
-import { EnhancedPagination } from "./enhanced-pagination";
+import { EnhancedPagination } from "../ui/enhanced-pagination";
 
 interface BlogPostListProps {
   posts: BlogPostData[];

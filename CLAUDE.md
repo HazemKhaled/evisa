@@ -419,4 +419,5 @@ The platform helps users travel with minimal visa process through:
 
 ### Memory Notes
 
-- use drizzle migrations for any DDL commands
+- Use drizzle migrations for any DDL commands
+- Always respect multilingual, no hardcoded strings

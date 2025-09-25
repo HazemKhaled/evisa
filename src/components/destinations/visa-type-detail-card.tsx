@@ -5,6 +5,8 @@ import type {
   DestinationWithVisaTypes,
 } from "@/lib/services/country-service";
 import { RequiredDocuments } from "./required-documents";
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 
 interface VisaTypeDetailCardProps {
   visaType: VisaTypeInfo;
@@ -34,21 +36,22 @@ export async function VisaTypeDetailCard({
         <div className="mb-2 flex items-start justify-between">
           <h3 className="text-xl font-semibold">{visaType.name}</h3>
           {visaType.isMultiEntry && (
-            <span className="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs">
+            <Badge variant="secondary" className="bg-primary/10 text-primary">
               {t("multiEntry")}
-            </span>
+            </Badge>
           )}
         </div>
 
         {/* Visa Type Badge */}
         <div className="inline-flex items-center gap-2">
-          <span className="bg-muted rounded-full px-3 py-1 text-sm">
-            {visaType.type}
-          </span>
+          <Badge variant="secondary">{visaType.type}</Badge>
           {visaType.requiresInterview && (
-            <span className="rounded-full bg-orange-100 px-2 py-1 text-xs text-orange-800">
+            <Badge
+              variant="destructive"
+              className="bg-orange-100 text-orange-800 hover:bg-orange-200"
+            >
               {t("interviewRequired")}
-            </span>
+            </Badge>
           )}
         </div>
       </div>
@@ -159,12 +162,7 @@ export async function VisaTypeDetailCard({
             {t("lastUpdated")}: {new Date().toLocaleDateString(locale)}
           </div>
 
-          <button
-            type="button"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-4 py-2 text-sm font-medium transition-colors"
-          >
-            {t("checkEligibility")}
-          </button>
+          <Button type="button">{t("checkEligibility")}</Button>
         </div>
       </div>
     </div>

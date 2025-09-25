@@ -2,8 +2,7 @@
 
 import { useEffect } from "react";
 import { useParams } from "next/navigation";
-import type { ErrorPageProps } from "@/lib/types/errors";
-import { ErrorType } from "@/lib/types/errors";
+import { type ErrorPageProps, ErrorType } from "@/lib/types/errors";
 import { classifyError, logError } from "@/lib/errors/utils";
 import ErrorActions from "./error-actions";
 import { useTranslation } from "@/app/i18n/client";

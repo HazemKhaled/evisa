@@ -3,7 +3,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import type { BlogPostData } from "@/lib/services/blog-service";
 import { getTranslation } from "@/app/i18n";
-import { RelatedArticleCard } from "./related-article-card";
+import { BlogPostCard } from "./blog-post-card";
 
 interface BlogPostDetailProps {
   post: BlogPostData;
@@ -157,11 +157,7 @@ export async function BlogPostDetail({
             </h3>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {relatedPosts.map(post => (
-                <RelatedArticleCard
-                  key={post.slug}
-                  post={post}
-                  locale={locale}
-                />
+                <BlogPostCard key={post.slug} post={post} locale={locale} />
               ))}
             </div>
           </div>

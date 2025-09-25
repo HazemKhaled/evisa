@@ -8,8 +8,8 @@ import {
 import { env } from "@/lib/consts";
 import { generateAlternatesMetadata } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
-import { BlogPostList } from "@/components/ui/blog-post-list";
-import { BlogSearch } from "@/components/ui/blog-search";
+import { BlogPostList } from "@/components/blog/blog-post-list";
+import { BlogSearch } from "@/components/blog/blog-search";
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
 import { JsonLd } from "@/components/json-ld";
@@ -203,7 +203,11 @@ export default async function BlogHome({
 
           {/* Search */}
           <div className="mb-12">
-            <BlogSearch allPosts={allPostsForSearch} locale={locale} />
+            <BlogSearch
+              allPosts={allPostsForSearch}
+              locale={locale}
+              searchPlaceholder={t("search.placeholder")}
+            />
           </div>
 
           <BlogPostList

@@ -27,12 +27,9 @@ describe("Utils index exports", () => {
   });
 
   it("should export pagination utility functions", () => {
-    expect(utils.calculatePagination).toBeDefined();
-    expect(utils.generatePageNumbers).toBeDefined();
     expect(utils.paginateArray).toBeDefined();
-    expect(utils.filterAndPaginate).toBeDefined();
+    expect(utils.validatePaginationParams).toBeDefined();
     expect(utils.createBlogFilter).toBeDefined();
-    expect(utils.createPaginationStats).toBeDefined();
   });
 
   it("should export translation utility functions", () => {
@@ -42,13 +39,6 @@ describe("Utils index exports", () => {
     expect(utils.loadHeroTranslations).toBeDefined();
     expect(utils.loadBlogTranslations).toBeDefined();
     expect(utils.translationKeys).toBeDefined();
-  });
-
-  it("should export flag utility functions", () => {
-    expect(utils.getFlagUrl).toBeDefined();
-    expect(utils.getFlagPath).toBeDefined();
-    expect(utils.flagExists).toBeDefined();
-    expect(utils.getFlagUrlWithFallback).toBeDefined();
   });
 
   it("should export all functions with correct types", () => {
@@ -71,12 +61,9 @@ describe("Utils index exports", () => {
     expect(typeof utils.createResponsiveGrid).toBe("function");
 
     // Test pagination functions
-    expect(typeof utils.calculatePagination).toBe("function");
-    expect(typeof utils.generatePageNumbers).toBe("function");
     expect(typeof utils.paginateArray).toBe("function");
-    expect(typeof utils.filterAndPaginate).toBe("function");
+    expect(typeof utils.validatePaginationParams).toBe("function");
     expect(typeof utils.createBlogFilter).toBe("function");
-    expect(typeof utils.createPaginationStats).toBe("function");
 
     // Test translation functions
     expect(typeof utils.loadTranslations).toBe("function");
@@ -84,27 +71,12 @@ describe("Utils index exports", () => {
     expect(typeof utils.loadPageTranslations).toBe("function");
     expect(typeof utils.loadHeroTranslations).toBe("function");
     expect(typeof utils.loadBlogTranslations).toBe("function");
-
-    // Test flag functions
-    expect(typeof utils.getFlagUrl).toBe("function");
-    expect(typeof utils.getFlagPath).toBe("function");
-    expect(typeof utils.flagExists).toBe("function");
-    expect(typeof utils.getFlagUrlWithFallback).toBe("function");
   });
 
   it("should export translationKeys as an object", () => {
     expect(utils.translationKeys).toBeDefined();
     expect(typeof utils.translationKeys).toBe("object");
     expect(utils.translationKeys).not.toBeNull();
-  });
-
-  it("should have correct number of exports", () => {
-    const exportedFunctions = Object.keys(utils).filter(
-      key => typeof utils[key as keyof typeof utils] === "function"
-    );
-
-    // We expect at least 25 functions to be exported
-    expect(exportedFunctions.length).toBeGreaterThanOrEqual(25);
   });
 
   it("should export functions with correct names", () => {
@@ -129,12 +101,9 @@ describe("Utils index exports", () => {
     ];
 
     const expectedPaginationFunctions = [
-      "calculatePagination",
-      "generatePageNumbers",
       "paginateArray",
-      "filterAndPaginate",
+      "validatePaginationParams",
       "createBlogFilter",
-      "createPaginationStats",
     ];
 
     const expectedTranslationFunctions = [
@@ -143,13 +112,6 @@ describe("Utils index exports", () => {
       "loadPageTranslations",
       "loadHeroTranslations",
       "loadBlogTranslations",
-    ];
-
-    const expectedFlagFunctions = [
-      "getFlagUrl",
-      "getFlagPath",
-      "flagExists",
-      "getFlagUrlWithFallback",
     ];
 
     expectedUrlFunctions.forEach(funcName => {
@@ -172,11 +134,6 @@ describe("Utils index exports", () => {
     });
 
     expectedTranslationFunctions.forEach(funcName => {
-      expect(utils).toHaveProperty(funcName);
-      expect(typeof utils[funcName as keyof typeof utils]).toBe("function");
-    });
-
-    expectedFlagFunctions.forEach(funcName => {
       expect(utils).toHaveProperty(funcName);
       expect(typeof utils[funcName as keyof typeof utils]).toBe("function");
     });

@@ -1,7 +1,7 @@
 import { type Metadata } from "next";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
-import { cn, generateAlternatesMetadata } from "@/lib/utils";
+import { generateAlternatesMetadata } from "@/lib/utils";
 import { env } from "@/lib/consts";
 import { JsonLd } from "@/components/json-ld";
 import {
@@ -10,6 +10,16 @@ import {
   generateFAQJsonLd,
   generateBreadcrumbData,
 } from "@/lib/json-ld";
+import {
+  Button,
+  Textarea,
+  Input,
+  Label,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui";
 
 interface ContactPageProps {
   params: Promise<{ locale: string }>;
@@ -74,7 +84,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
       <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={faqJsonLd} />
       <StaticPageLayout>
-        <div className={cn("space-y-12")}>
+        <div className="space-y-12">
           <header>
             <h1 className="mb-8 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
               {t("contact.title")}
@@ -92,120 +102,86 @@ export default async function ContactPage({ params }: ContactPageProps) {
               </h2>
               <form className="space-y-6">
                 <div>
-                  <label
-                    htmlFor="name"
-                    className="mb-2 block text-sm font-medium text-gray-700"
-                  >
-                    {t("contact.form.name_label")}
-                  </label>
-                  <input
+                  <Label htmlFor="name">{t("contact.form.name_label")}</Label>
+                  <Input
                     type="text"
                     id="name"
                     name="name"
                     placeholder={t("contact.form.name_placeholder")}
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                     required
                   />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="mb-2 block text-sm font-medium text-gray-700"
-                  >
-                    {t("contact.form.email_label")}
-                  </label>
-                  <input
+                  <Label htmlFor="email">{t("contact.form.email_label")}</Label>
+                  <Input
                     type="email"
                     id="email"
                     name="email"
                     placeholder={t("contact.form.email_placeholder")}
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                     required
                   />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="phone"
-                    className="mb-2 block text-sm font-medium text-gray-700"
-                  >
-                    {t("contact.form.phone_label")}
-                  </label>
-                  <input
+                  <Label htmlFor="phone">{t("contact.form.phone_label")}</Label>
+                  <Input
                     type="tel"
                     id="phone"
                     name="phone"
                     placeholder={t("contact.form.phone_placeholder")}
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="reason"
-                    className="mb-2 block text-sm font-medium text-gray-700"
-                  >
+                  <Label htmlFor="reason">
                     {t("contact.form.reason_label")}
-                  </label>
-                  <select
-                    id="reason"
-                    name="reason"
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    required
-                  >
-                    <option value="question">
-                      {t("contact.form.reason_question")}
-                    </option>
-                    <option value="partnership">
-                      {t("contact.form.reason_partnership")}
-                    </option>
-                    <option value="other">
-                      {t("contact.form.reason_other")}
-                    </option>
-                  </select>
+                  </Label>
+                  <Select name="reason" required>
+                    <SelectTrigger />
+                    <SelectContent>
+                      <SelectItem value="question">
+                        {t("contact.form.reason_question")}
+                      </SelectItem>
+                      <SelectItem value="partnership">
+                        {t("contact.form.reason_partnership")}
+                      </SelectItem>
+                      <SelectItem value="other">
+                        {t("contact.form.reason_other")}
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="subject"
-                    className="mb-2 block text-sm font-medium text-gray-700"
-                  >
+                  <Label htmlFor="subject">
                     {t("contact.form.subject_label")}
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     type="text"
                     id="subject"
                     name="subject"
                     placeholder={t("contact.form.subject_placeholder")}
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                     required
                   />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="mb-2 block text-sm font-medium text-gray-700"
-                  >
+                  <Label htmlFor="message">
                     {t("contact.form.message_label")}
-                  </label>
-                  <textarea
+                  </Label>
+                  <Textarea
                     id="message"
                     name="message"
                     rows={6}
                     placeholder={t("contact.form.message_placeholder")}
-                    className="w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                     required
-                  ></textarea>
+                  ></Textarea>
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full rounded-md bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                >
+                <Button type="submit" className="w-full">
                   {t("contact.form.submit")}
-                </button>
+                </Button>
               </form>
             </section>
 

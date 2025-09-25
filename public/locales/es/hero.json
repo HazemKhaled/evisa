@@ -5,6 +5,7 @@
     "title": "Verifica tus requisitos de visa",
     "passportPlaceholder": "Selecciona tu país de pasaporte",
     "destinationPlaceholder": "Selecciona tu destino",
+    "searchPlaceholder": "Buscar países...",
     "checkButton": "Verificar elegibilidad"
   }
 }

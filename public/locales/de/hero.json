@@ -5,6 +5,7 @@
     "title": "Prüfen Sie Ihre Visa-Anforderungen",
     "passportPlaceholder": "Wählen Sie Ihr Reisepass-Land",
     "destinationPlaceholder": "Wählen Sie Ihr Reiseziel",
+    "searchPlaceholder": "Länder suchen...",
     "checkButton": "Berechtigung prüfen"
   }
 }

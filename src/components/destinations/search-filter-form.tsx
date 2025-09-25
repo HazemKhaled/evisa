@@ -2,6 +2,14 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import {
+  Input,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui";
 
 interface SearchFilterFormProps {
   locale: string;
@@ -64,7 +72,7 @@ export function SearchFilterForm({
         {/* Search Input */}
         <div className="flex-1">
           <form onSubmit={handleSearchSubmit} className="relative">
-            <input
+            <Input
               type="text"
               name="search"
               placeholder={translations.searchPlaceholder}
@@ -90,18 +98,19 @@ export function SearchFilterForm({
 
         {/* Continent Filter */}
         <div className="sm:w-64">
-          <select
-            value={continentValue}
-            onChange={e => handleContinentChange(e.target.value)}
-            className="border-input bg-background focus:ring-primary focus:border-primary w-full rounded-lg border px-4 py-3 focus:ring-2"
-          >
-            <option value="all">{translations.allContinents}</option>
-            {continents.map(cont => (
-              <option key={cont} value={cont.toLowerCase()}>
-                {cont}
-              </option>
-            ))}
-          </select>
+          <Select value={continentValue} onValueChange={handleContinentChange}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder={translations.allContinents} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">{translations.allContinents}</SelectItem>
+              {continents.map(cont => (
+                <SelectItem key={cont} value={cont.toLowerCase()}>
+                  {cont}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </div>

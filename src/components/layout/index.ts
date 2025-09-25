@@ -1,2 +1,2 @@
-export { Header } from "./header";
-export { Footer } from "./footer";
+export * from "./header";
+export * from "./footer";

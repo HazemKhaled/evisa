@@ -1,7 +1,6 @@
-import { drizzle } from "drizzle-orm/neon-http";
+import { drizzle, type NeonHttpDatabase } from "drizzle-orm/neon-http";
 import { neon, neonConfig } from "@neondatabase/serverless";
 import { cache } from "react";
-import type { NeonHttpDatabase } from "drizzle-orm/neon-http";
 import { validateDatabaseUrl } from "../consts/env";
 import * as schema from "./schema";
 

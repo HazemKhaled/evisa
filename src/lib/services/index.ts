@@ -8,44 +8,10 @@ export * from "./visa-service";
 export * from "./blog-service";
 
 // Re-export commonly used country services
-export {
-  getCountryNames,
-  getAllCountries,
-  getCountryByCode,
-  searchCountries,
-  getCountriesByCodes,
-  // New enhanced destination functions
-  getDestinationsListWithMetadata,
-  getDestinationDetails,
-  getDestinationWithVisaTypes,
-} from "./country-service";
+export * from "./country-service";
 
 // Re-export commonly used visa services
-export {
-  getRandomVisaTypes,
-  getVisaTypesByDestination,
-  getAllVisaTypes,
-  getVisaTypeById,
-  // New visa eligibility functions
-  checkVisaEligibility,
-  getEligibleVisaTypes,
-  getVisaRequirements,
-} from "./visa-service";
+export * from "./visa-service";
 
 // Re-export commonly used blog services
-export {
-  getAllBlogPosts,
-  getBlogPosts,
-  getBlogPostsByDestination,
-  getBlogPostsByTag,
-  getRelatedBlogPosts,
-  getBlogPostBySlug,
-  getAllTagsForLocale,
-  getAllDestinationsForLocale,
-  searchBlogPosts,
-  getFeaturedBlogPosts,
-  getBlogPost,
-  getBlogPostsForLocale,
-  getAllUniqueTagsAcrossLocales,
-  getBlogDataForLocale,
-} from "./blog-service";
+export * from "./blog-service";

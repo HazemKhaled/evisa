@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui";
 import type { BlogPostData } from "@/lib/services/blog-service";
 
 /**
@@ -27,9 +28,6 @@ export const blogCardStyles = {
 
   badges: {
     container: "mb-3 flex flex-wrap gap-2",
-    destination:
-      "inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 transition-colors hover:bg-blue-200",
-    tag: "inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-200",
   },
 
   content: {
@@ -71,14 +69,18 @@ export function DestinationBadges({
         <Link
           key={destination}
           href={`/${locale}/d/${destination}/blog`}
-          className={blogCardStyles.badges.destination}
           aria-label={
             ariaLabelFunction
               ? ariaLabelFunction(destination)
               : `View blog posts for ${destination}`
           }
         >
-          📍 {destination}
+          <Badge
+            variant="secondary"
+            className="hover:bg-blue-100 hover:text-blue-800"
+          >
+            📍 {destination}
+          </Badge>
         </Link>
       ))}
     </>
@@ -108,14 +110,15 @@ export function TagBadges({
         <Link
           key={tag}
           href={`/${locale}/blog/t/${encodeURIComponent(tag)}`}
-          className={blogCardStyles.badges.tag}
           aria-label={
             ariaLabelFunction
               ? ariaLabelFunction(tag)
               : `View blog posts tagged with ${tag}`
           }
         >
-          #{tag}
+          <Badge variant="outline" className="hover:bg-gray-100">
+            #{tag}
+          </Badge>
         </Link>
       ))}
     </>
