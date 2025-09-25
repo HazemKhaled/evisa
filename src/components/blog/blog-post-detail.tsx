@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import type { BlogPostData } from "@/lib/services/blog-service";
 import { getTranslation } from "@/app/i18n";
 import { BlogPostCard } from "./blog-post-card";
+import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 
 interface BlogPostDetailProps {
   post: BlogPostData;
@@ -19,22 +20,24 @@ export async function BlogPostDetail({
   relatedPosts = [],
 }: BlogPostDetailProps) {
   const { t } = await getTranslation(locale, "blog");
+  const { t: tNav } = await getTranslation(locale, "navigation");
+
   return (
     <article
       className={cn("mx-auto max-w-4xl", className)}
       aria-labelledby="article-title"
       aria-describedby="article-description"
     >
-      {/* Back navigation */}
-      <nav className="mb-6" aria-label={t("aria.articleNavigation")}>
-        <Link
-          href={`/${locale}/blog`}
-          className="inline-flex items-center text-blue-600 transition-colors hover:text-blue-700"
-          aria-label={t("aria.returnToBlogListing")}
-        >
-          {t("navigation.backToBlog")}
-        </Link>
-      </nav>
+      {/* Breadcrumb Navigation */}
+      <PageBreadcrumb
+        items={[
+          { label: tNav("breadcrumb.home"), href: `/${locale}` },
+          { label: tNav("breadcrumb.blog"), href: `/${locale}/blog` },
+          { label: post.title, isCurrentPage: true },
+        ]}
+        locale={locale}
+        className="mb-6"
+      />
 
       {/* Article header */}
       <header className="mb-8">

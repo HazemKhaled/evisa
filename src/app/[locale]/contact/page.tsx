@@ -10,6 +10,7 @@ import {
   generateFAQJsonLd,
   generateBreadcrumbData,
 } from "@/lib/json-ld";
+import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 import {
   Button,
   Textarea,
@@ -85,6 +86,15 @@ export default async function ContactPage({ params }: ContactPageProps) {
       <JsonLd data={faqJsonLd} />
       <StaticPageLayout>
         <div className="space-y-12">
+          {/* Breadcrumb */}
+          <PageBreadcrumb
+            items={[
+              { label: tNav("breadcrumb.home"), href: `/${locale}` },
+              { label: tNav("breadcrumb.contact"), isCurrentPage: true },
+            ]}
+            locale={locale}
+          />
+
           <header>
             <h1 className="mb-8 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
               {t("contact.title")}

@@ -30,6 +30,7 @@
     "destinations": "Destinazioni",
     "about": "Chi siamo",
     "terms": "Termini e condizioni",
-    "privacy": "Informativa sulla privacy"
+    "privacy": "Informativa sulla privacy",
+    "tag": "Tag: {{tagName}}"
   }
 }

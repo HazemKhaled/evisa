@@ -30,6 +30,7 @@
     "contact": "Contact Us",
     "about": "About Us",
     "terms": "Terms & Conditions",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "tag": "Tag: {{tagName}}"
   }
 }

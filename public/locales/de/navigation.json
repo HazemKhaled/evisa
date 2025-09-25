@@ -30,6 +30,7 @@
     "destinations": "Reiseziele",
     "about": "Über uns",
     "terms": "Geschäftsbedingungen",
-    "privacy": "Datenschutzrichtlinie"
+    "privacy": "Datenschutzrichtlinie",
+    "tag": "Tag: {{tagName}}"
   }
 }

@@ -9,6 +9,7 @@ import {
   generateBreadcrumbListJsonLd,
   generateBreadcrumbData,
 } from "@/lib/json-ld";
+import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 
 interface TermsPageProps {
   params: Promise<{ locale: string }>;
@@ -62,6 +63,15 @@ export default async function TermsPage({ params }: TermsPageProps) {
       <JsonLd data={breadcrumbJsonLd} />
       <StaticPageLayout>
         <div className="space-y-12">
+          {/* Breadcrumb */}
+          <PageBreadcrumb
+            items={[
+              { label: tNav("breadcrumb.home"), href: `/${locale}` },
+              { label: tNav("breadcrumb.terms"), isCurrentPage: true },
+            ]}
+            locale={locale}
+          />
+
           <header>
             <h1 className="mb-8 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
               {t("terms.title")}

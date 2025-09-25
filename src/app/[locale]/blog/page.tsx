@@ -18,6 +18,7 @@ import {
   generateBreadcrumbListJsonLd,
   generateBreadcrumbData,
 } from "@/lib/json-ld";
+import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 
 // Enable ISR with daily revalidation for blog list
 export const revalidate = 86400; // 24 hours
@@ -168,20 +169,64 @@ export default async function BlogHome({
     return `/${locale}/blog${query}`;
   };
 
+  // Create breadcrumb items based on current page state
+  let breadcrumbItems: Array<{
+    label: string;
+    href?: string;
+    isCurrentPage?: boolean;
+  }> = [
+    { label: tNav("breadcrumb.home"), href: `/${locale}` },
+    { label: tNav("breadcrumb.blog"), href: `/${locale}/blog` },
+  ];
+
+  if (destination) {
+    breadcrumbItems = [
+      { label: tNav("breadcrumb.home"), href: `/${locale}` },
+      { label: tNav("breadcrumb.destinations"), href: `/${locale}/d` },
+      { label: destination, href: `/${locale}/d/${destination}` },
+      { label: tNav("breadcrumb.blog"), isCurrentPage: true },
+    ];
+  } else if (tag) {
+    breadcrumbItems = [
+      { label: tNav("breadcrumb.home"), href: `/${locale}` },
+      { label: tNav("breadcrumb.blog"), href: `/${locale}/blog` },
+      { label: tNav("breadcrumb.tag", { tagName: tag }), isCurrentPage: true },
+    ];
+  } else {
+    breadcrumbItems = [
+      { label: tNav("breadcrumb.home"), href: `/${locale}` },
+      { label: tNav("breadcrumb.blog"), isCurrentPage: true },
+    ];
+  }
+
   if (posts.length === 0) {
     return (
-      <StaticPageLayout>
-        <div className="py-16 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">{pageTitle}</h1>
-          <p className="text-lg text-gray-600">
-            {tag
-              ? `No posts found with tag "${tag}"`
-              : destination
-                ? `No posts found for destination "${destination}"`
-                : t("empty_state")}
-          </p>
-        </div>
-      </StaticPageLayout>
+      <>
+        <JsonLd data={webpageJsonLd} />
+        <JsonLd data={breadcrumbJsonLd} />
+        <StaticPageLayout>
+          <div className="mx-auto max-w-7xl">
+            {/* Breadcrumb */}
+            <PageBreadcrumb
+              items={breadcrumbItems}
+              locale={locale}
+              className="mb-8"
+            />
+            <div className="py-16 text-center">
+              <h1 className="mb-4 text-4xl font-bold text-gray-900">
+                {pageTitle}
+              </h1>
+              <p className="text-lg text-gray-600">
+                {tag
+                  ? `No posts found with tag "${tag}"`
+                  : destination
+                    ? `No posts found for destination "${destination}"`
+                    : t("empty_state")}
+              </p>
+            </div>
+          </div>
+        </StaticPageLayout>
+      </>
     );
   }
 
@@ -191,6 +236,13 @@ export default async function BlogHome({
       <JsonLd data={breadcrumbJsonLd} />
       <StaticPageLayout>
         <div className="mx-auto max-w-7xl">
+          {/* Breadcrumb */}
+          <PageBreadcrumb
+            items={breadcrumbItems}
+            locale={locale}
+            className="mb-8"
+          />
+
           {/* Header */}
           <div className="mb-12 text-center">
             <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">

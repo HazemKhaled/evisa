@@ -13,6 +13,7 @@ import { generateDestinationJsonLd } from "@/lib/json-ld";
 import { languages } from "@/app/i18n/settings";
 import { generateAlternatesMetadata } from "@/lib/utils";
 import { env } from "@/lib/consts";
+import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 
@@ -131,30 +132,15 @@ export default async function DestinationPage({
 
       <main className="min-h-screen">
         {/* Breadcrumb Navigation */}
-        <nav
+        <PageBreadcrumb
+          items={[
+            { label: tNav("breadcrumb.home"), href: `/${locale}` },
+            { label: tNav("breadcrumb.destinations"), href: `/${locale}/d` },
+            { label: destinationData.localizedName, isCurrentPage: true },
+          ]}
+          locale={locale}
           className="container mx-auto px-4 py-4"
-          aria-label={t("aria.breadcrumb")}
-        >
-          <ol className="text-muted-foreground flex items-center space-x-2 text-sm rtl:space-x-reverse">
-            <li>
-              <a href={`/${locale}`} className="hover:text-primary">
-                {tNav("breadcrumb.home")}
-              </a>
-            </li>
-            <li className="flex items-center">
-              <span className="mx-2 ltr:rotate-0 rtl:rotate-180">→</span>
-              <a href={`/${locale}/d`} className="hover:text-primary">
-                {tNav("breadcrumb.destinations")}
-              </a>
-            </li>
-            <li className="flex items-center">
-              <span className="mx-2 ltr:rotate-0 rtl:rotate-180">→</span>
-              <span className="text-foreground font-medium">
-                {destinationData.localizedName}
-              </span>
-            </li>
-          </ol>
-        </nav>
+        />
 
         {/* Destination Hero Section */}
         <DestinationHero destination={destinationData} locale={locale} />
