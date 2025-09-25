@@ -5,6 +5,7 @@
     "title": "Check Your Visa Requirements",
     "passportPlaceholder": "Select your passport country",
     "destinationPlaceholder": "Select your destination",
+    "searchPlaceholder": "Search countries...",
     "checkButton": "Check Eligibility"
   }
 }

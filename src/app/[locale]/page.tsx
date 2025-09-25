@@ -1,5 +1,4 @@
 import { getTranslation } from "../i18n";
-import { cn } from "@/lib/utils";
 import { env } from "@/lib/consts";
 import { JsonLd } from "@/components/json-ld";
 import {
@@ -8,21 +7,17 @@ import {
   generateOrganizationData,
   generateServiceData,
 } from "@/lib/json-ld";
-import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
+import {
+  getDestinationsListWithMetadata,
+  getAllCountries,
+} from "@/lib/services/country-service";
 import { getRandomVisaTypes } from "@/lib/services/visa-service";
 import { getAllBlogPosts } from "@/lib/services/blog-service";
 import { DestinationCard } from "@/components/destinations/destination-card";
 import { VisaTypeCard } from "@/components/destinations/visa-type-card";
-import { RelatedArticleCard } from "@/components/blog/related-article-card";
-import {
-  Button,
-  Label,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui";
+import { SearchForm } from "@/components/search-form";
+import { Button } from "@/components/ui";
+import { BlogPostCard } from "@/components/blog/blog-post-card";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 
@@ -39,12 +34,17 @@ export default async function LocalePage({
   const { t } = await getTranslation(locale, "pages");
 
   // Fetch data for homepage sections with graceful degradation
-  const [destinationsResult, visaTypesResult, blogPostsResult] =
-    await Promise.allSettled([
-      getDestinationsListWithMetadata(locale, 8, "popular"),
-      getRandomVisaTypes(locale, 6),
-      getAllBlogPosts(locale, 6),
-    ]);
+  const [
+    destinationsResult,
+    visaTypesResult,
+    blogPostsResult,
+    countriesResult,
+  ] = await Promise.allSettled([
+    getDestinationsListWithMetadata(locale, 8, "popular"),
+    getRandomVisaTypes(locale, 6),
+    getAllBlogPosts(locale, 6),
+    getAllCountries(locale),
+  ]);
 
   // Extract results with fallbacks for failed requests
   const destinations =
@@ -53,6 +53,8 @@ export default async function LocalePage({
     visaTypesResult.status === "fulfilled" ? visaTypesResult.value : [];
   const blogPosts =
     blogPostsResult.status === "fulfilled" ? blogPostsResult.value : [];
+  const countries =
+    countriesResult.status === "fulfilled" ? countriesResult.value : [];
 
   const baseUrl = env.baseUrl;
   const pageUrl = `${baseUrl}/${locale}`;
@@ -80,116 +82,47 @@ export default async function LocalePage({
         {/* Hero Section */}
         <div className="relative overflow-hidden">
           <div className="mx-auto max-w-7xl px-4 pt-20 pb-16 sm:px-6 lg:px-8 lg:pt-32">
-            <div className={cn("text-center")}>
-              <h1
-                className={cn(
-                  "text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
-                )}
-              >
+            <div className="text-center">
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
                 {tHero("headline")}
               </h1>
-              <p className={cn("mx-auto mt-6 max-w-3xl text-xl text-gray-600")}>
+              <p className="mx-auto mt-6 max-w-3xl text-xl text-gray-600">
                 {tHero("subheadline")}
               </p>
               <div className="mt-10">
-                <Button className="rounded-md bg-blue-600 px-8 py-3 text-base font-medium text-white shadow hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
-                  {tCommon("buttons.startApplication")}
-                </Button>
+                <Button>{tCommon("buttons.startApplication")}</Button>
               </div>
             </div>
           </div>
         </div>
 
         {/* Search Form */}
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-lg bg-white p-6 shadow-lg">
-            <h2 className={cn("mb-4 text-lg font-semibold text-gray-900")}>
-              {tHero("search.title")}
-            </h2>
-            <div className={cn("grid grid-cols-1 gap-4 sm:grid-cols-3")}>
-              <div>
-                <Label
-                  htmlFor="passport"
-                  className={cn("block text-sm font-medium text-gray-700")}
-                >
-                  {tCommon("forms.passportCountry")}
-                </Label>
-                <Select name="passport" required>
-                  <SelectTrigger>
-                    <SelectValue
-                      placeholder={tHero("search.passportPlaceholder")}
-                    />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="aaa">
-                      {tHero("search.passportPlaceholder")}
-                    </SelectItem>
-                    <SelectItem value="aaa">
-                      {tHero("search.passportPlaceholder")}
-                    </SelectItem>
-                    <SelectItem value="aaa">
-                      {tHero("search.passportPlaceholder")}
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label
-                  htmlFor="destination"
-                  className={cn("block text-sm font-medium text-gray-700")}
-                >
-                  {tCommon("forms.destinationCountry")}
-                </Label>
-                <Select name="destination">
-                  <SelectTrigger>
-                    <SelectValue
-                      placeholder={tHero("search.destinationPlaceholder")}
-                    />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="aaa">
-                      {tHero("search.destinationPlaceholder")}
-                    </SelectItem>
-                    <SelectItem value="aaa">
-                      {tHero("search.destinationPlaceholder")}
-                    </SelectItem>
-                    <SelectItem value="aaa">
-                      {tHero("search.destinationPlaceholder")}
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className={cn("flex items-end")}>
-                <Button className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
-                  {tHero("search.checkButton")}
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SearchForm
+          countries={countries}
+          searchTitle={tHero("search.title")}
+          passportLabel={tCommon("forms.passportCountry")}
+          passportPlaceholder={tHero("search.passportPlaceholder")}
+          destinationLabel={tCommon("forms.destinationCountry")}
+          destinationPlaceholder={tHero("search.destinationPlaceholder")}
+          checkButtonText={tHero("search.checkButton")}
+          emptyText={tCommon("status.notFound")}
+          searchPlaceholder={tHero("search.searchPlaceholder")}
+        />
 
         {/* How It Works Section */}
         <div className="bg-white py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className={cn("text-center")}>
-              <h2
-                className={cn(
-                  "text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
-                )}
-              >
+            <div className="text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 {tFeatures("howItWorks.title")}
               </h2>
-              <p className={cn("mx-auto mt-4 max-w-2xl text-lg text-gray-600")}>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
                 {tFeatures("howItWorks.subtitle")}
               </p>
             </div>
 
-            <div
-              className={cn(
-                "mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
-              )}
-            >
-              <div className={cn("text-center")}>
+            <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="text-center">
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-600">
                   <span className="font-bold text-white">1</span>
                 </div>
@@ -200,7 +133,7 @@ export default async function LocalePage({
                   {tFeatures("howItWorks.steps.check.description")}
                 </p>
               </div>
-              <div className={cn("text-center")}>
+              <div className="text-center">
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-600">
                   <span className="font-bold text-white">2</span>
                 </div>
@@ -211,7 +144,7 @@ export default async function LocalePage({
                   {tFeatures("howItWorks.steps.apply.description")}
                 </p>
               </div>
-              <div className={cn("text-center")}>
+              <div className="text-center">
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-purple-600">
                   <span className="font-bold text-white">3</span>
                 </div>
@@ -222,7 +155,7 @@ export default async function LocalePage({
                   {tFeatures("howItWorks.steps.documents.description")}
                 </p>
               </div>
-              <div className={cn("text-center")}>
+              <div className="text-center">
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-orange-600">
                   <span className="font-bold text-white">4</span>
                 </div>
@@ -240,24 +173,16 @@ export default async function LocalePage({
         {/* Top Destinations Section */}
         <div className="bg-gray-50 py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className={cn("mb-12 text-center")}>
-              <h2
-                className={cn(
-                  "text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
-                )}
-              >
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 {tFeatures("topDestinations.title")}
               </h2>
-              <p className={cn("mx-auto mt-4 max-w-2xl text-lg text-gray-600")}>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
                 {tFeatures("topDestinations.subtitle")}
               </p>
             </div>
 
-            <div
-              className={cn(
-                "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-              )}
-            >
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {destinations.map(destination => (
                 <DestinationCard
                   key={destination.code}
@@ -272,24 +197,16 @@ export default async function LocalePage({
         {/* Random Visa Types Section */}
         <div className="bg-white py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className={cn("mb-12 text-center")}>
-              <h2
-                className={cn(
-                  "text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
-                )}
-              >
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 {tFeatures("popularVisaTypes.title")}
               </h2>
-              <p className={cn("mx-auto mt-4 max-w-2xl text-lg text-gray-600")}>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
                 {tFeatures("popularVisaTypes.subtitle")}
               </p>
             </div>
 
-            <div
-              className={cn(
-                "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-              )}
-            >
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {visaTypes.map(visaType => (
                 <VisaTypeCard
                   key={visaType.id}
@@ -305,25 +222,17 @@ export default async function LocalePage({
         {/* Why Choose Us Section */}
         <div className="bg-blue-50 py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className={cn("mb-12 text-center")}>
-              <h2
-                className={cn(
-                  "text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
-                )}
-              >
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 {tFeatures("whyChooseUs.title")}
               </h2>
-              <p className={cn("mx-auto mt-4 max-w-2xl text-lg text-gray-600")}>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
                 {tFeatures("whyChooseUs.subtitle")}
               </p>
             </div>
 
-            <div
-              className={cn(
-                "grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
-              )}
-            >
-              <div className={cn("text-center")}>
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="text-center">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-600">
                   <svg
                     className="h-8 w-8 text-white"
@@ -347,7 +256,7 @@ export default async function LocalePage({
                 </p>
               </div>
 
-              <div className={cn("text-center")}>
+              <div className="text-center">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-600">
                   <svg
                     className="h-8 w-8 text-white"
@@ -371,7 +280,7 @@ export default async function LocalePage({
                 </p>
               </div>
 
-              <div className={cn("text-center")}>
+              <div className="text-center">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-purple-600">
                   <svg
                     className="h-8 w-8 text-white"
@@ -395,7 +304,7 @@ export default async function LocalePage({
                 </p>
               </div>
 
-              <div className={cn("text-center")}>
+              <div className="text-center">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange-600">
                   <svg
                     className="h-8 w-8 text-white"
@@ -426,32 +335,18 @@ export default async function LocalePage({
         {blogPosts.length > 0 && (
           <div className="bg-white py-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className={cn("mb-12 text-center")}>
-                <h2
-                  className={cn(
-                    "text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
-                  )}
-                >
+              <div className="mb-12 text-center">
+                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                   {tBlog("homepage.latestPosts.title")}
                 </h2>
-                <p
-                  className={cn("mx-auto mt-4 max-w-2xl text-lg text-gray-600")}
-                >
+                <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
                   {tBlog("homepage.latestPosts.subtitle")}
                 </p>
               </div>
 
-              <div
-                className={cn(
-                  "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-                )}
-              >
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {blogPosts.map(post => (
-                  <RelatedArticleCard
-                    key={post.slug}
-                    post={post}
-                    locale={locale}
-                  />
+                  <BlogPostCard key={post.slug} post={post} locale={locale} />
                 ))}
               </div>
             </div>

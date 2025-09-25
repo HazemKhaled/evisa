@@ -5,6 +5,7 @@
     "title": "Проверьте визовые требования",
     "passportPlaceholder": "Выберите страну вашего паспорта",
     "destinationPlaceholder": "Выберите пункт назначения",
+    "searchPlaceholder": "Поиск стран...",
     "checkButton": "Проверить право"
   }
 }
