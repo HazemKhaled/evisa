@@ -41,13 +41,6 @@ describe("Utils index exports", () => {
     expect(utils.translationKeys).toBeDefined();
   });
 
-  it("should export flag utility functions", () => {
-    expect(utils.getFlagUrl).toBeDefined();
-    expect(utils.getFlagPath).toBeDefined();
-    expect(utils.flagExists).toBeDefined();
-    expect(utils.getFlagUrlWithFallback).toBeDefined();
-  });
-
   it("should export all functions with correct types", () => {
     // Test URL functions
     expect(typeof utils.getBaseUrl).toBe("function");
@@ -78,27 +71,12 @@ describe("Utils index exports", () => {
     expect(typeof utils.loadPageTranslations).toBe("function");
     expect(typeof utils.loadHeroTranslations).toBe("function");
     expect(typeof utils.loadBlogTranslations).toBe("function");
-
-    // Test flag functions
-    expect(typeof utils.getFlagUrl).toBe("function");
-    expect(typeof utils.getFlagPath).toBe("function");
-    expect(typeof utils.flagExists).toBe("function");
-    expect(typeof utils.getFlagUrlWithFallback).toBe("function");
   });
 
   it("should export translationKeys as an object", () => {
     expect(utils.translationKeys).toBeDefined();
     expect(typeof utils.translationKeys).toBe("object");
     expect(utils.translationKeys).not.toBeNull();
-  });
-
-  it("should have correct number of exports", () => {
-    const exportedFunctions = Object.keys(utils).filter(
-      key => typeof utils[key as keyof typeof utils] === "function"
-    );
-
-    // We expect at least 20 functions to be exported
-    expect(exportedFunctions.length).toBeGreaterThanOrEqual(20);
   });
 
   it("should export functions with correct names", () => {
@@ -136,13 +114,6 @@ describe("Utils index exports", () => {
       "loadBlogTranslations",
     ];
 
-    const expectedFlagFunctions = [
-      "getFlagUrl",
-      "getFlagPath",
-      "flagExists",
-      "getFlagUrlWithFallback",
-    ];
-
     expectedUrlFunctions.forEach(funcName => {
       expect(utils).toHaveProperty(funcName);
       expect(typeof utils[funcName as keyof typeof utils]).toBe("function");
@@ -163,11 +134,6 @@ describe("Utils index exports", () => {
     });
 
     expectedTranslationFunctions.forEach(funcName => {
-      expect(utils).toHaveProperty(funcName);
-      expect(typeof utils[funcName as keyof typeof utils]).toBe("function");
-    });
-
-    expectedFlagFunctions.forEach(funcName => {
       expect(utils).toHaveProperty(funcName);
       expect(typeof utils[funcName as keyof typeof utils]).toBe("function");
     });

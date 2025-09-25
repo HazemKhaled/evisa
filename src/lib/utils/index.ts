@@ -4,7 +4,6 @@
  */
 
 // Specialized utilities
-export * from "./flags";
 export * from "./urls";
 export * from "./styles";
 export * from "./pagination";
