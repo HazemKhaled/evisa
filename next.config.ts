@@ -23,14 +23,6 @@ const nextConfig: NextConfig = {
       destination: "/:locale/blog/sitemap/:locale.xml",
     },
   ],
-  redirects: async () => [
-    {
-      source: "/:path*",
-      has: [{ type: "host", value: "www.gettravelvisa.com" }],
-      destination: process.env.NEXT_PUBLIC_BASE_URL + "/:path*",
-      permanent: true,
-    },
-  ],
 };
 
 const withBundleAnalyzer = WithBundleAnalyzer({
