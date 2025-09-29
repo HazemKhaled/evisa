@@ -9,7 +9,7 @@ import {
 } from "drizzle-orm/pg-core";
 
 export const countries = pgTable("countries", {
-  code: text("code").primaryKey(), // ISO 3166-1 alpha-3
+  code: text("code").primaryKey(), // ISO 3166-1 alpha-2
   continent: text("continent").notNull(), // e.g., "Africa", "Asia", "Europe"
   region: text("region"), // e.g., "Western Europe", "Southeast Asia"
   heroImage: text("hero_image"), // Unsplash or other hero image URL
