@@ -1,12 +1,11 @@
 version: 4.44.0
-installed_at: "2025-09-08T06:59:58.071Z"
+installed_at: '2025-09-29T18:13:08.746Z'
 install_type: full
 agent: null
 ides_setup:
-  - cursor
   - claude-code
-  - gemini
   - github-copilot
+  - auggie-cli
 expansion_packs: []
 files:
   - path: .bmad-core/working-in-the-brownfield.md
@@ -84,24 +83,6 @@ files:
   - path: .bmad-core/templates/architecture-tmpl.yaml
     hash: e66f63be1af30585
     modified: false
-  - path: .bmad-core/data/test-priorities-matrix.md
-    hash: 1dd5698a46ab054e
-    modified: false
-  - path: .bmad-core/data/test-levels-framework.md
-    hash: f814f8efed0e96e1
-    modified: false
-  - path: .bmad-core/data/technical-preferences.md
-    hash: a829f3172a10b396
-    modified: false
-  - path: .bmad-core/data/elicitation-methods.md
-    hash: 8c3ca9b84c8784c9
-    modified: false
-  - path: .bmad-core/data/brainstorming-techniques.md
-    hash: 62b0bf50648906b0
-    modified: false
-  - path: .bmad-core/data/bmad-kb.md
-    hash: 1d38eeee61c55bf9
-    modified: false
   - path: .bmad-core/tasks/validate-next-story.md
     hash: 75e84133d364d973
     modified: false
@@ -170,6 +151,24 @@ files:
     modified: false
   - path: .bmad-core/tasks/advanced-elicitation.md
     hash: d39118bf32237a21
+    modified: false
+  - path: .bmad-core/data/test-priorities-matrix.md
+    hash: 1dd5698a46ab054e
+    modified: false
+  - path: .bmad-core/data/test-levels-framework.md
+    hash: f814f8efed0e96e1
+    modified: false
+  - path: .bmad-core/data/technical-preferences.md
+    hash: a829f3172a10b396
+    modified: false
+  - path: .bmad-core/data/elicitation-methods.md
+    hash: 8c3ca9b84c8784c9
+    modified: false
+  - path: .bmad-core/data/brainstorming-techniques.md
+    hash: 62b0bf50648906b0
+    modified: false
+  - path: .bmad-core/data/bmad-kb.md
+    hash: 1d38eeee61c55bf9
     modified: false
   - path: .bmad-core/checklists/story-draft-checklist.md
     hash: 0bc8a90678dba318
