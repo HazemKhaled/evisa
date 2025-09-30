@@ -17,7 +17,7 @@ export const revalidate = 86400; // 24 hours
 
 // Generate static params for basic tag routes only
 export async function generateStaticParams(): Promise<
-  Array<{ locale: string; tag: string }>
+  { locale: string; tag: string }[]
 > {
   const allTags = await getAllUniqueTagsAcrossLocales();
 

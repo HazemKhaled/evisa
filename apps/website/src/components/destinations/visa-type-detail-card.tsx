@@ -5,8 +5,7 @@ import type {
   DestinationWithVisaTypes,
 } from "@/lib/services/country-service";
 import { RequiredDocuments } from "./required-documents";
-import { Button } from "@repo/ui";
-import { Badge } from "@repo/ui";
+import { Badge, Button } from "@repo/ui";
 
 interface VisaTypeDetailCardProps {
   visaType: VisaTypeInfo;

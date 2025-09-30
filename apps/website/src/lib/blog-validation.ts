@@ -237,7 +237,7 @@ export function validateBlogPostContent(
     const links = content.match(/\[([^\]]*)\]\(([^)]*)\)/g);
     if (links) {
       links.forEach((link, index) => {
-        const urlMatch = link.match(/\]\(([^)]*)\)/);
+        const urlMatch = /\]\(([^)]*)\)/.exec(link);
         if (urlMatch && urlMatch[1]) {
           const url = urlMatch[1];
           if (url.includes(" ")) {

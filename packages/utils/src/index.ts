@@ -14,8 +14,8 @@ export function cn(...inputs: ClassValue[]) {
  */
 export function formatCurrency(
   amount: number,
-  currency: string = "USD",
-  locale: string = "en-US"
+  currency = "USD",
+  locale = "en-US"
 ): string {
   return new Intl.NumberFormat(locale, {
     style: "currency",
@@ -28,7 +28,7 @@ export function formatCurrency(
  */
 export function formatDate(
   date: Date | string,
-  locale: string = "en-US",
+  locale = "en-US",
   options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",
@@ -115,7 +115,7 @@ export function isValidEmail(email: string): boolean {
  * Generate a random ID with guaranteed length
  * Uses a more reliable approach than Math.random().toString(36)
  */
-export function generateId(length: number = 8): string {
+export function generateId(length = 8): string {
   if (length <= 0) return "";
 
   const chars =
@@ -135,7 +135,8 @@ export function generateId(length: number = 8): string {
  */
 export function safeJsonParse<T = unknown>(json: string): T | null {
   try {
-    return JSON.parse(json);
+    const parsed: unknown = JSON.parse(json);
+    return parsed as T;
   } catch {
     return null;
   }

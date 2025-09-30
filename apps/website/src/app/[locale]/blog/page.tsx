@@ -170,11 +170,11 @@ export default async function BlogHome({
   };
 
   // Create breadcrumb items based on current page state
-  let breadcrumbItems: Array<{
+  let breadcrumbItems: {
     label: string;
     href?: string;
     isCurrentPage?: boolean;
-  }> = [
+  }[] = [
     { label: tNav("breadcrumb.home"), href: `/${locale}` },
     { label: tNav("breadcrumb.blog"), href: `/${locale}/blog` },
   ];

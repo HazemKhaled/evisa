@@ -1,4 +1,18 @@
-import { and, eq, inArray, isNull, or, isNotNull, sql } from "@repo/database";
+import {
+  and,
+  countries,
+  countriesI18n,
+  eq,
+  getDb,
+  inArray,
+  isNotNull,
+  isNull,
+  or,
+  sql,
+  visaEligibility,
+  visaTypes,
+  visaTypesI18n,
+} from "@repo/database";
 
 /**
  * Input validation and sanitization utilities
@@ -42,10 +56,6 @@ function validateLimit(limit: number): number {
   if (!limit || typeof limit !== "number" || limit < 1) return 20;
   return Math.min(Math.max(1, Math.floor(limit)), 100); // Max 100 results
 }
-import { countries, countriesI18n } from "@repo/database";
-import { visaTypes, visaTypesI18n } from "@repo/database";
-import { visaEligibility } from "@repo/database";
-import { getDb } from "@repo/database";
 
 /**
  * Service for country-related database operations
@@ -258,7 +268,7 @@ export async function getCountryByCode(
 export async function searchCountries(
   query: string,
   locale: string,
-  limit: number = 10
+  limit = 10
 ): Promise<CountryWithI18n[]> {
   if (!query.trim()) {
     return [];
@@ -326,7 +336,7 @@ export async function searchCountries(
  */
 export async function getDestinationsListWithMetadata(
   locale: string,
-  limit: number = 20,
+  limit = 20,
   sortBy:
     | "popular"
     | "alphabetical"
@@ -503,8 +513,8 @@ export async function getDestinationsListWithMetadata(
  */
 export async function getDestinationsListWithMetadataPaginated(
   locale: string,
-  limit: number = 20,
-  offset: number = 0,
+  limit = 20,
+  offset = 0,
   sortBy:
     | "popular"
     | "alphabetical"
@@ -532,7 +542,7 @@ export async function getDestinationsListWithMetadataPaginated(
     ];
 
     // Add search filter
-    if (search && search.trim()) {
+    if (search?.trim()) {
       const searchTerm = `%${search.trim().toLowerCase()}%`;
       baseWhereConditions.push(
         or(
@@ -802,9 +812,7 @@ export async function getDestinationContinents(
 
     return results
       .map(result => result.continent)
-      .filter(
-        continent => continent && continent.trim().length > 0
-      ) as string[];
+      .filter(continent => continent && continent.trim().length > 0);
   } catch (error) {
     console.error("Failed to get destination continents:", error);
     return [];

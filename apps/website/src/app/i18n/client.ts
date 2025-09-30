@@ -34,7 +34,7 @@ i18next
 
 export function useTranslation(
   lng: string,
-  ns: string = "common",
+  ns = "common",
   options: { keyPrefix?: string } = {}
 ) {
   const ret = useTranslationOrg(ns, { ...options });

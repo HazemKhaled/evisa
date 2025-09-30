@@ -22,7 +22,7 @@ export interface BlogSearchParams {
 /**
  * Build a localized URL path with optional trailing slash
  */
-export function buildLocalePath(locale: string, path: string = ""): string {
+export function buildLocalePath(locale: string, path = ""): string {
   const cleanPath = path.startsWith("/") ? path.slice(1) : path;
   return `/${locale}${cleanPath ? `/${cleanPath}` : ""}`;
 }

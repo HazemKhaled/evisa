@@ -302,7 +302,7 @@ export function generateBlogPostJsonLd(
  * Generate breadcrumb data with translations
  */
 export function generateBreadcrumbData(
-  items: Array<{ name: string; url: string }>
+  items: { name: string; url: string }[]
 ): BreadcrumbList {
   return {
     itemListElement: items.map((item, index) => ({

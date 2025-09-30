@@ -101,7 +101,7 @@ export const getBlogPostsByTag = jest.fn(
 );
 
 export const getRelatedBlogPosts = jest.fn(
-  async (destination: string, _locale: string, limit: number = 3) => {
+  async (destination: string, _locale: string, limit = 3) => {
     return getBlogPostsByDestination(destination, _locale, limit);
   }
 );
@@ -138,7 +138,7 @@ export const searchBlogPosts = jest.fn(
 );
 
 export const getFeaturedBlogPosts = jest.fn(
-  async (_locale: string, limit: number = 5) => {
+  async (_locale: string, limit = 5) => {
     const featured = mockBlogPosts.filter(post =>
       post.tags?.includes("featured")
     );

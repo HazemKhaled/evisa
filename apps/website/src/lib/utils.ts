@@ -1,5 +1,4 @@
 import { languages } from "@/app/i18n/settings";
-import { cn as cnUtil } from "@repo/utils";
 
 /**
  * Re-export cn from @repo/utils for backwards compatibility
@@ -11,8 +10,8 @@ export { cn } from "@repo/utils";
  */
 export function formatCurrency(
   amount: number,
-  currency: string = "USD",
-  locale: string = "en-US"
+  currency = "USD",
+  locale = "en-US"
 ): string {
   return new Intl.NumberFormat(locale, {
     style: "currency",
@@ -25,7 +24,7 @@ export function formatCurrency(
  */
 export function formatDate(
   date: Date | string,
-  locale: string = "en-US",
+  locale = "en-US",
   options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",
@@ -112,7 +111,7 @@ export function isValidEmail(email: string): boolean {
  * Generate a random ID with guaranteed length
  * Uses a more reliable approach than Math.random().toString(36)
  */
-export function generateId(length: number = 8): string {
+export function generateId(length = 8): string {
   if (length <= 0) return "";
 
   const chars =
@@ -144,7 +143,7 @@ export function safeJsonParse<T = unknown>(json: string): T | null {
  */
 export function generateCanonicalUrl(
   baseUrl: string,
-  path: string = "",
+  path = "",
   locale?: string
 ): string {
   // Ensure baseUrl doesn't have trailing slash and uses the standard domain
@@ -170,7 +169,7 @@ export function generateCanonicalUrl(
  */
 export function generateLanguageAlternates(
   baseUrl: string,
-  path: string = ""
+  path = ""
 ): Record<string, string> {
   // Default to the project's supported languages if not provided
   const standardBaseUrl = baseUrl
@@ -195,7 +194,7 @@ export function generateLanguageAlternates(
  */
 export function generateAlternatesMetadata(
   baseUrl: string,
-  path: string = "",
+  path = "",
   currentLocale: string
 ): {
   canonical: string;

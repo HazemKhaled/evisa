@@ -4,14 +4,14 @@ import { useParams, useRouter, usePathname } from "next/navigation";
 import { ChevronDown, Check } from "lucide-react";
 import { cn, isRTL } from "@repo/utils";
 import { languagesObj } from "@/app/i18n/settings";
-import { Button } from "@repo/ui";
 import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-  DropdownMenuGroup,
 } from "@repo/ui";
 
 export function LanguageSwitcher() {

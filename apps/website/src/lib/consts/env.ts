@@ -24,7 +24,7 @@ interface Environment {
  * Use the typed `env` export instead of accessing these directly
  */
 const rawEnv = {
-  NODE_ENV: (process.env.NODE_ENV as Environment["NODE_ENV"]) || "development",
+  NODE_ENV: process.env.NODE_ENV || "development",
   DATABASE_URL: process.env.DATABASE_URL,
   NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
   NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,

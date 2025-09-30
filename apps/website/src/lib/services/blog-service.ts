@@ -7,13 +7,20 @@
  */
 
 import {
-  getDb,
+  and,
+  blogPostTags,
   blogPosts,
   blogPostsI18n,
   blogTags,
-  blogPostTags,
+  count,
+  desc,
+  eq,
+  getDb,
+  inArray,
+  like,
+  or,
+  sql,
 } from "@repo/database";
-import { eq, and, desc, like, inArray, sql, count, or } from "@repo/database";
 import type {
   BlogPostData,
   BlogFilterOptions,
@@ -379,7 +386,7 @@ export async function getRelatedBlogPostsOptimized(
   destinations: string[],
   tags: string[],
   locale: string,
-  limit: number = 3
+  limit = 3
 ): Promise<BlogPostData[]> {
   try {
     const db = getDb();
@@ -524,7 +531,7 @@ export async function getRelatedBlogPostsOptimized(
 export async function getRelatedBlogPosts(
   destination: string,
   locale: string,
-  limit: number = 3
+  limit = 3
 ): Promise<BlogPostData[]> {
   try {
     const db = getDb();
@@ -772,7 +779,7 @@ export async function searchBlogPosts(
  */
 export async function getFeaturedBlogPosts(
   locale: string,
-  limit: number = 5
+  limit = 5
 ): Promise<BlogPostData[]> {
   try {
     const db = getDb();

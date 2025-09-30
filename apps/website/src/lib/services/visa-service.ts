@@ -1,8 +1,17 @@
-import { and, eq, isNull, desc, sql } from "@repo/database";
-import { visaTypes, visaTypesI18n } from "@repo/database";
-import { countries, countriesI18n } from "@repo/database";
-import { visaEligibility, visaEligibilityI18n } from "@repo/database";
-import { getDb } from "@repo/database";
+import {
+  and,
+  countries,
+  countriesI18n,
+  desc,
+  eq,
+  getDb,
+  isNull,
+  sql,
+  visaEligibility,
+  visaEligibilityI18n,
+  visaTypes,
+  visaTypesI18n,
+} from "@repo/database";
 
 /**
  * Service for visa-related database operations
@@ -406,7 +415,7 @@ export async function getVisaRequirements(
  */
 export async function getRandomVisaTypes(
   locale: string,
-  limit: number = 6
+  limit = 6
 ): Promise<VisaTypeWithI18n[]> {
   try {
     const db = getDb();

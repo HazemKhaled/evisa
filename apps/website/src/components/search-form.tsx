@@ -40,8 +40,6 @@ export function SearchForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission - this could navigate to search results
-    console.log("Search:", { passportCountry, destinationCountry });
   };
 
   return (

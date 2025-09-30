@@ -71,7 +71,7 @@ const PaginationPrevious = ({
     {...props}
   >
     <ChevronLeft className="h-4 w-4" />
-    <span>{children || "Previous"}</span>
+    <span>{children ?? "Previous"}</span>
   </PaginationLink>
 );
 PaginationPrevious.displayName = "PaginationPrevious";
@@ -87,7 +87,7 @@ const PaginationNext = ({
     className={cn("gap-1 pr-2.5", className)}
     {...props}
   >
-    <span>{children || "Next"}</span>
+    <span>{children ?? "Next"}</span>
     <ChevronRight className="h-4 w-4" />
   </PaginationLink>
 );
@@ -104,7 +104,7 @@ const PaginationEllipsis = ({
     {...props}
   >
     <MoreHorizontal className="h-4 w-4" />
-    <span className="sr-only">{children || "More pages"}</span>
+    <span className="sr-only">{children ?? "More pages"}</span>
   </span>
 );
 PaginationEllipsis.displayName = "PaginationEllipsis";

@@ -24,21 +24,25 @@ const tsConfigs = compat
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/stylistic"
   )
-  .map((config) => ({
+  .map(config => ({
     ...config,
     files: ["**/*.ts", "**/*.tsx"],
   }));
 
 const reactConfigs = compat
   .extends("plugin:react/recommended", "plugin:react-hooks/recommended")
-  .map((config) => ({
+  .map(config => ({
     ...config,
     files: ["**/*.tsx", "**/*.jsx"],
   }));
 
 const nextConfigs = compat
-  .extends("next/core-web-vitals", "next/typescript", "plugin:i18next/recommended")
-  .map((config) => ({
+  .extends(
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:i18next/recommended"
+  )
+  .map(config => ({
     ...config,
     files: ["apps/website/**/*.{ts,tsx,js,jsx}"],
   }));

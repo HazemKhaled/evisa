@@ -3,6 +3,8 @@ import resourcesToBackend from "i18next-resources-to-backend";
 import { initReactI18next } from "react-i18next/initReactI18next";
 import { getOptions } from "./settings";
 
+type I18nInstance = ReturnType<typeof createInstance>;
+
 const initI18next = async (lng: string, ns: string) => {
   const i18nInstance = createInstance();
   await i18nInstance
@@ -19,11 +21,11 @@ const initI18next = async (lng: string, ns: string) => {
 
 export async function getTranslation(
   lng: string,
-  ns: string = "common",
+  ns = "common",
   options: { keyPrefix?: string } = {}
 ): Promise<{
-  t: ReturnType<typeof import("i18next").default.getFixedT>;
-  i18n: import("i18next").i18n;
+  t: ReturnType<I18nInstance["getFixedT"]>;
+  i18n: I18nInstance;
 }> {
   const i18nextInstance = await initI18next(lng, ns);
   return {

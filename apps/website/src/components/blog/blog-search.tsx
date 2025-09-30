@@ -8,8 +8,7 @@ import {
 } from "@/lib/services/blog-service-client";
 import { useTranslation } from "@/app/i18n/client";
 import { ClientBlogPostCard } from "./client-blog-post-card";
-import { Button } from "@repo/ui";
-import { Input } from "@repo/ui";
+import { Button, Input } from "@repo/ui";
 
 interface BlogSearchProps {
   locale: string;
