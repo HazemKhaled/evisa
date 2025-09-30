@@ -1,12 +1,9 @@
-import "server-only";
-
 /**
  * Blog Service Layer
  *
  * Database-Driven Blog Service using Drizzle ORM.
  * Provides blog post data fetching, filtering, and processing for the travel blog system.
  * Replaces MDX-based blog service with database queries using Drizzle ORM.
- * Server-only module for database operations.
  */
 
 import {
