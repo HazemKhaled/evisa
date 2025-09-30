@@ -54,3 +54,5 @@ next-env.d.ts
 private/
 
 /.bmad-core
+/.claude
+/.github/chatmodes
