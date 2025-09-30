@@ -11,7 +11,7 @@ import { VisaOptionsGrid } from "@/components/destinations/visa-options-grid";
 import { JsonLd } from "@/components/json-ld";
 import { generateDestinationJsonLd } from "@/lib/json-ld";
 import { languages } from "@/app/i18n/settings";
-import { generateAlternatesMetadata } from "@repo/utils";
+import { generateAlternatesMetadata } from "@/lib/utils";
 import { env } from "@/lib/consts";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 

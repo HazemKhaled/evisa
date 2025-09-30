@@ -16,7 +16,7 @@ import {
   blogTags,
   blogPostTags,
 } from "@repo/database";
-import { eq, and, desc, like, inArray, sql, count, or } from "drizzle-orm";
+import { eq, and, desc, like, inArray, sql, count, or } from "@repo/database";
 import type {
   BlogPostData,
   BlogFilterOptions,
@@ -116,14 +116,14 @@ export async function getAllBlogPosts(
 
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
-      results.map(async result => {
+      results.map(async (result: { post: typeof blogPosts.$inferSelect; i18n: typeof blogPostsI18n.$inferSelect }) => {
         const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
           .where(eq(blogPostTags.postId, result.post.id));
 
-        const tags = postTags.map(tag => tag.tagSlug);
+        const tags = postTags.map((tag: { tagSlug: string }) => tag.tagSlug);
         return convertDbToBlogPostData(result.post, result.i18n, tags);
       })
     );
@@ -223,14 +223,14 @@ export async function getBlogPosts(
 
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
-      results.map(async result => {
+      results.map(async (result: { post: typeof blogPosts.$inferSelect; i18n: typeof blogPostsI18n.$inferSelect }) => {
         const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
           .where(eq(blogPostTags.postId, result.post.id));
 
-        const tags = postTags.map(tag => tag.tagSlug);
+        const tags = postTags.map((tag: { tagSlug: string }) => tag.tagSlug);
         return convertDbToBlogPostData(result.post, result.i18n, tags);
       })
     );
@@ -284,14 +284,14 @@ export async function getBlogPostsByDestination(
 
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
-      results.map(async result => {
+      results.map(async (result: { post: typeof blogPosts.$inferSelect; i18n: typeof blogPostsI18n.$inferSelect }) => {
         const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
           .where(eq(blogPostTags.postId, result.post.id));
 
-        const tags = postTags.map(tag => tag.tagSlug);
+        const tags = postTags.map((tag: { tagSlug: string }) => tag.tagSlug);
         return convertDbToBlogPostData(result.post, result.i18n, tags);
       })
     );
@@ -335,14 +335,14 @@ export async function getBlogPostsByTag(
 
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
-      results.map(async result => {
+      results.map(async (result: { post: typeof blogPosts.$inferSelect; i18n: typeof blogPostsI18n.$inferSelect }) => {
         const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
           .where(eq(blogPostTags.postId, result.post.id));
 
-        const tags = postTags.map(tag => tag.tagSlug);
+        const tags = postTags.map((tag: { tagSlug: string }) => tag.tagSlug);
         return convertDbToBlogPostData(result.post, result.i18n, tags);
       })
     );
@@ -553,14 +553,14 @@ export async function getRelatedBlogPosts(
 
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
-      results.map(async result => {
+      results.map(async (result: { post: typeof blogPosts.$inferSelect; i18n: typeof blogPostsI18n.$inferSelect }) => {
         const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
           .where(eq(blogPostTags.postId, result.post.id));
 
-        const tags = postTags.map(tag => tag.tagSlug);
+        const tags = postTags.map((tag: { tagSlug: string }) => tag.tagSlug);
         return convertDbToBlogPostData(result.post, result.i18n, tags);
       })
     );
@@ -610,7 +610,7 @@ export async function getBlogPostBySlug(
       .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
       .where(eq(blogPostTags.postId, result.post.id));
 
-    const tags = postTags.map(tag => tag.tagSlug);
+    const tags = postTags.map((tag: { tagSlug: string }) => tag.tagSlug);
     return convertDbToBlogPostData(result.post, result.i18n, tags);
   } catch (error) {
     console.error("Error fetching blog post by slug:", error);
@@ -634,7 +634,7 @@ export async function getAllTagsForLocale(locale: string): Promise<string[]> {
       )
       .orderBy(blogTags.slug);
 
-    return results.map(result => result.tagSlug);
+    return results.map((result: { tagSlug: string }) => result.tagSlug);
   } catch (error) {
     console.error("Error fetching tags for locale:", error);
     return [];
@@ -658,10 +658,10 @@ export async function getAllDestinationsForLocale(
 
     // Parse comma-separated destinations and flatten
     const allDestinations = results
-      .filter(result => result.destinations)
-      .flatMap(result => result.destinations!.split(","))
-      .map(dest => dest.trim())
-      .filter(dest => dest.length > 0);
+      .filter((result: { destinations: string | null }) => result.destinations)
+      .flatMap((result: { destinations: string | null }) => result.destinations!.split(","))
+      .map((dest: string) => dest.trim())
+      .filter((dest: string) => dest.length > 0);
 
     const uniqueDestinations = [...new Set(allDestinations)];
     return uniqueDestinations.sort();
@@ -719,14 +719,14 @@ export async function searchBlogPosts(
 
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
-      results.map(async result => {
+      results.map(async (result: { post: typeof blogPosts.$inferSelect; i18n: typeof blogPostsI18n.$inferSelect }) => {
         const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
           .where(eq(blogPostTags.postId, result.post.id));
 
-        const tags = postTags.map(tag => tag.tagSlug);
+        const tags = postTags.map((tag: { tagSlug: string }) => tag.tagSlug);
         return convertDbToBlogPostData(result.post, result.i18n, tags);
       })
     );
@@ -785,14 +785,14 @@ export async function getFeaturedBlogPosts(
 
     // Get tags for each post
     const blogPostsWithTags = await Promise.all(
-      results.map(async result => {
+      results.map(async (result: { post: typeof blogPosts.$inferSelect; i18n: typeof blogPostsI18n.$inferSelect }) => {
         const postTags = await getDb()
           .select({ tagSlug: blogTags.slug })
           .from(blogPostTags)
           .innerJoin(blogTags, eq(blogPostTags.tagId, blogTags.id))
           .where(eq(blogPostTags.postId, result.post.id));
 
-        const tags = postTags.map(tag => tag.tagSlug);
+        const tags = postTags.map((tag: { tagSlug: string }) => tag.tagSlug);
         return convertDbToBlogPostData(result.post, result.i18n, tags);
       })
     );
@@ -833,7 +833,7 @@ export async function getAllUniqueTagsAcrossLocales(): Promise<string[]> {
       .from(blogTags)
       .orderBy(blogTags.slug);
 
-    return results.map(result => result.tagSlug);
+    return results.map((result: { tagSlug: string }) => result.tagSlug);
   } catch (error) {
     console.error("Error fetching all unique tags:", error);
     return [];

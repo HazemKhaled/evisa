@@ -10,7 +10,7 @@ import {
 } from "@/lib/json-ld";
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
-import { generateAlternatesMetadata } from "@repo/utils";
+import { generateAlternatesMetadata } from "@/lib/utils";
 
 // Enable ISR with daily revalidation for tag pages
 export const revalidate = 86400; // 24 hours

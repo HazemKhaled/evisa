@@ -1,7 +1,7 @@
 import { type Metadata } from "next";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { getTranslation } from "@/app/i18n";
-import { generateAlternatesMetadata } from "@repo/utils";
+import { generateAlternatesMetadata } from "@/lib/utils";
 import { env } from "@/lib/consts";
 import { JsonLd } from "@/components/json-ld";
 import {

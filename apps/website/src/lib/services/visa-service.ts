@@ -1,11 +1,11 @@
-import { and, eq, isNull, desc, sql } from "drizzle-orm";
-import { visaTypes, visaTypesI18n } from "../db/schema/visa-types";
-import { countries, countriesI18n } from "../db/schema/countries";
+import { and, eq, isNull, desc, sql } from "@repo/database";
+import { visaTypes, visaTypesI18n } from "@repo/database";
+import { countries, countriesI18n } from "@repo/database";
 import {
   visaEligibility,
   visaEligibilityI18n,
-} from "../db/schema/visa-eligibility";
-import { getDb } from "../db/connection";
+} from "@repo/database";
+import { getDb } from "@repo/database";
 
 /**
  * Service for visa-related database operations

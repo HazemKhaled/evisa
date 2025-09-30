@@ -6,7 +6,7 @@ import {
   getAllBlogPosts,
 } from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
-import { generateAlternatesMetadata } from "@repo/utils";
+import { generateAlternatesMetadata } from "@/lib/utils";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { BlogPostList } from "@/components/blog/blog-post-list";
 import { BlogSearch } from "@/components/blog/blog-search";

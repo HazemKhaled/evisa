@@ -21,7 +21,10 @@ export async function getTranslation(
   lng: string,
   ns: string = "common",
   options: { keyPrefix?: string } = {}
-) {
+): Promise<{
+  t: ReturnType<typeof import("i18next").default.getFixedT>;
+  i18n: import("i18next").i18n;
+}> {
   const i18nextInstance = await initI18next(lng, ns);
   return {
     t: i18nextInstance.getFixedT(

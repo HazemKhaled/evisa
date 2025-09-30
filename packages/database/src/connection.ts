@@ -1,7 +1,5 @@
 import { drizzle, type NeonHttpDatabase } from "drizzle-orm/neon-http";
 import { neon, neonConfig } from "@neondatabase/serverless";
-import { cache } from "react";
-import { validateDatabaseUrl } from "../consts/env";
 import * as schema from "./schema";
 
 // Configure Neon for edge environments
@@ -10,13 +8,16 @@ neonConfig.poolQueryViaFetch = true;
 // Types for our database instances
 export type Database = NeonHttpDatabase<typeof schema>;
 
+// Singleton instance
+let dbInstance: Database | null = null;
+
 /**
- * Get Neon database connection with caching for optimization
+ * Get Neon database connection with singleton caching for optimization
  *
- * This function provides a cached Neon database connection that works in both
+ * This function provides a singleton Neon database connection that works in both
  * development and production environments, including edge runtime.
  *
- * @returns Database - A cached Drizzle database instance with Neon HTTP driver
+ * @returns Database - A singleton Drizzle database instance with Neon HTTP driver
  *
  * @throws {Error} When DATABASE_URL is not configured
  *
@@ -24,12 +25,19 @@ export type Database = NeonHttpDatabase<typeof schema>;
  * @note Uses neon-http driver for edge compatibility
  * @note Connection pooling is configured via neonConfig.poolQueryViaFetch
  */
-export const getDb = cache((): Database => {
-  const databaseUrl = validateDatabaseUrl();
-  const sql = neon(databaseUrl);
-
-  return drizzle(sql, { schema });
-});
+export function getDb(): Database {
+  if (!dbInstance) {
+    const databaseUrl = process.env.DATABASE_URL;
+    if (!databaseUrl) {
+      throw new Error(
+        "DATABASE_URL is not set. Please configure your Neon database connection."
+      );
+    }
+    const sql = neon(databaseUrl);
+    dbInstance = drizzle(sql, { schema });
+  }
+  return dbInstance;
+}
 
 // Export schema for external use
 export * from "./schema";

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTextDirection, generateAlternatesMetadata } from "@repo/utils";
+import { getTextDirection, generateAlternatesMetadata } from "@/lib/utils";
 import { languages, getLocaleWithRegion } from "../i18n/settings";
 import { Header, Footer } from "@/components/layout";
 import { JsonLd } from "@/components/json-ld";

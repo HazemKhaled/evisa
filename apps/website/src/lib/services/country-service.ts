@@ -1,4 +1,4 @@
-import { and, eq, inArray, isNull, or, isNotNull, sql } from "drizzle-orm";
+import { and, eq, inArray, isNull, or, isNotNull, sql } from "@repo/database";
 
 /**
  * Input validation and sanitization utilities
@@ -42,10 +42,10 @@ function validateLimit(limit: number): number {
   if (!limit || typeof limit !== "number" || limit < 1) return 20;
   return Math.min(Math.max(1, Math.floor(limit)), 100); // Max 100 results
 }
-import { countries, countriesI18n } from "../db/schema/countries";
-import { visaTypes, visaTypesI18n } from "../db/schema/visa-types";
-import { visaEligibility } from "../db/schema/visa-eligibility";
-import { getDb } from "../db/connection";
+import { countries, countriesI18n } from "@repo/database";
+import { visaTypes, visaTypesI18n } from "@repo/database";
+import { visaEligibility } from "@repo/database";
+import { getDb } from "@repo/database";
 
 /**
  * Service for country-related database operations

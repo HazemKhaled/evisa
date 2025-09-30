@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 import { getTranslation } from "@/app/i18n";
-import { generateAlternatesMetadata } from "@repo/utils";
+import { generateAlternatesMetadata } from "@/lib/utils";
 import { env } from "@/lib/consts";
 import BlogHome from "@/app/[locale]/blog/page";
 

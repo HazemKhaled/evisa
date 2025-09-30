@@ -16,7 +16,7 @@ import {
   generateBreadcrumbData,
 } from "@/lib/json-ld";
 import { BlogPostDetail } from "@/components/blog/blog-post-detail";
-import { generateAlternatesMetadata } from "@repo/utils";
+import { generateAlternatesMetadata } from "@/lib/utils";
 
 interface BlogPostProps {
   params: Promise<{ locale: string; slug: string }>;
