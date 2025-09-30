@@ -25,7 +25,10 @@
     "db:migrate": "pnpm --filter @repo/database db:migrate",
     "db:push": "pnpm --filter @repo/database db:push",
     "db:studio": "pnpm --filter @repo/database db:studio",
-    "prepare": "husky"
+    "prepare": "husky",
+    "bmad:refresh": "pnpx bmad-method install -f -i codex",
+    "bmad:list": "pnpx bmad-method list:agents",
+    "bmad:validate": "pnpx bmad-method validate"
   },
   "dependencies": {
     "react": "19.1.1",

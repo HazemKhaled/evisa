@@ -53,7 +53,10 @@ next-env.d.ts
 .env.sentry-build-plugin
 private/
 
-/.bmad-core
-/.claude
-/.github/chatmodes
-/.gemini
+# BMAD (local only)
+.bmad-core/
+.bmad-*/
+.claude
+.github/chatmodes
+.gemini
+AGENTS.md
