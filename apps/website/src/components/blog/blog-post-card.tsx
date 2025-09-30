@@ -1,5 +1,5 @@
 import { cn } from "@repo/utils";
-import { Card, CardContent, BlurFade, MagicCard } from "@/components/ui";
+import { Card, CardContent, BlurFade, MagicCard } from "@repo/ui";
 import type { BlogPostData } from "@/lib/services/blog-service";
 import { getTranslation } from "@/app/i18n";
 import {

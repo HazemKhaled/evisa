@@ -16,7 +16,7 @@ import { getAllBlogPosts } from "@/lib/services/blog-service";
 import { DestinationCard } from "@/components/destinations/destination-card";
 import { VisaTypeCard } from "@/components/destinations/visa-type-card";
 import { SearchForm } from "@/components/search-form";
-import { Button } from "@/components/ui";
+import { Button } from "@repo/ui";
 import { BlogPostCard } from "@/components/blog/blog-post-card";
 
 export const revalidate = 86400; // Revalidate every 24 hours

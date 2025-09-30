@@ -1,21 +1,13 @@
-export * from "./aspect-ratio";
-export * from "./avatar";
-export * from "./badge";
-export * from "./blur-fade";
-export * from "./breadcrumb";
-export * from "./button";
-export * from "./card";
-export * from "./command";
-export * from "./country-combobox";
-export * from "./dialog";
+/**
+ * UI Components Index
+ *
+ * Re-exports all shared UI components from @repo/ui package
+ * Plus app-specific UI components that depend on Next.js features
+ */
+
+// Re-export all shared UI components
+export * from "@repo/ui";
+
+// Export app-specific components
 export * from "./enhanced-pagination";
-export * from "./input";
-export * from "./label";
-export * from "./magic-card";
-export * from "./navigation-menu";
-export * from "./pagination";
-export * from "./popover";
-export * from "./select";
-export * from "./separator";
-export * from "./skeleton";
-export * from "./textarea";
+export * from "./page-breadcrumb";

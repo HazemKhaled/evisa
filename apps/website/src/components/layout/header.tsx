@@ -8,7 +8,7 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+} from "@repo/ui";
 import { MobileNav } from "./mobile-nav";
 
 interface HeaderProps {

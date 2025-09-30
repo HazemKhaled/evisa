@@ -20,7 +20,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-} from "@/components/ui";
+} from "@repo/ui";
 
 interface ContactPageProps {
   params: Promise<{ locale: string }>;

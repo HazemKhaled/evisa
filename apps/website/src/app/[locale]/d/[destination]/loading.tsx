@@ -4,7 +4,7 @@ import {
   BreadcrumbItem,
   BreadcrumbSeparator,
   Skeleton,
-} from "@/components/ui";
+} from "@repo/ui";
 
 export default function DestinationLoading() {
   return (

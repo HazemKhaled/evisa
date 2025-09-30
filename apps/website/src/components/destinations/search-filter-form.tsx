@@ -9,7 +9,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui";
+} from "@repo/ui";
 
 interface SearchFilterFormProps {
   locale: string;

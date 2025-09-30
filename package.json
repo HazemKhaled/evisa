@@ -11,7 +11,7 @@
     "build:admin": "pnpm --filter @repo/admin build",
     "start": "pnpm --parallel --filter \"./apps/*\" start",
     "lint": "pnpm --recursive lint",
-    "lint:fix": "pnpm --recursive lint:fix",
+    "lint:fix": "pnpm --recursive lint:fix && pnpm format",
     "type-check": "pnpm --recursive type-check",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

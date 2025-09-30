@@ -1,10 +1,7 @@
 import { and, eq, isNull, desc, sql } from "@repo/database";
 import { visaTypes, visaTypesI18n } from "@repo/database";
 import { countries, countriesI18n } from "@repo/database";
-import {
-  visaEligibility,
-  visaEligibilityI18n,
-} from "@repo/database";
+import { visaEligibility, visaEligibilityI18n } from "@repo/database";
 import { getDb } from "@repo/database";
 
 /**

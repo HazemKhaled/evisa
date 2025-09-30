@@ -4,7 +4,7 @@ import { useParams, useRouter, usePathname } from "next/navigation";
 import { ChevronDown, Check } from "lucide-react";
 import { cn, isRTL } from "@repo/utils";
 import { languagesObj } from "@/app/i18n/settings";
-import { Button } from "./ui/button";
+import { Button } from "@repo/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +12,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
   DropdownMenuGroup,
-} from "./ui/dropdown-menu";
+} from "@repo/ui";
 
 export function LanguageSwitcher() {
   const router = useRouter();

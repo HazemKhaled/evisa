@@ -8,7 +8,7 @@ import {
   PaginationNext,
   PaginationPrevious,
   PaginationEllipsis,
-} from "@/components/ui";
+} from "@repo/ui";
 
 // Simple page range generator following Shadcn patterns
 function generatePageNumbers(

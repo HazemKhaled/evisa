@@ -17,4 +17,15 @@ export * from "./schema";
 export type { Database } from "./connection";
 
 // Re-export common drizzle-orm utilities
-export { eq, and, desc, like, inArray, sql, count, or, isNull, isNotNull } from "drizzle-orm";
+export {
+  eq,
+  and,
+  desc,
+  like,
+  inArray,
+  sql,
+  count,
+  or,
+  isNull,
+  isNotNull,
+} from "drizzle-orm";

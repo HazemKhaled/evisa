@@ -8,8 +8,8 @@ import {
 } from "@/lib/services/blog-service-client";
 import { useTranslation } from "@/app/i18n/client";
 import { ClientBlogPostCard } from "./client-blog-post-card";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Button } from "@repo/ui";
+import { Input } from "@repo/ui";
 
 interface BlogSearchProps {
   locale: string;
@@ -86,7 +86,9 @@ export function BlogSearch({
           <Input
             type="text"
             value={query}
-            onChange={e => setQuery(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setQuery(e.target.value)
+            }
             placeholder={searchPlaceholder || t("search.placeholder")}
             className="block w-full rounded-lg border border-gray-300 bg-white px-10 py-3 text-sm placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
           />
