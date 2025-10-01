@@ -48,10 +48,10 @@ export const blogPostsI18n = pgTable(
       .$onUpdate(() => new Date())
       .notNull(),
   },
-  table => ({
+  table => [
     // Ensure slug is unique per locale
-    uniquePostLocale: unique().on(table.postId, table.locale),
-  })
+    unique().on(table.postId, table.locale),
+  ]
 );
 
 export const blogTags = pgTable("blog_tags", {
@@ -81,10 +81,10 @@ export const blogPostTags = pgTable(
       .default(sql`now()`)
       .notNull(),
   },
-  table => ({
+  table => [
     // Ensure unique post-tag combinations
-    uniquePostTag: unique().on(table.postId, table.tagId),
-  })
+    unique().on(table.postId, table.tagId),
+  ]
 );
 
 export type BlogPost = typeof blogPosts.$inferSelect;
