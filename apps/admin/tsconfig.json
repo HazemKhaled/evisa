@@ -1,0 +1,25 @@
+{
+  "extends": "@repo/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@repo/auth": ["../../packages/auth/src"],
+      "@repo/database": ["../../packages/database/src"],
+      "@repo/ui": ["../../packages/ui/src"],
+      "@repo/utils": ["../../packages/utils/src"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../packages/auth/src/**/*.ts",
+    "../../packages/database/src/**/*.ts",
+    "../../packages/ui/src/**/*.tsx",
+    "../../packages/ui/src/**/*.ts",
+    "../../packages/utils/src/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}

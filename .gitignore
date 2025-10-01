@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/packages/*/node_modules
+/apps/*/node_modules
 /.pnp
 .pnp.js
 .yarn/install-state.gz
@@ -11,7 +13,7 @@
 /coverage-*
 
 # next.js
-/.next/
+**/.next
 /out/
 
 # production
@@ -37,7 +39,7 @@ yarn-error.log*
 next-env.d.ts
 
 # OpenNext
-/.open-next
+.open-next
 
 # wrangler files
 .wrangler
@@ -50,3 +52,11 @@ next-env.d.ts
 # Sentry Config File
 .env.sentry-build-plugin
 private/
+
+# BMAD (local only)
+.bmad-core/
+.bmad-*/
+.claude
+.github/chatmodes
+.gemini
+AGENTS.md

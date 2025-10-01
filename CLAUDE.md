@@ -12,6 +12,87 @@ The GetTravelVisa.com platform helps users travel with minimal visa requirements
 - Destination-based visa catalog with eligibility checking
 - Blog for destination content
 - Modern, responsive design with accessibility features
+- Admin panel for content and data management
+
+## Monorepo Structure
+
+This project uses a **PNPM workspace monorepo** with the following structure:
+
+```
+apps/
+├── website/               # Public-facing Next.js application
+│   ├── src/               # Website source code
+│   ├── package.json       # Website dependencies
+│   ├── next.config.ts     # Next.js configuration
+│   └── wrangler.jsonc     # Cloudflare Workers config
+└── admin/                 # Admin panel Next.js application
+    ├── src/               # Admin source code
+    │   └── app/
+    │       ├── countries/    # Country management
+    │       ├── visa-types/   # Visa type management
+    │       ├── eligibility/  # Eligibility management
+    │       └── blog-posts/   # Blog post management
+    ├── package.json       # Admin dependencies
+    ├── next.config.ts     # Next.js configuration
+    ├── middleware.ts      # Clerk authentication
+    └── wrangler.jsonc     # Cloudflare Workers config
+
+packages/
+├── database/              # Shared Drizzle schema and database logic
+│   ├── src/
+│   │   ├── schema/       # Database schema definitions
+│   │   ├── connection.ts # Database connection
+│   │   └── index.ts      # Package exports
+│   └── package.json
+├── ui/                    # Shared UI components (Shadcn/MagicUI)
+│   ├── src/components/
+│   └── package.json
+├── utils/                 # Shared utilities and helpers
+│   ├── src/
+│   └── package.json
+├── auth/                  # Shared Clerk authentication utilities
+│   ├── src/
+│   └── package.json
+└── typescript-config/     # Shared TypeScript configurations
+    ├── base.json
+    ├── nextjs.json
+    └── package.json
+```
+
+### Package Management
+
+- Use **PNPM** exclusively (not npm or yarn)
+- Shared packages use `workspace:*` protocol for internal dependencies
+- Run commands using `pnpm --filter <package-name>` for specific packages
+
+### Development Commands
+
+```bash
+# Development
+pnpm dev                    # Start both apps
+pnpm dev:website           # Start website only (port 3000)
+pnpm dev:admin             # Start admin only (port 3001)
+
+# Building
+pnpm build                 # Build all apps
+pnpm build:website         # Build website only
+pnpm build:admin           # Build admin only
+
+# Testing & Quality
+pnpm lint                  # Lint all packages
+pnpm type-check            # Type-check all packages
+pnpm test                  # Run all tests
+
+# Database (via @repo/database)
+pnpm db:generate           # Generate migrations
+pnpm db:migrate            # Run migrations
+pnpm db:push               # Push schema changes
+pnpm db:studio             # Open Drizzle Studio
+
+# Deployment
+pnpm deploy:website        # Deploy website to Cloudflare
+pnpm deploy:admin          # Deploy admin to Cloudflare
+```
 
 ## Technology Stack
 
@@ -55,16 +136,22 @@ Use latest compatible versions from all dependencies, and never use old version 
 - **Wrangler** for Cloudflare Workers management
 - **Neon Database** for PostgreSQL database
 
-### CI/CD with OpenNext & Github Actions
+### Deployment with OpenNext
 
 - Follow OpenNext for CloudFlare to configure build and deploy the application https://opennext.js.org/cloudflare/howtos/dev-deploy
 - Configure SSG https://opennext.js.org/cloudflare/caching#ssg-site
 - Configure Cloudflare Image Optimization https://opennext.js.org/cloudflare/howtos/image
 - Static assets for public folder https://opennext.js.org/cloudflare/howtos/assets
-- `main` branch should deploy on staging.gettravelvisa.com
-- Each GitHub release should deploy on gettravelvisa.com
-- Another GitHub Action to run tests and linting
 - Use wrangler.jsonc instead of the .toml file
+- Deployments are manual using `pnpm deploy` command
+- GitHub Action for tests and linting only
+
+### Authentication
+
+- **Clerk** for admin authentication (`@clerk/nextjs` latest)
+- Admin app uses Clerk middleware for route protection
+- Website has no authentication (public access)
+- Shared `@repo/auth` package exports Clerk utilities
 
 ### Code Quality
 
@@ -177,40 +264,68 @@ The application uses a comprehensive database schema designed for visa catalog m
 - Mobile-first responsive design approach
 - RTL support with directional classes and layout adjustments
 
-## Development Commands
+## Working with the Monorepo
 
-### Development
+### Import Paths
 
-```bash
-pnpm dev                 # Start development server with Turbopack
-pnpm build              # Build for production
-pnpm start              # Start production server
+Always use workspace package imports in apps:
+
+```typescript
+// ✅ Correct - Use workspace packages
+import { getCountryByCode } from "@repo/database";
+import { Button } from "@repo/ui";
+import { cn } from "@repo/utils";
+import { useAuth } from "@repo/auth";
+
+// ❌ Wrong - Don't use relative imports for shared code
+import { getCountryByCode } from "../../../packages/database";
 ```
 
-### Code Quality
+### Adding Shared Code
+
+1. **Database schema changes**: Add to `packages/database/src/schema/`
+2. **Shared UI components**: Add to `packages/ui/src/components/`
+3. **Utility functions**: Add to `packages/utils/src/`
+4. **Auth utilities**: Add to `packages/auth/src/`
+
+### Running Commands
 
 ```bash
-pnpm lint               # Run ESLint
-pnpm lint:fix           # Fix ESLint issues
-pnpm format             # Format code with Prettier
-pnpm format:check       # Check formatting
+# Run commands for specific app
+pnpm --filter @repo/website dev
+pnpm --filter @repo/admin build
+
+# Run commands for specific package
+pnpm --filter @repo/database test
+
+# Run commands for all apps/packages
+pnpm --recursive lint
+pnpm test  # Runs in all packages with test script
 ```
 
-### Database Management
+## Admin Panel
 
-```bash
-pnpm db:generate        # Generate migrations
-pnpm db:migrate         # Run migrations
-pnpm db:studio          # Open Drizzle Studio
-pnpm db:push            # Push schema changes directly
-```
+The admin panel provides CRUD interfaces for managing:
 
-### Deployment
+- **Countries**: Destination and passport countries with multilingual support
+- **Visa Types**: Visa options with duration, fees, and requirements
+- **Visa Eligibility**: Relationships between destinations, passports, and visas
+- **Blog Posts**: Content management with MDX support
 
-```bash
-pnpm deploy             # Build and deploy to Cloudflare via OpenNext
-pnpm preview            # Preview deployment locally
-pnpm cf-typegen         # Generate Cloudflare types
+### Admin Authentication
+
+- Uses Clerk for authentication
+- Environment variables required:
+  - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+  - `CLERK_SECRET_KEY`
+- See `apps/admin/.env.example` for setup
+
+### Admin Deployment
+
+- Manual deployment using `pnpm --filter @repo/admin deploy`
+- Configure appropriate wrangler environment for staging/production
+- Routes: `admin.gettravelvisa.com`
+
 ```
 
 ## Project Architecture
@@ -226,19 +341,21 @@ pnpm cf-typegen         # Generate Cloudflare types
 ### Directory Structure
 
 ```
+
 src/
-├── app/                          # Next.js App Router
-│   ├── globals.css              # Global styles and design tokens
-│   ├── layout.tsx               # Root layout
-│   └── [locale]/                # Internationalized routes (to be implemented)
-├── components/                   # Reusable components
-│   ├── layout/                  # Layout components
-│   └── ui/                      # Base UI components
-├── lib/                         # Utility libraries
-│   ├── db/                      # Database configuration
-│   └── utils.ts                 # Utility functions
-└── i18n/                        # Internationalization
-```
+├── app/ # Next.js App Router
+│ ├── globals.css # Global styles and design tokens
+│ ├── layout.tsx # Root layout
+│ └── [locale]/ # Internationalized routes (to be implemented)
+├── components/ # Reusable components
+│ ├── layout/ # Layout components
+│ └── ui/ # Base UI components
+├── lib/ # Utility libraries
+│ ├── db/ # Database configuration
+│ └── utils.ts # Utility functions
+└── i18n/ # Internationalization
+
+````
 
 ### Package Management
 
@@ -339,7 +456,7 @@ For modern Husky setup, use:
 
 ```bash
 npx husky init
-```
+````
 
 ### RTL Layout Issues
 
