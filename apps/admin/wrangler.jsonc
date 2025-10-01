@@ -26,8 +26,8 @@
   "preview_urls": true,
   "routes": [
     {
-      "pattern": "admin.gettravelvisa.com",
-      "custom_domain": true,
+      "pattern": "gettravelvisa.com/admin/*",
+      "zone_name": "2b0b29f96605829599d4f99910f7e0ea",
     },
   ],
   "services": [
@@ -38,10 +38,9 @@
     },
   ],
   "r2_buckets": [
-    // Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
-    // {
-    //   "binding": "NEXT_INC_CACHE_R2_BUCKET",
-    //   "bucket_name": "<BUCKET_NAME>",
-    // },
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "gtv-admin-cache",
+    },
   ],
 }
