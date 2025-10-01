@@ -10,9 +10,7 @@ import {
   SUPPORTED_LOCALES,
   type Locale,
 } from "@/components/forms/i18n-tabs";
-import { Input } from "@/components/forms/input";
-import { Textarea } from "@/components/forms/textarea";
-import { Checkbox } from "@/components/forms/checkbox";
+import { FormInput, FormTextarea, FormCheckbox } from "@repo/ui";
 import { CountrySelect } from "@/components/forms/country-select";
 import { ArrayField } from "@/components/forms/array-field";
 import {
@@ -203,7 +201,7 @@ export function VisaTypeDialog({
                   placeholder="Select destination"
                 />
               </div>
-              <Input
+              <FormInput
                 label="Visa Type"
                 placeholder="e.g., tourist, business, transit"
                 {...register("type")}
@@ -212,21 +210,21 @@ export function VisaTypeDialog({
             </div>
 
             <div className="grid grid-cols-3 gap-4">
-              <Input
+              <FormInput
                 label="Duration (days)"
                 type="number"
                 placeholder="30"
                 {...register("duration")}
                 error={errors.duration?.message}
               />
-              <Input
+              <FormInput
                 label="Max Stay (days)"
                 type="number"
                 placeholder="Optional"
                 {...register("maxStay")}
                 error={errors.maxStay?.message}
               />
-              <Input
+              <FormInput
                 label="Processing Time (days)"
                 type="number"
                 placeholder="7"
@@ -236,7 +234,7 @@ export function VisaTypeDialog({
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <Input
+              <FormInput
                 label="Fee"
                 type="number"
                 step="0.01"
@@ -244,7 +242,7 @@ export function VisaTypeDialog({
                 {...register("fee")}
                 error={errors.fee?.message}
               />
-              <Input
+              <FormInput
                 label="Currency"
                 placeholder="USD"
                 {...register("currency")}
@@ -253,12 +251,12 @@ export function VisaTypeDialog({
             </div>
 
             <div className="grid grid-cols-3 gap-4">
-              <Checkbox
+              <FormCheckbox
                 label="Requires Interview"
                 {...register("requiresInterview")}
               />
-              <Checkbox label="Multi Entry" {...register("isMultiEntry")} />
-              <Checkbox label="Active" {...register("isActive")} />
+              <FormCheckbox label="Multi Entry" {...register("isMultiEntry")} />
+              <FormCheckbox label="Active" {...register("isActive")} />
             </div>
 
             <ArrayField
@@ -282,7 +280,7 @@ export function VisaTypeDialog({
               <I18nTabs>
                 {locale => (
                   <div className="space-y-4">
-                    <Input
+                    <FormInput
                       label="Visa Type Name"
                       placeholder={`Enter name in ${SUPPORTED_LOCALES.find(l => l.code === locale)?.name}`}
                       value={i18nData[locale]?.name ?? ""}
@@ -290,7 +288,7 @@ export function VisaTypeDialog({
                         handleI18nChange(locale, "name", e.target.value)
                       }
                     />
-                    <Textarea
+                    <FormTextarea
                       label="Description (Optional)"
                       placeholder="Visa description"
                       value={i18nData[locale]?.description ?? ""}

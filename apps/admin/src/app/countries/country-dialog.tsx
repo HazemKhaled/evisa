@@ -9,10 +9,7 @@ import {
   SUPPORTED_LOCALES,
   type Locale,
 } from "@/components/forms/i18n-tabs";
-import { Input } from "@/components/forms/input";
-import { Textarea } from "@/components/forms/textarea";
-import { Select } from "@/components/forms/select";
-import { Checkbox } from "@/components/forms/checkbox";
+import { FormInput, FormTextarea, FormSelect, FormCheckbox } from "@repo/ui";
 import {
   createCountry,
   updateCountry,
@@ -185,14 +182,14 @@ export function CountryDialog({
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
-              <Input
+              <FormInput
                 label="Country Code (ISO 3166-1 alpha-2)"
                 placeholder="US"
                 {...register("code")}
                 error={errors.code?.message}
                 disabled={!!country}
               />
-              <Select
+              <FormSelect
                 label="Continent"
                 options={CONTINENTS}
                 placeholder="Select continent"
@@ -201,14 +198,14 @@ export function CountryDialog({
               />
             </div>
 
-            <Input
+            <FormInput
               label="Region"
               placeholder="e.g., Western Europe, Southeast Asia"
               {...register("region")}
               error={errors.region?.message}
             />
 
-            <Input
+            <FormInput
               label="Hero Image URL"
               placeholder="https://..."
               type="url"
@@ -216,7 +213,7 @@ export function CountryDialog({
               error={errors.heroImage?.message}
             />
 
-            <Checkbox label="Active" {...register("isActive")} />
+            <FormCheckbox label="Active" {...register("isActive")} />
 
             <div>
               <h3 className="mb-4 text-lg font-semibold">
@@ -225,7 +222,7 @@ export function CountryDialog({
               <I18nTabs>
                 {locale => (
                   <div className="space-y-4">
-                    <Input
+                    <FormInput
                       label="Country Name"
                       placeholder={`Enter country name in ${SUPPORTED_LOCALES.find(l => l.code === locale)?.name}`}
                       value={i18nData[locale]?.name ?? ""}
@@ -233,7 +230,7 @@ export function CountryDialog({
                         handleI18nChange(locale, "name", e.target.value)
                       }
                     />
-                    <Input
+                    <FormInput
                       label="Official/Long Name (Optional)"
                       placeholder="e.g., United States of America"
                       value={i18nData[locale]?.name_long ?? ""}
@@ -241,7 +238,7 @@ export function CountryDialog({
                         handleI18nChange(locale, "name_long", e.target.value)
                       }
                     />
-                    <Textarea
+                    <FormTextarea
                       label="About (Optional)"
                       placeholder="2-line catchy description"
                       value={i18nData[locale]?.about ?? ""}

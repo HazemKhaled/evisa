@@ -6,9 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { type BlogPost } from "@repo/database";
 import { I18nTabs, type Locale } from "@/components/forms/i18n-tabs";
-import { Input } from "@/components/forms/input";
-import { Textarea } from "@/components/forms/textarea";
-import { Checkbox } from "@/components/forms/checkbox";
+import { FormInput, FormTextarea, FormCheckbox } from "@repo/ui";
 import {
   createBlogPost,
   updateBlogPost,
@@ -219,52 +217,54 @@ export function BlogPostDialog({
           <div className="space-y-4 rounded-lg border p-4">
             <h3 className="font-semibold">Basic Information</h3>
 
-            <Input
+            <FormInput
               label="Slug"
               {...register("slug")}
               error={errors.slug?.message}
               placeholder="my-blog-post-slug"
             />
 
-            <Input
+            <FormInput
               label="Author"
               {...register("author")}
               error={errors.author?.message}
               placeholder="John Doe"
             />
 
-            <Input
+            <FormInput
               label="Image URL"
               {...register("image")}
               error={errors.image?.message}
               placeholder="https://example.com/image.jpg"
             />
 
-            <Input
+            <FormInput
               label="Destinations (comma-separated codes)"
               {...register("destinations")}
               error={errors.destinations?.message}
               placeholder="USA,CAN,FRA"
             />
 
-            <Input
+            <FormInput
               label="Passports (comma-separated codes)"
               {...register("passports")}
               error={errors.passports?.message}
               placeholder="USA,CAN"
             />
 
-            <Input
+            <FormInput
               label="Published Date"
               type="date"
               {...register("publishedAt")}
               error={errors.publishedAt?.message}
             />
 
-            <Checkbox
+            <FormCheckbox
               label="Published"
               checked={watch("isPublished")}
-              onChange={e => setValue("isPublished", e.target.checked)}
+              onCheckedChange={checked =>
+                setValue("isPublished", checked as boolean)
+              }
             />
           </div>
 
@@ -280,7 +280,7 @@ export function BlogPostDialog({
 
                 return (
                   <div className="space-y-4">
-                    <Input
+                    <FormInput
                       label={`Title (${locale.toUpperCase()})`}
                       value={currentI18n.title}
                       onChange={e =>
@@ -290,7 +290,7 @@ export function BlogPostDialog({
                       placeholder="Enter blog post title"
                     />
 
-                    <Textarea
+                    <FormTextarea
                       label={`Description (${locale.toUpperCase()})`}
                       value={currentI18n.description}
                       onChange={e =>
@@ -301,7 +301,7 @@ export function BlogPostDialog({
                       rows={3}
                     />
 
-                    <Textarea
+                    <FormTextarea
                       label={`Content (${locale.toUpperCase()})`}
                       value={currentI18n.content}
                       onChange={e =>
@@ -312,7 +312,7 @@ export function BlogPostDialog({
                       rows={10}
                     />
 
-                    <Input
+                    <FormInput
                       label={`Meta Keywords (${locale.toUpperCase()})`}
                       value={currentI18n.metaKeywords || ""}
                       onChange={e =>

@@ -5,9 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { type Country, type VisaType } from "@repo/database";
-import { Input } from "@/components/forms/input";
-import { Select } from "@/components/forms/select";
-import { Checkbox } from "@/components/forms/checkbox";
+import { FormInput, FormSelect, FormCheckbox } from "@repo/ui";
 import { CountrySelect } from "@/components/forms/country-select";
 import { bulkCreateEligibility } from "@/actions/eligibility";
 
@@ -153,7 +151,7 @@ export function BulkCreateDialog({
               />
             </div>
 
-            <Select
+            <FormSelect
               label="Visa Type"
               options={destinationVisaTypes.map(vt => ({
                 value: vt.id.toString(),
@@ -167,14 +165,14 @@ export function BulkCreateDialog({
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <Select
+            <FormSelect
               label="Eligibility Status"
               options={STATUS_OPTIONS}
               {...register("eligibilityStatus")}
               error={errors.eligibilityStatus?.message}
             />
 
-            <Input
+            <FormInput
               label="Max Stay (days) - Optional"
               type="number"
               placeholder="e.g., 90"
@@ -184,7 +182,7 @@ export function BulkCreateDialog({
           </div>
 
           <div className="flex items-center gap-2">
-            <Checkbox label="Active" {...register("isActive")} />
+            <FormCheckbox label="Active" {...register("isActive")} />
           </div>
 
           <div className="space-y-2">

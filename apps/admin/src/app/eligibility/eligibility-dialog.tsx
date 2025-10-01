@@ -14,10 +14,7 @@ import {
   SUPPORTED_LOCALES,
   type Locale,
 } from "@/components/forms/i18n-tabs";
-import { Input } from "@/components/forms/input";
-import { Textarea } from "@/components/forms/textarea";
-import { Select } from "@/components/forms/select";
-import { Checkbox } from "@/components/forms/checkbox";
+import { FormInput, FormTextarea, FormSelect, FormCheckbox } from "@repo/ui";
 import { CountrySelect } from "@/components/forms/country-select";
 import {
   createEligibility,
@@ -211,7 +208,7 @@ export function EligibilityDialog({
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <Select
+              <FormSelect
                 label="Visa Type"
                 options={destinationVisaTypes.map(vt => ({
                   value: vt.id.toString(),
@@ -223,7 +220,7 @@ export function EligibilityDialog({
                 disabled={!!rule || !selectedDestination}
               />
 
-              <Select
+              <FormSelect
                 label="Eligibility Status"
                 options={STATUS_OPTIONS}
                 {...register("eligibilityStatus")}
@@ -232,7 +229,7 @@ export function EligibilityDialog({
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <Input
+              <FormInput
                 label="Max Stay (days) - Optional"
                 type="number"
                 placeholder="e.g., 90"
@@ -240,7 +237,7 @@ export function EligibilityDialog({
                 error={errors.maxStayDays?.message}
               />
               <div className="flex items-end pb-2">
-                <Checkbox label="Active" {...register("isActive")} />
+                <FormCheckbox label="Active" {...register("isActive")} />
               </div>
             </div>
 
@@ -251,7 +248,7 @@ export function EligibilityDialog({
               <I18nTabs>
                 {locale => (
                   <div className="space-y-4">
-                    <Textarea
+                    <FormTextarea
                       label={`Notes in ${SUPPORTED_LOCALES.find(l => l.code === locale)?.name}`}
                       placeholder="Additional information about this eligibility rule"
                       value={i18nData[locale]?.notes ?? ""}
