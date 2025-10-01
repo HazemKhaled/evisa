@@ -11,6 +11,7 @@ import {
   type Country,
 } from "@repo/database";
 import { revalidatePath } from "next/cache";
+import { handleActionError, type ActionResult } from "@/lib/errors";
 
 interface CountryI18nData {
   locale: string;
@@ -71,7 +72,7 @@ export async function getCountryWithI18n(code: string): Promise<{
 
 export async function createCountry(
   input: CreateCountryInput
-): Promise<{ success: boolean; error?: string }> {
+): Promise<ActionResult> {
   try {
     const db = getDb();
 
@@ -100,18 +101,13 @@ export async function createCountry(
     revalidatePath("/countries");
     return { success: true };
   } catch (error) {
-    console.error("Failed to create country:", error);
-    return {
-      success: false,
-      error:
-        error instanceof Error ? error.message : "Failed to create country",
-    };
+    return handleActionError(error, "Failed to create country");
   }
 }
 
 export async function updateCountry(
   input: UpdateCountryInput
-): Promise<{ success: boolean; error?: string }> {
+): Promise<ActionResult> {
   try {
     const db = getDb();
 
@@ -146,18 +142,11 @@ export async function updateCountry(
     revalidatePath("/countries");
     return { success: true };
   } catch (error) {
-    console.error("Failed to update country:", error);
-    return {
-      success: false,
-      error:
-        error instanceof Error ? error.message : "Failed to update country",
-    };
+    return handleActionError(error, "Failed to update country");
   }
 }
 
-export async function deleteCountry(
-  code: string
-): Promise<{ success: boolean; error?: string }> {
+export async function deleteCountry(code: string): Promise<ActionResult> {
   try {
     const db = getDb();
 
@@ -172,11 +161,6 @@ export async function deleteCountry(
     revalidatePath("/countries");
     return { success: true };
   } catch (error) {
-    console.error("Failed to delete country:", error);
-    return {
-      success: false,
-      error:
-        error instanceof Error ? error.message : "Failed to delete country",
-    };
+    return handleActionError(error, "Failed to delete country");
   }
 }

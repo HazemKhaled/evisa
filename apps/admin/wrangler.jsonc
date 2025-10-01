@@ -23,6 +23,7 @@
   "placement": {
     "mode": "smart",
   },
+  "preview_urls": true,
   "routes": [
     {
       "pattern": "admin.gettravelvisa.com",
