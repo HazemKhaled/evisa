@@ -50,7 +50,7 @@ export function BulkCreateDialog({
     formState: { errors },
     reset,
     watch,
-  } = useForm<BulkCreateFormData>({
+  } = useForm({
     resolver: zodResolver(bulkCreateSchema),
     defaultValues: {
       destinationCode: "",

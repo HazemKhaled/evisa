@@ -56,7 +56,7 @@ export function BlogPostDialog({
     formState: { errors },
     setValue,
     watch,
-  } = useForm<BlogPostFormData>({
+  } = useForm({
     resolver: zodResolver(blogPostSchema),
     defaultValues: {
       slug: "",

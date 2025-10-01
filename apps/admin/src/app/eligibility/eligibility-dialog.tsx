@@ -75,7 +75,7 @@ export function EligibilityDialog({
     reset,
     setValue,
     watch,
-  } = useForm<EligibilityFormData>({
+  } = useForm({
     resolver: zodResolver(eligibilitySchema),
     defaultValues: {
       destinationCode: "",

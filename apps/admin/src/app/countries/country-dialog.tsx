@@ -76,7 +76,7 @@ export function CountryDialog({
     formState: { errors },
     reset,
     setValue,
-  } = useForm<CountryFormData>({
+  } = useForm({
     resolver: zodResolver(countrySchema),
     defaultValues: {
       code: "",

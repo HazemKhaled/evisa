@@ -70,7 +70,7 @@ export function VisaTypeDialog({
     formState: { errors },
     reset,
     setValue,
-  } = useForm<VisaTypeFormData>({
+  } = useForm({
     resolver: zodResolver(visaTypeSchema),
     defaultValues: {
       destinationCode: "",
