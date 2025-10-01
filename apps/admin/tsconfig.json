@@ -18,6 +18,7 @@
     "../../packages/auth/src/**/*.ts",
     "../../packages/database/src/**/*.ts",
     "../../packages/ui/src/**/*.tsx",
+    "../../packages/ui/src/**/*.ts",
     "../../packages/utils/src/**/*.ts"
   ],
   "exclude": ["node_modules"]

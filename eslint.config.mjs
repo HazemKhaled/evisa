@@ -17,6 +17,7 @@ const baseIgnores = [
   "**/.wrangler/**",
   "**/.vercel/**",
   "**/public/**",
+  "**/.open-next/**",
 ];
 
 const tsConfigs = compat
