@@ -8,7 +8,7 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
-} from "@repo/auth";
+} from "@clerk/nextjs";
 import {
   NavigationMenu,
   NavigationMenuItem,

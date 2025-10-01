@@ -17,6 +17,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@clerk/nextjs": "6.33.1",
     "@hookform/resolvers": "^3.9.1",
     "@opennextjs/cloudflare": "1.9.0",
     "@repo/auth": "workspace:*",

@@ -86,3 +86,10 @@ export const blogPostTags = pgTable(
     uniquePostTag: unique().on(table.postId, table.tagId),
   })
 );
+
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type NewBlogPost = typeof blogPosts.$inferInsert;
+export type BlogPostI18n = typeof blogPostsI18n.$inferSelect;
+export type NewBlogPostI18n = typeof blogPostsI18n.$inferInsert;
+export type BlogTag = typeof blogTags.$inferSelect;
+export type NewBlogTag = typeof blogTags.$inferInsert;
