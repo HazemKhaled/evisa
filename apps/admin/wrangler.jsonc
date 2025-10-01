@@ -24,10 +24,11 @@
     "mode": "smart",
   },
   "preview_urls": true,
+  "keep_vars": true,
   "routes": [
     {
-      "pattern": "gettravelvisa.com/admin/*",
-      "zone_name": "2b0b29f96605829599d4f99910f7e0ea",
+      "pattern": "admin.gettravelvisa.com",
+      "custom_domain": true,
     },
   ],
   "services": [
