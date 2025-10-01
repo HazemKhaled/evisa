@@ -1,8 +1,22 @@
 /**
  * Authentication Package
  *
- * Placeholder for future Clerk authentication integration
- * To be implemented in Phase 4 for admin system
+ * Clerk authentication utilities for the admin system
  */
 
-export const AUTH_PACKAGE_VERSION = "0.0.0";
+// Re-export Clerk components and utilities
+export {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  useAuth,
+  useUser,
+} from "@clerk/nextjs";
+
+// Re-export server utilities
+export { auth, currentUser, clerkMiddleware } from "@clerk/nextjs/server";
+
+export const AUTH_PACKAGE_VERSION = "1.0.0";
