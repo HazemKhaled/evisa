@@ -8,6 +8,10 @@ import {
   getDb,
   eq,
   isNull,
+  and,
+  or,
+  like,
+  count,
   type NewBlogPost,
   type NewBlogPostI18n,
   type BlogPost,
@@ -38,6 +42,20 @@ interface UpdateBlogPostInput extends CreateBlogPostInput {
   id: number;
 }
 
+interface GetBlogPostsPaginatedInput {
+  page?: number;
+  pageSize?: number;
+  search?: string;
+}
+
+interface PaginatedResult<T> {
+  data: T[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const db = getDb();
   const result = await db
@@ -46,6 +64,46 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     .where(isNull(blogPosts.deletedAt))
     .orderBy(blogPosts.publishedAt);
   return result;
+}
+
+export async function getBlogPostsPaginated(
+  input: GetBlogPostsPaginatedInput = {}
+): Promise<PaginatedResult<BlogPost>> {
+  const { page = 1, pageSize = 10, search = "" } = input;
+  const db = getDb();
+  const offset = (page - 1) * pageSize;
+
+  const whereConditions = search
+    ? and(
+        isNull(blogPosts.deletedAt),
+        or(
+          like(blogPosts.slug, `%${search}%`),
+          like(blogPosts.author, `%${search}%`),
+          like(blogPosts.destinations, `%${search}%`)
+        )
+      )
+    : isNull(blogPosts.deletedAt);
+
+  const [{ count: totalCount }] = await db
+    .select({ count: count() })
+    .from(blogPosts)
+    .where(whereConditions);
+
+  const result = await db
+    .select()
+    .from(blogPosts)
+    .where(whereConditions)
+    .orderBy(blogPosts.publishedAt)
+    .limit(pageSize)
+    .offset(offset);
+
+  return {
+    data: result,
+    total: Number(totalCount),
+    page,
+    pageSize,
+    totalPages: Math.ceil(Number(totalCount) / pageSize),
+  };
 }
 
 export async function getBlogPostWithI18n(id: number): Promise<{

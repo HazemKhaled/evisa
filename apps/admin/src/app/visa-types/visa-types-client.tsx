@@ -1,29 +1,66 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { type ColumnDef } from "@tanstack/react-table";
-import { type Country, type VisaType } from "@repo/database";
-import { DataTable } from "@/components/data-table/data-table";
+import { type VisaType, type Country } from "@repo/database";
+import { Button } from "@repo/ui";
+import { EnhancedDataTable } from "@/components/data-table/enhanced-data-table";
 import { DataTableColumnHeader } from "@/components/data-table/column-header";
-import { VisaTypeDialog } from "./visa-type-dialog";
 import { deleteVisaType } from "@/actions/visa-types";
 
+interface PaginatedVisaTypes {
+  data: VisaType[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
 interface VisaTypesClientProps {
-  visaTypes: VisaType[];
+  paginatedData: PaginatedVisaTypes;
   countries: Country[];
 }
 
 export function VisaTypesClient({
-  visaTypes,
-  countries,
+  paginatedData,
+  countries: _countries,
 }: VisaTypesClientProps): React.JSX.Element {
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [editingVisaType, setEditingVisaType] = useState<VisaType | null>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [, startTransition] = useTransition();
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
 
-  const handleEdit = (visaType: VisaType): void => {
-    setEditingVisaType(visaType);
-    setDialogOpen(true);
+  const currentSearch = searchParams.get("search") || "";
+
+  const handlePageChange = (page: number): void => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", String(page + 1));
+    startTransition(() => {
+      router.push(`/visa-types?${params.toString()}`);
+    });
+  };
+
+  const handlePageSizeChange = (pageSize: number): void => {
+    const params = new URLSearchParams(searchParams);
+    params.set("pageSize", String(pageSize));
+    params.set("page", "1");
+    startTransition(() => {
+      router.push(`/visa-types?${params.toString()}`);
+    });
+  };
+
+  const handleSearchChange = (search: string): void => {
+    const params = new URLSearchParams(searchParams);
+    if (search) {
+      params.set("search", search);
+    } else {
+      params.delete("search");
+    }
+    params.set("page", "1");
+    startTransition(() => {
+      router.push(`/visa-types?${params.toString()}`);
+    });
   };
 
   const handleDelete = async (id: number): Promise<void> => {
@@ -39,11 +76,7 @@ export function VisaTypesClient({
     }
 
     setIsDeleting(null);
-  };
-
-  const handleDialogClose = (): void => {
-    setDialogOpen(false);
-    setEditingVisaType(null);
+    router.refresh();
   };
 
   const columns: ColumnDef<VisaType>[] = [
@@ -63,14 +96,11 @@ export function VisaTypesClient({
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Type" />
       ),
-      cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("type")}</div>
-      ),
     },
     {
       accessorKey: "duration",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Duration" />
+        <DataTableColumnHeader column={column} title="Duration (days)" />
       ),
       cell: ({ row }) => `${row.getValue("duration")} days`,
     },
@@ -80,9 +110,8 @@ export function VisaTypesClient({
         <DataTableColumnHeader column={column} title="Fee" />
       ),
       cell: ({ row }) => {
-        const fee = row.getValue("fee") as number;
-        const currency = row.original.currency;
-        return `${currency} ${fee.toFixed(2)}`;
+        const visa = row.original;
+        return `${visa.currency || "USD"} ${visa.fee}`;
       },
     },
     {
@@ -91,13 +120,6 @@ export function VisaTypesClient({
         <DataTableColumnHeader column={column} title="Processing" />
       ),
       cell: ({ row }) => `${row.getValue("processingTime")} days`,
-    },
-    {
-      accessorKey: "isMultiEntry",
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Entry" />
-      ),
-      cell: ({ row }) => (row.getValue("isMultiEntry") ? "Multi" : "Single"),
     },
     {
       accessorKey: "isActive",
@@ -119,25 +141,19 @@ export function VisaTypesClient({
     {
       id: "actions",
       cell: ({ row }) => {
-        const visaType = row.original;
-        const isCurrentlyDeleting = isDeleting === visaType.id;
+        const visa = row.original;
+        const isCurrentlyDeleting = isDeleting === visa.id;
 
         return (
           <div className="flex gap-2">
-            <button
-              onClick={() => handleEdit(visaType)}
-              className="text-sm text-blue-600 hover:text-blue-800"
-              disabled={isCurrentlyDeleting}
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => handleDelete(visaType.id)}
-              className="text-sm text-red-600 hover:text-red-800 disabled:opacity-50"
+            <Button
+              onClick={() => handleDelete(visa.id)}
+              variant="ghost"
+              size="sm"
               disabled={isCurrentlyDeleting}
             >
               {isCurrentlyDeleting ? "Deleting..." : "Delete"}
-            </button>
+            </Button>
           </div>
         );
       },
@@ -146,27 +162,18 @@ export function VisaTypesClient({
 
   return (
     <>
-      <div className="mb-4 flex justify-end">
-        <button
-          onClick={() => setDialogOpen(true)}
-          className="bg-primary text-primary-foreground ring-offset-background hover:bg-primary/90 focus-visible:ring-ring inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-        >
-          Add Visa Type
-        </button>
-      </div>
-
-      <DataTable
+      <EnhancedDataTable
         columns={columns}
-        data={visaTypes}
-        searchKey="type"
-        searchPlaceholder="Search by visa type..."
-      />
-
-      <VisaTypeDialog
-        open={dialogOpen}
-        onClose={handleDialogClose}
-        visaType={editingVisaType}
-        countries={countries}
+        data={paginatedData.data}
+        pageCount={paginatedData.totalPages}
+        pageIndex={paginatedData.page - 1}
+        pageSize={paginatedData.pageSize}
+        total={paginatedData.total}
+        searchValue={currentSearch}
+        searchPlaceholder="Search by destination, type, or currency..."
+        onPageChange={handlePageChange}
+        onPageSizeChange={handlePageSizeChange}
+        onSearchChange={handleSearchChange}
       />
     </>
   );

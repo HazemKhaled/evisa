@@ -1,24 +1,69 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { type ColumnDef } from "@tanstack/react-table";
 import { type Country } from "@repo/database";
-import { DataTable } from "@/components/data-table/data-table";
+import { Button } from "@repo/ui";
+import { EnhancedDataTable } from "@/components/data-table/enhanced-data-table";
 import { DataTableColumnHeader } from "@/components/data-table/column-header";
 import { CountryDialog } from "./country-dialog";
 import { deleteCountry } from "@/actions/countries";
 import { format } from "date-fns";
 
+interface PaginatedCountries {
+  data: Country[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
 interface CountriesClientProps {
-  countries: Country[];
+  paginatedData: PaginatedCountries;
 }
 
 export function CountriesClient({
-  countries,
+  paginatedData,
 }: CountriesClientProps): React.JSX.Element {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [, startTransition] = useTransition();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingCountry, setEditingCountry] = useState<Country | null>(null);
   const [isDeleting, setIsDeleting] = useState<string | null>(null);
+
+  const currentSearch = searchParams.get("search") || "";
+
+  const handlePageChange = (page: number): void => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", String(page + 1));
+    startTransition(() => {
+      router.push(`/countries?${params.toString()}`);
+    });
+  };
+
+  const handlePageSizeChange = (pageSize: number): void => {
+    const params = new URLSearchParams(searchParams);
+    params.set("pageSize", String(pageSize));
+    params.set("page", "1");
+    startTransition(() => {
+      router.push(`/countries?${params.toString()}`);
+    });
+  };
+
+  const handleSearchChange = (search: string): void => {
+    const params = new URLSearchParams(searchParams);
+    if (search) {
+      params.set("search", search);
+    } else {
+      params.delete("search");
+    }
+    params.set("page", "1");
+    startTransition(() => {
+      router.push(`/countries?${params.toString()}`);
+    });
+  };
 
   const handleEdit = (country: Country): void => {
     setEditingCountry(country);
@@ -38,6 +83,7 @@ export function CountriesClient({
     }
 
     setIsDeleting(null);
+    router.refresh();
   };
 
   const handleDialogClose = (): void => {
@@ -101,20 +147,22 @@ export function CountriesClient({
 
         return (
           <div className="flex gap-2">
-            <button
+            <Button
               onClick={() => handleEdit(country)}
-              className="text-sm text-blue-600 hover:text-blue-800"
+              variant="ghost"
+              size="sm"
               disabled={isCurrentlyDeleting}
             >
               Edit
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => handleDelete(country.code)}
-              className="text-sm text-red-600 hover:text-red-800 disabled:opacity-50"
+              variant="ghost"
+              size="sm"
               disabled={isCurrentlyDeleting}
             >
               {isCurrentlyDeleting ? "Deleting..." : "Delete"}
-            </button>
+            </Button>
           </div>
         );
       },
@@ -124,19 +172,21 @@ export function CountriesClient({
   return (
     <>
       <div className="mb-4 flex justify-end">
-        <button
-          onClick={() => setDialogOpen(true)}
-          className="bg-primary text-primary-foreground ring-offset-background hover:bg-primary/90 focus-visible:ring-ring inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-        >
-          Add Country
-        </button>
+        <Button onClick={() => setDialogOpen(true)}>Add Country</Button>
       </div>
 
-      <DataTable
+      <EnhancedDataTable
         columns={columns}
-        data={countries}
-        searchKey="code"
+        data={paginatedData.data}
+        pageCount={paginatedData.totalPages}
+        pageIndex={paginatedData.page - 1}
+        pageSize={paginatedData.pageSize}
+        total={paginatedData.total}
+        searchValue={currentSearch}
         searchPlaceholder="Search by country code..."
+        onPageChange={handlePageChange}
+        onPageSizeChange={handlePageSizeChange}
+        onSearchChange={handleSearchChange}
       />
 
       <CountryDialog

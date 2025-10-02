@@ -6,6 +6,10 @@ import {
   getDb,
   eq,
   isNull,
+  and,
+  or,
+  like,
+  count,
   type NewVisaType,
   type NewVisaTypeI18n,
   type VisaType,
@@ -46,6 +50,63 @@ export async function getVisaTypes(): Promise<VisaType[]> {
     .where(isNull(visaTypes.deletedAt))
     .orderBy(visaTypes.destinationCode, visaTypes.type);
   return result;
+}
+
+interface GetVisaTypesPaginatedInput {
+  page?: number;
+  pageSize?: number;
+  search?: string;
+}
+
+interface PaginatedResult<T> {
+  data: T[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
+export async function getVisaTypesPaginated(
+  input: GetVisaTypesPaginatedInput = {}
+): Promise<PaginatedResult<VisaType>> {
+  const { page = 1, pageSize = 10, search = "" } = input;
+  const db = getDb();
+  const offset = (page - 1) * pageSize;
+
+  // Build query with search
+  const whereConditions = search
+    ? and(
+        isNull(visaTypes.deletedAt),
+        or(
+          like(visaTypes.destinationCode, `%${search.toUpperCase()}%`),
+          like(visaTypes.type, `%${search}%`),
+          like(visaTypes.currency, `%${search.toUpperCase()}%`)
+        )
+      )
+    : isNull(visaTypes.deletedAt);
+
+  // Get total count
+  const [{ count: totalCount }] = await db
+    .select({ count: count() })
+    .from(visaTypes)
+    .where(whereConditions);
+
+  // Get paginated data
+  const result = await db
+    .select()
+    .from(visaTypes)
+    .where(whereConditions)
+    .orderBy(visaTypes.destinationCode, visaTypes.type)
+    .limit(pageSize)
+    .offset(offset);
+
+  return {
+    data: result,
+    total: Number(totalCount),
+    page,
+    pageSize,
+    totalPages: Math.ceil(Number(totalCount) / pageSize),
+  };
 }
 
 export async function getVisaTypeWithI18n(id: number): Promise<{

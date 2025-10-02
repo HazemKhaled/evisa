@@ -6,6 +6,9 @@ import {
   getDb,
   eq,
   isNull,
+  and,
+  or,
+  count,
   type NewCountry,
   type NewCountryI18n,
   type Country,
@@ -41,6 +44,63 @@ export async function getCountries(): Promise<Country[]> {
     .where(isNull(countries.deletedAt))
     .orderBy(countries.code);
   return result;
+}
+
+interface GetCountriesPaginatedInput {
+  page?: number;
+  pageSize?: number;
+  search?: string;
+}
+
+interface PaginatedResult<T> {
+  data: T[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
+export async function getCountriesPaginated(
+  input: GetCountriesPaginatedInput = {}
+): Promise<PaginatedResult<Country>> {
+  const { page = 1, pageSize = 10, search = "" } = input;
+  const db = getDb();
+  const offset = (page - 1) * pageSize;
+
+  // Build query with search
+  const whereConditions = search
+    ? and(
+        isNull(countries.deletedAt),
+        or(
+          eq(countries.code, search.toUpperCase()),
+          eq(countries.continent, search),
+          eq(countries.region, search)
+        )
+      )
+    : isNull(countries.deletedAt);
+
+  // Get total count
+  const [{ count: totalCount }] = await db
+    .select({ count: count() })
+    .from(countries)
+    .where(whereConditions);
+
+  // Get paginated data
+  const result = await db
+    .select()
+    .from(countries)
+    .where(whereConditions)
+    .orderBy(countries.code)
+    .limit(pageSize)
+    .offset(offset);
+
+  return {
+    data: result,
+    total: Number(totalCount),
+    page,
+    pageSize,
+    totalPages: Math.ceil(Number(totalCount) / pageSize),
+  };
 }
 
 export async function getCountryWithI18n(code: string): Promise<{

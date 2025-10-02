@@ -1,38 +1,79 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { type ColumnDef } from "@tanstack/react-table";
 import {
   type Country,
   type VisaType,
   type VisaEligibility,
 } from "@repo/database";
-import { DataTable } from "@/components/data-table/data-table";
+import { Button } from "@repo/ui";
+import { EnhancedDataTable } from "@/components/data-table/enhanced-data-table";
 import { DataTableColumnHeader } from "@/components/data-table/column-header";
 import { EligibilityDialog } from "./eligibility-dialog";
 import { BulkCreateDialog } from "./bulk-create-dialog";
-import {
-  deleteEligibility,
-  bulkDeleteEligibility,
-} from "@/actions/eligibility";
+import { deleteEligibility } from "@/actions/eligibility";
 import { format } from "date-fns";
 
+interface PaginatedEligibility {
+  data: VisaEligibility[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
 interface EligibilityClientProps {
-  eligibilityRules: VisaEligibility[];
+  paginatedData: PaginatedEligibility;
   countries: Country[];
   visaTypes: VisaType[];
 }
 
 export function EligibilityClient({
-  eligibilityRules,
+  paginatedData,
   countries,
   visaTypes,
 }: EligibilityClientProps): React.JSX.Element {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [, startTransition] = useTransition();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [bulkDialogOpen, setBulkDialogOpen] = useState(false);
   const [editingRule, setEditingRule] = useState<VisaEligibility | null>(null);
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
-  const [selectedRows, setSelectedRows] = useState<number[]>([]);
+
+  const currentSearch = searchParams.get("search") || "";
+
+  const handlePageChange = (page: number): void => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", String(page + 1));
+    startTransition(() => {
+      router.push(`/eligibility?${params.toString()}`);
+    });
+  };
+
+  const handlePageSizeChange = (pageSize: number): void => {
+    const params = new URLSearchParams(searchParams);
+    params.set("pageSize", String(pageSize));
+    params.set("page", "1");
+    startTransition(() => {
+      router.push(`/eligibility?${params.toString()}`);
+    });
+  };
+
+  const handleSearchChange = (search: string): void => {
+    const params = new URLSearchParams(searchParams);
+    if (search) {
+      params.set("search", search);
+    } else {
+      params.delete("search");
+    }
+    params.set("page", "1");
+    startTransition(() => {
+      router.push(`/eligibility?${params.toString()}`);
+    });
+  };
 
   const handleEdit = (rule: VisaEligibility): void => {
     setEditingRule(rule);
@@ -52,33 +93,7 @@ export function EligibilityClient({
     }
 
     setIsDeleting(null);
-  };
-
-  const handleBulkDelete = async (): Promise<void> => {
-    if (selectedRows.length === 0) {
-      alert("Please select rows to delete");
-      return;
-    }
-
-    if (
-      !confirm(
-        `Are you sure you want to delete ${selectedRows.length} eligibility rules?`
-      )
-    ) {
-      return;
-    }
-
-    const result = await bulkDeleteEligibility(selectedRows);
-
-    if (result.errors.length > 0) {
-      alert(
-        `Deleted ${result.deleted} rules. Errors:\n${result.errors.join("\n")}`
-      );
-    } else {
-      alert(`Successfully deleted ${result.deleted} rules`);
-    }
-
-    setSelectedRows([]);
+    router.refresh();
   };
 
   const handleDialogClose = (): void => {
@@ -105,42 +120,6 @@ export function EligibilityClient({
   };
 
   const columns: ColumnDef<VisaEligibility>[] = [
-    {
-      id: "select",
-      header: ({ table }) => (
-        <input
-          type="checkbox"
-          checked={table.getIsAllPageRowsSelected()}
-          onChange={e => {
-            table.toggleAllPageRowsSelected(!!e.target.checked);
-            if (e.target.checked) {
-              setSelectedRows(
-                table.getRowModel().rows.map(row => row.original.id)
-              );
-            } else {
-              setSelectedRows([]);
-            }
-          }}
-          className="border-input h-4 w-4 rounded"
-        />
-      ),
-      cell: ({ row }) => (
-        <input
-          type="checkbox"
-          checked={selectedRows.includes(row.original.id)}
-          onChange={e => {
-            if (e.target.checked) {
-              setSelectedRows([...selectedRows, row.original.id]);
-            } else {
-              setSelectedRows(
-                selectedRows.filter(id => id !== row.original.id)
-              );
-            }
-          }}
-          className="border-input h-4 w-4 rounded"
-        />
-      ),
-    },
     {
       accessorKey: "destinationCode",
       header: ({ column }) => (
@@ -229,20 +208,22 @@ export function EligibilityClient({
 
         return (
           <div className="flex gap-2">
-            <button
+            <Button
               onClick={() => handleEdit(rule)}
-              className="text-sm text-blue-600 hover:text-blue-800"
+              variant="ghost"
+              size="sm"
               disabled={isCurrentlyDeleting}
             >
               Edit
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => handleDelete(rule.id)}
-              className="text-sm text-red-600 hover:text-red-800 disabled:opacity-50"
+              variant="ghost"
+              size="sm"
               disabled={isCurrentlyDeleting}
             >
               {isCurrentlyDeleting ? "Deleting..." : "Delete"}
-            </button>
+            </Button>
           </div>
         );
       },
@@ -251,38 +232,27 @@ export function EligibilityClient({
 
   return (
     <>
-      <div className="mb-4 flex justify-between">
-        <div className="flex gap-2">
-          {selectedRows.length > 0 ? (
-            <button
-              onClick={handleBulkDelete}
-              className="bg-background inline-flex h-10 items-center justify-center rounded-md border border-red-600 px-4 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50"
-            >
-              Delete Selected ({selectedRows.length})
-            </button>
-          ) : null}
-        </div>
-        <div className="flex gap-2">
-          <button
-            onClick={() => setBulkDialogOpen(true)}
-            className="border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-10 items-center justify-center rounded-md border px-4 py-2 text-sm font-medium transition-colors"
-          >
-            Bulk Create
-          </button>
-          <button
-            onClick={() => setDialogOpen(true)}
-            className="bg-primary text-primary-foreground ring-offset-background hover:bg-primary/90 focus-visible:ring-ring inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-          >
-            Add Eligibility Rule
-          </button>
-        </div>
+      <div className="mb-4 flex justify-end gap-2">
+        <Button onClick={() => setBulkDialogOpen(true)} variant="outline">
+          Bulk Create
+        </Button>
+        <Button onClick={() => setDialogOpen(true)}>
+          Add Eligibility Rule
+        </Button>
       </div>
 
-      <DataTable
+      <EnhancedDataTable
         columns={columns}
-        data={eligibilityRules}
-        searchKey="destinationCode"
-        searchPlaceholder="Search by destination..."
+        data={paginatedData.data}
+        pageCount={paginatedData.totalPages}
+        pageIndex={paginatedData.page - 1}
+        pageSize={paginatedData.pageSize}
+        total={paginatedData.total}
+        searchValue={currentSearch}
+        searchPlaceholder="Search by destination, passport, or status..."
+        onPageChange={handlePageChange}
+        onPageSizeChange={handlePageSizeChange}
+        onSearchChange={handleSearchChange}
       />
 
       <EligibilityDialog

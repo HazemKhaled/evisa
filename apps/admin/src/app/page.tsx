@@ -8,6 +8,8 @@ import {
   visaTypes,
   blogPosts,
 } from "@repo/database";
+import { StatsCards } from "@/components/dashboard/stats-cards";
+import { ActivityChart } from "@/components/dashboard/activity-chart";
 
 async function getDashboardStats() {
   try {
@@ -48,7 +50,7 @@ export default async function HomePage(): Promise<React.JSX.Element> {
   const stats = await getDashboardStats();
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div>
       <SignedOut>
         <div className="flex min-h-[400px] flex-col items-center justify-center">
           <h2 className="mb-4 text-3xl font-bold">Welcome to Admin Panel</h2>
@@ -58,37 +60,28 @@ export default async function HomePage(): Promise<React.JSX.Element> {
         </div>
       </SignedOut>
       <SignedIn>
-        <div className="space-y-6">
-          <h2 className="text-3xl font-bold">Dashboard</h2>
-          <div className="grid gap-4 md:grid-cols-3">
-            <Link href="/countries">
-              <div className="bg-card text-card-foreground hover:bg-accent rounded-lg border p-6 shadow-sm transition-colors">
-                <h3 className="text-muted-foreground mb-2 text-sm font-medium">
-                  Total Destinations
-                </h3>
-                <p className="text-3xl font-bold">{stats.countriesCount}</p>
-              </div>
-            </Link>
-            <Link href="/visa-types">
-              <div className="bg-card text-card-foreground hover:bg-accent rounded-lg border p-6 shadow-sm transition-colors">
-                <h3 className="text-muted-foreground mb-2 text-sm font-medium">
-                  Total Visas
-                </h3>
-                <p className="text-3xl font-bold">{stats.visaTypesCount}</p>
-              </div>
-            </Link>
-            <Link href="/blog-posts">
-              <div className="bg-card text-card-foreground hover:bg-accent rounded-lg border p-6 shadow-sm transition-colors">
-                <h3 className="text-muted-foreground mb-2 text-sm font-medium">
-                  Blog Posts
-                </h3>
-                <p className="text-3xl font-bold">{stats.blogPostsCount}</p>
-              </div>
-            </Link>
-          </div>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+          <p className="text-muted-foreground mt-2">
+            Overview of your visa management system
+          </p>
+        </div>
 
-          <div className="mt-8">
-            <h3 className="mb-4 text-xl font-semibold">Quick Actions</h3>
+        <div className="space-y-6">
+          <StatsCards
+            countriesCount={stats.countriesCount}
+            visaTypesCount={stats.visaTypesCount}
+            blogPostsCount={stats.blogPostsCount}
+          />
+
+          <ActivityChart
+            countriesCount={stats.countriesCount}
+            visaTypesCount={stats.visaTypesCount}
+            blogPostsCount={stats.blogPostsCount}
+          />
+
+          <div>
+            <h2 className="mb-4 text-xl font-semibold">Quick Actions</h2>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               <Link
                 href="/countries"

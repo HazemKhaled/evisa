@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { type BlogPost } from "@repo/database";
-import { DataTable } from "@/components/data-table/data-table";
+import { Button } from "@repo/ui";
+import { EnhancedDataTable } from "@/components/data-table/enhanced-data-table";
 import { DataTableColumnHeader } from "@/components/data-table/column-header";
 import { type ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
@@ -13,15 +15,59 @@ interface BlogPostWithI18n extends BlogPost {
   titleEn?: string;
 }
 
+interface PaginatedBlogPosts {
+  data: BlogPost[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
 interface BlogPostsClientProps {
-  posts: BlogPostWithI18n[];
+  paginatedData: PaginatedBlogPosts;
 }
 
 export function BlogPostsClient({
-  posts,
+  paginatedData,
 }: BlogPostsClientProps): React.JSX.Element {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [, startTransition] = useTransition();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [isDeleting, setIsDeleting] = useState<number | null>(null);
+
+  const currentSearch = searchParams.get("search") || "";
+
+  const handlePageChange = (page: number): void => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", String(page + 1));
+    startTransition(() => {
+      router.push(`/blog-posts?${params.toString()}`);
+    });
+  };
+
+  const handlePageSizeChange = (pageSize: number): void => {
+    const params = new URLSearchParams(searchParams);
+    params.set("pageSize", String(pageSize));
+    params.set("page", "1");
+    startTransition(() => {
+      router.push(`/blog-posts?${params.toString()}`);
+    });
+  };
+
+  const handleSearchChange = (search: string): void => {
+    const params = new URLSearchParams(searchParams);
+    if (search) {
+      params.set("search", search);
+    } else {
+      params.delete("search");
+    }
+    params.set("page", "1");
+    startTransition(() => {
+      router.push(`/blog-posts?${params.toString()}`);
+    });
+  };
 
   const handleEdit = (post: BlogPost): void => {
     setSelectedPost(post);
@@ -38,12 +84,15 @@ export function BlogPostsClient({
       return;
     }
 
+    setIsDeleting(id);
     const result = await deleteBlogPost(id);
-    if (result.success) {
-      alert("Blog post deleted successfully");
-    } else {
-      alert(`Failed to delete: ${result.error}`);
+
+    if (!result.success) {
+      alert(result.error ?? "Failed to delete blog post");
     }
+
+    setIsDeleting(null);
+    router.refresh();
   };
 
   const columns: ColumnDef<BlogPostWithI18n>[] = [
@@ -115,20 +164,25 @@ export function BlogPostsClient({
       id: "actions",
       cell: ({ row }) => {
         const post = row.original;
+        const isCurrentlyDeleting = isDeleting === post.id;
         return (
           <div className="flex gap-2">
-            <button
+            <Button
               onClick={() => handleEdit(post)}
-              className="rounded bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600"
+              variant="ghost"
+              size="sm"
+              disabled={isCurrentlyDeleting}
             >
               Edit
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => handleDelete(post.id)}
-              className="rounded bg-red-500 px-3 py-1 text-sm text-white hover:bg-red-600"
+              variant="ghost"
+              size="sm"
+              disabled={isCurrentlyDeleting}
             >
-              Delete
-            </button>
+              {isCurrentlyDeleting ? "Deleting..." : "Delete"}
+            </Button>
           </div>
         );
       },
@@ -139,20 +193,27 @@ export function BlogPostsClient({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold">Blog Posts</h2>
-          <p className="text-sm text-gray-600">
+          <h2 className="text-3xl font-bold tracking-tight">Blog Posts</h2>
+          <p className="text-muted-foreground">
             Manage blog posts and articles
           </p>
         </div>
-        <button
-          onClick={handleCreate}
-          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-        >
-          Create Blog Post
-        </button>
+        <Button onClick={handleCreate}>Create Blog Post</Button>
       </div>
 
-      <DataTable columns={columns} data={posts} />
+      <EnhancedDataTable
+        columns={columns}
+        data={paginatedData.data}
+        pageCount={paginatedData.totalPages}
+        pageIndex={paginatedData.page - 1}
+        pageSize={paginatedData.pageSize}
+        total={paginatedData.total}
+        searchValue={currentSearch}
+        searchPlaceholder="Search by slug, author, or destination..."
+        onPageChange={handlePageChange}
+        onPageSizeChange={handlePageSizeChange}
+        onSearchChange={handleSearchChange}
+      />
 
       <BlogPostDialog
         open={isDialogOpen}

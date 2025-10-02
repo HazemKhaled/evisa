@@ -1,27 +1,45 @@
 import { auth } from "@repo/auth";
 import { redirect } from "next/navigation";
-import { getVisaTypes } from "@/actions/visa-types";
+import { getVisaTypesPaginated } from "@/actions/visa-types";
 import { getCountries } from "@/actions/countries";
 import { VisaTypesClient } from "./visa-types-client";
 
-export default async function VisaTypesPage(): Promise<React.JSX.Element> {
+interface VisaTypesPageProps {
+  searchParams: Promise<{
+    page?: string;
+    pageSize?: string;
+    search?: string;
+  }>;
+}
+
+export default async function VisaTypesPage({
+  searchParams,
+}: VisaTypesPageProps): Promise<React.JSX.Element> {
   const { userId } = await auth();
 
   if (!userId) {
     redirect("/");
   }
 
-  const [visaTypes, countries] = await Promise.all([
-    getVisaTypes(),
+  const params = await searchParams;
+  const page = params.page ? parseInt(params.page, 10) : 1;
+  const pageSize = params.pageSize ? parseInt(params.pageSize, 10) : 10;
+  const search = params.search || "";
+
+  const [paginatedData, countries] = await Promise.all([
+    getVisaTypesPaginated({ page, pageSize, search }),
     getCountries(),
   ]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Visa Types</h1>
+    <div>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold tracking-tight">Visa Types</h1>
+        <p className="text-muted-foreground mt-2">
+          Configure visa options and requirements
+        </p>
       </div>
-      <VisaTypesClient visaTypes={visaTypes} countries={countries} />
+      <VisaTypesClient paginatedData={paginatedData} countries={countries} />
     </div>
   );
 }

@@ -1,20 +1,35 @@
 import { auth } from "@repo/auth";
 import { redirect } from "next/navigation";
-import { getBlogPosts } from "@/actions/blog-posts";
+import { getBlogPostsPaginated } from "@/actions/blog-posts";
 import { BlogPostsClient } from "./blog-posts-client";
 
-export default async function BlogPostsPage(): Promise<React.JSX.Element> {
+interface BlogPostsPageProps {
+  searchParams: Promise<{
+    page?: string;
+    pageSize?: string;
+    search?: string;
+  }>;
+}
+
+export default async function BlogPostsPage({
+  searchParams,
+}: BlogPostsPageProps): Promise<React.JSX.Element> {
   const { userId } = await auth();
 
   if (!userId) {
     redirect("/");
   }
 
-  const posts = await getBlogPosts();
+  const params = await searchParams;
+  const page = params.page ? parseInt(params.page, 10) : 1;
+  const pageSize = params.pageSize ? parseInt(params.pageSize, 10) : 10;
+  const search = params.search || "";
+
+  const paginatedData = await getBlogPostsPaginated({ page, pageSize, search });
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <BlogPostsClient posts={posts} />
+    <div>
+      <BlogPostsClient paginatedData={paginatedData} />
     </div>
   );
 }

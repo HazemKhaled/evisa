@@ -6,6 +6,10 @@ import {
   getDb,
   eq,
   isNull,
+  and,
+  or,
+  like,
+  count,
   type NewVisaEligibility,
   type NewVisaEligibilityI18n,
   type VisaEligibility,
@@ -40,6 +44,20 @@ interface BulkCreateInput {
   isActive?: boolean;
 }
 
+interface GetEligibilityPaginatedInput {
+  page?: number;
+  pageSize?: number;
+  search?: string;
+}
+
+interface PaginatedResult<T> {
+  data: T[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
 export async function getEligibilityRules(): Promise<VisaEligibility[]> {
   const db = getDb();
   const result = await db
@@ -49,6 +67,46 @@ export async function getEligibilityRules(): Promise<VisaEligibility[]> {
     .orderBy(visaEligibility.destinationCode, visaEligibility.passportCode);
 
   return result;
+}
+
+export async function getEligibilityPaginated(
+  input: GetEligibilityPaginatedInput = {}
+): Promise<PaginatedResult<VisaEligibility>> {
+  const { page = 1, pageSize = 10, search = "" } = input;
+  const db = getDb();
+  const offset = (page - 1) * pageSize;
+
+  const whereConditions = search
+    ? and(
+        isNull(visaEligibility.deletedAt),
+        or(
+          like(visaEligibility.destinationCode, `%${search.toUpperCase()}%`),
+          like(visaEligibility.passportCode, `%${search.toUpperCase()}%`),
+          like(visaEligibility.eligibilityStatus, `%${search}%`)
+        )
+      )
+    : isNull(visaEligibility.deletedAt);
+
+  const [{ count: totalCount }] = await db
+    .select({ count: count() })
+    .from(visaEligibility)
+    .where(whereConditions);
+
+  const result = await db
+    .select()
+    .from(visaEligibility)
+    .where(whereConditions)
+    .orderBy(visaEligibility.destinationCode, visaEligibility.passportCode)
+    .limit(pageSize)
+    .offset(offset);
+
+  return {
+    data: result,
+    total: Number(totalCount),
+    page,
+    pageSize,
+    totalPages: Math.ceil(Number(totalCount) / pageSize),
+  };
 }
 
 export async function getEligibilityWithI18n(id: number): Promise<{
