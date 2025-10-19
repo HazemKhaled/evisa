@@ -88,6 +88,9 @@ export function EligibilityDialog({
     },
   });
 
+  // Note: React Hook Form's watch() is incompatible with React Compiler memoization.
+  // This is expected behavior and doesn't affect functionality.
+  // eslint-disable-next-line react-hooks/incompatible-library
   const selectedDestination = watch("destinationCode");
   const destinationVisaTypes = visaTypes.filter(
     vt => vt.destinationCode === selectedDestination
