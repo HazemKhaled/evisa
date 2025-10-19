@@ -54,8 +54,7 @@ next-env.d.ts
 private/
 
 # BMAD (local only)
-.bmad-core/
-.bmad-*/
+bmad/
 .claude
 .github/chatmodes
 .gemini
