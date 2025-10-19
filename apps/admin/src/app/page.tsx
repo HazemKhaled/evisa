@@ -1,4 +1,4 @@
-import { SignedIn, SignedOut } from "@repo/auth";
+import { SignedIn, SignedOut, SignInButton } from "@repo/auth";
 import Link from "next/link";
 import {
   getDb,
@@ -57,6 +57,11 @@ export default async function HomePage(): Promise<React.JSX.Element> {
           <p className="text-muted-foreground mb-8">
             Please sign in to access the admin panel
           </p>
+          <SignInButton mode="modal">
+            <button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-md px-6 py-3 text-sm font-medium transition-colors">
+              Sign In
+            </button>
+          </SignInButton>
         </div>
       </SignedOut>
       <SignedIn>
