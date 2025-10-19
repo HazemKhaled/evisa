@@ -90,10 +90,13 @@ export function CountryDialog({
 
   useEffect(() => {
     if (open && country) {
-      setIsLoading(true);
-      getCountryWithI18n(country.code)
-        .then(data => {
-          if (data) {
+      let cancelled = false;
+
+      void (async () => {
+        setIsLoading(true);
+        try {
+          const data = await getCountryWithI18n(country.code);
+          if (!cancelled && data) {
             setValue("code", data.country.code);
             setValue("continent", data.country.continent);
             setValue("region", data.country.region ?? "");
@@ -113,8 +116,16 @@ export function CountryDialog({
             });
             setI18nData(i18nMap);
           }
-        })
-        .finally(() => setIsLoading(false));
+        } finally {
+          if (!cancelled) {
+            setIsLoading(false);
+          }
+        }
+      })();
+
+      return () => {
+        cancelled = true;
+      };
     } else if (!open) {
       reset();
       setI18nData({});

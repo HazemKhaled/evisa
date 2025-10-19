@@ -95,52 +95,48 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const { t } = await getTranslation(locale, "pages");
   const { t: tNav } = await getTranslation(locale, "navigation");
 
-  try {
-    // Fetch blog post first
-    const blogPost = await getBlogPost(slug, locale);
-    if (!blogPost) {
-      notFound();
-    }
-
-    // Get related posts using optimized database query
-    const relatedPosts = await getRelatedBlogPostsOptimized(
-      slug,
-      blogPost.destinations || [],
-      blogPost.tags || [],
-      locale,
-      3
-    );
-
-    const baseUrl = env.baseUrl;
-    const postUrl = `${baseUrl}/${locale}/blog/${slug}`;
-
-    // Generate JSON-LD for the blog post
-    const articleData = generateBlogPostJsonLd(blogPost, locale, baseUrl, t);
-    const articleJsonLd = generateArticleJsonLd(articleData);
-
-    const breadcrumbData = generateBreadcrumbData([
-      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-      { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
-      { name: blogPost.title, url: postUrl },
-    ]);
-    const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
-
-    return (
-      <>
-        <JsonLd data={articleJsonLd} />
-        <JsonLd data={breadcrumbJsonLd} />
-        <StaticPageLayout>
-          <main role="main" aria-label={`Blog Post - ${blogPost.title}`}>
-            <BlogPostDetail
-              post={blogPost}
-              locale={locale}
-              relatedPosts={relatedPosts}
-            />
-          </main>
-        </StaticPageLayout>
-      </>
-    );
-  } catch {
+  // Fetch blog post first
+  const blogPost = await getBlogPost(slug, locale).catch(() => null);
+  if (!blogPost) {
     notFound();
   }
+
+  // Get related posts using optimized database query
+  const relatedPosts = await getRelatedBlogPostsOptimized(
+    slug,
+    blogPost.destinations || [],
+    blogPost.tags || [],
+    locale,
+    3
+  );
+
+  const baseUrl = env.baseUrl;
+  const postUrl = `${baseUrl}/${locale}/blog/${slug}`;
+
+  // Generate JSON-LD for the blog post
+  const articleData = generateBlogPostJsonLd(blogPost, locale, baseUrl, t);
+  const articleJsonLd = generateArticleJsonLd(articleData);
+
+  const breadcrumbData = generateBreadcrumbData([
+    { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+    { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
+    { name: blogPost.title, url: postUrl },
+  ]);
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
+
+  return (
+    <>
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
+      <StaticPageLayout>
+        <main role="main" aria-label={`Blog Post - ${blogPost.title}`}>
+          <BlogPostDetail
+            post={blogPost}
+            locale={locale}
+            relatedPosts={relatedPosts}
+          />
+        </main>
+      </StaticPageLayout>
+    </>
+  );
 }
