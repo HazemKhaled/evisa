@@ -1,4 +1,4 @@
-import { auth } from "@repo/auth";
+import { auth } from "@repo/auth/server";
 import { redirect } from "next/navigation";
 import { getEligibilityPaginated } from "@/actions/eligibility";
 import { getCountries } from "@/actions/countries";

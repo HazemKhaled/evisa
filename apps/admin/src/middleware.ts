@@ -1,4 +1,4 @@
-import { clerkMiddleware } from "@repo/auth";
+import { clerkMiddleware } from "@repo/auth/server";
 
 export default clerkMiddleware();
 

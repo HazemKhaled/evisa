@@ -1,10 +1,11 @@
 /**
- * Authentication Package
+ * Authentication Package - Client Components
  *
- * Clerk authentication utilities for the admin system
+ * Clerk authentication utilities for client components
+ * For server-side utilities, import from "@repo/auth/server"
  */
 
-// Re-export Clerk components and utilities
+// Re-export Clerk client components and hooks
 export {
   ClerkProvider,
   SignInButton,
@@ -15,8 +16,5 @@ export {
   useAuth,
   useUser,
 } from "@clerk/nextjs";
-
-// Re-export server utilities
-export { auth, currentUser, clerkMiddleware } from "@clerk/nextjs/server";
 
 export const AUTH_PACKAGE_VERSION = "1.0.0";
