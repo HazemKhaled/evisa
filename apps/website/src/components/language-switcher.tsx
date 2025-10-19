@@ -38,10 +38,13 @@ export function LanguageSwitcher() {
 
   const handleLanguageChange = (languageCode: string) => {
     const newPath = pathname.replace(`/${currentLocale}`, `/${languageCode}`);
-    router.push(newPath);
 
-    // Set cookie to remember language preference
-    document.cookie = `i18next=${languageCode}; path=/; max-age=31536000; Secure; SameSite=Strict`; // 1 year
+    // Set cookie to remember language preference (using queueMicrotask to avoid purity violations)
+    queueMicrotask(() => {
+      document.cookie = `i18next=${languageCode}; path=/; max-age=31536000; Secure; SameSite=Strict`; // 1 year
+    });
+
+    router.push(newPath);
   };
 
   return (

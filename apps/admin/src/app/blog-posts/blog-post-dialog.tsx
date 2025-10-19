@@ -76,6 +76,9 @@ export function BlogPostDialog({
     },
   });
 
+  // Note: React Hook Form's watch() is incompatible with React Compiler memoization.
+  // This is expected behavior and doesn't affect functionality.
+  // eslint-disable-next-line react-hooks/incompatible-library
   const i18nData = watch("i18n");
 
   useEffect(() => {

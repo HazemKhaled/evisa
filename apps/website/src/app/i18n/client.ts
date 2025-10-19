@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import i18next from "i18next";
 import {
   initReactI18next,
@@ -40,16 +40,15 @@ export function useTranslation(
   const ret = useTranslationOrg(ns, { ...options });
   const { i18n } = ret;
 
-  const [activeLng, setActiveLng] = useState(i18n.resolvedLanguage);
-
-  useEffect(() => {
-    if (activeLng === i18n.resolvedLanguage) return;
-    setActiveLng(i18n.resolvedLanguage);
-  }, [activeLng, i18n.resolvedLanguage]);
+  // Use a ref to track if we need to change language
+  const prevLngRef = useRef(lng);
 
   useEffect(() => {
     if (!lng || i18n.resolvedLanguage === lng) return;
-    i18n.changeLanguage(lng);
+    if (prevLngRef.current !== lng) {
+      prevLngRef.current = lng;
+      void i18n.changeLanguage(lng);
+    }
   }, [lng, i18n]);
 
   return ret;

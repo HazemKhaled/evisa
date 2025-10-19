@@ -89,10 +89,13 @@ export function VisaTypeDialog({
 
   useEffect(() => {
     if (open && visaType) {
-      setIsLoading(true);
-      getVisaTypeWithI18n(visaType.id)
-        .then(data => {
-          if (data) {
+      let cancelled = false;
+
+      void (async () => {
+        setIsLoading(true);
+        try {
+          const data = await getVisaTypeWithI18n(visaType.id);
+          if (!cancelled && data) {
             setValue("destinationCode", data.visaType.destinationCode);
             setValue("type", data.visaType.type);
             setValue("duration", data.visaType.duration);
@@ -119,8 +122,16 @@ export function VisaTypeDialog({
             });
             setI18nData(i18nMap);
           }
-        })
-        .finally(() => setIsLoading(false));
+        } finally {
+          if (!cancelled) {
+            setIsLoading(false);
+          }
+        }
+      })();
+
+      return () => {
+        cancelled = true;
+      };
     } else if (!open) {
       reset();
       setI18nData({});

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -40,14 +41,18 @@ export function ActivityChart({
   blogPostsCount,
 }: ActivityChartProps): React.JSX.Element {
   // Generate mock data for visualization (in real app, this would come from database)
-  const chartData = Array.from({ length: 6 }, (_, i) => ({
-    month: new Date(
-      Date.now() - (5 - i) * 30 * 24 * 60 * 60 * 1000
-    ).toLocaleString("default", { month: "short" }),
-    countries: Math.floor((countriesCount / 6) * (i + 1)),
-    visas: Math.floor((visaTypesCount / 6) * (i + 1)),
-    posts: Math.floor((blogPostsCount / 6) * (i + 1)),
-  }));
+  const [chartData] = useState(() => {
+    const now = Date.now();
+    return Array.from({ length: 6 }, (_, i) => ({
+      month: new Date(now - (5 - i) * 30 * 24 * 60 * 60 * 1000).toLocaleString(
+        "default",
+        { month: "short" }
+      ),
+      countries: Math.floor((countriesCount / 6) * (i + 1)),
+      visas: Math.floor((visaTypesCount / 6) * (i + 1)),
+      posts: Math.floor((blogPostsCount / 6) * (i + 1)),
+    }));
+  });
 
   return (
     <Card>
