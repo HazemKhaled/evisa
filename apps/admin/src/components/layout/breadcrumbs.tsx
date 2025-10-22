@@ -27,7 +27,7 @@ export function Breadcrumbs(): React.JSX.Element {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbPage>Dashboard</BreadcrumbPage>
+            <BreadcrumbPage className="font-medium">Dashboard</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -38,7 +38,13 @@ export function Breadcrumbs(): React.JSX.Element {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Dashboard</BreadcrumbLink>
+          <BreadcrumbLink
+            href="/"
+            className="breadcrumb-item"
+            aria-label="Go to dashboard"
+          >
+            Dashboard
+          </BreadcrumbLink>
         </BreadcrumbItem>
         {segments.map((segment, index) => {
           const isLast = index === segments.length - 1;
@@ -50,9 +56,17 @@ export function Breadcrumbs(): React.JSX.Element {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 {isLast ? (
-                  <BreadcrumbPage>{name}</BreadcrumbPage>
+                  <BreadcrumbPage className="font-medium">
+                    {name}
+                  </BreadcrumbPage>
                 ) : (
-                  <BreadcrumbLink href={path}>{name}</BreadcrumbLink>
+                  <BreadcrumbLink
+                    href={path}
+                    className="breadcrumb-item"
+                    aria-label={`Go to ${name}`}
+                  >
+                    {name}
+                  </BreadcrumbLink>
                 )}
               </BreadcrumbItem>
             </div>

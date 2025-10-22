@@ -2,3 +2,58 @@
 @import "@repo/ui/globals.css";
 
 /* Admin-specific styles only - all theme variables come from @repo/ui */
+
+/* Custom admin styles */
+.admin-sidebar {
+  @apply border-border border-r;
+}
+
+.admin-header {
+  @apply border-border bg-background/95 supports-[backdrop-filter]:bg-background/60 border-b backdrop-blur;
+}
+
+.admin-content {
+  @apply bg-background min-h-screen;
+}
+
+/* Improved sidebar navigation */
+.sidebar-nav-item {
+  @apply transition-colors duration-200;
+}
+
+.sidebar-nav-item:hover {
+  @apply bg-accent text-accent-foreground;
+}
+
+.sidebar-nav-item[data-active="true"] {
+  @apply bg-accent text-accent-foreground font-medium;
+}
+
+/* Breadcrumb improvements */
+.breadcrumb-item {
+  @apply transition-colors duration-200;
+}
+
+.breadcrumb-item:hover {
+  @apply text-foreground;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .admin-header {
+    @apply px-2;
+  }
+
+  .admin-content .container {
+    @apply px-4;
+  }
+}
+
+/* Search input improvements */
+.admin-search {
+  @apply transition-all duration-200;
+}
+
+.admin-search:focus {
+  @apply ring-primary/20 ring-2;
+}
