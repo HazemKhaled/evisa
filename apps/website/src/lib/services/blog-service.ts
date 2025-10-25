@@ -27,6 +27,7 @@ import type {
   BlogFilterOptions,
   PaginatedBlogResponse,
 } from "../types/blog";
+import { languages } from "@/app/i18n/settings";
 
 /**
  * Convert database result to BlogPostData interface
@@ -108,22 +109,12 @@ export async function getAllBlogPostSlugsLimited(
   const cachedFn = unstable_cache(
     async (): Promise<{ locale: string; slug: string }[]> => {
       try {
-        const supportedLocales = [
-          "en",
-          "ar",
-          "es",
-          "pt",
-          "ru",
-          "de",
-          "fr",
-          "it",
-        ];
         const db = getDb();
 
         // Fetch recent N posts for each supported locale
         const allResults: { locale: string; slug: string }[] = [];
 
-        for (const locale of supportedLocales) {
+        for (const locale of languages) {
           const results = await db
             .select({
               locale: blogPostsI18n.locale,
