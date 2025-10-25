@@ -518,7 +518,7 @@ export async function getDestinationsListWithMetadata(
         return [];
       }
     },
-    ["destinations", locale],
+    ["destinations", locale, limit.toString(), sortBy],
     { tags: ["destinations", `destinations-${locale}`], revalidate: 86400 }
   );
 
