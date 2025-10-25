@@ -15,4 +15,7 @@ export default defineCloudflareConfig({
   // }),
   // Disable this if you want to use PPR
   enableCacheInterception: true,
+  // Note: Regional cache configuration is handled automatically by OpenNext
+  // The R2 incremental cache provides fast response times on subsequent requests
+  // with ISR/SSG pages cached for up to 30 minutes by default
 });

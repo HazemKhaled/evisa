@@ -2,7 +2,7 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   getBlogPost,
-  getAllBlogPostSlugs,
+  getAllBlogPostSlugsLimited,
   getRelatedBlogPostsOptimized,
 } from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
@@ -24,12 +24,15 @@ interface BlogPostProps {
 
 export const revalidate = 2592000; // Revalidate every 30 days
 
-// Generate static params for all blog posts across all locales
+// Generate static params for recent blog posts (10 per language) across all locales
+// Limits SSG prerendering to prevent build time explosion
+// Older posts will be rendered on-demand with ISR
 export async function generateStaticParams(): Promise<
   { locale: string; slug: string }[]
 > {
   try {
-    return await getAllBlogPostSlugs();
+    // Prerender recent 10 posts per language (8 languages = 80 pages max)
+    return await getAllBlogPostSlugsLimited(10);
   } catch (error) {
     console.error("Error generating static params for blog posts:", error);
     return [];
