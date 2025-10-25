@@ -7,7 +7,7 @@ You specialize in building scalable, multilingual web applications with modern f
 
 This project is a **PNPM workspace monorepo** built with:
 
-- **Next.js** with App Router (never Pages Router)
+- **Next.js** with App Router (never Pages Router) and MCP server for AI-assisted development
 - **TypeScript** with strict mode
 - **Tailwind CSS** for styling
 - **Drizzle ORM** with Neon PostgreSQL
@@ -255,6 +255,86 @@ Examples:
 - Provide **meaningful error messages** to users
 - Follow **Next.js error handling patterns**
 - Use **proper HTTP status codes**
+
+## Next.js MCP Integration
+
+Next.js MCP (Model Context Protocol) server provides AI-assisted development capabilities with direct access to your running application. Leverage this for optimal development experience.
+
+### Available MCP Tools
+
+| Tool                      | Purpose                               | Use When                              |
+| ------------------------- | ------------------------------------- | ------------------------------------- |
+| `get_errors`              | Real-time build/runtime/type errors   | Build fails, runtime errors occur     |
+| `get_logs`                | Dev server logs and console output    | Debugging unexpected behavior         |
+| `get_page_metadata`       | Page routes, metadata, component info | Understanding page structure          |
+| `get_project_metadata`    | Project structure and config          | Navigating monorepo                   |
+| `get_server_action_by_id` | Server Action debugging               | Implementing or fixing Server Actions |
+
+### Development Workflows
+
+**Error Debugging Flow:**
+
+```
+Error occurs → Query get_errors → Identify root cause → Implement fix → Verify with logs
+```
+
+**Component Implementation Flow:**
+
+```
+Start new component → Query get_page_metadata → Understand structure → Generate implementation → Test
+```
+
+**Migration Planning Flow:**
+
+```
+Plan feature/migration → Query get_project_metadata → Review current patterns → Use next-devtools docs → Execute
+```
+
+### When to Use Next.js MCP
+
+- **Real-time Error Diagnostics**: Build errors, runtime errors, or type errors occurring
+- **Page/Route Navigation**: Understanding existing page structure, routes, and components
+- **Server Actions**: Inspecting or debugging Server Actions implementation
+- **Best Practices Guidance**: Consulting Next.js patterns specific to your project
+- **Feature Planning**: Understanding existing architecture before implementation
+- **Migration Support**: Planning Pages Router → App Router or other framework upgrades
+
+### Complementary Tools
+
+**next-devtools MCP** (external):
+
+- Official Next.js documentation queries
+- Automated migration codemods
+- Cache Components configuration
+- Browser automation via Playwright
+
+**Integration**: Use built-in MCP for diagnostics, next-devtools for guidance and documentation.
+
+### Best Practices
+
+1. **Start dev server first**: Run `pnpm dev` to enable live MCP diagnostics
+2. **Query before implementing**: Check `get_project_metadata` for existing patterns
+3. **Use for context validation**: Verify component/route structure before coding
+4. **Reference official docs**: Use next-devtools for authoritative Next.js guidance
+5. **Combine with code review**: Use MCP diagnostics alongside manual code inspection
+
+### Example Scenarios
+
+**Scenario: Implementing new page with Server Actions**
+
+1. Query `get_page_metadata` for existing page patterns
+2. Query `get_project_metadata` to understand routing structure
+3. Reference next-devtools docs for Server Actions best practices
+4. Implement following discovered patterns
+5. Use `get_logs` to validate implementation
+
+**Scenario: Debugging persistent errors**
+
+1. Query `get_errors` for detailed error information
+2. Query `get_logs` for supporting diagnostic info
+3. Check `get_server_action_by_id` if related to Server Actions
+4. Fix identified issues
+5. Verify with `get_errors` query
 
 ## When in Doubt
 

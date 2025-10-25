@@ -135,6 +135,50 @@ Use latest compatible versions from all dependencies, and never use old version 
 - **Cloudflare** deployment via **OpenNext.js**
 - **Wrangler** for Cloudflare Workers management
 - **Neon Database** for PostgreSQL database
+- **Next.js MCP** (Model Context Protocol) for AI-assisted development with Next.js-specific diagnostics
+
+### Next.js MCP Integration
+
+The project includes Next.js MCP server integration (available in Next.js 16+) to enable AI agents and coding assistants to:
+
+**Available Tools:**
+
+- **`get_errors`**: Retrieve build errors, runtime errors, and type errors from dev server in real-time
+- **`get_logs`**: Access development server logs and console output
+- **`get_page_metadata`**: Obtain metadata about specific pages including routes and component information
+- **`get_project_metadata`**: Retrieve project structure and configuration details
+- **`get_server_action_by_id`**: Debug Server Actions by looking up their metadata
+
+**Complementary Next DevTools MCP:**
+
+- Documentation queries from official Next.js knowledge base
+- Migration and upgrade assistance with automated codemods (e.g., Pages Router → App Router)
+- Cache Components configuration and setup guidance
+- Browser-based testing via Playwright MCP integration
+
+**Use Cases:**
+
+- Real-time error diagnostics while developing
+- Understanding application state during development
+- Context-aware code generation following project patterns
+- Debugging Server Actions and component hierarchies
+- Planning and executing migrations to latest Next.js features
+- Validating implementations against Next.js best practices
+
+**When to Leverage MCP:**
+
+- Debugging build or runtime errors
+- Querying page metadata and routes
+- Understanding Server Components behavior
+- Getting Next.js-specific guidance and best practices
+- Planning feature implementation or migrations
+
+**Best Practices:**
+
+- Use both MCP servers together: built-in for low-level diagnostics, next-devtools for high-level guidance
+- Run dev server (`pnpm dev`) to enable live error diagnostics
+- Query MCP for context before implementing complex features
+- Consult official Next.js docs via next-devtools for migration guidance
 
 ### Deployment with OpenNext
 
