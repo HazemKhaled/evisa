@@ -407,7 +407,7 @@ export async function getBlogPostsByDestination(
       locale,
       limit?.toString() || "unlimited",
     ],
-    { tags: ["blog", "blog-by-destination"] }
+    { tags: ["blog", "blog-by-destination", `blog-${locale}`] }
   );
 
   return cachedFn();
@@ -474,7 +474,7 @@ export async function getBlogPostsByTag(
       }
     },
     ["blog-posts-by-tag", tag, locale, limit?.toString() || "unlimited"],
-    { tags: ["blog", "blog-by-tag"] }
+    { tags: ["blog", "blog-by-tag", `blog-${locale}`] }
   );
 
   return cachedFn();
@@ -645,7 +645,7 @@ export async function getRelatedBlogPostsOptimized(
       tags.join(","),
       limit?.toString() || "3",
     ],
-    { tags: ["blog", "blog-related"] }
+    { tags: ["blog", "blog-related", `blog-${locale}`] }
   );
 
   return cachedFn();
@@ -732,7 +732,7 @@ export async function getRelatedBlogPosts(
       }
     },
     ["related-blog-posts", destination, locale, limit?.toString() || "3"],
-    { tags: ["blog", "blog-related"] }
+    { tags: ["blog", "blog-related", `blog-${locale}`] }
   );
 
   return cachedFn();
@@ -868,7 +868,7 @@ export async function getAllDestinationsForLocale(
       }
     },
     ["all-destinations-for-locale", locale],
-    { tags: ["blog", "blog-destinations"] }
+    { tags: ["blog", "blog-destinations", `blog-${locale}`] }
   );
 
   return cachedFn();
@@ -1071,7 +1071,7 @@ export async function getAllUniqueTagsAcrossLocales(): Promise<string[]> {
       }
     },
     ["all-unique-tags-across-locales"],
-    { tags: ["blog", "blog-tags"], revalidate: 86400 }
+    { tags: ["blog", "blog-tags-all-locales"], revalidate: 86400 }
   );
 
   return cachedFn();
