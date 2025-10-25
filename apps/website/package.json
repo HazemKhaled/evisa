@@ -17,6 +17,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@next/third-parties": "15.4.7",
     "@opennextjs/cloudflare": "1.11.0",
     "@repo/database": "workspace:*",
     "@repo/ui": "workspace:*",

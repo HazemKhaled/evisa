@@ -1,5 +1,6 @@
 import type { Viewport, Metadata } from "next";
 import { Cairo, Geist_Mono } from "next/font/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
 
 // Cairo font for Arabic, English, and other supported languages
@@ -41,6 +42,9 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning>
+      {process.env.NEXT_PUBLIC_GTM_ID && (
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+      )}
       <body
         className={`${cairo.variable} ${geistMono.variable} bg-background text-foreground min-h-full antialiased`}
         style={{ fontFamily: "var(--font-cairo), system-ui, sans-serif" }}
