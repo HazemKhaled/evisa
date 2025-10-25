@@ -13,11 +13,10 @@
       "command": "npx",
       "args": ["-y", "mcp-remote@latest", "https://mcp.neon.tech/mcp"],
     },
-    "shadcn": {
-      "type": "stdio",
+    "@magicuidesign/mcp": {
       "command": "npx",
-      "args": ["shadcn@latest", "mcp"],
-    },
+      "args": ["-y", "@magicuidesign/mcp@latest"]
+    }
   },
   "inputs": [],
 }
