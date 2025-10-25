@@ -28,7 +28,7 @@
     "import-in-the-middle": "1.15.0",
     "lucide-react": "0.546.0",
     "next": "15.4.7",
-    "react-i18next": "16.1.0"
+    "react-i18next": "16.2.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "15.5.6",
