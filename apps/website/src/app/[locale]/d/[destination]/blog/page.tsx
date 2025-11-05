@@ -19,7 +19,7 @@ interface DestinationBlogProps {
 
 // Pre-build top 10 destinations per locale at build time for destination blog pages
 export async function generateStaticParams(): Promise<
-  DestinationBlogProps["params"][]
+  { locale: string; destination: string }[]
 > {
   // Get top 10 popular destinations for SSG
   const popularDestinations = await getDestinationsListWithMetadata(
@@ -30,12 +30,10 @@ export async function generateStaticParams(): Promise<
 
   // Generate params for each popular destination in each locale
   return languages.flatMap(locale =>
-    popularDestinations.map(destination =>
-      Promise.resolve({
-        locale,
-        destination: destination.code,
-      })
-    )
+    popularDestinations.map(destination => ({
+      locale,
+      destination: destination.code,
+    }))
   );
 }
 
@@ -67,15 +65,13 @@ export default async function DestinationBlog({
   params,
   searchParams,
 }: DestinationBlogProps) {
-  const { locale, destination } = await params;
+  const { destination } = await params;
   const { page } = await searchParams;
 
-  // Transform params to match BlogHome interface
-  const blogParams = Promise.resolve({ locale });
-  const blogSearchParams = Promise.resolve({
-    page,
-    destination: destination,
-  });
-
-  return <BlogHome params={blogParams} searchParams={blogSearchParams} />;
+  return (
+    <BlogHome
+      params={params}
+      searchParams={Promise.resolve({ page, destination })}
+    />
+  );
 }
