@@ -16,6 +16,18 @@
     "@magicuidesign/mcp": {
       "command": "npx",
       "args": ["-y", "@magicuidesign/mcp@latest"]
+    },
+    "cloudflare-observability": {
+      "command": "npx",
+      "args": ["mcp-remote@latest", "https://observability.mcp.cloudflare.com/mcp"]
+    },
+    "cloudflare-builds": {
+      "command": "npx",
+      "args": ["mcp-remote@latest", "https://builds.mcp.cloudflare.com/mcp"]
+    },
+    "cloudflare-bindings": {
+      "command": "npx",
+      "args": ["mcp-remote@latest", "https://bindings.mcp.cloudflare.com/mcp"]
     }
   },
   "inputs": [],
