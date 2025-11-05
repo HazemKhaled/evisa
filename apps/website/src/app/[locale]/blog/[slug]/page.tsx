@@ -27,17 +27,17 @@ export const revalidate = 2592000; // Revalidate every 30 days
 // Generate static params for recent blog posts (10 per language) across all locales
 // Limits SSG prerendering to prevent build time explosion
 // Older posts will be rendered on-demand with ISR
-export async function generateStaticParams(): Promise<
-  { locale: string; slug: string }[]
-> {
-  try {
-    // Prerender recent 10 posts per language (8 languages = 80 pages max)
-    return await getAllBlogPostSlugsLimited(10);
-  } catch (error) {
-    console.error("Error generating static params for blog posts:", error);
-    return [];
-  }
-}
+// export async function generateStaticParams(): Promise<
+//   { locale: string; slug: string }[]
+// > {
+//   try {
+//     // Prerender recent 10 posts per language (8 languages = 80 pages max)
+//     return await getAllBlogPostSlugsLimited(10);
+//   } catch (error) {
+//     console.error("Error generating static params for blog posts:", error);
+//     return [];
+//   }
+// }
 
 export async function generateMetadata({
   params,
