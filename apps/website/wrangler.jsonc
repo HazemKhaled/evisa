@@ -89,4 +89,7 @@
     "NEXT_PUBLIC_SENTRY_DSN": "https://3b385ea99f6e37f235ec970a5e46cfad@o929566.ingest.us.sentry.io/4509917829005312",
     "NEXT_PUBLIC_GTM_ID": "GTM-5MVFP6KB",
   },
+  "images": {
+    "binding": "IMAGES",
+  },
 }
