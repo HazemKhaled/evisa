@@ -2,11 +2,11 @@
   "servers": {
     "next-devtools": {
       "command": "npx",
-      "args": ["-y", "next-devtools-mcp@latest"]
+      "args": ["-y", "next-devtools-mcp@latest"],
     },
     "Sentry": {
-      "url": "https://mcp.sentry.dev/mcp/tcf-sala/gtv",
       "type": "http",
+      "url": "https://mcp.sentry.dev/mcp/tcf-sala/gtv",
     },
     "Neon": {
       "type": "stdio",
@@ -15,20 +15,45 @@
     },
     "@magicuidesign/mcp": {
       "command": "npx",
-      "args": ["-y", "@magicuidesign/mcp@latest"]
+      "args": ["-y", "@magicuidesign/mcp@latest"],
     },
     "cloudflare-observability": {
       "command": "npx",
-      "args": ["mcp-remote@latest", "https://observability.mcp.cloudflare.com/mcp"]
+      "args": ["mcp-remote@latest", "https://observability.mcp.cloudflare.com/mcp"],
     },
     "cloudflare-builds": {
       "command": "npx",
-      "args": ["mcp-remote@latest", "https://builds.mcp.cloudflare.com/mcp"]
+      "args": ["mcp-remote@latest", "https://builds.mcp.cloudflare.com/mcp"],
     },
     "cloudflare-bindings": {
       "command": "npx",
-      "args": ["mcp-remote@latest", "https://bindings.mcp.cloudflare.com/mcp"]
-    }
+      "args": ["mcp-remote@latest", "https://bindings.mcp.cloudflare.com/mcp"],
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+    },
+    "ESLint": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@eslint/mcp@latest"],
+    },
+    "oraios/serena": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "serena==latest", "--context", "ide-assistant"],
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"],
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+    },
   },
-  "inputs": [],
 }
