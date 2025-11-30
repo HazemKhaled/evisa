@@ -34,7 +34,6 @@ export function DataTable<TData, TValue>({
 
   // Note: TanStack Table's useReactTable() is incompatible with React Compiler memoization.
   // This is expected behavior and doesn't affect functionality.
-  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,

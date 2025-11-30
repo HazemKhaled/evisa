@@ -196,7 +196,7 @@ class TranslationCache {
     const key = `${locale}:${namespace}`;
 
     if (this.cache.has(key)) {
-      return this.cache.get(key)!;
+      return this.cache.get(key) as Awaited<ReturnType<typeof getTranslation>>;
     }
 
     const translation = await getTranslation(locale, namespace);

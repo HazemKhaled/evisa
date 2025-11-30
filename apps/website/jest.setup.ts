@@ -1,17 +1,12 @@
-/* eslint-disable @typescript-eslint/no-require-imports*/
 import "@testing-library/jest-dom";
 
 import * as React from "react";
+import { TextEncoder } from "util";
 
-// Polyfill TextDecoder for Node.js environment (required by @neondatabase/serverless v1.0+)
-if (typeof globalThis.TextDecoder === "undefined") {
-  const { TextDecoder } = require("util");
-  globalThis.TextDecoder = TextDecoder;
-}
-
+// Polyfill TextEncoder for Node.js environment (required by @neondatabase/serverless v1.0+)
 if (typeof globalThis.TextEncoder === "undefined") {
-  const { TextEncoder } = require("util");
-  globalThis.TextEncoder = TextEncoder;
+  globalThis.TextEncoder =
+    TextEncoder as unknown as typeof globalThis.TextEncoder;
 }
 
 // Mock next/navigation
@@ -25,15 +20,6 @@ jest.mock("next/navigation", () => ({
       forward: jest.fn(),
       refresh: jest.fn(),
     };
-  },
-  useSearchParams() {
-    return new URLSearchParams();
-  },
-  usePathname() {
-    return "";
-  },
-  useParams() {
-    return {};
   },
 }));
 

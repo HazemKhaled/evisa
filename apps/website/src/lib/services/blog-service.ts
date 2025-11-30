@@ -848,7 +848,7 @@ export async function getAllDestinationsForLocale(
             (result: { destinations: string | null }) => result.destinations
           )
           .flatMap((result: { destinations: string | null }) =>
-            result.destinations!.split(",")
+            result.destinations ? result.destinations.split(",") : []
           )
           .map((dest: string) => dest.trim())
           .filter((dest: string) => dest.length > 0);
