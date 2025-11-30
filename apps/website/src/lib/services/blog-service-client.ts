@@ -10,8 +10,8 @@ import type { BlogPostData } from "../types/blog";
 
 // Re-export types for client-side usage
 export type {
-  BlogPostData,
   BlogFilterOptions,
+  BlogPostData,
   PaginatedBlogResponse,
 } from "../types/blog";
 

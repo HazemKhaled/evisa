@@ -1,7 +1,9 @@
-import { getTranslation } from "@/app/i18n";
 import { cn } from "@repo/utils";
+
+import { getTranslation } from "@/app/i18n";
 import type { DestinationWithVisaTypes } from "@/lib/services/country-service";
 import type { VisaRequirements } from "@/lib/services/visa-service";
+
 import { VisaTypeDetailCard } from "./visa-type-detail-card";
 
 interface VisaOptionsGridProps {

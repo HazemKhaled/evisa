@@ -1,6 +1,7 @@
-import Image from "next/image";
-import { getTranslation } from "@/app/i18n";
 import { cn } from "@repo/utils";
+import Image from "next/image";
+
+import { getTranslation } from "@/app/i18n";
 import type { DestinationWithVisaTypes } from "@/lib/services/country-service";
 
 interface DestinationHeroProps {

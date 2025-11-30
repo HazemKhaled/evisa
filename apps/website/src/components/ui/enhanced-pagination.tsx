@@ -1,14 +1,15 @@
-import { cn } from "@repo/utils";
-import { getTranslation } from "@/app/i18n";
 import {
   Pagination,
   PaginationContent,
+  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-  PaginationEllipsis,
 } from "@repo/ui";
+import { cn } from "@repo/utils";
+
+import { getTranslation } from "@/app/i18n";
 
 // Simple page range generator following Shadcn patterns
 function generatePageNumbers(

@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+
 import { languages } from "@/app/i18n/settings";
-import { getBlogDataForLocale } from "@/lib/services/blog-service";
 import { env } from "@/lib/consts";
+import { getBlogDataForLocale } from "@/lib/services/blog-service";
 
 export const revalidate = 86400; // Revalidate every day
 

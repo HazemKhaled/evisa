@@ -1,7 +1,7 @@
 import {
   Breadcrumb,
-  BreadcrumbList,
   BreadcrumbItem,
+  BreadcrumbList,
   BreadcrumbSeparator,
   Skeleton,
 } from "@repo/ui";

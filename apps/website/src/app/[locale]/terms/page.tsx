@@ -1,15 +1,16 @@
 import { type Metadata } from "next";
-import { StaticPageLayout } from "@/components/static-page-layout";
+
 import { getTranslation } from "@/app/i18n";
-import { generateAlternatesMetadata } from "@/lib/utils";
-import { env } from "@/lib/consts";
 import { JsonLd } from "@/components/json-ld";
-import {
-  generateWebPageJsonLd,
-  generateBreadcrumbListJsonLd,
-  generateBreadcrumbData,
-} from "@/lib/json-ld";
+import { StaticPageLayout } from "@/components/static-page-layout";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
+import { env } from "@/lib/consts";
+import {
+  generateBreadcrumbData,
+  generateBreadcrumbListJsonLd,
+  generateWebPageJsonLd,
+} from "@/lib/json-ld";
+import { generateAlternatesMetadata } from "@/lib/utils";
 
 interface TermsPageProps {
   params: Promise<{ locale: string }>;

@@ -1,9 +1,9 @@
+import { ErrorType } from "../../types/errors";
 import {
   classifyError,
   extractErrorInfo,
   getStatusCodeForErrorType,
 } from "../utils";
-import { ErrorType } from "../../types/errors";
 
 describe("Error Utils", () => {
   describe("classifyError", () => {

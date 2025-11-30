@@ -1,6 +1,8 @@
 import { auth } from "@repo/auth/server";
 import { redirect } from "next/navigation";
+
 import { getBlogPostsPaginated } from "@/actions/blog-posts";
+
 import { BlogPostsClient } from "./blog-posts-client";
 
 interface BlogPostsPageProps {

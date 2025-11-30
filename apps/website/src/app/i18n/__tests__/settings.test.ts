@@ -1,9 +1,9 @@
 import {
-  fallbackLng,
-  languages,
-  defaultNS,
   cookieName,
+  defaultNS,
+  fallbackLng,
   getOptions,
+  languages,
 } from "../settings";
 
 describe("i18n settings", () => {

@@ -1,4 +1,5 @@
 import type { ImageLoaderProps } from "next/image";
+
 import { isDevelopment } from "./src/lib/consts";
 
 const normalizeSrc = (src: string) => {

@@ -1,24 +1,25 @@
 import { type Metadata } from "next";
-import {
-  getBlogPostsForLocalePaginated,
-  getBlogPostsByTagPaginated,
-  getBlogPostsByDestinationPaginated,
-  getAllBlogPosts,
-} from "@/lib/services/blog-service";
-import { env } from "@/lib/consts";
-import { generateAlternatesMetadata } from "@/lib/utils";
-import { StaticPageLayout } from "@/components/static-page-layout";
-import { BlogPostList } from "@/components/blog/blog-post-list";
-import { BlogSearch } from "@/components/blog/blog-search";
+
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
+import { BlogPostList } from "@/components/blog/blog-post-list";
+import { BlogSearch } from "@/components/blog/blog-search";
 import { JsonLd } from "@/components/json-ld";
-import {
-  generateWebPageJsonLd,
-  generateBreadcrumbListJsonLd,
-  generateBreadcrumbData,
-} from "@/lib/json-ld";
+import { StaticPageLayout } from "@/components/static-page-layout";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
+import { env } from "@/lib/consts";
+import {
+  generateBreadcrumbData,
+  generateBreadcrumbListJsonLd,
+  generateWebPageJsonLd,
+} from "@/lib/json-ld";
+import {
+  getAllBlogPosts,
+  getBlogPostsByDestinationPaginated,
+  getBlogPostsByTagPaginated,
+  getBlogPostsForLocalePaginated,
+} from "@/lib/services/blog-service";
+import { generateAlternatesMetadata } from "@/lib/utils";
 
 // Enable ISR with daily revalidation for blog list
 export const revalidate = 86400; // 24 hours

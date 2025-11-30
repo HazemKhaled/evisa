@@ -1,19 +1,20 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
+
 import { getTranslation } from "@/app/i18n";
+import { languages } from "@/app/i18n/settings";
+import { DestinationHero } from "@/components/destinations/destination-hero";
+import { VisaOptionsGrid } from "@/components/destinations/visa-options-grid";
+import { JsonLd } from "@/components/json-ld";
+import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
+import { env } from "@/lib/consts";
+import { generateDestinationJsonLd } from "@/lib/json-ld";
 import {
   getDestinationDetails,
   getDestinationsListWithMetadata,
 } from "@/lib/services/country-service";
 import { getVisaRequirements } from "@/lib/services/visa-service";
-import { DestinationHero } from "@/components/destinations/destination-hero";
-import { VisaOptionsGrid } from "@/components/destinations/visa-options-grid";
-import { JsonLd } from "@/components/json-ld";
-import { generateDestinationJsonLd } from "@/lib/json-ld";
-import { languages } from "@/app/i18n/settings";
 import { generateAlternatesMetadata } from "@/lib/utils";
-import { env } from "@/lib/consts";
-import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 

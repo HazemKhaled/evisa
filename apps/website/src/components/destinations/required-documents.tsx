@@ -1,5 +1,6 @@
-import { getTranslation } from "@/app/i18n";
 import { cn } from "@repo/utils";
+
+import { getTranslation } from "@/app/i18n";
 import type { VisaTypeInfo } from "@/lib/services/country-service";
 
 interface RequiredDocumentsProps {

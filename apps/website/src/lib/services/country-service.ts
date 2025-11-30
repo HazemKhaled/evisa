@@ -1,4 +1,3 @@
-import { unstable_cache } from "next/cache";
 import {
   and,
   countries,
@@ -14,6 +13,7 @@ import {
   visaTypes,
   visaTypesI18n,
 } from "@repo/database";
+import { unstable_cache } from "next/cache";
 
 /**
  * Input validation and sanitization utilities

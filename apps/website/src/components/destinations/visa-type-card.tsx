@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { cn } from "@repo/utils";
+import Link from "next/link";
+
 import type { VisaTypeWithI18n } from "@/lib/services/visa-service";
 
 interface VisaTypeCardProps {

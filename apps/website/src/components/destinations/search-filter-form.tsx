@@ -1,7 +1,5 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
 import {
   Input,
   Select,
@@ -10,6 +8,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@repo/ui";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 interface SearchFilterFormProps {
   locale: string;

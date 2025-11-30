@@ -1,14 +1,15 @@
 import { type Metadata } from "next";
+
 import { getTranslation } from "@/app/i18n";
-import {
-  getDestinationsListWithMetadataPaginated,
-  getDestinationContinents,
-} from "@/lib/services/country-service";
 import { DestinationsGrid } from "@/components/destinations/destinations-grid";
-import { JsonLd } from "@/components/json-ld";
-import { generateWebPageJsonLd } from "@/lib/json-ld";
 import { SearchFilterForm } from "@/components/destinations/search-filter-form";
+import { JsonLd } from "@/components/json-ld";
 import { EnhancedPagination } from "@/components/ui";
+import { generateWebPageJsonLd } from "@/lib/json-ld";
+import {
+  getDestinationContinents,
+  getDestinationsListWithMetadataPaginated,
+} from "@/lib/services/country-service";
 
 export const revalidate = 86400; // Revalidate every day
 

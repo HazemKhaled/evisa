@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { cn } from "@repo/utils";
-import {
-  searchBlogPostsClient,
-  type BlogPostData,
-} from "@/lib/services/blog-service-client";
-import { useTranslation } from "@/app/i18n/client";
-import { ClientBlogPostCard } from "./client-blog-post-card";
 import { Button, Input } from "@repo/ui";
+import { cn } from "@repo/utils";
+import React, { useEffect, useState } from "react";
+
+import { useTranslation } from "@/app/i18n/client";
+import {
+  type BlogPostData,
+  searchBlogPostsClient,
+} from "@/lib/services/blog-service-client";
+
+import { ClientBlogPostCard } from "./client-blog-post-card";
 
 interface BlogSearchProps {
   locale: string;

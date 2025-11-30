@@ -1,6 +1,8 @@
 import { auth } from "@repo/auth/server";
 import { redirect } from "next/navigation";
+
 import { getCountriesPaginated } from "@/actions/countries";
+
 import { CountriesClient } from "./countries-client";
 
 interface CountriesPageProps {

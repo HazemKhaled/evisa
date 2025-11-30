@@ -1,4 +1,5 @@
 import { render } from "@testing-library/react";
+
 import { JsonLd, MultipleJsonLd } from "../json-ld";
 
 // Mock Next.js Script component

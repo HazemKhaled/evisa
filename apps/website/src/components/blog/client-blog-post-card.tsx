@@ -1,16 +1,18 @@
 "use client";
 
-import React from "react";
 import { cn } from "@repo/utils";
+import React from "react";
+
 import type { BlogPostData } from "@/lib/services/blog-service";
+
 import {
-  blogCardStyles,
-  type ImageAspectRatio,
-  BlogCardImage,
-  BlogCardTitle,
-  BlogCardDescription,
-  BlogCardMeta,
   BlogCardBadges,
+  BlogCardDescription,
+  BlogCardImage,
+  BlogCardMeta,
+  blogCardStyles,
+  BlogCardTitle,
+  type ImageAspectRatio,
 } from "./blog-card-components";
 
 interface ClientBlogPostCardProps {

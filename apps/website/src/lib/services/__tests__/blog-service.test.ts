@@ -3,17 +3,17 @@
  */
 
 import {
+  type BlogFilterOptions,
   getAllBlogPosts,
+  getAllDestinationsForLocale,
+  getAllTagsForLocale,
+  getBlogPostBySlug,
   getBlogPosts,
   getBlogPostsByDestination,
   getBlogPostsByTag,
-  getRelatedBlogPosts,
-  getBlogPostBySlug,
-  getAllTagsForLocale,
-  getAllDestinationsForLocale,
-  searchBlogPosts,
   getFeaturedBlogPosts,
-  type BlogFilterOptions,
+  getRelatedBlogPosts,
+  searchBlogPosts,
 } from "../blog-service";
 
 // Mock the blog service for testing

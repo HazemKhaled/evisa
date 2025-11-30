@@ -6,12 +6,11 @@
  * Replaces MDX-based blog service with database queries using Drizzle ORM.
  */
 
-import { unstable_cache } from "next/cache";
 import {
   and,
-  blogPostTags,
   blogPosts,
   blogPostsI18n,
+  blogPostTags,
   blogTags,
   count,
   desc,
@@ -22,12 +21,15 @@ import {
   or,
   sql,
 } from "@repo/database";
+import { unstable_cache } from "next/cache";
+
+import { languages } from "@/app/i18n/settings";
+
 import type {
-  BlogPostData,
   BlogFilterOptions,
+  BlogPostData,
   PaginatedBlogResponse,
 } from "../types/blog";
-import { languages } from "@/app/i18n/settings";
 
 /**
  * Convert database result to BlogPostData interface
@@ -1128,7 +1130,7 @@ export async function getBlogPostsByDestinationPaginated(
 
 // Re-export types for convenience
 export type {
-  BlogPostData,
   BlogFilterOptions,
+  BlogPostData,
   PaginatedBlogResponse,
 } from "../types/blog";

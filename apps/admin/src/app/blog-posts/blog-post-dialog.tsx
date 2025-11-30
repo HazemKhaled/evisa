@@ -1,17 +1,18 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type BlogPost } from "@repo/database";
+import { FormCheckbox, FormInput, FormTextarea } from "@repo/ui";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { type BlogPost } from "@repo/database";
-import { I18nTabs, type Locale } from "@/components/forms/i18n-tabs";
-import { FormInput, FormTextarea, FormCheckbox } from "@repo/ui";
+
 import {
   createBlogPost,
-  updateBlogPost,
   getBlogPostWithI18n,
+  updateBlogPost,
 } from "@/actions/blog-posts";
+import { I18nTabs, type Locale } from "@/components/forms/i18n-tabs";
 
 const LOCALES: Locale[] = ["en", "es", "ar", "pt", "ru", "de", "fr", "it"];
 

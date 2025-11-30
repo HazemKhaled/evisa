@@ -1,8 +1,10 @@
 import { auth } from "@repo/auth/server";
 import { redirect } from "next/navigation";
-import { getEligibilityPaginated } from "@/actions/eligibility";
+
 import { getCountries } from "@/actions/countries";
+import { getEligibilityPaginated } from "@/actions/eligibility";
 import { getVisaTypes } from "@/actions/visa-types";
+
 import { EligibilityClient } from "./eligibility-client";
 
 interface EligibilityPageProps {

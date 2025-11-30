@@ -1,14 +1,16 @@
-import { Suspense } from "react";
-import Link from "next/link";
-import { LanguageSwitcher } from "@/components/language-switcher";
-import { getTranslation } from "@/app/i18n";
 import {
   NavigationMenu,
-  NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
+  NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@repo/ui";
+import Link from "next/link";
+import { Suspense } from "react";
+
+import { getTranslation } from "@/app/i18n";
+import { LanguageSwitcher } from "@/components/language-switcher";
+
 import { MobileNav } from "./mobile-nav";
 
 interface HeaderProps {

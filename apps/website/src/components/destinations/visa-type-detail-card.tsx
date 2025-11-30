@@ -1,11 +1,13 @@
-import { getTranslation } from "@/app/i18n";
-import { cn } from "@repo/utils";
-import type {
-  VisaTypeInfo,
-  DestinationWithVisaTypes,
-} from "@/lib/services/country-service";
-import { RequiredDocuments } from "./required-documents";
 import { Badge, Button } from "@repo/ui";
+import { cn } from "@repo/utils";
+
+import { getTranslation } from "@/app/i18n";
+import type {
+  DestinationWithVisaTypes,
+  VisaTypeInfo,
+} from "@/lib/services/country-service";
+
+import { RequiredDocuments } from "./required-documents";
 
 interface VisaTypeDetailCardProps {
   visaType: VisaTypeInfo;

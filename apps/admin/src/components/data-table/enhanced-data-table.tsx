@@ -1,13 +1,28 @@
 "use client";
 
-import * as React from "react";
 import {
+  Button,
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  Input,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@repo/ui";
+import {
+  type ColumnDef,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  useReactTable,
-  type ColumnDef,
   type SortingState,
+  useReactTable,
   type VisibilityState,
 } from "@tanstack/react-table";
 import {
@@ -17,22 +32,7 @@ import {
   ChevronsRight,
   Settings2,
 } from "lucide-react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-  Button,
-  Input,
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@repo/ui";
+import * as React from "react";
 
 interface EnhancedDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

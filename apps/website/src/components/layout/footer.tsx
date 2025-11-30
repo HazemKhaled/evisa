@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { getTranslation } from "@/app/i18n";
 
 interface FooterProps {

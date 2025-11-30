@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { fallbackLng, languages, cookieName } from "@/app/i18n/settings";
+
+import { cookieName, fallbackLng, languages } from "@/app/i18n/settings";
 
 export function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname

@@ -1,6 +1,5 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@repo/ui";
+import { usePathname } from "next/navigation";
 
 const routeNames: Record<string, string> = {
   "": "Dashboard",

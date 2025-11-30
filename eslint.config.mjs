@@ -34,6 +34,10 @@ const eslintConfig = [
 
       "@next/next/no-img-element": "error",
       "@next/next/no-html-link-for-pages": "error",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
 
       // REQUIREMENT: Avoid enums; use maps instead
       // REQUIREMENT: Do not export types unless needed across multiple components
@@ -69,6 +73,21 @@ const eslintConfig = [
       "import/newline-after-import": "error",
       "import/no-duplicates": "error",
     },
+  },
+  {
+    ignores: [
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/.turbo/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/coverage/**",
+      "**/out/**",
+      "**/.wrangler/**",
+      "**/.vercel/**",
+      "**/public/**",
+      "**/.open-next/**",
+    ],
   },
 ];
 

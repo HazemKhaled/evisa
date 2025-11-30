@@ -1,7 +1,7 @@
-import { withSentryConfig } from "@sentry/nextjs";
-import type { NextConfig } from "next";
 import WithBundleAnalyzer from "@next/bundle-analyzer";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+import { withSentryConfig } from "@sentry/nextjs";
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx"],

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports*/
 import "@testing-library/jest-dom";
+
 import * as React from "react";
 
 // Polyfill TextDecoder for Node.js environment (required by @neondatabase/serverless v1.0+)

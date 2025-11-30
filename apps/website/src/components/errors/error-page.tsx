@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
 import { useParams } from "next/navigation";
-import { type ErrorPageProps, ErrorType } from "@/lib/types/errors";
-import { classifyError, logError } from "@/lib/errors/utils";
-import ErrorActions from "./error-actions";
+import { useEffect } from "react";
+
 import { useTranslation } from "@/app/i18n/client";
+import { classifyError, logError } from "@/lib/errors/utils";
+import { type ErrorPageProps, ErrorType } from "@/lib/types/errors";
+
+import ErrorActions from "./error-actions";
 
 interface ErrorPageComponentProps extends ErrorPageProps {
   showBrowseDestinations?: boolean;

@@ -1,10 +1,12 @@
-import Link from "next/link";
-import Image from "next/image";
 import { cn } from "@repo/utils";
-import type { BlogPostData } from "@/lib/services/blog-service";
+import Image from "next/image";
+import Link from "next/link";
+
 import { getTranslation } from "@/app/i18n";
-import { BlogPostCard } from "./blog-post-card";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
+import type { BlogPostData } from "@/lib/services/blog-service";
+
+import { BlogPostCard } from "./blog-post-card";
 
 interface BlogPostDetailProps {
   post: BlogPostData;

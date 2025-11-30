@@ -3,8 +3,8 @@
  */
 
 import type {
-  BlogPostData,
   BlogFilterOptions,
+  BlogPostData,
   PaginatedBlogResponse,
 } from "../../types/blog";
 

@@ -1,4 +1,4 @@
-import { ErrorType, type ErrorInfo, type ErrorContext } from "../types/errors";
+import { type ErrorContext, type ErrorInfo, ErrorType } from "../types/errors";
 
 /**
  * Classify error based on the error object and context

@@ -1,16 +1,18 @@
-import type { Metadata } from "next";
+import "./globals.css";
+
 import { ClerkProvider, UserButton } from "@repo/auth";
 import {
-  SidebarProvider,
-  SidebarInset,
-  SidebarTrigger,
-  Separator,
   Input,
+  Separator,
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
 } from "@repo/ui";
+import { Search } from "lucide-react";
+import type { Metadata } from "next";
+
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
-import { Search } from "lucide-react";
-import "./globals.css";
 
 export const metadata: Metadata = {
   title: "GetTravelVisa Admin",

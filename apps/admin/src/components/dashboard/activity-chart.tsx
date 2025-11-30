@@ -1,17 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
+  type ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-  type ChartConfig,
 } from "@repo/ui";
+import { useState } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
 interface ActivityChartProps {

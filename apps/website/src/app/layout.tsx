@@ -1,7 +1,8 @@
-import type { Viewport, Metadata } from "next";
-import { Cairo, Geist_Mono } from "next/font/google";
-import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
+
+import { GoogleTagManager } from "@next/third-parties/google";
+import type { Metadata, Viewport } from "next";
+import { Cairo, Geist_Mono } from "next/font/google";
 
 // Cairo font for Arabic, English, and other supported languages
 const cairo = Cairo({

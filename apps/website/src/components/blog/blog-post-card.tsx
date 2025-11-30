@@ -1,14 +1,16 @@
+import { BlurFade, Card, CardContent, MagicCard } from "@repo/ui";
 import { cn } from "@repo/utils";
-import { Card, CardContent, BlurFade, MagicCard } from "@repo/ui";
-import type { BlogPostData } from "@/lib/services/blog-service";
+
 import { getTranslation } from "@/app/i18n";
+import type { BlogPostData } from "@/lib/services/blog-service";
+
 import {
-  type ImageAspectRatio,
-  BlogCardImage,
-  BlogCardTitle,
-  BlogCardDescription,
-  BlogCardMeta,
   BlogCardBadges,
+  BlogCardDescription,
+  BlogCardImage,
+  BlogCardMeta,
+  BlogCardTitle,
+  type ImageAspectRatio,
 } from "./blog-card-components";
 
 interface BlogPostCardProps {

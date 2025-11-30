@@ -1,7 +1,7 @@
 "use client";
 
+import { Button, CountryCombobox, Label } from "@repo/ui";
 import * as React from "react";
-import { Button, Label, CountryCombobox } from "@repo/ui";
 
 interface Country {
   code: string;

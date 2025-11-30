@@ -1,23 +1,25 @@
-import { getTranslation } from "../i18n";
-import { env } from "@/lib/consts";
-import { JsonLd } from "@/components/json-ld";
-import {
-  generateWebPageJsonLd,
-  generateServiceJsonLd,
-  generateOrganizationData,
-  generateServiceData,
-} from "@/lib/json-ld";
-import {
-  getDestinationsListWithMetadata,
-  getAllCountries,
-} from "@/lib/services/country-service";
-import { getRandomVisaTypes } from "@/lib/services/visa-service";
-import { getAllBlogPosts } from "@/lib/services/blog-service";
+import { Button } from "@repo/ui";
+
+import { BlogPostCard } from "@/components/blog/blog-post-card";
 import { DestinationCard } from "@/components/destinations/destination-card";
 import { VisaTypeCard } from "@/components/destinations/visa-type-card";
+import { JsonLd } from "@/components/json-ld";
 import { SearchForm } from "@/components/search-form";
-import { Button } from "@repo/ui";
-import { BlogPostCard } from "@/components/blog/blog-post-card";
+import { env } from "@/lib/consts";
+import {
+  generateOrganizationData,
+  generateServiceData,
+  generateServiceJsonLd,
+  generateWebPageJsonLd,
+} from "@/lib/json-ld";
+import { getAllBlogPosts } from "@/lib/services/blog-service";
+import {
+  getAllCountries,
+  getDestinationsListWithMetadata,
+} from "@/lib/services/country-service";
+import { getRandomVisaTypes } from "@/lib/services/visa-service";
+
+import { getTranslation } from "../i18n";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 

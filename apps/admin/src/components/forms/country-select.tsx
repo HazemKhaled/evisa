@@ -3,8 +3,7 @@
 import { type Country } from "@repo/database";
 import { forwardRef } from "react";
 
-interface CountrySelectProps
-  extends React.SelectHTMLAttributes<HTMLSelectElement> {
+interface CountrySelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   countries: Country[];
   error?: string;
   placeholder?: string;

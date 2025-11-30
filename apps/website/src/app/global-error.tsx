@@ -2,6 +2,7 @@
 
 import * as Sentry from "@sentry/nextjs";
 import { useEffect } from "react";
+
 import ErrorPage from "@/components/errors/error-page";
 import { ErrorType } from "@/lib/types/errors";
 

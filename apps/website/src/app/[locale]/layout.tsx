@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { getTextDirection, generateAlternatesMetadata } from "@/lib/utils";
-import { languages, getLocaleWithRegion } from "../i18n/settings";
-import { Header, Footer } from "@/components/layout";
+
 import { JsonLd } from "@/components/json-ld";
-import {
-  generateWebSiteJsonLd,
-  generateWebSiteData,
-  generateOrganizationJsonLd,
-  generateOrganizationData,
-} from "@/lib/json-ld";
-import { getTranslation } from "../i18n";
+import { Footer, Header } from "@/components/layout";
 import { env } from "@/lib/consts";
+import {
+  generateOrganizationData,
+  generateOrganizationJsonLd,
+  generateWebSiteData,
+  generateWebSiteJsonLd,
+} from "@/lib/json-ld";
+import { generateAlternatesMetadata, getTextDirection } from "@/lib/utils";
+
+import { getTranslation } from "../i18n";
+import { getLocaleWithRegion, languages } from "../i18n/settings";
 
 export function generateStaticParams(): { locale: string }[] {
   return languages.map(locale => ({ locale }));

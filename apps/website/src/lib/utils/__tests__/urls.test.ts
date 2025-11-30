@@ -1,10 +1,10 @@
 import {
-  buildLocalePath,
-  buildBlogUrl,
   buildBlogPostUrl,
-  buildTagUrl,
+  buildBlogUrl,
   buildDestinationFilterUrl,
+  buildLocalePath,
   buildNavUrls,
+  buildTagUrl,
   parseBlogSearchParams,
 } from "../urls";
 

@@ -1,5 +1,6 @@
-import { checkVisaEligibility, getRandomVisaTypes } from "../visa-service";
 import * as dbConnection from "@repo/database";
+
+import { checkVisaEligibility, getRandomVisaTypes } from "../visa-service";
 
 // Mock the database connection
 jest.mock("@repo/database");

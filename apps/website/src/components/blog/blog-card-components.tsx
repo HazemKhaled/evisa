@@ -1,7 +1,8 @@
-import Link from "next/link";
-import Image from "next/image";
-import { cn } from "@repo/utils";
 import { Badge } from "@repo/ui";
+import { cn } from "@repo/utils";
+import Image from "next/image";
+import Link from "next/link";
+
 import type { BlogPostData } from "@/lib/services/blog-service";
 
 /**

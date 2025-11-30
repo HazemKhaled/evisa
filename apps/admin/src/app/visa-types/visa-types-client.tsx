@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { type ColumnDef } from "@tanstack/react-table";
-import { type VisaType, type Country } from "@repo/database";
+import { type Country, type VisaType } from "@repo/database";
 import { Button } from "@repo/ui";
-import { EnhancedDataTable } from "@/components/data-table/enhanced-data-table";
-import { DataTableColumnHeader } from "@/components/data-table/column-header";
+import { type ColumnDef } from "@tanstack/react-table";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useTransition } from "react";
+
 import { deleteVisaType } from "@/actions/visa-types";
+import { DataTableColumnHeader } from "@/components/data-table/column-header";
+import { EnhancedDataTable } from "@/components/data-table/enhanced-data-table";
 
 interface PaginatedVisaTypes {
   data: VisaType[];

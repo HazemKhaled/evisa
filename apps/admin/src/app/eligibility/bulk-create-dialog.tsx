@@ -1,13 +1,14 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type Country, type VisaType } from "@repo/database";
+import { FormCheckbox, FormInput, FormSelect } from "@repo/ui";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { type Country, type VisaType } from "@repo/database";
-import { FormInput, FormSelect, FormCheckbox } from "@repo/ui";
-import { CountrySelect } from "@/components/forms/country-select";
+
 import { bulkCreateEligibility } from "@/actions/eligibility";
+import { CountrySelect } from "@/components/forms/country-select";
 
 const bulkCreateSchema = z.object({
   destinationCode: z.string().min(2, "Destination is required"),

@@ -1,16 +1,16 @@
-import React from "react";
 import {
+  act,
+  fireEvent,
   render,
   screen,
-  fireEvent,
   waitFor,
-  act,
 } from "@testing-library/react";
-import { BlogSearch } from "../../blog/blog-search";
-import type { BlogPostData } from "../../../lib/services/blog-service";
+import React from "react";
 
+import type { BlogPostData } from "../../../lib/services/blog-service";
 // Mock the blog service client
 import { searchBlogPostsClient } from "../../../lib/services/blog-service-client";
+import { BlogSearch } from "../../blog/blog-search";
 
 jest.mock("../../../lib/services/blog-service-client", () => ({
   searchBlogPostsClient: jest.fn(),

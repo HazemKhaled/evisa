@@ -1,7 +1,9 @@
 import { auth } from "@repo/auth/server";
 import { redirect } from "next/navigation";
-import { getVisaTypesPaginated } from "@/actions/visa-types";
+
 import { getCountries } from "@/actions/countries";
+import { getVisaTypesPaginated } from "@/actions/visa-types";
+
 import { VisaTypesClient } from "./visa-types-client";
 
 interface VisaTypesPageProps {

@@ -1,21 +1,22 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  getBlogPost,
-  getAllBlogPostSlugsLimited,
-  getRelatedBlogPostsOptimized,
-} from "@/lib/services/blog-service";
-import { env } from "@/lib/consts";
-import { StaticPageLayout } from "@/components/static-page-layout";
+
 import { getTranslation } from "@/app/i18n";
+import { BlogPostDetail } from "@/components/blog/blog-post-detail";
 import { JsonLd } from "@/components/json-ld";
+import { StaticPageLayout } from "@/components/static-page-layout";
+import { env } from "@/lib/consts";
 import {
   generateArticleJsonLd,
-  generateBreadcrumbListJsonLd,
   generateBlogPostJsonLd,
   generateBreadcrumbData,
+  generateBreadcrumbListJsonLd,
 } from "@/lib/json-ld";
-import { BlogPostDetail } from "@/components/blog/blog-post-detail";
+import {
+  getAllBlogPostSlugsLimited,
+  getBlogPost,
+  getRelatedBlogPostsOptimized,
+} from "@/lib/services/blog-service";
 import { generateAlternatesMetadata } from "@/lib/utils";
 
 interface BlogPostProps {

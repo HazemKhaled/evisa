@@ -1,6 +1,7 @@
-import { useTranslation } from "@/app/i18n/client";
-import Link from "next/link";
 import { Button } from "@repo/ui";
+import Link from "next/link";
+
+import { useTranslation } from "@/app/i18n/client";
 
 interface ErrorActionsProps {
   locale: string;

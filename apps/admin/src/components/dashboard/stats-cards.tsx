@@ -1,6 +1,6 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@repo/ui";
+import { TrendingDown, TrendingUp } from "lucide-react";
 import Link from "next/link";
-import { Card, CardHeader, CardTitle, CardContent } from "@repo/ui";
-import { TrendingUp, TrendingDown } from "lucide-react";
 
 interface StatsCardsProps {
   countriesCount: number;

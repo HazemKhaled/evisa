@@ -1,9 +1,5 @@
 "use client";
 
-import { useParams, useRouter, usePathname } from "next/navigation";
-import { ChevronDown, Check } from "lucide-react";
-import { cn, isRTL } from "@repo/utils";
-import { languagesObj } from "@/app/i18n/settings";
 import {
   Button,
   DropdownMenu,
@@ -13,6 +9,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@repo/ui";
+import { cn, isRTL } from "@repo/utils";
+import { Check, ChevronDown } from "lucide-react";
+import { useParams, usePathname, useRouter } from "next/navigation";
+
+import { languagesObj } from "@/app/i18n/settings";
 
 export function LanguageSwitcher() {
   const router = useRouter();

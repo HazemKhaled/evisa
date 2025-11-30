@@ -1,10 +1,11 @@
-import {
-  getDestinationsListWithMetadata,
-  getDestinationDetails,
-  getDestinationWithVisaTypes,
-  type DestinationWithVisaTypes,
-} from "../country-service";
 import * as dbConnection from "@repo/database";
+
+import {
+  type DestinationWithVisaTypes,
+  getDestinationDetails,
+  getDestinationsListWithMetadata,
+  getDestinationWithVisaTypes,
+} from "../country-service";
 
 // Mock the database connection
 jest.mock("@repo/database");

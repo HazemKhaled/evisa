@@ -1,20 +1,21 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormCheckbox, FormInput, FormSelect, FormTextarea } from "@repo/ui";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import {
-  I18nTabs,
-  SUPPORTED_LOCALES,
-  type Locale,
-} from "@/components/forms/i18n-tabs";
-import { FormInput, FormTextarea, FormSelect, FormCheckbox } from "@repo/ui";
+
 import {
   createCountry,
-  updateCountry,
   getCountryWithI18n,
+  updateCountry,
 } from "@/actions/countries";
+import {
+  I18nTabs,
+  type Locale,
+  SUPPORTED_LOCALES,
+} from "@/components/forms/i18n-tabs";
 
 const countryI18nSchema = z.object({
   locale: z.string(),

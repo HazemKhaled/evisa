@@ -1,6 +1,7 @@
-import Link from "next/link";
-import { getTranslation } from "@/app/i18n";
 import { cn } from "@repo/utils";
+import Link from "next/link";
+
+import { getTranslation } from "@/app/i18n";
 import type { DestinationMetadata } from "@/lib/services/country-service";
 
 interface DestinationsGridProps {

@@ -1,20 +1,22 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { type ColumnDef } from "@tanstack/react-table";
 import {
   type Country,
-  type VisaType,
   type VisaEligibility,
+  type VisaType,
 } from "@repo/database";
 import { Button } from "@repo/ui";
-import { EnhancedDataTable } from "@/components/data-table/enhanced-data-table";
-import { DataTableColumnHeader } from "@/components/data-table/column-header";
-import { EligibilityDialog } from "./eligibility-dialog";
-import { BulkCreateDialog } from "./bulk-create-dialog";
-import { deleteEligibility } from "@/actions/eligibility";
+import { type ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useTransition } from "react";
+
+import { deleteEligibility } from "@/actions/eligibility";
+import { DataTableColumnHeader } from "@/components/data-table/column-header";
+import { EnhancedDataTable } from "@/components/data-table/enhanced-data-table";
+
+import { BulkCreateDialog } from "./bulk-create-dialog";
+import { EligibilityDialog } from "./eligibility-dialog";
 
 interface PaginatedEligibility {
   data: VisaEligibility[];

@@ -1,8 +1,10 @@
-import { BlogPostCard } from "./blog-post-card";
 import { cn } from "@repo/utils";
-import type { BlogPostData } from "@/lib/services/blog-service";
+
 import { getTranslation } from "@/app/i18n";
 import { EnhancedPagination } from "@/components/ui";
+import type { BlogPostData } from "@/lib/services/blog-service";
+
+import { BlogPostCard } from "./blog-post-card";
 
 interface BlogPostListProps {
   posts: BlogPostData[];

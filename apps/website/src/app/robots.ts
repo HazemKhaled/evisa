@@ -1,5 +1,6 @@
 import { type MetadataRoute } from "next";
-import { isProduction, env } from "@/lib/consts";
+
+import { env, isProduction } from "@/lib/consts";
 
 export const dynamic = "force-static";
 

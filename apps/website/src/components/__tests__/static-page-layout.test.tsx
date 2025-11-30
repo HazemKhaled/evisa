@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import { StaticPageLayout } from "../static-page-layout";
 
 describe("StaticPageLayout component", () => {

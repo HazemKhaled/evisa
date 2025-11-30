@@ -1,7 +1,8 @@
-import Link from "next/link";
-import Image from "next/image";
+import { AspectRatio, BlurFade, Card, CardContent, MagicCard } from "@repo/ui";
 import { cn } from "@repo/utils";
-import { Card, CardContent, BlurFade, MagicCard, AspectRatio } from "@repo/ui";
+import Image from "next/image";
+import Link from "next/link";
+
 import type { DestinationMetadata } from "@/lib/services/country-service";
 
 interface DestinationCardProps {

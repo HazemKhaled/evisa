@@ -1,26 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import {
   type Country,
-  type VisaType,
   type VisaEligibility,
+  type VisaType,
 } from "@repo/database";
-import {
-  I18nTabs,
-  SUPPORTED_LOCALES,
-  type Locale,
-} from "@/components/forms/i18n-tabs";
-import { FormInput, FormTextarea, FormSelect, FormCheckbox } from "@repo/ui";
-import { CountrySelect } from "@/components/forms/country-select";
+import { FormCheckbox, FormInput, FormSelect, FormTextarea } from "@repo/ui";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
 import {
   createEligibility,
-  updateEligibility,
   getEligibilityWithI18n,
+  updateEligibility,
 } from "@/actions/eligibility";
+import { CountrySelect } from "@/components/forms/country-select";
+import {
+  I18nTabs,
+  type Locale,
+  SUPPORTED_LOCALES,
+} from "@/components/forms/i18n-tabs";
 
 const eligibilityI18nSchema = z.object({
   locale: z.string(),

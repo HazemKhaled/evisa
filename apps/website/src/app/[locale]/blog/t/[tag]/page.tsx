@@ -1,16 +1,18 @@
 import { type Metadata } from "next";
-import { getAllUniqueTagsAcrossLocales } from "@/lib/services/blog-service";
-import BlogHome from "../../page";
+
+import { getTranslation } from "@/app/i18n";
+import { languages } from "@/app/i18n/settings";
 import { JsonLd } from "@/components/json-ld";
 import { env } from "@/lib/consts";
 import {
-  generateWebPageJsonLd,
-  generateBreadcrumbListJsonLd,
   generateBreadcrumbData,
+  generateBreadcrumbListJsonLd,
+  generateWebPageJsonLd,
 } from "@/lib/json-ld";
-import { getTranslation } from "@/app/i18n";
-import { languages } from "@/app/i18n/settings";
+import { getAllUniqueTagsAcrossLocales } from "@/lib/services/blog-service";
 import { generateAlternatesMetadata } from "@/lib/utils";
+
+import BlogHome from "../../page";
 
 // Enable ISR with daily revalidation for tag pages
 export const revalidate = 86400; // 24 hours

@@ -1,15 +1,16 @@
 import { SignedIn, SignedOut, SignInButton } from "@repo/auth";
-import Link from "next/link";
 import {
-  getDb,
-  count,
-  isNull,
-  countries,
-  visaTypes,
   blogPosts,
+  count,
+  countries,
+  getDb,
+  isNull,
+  visaTypes,
 } from "@repo/database";
-import { StatsCards } from "@/components/dashboard/stats-cards";
+import Link from "next/link";
+
 import { ActivityChart } from "@/components/dashboard/activity-chart";
+import { StatsCards } from "@/components/dashboard/stats-cards";
 
 async function getDashboardStats() {
   try {

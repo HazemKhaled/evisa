@@ -1,10 +1,11 @@
 import { type Metadata } from "next";
+
+import BlogHome from "@/app/[locale]/blog/page";
 import { getTranslation } from "@/app/i18n";
-import { generateAlternatesMetadata } from "@/lib/utils";
+import { languages } from "@/app/i18n/settings";
 import { env } from "@/lib/consts";
 import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
-import { languages } from "@/app/i18n/settings";
-import BlogHome from "@/app/[locale]/blog/page";
+import { generateAlternatesMetadata } from "@/lib/utils";
 
 // Required when use static generation with search params
 export const revalidate = 86400; // Revalidate every day

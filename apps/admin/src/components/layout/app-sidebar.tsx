@@ -1,15 +1,5 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import {
-  LayoutDashboard,
-  Globe,
-  FileText,
-  CheckSquare,
-  Newspaper,
-} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -23,6 +13,16 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@repo/ui";
+import {
+  CheckSquare,
+  FileText,
+  Globe,
+  LayoutDashboard,
+  Newspaper,
+} from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import * as React from "react";
 
 const navItems = [
   {
