@@ -6,4 +6,4 @@
  */
 
 // Re-export Clerk server utilities
-export { auth, currentUser, clerkMiddleware } from "@clerk/nextjs/server";
+export { auth, clerkMiddleware, currentUser } from "@clerk/nextjs/server";

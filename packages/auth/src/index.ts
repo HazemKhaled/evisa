@@ -8,12 +8,12 @@
 // Re-export Clerk client components and hooks
 export {
   ClerkProvider,
-  SignInButton,
-  SignUpButton,
   SignedIn,
   SignedOut,
-  UserButton,
+  SignInButton,
+  SignUpButton,
   useAuth,
+  UserButton,
   useUser,
 } from "@clerk/nextjs";
 

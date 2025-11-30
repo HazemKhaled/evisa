@@ -1,5 +1,6 @@
-import { drizzle, type NeonHttpDatabase } from "drizzle-orm/neon-http";
 import { neon, neonConfig } from "@neondatabase/serverless";
+import { drizzle, type NeonHttpDatabase } from "drizzle-orm/neon-http";
+
 import * as schema from "./schema";
 
 // Configure Neon for edge environments

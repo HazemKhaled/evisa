@@ -1,6 +1,5 @@
-import * as React from "react";
-
 import { cn } from "@repo/utils";
+import * as React from "react";
 
 const Textarea = React.forwardRef<
   HTMLTextAreaElement,

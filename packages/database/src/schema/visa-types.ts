@@ -10,6 +10,7 @@ import {
   timestamp,
   unique,
 } from "drizzle-orm/pg-core";
+
 import { countries } from "./countries";
 
 export const visaTypes = pgTable(

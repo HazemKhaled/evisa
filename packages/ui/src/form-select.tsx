@@ -1,6 +1,9 @@
 "use client";
 
+import { cn } from "@repo/utils";
 import * as React from "react";
+
+import { Label } from "./label";
 import {
   Select,
   SelectContent,
@@ -8,8 +11,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./select";
-import { Label } from "./label";
-import { cn } from "@repo/utils";
 
 export interface FormSelectOption {
   value: string;

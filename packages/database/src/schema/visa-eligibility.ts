@@ -8,6 +8,7 @@ import {
   timestamp,
   unique,
 } from "drizzle-orm/pg-core";
+
 import { countries } from "./countries";
 import { visaTypes } from "./visa-types";
 

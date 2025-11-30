@@ -1,79 +1,22 @@
-import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
-import globals from "globals";
+import reactHooks from "eslint-plugin-react-hooks";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
 
 const compat = new FlatCompat({
+  // import.meta.dirname is available after Node.js v20.11.0
   baseDirectory: import.meta.dirname,
 });
 
-const baseIgnores = [
-  "**/node_modules/**",
-  "**/.next/**",
-  "**/.turbo/**",
-  "**/dist/**",
-  "**/build/**",
-  "**/coverage/**",
-  "**/out/**",
-  "**/.wrangler/**",
-  "**/.vercel/**",
-  "**/public/**",
-  "**/.open-next/**",
-];
-
-const tsConfigs = compat
-  .extends(
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/stylistic"
-  )
-  .map(config => ({
-    ...config,
-    files: ["**/*.ts", "**/*.tsx"],
-  }));
-
-const reactConfigs = compat
-  .extends("plugin:react/recommended", "plugin:react-hooks/recommended")
-  .map(config => ({
-    ...config,
-    files: ["**/*.tsx", "**/*.jsx"],
-  }));
-
-const nextConfigs = compat
-  .extends(
-    "next/core-web-vitals",
-    "next/typescript",
-    "plugin:i18next/recommended"
-  )
-  .map(config => ({
-    ...config,
-    files: ["apps/website/**/*.{ts,tsx,js,jsx}"],
-  }));
-
-export default [
-  {
-    ignores: baseIgnores,
-  },
-  {
-    files: ["**/*.{ts,tsx,js,jsx}"],
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-    settings: {
-      react: {
-        version: "detect",
-      },
-    },
-  },
-  js.configs.recommended,
-  ...tsConfigs,
-  {
-    files: ["**/*.ts", "**/*.tsx"],
+const eslintConfig = [
+  ...compat.config({
+    extends: [
+      "next",
+      "next/core-web-vitals",
+      "prettier",
+      "plugin:prettier/recommended",
+      "plugin:@typescript-eslint/strict",
+      "plugin:@typescript-eslint/stylistic",
+    ],
     rules: {
       "@typescript-eslint/consistent-type-imports": [
         "error",
@@ -82,59 +25,51 @@ export default [
           fixStyle: "inline-type-imports",
         },
       ],
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
-      ],
-      "@typescript-eslint/no-explicit-any": "warn",
-    },
-  },
-  ...reactConfigs,
-  {
-    files: ["**/*.tsx", "**/*.jsx"],
-    rules: {
-      "react/no-unknown-property": [
+
+      // REQUIREMENT: Prefer interfaces over types
+      "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+
+      // REQUIREMENT: Prefer const assertions over type annotations where possible
+      "@typescript-eslint/prefer-as-const": "error",
+
+      "@next/next/no-img-element": "error",
+      "@next/next/no-html-link-for-pages": "error",
+
+      // REQUIREMENT: Avoid enums; use maps instead
+      // REQUIREMENT: Do not export types unless needed across multiple components
+      "no-restricted-syntax": [
         "error",
         {
-          ignore: ["cmdk-input-wrapper"],
+          selector: "TSEnumDeclaration",
+          message: "Avoid using enums. Use maps or const objects instead.",
         },
       ],
+
+      "object-shorthand": ["error", "always"],
     },
-  },
-  ...nextConfigs,
-  ...compat.extends("prettier"),
+  }),
+  // React Hooks v7.0.1 with flat config and enhanced React 19.2 support
   {
+    plugins: {
+      "react-hooks": reactHooks,
+    },
     rules: {
-      "react/react-in-jsx-scope": "off",
-      "react/prop-types": "off",
-      "no-console": [
-        "warn",
-        {
-          allow: ["warn", "error"],
-        },
-      ],
-      "prefer-const": "error",
-      "no-var": "error",
-      "no-debugger": "error",
-      "no-duplicate-imports": "error",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
     },
   },
   {
-    files: ["**/*.test.{ts,tsx,js,jsx}"],
-    rules: {
-      "i18next/no-literal-string": "off",
+    plugins: {
+      "simple-import-sort": simpleImportSort,
     },
-  },
-  {
-    files: ["**/*.config.*", "**/next.config.*"],
     rules: {
-      "no-console": "off",
-    },
-  },
-  {
-    files: ["scripts/**/*"],
-    rules: {
-      "no-console": "off",
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
+      "import/first": "error",
+      "import/newline-after-import": "error",
+      "import/no-duplicates": "error",
     },
   },
 ];
+
+export default eslintConfig;

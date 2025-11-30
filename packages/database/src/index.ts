@@ -18,14 +18,14 @@ export type { Database } from "./connection";
 
 // Re-export common drizzle-orm utilities
 export {
-  eq,
   and,
-  desc,
-  like,
-  inArray,
-  sql,
   count,
-  or,
-  isNull,
+  desc,
+  eq,
+  inArray,
   isNotNull,
+  isNull,
+  like,
+  or,
+  sql,
 } from "drizzle-orm";

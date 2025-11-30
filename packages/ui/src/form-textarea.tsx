@@ -1,12 +1,12 @@
 "use client";
 
-import * as React from "react";
-import { Textarea } from "./textarea";
-import { Label } from "./label";
 import { cn } from "@repo/utils";
+import * as React from "react";
 
-export interface FormTextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+import { Label } from "./label";
+import { Textarea } from "./textarea";
+
+export interface FormTextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   error?: string;
 }

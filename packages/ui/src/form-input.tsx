@@ -1,12 +1,12 @@
 "use client";
 
+import { cn } from "@repo/utils";
 import * as React from "react";
+
 import { Input } from "./input";
 import { Label } from "./label";
-import { cn } from "@repo/utils";
 
-export interface FormInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
 }
