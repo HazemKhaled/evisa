@@ -32,18 +32,18 @@
     "bmad:validate": "pnpx bmad-method validate"
   },
   "dependencies": {
-    "react": "19.1.1",
-    "react-dom": "19.1.1"
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "3.3.1",
+    "@eslint/eslintrc": "3.3.3",
     "@eslint/js": "9.39.1",
     "@next/eslint-plugin-next": "15.4.7",
-    "@types/node": "24.10.0",
-    "@types/react": "19.1.17",
-    "@types/react-dom": "19.1.11",
-    "@typescript-eslint/eslint-plugin": "8.46.3",
-    "@typescript-eslint/parser": "8.46.3",
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@typescript-eslint/eslint-plugin": "8.48.0",
+    "@typescript-eslint/parser": "8.48.0",
     "eslint": "9.39.1",
     "eslint-config-next": "15.4.7",
     "eslint-config-prettier": "10.1.8",
@@ -52,10 +52,10 @@
     "eslint-plugin-react-hooks": "7.0.1",
     "globals": "16.5.0",
     "husky": "9.1.7",
-    "lint-staged": "16.2.6",
-    "prettier": "3.6.2",
+    "lint-staged": "16.2.7",
+    "prettier": "3.7.3",
     "prettier-plugin-tailwindcss": "0.7.1",
-    "tailwindcss": "4.1.16",
+    "tailwindcss": "4.1.17",
     "typescript": "5.9.3"
   }
 }
