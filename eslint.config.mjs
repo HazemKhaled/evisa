@@ -77,16 +77,13 @@ const eslintConfig = [
   {
     ignores: [
       "**/node_modules/**",
-      "**/.next/**",
-      "**/.turbo/**",
+      "**/.*/**",
       "**/dist/**",
       "**/build/**",
       "**/coverage/**",
       "**/out/**",
-      "**/.wrangler/**",
-      "**/.vercel/**",
       "**/public/**",
-      "**/.open-next/**",
+      "cloudflare-env.d.ts",
     ],
   },
 ];

@@ -28,7 +28,7 @@
     "date-fns": "4.1.0",
     "lucide-react": "0.555.0",
     "next": "15.5.7",
-    "react-hook-form": "7.67.0",
+    "react-hook-form": "7.68.0",
     "recharts": "2.15.4",
     "tailwind-merge": "3.4.0",
     "zod": "4.1.13"
