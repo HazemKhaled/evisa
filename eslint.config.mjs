@@ -84,6 +84,7 @@ const eslintConfig = [
       "**/out/**",
       "**/public/**",
       "cloudflare-env.d.ts",
+      "apps/**/next-env.d.ts",
     ],
   },
 ];
