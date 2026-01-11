@@ -32,6 +32,8 @@
     "bmad:validate": "pnpx bmad-method validate"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "1.14.8",
+    "next": "15.5.9",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
@@ -39,6 +41,11 @@
     "@eslint/eslintrc": "3.3.3",
     "@eslint/js": "9.39.2",
     "@next/eslint-plugin-next": "15.5.9",
+    "@tailwindcss/postcss": "4.1.18",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.1",
+    "@testing-library/user-event": "14.6.1",
+    "@types/jest": "30.0.0",
     "@types/node": "24.10.7",
     "@types/react": "19.2.8",
     "@types/react-dom": "19.2.3",
@@ -54,10 +61,15 @@
     "eslint-plugin-simple-import-sort": "12.1.1",
     "globals": "17.0.0",
     "husky": "9.1.7",
+    "jest": "30.2.0",
+    "jest-environment-jsdom": "30.2.0",
     "lint-staged": "16.2.7",
     "prettier": "3.7.4",
     "prettier-plugin-tailwindcss": "0.7.2",
+    "shadcn": "3.6.3",
     "tailwindcss": "4.1.18",
-    "typescript": "5.9.3"
+    "ts-jest": "29.4.6",
+    "typescript": "5.9.3",
+    "wrangler": "4.58.0"
   }
 }
