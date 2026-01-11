@@ -17,21 +17,21 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "@next/third-parties": "15.4.7",
-    "@opennextjs/cloudflare": "1.14.0",
+    "@next/third-parties": "15.5.7",
+    "@opennextjs/cloudflare": "1.14.3",
     "@repo/database": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
-    "@sentry/nextjs": "10.27.0",
-    "i18next": "25.6.3",
+    "@sentry/nextjs": "10.28.0",
+    "i18next": "25.7.1",
     "i18next-browser-languagedetector": "8.2.0",
     "i18next-resources-to-backend": "1.2.1",
     "lucide-react": "0.555.0",
-    "next": "15.4.7",
+    "next": "15.5.7",
     "react-i18next": "16.3.5"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "15.4.7",
+    "@next/bundle-analyzer": "15.5.7",
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "4.1.17",
     "@testing-library/jest-dom": "6.9.1",
@@ -42,6 +42,6 @@
     "jest-environment-jsdom": "30.2.0",
     "shadcn": "3.5.1",
     "ts-jest": "29.4.6",
-    "wrangler": "4.51.0"
+    "wrangler": "4.52.1"
   }
 }
