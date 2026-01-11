@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@next/third-parties": "15.5.9",
-    "@opennextjs/cloudflare": "1.14.3",
+    "@opennextjs/cloudflare": "1.14.8",
     "@repo/database": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",

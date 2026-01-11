@@ -12,8 +12,8 @@ importers:
         specifier: 19.2.3
         version: 19.2.3
       react-dom:
-        specifier: 19.2.1
-        version: 19.2.1(react@19.2.3)
+        specifier: 19.2.3
+        version: 19.2.3(react@19.2.3)
     devDependencies:
       '@eslint/eslintrc':
         specifier: 3.3.3
@@ -173,8 +173,8 @@ importers:
         specifier: 15.5.9
         version: 15.5.9(next@15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
       '@opennextjs/cloudflare':
-        specifier: 1.14.3
-        version: 1.14.3(next@15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(wrangler@4.58.0)
+        specifier: 1.14.8
+        version: 1.14.8(next@15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(wrangler@4.58.0)
       '@repo/database':
         specifier: workspace:*
         version: link:../../packages/database
@@ -2328,24 +2328,11 @@ packages:
   '@open-draft/until@2.1.0':
     resolution: {integrity: sha512-U69T3ItWHvLwGg5eJ0n3I62nWuE6ilHlmz7zM0npLBRvPRd7e6NYmg54vvRtP5mZG7kZqZCFVdsTWo7BPtBujg==}
 
-  '@opennextjs/aws@3.9.4':
-    resolution: {integrity: sha512-i5gWKSP7QQGz59z85ZjOGtIfXK1ZgRLEwbt7/dkmuujhTuMBWygQqrb2EGRf8vRZH1Xvp0fYENUZx7NjgvxsIg==}
-    hasBin: true
-    peerDependencies:
-      next: < 14.2 || ^14.2 || 14.3.0-canary.0 - 14.3.0-canary.76 || ~15.0.5 || ~15.1.9 || ~15.2.6 || ~15.3.6 || ~15.4.8 || ~15.5.7 || ^16.0.7
-
   '@opennextjs/aws@3.9.7':
     resolution: {integrity: sha512-rj5br5fvWWqKsJo4YZvMowM4ObR2cz+dwCGuBA7amCiA+RpVmzcGfvfMucf01pUwhxxPgvdhXqdg7P2NVzQmkw==}
     hasBin: true
     peerDependencies:
       next: ^14.2.35 || ~15.0.7 || ~15.1.11 || ~15.2.8 || ~15.3.8 || ~15.4.10 || ~15.5.9 || ^16.0.10
-
-  '@opennextjs/cloudflare@1.14.3':
-    resolution: {integrity: sha512-S/qAs47GlO5sYypmGL/lA+CLAIkHQzDcASurDG91J8zcDLHgwlfX2GrbIptSswdGVQwvoJAJwG6cUhCkZXnKCA==}
-    hasBin: true
-    peerDependencies:
-      next: 14 - 14.2 || 14.3.0-canary.0 - 14.3.0-canary.76 || ~15.0.5 || ~15.1.9 || ~15.2.6 || ~15.3.6 || ~15.4.8 || ~15.5.7 || ^16.0.7
-      wrangler: ^4.49.1
 
   '@opennextjs/cloudflare@1.14.8':
     resolution: {integrity: sha512-7M6VezThyL7gg86MMuZnBvbzRtC08HWLSJWlvRaiHMUGlEoE94JOwtoC0YcoEnP7F4UsrdRnp+VpvMIVoqsO4w==}
@@ -6956,11 +6943,6 @@ packages:
     resolution: {integrity: sha512-K5zQjDllxWkf7Z5xJdV0/B0WTNqx6vxG70zJE4N0kBs4LovmEYWJzQGxC9bS9RAKu3bgM40lrd5zoLJ12MQ5BA==}
     engines: {node: '>= 0.10'}
 
-  react-dom@19.2.1:
-    resolution: {integrity: sha512-ibrK8llX2a4eOskq1mXKu/TGZj9qzomO+sNfO98M6d9zIPOEhlBkMkBUBLd1vgS0gQsLDBzA+8jJBVXDnfHmJg==}
-    peerDependencies:
-      react: ^19.2.1
-
   react-dom@19.2.3:
     resolution: {integrity: sha512-yELu4WmLPw5Mr/lmeEpox5rw3RETacE++JgHqQzd2dg+YbJuat3jH4ingc+WPZhxaoFzdv9y33G+F7Nl5O0GBg==}
     peerDependencies:
@@ -10488,30 +10470,6 @@ snapshots:
 
   '@open-draft/until@2.1.0': {}
 
-  '@opennextjs/aws@3.9.4(next@15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
-    dependencies:
-      '@ast-grep/napi': 0.40.0
-      '@aws-sdk/client-cloudfront': 3.398.0
-      '@aws-sdk/client-dynamodb': 3.943.0
-      '@aws-sdk/client-lambda': 3.943.0
-      '@aws-sdk/client-s3': 3.943.0
-      '@aws-sdk/client-sqs': 3.943.0
-      '@node-minify/core': 8.0.6
-      '@node-minify/terser': 8.0.6
-      '@tsconfig/node18': 1.0.3
-      aws4fetch: 1.0.20
-      chalk: 5.6.2
-      cookie: 1.1.1
-      esbuild: 0.25.4
-      express: 5.2.1
-      next: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      path-to-regexp: 6.3.0
-      urlpattern-polyfill: 10.1.0
-      yaml: 2.8.2
-    transitivePeerDependencies:
-      - aws-crt
-      - supports-color
-
   '@opennextjs/aws@3.9.7(next@15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
     dependencies:
       '@ast-grep/napi': 0.40.0
@@ -10534,23 +10492,6 @@ snapshots:
       yaml: 2.8.2
     transitivePeerDependencies:
       - aws-crt
-      - supports-color
-
-  '@opennextjs/cloudflare@1.14.3(next@15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(wrangler@4.58.0)':
-    dependencies:
-      '@ast-grep/napi': 0.40.0
-      '@dotenvx/dotenvx': 1.31.0
-      '@opennextjs/aws': 3.9.4(next@15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
-      cloudflare: 4.5.0
-      enquirer: 2.4.1
-      glob: 12.0.0
-      next: 15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      ts-tqdm: 0.8.6
-      wrangler: 4.58.0
-      yargs: 18.0.0
-    transitivePeerDependencies:
-      - aws-crt
-      - encoding
       - supports-color
 
   '@opennextjs/cloudflare@1.14.8(next@15.5.9(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(wrangler@4.58.0)':
@@ -15830,11 +15771,6 @@ snapshots:
       http-errors: 2.0.1
       iconv-lite: 0.7.0
       unpipe: 1.0.0
-
-  react-dom@19.2.1(react@19.2.3):
-    dependencies:
-      react: 19.2.3
-      scheduler: 0.27.0
 
   react-dom@19.2.3(react@19.2.3):
     dependencies:
