@@ -1,5 +1,5 @@
 import ErrorPage from "@/components/errors/error-page";
-import { ErrorType } from "@/lib/types/errors";
+import { ERROR_TYPE } from "@/lib/types/errors";
 
 export default function NotFound() {
   const notFoundError = new Error("Page not found");
@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <ErrorPage
       error={notFoundError}
-      errorType={ErrorType.NOT_FOUND}
+      errorType={ERROR_TYPE.NOT_FOUND}
       statusCode={404}
       showBrowseDestinations={true}
     />

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 import { useTranslation } from "@/app/i18n/client";
 import { classifyError, logError } from "@/lib/errors/utils";
-import { type ErrorPageProps, ErrorType } from "@/lib/types/errors";
+import { ERROR_TYPE, type ErrorPageProps } from "@/lib/types/errors";
 
 import ErrorActions from "./error-actions";
 
@@ -37,11 +37,11 @@ export default function ErrorPage({
 
   // Get translations
   const errorKey =
-    detectedErrorType === ErrorType.NOT_FOUND
+    detectedErrorType === ERROR_TYPE.NOT_FOUND
       ? "notFound"
-      : detectedErrorType === ErrorType.SERVER_ERROR
+      : detectedErrorType === ERROR_TYPE.SERVER_ERROR
         ? "serverError"
-        : detectedErrorType === ErrorType.NETWORK_ERROR
+        : detectedErrorType === ERROR_TYPE.NETWORK_ERROR
           ? "networkError"
           : "generic";
 

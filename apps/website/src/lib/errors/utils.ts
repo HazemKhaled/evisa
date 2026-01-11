@@ -1,34 +1,39 @@
-import { type ErrorContext, type ErrorInfo, ErrorType } from "../types/errors";
+import {
+  ERROR_TYPE,
+  type ErrorContext,
+  type ErrorInfo,
+  type ErrorType,
+} from "../types/errors";
 
 /**
  * Classify error based on the error object and context
  */
 export function classifyError(error: Error, statusCode?: number): ErrorType {
   // Check status code first
-  if (statusCode === 404) return ErrorType.NOT_FOUND;
-  if (statusCode && statusCode >= 500) return ErrorType.SERVER_ERROR;
-  if (statusCode && statusCode >= 400) return ErrorType.CLIENT_ERROR;
+  if (statusCode === 404) return ERROR_TYPE.NOT_FOUND;
+  if (statusCode && statusCode >= 500) return ERROR_TYPE.SERVER_ERROR;
+  if (statusCode && statusCode >= 400) return ERROR_TYPE.CLIENT_ERROR;
 
   // Check error message patterns
   const message = error.message.toLowerCase();
 
   if (message.includes("not found") || message.includes("404")) {
-    return ErrorType.NOT_FOUND;
+    return ERROR_TYPE.NOT_FOUND;
   }
 
   if (message.includes("network") || message.includes("fetch")) {
-    return ErrorType.NETWORK_ERROR;
+    return ERROR_TYPE.NETWORK_ERROR;
   }
 
   if (message.includes("validation") || message.includes("invalid")) {
-    return ErrorType.VALIDATION_ERROR;
+    return ERROR_TYPE.VALIDATION_ERROR;
   }
 
   if (message.includes("server") || message.includes("internal")) {
-    return ErrorType.SERVER_ERROR;
+    return ERROR_TYPE.SERVER_ERROR;
   }
 
-  return ErrorType.UNKNOWN_ERROR;
+  return ERROR_TYPE.UNKNOWN_ERROR;
 }
 
 /**
@@ -73,16 +78,16 @@ export function logError(error: Error, context?: ErrorContext): void {
  */
 export function getStatusCodeForErrorType(errorType: ErrorType): number {
   switch (errorType) {
-    case ErrorType.NOT_FOUND:
+    case ERROR_TYPE.NOT_FOUND:
       return 404;
-    case ErrorType.CLIENT_ERROR:
-    case ErrorType.VALIDATION_ERROR:
+    case ERROR_TYPE.CLIENT_ERROR:
+    case ERROR_TYPE.VALIDATION_ERROR:
       return 400;
-    case ErrorType.SERVER_ERROR:
+    case ERROR_TYPE.SERVER_ERROR:
       return 500;
-    case ErrorType.NETWORK_ERROR:
+    case ERROR_TYPE.NETWORK_ERROR:
       return 503;
-    case ErrorType.UNKNOWN_ERROR:
+    case ERROR_TYPE.UNKNOWN_ERROR:
     default:
       return 500;
   }
@@ -93,17 +98,17 @@ export function getStatusCodeForErrorType(errorType: ErrorType): number {
  */
 export function getTranslationKeyForErrorType(errorType: ErrorType): string {
   switch (errorType) {
-    case ErrorType.NOT_FOUND:
+    case ERROR_TYPE.NOT_FOUND:
       return "errors.notFound";
-    case ErrorType.SERVER_ERROR:
+    case ERROR_TYPE.SERVER_ERROR:
       return "errors.serverError";
-    case ErrorType.CLIENT_ERROR:
+    case ERROR_TYPE.CLIENT_ERROR:
       return "errors.clientError";
-    case ErrorType.NETWORK_ERROR:
+    case ERROR_TYPE.NETWORK_ERROR:
       return "errors.networkError";
-    case ErrorType.VALIDATION_ERROR:
+    case ERROR_TYPE.VALIDATION_ERROR:
       return "errors.validationError";
-    case ErrorType.UNKNOWN_ERROR:
+    case ERROR_TYPE.UNKNOWN_ERROR:
     default:
       return "errors.generic";
   }

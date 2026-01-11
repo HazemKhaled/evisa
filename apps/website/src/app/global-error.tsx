@@ -4,7 +4,7 @@ import * as Sentry from "@sentry/nextjs";
 import { useEffect } from "react";
 
 import ErrorPage from "@/components/errors/error-page";
-import { ErrorType } from "@/lib/types/errors";
+import { ERROR_TYPE } from "@/lib/types/errors";
 
 interface GlobalErrorProps {
   error: Error & { digest?: string };
@@ -22,7 +22,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
         <ErrorPage
           error={error}
           reset={reset}
-          errorType={ErrorType.UNKNOWN_ERROR}
+          errorType={ERROR_TYPE.UNKNOWN_ERROR}
           showBrowseDestinations={true}
         />
       </body>

@@ -1,7 +1,7 @@
 "use client";
 
 import ErrorPage from "@/components/errors/error-page";
-import { ErrorType } from "@/lib/types/errors";
+import { ERROR_TYPE } from "@/lib/types/errors";
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -13,7 +13,7 @@ export default function RootError({ error, reset }: ErrorProps) {
     <ErrorPage
       error={error}
       reset={reset}
-      errorType={ErrorType.UNKNOWN_ERROR}
+      errorType={ERROR_TYPE.UNKNOWN_ERROR}
       showBrowseDestinations={true}
     />
   );

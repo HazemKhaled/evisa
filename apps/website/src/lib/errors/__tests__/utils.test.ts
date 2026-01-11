@@ -1,4 +1,4 @@
-import { ErrorType } from "../../types/errors";
+import { ERROR_TYPE, type ErrorType } from "../../types/errors";
 import {
   classifyError,
   extractErrorInfo,
@@ -10,37 +10,37 @@ describe("Error Utils", () => {
     it("should classify 404 errors correctly", () => {
       const error = new Error("Not found");
       const result = classifyError(error, 404);
-      expect(result).toBe(ErrorType.NOT_FOUND);
+      expect(result).toBe(ERROR_TYPE.NOT_FOUND);
     });
 
     it("should classify server errors correctly", () => {
       const error = new Error("Internal server error");
       const result = classifyError(error, 500);
-      expect(result).toBe(ErrorType.SERVER_ERROR);
+      expect(result).toBe(ERROR_TYPE.SERVER_ERROR);
     });
 
     it("should classify client errors correctly", () => {
       const error = new Error("Bad request");
       const result = classifyError(error, 400);
-      expect(result).toBe(ErrorType.CLIENT_ERROR);
+      expect(result).toBe(ERROR_TYPE.CLIENT_ERROR);
     });
 
     it("should classify network errors from message", () => {
       const error = new Error("Network connection failed");
       const result = classifyError(error);
-      expect(result).toBe(ErrorType.NETWORK_ERROR);
+      expect(result).toBe(ERROR_TYPE.NETWORK_ERROR);
     });
 
     it("should classify validation errors from message", () => {
       const error = new Error("Validation failed");
       const result = classifyError(error);
-      expect(result).toBe(ErrorType.VALIDATION_ERROR);
+      expect(result).toBe(ERROR_TYPE.VALIDATION_ERROR);
     });
 
     it("should default to unknown error", () => {
       const error = new Error("Something unexpected");
       const result = classifyError(error);
-      expect(result).toBe(ErrorType.UNKNOWN_ERROR);
+      expect(result).toBe(ERROR_TYPE.UNKNOWN_ERROR);
     });
   });
 
