@@ -17,31 +17,31 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "@next/third-parties": "15.5.7",
+    "@next/third-parties": "15.5.9",
     "@opennextjs/cloudflare": "1.14.3",
     "@repo/database": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
-    "@sentry/nextjs": "10.28.0",
-    "i18next": "25.7.1",
+    "@sentry/nextjs": "10.32.1",
+    "i18next": "25.7.4",
     "i18next-browser-languagedetector": "8.2.0",
     "i18next-resources-to-backend": "1.2.1",
-    "lucide-react": "0.555.0",
-    "next": "15.5.7",
-    "react-i18next": "16.3.5"
+    "lucide-react": "0.562.0",
+    "next": "15.5.9",
+    "react-i18next": "16.5.2"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "15.5.7",
+    "@next/bundle-analyzer": "15.5.9",
     "@repo/typescript-config": "workspace:*",
-    "@tailwindcss/postcss": "4.1.17",
+    "@tailwindcss/postcss": "4.1.18",
     "@testing-library/jest-dom": "6.9.1",
-    "@testing-library/react": "16.3.0",
+    "@testing-library/react": "16.3.1",
     "@testing-library/user-event": "14.6.1",
     "@types/jest": "30.0.0",
     "jest": "30.2.0",
     "jest-environment-jsdom": "30.2.0",
-    "shadcn": "3.5.1",
+    "shadcn": "3.6.3",
     "ts-jest": "29.4.6",
-    "wrangler": "4.52.1"
+    "wrangler": "4.58.0"
   }
 }
