@@ -47,8 +47,7 @@ export default function RootLayout({
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
       )}
       <body
-        className={`${cairo.variable} ${geistMono.variable} bg-background text-foreground min-h-full antialiased`}
-        style={{ fontFamily: "var(--font-cairo), system-ui, sans-serif" }}
+        className={`${cairo.variable} ${geistMono.variable} bg-background text-foreground min-h-screen font-sans antialiased`}
       >
         {children}
       </body>

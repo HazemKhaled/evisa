@@ -492,4 +492,28 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Fix for Radix UI portaled elements (dropdown menus, popovers, etc.) */
+  /* These are rendered outside the normal DOM tree and need explicit styling */
+  [data-radix-popper-content-wrapper] {
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.141 0.005 285.823);
+    --border: oklch(0.92 0.004 286.32);
+  }
+
+  .dark [data-radix-popper-content-wrapper],
+  [data-radix-popper-content-wrapper]:is(.dark *) {
+    --popover: oklch(0.21 0.006 285.885);
+    --popover-foreground: oklch(0.985 0 0);
+    --border: oklch(1 0 0 / 10%);
+  }
+
+  /* Ensure bg-popover and text-popover-foreground work correctly */
+  .bg-popover {
+    background-color: var(--popover) !important;
+  }
+
+  .text-popover-foreground {
+    color: var(--popover-foreground) !important;
+  }
 }
