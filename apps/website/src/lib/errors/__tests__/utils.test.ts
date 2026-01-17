@@ -1,4 +1,4 @@
-import { ERROR_TYPE, type ErrorType } from "../../types/errors";
+import { ERROR_TYPE } from "../../types/errors";
 import {
   classifyError,
   extractErrorInfo,
@@ -58,11 +58,11 @@ describe("Error Utils", () => {
 
   describe("getStatusCodeForErrorType", () => {
     it("should return correct status codes for error types", () => {
-      expect(getStatusCodeForErrorType(ErrorType.NOT_FOUND)).toBe(404);
-      expect(getStatusCodeForErrorType(ErrorType.SERVER_ERROR)).toBe(500);
-      expect(getStatusCodeForErrorType(ErrorType.CLIENT_ERROR)).toBe(400);
-      expect(getStatusCodeForErrorType(ErrorType.NETWORK_ERROR)).toBe(503);
-      expect(getStatusCodeForErrorType(ErrorType.UNKNOWN_ERROR)).toBe(500);
+      expect(getStatusCodeForErrorType(ERROR_TYPE.NOT_FOUND)).toBe(404);
+      expect(getStatusCodeForErrorType(ERROR_TYPE.SERVER_ERROR)).toBe(500);
+      expect(getStatusCodeForErrorType(ERROR_TYPE.CLIENT_ERROR)).toBe(400);
+      expect(getStatusCodeForErrorType(ERROR_TYPE.NETWORK_ERROR)).toBe(503);
+      expect(getStatusCodeForErrorType(ERROR_TYPE.UNKNOWN_ERROR)).toBe(500);
     });
   });
 });
