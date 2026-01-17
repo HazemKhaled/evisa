@@ -1,5 +1,5 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
+  "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "gtv-admin",
   "account_id": "4f001bbb358404250b26da276402b564",
   "main": ".open-next/worker.js",
@@ -18,7 +18,14 @@
     "directory": ".open-next/assets",
   },
   "observability": {
-    "enabled": true,
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.1,
+    },
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 0.1,
+    },
   },
   "placement": {
     "mode": "smart",
