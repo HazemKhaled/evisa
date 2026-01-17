@@ -18,14 +18,8 @@
     "directory": ".open-next/assets",
   },
   "observability": {
-    "traces": {
-      "enabled": true,
-      "head_sampling_rate": 0.1,
-    },
-    "logs": {
-      "enabled": true,
-      "head_sampling_rate": 0.1,
-    },
+    "enabled": true,
+    "head_sampling_rate": 0.1,
   },
   "placement": {
     "mode": "smart",
