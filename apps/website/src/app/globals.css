@@ -508,12 +508,12 @@
     --border: oklch(1 0 0 / 10%);
   }
 
-  /* Ensure bg-popover and text-popover-foreground work correctly */
-  .bg-popover {
-    background-color: var(--popover) !important;
+  /* Ensure bg-popover and text-popover-foreground work correctly in portaled elements */
+  [data-radix-popper-content-wrapper] .bg-popover {
+    background-color: var(--popover);
   }
 
-  .text-popover-foreground {
-    color: var(--popover-foreground) !important;
+  [data-radix-popper-content-wrapper] .text-popover-foreground {
+    color: var(--popover-foreground);
   }
 }

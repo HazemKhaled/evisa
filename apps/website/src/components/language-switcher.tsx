@@ -55,7 +55,7 @@ export function LanguageSwitcher() {
         <Button
           variant="outline"
           className={cn(
-            "hover:bg-accent/80 hover:border-primary/20 h-auto gap-2.5 px-3 py-2 font-medium transition-all duration-200",
+            "group hover:bg-accent/80 hover:border-primary/20 h-auto gap-2.5 px-3 py-2 font-medium transition-all duration-200",
             isCurrentRTL && "flex-row-reverse"
           )}
           aria-label={languageLabels[currentLocale] || languageLabels.en}
@@ -104,7 +104,7 @@ export function LanguageSwitcher() {
                 key={language.code}
                 onClick={() => handleLanguageChange(language.code)}
                 className={cn(
-                  "cursor-pointer gap-3 rounded-lg px-3 py-2.5",
+                  "group cursor-pointer gap-3 rounded-lg px-3 py-2.5",
                   "transition-all duration-150 ease-out",
                   "focus:bg-accent focus:text-accent-foreground",
                   "hover:bg-accent/70",

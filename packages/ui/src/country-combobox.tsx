@@ -69,7 +69,12 @@ export function CountryCombobox({
           <span className="truncate">
             {selectedCountry ? selectedCountry.localizedName : placeholder}
           </span>
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200 data-[state=open]:rotate-180" />
+          <ChevronsUpDown
+            className={cn(
+              "ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200",
+              open && "rotate-180"
+            )}
+          />
         </Button>
       </PopoverTrigger>
       <PopoverContent
