@@ -57,38 +57,74 @@ export function CountryCombobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-full justify-between", className)}
+          className={cn(
+            "w-full justify-between font-normal",
+            "transition-all duration-200",
+            "hover:bg-accent/80 hover:border-primary/20",
+            !selectedCountry && "text-muted-foreground",
+            className
+          )}
           disabled={disabled}
         >
-          {selectedCountry ? selectedCountry.localizedName : placeholder}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <span className="truncate">
+            {selectedCountry ? selectedCountry.localizedName : placeholder}
+          </span>
+          <ChevronsUpDown
+            className={cn(
+              "ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200",
+              open && "rotate-180"
+            )}
+          />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-full p-0" align="start">
+      <PopoverContent
+        className={cn(
+          "w-[--radix-popover-trigger-width] p-0",
+          "shadow-xl shadow-black/10",
+          "border-border/60 border",
+          "bg-popover/95 backdrop-blur-md"
+        )}
+        align="start"
+        sideOffset={4}
+      >
         <Command>
-          <CommandInput placeholder={searchPlaceholder} className="h-9" />
-          <CommandList>
-            <CommandEmpty>{emptyText}</CommandEmpty>
-            <CommandGroup>
-              {countries.map(country => (
-                <CommandItem
-                  key={country.code}
-                  value={country.code}
-                  keywords={[country.localizedName, country.code]}
-                  onSelect={(currentValue: string) => {
-                    onValueChange(currentValue === value ? "" : currentValue);
-                    setOpen(false);
-                  }}
-                >
-                  {country.localizedName}
-                  <Check
+          <CommandInput
+            placeholder={searchPlaceholder}
+            className="h-10 border-0 focus:ring-0"
+          />
+          <CommandList className="max-h-60">
+            <CommandEmpty className="text-muted-foreground py-6 text-center text-sm">
+              {emptyText}
+            </CommandEmpty>
+            <CommandGroup className="p-1.5">
+              {countries.map(country => {
+                const isSelected = value === country.code;
+                return (
+                  <CommandItem
+                    key={country.code}
+                    value={country.code}
+                    keywords={[country.localizedName, country.code]}
+                    onSelect={(currentValue: string) => {
+                      onValueChange(currentValue === value ? "" : currentValue);
+                      setOpen(false);
+                    }}
                     className={cn(
-                      "ml-auto h-4 w-4",
-                      value === country.code ? "opacity-100" : "opacity-0"
+                      "cursor-pointer rounded-lg px-3 py-2.5",
+                      "transition-colors duration-150 ease-out",
+                      isSelected && "bg-primary/10 text-primary font-medium"
                     )}
-                  />
-                </CommandItem>
-              ))}
+                  >
+                    <span className="truncate">{country.localizedName}</span>
+                    <Check
+                      className={cn(
+                        "text-primary ml-auto h-4 w-4",
+                        isSelected ? "opacity-100" : "opacity-0"
+                      )}
+                      strokeWidth={2.5}
+                    />
+                  </CommandItem>
+                );
+              })}
             </CommandGroup>
           </CommandList>
         </Command>

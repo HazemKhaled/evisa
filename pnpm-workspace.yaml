@@ -4,3 +4,6 @@ packages:
 
 onlyBuiltDependencies:
   - "@clerk/shared"
+  - "@sentry/cli"
+  - msw
+  - workerd

@@ -16,8 +16,15 @@
     "directory": ".open-next/assets",
   },
   "observability": {
-    "enabled": true,
-    "head_sampling_rate": 0.1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 0.1,
+      "invocation_logs": true,
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.1,
+    },
   },
   /**
    * Smart Placement
@@ -90,7 +97,7 @@
     "NEXT_PUBLIC_SENTRY_DSN": "https://3b385ea99f6e37f235ec970a5e46cfad@o929566.ingest.us.sentry.io/4509917829005312",
     "NEXT_PUBLIC_GTM_ID": "GTM-5MVFP6KB",
   },
-  "images": {
-    "binding": "IMAGES",
-  },
+  // "images": {
+  //   "binding": "IMAGES",
+  // },
 }
