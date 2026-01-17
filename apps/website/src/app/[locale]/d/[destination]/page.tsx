@@ -112,17 +112,13 @@ export default async function DestinationPage({
   const { locale, destination } = await params;
 
   // Parallel fetch: destination data, visa requirements, and translations
-  const [
-    destinationData,
-    visaRequirements,
-    { t },
-    { t: tNav },
-  ] = await Promise.all([
-    getDestinationDetails(destination, locale),
-    getVisaRequirements(destination, locale),
-    getTranslation(locale, "destination-page"),
-    getTranslation(locale, "navigation"),
-  ]);
+  const [destinationData, visaRequirements, { t }, { t: tNav }] =
+    await Promise.all([
+      getDestinationDetails(destination, locale),
+      getVisaRequirements(destination, locale),
+      getTranslation(locale, "destination-page"),
+      getTranslation(locale, "navigation"),
+    ]);
 
   if (!destinationData) {
     notFound();

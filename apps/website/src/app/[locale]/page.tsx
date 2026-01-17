@@ -54,7 +54,12 @@ export default async function LocalePage({
   ]);
 
   // Extract results with fallbacks for failed requests
-  const [destinationsResult, visaTypesResult, blogPostsResult, countriesResult] = dataResults;
+  const [
+    destinationsResult,
+    visaTypesResult,
+    blogPostsResult,
+    countriesResult,
+  ] = dataResults;
   const destinations =
     destinationsResult.status === "fulfilled" ? destinationsResult.value : [];
   const visaTypes =
