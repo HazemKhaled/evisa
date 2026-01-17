@@ -32,7 +32,7 @@
     "bmad:validate": "pnpx bmad-method validate"
   },
   "dependencies": {
-    "@opennextjs/cloudflare": "1.14.8",
+    "@opennextjs/cloudflare": "1.14.9",
     "next": "15.5.9",
     "react": "19.2.3",
     "react-dom": "19.2.3"
@@ -46,16 +46,16 @@
     "@testing-library/react": "16.3.1",
     "@testing-library/user-event": "14.6.1",
     "@types/jest": "30.0.0",
-    "@types/node": "24.10.7",
+    "@types/node": "24.10.9",
     "@types/react": "19.2.8",
     "@types/react-dom": "19.2.3",
-    "@typescript-eslint/eslint-plugin": "8.52.0",
-    "@typescript-eslint/parser": "8.52.0",
+    "@typescript-eslint/eslint-plugin": "8.53.0",
+    "@typescript-eslint/parser": "8.53.0",
     "eslint": "9.39.2",
     "eslint-config-next": "15.5.9",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-i18next": "6.1.3",
-    "eslint-plugin-prettier": "5.5.4",
+    "eslint-plugin-prettier": "5.5.5",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-simple-import-sort": "12.1.1",
@@ -64,12 +64,12 @@
     "jest": "30.2.0",
     "jest-environment-jsdom": "30.2.0",
     "lint-staged": "16.2.7",
-    "prettier": "3.7.4",
+    "prettier": "3.8.0",
     "prettier-plugin-tailwindcss": "0.7.2",
-    "shadcn": "3.6.3",
+    "shadcn": "3.7.0",
     "tailwindcss": "4.1.18",
     "ts-jest": "29.4.6",
     "typescript": "5.9.3",
-    "wrangler": "4.58.0"
+    "wrangler": "4.59.2"
   }
 }
