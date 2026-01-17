@@ -45,7 +45,7 @@
       "bucket_name": "gtv-admin-cache",
     },
   ],
-  "images": {
-    "binding": "IMAGES",
-  },
+  // "images": {
+  //   "binding": "IMAGES",
+  // },
 }
