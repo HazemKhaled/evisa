@@ -29,26 +29,32 @@ export default async function LocalePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const { t: tCommon } = await getTranslation(locale, "common");
-  const { t: tHero } = await getTranslation(locale, "hero");
-  const { t: tFeatures } = await getTranslation(locale, "features");
-  const { t: tBlog } = await getTranslation(locale, "blog");
-  const { t } = await getTranslation(locale, "pages");
 
-  // Fetch data for homepage sections with graceful degradation
+  // Parallel fetch: all translations and data for homepage sections
   const [
-    destinationsResult,
-    visaTypesResult,
-    blogPostsResult,
-    countriesResult,
-  ] = await Promise.allSettled([
-    getDestinationsListWithMetadata(locale, 8, "popular"),
-    getRandomVisaTypes(locale, 6),
-    getAllBlogPosts(locale, 6),
-    getAllCountries(locale),
+    { t: tCommon },
+    { t: tHero },
+    { t: tFeatures },
+    { t: tBlog },
+    { t },
+    dataResults,
+  ] = await Promise.all([
+    getTranslation(locale, "common"),
+    getTranslation(locale, "hero"),
+    getTranslation(locale, "features"),
+    getTranslation(locale, "blog"),
+    getTranslation(locale, "pages"),
+    // Data fetches with graceful degradation
+    Promise.allSettled([
+      getDestinationsListWithMetadata(locale, 8, "popular"),
+      getRandomVisaTypes(locale, 6),
+      getAllBlogPosts(locale, 6),
+      getAllCountries(locale),
+    ]),
   ]);
 
   // Extract results with fallbacks for failed requests
+  const [destinationsResult, visaTypesResult, blogPostsResult, countriesResult] = dataResults;
   const destinations =
     destinationsResult.status === "fulfilled" ? destinationsResult.value : [];
   const visaTypes =

@@ -96,11 +96,14 @@ export async function generateMetadata({
 
 export default async function BlogPost({ params }: BlogPostProps) {
   const { locale, slug } = await params;
-  const { t } = await getTranslation(locale, "pages");
-  const { t: tNav } = await getTranslation(locale, "navigation");
 
-  // Fetch blog post first
-  const blogPost = await getBlogPost(slug, locale).catch(() => null);
+  // Parallel fetch: translations and blog post data
+  const [{ t }, { t: tNav }, blogPost] = await Promise.all([
+    getTranslation(locale, "pages"),
+    getTranslation(locale, "navigation"),
+    getBlogPost(slug, locale).catch(() => null),
+  ]);
+
   if (!blogPost) {
     notFound();
   }

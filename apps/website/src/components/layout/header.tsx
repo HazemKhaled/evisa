@@ -18,8 +18,11 @@ interface HeaderProps {
 }
 
 export async function Header({ locale }: HeaderProps) {
-  const { t: tNav } = await getTranslation(locale, "navigation");
-  const { t: tCommon } = await getTranslation(locale, "common");
+  // Parallel fetch: both translations
+  const [{ t: tNav }, { t: tCommon }] = await Promise.all([
+    getTranslation(locale, "navigation"),
+    getTranslation(locale, "common"),
+  ]);
 
   return (
     <header className="border-b bg-white shadow-sm">

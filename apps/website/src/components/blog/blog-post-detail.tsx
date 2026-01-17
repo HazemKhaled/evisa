@@ -21,8 +21,11 @@ export async function BlogPostDetail({
   className,
   relatedPosts = [],
 }: BlogPostDetailProps) {
-  const { t } = await getTranslation(locale, "blog");
-  const { t: tNav } = await getTranslation(locale, "navigation");
+  // Parallel fetch: both translations
+  const [{ t }, { t: tNav }] = await Promise.all([
+    getTranslation(locale, "blog"),
+    getTranslation(locale, "navigation"),
+  ]);
 
   return (
     <article

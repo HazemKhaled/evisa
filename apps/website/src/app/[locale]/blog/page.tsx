@@ -64,8 +64,12 @@ export default async function BlogHome({
 }: BlogHomeProps) {
   const { locale } = await params;
   const { page = "1", tag, destination } = await searchParams;
-  const { t } = await getTranslation(locale, "blog");
-  const { t: tNav } = await getTranslation(locale, "navigation");
+
+  // Parallel fetch: both translations
+  const [{ t }, { t: tNav }] = await Promise.all([
+    getTranslation(locale, "blog"),
+    getTranslation(locale, "navigation"),
+  ]);
 
   const currentPage = parseInt(page, 10);
   const postsPerPage = 9;
