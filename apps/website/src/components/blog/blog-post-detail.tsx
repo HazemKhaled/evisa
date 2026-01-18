@@ -1,6 +1,8 @@
 import { cn } from "@repo/utils";
 import Image from "next/image";
 import Link from "next/link";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { getTranslation } from "@/app/i18n";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
@@ -125,10 +127,54 @@ export async function BlogPostDetail({
 
       {/* Article content */}
       <div className="prose prose-lg mb-12 max-w-none">
-        <div
-          className="leading-relaxed text-gray-900"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        <div className="leading-relaxed text-gray-900">
+          <Markdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              a: ({ href, children }) => {
+                const isInternal =
+                  href?.startsWith("/") || href?.startsWith("#");
+                if (isInternal) {
+                  return (
+                    <Link
+                      href={href as string}
+                      className="text-blue-600 hover:underline"
+                    >
+                      {children}
+                    </Link>
+                  );
+                }
+                return (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    {children}
+                  </a>
+                );
+              },
+              img: ({ src, alt }) => {
+                // Ensure src is valid
+                if (!src) return null;
+                return (
+                  <span className="relative my-6 block aspect-video overflow-hidden rounded-lg">
+                    <Image
+                      src={src as string}
+                      alt={alt || ""}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </span>
+                );
+              },
+            }}
+          >
+            {post.content}
+          </Markdown>
+        </div>
       </div>
 
       {/* Article footer */}
