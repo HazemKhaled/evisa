@@ -111,21 +111,21 @@ export default async function DestinationPage({
 }: DestinationPageProps) {
   const { locale, destination } = await params;
 
-  // Fetch destination data
-  const destinationData = await getDestinationDetails(destination, locale);
+  // Parallel fetch: destination data, visa requirements, and translations
+  const [destinationData, visaRequirements, { t }, { t: tNav }] =
+    await Promise.all([
+      getDestinationDetails(destination, locale),
+      getVisaRequirements(destination, locale),
+      getTranslation(locale, "destination-page"),
+      getTranslation(locale, "navigation"),
+    ]);
 
   if (!destinationData) {
     notFound();
   }
 
-  // Fetch visa requirements
-  const visaRequirements = await getVisaRequirements(destination, locale);
-
   // Generate structured data
   const jsonLd = generateDestinationJsonLd(destinationData, locale);
-
-  const { t } = await getTranslation(locale, "destination-page");
-  const { t: tNav } = await getTranslation(locale, "navigation");
 
   return (
     <>

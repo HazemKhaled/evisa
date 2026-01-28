@@ -7,8 +7,11 @@ interface FooterProps {
 }
 
 export async function Footer({ locale }: FooterProps) {
-  const { t: tNav } = await getTranslation(locale, "navigation");
-  const { t: tCommon } = await getTranslation(locale, "common");
+  // Parallel fetch: both translations
+  const [{ t: tNav }, { t: tCommon }] = await Promise.all([
+    getTranslation(locale, "navigation"),
+    getTranslation(locale, "common"),
+  ]);
 
   return (
     <footer className="mt-16 bg-gray-900">

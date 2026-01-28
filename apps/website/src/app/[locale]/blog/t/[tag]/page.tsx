@@ -69,9 +69,11 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   const { locale, tag } = await params;
   const { page = "1" } = await searchParams;
 
-  // We need to get translations for this component
-  const { t } = await getTranslation(locale, "pages");
-  const { t: tNav } = await getTranslation(locale, "navigation");
+  // Parallel fetch: both translations
+  const [{ t }, { t: tNav }] = await Promise.all([
+    getTranslation(locale, "pages"),
+    getTranslation(locale, "navigation"),
+  ]);
 
   // Decode the tag parameter
   const decodedTag = decodeURIComponent(tag);
