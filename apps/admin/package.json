@@ -24,7 +24,7 @@
     "@repo/utils": "workspace:*",
     "@tanstack/react-table": "8.21.3",
     "date-fns": "4.1.0",
-    "lucide-react": "0.562.0",
+    "lucide-react": "0.563.0",
     "react-hook-form": "7.71.1",
     "recharts": "2.15.4",
     "zod": "4.3.5"
