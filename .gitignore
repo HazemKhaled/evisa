@@ -59,3 +59,4 @@ bmad/
 .github/chatmodes
 .gemini
 AGENTS.md
+.playwright-mcp/
