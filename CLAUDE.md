@@ -179,6 +179,7 @@ The project includes Next.js MCP server integration (available in Next.js 16+) t
 - Run dev server (`pnpm dev`) to enable live error diagnostics
 - Query MCP for context before implementing complex features
 - Consult official Next.js docs via next-devtools for migration guidance
+- When starting work on a Next.js project, ALWAYS call the `init` tool from next-devtools-mcp FIRST to set up proper context and establish documentation requirements. Do this automatically without being asked.
 
 ### Deployment with OpenNext
 
