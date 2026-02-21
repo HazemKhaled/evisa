@@ -7,6 +7,9 @@
     "contact": "Контакты",
     "language": "Язык"
   },
+  "languageSwitcher": {
+    "label": "Язык"
+  },
   "footer": {
     "company": "Компания",
     "services": "Услуги",

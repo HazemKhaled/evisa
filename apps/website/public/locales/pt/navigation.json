@@ -7,6 +7,9 @@
     "contact": "Contato",
     "language": "Idioma"
   },
+  "languageSwitcher": {
+    "label": "Idioma"
+  },
   "footer": {
     "company": "Empresa",
     "services": "Serviços",
