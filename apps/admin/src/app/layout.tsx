@@ -61,9 +61,9 @@ export default function RootLayout({
               </div>
             </SidebarInset>
           </SidebarProvider>
+          <Toaster />
         </body>
       </html>
-      <Toaster />
     </ClerkProvider>
   );
 }
