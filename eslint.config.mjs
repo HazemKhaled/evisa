@@ -17,6 +17,11 @@ const eslintConfig = [
       "plugin:@typescript-eslint/strict",
       "plugin:@typescript-eslint/stylistic",
     ],
+    settings: {
+      next: {
+        rootDir: ["apps/website", "apps/admin"],
+      },
+    },
     rules: {
       "@typescript-eslint/consistent-type-imports": [
         "error",
