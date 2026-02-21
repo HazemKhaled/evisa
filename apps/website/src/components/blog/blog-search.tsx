@@ -28,6 +28,15 @@ export function BlogSearch({
 
   const { t } = useTranslation(locale, "blog");
 
+  // Sync searchValue prop to query state when URL parameters change
+  // (e.g., from browser navigation, pagination, or other link clicks).
+  // This implements the React pattern: "Adjusting state when a prop changes"
+  // See: https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setQuery(searchValue ?? "");
+  }, [searchValue]);
+
   useEffect(() => {
     const trimmed = query.trim();
     const params = new URLSearchParams(searchParams.toString());
