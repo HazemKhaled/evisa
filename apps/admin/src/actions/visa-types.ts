@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdminAuth } from "@repo/auth/server";
 import {
   and,
   count,
@@ -134,6 +135,11 @@ export async function getVisaTypeWithI18n(id: number): Promise<{
 export async function createVisaType(
   input: CreateVisaTypeInput
 ): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -182,6 +188,11 @@ export async function createVisaType(
 export async function updateVisaType(
   input: UpdateVisaTypeInput
 ): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -227,6 +238,11 @@ export async function updateVisaType(
 }
 
 export async function deleteVisaType(id: number): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 

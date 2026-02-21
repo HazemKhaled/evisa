@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdminAuth } from "@repo/auth/server";
 import {
   and,
   count,
@@ -127,6 +128,11 @@ export async function getCountryWithI18n(code: string): Promise<{
 export async function createCountry(
   input: CreateCountryInput
 ): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -162,6 +168,11 @@ export async function createCountry(
 export async function updateCountry(
   input: UpdateCountryInput
 ): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -201,6 +212,11 @@ export async function updateCountry(
 }
 
 export async function deleteCountry(code: string): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 

@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdminAuth } from "@repo/auth/server";
 import {
   and,
   type BlogPost,
@@ -138,6 +139,11 @@ export async function getBlogPostWithI18n(id: number): Promise<{
 export async function createBlogPost(
   input: CreateBlogPostInput
 ): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -191,6 +197,11 @@ export async function createBlogPost(
 export async function updateBlogPost(
   input: UpdateBlogPostInput
 ): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -241,6 +252,11 @@ export async function updateBlogPost(
 }
 
 export async function deleteBlogPost(id: number): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 

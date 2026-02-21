@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdminAuth } from "@repo/auth/server";
 import {
   and,
   count,
@@ -135,6 +136,11 @@ export async function getEligibilityWithI18n(id: number): Promise<{
 export async function createEligibility(
   input: CreateEligibilityInput
 ): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -176,6 +182,11 @@ export async function createEligibility(
 export async function bulkCreateEligibility(
   input: BulkCreateInput
 ): Promise<ActionResult & { created?: number }> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return { ...authCheck, created: 0 };
+  }
+
   const db = getDb();
 
   try {
@@ -206,6 +217,11 @@ export async function bulkCreateEligibility(
 export async function updateEligibility(
   input: UpdateEligibilityInput
 ): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -245,6 +261,11 @@ export async function updateEligibility(
 }
 
 export async function deleteEligibility(id: number): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -266,6 +287,11 @@ export async function deleteEligibility(id: number): Promise<ActionResult> {
 export async function bulkDeleteEligibility(
   ids: number[]
 ): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   const db = getDb();
 
   try {
