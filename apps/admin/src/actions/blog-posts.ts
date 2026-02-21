@@ -16,7 +16,10 @@ import {
   type NewBlogPostI18n,
   or,
 } from "@repo/database";
+import { type PaginatedResult } from "@repo/utils";
 import { revalidatePath } from "next/cache";
+
+import { type ActionResult, handleActionError } from "@/lib/errors";
 
 interface BlogPostI18nData {
   locale: string;
@@ -46,14 +49,6 @@ interface GetBlogPostsPaginatedInput {
   page?: number;
   pageSize?: number;
   search?: string;
-}
-
-interface PaginatedResult<T> {
-  data: T[];
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
@@ -142,7 +137,7 @@ export async function getBlogPostWithI18n(id: number): Promise<{
 
 export async function createBlogPost(
   input: CreateBlogPostInput
-): Promise<{ success: boolean; error?: string }> {
+): Promise<ActionResult> {
   try {
     const db = getDb();
 
@@ -189,18 +184,13 @@ export async function createBlogPost(
     revalidatePath("/blog-posts");
     return { success: true };
   } catch (error) {
-    console.error("Failed to create blog post:", error);
-    return {
-      success: false,
-      error:
-        error instanceof Error ? error.message : "Failed to create blog post",
-    };
+    return handleActionError(error, "Failed to create blog post");
   }
 }
 
 export async function updateBlogPost(
   input: UpdateBlogPostInput
-): Promise<{ success: boolean; error?: string }> {
+): Promise<ActionResult> {
   try {
     const db = getDb();
 
@@ -246,18 +236,11 @@ export async function updateBlogPost(
     revalidatePath("/blog-posts");
     return { success: true };
   } catch (error) {
-    console.error("Failed to update blog post:", error);
-    return {
-      success: false,
-      error:
-        error instanceof Error ? error.message : "Failed to update blog post",
-    };
+    return handleActionError(error, "Failed to update blog post");
   }
 }
 
-export async function deleteBlogPost(
-  id: number
-): Promise<{ success: boolean; error?: string }> {
+export async function deleteBlogPost(id: number): Promise<ActionResult> {
   try {
     const db = getDb();
 
@@ -272,12 +255,7 @@ export async function deleteBlogPost(
     revalidatePath("/blog-posts");
     return { success: true };
   } catch (error) {
-    console.error("Failed to delete blog post:", error);
-    return {
-      success: false,
-      error:
-        error instanceof Error ? error.message : "Failed to delete blog post",
-    };
+    return handleActionError(error, "Failed to delete blog post");
   }
 }
 

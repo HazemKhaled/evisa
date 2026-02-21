@@ -2,7 +2,18 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type BlogPost } from "@repo/database";
-import { FormCheckbox, FormInput, FormTextarea } from "@repo/ui";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  FormCheckbox,
+  FormInput,
+  FormTextarea,
+  toast,
+} from "@repo/ui";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -47,7 +58,7 @@ export function BlogPostDialog({
   open,
   onClose,
   post,
-}: BlogPostDialogProps): React.JSX.Element | null {
+}: BlogPostDialogProps): React.JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -114,7 +125,7 @@ export function BlogPostDialog({
         })
         .catch(error => {
           console.error("Failed to load blog post:", error);
-          alert("Failed to load blog post data");
+          toast.error("Failed to load blog post data");
         })
         .finally(() => {
           setIsLoading(false);
@@ -170,14 +181,14 @@ export function BlogPostDialog({
     setIsLoading(false);
 
     if (result.success) {
-      alert(
+      toast.success(
         post
           ? "Blog post updated successfully"
           : "Blog post created successfully"
       );
       onClose();
     } else {
-      alert(`Failed to save: ${result.error}`);
+      toast.error(result.error ?? "Failed to save blog post");
     }
   };
 
@@ -206,14 +217,14 @@ export function BlogPostDialog({
     );
   };
 
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-lg bg-white p-6">
-        <h2 className="mb-4 text-2xl font-bold">
-          {post ? "Edit Blog Post" : "Create Blog Post"}
-        </h2>
+    <Dialog open={open} onOpenChange={isOpen => !isOpen && onClose()}>
+      <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>
+            {post ? "Edit Blog Post" : "Create Blog Post"}
+          </DialogTitle>
+        </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Basic Information */}
@@ -329,26 +340,21 @@ export function BlogPostDialog({
             </I18nTabs>
           </div>
 
-          {/* Actions */}
-          <div className="flex justify-end gap-2">
-            <button
+          <DialogFooter>
+            <Button
               type="button"
+              variant="outline"
               onClick={onClose}
               disabled={isLoading}
-              className="rounded border px-4 py-2 hover:bg-gray-50 disabled:opacity-50"
             >
               Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
-            >
+            </Button>
+            <Button type="submit" disabled={isLoading}>
               {isLoading ? "Saving..." : post ? "Update" : "Create"}
-            </button>
-          </div>
+            </Button>
+          </DialogFooter>
         </form>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

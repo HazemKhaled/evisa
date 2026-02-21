@@ -5,6 +5,7 @@ import {
   count,
   eq,
   getDb,
+  inArray,
   isNull,
   like,
   type NewVisaEligibility,
@@ -14,7 +15,10 @@ import {
   visaEligibility,
   visaEligibilityI18n,
 } from "@repo/database";
+import { type PaginatedResult } from "@repo/utils";
 import { revalidatePath } from "next/cache";
+
+import { type ActionResult, handleActionError } from "@/lib/errors";
 
 interface EligibilityI18nData {
   locale: string;
@@ -48,14 +52,6 @@ interface GetEligibilityPaginatedInput {
   page?: number;
   pageSize?: number;
   search?: string;
-}
-
-interface PaginatedResult<T> {
-  data: T[];
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
 }
 
 export async function getEligibilityRules(): Promise<VisaEligibility[]> {
@@ -138,7 +134,7 @@ export async function getEligibilityWithI18n(id: number): Promise<{
 
 export async function createEligibility(
   input: CreateEligibilityInput
-): Promise<{ success: boolean; error?: string }> {
+): Promise<ActionResult> {
   try {
     const db = getDb();
 
@@ -173,62 +169,43 @@ export async function createEligibility(
     revalidatePath("/eligibility");
     return { success: true };
   } catch (error) {
-    console.error("Failed to create eligibility:", error);
-    return {
-      success: false,
-      error:
-        error instanceof Error
-          ? error.message
-          : "Failed to create eligibility rule",
-    };
+    return handleActionError(error, "Failed to create eligibility rule");
   }
 }
 
 export async function bulkCreateEligibility(
   input: BulkCreateInput
-): Promise<{ success: boolean; created: number; errors: string[] }> {
+): Promise<ActionResult & { created?: number }> {
   const db = getDb();
-  let created = 0;
-  const errors: string[] = [];
 
   try {
-    for (const passportCode of input.passportCodes) {
-      try {
-        const newEligibility: NewVisaEligibility = {
-          destinationCode: input.destinationCode.toUpperCase(),
-          passportCode: passportCode.toUpperCase(),
-          visaTypeId: input.visaTypeId,
-          eligibilityStatus: input.eligibilityStatus,
-          maxStayDays: input.maxStayDays ?? null,
-          isActive: input.isActive ?? true,
-        };
+    const records: NewVisaEligibility[] = input.passportCodes.map(
+      passportCode => ({
+        destinationCode: input.destinationCode.toUpperCase(),
+        passportCode: passportCode.toUpperCase(),
+        visaTypeId: input.visaTypeId,
+        eligibilityStatus: input.eligibilityStatus,
+        maxStayDays: input.maxStayDays ?? null,
+        isActive: input.isActive ?? true,
+      })
+    );
 
-        await db.insert(visaEligibility).values(newEligibility);
-        created++;
-      } catch (error) {
-        const errorMsg =
-          error instanceof Error ? error.message : "Failed to create rule";
-        errors.push(`${passportCode}: ${errorMsg}`);
-      }
-    }
+    await db.insert(visaEligibility).values(records);
 
     revalidatePath("/eligibility");
-    return { success: created > 0, created, errors };
+    return { success: true, created: records.length };
   } catch (error) {
-    console.error("Bulk create failed:", error);
-    return {
-      success: false,
-      created,
-      errors: [
-        error instanceof Error ? error.message : "Bulk operation failed",
-      ],
-    };
+    const result = handleActionError(
+      error,
+      "Failed to create eligibility records"
+    );
+    return { ...result, created: 0 };
   }
 }
 
 export async function updateEligibility(
   input: UpdateEligibilityInput
-): Promise<{ success: boolean; error?: string }> {
+): Promise<ActionResult> {
   try {
     const db = getDb();
 
@@ -263,20 +240,11 @@ export async function updateEligibility(
     revalidatePath("/eligibility");
     return { success: true };
   } catch (error) {
-    console.error("Failed to update eligibility:", error);
-    return {
-      success: false,
-      error:
-        error instanceof Error
-          ? error.message
-          : "Failed to update eligibility rule",
-    };
+    return handleActionError(error, "Failed to update eligibility rule");
   }
 }
 
-export async function deleteEligibility(
-  id: number
-): Promise<{ success: boolean; error?: string }> {
+export async function deleteEligibility(id: number): Promise<ActionResult> {
   try {
     const db = getDb();
 
@@ -291,52 +259,27 @@ export async function deleteEligibility(
     revalidatePath("/eligibility");
     return { success: true };
   } catch (error) {
-    console.error("Failed to delete eligibility:", error);
-    return {
-      success: false,
-      error:
-        error instanceof Error
-          ? error.message
-          : "Failed to delete eligibility rule",
-    };
+    return handleActionError(error, "Failed to delete eligibility rule");
   }
 }
 
 export async function bulkDeleteEligibility(
   ids: number[]
-): Promise<{ success: boolean; deleted: number; errors: string[] }> {
+): Promise<ActionResult> {
   const db = getDb();
-  let deleted = 0;
-  const errors: string[] = [];
 
   try {
-    for (const id of ids) {
-      try {
-        await db
-          .update(visaEligibility)
-          .set({
-            deletedAt: new Date(),
-            updatedAt: new Date(),
-          })
-          .where(eq(visaEligibility.id, id));
-        deleted++;
-      } catch (error) {
-        const errorMsg =
-          error instanceof Error ? error.message : "Failed to delete";
-        errors.push(`ID ${id}: ${errorMsg}`);
-      }
-    }
+    await db
+      .update(visaEligibility)
+      .set({
+        deletedAt: new Date(),
+        updatedAt: new Date(),
+      })
+      .where(inArray(visaEligibility.id, ids));
 
     revalidatePath("/eligibility");
-    return { success: deleted > 0, deleted, errors };
+    return { success: true };
   } catch (error) {
-    console.error("Bulk delete failed:", error);
-    return {
-      success: false,
-      deleted,
-      errors: [
-        error instanceof Error ? error.message : "Bulk operation failed",
-      ],
-    };
+    return handleActionError(error, "Failed to delete eligibility records");
   }
 }

@@ -2,71 +2,67 @@
 
 import { Button, Input } from "@repo/ui";
 import { cn } from "@repo/utils";
-import React, { useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useState, useTransition } from "react";
 
 import { useTranslation } from "@/app/i18n/client";
-import {
-  type BlogPostData,
-  searchBlogPostsClient,
-} from "@/lib/services/blog-service-client";
-
-import { ClientBlogPostCard } from "./client-blog-post-card";
 
 interface BlogSearchProps {
   locale: string;
-  allPosts: BlogPostData[];
   className?: string;
   searchPlaceholder?: string;
+  searchValue?: string;
 }
 
 export function BlogSearch({
   locale,
-  allPosts,
   className,
   searchPlaceholder,
+  searchValue,
 }: BlogSearchProps) {
-  const [query, setQuery] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
-  const [searchResults, setSearchResults] = useState<BlogPostData[]>([]);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [query, setQuery] = useState(searchValue ?? "");
+  const [isPending, startTransition] = useTransition();
 
   const { t } = useTranslation(locale, "blog");
 
-  // Debounced search effect
   useEffect(() => {
-    if (!query.trim()) {
-      setSearchResults([]);
-      setIsSearching(false);
+    const trimmed = query.trim();
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (trimmed) {
+      params.set("search", trimmed);
+    } else {
+      params.delete("search");
+    }
+    params.delete("page");
+
+    const nextQuery = params.toString();
+    const nextUrl = nextQuery ? `${pathname}?${nextQuery}` : pathname;
+    const currentQuery = searchParams.toString();
+    const currentUrl = currentQuery ? `${pathname}?${currentQuery}` : pathname;
+
+    if (nextUrl === currentUrl) {
       return;
     }
 
-    setIsSearching(true);
-
-    // Debounce search
     const timeoutId = setTimeout(() => {
-      try {
-        const results = searchBlogPostsClient(allPosts, query, 12);
-        setSearchResults(results);
-      } catch {
-        setSearchResults([]);
-      } finally {
-        setIsSearching(false);
-      }
+      startTransition(() => {
+        router.push(nextUrl);
+      });
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [query, allPosts]);
+  }, [query, pathname, router, searchParams]);
 
   const handleClear = () => {
     setQuery("");
-    setSearchResults([]);
   };
-
-  const showResults = query.trim() && !isSearching;
-  const hasResults = searchResults.length > 0;
 
   return (
     <div className={cn("w-full", className)}>
-      {/* Search Input */}
       <div className="relative mb-6">
         <div className="relative">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -95,6 +91,7 @@ export function BlogSearch({
           />
           {query && (
             <Button
+              type="button"
               onClick={handleClear}
               className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
               aria-label={t("aria.clearSearch")}
@@ -116,56 +113,12 @@ export function BlogSearch({
           )}
         </div>
 
-        {/* Loading indicator */}
-        {isSearching && (
+        {isPending && (
           <div className="mt-2 text-center text-sm text-gray-500">
             {t("search.loading")}
           </div>
         )}
       </div>
-
-      {/* Search Results */}
-      {showResults && (
-        <div className="space-y-6">
-          {/* Results header */}
-          <div className="flex items-center justify-between border-b border-gray-200 pb-4">
-            <h2 className="text-lg font-semibold text-gray-900">
-              {t("search.heading")}
-            </h2>
-            <span className="text-sm text-gray-500">
-              {searchResults.length}{" "}
-              {searchResults.length === 1
-                ? t("search.result")
-                : t("search.results")}
-            </span>
-          </div>
-
-          {/* Results grid or empty state */}
-          {hasResults ? (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {searchResults.map(post => (
-                <ClientBlogPostCard
-                  key={post.slug}
-                  post={post}
-                  locale={locale}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="py-12 text-center">
-              <div className="mx-auto max-w-md">
-                <div className="mb-4 text-6xl opacity-50">🔍</div>
-                <h3 className="mb-2 text-xl font-semibold text-gray-900">
-                  {t("search.noResults")}
-                </h3>
-                <p className="text-gray-600">
-                  {query.trim() && `No posts found for "${query}"`}
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 }

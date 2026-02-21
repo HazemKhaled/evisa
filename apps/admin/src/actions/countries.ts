@@ -13,6 +13,7 @@ import {
   type NewCountryI18n,
   or,
 } from "@repo/database";
+import { type PaginatedResult } from "@repo/utils";
 import { revalidatePath } from "next/cache";
 
 import { type ActionResult, handleActionError } from "@/lib/errors";
@@ -51,14 +52,6 @@ interface GetCountriesPaginatedInput {
   page?: number;
   pageSize?: number;
   search?: string;
-}
-
-interface PaginatedResult<T> {
-  data: T[];
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
 }
 
 export async function getCountriesPaginated(

@@ -131,6 +131,17 @@ export function generateId(length = 8): string {
 }
 
 /**
+ * Generic paginated result interface for server actions and API responses
+ */
+export interface PaginatedResult<T> {
+  data: T[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
+/**
  * Safe JSON parse that returns null on error
  */
 export function safeJsonParse<T = unknown>(json: string): T | null {

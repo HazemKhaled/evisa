@@ -19,6 +19,7 @@ export type { Database } from "./connection";
 // Re-export common drizzle-orm utilities
 export {
   and,
+  avg,
   count,
   desc,
   eq,
@@ -26,6 +27,7 @@ export {
   isNotNull,
   isNull,
   like,
+  min,
   or,
   sql,
 } from "drizzle-orm";
