@@ -28,9 +28,9 @@ export async function requireAdminAuth(): Promise<{
   success: boolean;
   error?: string;
 }> {
-  const session = await auth();
+  const { userId } = await auth();
 
-  if (!session) {
+  if (!userId) {
     return {
       success: false,
       error: "Unauthorized: You must be logged in to perform this action",
