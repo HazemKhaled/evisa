@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@repo/ui";
+
 interface VisaTypesErrorProps {
   error: Error;
   reset: () => void;
@@ -15,12 +17,9 @@ export default function VisaTypesError({ error, reset }: VisaTypesErrorProps) {
       <p className="mb-6 max-w-md text-sm text-red-600">
         {error.message || "An unexpected error occurred. Please try again."}
       </p>
-      <button
-        onClick={reset}
-        className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
-      >
+      <Button onClick={reset} variant="destructive">
         Try again
-      </button>
+      </Button>
     </div>
   );
 }
