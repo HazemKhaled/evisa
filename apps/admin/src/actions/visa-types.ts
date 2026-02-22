@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdminAuth } from "@repo/auth/server";
 import {
   and,
   count,
@@ -14,7 +15,10 @@ import {
   visaTypes,
   visaTypesI18n,
 } from "@repo/database";
+import { type PaginatedResult } from "@repo/utils";
 import { revalidatePath } from "next/cache";
+
+import { type ActionResult, handleActionError } from "@/lib/errors";
 
 interface VisaTypeI18nData {
   locale: string;
@@ -56,14 +60,6 @@ interface GetVisaTypesPaginatedInput {
   page?: number;
   pageSize?: number;
   search?: string;
-}
-
-interface PaginatedResult<T> {
-  data: T[];
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
 }
 
 export async function getVisaTypesPaginated(
@@ -138,7 +134,12 @@ export async function getVisaTypeWithI18n(id: number): Promise<{
 
 export async function createVisaType(
   input: CreateVisaTypeInput
-): Promise<{ success: boolean; error?: string }> {
+): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -180,18 +181,18 @@ export async function createVisaType(
     revalidatePath("/visa-types");
     return { success: true };
   } catch (error) {
-    console.error("Failed to create visa type:", error);
-    return {
-      success: false,
-      error:
-        error instanceof Error ? error.message : "Failed to create visa type",
-    };
+    return handleActionError(error, "Failed to create visa type");
   }
 }
 
 export async function updateVisaType(
   input: UpdateVisaTypeInput
-): Promise<{ success: boolean; error?: string }> {
+): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -232,18 +233,16 @@ export async function updateVisaType(
     revalidatePath("/visa-types");
     return { success: true };
   } catch (error) {
-    console.error("Failed to update visa type:", error);
-    return {
-      success: false,
-      error:
-        error instanceof Error ? error.message : "Failed to update visa type",
-    };
+    return handleActionError(error, "Failed to update visa type");
   }
 }
 
-export async function deleteVisaType(
-  id: number
-): Promise<{ success: boolean; error?: string }> {
+export async function deleteVisaType(id: number): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -258,11 +257,6 @@ export async function deleteVisaType(
     revalidatePath("/visa-types");
     return { success: true };
   } catch (error) {
-    console.error("Failed to delete visa type:", error);
-    return {
-      success: false,
-      error:
-        error instanceof Error ? error.message : "Failed to delete visa type",
-    };
+    return handleActionError(error, "Failed to delete visa type");
   }
 }

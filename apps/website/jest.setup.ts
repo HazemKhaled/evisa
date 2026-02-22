@@ -1,12 +1,17 @@
 import "@testing-library/jest-dom";
 
 import * as React from "react";
-import { TextEncoder } from "util";
+import { TextDecoder, TextEncoder } from "util";
 
-// Polyfill TextEncoder for Node.js environment (required by @neondatabase/serverless v1.0+)
+// Polyfill TextEncoder and TextDecoder for Node.js environment (required by @neondatabase/serverless v1.0+)
 if (typeof globalThis.TextEncoder === "undefined") {
   globalThis.TextEncoder =
     TextEncoder as unknown as typeof globalThis.TextEncoder;
+}
+
+if (typeof globalThis.TextDecoder === "undefined") {
+  globalThis.TextDecoder =
+    TextDecoder as unknown as typeof globalThis.TextDecoder;
 }
 
 // Mock next/navigation

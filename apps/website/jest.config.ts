@@ -17,6 +17,8 @@ const config: Config = {
   moduleNameMapper: {
     "^@opennextjs/cloudflare$":
       "<rootDir>/src/lib/__mocks__/opennextjs-cloudflare.js",
+    "^@repo/database$": "<rootDir>/__mocks__/@repo/database.ts",
+    "^next/cache$": "<rootDir>/__mocks__/next/cache.ts",
   },
   collectCoverageFrom: [
     "src/lib/**/*.{ts,tsx}",

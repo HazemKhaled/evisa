@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "type-check": "tsc --noEmit",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
@@ -24,10 +24,10 @@
     "@repo/utils": "workspace:*",
     "@tanstack/react-table": "8.21.3",
     "date-fns": "4.1.0",
-    "lucide-react": "0.562.0",
-    "react-hook-form": "7.71.1",
+    "lucide-react": "0.575.0",
+    "react-hook-form": "7.71.2",
     "recharts": "2.15.4",
-    "zod": "4.3.5"
+    "zod": "4.3.6"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*"

@@ -2,7 +2,18 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type Country, type VisaType } from "@repo/database";
-import { FormCheckbox, FormInput, FormTextarea } from "@repo/ui";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  FormCheckbox,
+  FormInput,
+  FormTextarea,
+  toast,
+} from "@repo/ui";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -56,7 +67,7 @@ export function VisaTypeDialog({
   onClose,
   visaType,
   countries,
-}: VisaTypeDialogProps): React.JSX.Element | null {
+}: VisaTypeDialogProps): React.JSX.Element {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [i18nData, setI18nData] = useState<
@@ -184,18 +195,18 @@ export function VisaTypeDialog({
     if (result.success) {
       onClose();
     } else {
-      alert(result.error ?? "Failed to save visa type");
+      toast.error(result.error ?? "Failed to save visa type");
     }
   };
 
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-background max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-lg p-6 shadow-lg">
-        <h2 className="mb-6 text-2xl font-bold">
-          {visaType ? "Edit Visa Type" : "Add Visa Type"}
-        </h2>
+    <Dialog open={open} onOpenChange={isOpen => !isOpen && onClose()}>
+      <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>
+            {visaType ? "Edit Visa Type" : "Add Visa Type"}
+          </DialogTitle>
+        </DialogHeader>
 
         {isLoading ? (
           <div className="py-8 text-center">Loading...</div>
@@ -314,26 +325,22 @@ export function VisaTypeDialog({
               </I18nTabs>
             </div>
 
-            <div className="flex justify-end gap-4">
-              <button
+            <DialogFooter>
+              <Button
                 type="button"
+                variant="outline"
                 onClick={onClose}
-                className="border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md border px-4 py-2 text-sm font-medium"
                 disabled={isSubmitting}
               >
                 Cancel
-              </button>
-              <button
-                type="submit"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-md px-4 py-2 text-sm font-medium disabled:opacity-50"
-                disabled={isSubmitting}
-              >
+              </Button>
+              <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting ? "Saving..." : visaType ? "Update" : "Create"}
-              </button>
-            </div>
+              </Button>
+            </DialogFooter>
           </form>
         )}
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

@@ -26,18 +26,6 @@ export function LanguageSwitcher() {
     languagesObj.find(lang => lang.code === currentLocale) || languagesObj[0];
   const isCurrentRTL = isRTL(currentLocale);
 
-  // Static labels to avoid hydration mismatch
-  const languageLabels: Record<string, string> = {
-    en: "Language",
-    es: "Idioma",
-    ar: "اللغة",
-    pt: "Idioma",
-    ru: "Язык",
-    de: "Sprache",
-    fr: "Langue",
-    it: "Lingua",
-  };
-
   const handleLanguageChange = (languageCode: string) => {
     const newPath = pathname.replace(`/${currentLocale}`, `/${languageCode}`);
 
@@ -58,7 +46,7 @@ export function LanguageSwitcher() {
             "group hover:bg-accent/80 hover:border-primary/20 h-auto gap-2.5 px-3 py-2 font-medium transition-all duration-200",
             isCurrentRTL && "flex-row-reverse"
           )}
-          aria-label={languageLabels[currentLocale] || languageLabels.en}
+          aria-label={currentLanguage.nativeName}
         >
           <span className="text-lg drop-shadow-sm">{currentLanguage.flag}</span>
           <span className="hidden text-sm sm:inline">
@@ -92,7 +80,7 @@ export function LanguageSwitcher() {
           )}
         >
           <Globe className="h-3.5 w-3.5" />
-          {languageLabels[currentLocale] || languageLabels.en}
+          {currentLanguage.nativeName}
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-border/50 mx-1 my-1.5" />
 

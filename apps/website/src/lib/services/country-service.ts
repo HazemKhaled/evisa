@@ -1,5 +1,7 @@
 import {
   and,
+  avg,
+  count,
   countries,
   countriesI18n,
   eq,
@@ -7,6 +9,7 @@ import {
   inArray,
   isNotNull,
   isNull,
+  min,
   or,
   sql,
   visaEligibility,
@@ -56,6 +59,74 @@ function validateSortBy(
 function validateLimit(limit: number): number {
   if (!limit || typeof limit !== "number" || limit < 1) return 20;
   return Math.min(Math.max(1, Math.floor(limit)), 100); // Max 100 results
+}
+
+/**
+ * Batch-fetch visa statistics for a list of destination codes.
+ * Issues exactly 2 queries regardless of the number of destinations.
+ */
+async function getVisaStatsForDestinations(
+  db: ReturnType<typeof getDb>,
+  destCodes: string[]
+): Promise<{
+  visaStatsMap: Map<
+    string,
+    { totalVisaTypes: number; avgProcessingTime: number; minFee: number }
+  >;
+  visaFreeSet: Set<string>;
+}> {
+  if (destCodes.length === 0) {
+    return { visaStatsMap: new Map(), visaFreeSet: new Set() };
+  }
+
+  const [visaStatRows, visaFreeRows] = await Promise.all([
+    db
+      .select({
+        destinationCode: visaTypes.destinationCode,
+        totalVisaTypes: count(visaTypes.id),
+        avgProcessingTime: avg(visaTypes.processingTime),
+        minFee: min(visaTypes.fee),
+      })
+      .from(visaTypes)
+      .where(
+        and(
+          inArray(visaTypes.destinationCode, destCodes),
+          eq(visaTypes.isActive, true),
+          isNull(visaTypes.deletedAt)
+        )
+      )
+      .groupBy(visaTypes.destinationCode),
+    db
+      .select({ destinationCode: visaEligibility.destinationCode })
+      .from(visaEligibility)
+      .where(
+        and(
+          inArray(visaEligibility.destinationCode, destCodes),
+          inArray(visaEligibility.eligibilityStatus, [
+            "visa_free",
+            "on_arrival",
+          ]),
+          eq(visaEligibility.isActive, true),
+          isNull(visaEligibility.deletedAt)
+        )
+      )
+      .groupBy(visaEligibility.destinationCode),
+  ]);
+
+  const visaStatsMap = new Map(
+    visaStatRows.map(r => [
+      r.destinationCode,
+      {
+        totalVisaTypes: Number(r.totalVisaTypes),
+        avgProcessingTime: r.avgProcessingTime
+          ? Math.round(Number(r.avgProcessingTime))
+          : 0,
+        minFee: r.minFee ? Number(r.minFee) : 0,
+      },
+    ])
+  );
+  const visaFreeSet = new Set(visaFreeRows.map(r => r.destinationCode));
+  return { visaStatsMap, visaFreeSet };
 }
 
 /**
@@ -289,6 +360,7 @@ export async function searchCountries(
 
   try {
     const db = getDb();
+    const searchTerm = `%${query.toLowerCase()}%`;
 
     const results = await db
       .select({
@@ -306,32 +378,24 @@ export async function searchCountries(
           eq(countriesI18n.locale, locale)
         )
       )
-      .where(isNull(countries.deletedAt))
+      .where(
+        and(
+          isNull(countries.deletedAt),
+          or(
+            sql`LOWER(${countriesI18n.name}) LIKE ${searchTerm}`,
+            sql`LOWER(${countries.code}) LIKE ${searchTerm}`
+          )
+        )
+      )
       .limit(limit);
 
-    // Filter results by query on the application side for now
-    // In production, you'd want to do this in the database with proper search
-    return results
-      .filter(result => {
-        const localizedName = (
-          result.localizedName || result.name
-        ).toLowerCase();
-        const originalName = result.name.toLowerCase();
-        const searchQuery = query.toLowerCase();
-
-        return (
-          localizedName.includes(searchQuery) ||
-          originalName.includes(searchQuery) ||
-          result.code.includes(searchQuery)
-        );
-      })
-      .map(result => ({
-        code: result.code,
-        name: result.name,
-        heroImage: result.heroImage,
-        localizedName: result.localizedName || result.name,
-        about: result.about,
-      }));
+    return results.map(result => ({
+      code: result.code,
+      name: result.name,
+      heroImage: result.heroImage,
+      localizedName: result.localizedName || result.name,
+      about: result.about,
+    }));
   } catch (error) {
     console.warn(`Failed to search countries with query "${query}":`, error);
     return [];
@@ -424,68 +488,30 @@ export async function getDestinationsListWithMetadata(
             arr.findIndex(d => d.code === destination.code) === index
         );
 
-        // For each destination, get visa statistics
-        const destinationsWithStats = await Promise.all(
-          uniqueResults.map(async destination => {
-            const visaStats = await db
-              .select({
-                count: visaTypes.id,
-                avgProcessingTime: visaTypes.processingTime,
-                minFee: visaTypes.fee,
-              })
-              .from(visaTypes)
-              .where(
-                and(
-                  eq(visaTypes.destinationCode, destination.code),
-                  eq(visaTypes.isActive, true),
-                  isNull(visaTypes.deletedAt)
-                )
-              );
-
-            const totalVisaTypes = visaStats.length;
-            const avgProcessingTime =
-              totalVisaTypes > 0
-                ? Math.round(
-                    visaStats.reduce((sum, v) => sum + v.avgProcessingTime, 0) /
-                      totalVisaTypes
-                  )
-                : 0;
-            const minVisaFee =
-              totalVisaTypes > 0
-                ? Math.min(...visaStats.map(v => v.minFee))
-                : 0;
-
-            // Check for visa-free options
-            const visaFreeCount = await db
-              .select({ count: visaEligibility.id })
-              .from(visaEligibility)
-              .where(
-                and(
-                  eq(visaEligibility.destinationCode, destination.code),
-                  inArray(visaEligibility.eligibilityStatus, [
-                    "visa_free",
-                    "on_arrival",
-                  ]),
-                  eq(visaEligibility.isActive, true),
-                  isNull(visaEligibility.deletedAt)
-                )
-              );
-
-            return {
-              code: destination.code,
-              name: destination.name,
-              localizedName: destination.localizedName || destination.name,
-              heroImage: destination.heroImage,
-              about: destination.about,
-              continent: destination.continent,
-              region: destination.region,
-              totalVisaTypes,
-              avgProcessingTime,
-              minVisaFee,
-              hasVisaFreeOptions: visaFreeCount.length > 0,
-            };
-          })
+        const destinationCodes = uniqueResults.map(
+          destination => destination.code
         );
+        const { visaStatsMap, visaFreeSet } = await getVisaStatsForDestinations(
+          db,
+          destinationCodes
+        );
+
+        const destinationsWithStats = uniqueResults.map(destination => {
+          const stats = visaStatsMap.get(destination.code);
+          return {
+            code: destination.code,
+            name: destination.name,
+            localizedName: destination.localizedName || destination.name,
+            heroImage: destination.heroImage,
+            about: destination.about,
+            continent: destination.continent,
+            region: destination.region,
+            totalVisaTypes: stats?.totalVisaTypes ?? 0,
+            avgProcessingTime: stats?.avgProcessingTime ?? 0,
+            minVisaFee: stats?.minFee ?? 0,
+            hasVisaFreeOptions: visaFreeSet.has(destination.code),
+          };
+        });
 
         // Apply sorting
         switch (validatedSortBy) {
@@ -674,66 +700,28 @@ export async function getDestinationsListWithMetadataPaginated(
         arr.findIndex(d => d.code === destination.code) === index
     );
 
-    // For each destination, get visa statistics
-    const destinationsWithStats = await Promise.all(
-      uniqueResults.map(async destination => {
-        const visaStats = await db
-          .select({
-            count: visaTypes.id,
-            avgProcessingTime: visaTypes.processingTime,
-            minFee: visaTypes.fee,
-          })
-          .from(visaTypes)
-          .where(
-            and(
-              eq(visaTypes.destinationCode, destination.code),
-              eq(visaTypes.isActive, true),
-              isNull(visaTypes.deletedAt)
-            )
-          );
-
-        const totalVisaTypes = visaStats.length;
-        const avgProcessingTime =
-          totalVisaTypes > 0
-            ? Math.round(
-                visaStats.reduce((sum, v) => sum + v.avgProcessingTime, 0) /
-                  totalVisaTypes
-              )
-            : 0;
-        const minVisaFee =
-          totalVisaTypes > 0 ? Math.min(...visaStats.map(v => v.minFee)) : 0;
-
-        // Check for visa-free options
-        const visaFreeCount = await db
-          .select({ count: visaEligibility.id })
-          .from(visaEligibility)
-          .where(
-            and(
-              eq(visaEligibility.destinationCode, destination.code),
-              inArray(visaEligibility.eligibilityStatus, [
-                "visa_free",
-                "on_arrival",
-              ]),
-              eq(visaEligibility.isActive, true),
-              isNull(visaEligibility.deletedAt)
-            )
-          );
-
-        return {
-          code: destination.code,
-          name: destination.name,
-          localizedName: destination.localizedName || destination.name,
-          heroImage: destination.heroImage,
-          about: destination.about,
-          continent: destination.continent,
-          region: destination.region,
-          totalVisaTypes,
-          avgProcessingTime,
-          minVisaFee,
-          hasVisaFreeOptions: visaFreeCount.length > 0,
-        };
-      })
+    const destinationCodes = uniqueResults.map(destination => destination.code);
+    const { visaStatsMap, visaFreeSet } = await getVisaStatsForDestinations(
+      db,
+      destinationCodes
     );
+
+    const destinationsWithStats = uniqueResults.map(destination => {
+      const stats = visaStatsMap.get(destination.code);
+      return {
+        code: destination.code,
+        name: destination.name,
+        localizedName: destination.localizedName || destination.name,
+        heroImage: destination.heroImage,
+        about: destination.about,
+        continent: destination.continent,
+        region: destination.region,
+        totalVisaTypes: stats?.totalVisaTypes ?? 0,
+        avgProcessingTime: stats?.avgProcessingTime ?? 0,
+        minVisaFee: stats?.minFee ?? 0,
+        hasVisaFreeOptions: visaFreeSet.has(destination.code),
+      };
+    });
 
     // Apply sorting
     let sortedDestinations: DestinationMetadata[];

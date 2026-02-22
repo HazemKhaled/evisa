@@ -1,7 +1,18 @@
 "use client";
 
 import { type Country } from "@repo/database";
-import { Button } from "@repo/ui";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  Button,
+  toast,
+} from "@repo/ui";
 import { type ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -34,6 +45,9 @@ export function CountriesClient({
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingCountry, setEditingCountry] = useState<Country | null>(null);
   const [isDeleting, setIsDeleting] = useState<string | null>(null);
+  const [pendingDeleteCode, setPendingDeleteCode] = useState<string | null>(
+    null
+  );
 
   const currentSearch = searchParams.get("search") || "";
 
@@ -72,18 +86,18 @@ export function CountriesClient({
     setDialogOpen(true);
   };
 
-  const handleDelete = async (code: string): Promise<void> => {
-    if (!confirm("Are you sure you want to delete this country?")) {
-      return;
-    }
+  const handleDelete = (code: string): void => {
+    setPendingDeleteCode(code);
+  };
 
-    setIsDeleting(code);
-    const result = await deleteCountry(code);
-
+  const confirmDelete = async (): Promise<void> => {
+    if (!pendingDeleteCode) return;
+    setIsDeleting(pendingDeleteCode);
+    setPendingDeleteCode(null);
+    const result = await deleteCountry(pendingDeleteCode);
     if (!result.success) {
-      alert(result.error ?? "Failed to delete country");
+      toast.error(result.error ?? "Failed to delete country");
     }
-
     setIsDeleting(null);
     router.refresh();
   };
@@ -196,6 +210,27 @@ export function CountriesClient({
         onClose={handleDialogClose}
         country={editingCountry}
       />
+
+      <AlertDialog
+        open={!!pendingDeleteCode}
+        onOpenChange={open => !open && setPendingDeleteCode(null)}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Country</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete this country? This action cannot
+              be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete}>
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 }

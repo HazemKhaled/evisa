@@ -62,5 +62,8 @@
       "title": "Neueste Reise-Einblicke",
       "subtitle": "Bleiben Sie mit Reisetipps und Reiseziel-Führern auf dem Laufenden"
     }
-  }
+  },
+  "emptyTag": "Keine Beiträge mit Tag \"{{tag}}\" gefunden",
+  "emptyDestination": "Keine Beiträge für das Ziel \"{{destination}}\" gefunden",
+  "emptySearch": "Keine Beiträge für \"{{search}}\" gefunden"
 }

@@ -20,7 +20,6 @@
     "loading": "Ricerca...",
     "result": "risultato"
   },
-
   "content": {
     "tags": "Tag",
     "relatedArticles": "Articoli correlati",
@@ -63,5 +62,8 @@
       "title": "Ultimi approfondimenti di viaggio",
       "subtitle": "Rimani aggiornato con consigli di viaggio e guide alle destinazioni"
     }
-  }
+  },
+  "emptyTag": "Nessun articolo trovato con il tag \"{{tag}}\"",
+  "emptyDestination": "Nessun articolo trovato per la destinazione \"{{destination}}\"",
+  "emptySearch": "Nessun articolo trovato per \"{{search}}\""
 }

@@ -7,6 +7,7 @@ import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
+  Toaster,
 } from "@repo/ui";
 import { Search } from "lucide-react";
 import type { Metadata } from "next";
@@ -60,6 +61,7 @@ export default function RootLayout({
               </div>
             </SidebarInset>
           </SidebarProvider>
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
