@@ -39,7 +39,6 @@ export async function BlogPostDetail({
           { label: tNav("breadcrumb.blog"), href: `/${locale}/blog` },
           { label: post.title, isCurrentPage: true },
         ]}
-        locale={locale}
         className="mb-6"
       />
 

@@ -6,7 +6,6 @@ import {
   createSpacing,
   formStyles,
   layoutStyles,
-  rtlStyles,
   tagStyles,
   textStyles,
 } from "../styles";
@@ -115,27 +114,6 @@ describe("Styles utilities", () => {
       expect(layoutStyles.grid.responsive).toContain("grid");
       expect(layoutStyles.grid.responsive).toContain("md:grid-cols-2");
       expect(layoutStyles.grid.responsive).toContain("lg:grid-cols-3");
-    });
-  });
-
-  describe("rtlStyles", () => {
-    it("returns correct RTL margin classes", () => {
-      expect(rtlStyles.marginRight(true)).toBe("mr-0 ml-2");
-      expect(rtlStyles.marginRight(false)).toBe("ml-0 mr-2");
-      expect(rtlStyles.marginLeft(true)).toBe("ml-0 mr-2");
-      expect(rtlStyles.marginLeft(false)).toBe("mr-0 ml-2");
-    });
-
-    it("returns correct RTL padding classes", () => {
-      expect(rtlStyles.paddingRight(true)).toBe("pr-0 pl-2");
-      expect(rtlStyles.paddingRight(false)).toBe("pl-0 pr-2");
-      expect(rtlStyles.paddingLeft(true)).toBe("pl-0 pr-2");
-      expect(rtlStyles.paddingLeft(false)).toBe("pr-0 pl-2");
-    });
-
-    it("returns correct RTL text alignment", () => {
-      expect(rtlStyles.textAlign(true)).toBe("text-right");
-      expect(rtlStyles.textAlign(false)).toBe("text-left");
     });
   });
 

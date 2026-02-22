@@ -1,3 +1,4 @@
+import { ChevronRight } from "lucide-react";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -139,7 +140,6 @@ export default async function DestinationPage({
             { label: tNav("breadcrumb.destinations"), href: `/${locale}/d` },
             { label: destinationData.localizedName, isCurrentPage: true },
           ]}
-          locale={locale}
           className="container mx-auto px-4 py-4"
         />
 
@@ -221,7 +221,7 @@ export default async function DestinationPage({
               className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center rounded-lg px-6 py-3 transition-colors"
             >
               {t("relatedContent.viewBlog")}
-              <span className="ml-2 ltr:rotate-0 rtl:rotate-180">→</span>
+              <ChevronRight className="ms-2 h-4 w-4 rtl:rotate-180" />
             </a>
           </div>
         </section>

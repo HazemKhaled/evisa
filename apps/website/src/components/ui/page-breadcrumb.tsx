@@ -6,7 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@repo/ui";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 interface BreadcrumbItem {
@@ -17,18 +17,10 @@ interface BreadcrumbItem {
 
 interface PageBreadcrumbProps {
   items: BreadcrumbItem[];
-  locale: string;
   className?: string;
 }
 
-export function PageBreadcrumb({
-  items,
-  locale,
-  className,
-}: PageBreadcrumbProps) {
-  // Determine if locale is RTL
-  const isRTL = locale === "ar";
-
+export function PageBreadcrumb({ items, className }: PageBreadcrumbProps) {
   return (
     <div className={className}>
       <Breadcrumb>
@@ -50,11 +42,7 @@ export function PageBreadcrumb({
 
                 {!isLast && (
                   <BreadcrumbSeparator>
-                    {isRTL ? (
-                      <ChevronLeft className="h-3.5 w-3.5" />
-                    ) : (
-                      <ChevronRight className="h-3.5 w-3.5" />
-                    )}
+                    <ChevronRight className="h-3.5 w-3.5 rtl:rotate-180" />
                   </BreadcrumbSeparator>
                 )}
               </div>

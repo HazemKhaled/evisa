@@ -4,7 +4,7 @@ import { getTranslation } from "@/app/i18n";
 import { DestinationsGrid } from "@/components/destinations/destinations-grid";
 import { SearchFilterForm } from "@/components/destinations/search-filter-form";
 import { JsonLd } from "@/components/json-ld";
-import { EnhancedPagination } from "@/components/ui";
+import { EnhancedPagination, PageBreadcrumb } from "@/components/ui";
 import { generateWebPageJsonLd } from "@/lib/json-ld";
 import {
   getDestinationContinents,
@@ -108,24 +108,13 @@ export default async function DestinationsPage({
 
       <main className="min-h-screen">
         {/* Breadcrumb Navigation */}
-        <nav
+        <PageBreadcrumb
+          items={[
+            { label: tNav("breadcrumb.home"), href: `/${locale}` },
+            { label: tNav("breadcrumb.destinations"), isCurrentPage: true },
+          ]}
           className="container mx-auto px-4 py-4"
-          aria-label={t("aria.breadcrumb")}
-        >
-          <ol className="text-muted-foreground flex items-center space-x-2 text-sm rtl:space-x-reverse">
-            <li>
-              <a href={`/${locale}`} className="hover:text-primary">
-                {tNav("breadcrumb.home")}
-              </a>
-            </li>
-            <li className="flex items-center">
-              <span className="mx-2 ltr:rotate-0 rtl:rotate-180">→</span>
-              <span className="text-foreground font-medium">
-                {tNav("breadcrumb.destinations")}
-              </span>
-            </li>
-          </ol>
-        </nav>
+        />
 
         {/* Hero Section */}
         <section className="from-primary/5 bg-gradient-to-br via-blue-50 to-purple-50 py-16">

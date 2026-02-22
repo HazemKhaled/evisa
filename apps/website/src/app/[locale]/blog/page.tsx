@@ -184,11 +184,7 @@ export default async function BlogHome({
       <StaticPageLayout>
         <div className="mx-auto max-w-7xl">
           {/* Breadcrumb */}
-          <PageBreadcrumb
-            items={breadcrumbItems}
-            locale={locale}
-            className="mb-8"
-          />
+          <PageBreadcrumb items={breadcrumbItems} className="mb-8" />
 
           {/* Header */}
           <div className="mb-12 text-center">

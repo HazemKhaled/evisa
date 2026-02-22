@@ -1,6 +1,7 @@
 import "../globals.css";
 
 import { GoogleTagManager } from "@next/third-parties/google";
+import { DirectionProvider } from "@repo/ui";
 import { cn } from "@repo/utils";
 import type { Metadata, Viewport } from "next";
 import { Cairo, Geist_Mono } from "next/font/google";
@@ -115,12 +116,14 @@ export default async function LocaleLayout({
           "bg-background text-foreground min-h-screen font-sans antialiased"
         )}
       >
-        <Header locale={locale} />
-        {children}
-        <Footer locale={locale} />
+        <DirectionProvider direction={direction}>
+          <Header locale={locale} />
+          {children}
+          <Footer locale={locale} />
 
-        <JsonLd data={organizationJsonLd} />
-        <JsonLd data={websiteJsonLd} />
+          <JsonLd data={organizationJsonLd} />
+          <JsonLd data={websiteJsonLd} />
+        </DirectionProvider>
       </body>
     </html>
   );

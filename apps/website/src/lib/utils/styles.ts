@@ -84,17 +84,6 @@ export const layoutStyles = {
 } as const;
 
 /**
- * RTL-aware spacing utilities
- */
-export const rtlStyles = {
-  marginRight: (isRTL: boolean) => (isRTL ? "mr-0 ml-2" : "ml-0 mr-2"),
-  marginLeft: (isRTL: boolean) => (isRTL ? "ml-0 mr-2" : "mr-0 ml-2"),
-  paddingRight: (isRTL: boolean) => (isRTL ? "pr-0 pl-2" : "pl-0 pr-2"),
-  paddingLeft: (isRTL: boolean) => (isRTL ? "pl-0 pr-2" : "pr-0 pl-2"),
-  textAlign: (isRTL: boolean) => (isRTL ? "text-right" : "text-left"),
-} as const;
-
-/**
  * Tag and badge styles
  */
 export const tagStyles = {
