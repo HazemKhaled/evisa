@@ -486,7 +486,7 @@ function BlogPostsSectionSkeleton() {
           <Skeleton className="mx-auto mt-4 h-5 w-96" />
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: 3 }).map((_, i) => (
+          {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="rounded-lg border bg-white p-4">
               <Skeleton className="mb-4 aspect-video w-full rounded-md" />
               <Skeleton className="mb-2 h-5 w-3/4" />
