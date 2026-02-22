@@ -1,5 +1,5 @@
-import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import { cn } from "@repo/utils";
+import { Avatar as AvatarPrimitive } from "radix-ui";
 import * as React from "react";
 
 const Avatar = React.forwardRef<

@@ -1,8 +1,8 @@
 "use client";
 
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cn } from "@repo/utils";
 import { XIcon } from "lucide-react";
+import { Dialog as DialogPrimitive } from "radix-ui";
 import * as React from "react";
 
 function Dialog({
@@ -128,6 +128,14 @@ function DialogDescription({
   );
 }
 
+interface DialogProps {
+  children?: React.ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?(open: boolean): void;
+  modal?: boolean;
+}
+
 export {
   Dialog,
   DialogClose,
@@ -137,6 +145,7 @@ export {
   DialogHeader,
   DialogOverlay,
   DialogPortal,
+  type DialogProps,
   DialogTitle,
   DialogTrigger,
 };
