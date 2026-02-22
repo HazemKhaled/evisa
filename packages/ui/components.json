@@ -16,5 +16,8 @@
     "ui": "src",
     "lib": "src/lib",
     "hooks": "src/hooks"
+  },
+  "registries": {
+    "@magicui": "https://magicui.design/r/{name}.json"
   }
 }

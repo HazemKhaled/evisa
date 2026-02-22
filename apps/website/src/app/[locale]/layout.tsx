@@ -115,11 +115,12 @@ export default async function LocaleLayout({
           "bg-background text-foreground min-h-screen font-sans antialiased"
         )}
       >
-        <JsonLd data={organizationJsonLd} />
-        <JsonLd data={websiteJsonLd} />
         <Header locale={locale} />
         {children}
         <Footer locale={locale} />
+
+        <JsonLd data={organizationJsonLd} />
+        <JsonLd data={websiteJsonLd} />
       </body>
     </html>
   );
