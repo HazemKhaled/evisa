@@ -74,7 +74,6 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
               { label: tNav("breadcrumb.home"), href: `/${locale}` },
               { label: tNav("breadcrumb.privacy"), isCurrentPage: true },
             ]}
-            locale={locale}
           />
 
           <header>

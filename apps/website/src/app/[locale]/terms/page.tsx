@@ -74,7 +74,6 @@ export default async function TermsPage({ params }: TermsPageProps) {
               { label: tNav("breadcrumb.home"), href: `/${locale}` },
               { label: tNav("breadcrumb.terms"), isCurrentPage: true },
             ]}
-            locale={locale}
           />
 
           <header>

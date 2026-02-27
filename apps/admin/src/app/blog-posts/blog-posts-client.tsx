@@ -1,7 +1,18 @@
 "use client";
 
 import { type BlogPost } from "@repo/database";
-import { Button } from "@repo/ui";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  Button,
+  toast,
+} from "@repo/ui";
 import { type ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -38,6 +49,7 @@ export function BlogPostsClient({
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
+  const [pendingDeleteId, setPendingDeleteId] = useState<number | null>(null);
 
   const currentSearch = searchParams.get("search") || "";
 
@@ -81,18 +93,18 @@ export function BlogPostsClient({
     setIsDialogOpen(true);
   };
 
-  const handleDelete = async (id: number): Promise<void> => {
-    if (!confirm("Are you sure you want to delete this blog post?")) {
-      return;
-    }
+  const handleDelete = (id: number): void => {
+    setPendingDeleteId(id);
+  };
 
-    setIsDeleting(id);
-    const result = await deleteBlogPost(id);
-
+  const confirmDelete = async (): Promise<void> => {
+    if (!pendingDeleteId) return;
+    setIsDeleting(pendingDeleteId);
+    setPendingDeleteId(null);
+    const result = await deleteBlogPost(pendingDeleteId);
     if (!result.success) {
-      alert(result.error ?? "Failed to delete blog post");
+      toast.error(result.error ?? "Failed to delete blog post");
     }
-
     setIsDeleting(null);
     router.refresh();
   };
@@ -225,6 +237,27 @@ export function BlogPostsClient({
         }}
         post={selectedPost}
       />
+
+      <AlertDialog
+        open={!!pendingDeleteId}
+        onOpenChange={open => !open && setPendingDeleteId(null)}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Blog Post</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete this blog post? This action cannot
+              be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete}>
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

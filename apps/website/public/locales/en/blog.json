@@ -62,5 +62,8 @@
       "title": "Latest Travel Insights",
       "subtitle": "Stay updated with travel tips and destination guides"
     }
-  }
+  },
+  "emptyTag": "No posts found with tag \"{{tag}}\"",
+  "emptyDestination": "No posts found for destination \"{{destination}}\"",
+  "emptySearch": "No posts found for \"{{search}}\""
 }

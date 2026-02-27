@@ -1,6 +1,6 @@
-import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@repo/utils";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
+import { Slot as SlotPrimitive } from "radix-ui";
 import * as React from "react";
 
 const Breadcrumb = React.forwardRef<
@@ -44,7 +44,7 @@ const BreadcrumbLink = React.forwardRef<
     asChild?: boolean;
   }
 >(({ asChild, className, ...props }, ref) => {
-  const Comp = asChild ? Slot : "a";
+  const Comp = asChild ? SlotPrimitive.Slot : "a";
 
   return (
     <Comp
@@ -82,7 +82,7 @@ const BreadcrumbSeparator = ({
     className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className)}
     {...props}
   >
-    {children ?? <ChevronRight />}
+    {children ?? <ChevronRight className="rtl:rotate-180" />}
   </li>
 );
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";

@@ -97,7 +97,6 @@ export default async function ContactPage({ params }: ContactPageProps) {
               { label: tNav("breadcrumb.home"), href: `/${locale}` },
               { label: tNav("breadcrumb.contact"), isCurrentPage: true },
             ]}
-            locale={locale}
           />
 
           <header>

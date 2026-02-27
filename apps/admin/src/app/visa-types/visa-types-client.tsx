@@ -1,7 +1,18 @@
 "use client";
 
 import { type Country, type VisaType } from "@repo/database";
-import { Button } from "@repo/ui";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  Button,
+  toast,
+} from "@repo/ui";
 import { type ColumnDef } from "@tanstack/react-table";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
@@ -31,6 +42,7 @@ export function VisaTypesClient({
   const searchParams = useSearchParams();
   const [, startTransition] = useTransition();
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
+  const [pendingDeleteId, setPendingDeleteId] = useState<number | null>(null);
 
   const currentSearch = searchParams.get("search") || "";
 
@@ -64,18 +76,18 @@ export function VisaTypesClient({
     });
   };
 
-  const handleDelete = async (id: number): Promise<void> => {
-    if (!confirm("Are you sure you want to delete this visa type?")) {
-      return;
-    }
+  const handleDelete = (id: number): void => {
+    setPendingDeleteId(id);
+  };
 
-    setIsDeleting(id);
-    const result = await deleteVisaType(id);
-
+  const confirmDelete = async (): Promise<void> => {
+    if (!pendingDeleteId) return;
+    setIsDeleting(pendingDeleteId);
+    setPendingDeleteId(null);
+    const result = await deleteVisaType(pendingDeleteId);
     if (!result.success) {
-      alert(result.error ?? "Failed to delete visa type");
+      toast.error(result.error ?? "Failed to delete visa type");
     }
-
     setIsDeleting(null);
     router.refresh();
   };
@@ -163,6 +175,27 @@ export function VisaTypesClient({
 
   return (
     <>
+      <AlertDialog
+        open={!!pendingDeleteId}
+        onOpenChange={open => !open && setPendingDeleteId(null)}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Visa Type</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete this visa type? This action cannot
+              be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete}>
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
       <EnhancedDataTable
         columns={columns}
         data={paginatedData.data}

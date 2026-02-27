@@ -1,4 +1,5 @@
-import { Button } from "@repo/ui";
+import { Button, Skeleton } from "@repo/ui";
+import { Suspense } from "react";
 
 import { BlogPostCard } from "@/components/blog/blog-post-card";
 import { DestinationCard } from "@/components/destinations/destination-card";
@@ -30,44 +31,14 @@ export default async function LocalePage({
 }) {
   const { locale } = await params;
 
-  // Parallel fetch: all translations and data for homepage sections
-  const [
-    { t: tCommon },
-    { t: tHero },
-    { t: tFeatures },
-    { t: tBlog },
-    { t },
-    dataResults,
-  ] = await Promise.all([
-    getTranslation(locale, "common"),
-    getTranslation(locale, "hero"),
-    getTranslation(locale, "features"),
-    getTranslation(locale, "blog"),
-    getTranslation(locale, "pages"),
-    // Data fetches with graceful degradation
-    Promise.allSettled([
-      getDestinationsListWithMetadata(locale, 8, "popular"),
-      getRandomVisaTypes(locale, 6),
-      getAllBlogPosts(locale, 6),
-      getAllCountries(locale),
-    ]),
-  ]);
-
-  // Extract results with fallbacks for failed requests
-  const [
-    destinationsResult,
-    visaTypesResult,
-    blogPostsResult,
-    countriesResult,
-  ] = dataResults;
-  const destinations =
-    destinationsResult.status === "fulfilled" ? destinationsResult.value : [];
-  const visaTypes =
-    visaTypesResult.status === "fulfilled" ? visaTypesResult.value : [];
-  const blogPosts =
-    blogPostsResult.status === "fulfilled" ? blogPostsResult.value : [];
-  const countries =
-    countriesResult.status === "fulfilled" ? countriesResult.value : [];
+  // Parallel fetch: all translations for homepage sections
+  const [{ t: tCommon }, { t: tHero }, { t: tFeatures }, { t }] =
+    await Promise.all([
+      getTranslation(locale, "common"),
+      getTranslation(locale, "hero"),
+      getTranslation(locale, "features"),
+      getTranslation(locale, "pages"),
+    ]);
 
   const baseUrl = env.baseUrl;
   const pageUrl = `${baseUrl}/${locale}`;
@@ -110,17 +81,9 @@ export default async function LocalePage({
         </div>
 
         {/* Search Form */}
-        <SearchForm
-          countries={countries}
-          searchTitle={tHero("search.title")}
-          passportLabel={tCommon("forms.passportCountry")}
-          passportPlaceholder={tHero("search.passportPlaceholder")}
-          destinationLabel={tCommon("forms.destinationCountry")}
-          destinationPlaceholder={tHero("search.destinationPlaceholder")}
-          checkButtonText={tHero("search.checkButton")}
-          emptyText={tCommon("status.notFound")}
-          searchPlaceholder={tHero("search.searchPlaceholder")}
-        />
+        <Suspense fallback={<SearchFormSectionSkeleton />}>
+          <SearchFormSection locale={locale} />
+        </Suspense>
 
         {/* How It Works Section */}
         <div className="bg-white py-16">
@@ -184,53 +147,14 @@ export default async function LocalePage({
         </div>
 
         {/* Top Destinations Section */}
-        <div className="bg-gray-50 py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                {tFeatures("topDestinations.title")}
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-                {tFeatures("topDestinations.subtitle")}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {destinations.map(destination => (
-                <DestinationCard
-                  key={destination.code}
-                  destination={destination}
-                  locale={locale}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+        <Suspense fallback={<DestinationsSectionSkeleton />}>
+          <DestinationsSection locale={locale} />
+        </Suspense>
 
         {/* Random Visa Types Section */}
-        <div className="bg-white py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                {tFeatures("popularVisaTypes.title")}
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-                {tFeatures("popularVisaTypes.subtitle")}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {visaTypes.map(visaType => (
-                <VisaTypeCard
-                  key={visaType.id}
-                  visaType={visaType}
-                  locale={locale}
-                  tCommon={tCommon}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+        <Suspense fallback={<VisaTypesSectionSkeleton />}>
+          <VisaTypesSection locale={locale} />
+        </Suspense>
 
         {/* Why Choose Us Section */}
         <div className="bg-blue-50 py-16">
@@ -345,27 +269,237 @@ export default async function LocalePage({
         </div>
 
         {/* Recent Blog Posts Section */}
-        {blogPosts.length > 0 && (
-          <div className="bg-white py-16">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="mb-12 text-center">
-                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                  {tBlog("homepage.latestPosts.title")}
-                </h2>
-                <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-                  {tBlog("homepage.latestPosts.subtitle")}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {blogPosts.map(post => (
-                  <BlogPostCard key={post.slug} post={post} locale={locale} />
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
+        <Suspense fallback={<BlogPostsSectionSkeleton />}>
+          <BlogPostsSection locale={locale} />
+        </Suspense>
       </main>
     </>
+  );
+}
+
+async function SearchFormSection({ locale }: { locale: string }) {
+  const { t: tCommon } = await getTranslation(locale, "common");
+  const { t: tHero } = await getTranslation(locale, "hero");
+  let countries: Awaited<ReturnType<typeof getAllCountries>> = [];
+
+  try {
+    countries = await getAllCountries(locale);
+  } catch {
+    countries = [];
+  }
+
+  return (
+    <SearchForm
+      countries={countries}
+      searchTitle={tHero("search.title")}
+      passportLabel={tCommon("forms.passportCountry")}
+      passportPlaceholder={tHero("search.passportPlaceholder")}
+      destinationLabel={tCommon("forms.destinationCountry")}
+      destinationPlaceholder={tHero("search.destinationPlaceholder")}
+      checkButtonText={tHero("search.checkButton")}
+      emptyText={tCommon("status.notFound")}
+      searchPlaceholder={tHero("search.searchPlaceholder")}
+    />
+  );
+}
+
+function SearchFormSectionSkeleton() {
+  return (
+    <div className="bg-white/80 py-8">
+      <div className="mx-auto max-w-4xl px-4">
+        <Skeleton className="mb-6 h-8 w-48" />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-12 w-full" />
+        </div>
+        <Skeleton className="mt-4 h-11 w-40" />
+      </div>
+    </div>
+  );
+}
+
+async function DestinationsSection({ locale }: { locale: string }) {
+  const { t: tFeatures } = await getTranslation(locale, "features");
+  let destinations: Awaited<
+    ReturnType<typeof getDestinationsListWithMetadata>
+  > = [];
+
+  try {
+    destinations = await getDestinationsListWithMetadata(locale, 8, "popular");
+  } catch {
+    destinations = [];
+  }
+
+  if (destinations.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="bg-gray-50 py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            {tFeatures("topDestinations.title")}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            {tFeatures("topDestinations.subtitle")}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {destinations.map(destination => (
+            <DestinationCard
+              key={destination.code}
+              destination={destination}
+              locale={locale}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DestinationsSectionSkeleton() {
+  return (
+    <div className="bg-gray-50 py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <Skeleton className="mx-auto h-8 w-64" />
+          <Skeleton className="mx-auto mt-4 h-5 w-96" />
+        </div>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className="rounded-lg border bg-white p-4">
+              <Skeleton className="mb-4 h-24 w-full" />
+              <Skeleton className="mb-2 h-5 w-3/4" />
+              <Skeleton className="h-4 w-2/3" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+async function VisaTypesSection({ locale }: { locale: string }) {
+  const { t: tCommon } = await getTranslation(locale, "common");
+  const { t: tFeatures } = await getTranslation(locale, "features");
+  let visaTypes: Awaited<ReturnType<typeof getRandomVisaTypes>> = [];
+
+  try {
+    visaTypes = await getRandomVisaTypes(locale, 6);
+  } catch {
+    visaTypes = [];
+  }
+
+  if (visaTypes.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="bg-white py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            {tFeatures("popularVisaTypes.title")}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            {tFeatures("popularVisaTypes.subtitle")}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {visaTypes.map(visaType => (
+            <VisaTypeCard
+              key={visaType.id}
+              visaType={visaType}
+              locale={locale}
+              tCommon={tCommon}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function VisaTypesSectionSkeleton() {
+  return (
+    <div className="bg-white py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <Skeleton className="mx-auto h-8 w-64" />
+          <Skeleton className="mx-auto mt-4 h-5 w-96" />
+        </div>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="rounded-lg border bg-white p-4">
+              <Skeleton className="mb-3 h-6 w-2/3" />
+              <Skeleton className="mb-2 h-4 w-1/2" />
+              <Skeleton className="h-4 w-2/3" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+async function BlogPostsSection({ locale }: { locale: string }) {
+  const { t: tBlog } = await getTranslation(locale, "blog");
+  let blogPosts: Awaited<ReturnType<typeof getAllBlogPosts>> = [];
+
+  try {
+    blogPosts = await getAllBlogPosts(locale, 6);
+  } catch {
+    blogPosts = [];
+  }
+
+  if (blogPosts.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="bg-white py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            {tBlog("homepage.latestPosts.title")}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            {tBlog("homepage.latestPosts.subtitle")}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {blogPosts.map(post => (
+            <BlogPostCard key={post.slug} post={post} locale={locale} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BlogPostsSectionSkeleton() {
+  return (
+    <div className="bg-white py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <Skeleton className="mx-auto h-8 w-64" />
+          <Skeleton className="mx-auto mt-4 h-5 w-96" />
+        </div>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="rounded-lg border bg-white p-4">
+              <Skeleton className="mb-4 aspect-video w-full rounded-md" />
+              <Skeleton className="mb-2 h-5 w-3/4" />
+              <Skeleton className="h-4 w-2/3" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

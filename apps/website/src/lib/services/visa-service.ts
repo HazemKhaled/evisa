@@ -387,13 +387,21 @@ export async function getVisaRequirements(
           );
 
         // Group countries by eligibility status
-        const visaFreeCountries = eligibilityResults
-          .filter(er => er.eligibilityStatus === "visa_free")
-          .map(er => er.passportCode);
+        const visaFreeCountries = [
+          ...new Set(
+            eligibilityResults
+              .filter(er => er.eligibilityStatus === "visa_free")
+              .map(er => er.passportCode)
+          ),
+        ];
 
-        const visaOnArrivalCountries = eligibilityResults
-          .filter(er => er.eligibilityStatus === "on_arrival")
-          .map(er => er.passportCode);
+        const visaOnArrivalCountries = [
+          ...new Set(
+            eligibilityResults
+              .filter(er => er.eligibilityStatus === "on_arrival")
+              .map(er => er.passportCode)
+          ),
+        ];
 
         const etaCountries = eligibilityResults
           .filter(er => er.eligibilityStatus === "eta")

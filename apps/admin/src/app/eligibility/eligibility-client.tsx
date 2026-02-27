@@ -5,7 +5,18 @@ import {
   type VisaEligibility,
   type VisaType,
 } from "@repo/database";
-import { Button } from "@repo/ui";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  Button,
+  toast,
+} from "@repo/ui";
 import { type ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -44,6 +55,7 @@ export function EligibilityClient({
   const [bulkDialogOpen, setBulkDialogOpen] = useState(false);
   const [editingRule, setEditingRule] = useState<VisaEligibility | null>(null);
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
+  const [pendingDeleteId, setPendingDeleteId] = useState<number | null>(null);
 
   const currentSearch = searchParams.get("search") || "";
 
@@ -82,18 +94,18 @@ export function EligibilityClient({
     setDialogOpen(true);
   };
 
-  const handleDelete = async (id: number): Promise<void> => {
-    if (!confirm("Are you sure you want to delete this eligibility rule?")) {
-      return;
-    }
+  const handleDelete = (id: number): void => {
+    setPendingDeleteId(id);
+  };
 
-    setIsDeleting(id);
-    const result = await deleteEligibility(id);
-
+  const confirmDelete = async (): Promise<void> => {
+    if (!pendingDeleteId) return;
+    setIsDeleting(pendingDeleteId);
+    setPendingDeleteId(null);
+    const result = await deleteEligibility(pendingDeleteId);
     if (!result.success) {
-      alert(result.error ?? "Failed to delete eligibility rule");
+      toast.error(result.error ?? "Failed to delete eligibility rule");
     }
-
     setIsDeleting(null);
     router.refresh();
   };
@@ -234,6 +246,27 @@ export function EligibilityClient({
 
   return (
     <>
+      <AlertDialog
+        open={!!pendingDeleteId}
+        onOpenChange={open => !open && setPendingDeleteId(null)}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Eligibility Rule</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete this eligibility rule? This action
+              cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete}>
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
       <div className="mb-4 flex justify-end gap-2">
         <Button onClick={() => setBulkDialogOpen(true)} variant="outline">
           Bulk Create

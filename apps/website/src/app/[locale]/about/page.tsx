@@ -74,7 +74,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
               { label: tNav("breadcrumb.home"), href: `/${locale}` },
               { label: tNav("breadcrumb.about"), isCurrentPage: true },
             ]}
-            locale={locale}
           />
 
           <header>
@@ -135,15 +134,15 @@ export default async function AboutPage({ params }: AboutPageProps) {
               </h2>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start">
-                  <span className="mr-2 text-blue-500">•</span>
+                  <span className="me-2 text-blue-500">•</span>
                   {t("about.objectives.item1")}
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-2 text-blue-500">•</span>
+                  <span className="me-2 text-blue-500">•</span>
                   {t("about.objectives.item2")}
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-2 text-blue-500">•</span>
+                  <span className="me-2 text-blue-500">•</span>
                   {t("about.objectives.item3")}
                 </li>
               </ul>

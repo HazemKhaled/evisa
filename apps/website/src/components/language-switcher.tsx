@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@repo/ui";
-import { cn, isRTL } from "@repo/utils";
+import { cn } from "@repo/utils";
 import { Check, ChevronDown, Globe } from "lucide-react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 
@@ -24,19 +24,6 @@ export function LanguageSwitcher() {
   const currentLocale = (params?.locale as string) || "en";
   const currentLanguage =
     languagesObj.find(lang => lang.code === currentLocale) || languagesObj[0];
-  const isCurrentRTL = isRTL(currentLocale);
-
-  // Static labels to avoid hydration mismatch
-  const languageLabels: Record<string, string> = {
-    en: "Language",
-    es: "Idioma",
-    ar: "اللغة",
-    pt: "Idioma",
-    ru: "Язык",
-    de: "Sprache",
-    fr: "Langue",
-    it: "Lingua",
-  };
 
   const handleLanguageChange = (languageCode: string) => {
     const newPath = pathname.replace(`/${currentLocale}`, `/${languageCode}`);
@@ -54,26 +41,18 @@ export function LanguageSwitcher() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-          className={cn(
-            "group hover:bg-accent/80 hover:border-primary/20 h-auto gap-2.5 px-3 py-2 font-medium transition-all duration-200",
-            isCurrentRTL && "flex-row-reverse"
-          )}
-          aria-label={languageLabels[currentLocale] || languageLabels.en}
+          className="group hover:bg-accent/80 hover:border-primary/20 h-auto gap-2.5 px-3 py-2 font-medium transition-all duration-200"
+          aria-label={currentLanguage.nativeName}
         >
           <span className="text-lg drop-shadow-sm">{currentLanguage.flag}</span>
           <span className="hidden text-sm sm:inline">
             {currentLanguage.nativeName}
           </span>
-          <ChevronDown
-            className={cn(
-              "h-4 w-4 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180",
-              isCurrentRTL && "order-first scale-x-[-1]"
-            )}
-          />
+          <ChevronDown className="h-4 w-4 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        align={isCurrentRTL ? "start" : "end"}
+        align="end"
         side="bottom"
         sideOffset={8}
         className={cn(
@@ -85,14 +64,9 @@ export function LanguageSwitcher() {
         )}
       >
         {/* Header with icon */}
-        <DropdownMenuLabel
-          className={cn(
-            "text-muted-foreground flex items-center gap-2 px-2 py-2 text-xs font-semibold tracking-wider uppercase",
-            isCurrentRTL && "flex-row-reverse text-right"
-          )}
-        >
+        <DropdownMenuLabel className="text-muted-foreground flex items-center gap-2 px-2 py-2 text-xs font-semibold tracking-wider uppercase">
           <Globe className="h-3.5 w-3.5" />
-          {languageLabels[currentLocale] || languageLabels.en}
+          {currentLanguage.nativeName}
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-border/50 mx-1 my-1.5" />
 
@@ -108,8 +82,7 @@ export function LanguageSwitcher() {
                   "transition-all duration-150 ease-out",
                   "focus:bg-accent focus:text-accent-foreground",
                   "hover:bg-accent/70",
-                  isActive && "bg-primary/10 text-primary font-medium",
-                  isCurrentRTL && "flex-row-reverse text-right"
+                  isActive && "bg-primary/10 text-primary font-medium"
                 )}
               >
                 {/* Flag with subtle container */}
@@ -123,9 +96,7 @@ export function LanguageSwitcher() {
                 </span>
 
                 {/* Language names with better hierarchy */}
-                <div
-                  className={cn("min-w-0 flex-1", isCurrentRTL && "text-right")}
-                >
+                <div className="min-w-0 flex-1">
                   <div
                     className={cn(
                       "text-sm leading-tight font-medium",
@@ -146,12 +117,7 @@ export function LanguageSwitcher() {
 
                 {/* Active indicator */}
                 {isActive && (
-                  <div
-                    className={cn(
-                      "bg-primary text-primary-foreground flex h-5 w-5 items-center justify-center rounded-full",
-                      isCurrentRTL && "order-first"
-                    )}
-                  >
+                  <div className="bg-primary text-primary-foreground flex h-5 w-5 items-center justify-center rounded-full">
                     <Check className="h-3 w-3" strokeWidth={3} />
                   </div>
                 )}

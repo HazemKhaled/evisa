@@ -1,8 +1,8 @@
 "use client";
 
-import * as SelectPrimitive from "@radix-ui/react-select";
 import { cn } from "@repo/utils";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
+import { Select as SelectPrimitive } from "radix-ui";
 import * as React from "react";
 
 const Select = SelectPrimitive.Root;
@@ -120,7 +120,7 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-default items-center rounded-lg py-2.5 pr-8 pl-3 text-sm outline-none select-none",
+      "relative flex w-full cursor-default items-center rounded-lg py-2.5 ps-3 pe-8 text-sm outline-none select-none",
       "transition-colors duration-150 ease-out",
       "focus:bg-accent focus:text-accent-foreground",
       "data-[state=checked]:bg-primary/10 data-[state=checked]:text-primary data-[state=checked]:font-medium",
@@ -129,7 +129,7 @@ const SelectItem = React.forwardRef<
     )}
     {...props}
   >
-    <span className="absolute right-2 flex h-4 w-4 items-center justify-center">
+    <span className="absolute end-2 flex h-4 w-4 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
         <Check className="text-primary h-4 w-4" strokeWidth={2.5} />
       </SelectPrimitive.ItemIndicator>

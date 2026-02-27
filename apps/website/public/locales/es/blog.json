@@ -20,7 +20,6 @@
     "loading": "Buscando...",
     "result": "resultado"
   },
-
   "content": {
     "tags": "Etiquetas",
     "relatedArticles": "Artículos relacionados",
@@ -66,5 +65,8 @@
       "title": "Últimas Perspectivas de Viaje",
       "subtitle": "Mantente actualizado con consejos de viaje y guías de destinos"
     }
-  }
+  },
+  "emptyTag": "No se encontraron publicaciones con la etiqueta \"{{tag}}\"",
+  "emptyDestination": "No se encontraron publicaciones para el destino \"{{destination}}\"",
+  "emptySearch": "No se encontraron publicaciones para \"{{search}}\""
 }

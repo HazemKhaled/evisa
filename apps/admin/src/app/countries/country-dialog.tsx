@@ -1,7 +1,19 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormCheckbox, FormInput, FormSelect, FormTextarea } from "@repo/ui";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  FormCheckbox,
+  FormInput,
+  FormSelect,
+  FormTextarea,
+  toast,
+} from "@repo/ui";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -64,7 +76,7 @@ export function CountryDialog({
   open,
   onClose,
   country,
-}: CountryDialogProps): React.JSX.Element | null {
+}: CountryDialogProps): React.JSX.Element {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [i18nData, setI18nData] = useState<
@@ -177,18 +189,16 @@ export function CountryDialog({
     if (result.success) {
       onClose();
     } else {
-      alert(result.error ?? "Failed to save country");
+      toast.error(result.error ?? "Failed to save country");
     }
   };
 
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-background max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-lg p-6 shadow-lg">
-        <h2 className="mb-6 text-2xl font-bold">
-          {country ? "Edit Country" : "Add Country"}
-        </h2>
+    <Dialog open={open} onOpenChange={isOpen => !isOpen && onClose()}>
+      <DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>{country ? "Edit Country" : "Add Country"}</DialogTitle>
+        </DialogHeader>
 
         {isLoading ? (
           <div className="py-8 text-center">Loading...</div>
@@ -272,26 +282,22 @@ export function CountryDialog({
               </I18nTabs>
             </div>
 
-            <div className="flex justify-end gap-4">
-              <button
+            <DialogFooter>
+              <Button
                 type="button"
+                variant="outline"
                 onClick={onClose}
-                className="border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md border px-4 py-2 text-sm font-medium"
                 disabled={isSubmitting}
               >
                 Cancel
-              </button>
-              <button
-                type="submit"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-md px-4 py-2 text-sm font-medium disabled:opacity-50"
-                disabled={isSubmitting}
-              >
+              </Button>
+              <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting ? "Saving..." : country ? "Update" : "Create"}
-              </button>
-            </div>
+              </Button>
+            </DialogFooter>
           </form>
         )}
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

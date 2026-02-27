@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdminAuth } from "@repo/auth/server";
 import {
   and,
   count,
@@ -13,6 +14,7 @@ import {
   type NewCountryI18n,
   or,
 } from "@repo/database";
+import { type PaginatedResult } from "@repo/utils";
 import { revalidatePath } from "next/cache";
 
 import { type ActionResult, handleActionError } from "@/lib/errors";
@@ -51,14 +53,6 @@ interface GetCountriesPaginatedInput {
   page?: number;
   pageSize?: number;
   search?: string;
-}
-
-interface PaginatedResult<T> {
-  data: T[];
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
 }
 
 export async function getCountriesPaginated(
@@ -134,6 +128,11 @@ export async function getCountryWithI18n(code: string): Promise<{
 export async function createCountry(
   input: CreateCountryInput
 ): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -169,6 +168,11 @@ export async function createCountry(
 export async function updateCountry(
   input: UpdateCountryInput
 ): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 
@@ -208,6 +212,11 @@ export async function updateCountry(
 }
 
 export async function deleteCountry(code: string): Promise<ActionResult> {
+  const authCheck = await requireAdminAuth();
+  if (!authCheck.success) {
+    return authCheck;
+  }
+
   try {
     const db = getDb();
 

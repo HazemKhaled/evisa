@@ -59,7 +59,7 @@ export async function DestinationHero({
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
 
         {/* Country Flag */}
-        <div className="absolute top-6 ltr:right-6 rtl:left-6">
+        <div className="absolute end-6 top-6">
           <div className="flex h-12 w-16 items-center justify-center rounded-sm bg-white shadow-lg">
             <span className="text-2xl font-bold text-gray-800">
               {destination.code}
@@ -141,7 +141,7 @@ export async function DestinationHero({
               {destination.region && ` • ${destination.region}`}
             </div>
 
-            <div className="flex items-center gap-4 ltr:ml-auto rtl:mr-auto">
+            <div className="ms-auto flex items-center gap-4">
               <a
                 href={`/${locale}/d/${destination.code}/blog`}
                 className="text-primary hover:text-primary/80 text-sm transition-colors"

@@ -2,7 +2,18 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type Country, type VisaType } from "@repo/database";
-import { FormCheckbox, FormInput, FormSelect } from "@repo/ui";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  FormCheckbox,
+  FormInput,
+  FormSelect,
+  toast,
+} from "@repo/ui";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -41,7 +52,7 @@ export function BulkCreateDialog({
   onClose,
   countries,
   visaTypes,
-}: BulkCreateDialogProps): React.JSX.Element | null {
+}: BulkCreateDialogProps): React.JSX.Element {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedPassports, setSelectedPassports] = useState<string[]>([]);
 
@@ -86,7 +97,7 @@ export function BulkCreateDialog({
 
   const onSubmit = async (data: BulkCreateFormData): Promise<void> => {
     if (selectedPassports.length === 0) {
-      alert("Please select at least one passport country");
+      toast.error("Please select at least one passport country");
       return;
     }
 
@@ -106,14 +117,12 @@ export function BulkCreateDialog({
     setIsSubmitting(false);
 
     if (result.success) {
-      alert(
-        `Successfully created ${result.created} eligibility rules${result.errors.length > 0 ? `\n\nErrors:\n${result.errors.join("\n")}` : ""}`
-      );
+      toast.success(`Successfully created ${result.created} eligibility rules`);
       onClose();
       reset();
       setSelectedPassports([]);
     } else {
-      alert(`Failed to create rules:\n${result.errors.join("\n")}`);
+      toast.error(result.error || "Failed to create eligibility rules");
     }
   };
 
@@ -123,14 +132,12 @@ export function BulkCreateDialog({
     setSelectedPassports([]);
   };
 
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-background max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-lg p-6 shadow-lg">
-        <h2 className="mb-6 text-2xl font-bold">
-          Bulk Create Eligibility Rules
-        </h2>
+    <Dialog open={open} onOpenChange={isOpen => !isOpen && handleClose()}>
+      <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>Bulk Create Eligibility Rules</DialogTitle>
+        </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="rounded-lg border border-blue-200 bg-blue-50 p-4">
@@ -233,27 +240,23 @@ export function BulkCreateDialog({
             </div>
           </div>
 
-          <div className="flex justify-end gap-4">
-            <button
+          <DialogFooter>
+            <Button
               type="button"
+              variant="outline"
               onClick={handleClose}
-              className="border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md border px-4 py-2 text-sm font-medium"
               disabled={isSubmitting}
             >
               Cancel
-            </button>
-            <button
-              type="submit"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-md px-4 py-2 text-sm font-medium disabled:opacity-50"
-              disabled={isSubmitting}
-            >
+            </Button>
+            <Button type="submit" disabled={isSubmitting}>
               {isSubmitting
                 ? "Creating..."
                 : `Create ${selectedPassports.length} Rules`}
-            </button>
-          </div>
+            </Button>
+          </DialogFooter>
         </form>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

@@ -117,7 +117,7 @@ export function CountryCombobox({
                     <span className="truncate">{country.localizedName}</span>
                     <Check
                       className={cn(
-                        "text-primary ml-auto h-4 w-4",
+                        "text-primary ms-auto h-4 w-4",
                         isSelected ? "opacity-100" : "opacity-0"
                       )}
                       strokeWidth={2.5}

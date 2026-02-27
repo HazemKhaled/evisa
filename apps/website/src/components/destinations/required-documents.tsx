@@ -37,7 +37,7 @@ export async function RequiredDocuments({
         <div className="text-muted-foreground">
           {t("commonRequirements")}: {documents.slice(0, 3).join(", ")}
           {documents.length > 3 && (
-            <span className="text-primary ml-1">
+            <span className="text-primary ms-1">
               +{documents.length - 3} {t("more")}
             </span>
           )}

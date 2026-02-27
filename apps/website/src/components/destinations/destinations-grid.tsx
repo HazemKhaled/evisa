@@ -1,4 +1,5 @@
 import { cn } from "@repo/utils";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 import { getTranslation } from "@/app/i18n";
@@ -78,27 +79,7 @@ export async function DestinationsGrid({
             <div className="border-t pt-4">
               <span className="text-primary bg-primary/10 group-hover:bg-primary group-hover:text-primary-foreground inline-flex w-full items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-colors">
                 {t("viewDetails")}
-                <svg
-                  className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 ltr:group-hover:translate-x-1 rtl:group-hover:-translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                    className="ltr:block rtl:hidden"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                    className="ltr:hidden rtl:block"
-                  />
-                </svg>
+                <ChevronRight className="ms-2 h-4 w-4 transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
               </span>
             </div>
           </div>

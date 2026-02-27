@@ -7,6 +7,9 @@
     "contact": "اتصل بنا",
     "language": "اللغة"
   },
+  "languageSwitcher": {
+    "label": "اللغة"
+  },
   "footer": {
     "company": "الشركة",
     "services": "الخدمات",
