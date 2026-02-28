@@ -101,7 +101,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const [{ t }, { t: tNav }, blogPost] = await Promise.all([
     getTranslation(locale, "pages"),
     getTranslation(locale, "navigation"),
-    getBlogPost(slug, locale).catch(() => null),
+    getBlogPost(slug, locale),
   ]);
 
   if (!blogPost) {
