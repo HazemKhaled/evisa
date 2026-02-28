@@ -68,22 +68,26 @@ export default async function DestinationsPage({
   const { locale } = await params;
   const { search, continent, page } = await searchParams;
 
-  const { t } = await getTranslation(locale, "destinations-list");
-  const { t: tNav } = await getTranslation(locale, "navigation");
-
   // Pagination constants
   const ITEMS_PER_PAGE = 20;
   const currentPage = parseInt(page || "1", 10);
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
-  // Get paginated destinations with server-side filtering
-  const paginatedResponse = await getDestinationsListWithMetadataPaginated(
-    locale,
-    ITEMS_PER_PAGE,
-    offset,
-    "alphabetical",
-    search,
-    continent
+  // Parallel fetch: translations, paginated destinations, and continents
+  const [{ t }, { t: tNav }, paginatedResponse, continents] = await Promise.all(
+    [
+      getTranslation(locale, "destinations-list"),
+      getTranslation(locale, "navigation"),
+      getDestinationsListWithMetadataPaginated(
+        locale,
+        ITEMS_PER_PAGE,
+        offset,
+        "alphabetical",
+        search,
+        continent
+      ),
+      getDestinationContinents(locale),
+    ]
   );
 
   const {
@@ -91,9 +95,6 @@ export default async function DestinationsPage({
     total: totalItems,
     totalPages,
   } = paginatedResponse;
-
-  // Get continents for filter options (lightweight query)
-  const continents = await getDestinationContinents(locale);
 
   // Generate structured data
   const jsonLd = generateWebPageJsonLd({

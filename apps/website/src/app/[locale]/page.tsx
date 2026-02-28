@@ -30,10 +30,15 @@ export default async function LocalePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const { t: tCommon } = await getTranslation(locale, "common");
-  const { t: tHero } = await getTranslation(locale, "hero");
-  const { t: tFeatures } = await getTranslation(locale, "features");
-  const { t } = await getTranslation(locale, "pages");
+
+  // Parallel fetch: all translations for homepage sections
+  const [{ t: tCommon }, { t: tHero }, { t: tFeatures }, { t }] =
+    await Promise.all([
+      getTranslation(locale, "common"),
+      getTranslation(locale, "hero"),
+      getTranslation(locale, "features"),
+      getTranslation(locale, "pages"),
+    ]);
 
   const baseUrl = env.baseUrl;
   const pageUrl = `${baseUrl}/${locale}`;

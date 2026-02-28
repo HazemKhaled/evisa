@@ -46,8 +46,12 @@ export async function generateMetadata({
 
 export default async function ContactPage({ params }: ContactPageProps) {
   const { locale } = await params;
-  const { t } = await getTranslation(locale, "pages");
-  const { t: tNav } = await getTranslation(locale, "navigation");
+
+  // Parallel fetch: both translations
+  const [{ t }, { t: tNav }] = await Promise.all([
+    getTranslation(locale, "pages"),
+    getTranslation(locale, "navigation"),
+  ]);
 
   const baseUrl = env.baseUrl;
   const contactUrl = `${baseUrl}/${locale}/contact`;

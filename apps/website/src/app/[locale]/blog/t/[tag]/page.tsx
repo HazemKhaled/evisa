@@ -69,9 +69,11 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   const { locale, tag } = await params;
   const { page = "1" } = await searchParams;
 
-  // We need to get translations for this component
-  const { t } = await getTranslation(locale, "pages");
-  const { t: tNav } = await getTranslation(locale, "navigation");
+  // Parallel fetch: both translations
+  const [{ t: tJsonLd }, { t: tNav }] = await Promise.all([
+    getTranslation(locale, "jsonld"),
+    getTranslation(locale, "navigation"),
+  ]);
 
   // Decode the tag parameter
   const decodedTag = decodeURIComponent(tag);
@@ -87,11 +89,11 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
 
   // Generate JSON-LD for the tag page
   const webpageJsonLd = generateWebPageJsonLd({
-    name: `${decodedTag} - ${t("jsonld.blog.title")}`,
-    description: t("jsonld.blog.description"),
+    name: `${decodedTag} - ${tJsonLd("blog.title")}`,
+    description: tJsonLd("blog.description"),
     url: tagUrl,
     isPartOf: {
-      name: t("jsonld.website.name"),
+      name: tJsonLd("website.name"),
       url: baseUrl,
     },
   });

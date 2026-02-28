@@ -15,7 +15,7 @@ import {
   toast,
 } from "@repo/ui";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import {
@@ -89,6 +89,7 @@ export function CountryDialog({
     formState: { errors },
     reset,
     setValue,
+    control,
   } = useForm({
     resolver: zodResolver(countrySchema),
     defaultValues: {
@@ -211,12 +212,19 @@ export function CountryDialog({
                 error={errors.code?.message}
                 disabled={!!country}
               />
-              <FormSelect
-                label="Continent"
-                options={CONTINENTS}
-                placeholder="Select continent"
-                {...register("continent")}
-                error={errors.continent?.message}
+              <Controller
+                name="continent"
+                control={control}
+                render={({ field }) => (
+                  <FormSelect
+                    label="Continent"
+                    options={CONTINENTS}
+                    placeholder="Select continent"
+                    value={field.value}
+                    onValueChange={field.onChange}
+                    error={errors.continent?.message}
+                  />
+                )}
               />
             </div>
 
