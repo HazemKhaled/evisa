@@ -158,6 +158,8 @@ export function BlogCardImage({
           fill
           className={blogCardStyles.image.image}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          loading="lazy"
+          decoding="async"
         />
         {/* Overlay gradient for better text readability */}
         <div className={blogCardStyles.image.overlay} />

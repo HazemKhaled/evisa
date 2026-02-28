@@ -106,6 +106,25 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
+      <head>
+        {/* Performance: Early connection hints for third-party resources */}
+        <link
+          rel="preconnect"
+          href="https://images.unsplash.com"
+          crossOrigin=""
+        />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+          <>
+            <link
+              rel="preconnect"
+              href="https://www.googletagmanager.com"
+              crossOrigin=""
+            />
+            <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+          </>
+        )}
+      </head>
       {process.env.NEXT_PUBLIC_GTM_ID && (
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
       )}
