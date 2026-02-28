@@ -70,8 +70,8 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   const { page = "1" } = await searchParams;
 
   // Parallel fetch: both translations
-  const [{ t }, { t: tNav }] = await Promise.all([
-    getTranslation(locale, "pages"),
+  const [{ t: tJsonLd }, { t: tNav }] = await Promise.all([
+    getTranslation(locale, "jsonld"),
     getTranslation(locale, "navigation"),
   ]);
 
@@ -89,11 +89,11 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
 
   // Generate JSON-LD for the tag page
   const webpageJsonLd = generateWebPageJsonLd({
-    name: `${decodedTag} - ${t("jsonld.blog.title")}`,
-    description: t("jsonld.blog.description"),
+    name: `${decodedTag} - ${tJsonLd("blog.title")}`,
+    description: tJsonLd("blog.description"),
     url: tagUrl,
     isPartOf: {
-      name: t("jsonld.website.name"),
+      name: tJsonLd("website.name"),
       url: baseUrl,
     },
   });
