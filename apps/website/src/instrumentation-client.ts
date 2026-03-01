@@ -13,12 +13,15 @@ if (dsn) {
   const consoleLogsEnabled =
     process.env.NEXT_PUBLIC_SENTRY_CONSOLE_LOGS === "true";
 
-  const integrations = [Sentry.browserTracingIntegration()];
+  const integrations = [
+    Sentry.browserTracingIntegration(),
+    Sentry.browserSessionIntegration(),
+  ];
 
   if (replayEnabled) {
     integrations.push(
       Sentry.replayIntegration({
-        maskAllText: false,
+        maskAllText: true,
       })
     );
   }
