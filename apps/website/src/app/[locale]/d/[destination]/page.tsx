@@ -132,7 +132,7 @@ export default async function DestinationPage({
     <>
       <JsonLd data={jsonLd} />
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         {/* Breadcrumb Navigation */}
         <PageBreadcrumb
           items={[

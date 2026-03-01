@@ -85,6 +85,9 @@
     "previous": "Zurück",
     "next": "Weiter"
   },
+  "accessibility": {
+    "skipToMain": "Zum Hauptinhalt springen"
+  },
   "aria": {
     "pagination": "Seitennummerierung"
   }

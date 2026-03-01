@@ -4,34 +4,43 @@
 
 import * as Sentry from "@sentry/nextjs";
 
-Sentry.init({
-  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
 
-  // Add optional integrations for additional features
-  integrations: [
-    Sentry.replayIntegration({
-      maskAllText: false,
-    }),
-    Sentry.consoleLoggingIntegration({ levels: ["warn", "error"] }),
-    Sentry.browserSessionIntegration(),
+if (dsn) {
+  const isProduction = process.env.NODE_ENV === "production";
+  const replayEnabled =
+    process.env.NEXT_PUBLIC_SENTRY_REPLAY_ENABLED === "true";
+  const consoleLogsEnabled =
+    process.env.NEXT_PUBLIC_SENTRY_CONSOLE_LOGS === "true";
+
+  const integrations = [
     Sentry.browserTracingIntegration(),
-  ],
+    Sentry.browserSessionIntegration(),
+  ];
 
-  // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
-  tracesSampleRate: 0.1,
-  // Enable logs to be sent to Sentry
-  enableLogs: true,
+  if (replayEnabled) {
+    integrations.push(
+      Sentry.replayIntegration({
+        maskAllText: true,
+      })
+    );
+  }
 
-  // Define how likely Replay events are sampled.
-  // This sets the sample rate to be 10%. You may want this to be 100% while
-  // in development and sample at a lower rate in production
-  replaysSessionSampleRate: 0.1,
+  if (consoleLogsEnabled || !isProduction) {
+    integrations.push(
+      Sentry.consoleLoggingIntegration({ levels: ["warn", "error"] })
+    );
+  }
 
-  // Define how likely Replay events are sampled when an error occurs.
-  replaysOnErrorSampleRate: 1.0,
-
-  // Setting this option to true will print useful information to the console while you're setting up Sentry.
-  debug: false,
-});
+  Sentry.init({
+    dsn,
+    integrations,
+    tracesSampleRate: isProduction ? 0.05 : 1,
+    enableLogs: !isProduction,
+    replaysSessionSampleRate: replayEnabled ? 0.05 : 0,
+    replaysOnErrorSampleRate: replayEnabled ? 1 : 0,
+    debug: false,
+  });
+}
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

@@ -13,7 +13,9 @@
     "searchPlaceholder": "Поиск направлений..."
   },
   "filters": {
-    "allContinents": "Все Континенты"
+    "allContinents": "Все континенты",
+    "searchLabel": "Поиск направлений",
+    "continentLabel": "Фильтр по континенту"
   },
   "results": {
     "showing": "Показано {{count}} из {{total}} направлений"

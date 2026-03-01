@@ -137,6 +137,9 @@
     "previous": "Previous",
     "next": "Next"
   },
+  "accessibility": {
+    "skipToMain": "Skip to main content"
+  },
   "aria": {
     "pagination": "Pagination"
   }

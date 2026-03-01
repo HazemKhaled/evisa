@@ -38,6 +38,10 @@ export function SearchForm({
   const [destinationCountry, setDestinationCountry] =
     React.useState<string>("");
 
+  // Generate unique IDs for accessibility
+  const passportLabelId = React.useId();
+  const destinationLabelId = React.useId();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
@@ -52,12 +56,15 @@ export function SearchForm({
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div>
               <Label
-                htmlFor="passport"
+                id={passportLabelId}
+                htmlFor="passport-combobox"
                 className="block text-sm font-medium text-gray-700"
               >
                 {passportLabel}
               </Label>
               <CountryCombobox
+                id="passport-combobox"
+                aria-labelledby={passportLabelId}
                 countries={countries}
                 value={passportCountry}
                 onValueChange={(value: string) => setPassportCountry(value)}
@@ -68,12 +75,15 @@ export function SearchForm({
             </div>
             <div>
               <Label
-                htmlFor="destination"
+                id={destinationLabelId}
+                htmlFor="destination-combobox"
                 className="block text-sm font-medium text-gray-700"
               >
                 {destinationLabel}
               </Label>
               <CountryCombobox
+                id="destination-combobox"
+                aria-labelledby={destinationLabelId}
                 countries={countries}
                 value={destinationCountry}
                 onValueChange={(value: string) => setDestinationCountry(value)}

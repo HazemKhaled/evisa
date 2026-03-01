@@ -85,6 +85,9 @@
     "previous": "Precedente",
     "next": "Successivo"
   },
+  "accessibility": {
+    "skipToMain": "Vai al contenuto principale"
+  },
   "aria": {
     "pagination": "Paginazione"
   }

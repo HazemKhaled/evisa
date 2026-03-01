@@ -85,6 +85,9 @@
     "previous": "Предыдущая",
     "next": "Следующая"
   },
+  "accessibility": {
+    "skipToMain": "Перейти к основному содержанию"
+  },
   "aria": {
     "pagination": "Пагинация"
   }

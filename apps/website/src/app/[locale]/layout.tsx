@@ -4,6 +4,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import { DirectionProvider } from "@repo/ui";
 import { cn } from "@repo/utils";
 import type { Metadata, Viewport } from "next";
+import Link from "next/dist/client/link";
 import { Cairo, Geist_Mono } from "next/font/google";
 
 import { JsonLd } from "@/components/json-ld";
@@ -95,7 +96,10 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   const direction = getTextDirection(locale);
-  const { t } = await getTranslation(locale, "pages");
+  const [{ t }, { t: tCommon }] = await Promise.all([
+    getTranslation(locale, "pages"),
+    getTranslation(locale, "common"),
+  ]);
 
   const websiteData = generateWebSiteData(t);
   websiteData.url = `${websiteData.url}/${locale}`;
@@ -106,9 +110,25 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
-      {process.env.NEXT_PUBLIC_GTM_ID && (
-        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
-      )}
+      <head>
+        {/* Performance: Early connection hints for third-party resources */}
+        <link
+          rel="preconnect"
+          href="https://images.unsplash.com"
+          crossOrigin=""
+        />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+          <>
+            <link
+              rel="preconnect"
+              href="https://www.googletagmanager.com"
+              crossOrigin=""
+            />
+            <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+          </>
+        )}
+      </head>
       <body
         className={cn(
           cairo.variable,
@@ -116,6 +136,12 @@ export default async function LocaleLayout({
           "bg-background text-foreground min-h-screen font-sans antialiased"
         )}
       >
+        <Link
+          href="#main-content"
+          className="focus:bg-primary focus:text-primary-foreground focus:ring-primary sr-only focus:not-sr-only focus:absolute focus:top-4 focus:z-50 focus:rounded-md focus:px-4 focus:py-2 focus:ring-2 focus:ring-offset-2 focus:outline-none ltr:focus:left-4 rtl:focus:right-4"
+        >
+          {tCommon("accessibility.skipToMain")}
+        </Link>
         <DirectionProvider direction={direction}>
           <Header locale={locale} />
           {children}
@@ -124,6 +150,10 @@ export default async function LocaleLayout({
           <JsonLd data={organizationJsonLd} />
           <JsonLd data={websiteJsonLd} />
         </DirectionProvider>
+
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+        )}
       </body>
     </html>
   );

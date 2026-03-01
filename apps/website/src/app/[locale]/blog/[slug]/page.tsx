@@ -136,7 +136,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
       <JsonLd data={articleJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
       <StaticPageLayout>
-        <main role="main" aria-label={`Blog Post - ${blogPost.title}`}>
+        <main id="main-content" aria-label={`Blog Post - ${blogPost.title}`}>
           <BlogPostDetail
             post={blogPost}
             locale={locale}
