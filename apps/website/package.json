@@ -21,7 +21,7 @@
     "@repo/database": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
-    "@sentry/nextjs": "10.39.0",
+    "@sentry/nextjs": "10.40.0",
     "@tailwindcss/typography": "0.5.19",
     "i18next": "25.8.13",
     "i18next-browser-languagedetector": "8.2.1",
