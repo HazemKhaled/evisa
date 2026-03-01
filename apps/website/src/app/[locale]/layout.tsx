@@ -4,6 +4,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import { DirectionProvider } from "@repo/ui";
 import { cn } from "@repo/utils";
 import type { Metadata, Viewport } from "next";
+import Link from "next/dist/client/link";
 import { Cairo, Geist_Mono } from "next/font/google";
 
 import { JsonLd } from "@/components/json-ld";
@@ -135,12 +136,12 @@ export default async function LocaleLayout({
           "bg-background text-foreground min-h-screen font-sans antialiased"
         )}
       >
-        <a
+        <Link
           href="#main-content"
           className="focus:bg-primary focus:text-primary-foreground focus:ring-primary sr-only focus:not-sr-only focus:absolute focus:top-4 focus:z-50 focus:rounded-md focus:px-4 focus:py-2 focus:ring-2 focus:ring-offset-2 focus:outline-none ltr:focus:left-4 rtl:focus:right-4"
         >
           {tCommon("accessibility.skipToMain")}
-        </a>
+        </Link>
         <DirectionProvider direction={direction}>
           <Header locale={locale} />
           {children}
