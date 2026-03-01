@@ -128,9 +128,6 @@ export default async function LocaleLayout({
           </>
         )}
       </head>
-      {process.env.NEXT_PUBLIC_GTM_ID && (
-        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
-      )}
       <body
         className={cn(
           cairo.variable,
@@ -152,6 +149,10 @@ export default async function LocaleLayout({
           <JsonLd data={organizationJsonLd} />
           <JsonLd data={websiteJsonLd} />
         </DirectionProvider>
+
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+        )}
       </body>
     </html>
   );
