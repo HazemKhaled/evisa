@@ -13,7 +13,9 @@
     "searchPlaceholder": "البحث عن وجهات..."
   },
   "filters": {
-    "allContinents": "جميع القارات"
+    "allContinents": "جميع القارات",
+    "searchLabel": "البحث عن وجهات",
+    "continentLabel": "التصفية حسب القارة"
   },
   "results": {
     "showing": "عرض {{count}} من {{total}} وجهة"

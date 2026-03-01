@@ -62,7 +62,10 @@ export default async function LocalePage({
     <>
       <JsonLd data={webpageJsonLd} />
       <JsonLd data={serviceJsonLd} />
-      <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <main
+        id="main-content"
+        className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100"
+      >
         {/* Hero Section */}
         <div className="relative overflow-hidden">
           <div className="mx-auto max-w-7xl px-4 pt-20 pb-16 sm:px-6 lg:px-8 lg:pt-32">

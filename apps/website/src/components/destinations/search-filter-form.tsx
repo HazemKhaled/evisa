@@ -2,6 +2,7 @@
 
 import {
   Input,
+  Label,
   Select,
   SelectContent,
   SelectItem,
@@ -9,7 +10,7 @@ import {
   SelectValue,
 } from "@repo/ui";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useId, useState } from "react";
 
 interface SearchFilterFormProps {
   locale: string;
@@ -17,6 +18,8 @@ interface SearchFilterFormProps {
   translations: {
     searchPlaceholder: string;
     allContinents: string;
+    searchLabel: string;
+    continentLabel: string;
   };
 }
 
@@ -33,6 +36,10 @@ export function SearchFilterForm({
   const [continentValue, setContinentValue] = useState(
     searchParams.get("continent") || "all"
   );
+
+  // Generate unique IDs for accessibility
+  const searchInputId = useId();
+  const continentSelectId = useId();
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -71,8 +78,12 @@ export function SearchFilterForm({
       <div className="flex flex-col gap-4 sm:flex-row">
         {/* Search Input */}
         <div className="flex-1">
+          <Label htmlFor={searchInputId} className="sr-only">
+            {translations.searchLabel}
+          </Label>
           <form onSubmit={handleSearchSubmit} className="relative">
             <Input
+              id={searchInputId}
               type="text"
               name="search"
               placeholder={translations.searchPlaceholder}
@@ -85,6 +96,7 @@ export function SearchFilterForm({
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -98,8 +110,11 @@ export function SearchFilterForm({
 
         {/* Continent Filter */}
         <div className="sm:w-64">
+          <Label htmlFor={continentSelectId} className="sr-only">
+            {translations.continentLabel}
+          </Label>
           <Select value={continentValue} onValueChange={handleContinentChange}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger id={continentSelectId} className="w-full">
               <SelectValue placeholder={translations.allContinents} />
             </SelectTrigger>
             <SelectContent>

@@ -13,7 +13,9 @@
     "searchPlaceholder": "Rechercher des destinations..."
   },
   "filters": {
-    "allContinents": "Tous les Continents"
+    "allContinents": "Tous les Continents",
+    "searchLabel": "Rechercher des destinations",
+    "continentLabel": "Filtrer par continent"
   },
   "results": {
     "showing": "Affichage de {{count}} sur {{total}} destinations"

@@ -107,7 +107,7 @@ export default async function DestinationsPage({
     <>
       <JsonLd data={jsonLd} />
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         {/* Breadcrumb Navigation */}
         <PageBreadcrumb
           items={[
@@ -135,6 +135,8 @@ export default async function DestinationsPage({
                 translations={{
                   searchPlaceholder: t("hero.searchPlaceholder"),
                   allContinents: t("filters.allContinents"),
+                  searchLabel: t("filters.searchLabel"),
+                  continentLabel: t("filters.continentLabel"),
                 }}
               />
 

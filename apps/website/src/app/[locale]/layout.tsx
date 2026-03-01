@@ -95,7 +95,10 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   const direction = getTextDirection(locale);
-  const { t } = await getTranslation(locale, "pages");
+  const [{ t }, { t: tCommon }] = await Promise.all([
+    getTranslation(locale, "pages"),
+    getTranslation(locale, "common"),
+  ]);
 
   const websiteData = generateWebSiteData(t);
   websiteData.url = `${websiteData.url}/${locale}`;
@@ -135,6 +138,12 @@ export default async function LocaleLayout({
           "bg-background text-foreground min-h-screen font-sans antialiased"
         )}
       >
+        <a
+          href="#main-content"
+          className="focus:bg-primary focus:text-primary-foreground focus:ring-primary sr-only focus:not-sr-only focus:absolute focus:top-4 focus:z-50 focus:rounded-md focus:px-4 focus:py-2 focus:ring-2 focus:ring-offset-2 focus:outline-none ltr:focus:left-4 rtl:focus:right-4"
+        >
+          {tCommon("accessibility.skipToMain")}
+        </a>
         <DirectionProvider direction={direction}>
           <Header locale={locale} />
           {children}

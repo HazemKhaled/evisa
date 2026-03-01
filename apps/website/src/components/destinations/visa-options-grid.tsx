@@ -137,7 +137,7 @@ export async function VisaOptionsGrid({
                     </span>
                   ))}
                 {visaRequirements.visaFreeCountries.length > 10 && (
-                  <span className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-sm">
+                  <span className="rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-800">
                     +{visaRequirements.visaFreeCountries.length - 10}{" "}
                     {t("more")}
                   </span>
@@ -164,7 +164,7 @@ export async function VisaOptionsGrid({
                     </span>
                   ))}
                 {visaRequirements.visaOnArrivalCountries.length > 10 && (
-                  <span className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-sm">
+                  <span className="rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-800">
                     +{visaRequirements.visaOnArrivalCountries.length - 10}{" "}
                     {t("more")}
                   </span>

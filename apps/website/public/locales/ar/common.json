@@ -85,6 +85,9 @@
     "previous": "السابق",
     "next": "التالي"
   },
+  "accessibility": {
+    "skipToMain": "الانتقال إلى المحتوى الرئيسي"
+  },
   "aria": {
     "pagination": "ترقيم الصفحات"
   }

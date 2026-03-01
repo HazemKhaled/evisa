@@ -29,6 +29,8 @@ interface CountryComboboxProps {
   searchPlaceholder: string;
   className?: string;
   disabled?: boolean;
+  id?: string;
+  "aria-labelledby"?: string;
 }
 
 /**
@@ -44,6 +46,8 @@ export function CountryCombobox({
   searchPlaceholder,
   className,
   disabled = false,
+  id,
+  "aria-labelledby": ariaLabelledBy,
 }: CountryComboboxProps) {
   const [open, setOpen] = React.useState(false);
 
@@ -54,9 +58,11 @@ export function CountryCombobox({
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
+          id={id}
           variant="outline"
           role="combobox"
           aria-expanded={open}
+          aria-labelledby={ariaLabelledBy}
           className={cn(
             "w-full justify-between font-normal",
             "transition-all duration-200",
