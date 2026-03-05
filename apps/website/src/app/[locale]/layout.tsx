@@ -147,8 +147,8 @@ export default async function LocaleLayout({
           {children}
           <Footer locale={locale} />
 
-          <JsonLd data={organizationJsonLd} />
-          <JsonLd data={websiteJsonLd} />
+          <JsonLd id="json-ld-organization" data={organizationJsonLd} />
+          <JsonLd id="json-ld-website" data={websiteJsonLd} />
         </DirectionProvider>
 
         {process.env.NEXT_PUBLIC_GTM_ID && (

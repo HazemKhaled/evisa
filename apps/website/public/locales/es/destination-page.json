@@ -5,7 +5,8 @@
     "ogTitle": "Requisitos de Visa e Información de Viaje para {{destination}}",
     "ogDescription": "Todo lo que necesitas saber sobre visitar {{destination}}. {{visaCount}} tipos de visa disponibles con requisitos detallados e información de procesamiento.",
     "twitterTitle": "Guía de Visa para {{destination}}",
-    "twitterDescription": "Requisitos completos de visa y guía de viaje para {{destination}}"
+    "twitterDescription": "Requisitos completos de visa y guía de viaje para {{destination}}",
+    "notFound": "Destino no encontrado"
   },
   "breadcrumb": {
     "home": "Inicio",

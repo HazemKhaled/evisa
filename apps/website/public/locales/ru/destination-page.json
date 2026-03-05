@@ -5,7 +5,8 @@
     "ogTitle": "Визовые требования и информация о поездке в {{destination}}",
     "ogDescription": "Всё, что нужно знать о посещении {{destination}}. {{visaCount}} типов виз доступны с подробными требованиями и информацией об обработке.",
     "twitterTitle": "Визовый гид по {{destination}}",
-    "twitterDescription": "Полные визовые требования и путеводитель по {{destination}}"
+    "twitterDescription": "Полные визовые требования и путеводитель по {{destination}}",
+    "notFound": "Направление не найдено"
   },
   "breadcrumb": {
     "home": "Главная",

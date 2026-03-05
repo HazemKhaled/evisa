@@ -2,16 +2,17 @@ import Script from "next/script";
 
 interface JsonLdProps {
   data: Record<string, unknown>;
+  id?: string;
 }
 
 /**
  * JSON-LD structured data component
  * Renders JSON-LD script tags for SEO
  */
-export function JsonLd({ data }: JsonLdProps) {
+export function JsonLd({ data, id = "json-ld" }: JsonLdProps) {
   return (
     <Script
-      id="json-ld"
+      id={id}
       type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify(data),

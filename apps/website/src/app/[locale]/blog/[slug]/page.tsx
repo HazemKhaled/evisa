@@ -133,8 +133,8 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
   return (
     <>
-      <JsonLd data={articleJsonLd} />
-      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd id="json-ld-article" data={articleJsonLd} />
+      <JsonLd id="json-ld-breadcrumb" data={breadcrumbJsonLd} />
       <StaticPageLayout>
         <main id="main-content" aria-label={`Blog Post - ${blogPost.title}`}>
           <BlogPostDetail

@@ -94,7 +94,7 @@ export default async function BlogHome({
   } else if (destination) {
     pageTitle = t("destination.title", { destination });
     pageSubtitle = t("destination.subtitle", { destination });
-    blogUrl = `${baseUrl}/${locale}/blog/d/${encodeURIComponent(destination)}`;
+    blogUrl = `${baseUrl}/${locale}/d/${encodeURIComponent(destination)}/blog`;
   }
 
   // Generate JSON-LD for the blog page
@@ -139,7 +139,7 @@ export default async function BlogHome({
     }
     // For destination routes, use destination route structure if implemented
     if (destination) {
-      return `/${locale}/blog/d/${encodeURIComponent(destination)}${query}`;
+      return `/${locale}/d/${encodeURIComponent(destination)}/blog${query}`;
     }
     // For regular blog routes, use query parameter format: /en/blog?page=2
     return `/${locale}/blog${query}`;
@@ -183,8 +183,8 @@ export default async function BlogHome({
 
   return (
     <>
-      <JsonLd data={webpageJsonLd} />
-      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd id="json-ld-webpage" data={webpageJsonLd} />
+      <JsonLd id="json-ld-breadcrumb" data={breadcrumbJsonLd} />
       <StaticPageLayout>
         <div className="mx-auto max-w-7xl">
           {/* Breadcrumb */}

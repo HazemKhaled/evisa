@@ -55,15 +55,15 @@ export async function generateMetadata({
 
   const destinationData = await getDestinationDetails(destination, locale);
 
-  if (!destinationData) {
-    return {
-      title: "Destination Not Found",
-    };
-  }
-
   const { t } = await getTranslation(locale, "destination-page", {
     keyPrefix: "meta",
   });
+
+  if (!destinationData) {
+    return {
+      title: t("notFound"),
+    };
+  }
 
   const alternates = generateAlternatesMetadata(
     env.baseUrl,

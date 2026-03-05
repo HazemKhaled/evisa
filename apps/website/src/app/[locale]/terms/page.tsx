@@ -64,8 +64,8 @@ export default async function TermsPage({ params }: TermsPageProps) {
 
   return (
     <>
-      <JsonLd data={webpageJsonLd} />
-      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd id="json-ld-webpage" data={webpageJsonLd} />
+      <JsonLd id="json-ld-breadcrumb" data={breadcrumbJsonLd} />
       <StaticPageLayout>
         <div className="space-y-12">
           {/* Breadcrumb */}
