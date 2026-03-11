@@ -16,6 +16,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  redirects: async () => [
+    {
+      source: "/:path*",
+      has: [{ type: "host", value: "www.gettravelvisa.com" }],
+      destination: "https://gettravelvisa.com/:path*",
+      permanent: true,
+    },
+  ],
   rewrites: async () => [
     {
       source: "/:locale/blog/sitemap.xml",

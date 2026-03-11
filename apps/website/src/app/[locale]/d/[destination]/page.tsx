@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { type Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { getTranslation } from "@/app/i18n";
@@ -9,7 +10,12 @@ import { VisaOptionsGrid } from "@/components/destinations/visa-options-grid";
 import { JsonLd } from "@/components/json-ld";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 import { env } from "@/lib/consts";
-import { generateDestinationJsonLd } from "@/lib/json-ld";
+import {
+  generateBreadcrumbData,
+  generateBreadcrumbListJsonLd,
+  generateDestinationJsonLd,
+  generateFAQJsonLd,
+} from "@/lib/json-ld";
 import {
   getDestinationDetails,
   getDestinationsListWithMetadata,
@@ -138,9 +144,35 @@ export default async function DestinationPage({
     tJsonLd("travelTo", { defaultValue: "Travel to" })
   );
 
+  // Breadcrumb items for JSON-LD
+  const breadcrumbData = generateBreadcrumbData([
+    { name: tNav("breadcrumb.home"), url: `${env.baseUrl}/${locale}` },
+    {
+      name: tNav("breadcrumb.destinations"),
+      url: `${env.baseUrl}/${locale}/d`,
+    },
+    {
+      name: destinationData.localizedName,
+      url: `${env.baseUrl}/${locale}/d/${destination}`,
+    },
+  ]);
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
+
+  // Generate FAQ from visa eligibility data
+  const faqItems =
+    visaRequirements && visaRequirements.visaTypes
+      ? visaRequirements.visaTypes.slice(0, 5).map(visa => ({
+          question: `Do I need a visa to travel to ${destinationData.localizedName}?`,
+          answer: `Information about ${visa.type} visa requirements for ${destinationData.localizedName} is available on this page.`,
+        }))
+      : [];
+  const faqJsonLd = faqItems.length > 0 ? generateFAQJsonLd(faqItems) : null;
+
   return (
     <>
       <JsonLd data={jsonLd} />
+      {breadcrumbJsonLd && <JsonLd data={breadcrumbJsonLd} />}
+      {faqJsonLd && <JsonLd data={faqJsonLd} />}
 
       <main id="main-content" className="min-h-screen">
         {/* Breadcrumb Navigation */}
@@ -226,13 +258,13 @@ export default async function DestinationPage({
           </div>
 
           <div className="py-8 text-center">
-            <a
+            <Link
               href={`/${locale}/d/${destination}/blog`}
               className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center rounded-lg px-6 py-3 transition-colors"
             >
               {t("relatedContent.viewBlog")}
               <ChevronRight className="ms-2 h-4 w-4 rtl:rotate-180" />
-            </a>
+            </Link>
           </div>
         </section>
       </main>
