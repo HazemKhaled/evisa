@@ -185,6 +185,9 @@ export function generateLanguageAlternates(
     alternates[lang] = `${standardBaseUrl}/${lang}${normalizedPath}`;
   });
 
+  // Add x-default for fallback language detection
+  alternates["x-default"] = `${standardBaseUrl}/en${normalizedPath}`;
+
   return alternates;
 }
 

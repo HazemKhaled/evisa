@@ -79,6 +79,10 @@
     "description": "Descubre consejos de viaje, atracciones y guías internas para {{destination}}.",
     "viewBlog": "Ver Blog de Viajes"
   },
+  "relatedDestinations": {
+    "title": "Explora Otros Destinos en {{continent}}",
+    "description": "Descubre requisitos de visa similares e información de viajes para otros países en {{continent}}."
+  },
   "aria": {
     "breadcrumb": "Navegación de migas de pan de página de destino"
   }

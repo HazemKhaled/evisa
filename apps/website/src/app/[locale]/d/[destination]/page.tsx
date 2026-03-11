@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
+import { BlogPostCard } from "@/components/blog/blog-post-card";
+import { DestinationCard } from "@/components/destinations/destination-card";
 import { DestinationHero } from "@/components/destinations/destination-hero";
 import { VisaOptionsGrid } from "@/components/destinations/visa-options-grid";
 import { JsonLd } from "@/components/json-ld";
@@ -16,6 +18,7 @@ import {
   generateDestinationJsonLd,
   generateFAQJsonLd,
 } from "@/lib/json-ld";
+import { getBlogPostsByDestination } from "@/lib/services/blog-service";
 import {
   getDestinationDetails,
   getDestinationsListWithMetadata,
@@ -125,16 +128,33 @@ export default async function DestinationPage({
     { t },
     { t: tNav },
     { t: tJsonLd },
+    relatedBlogPosts,
   ] = await Promise.all([
     getDestinationDetails(destination, locale),
     getVisaRequirements(destination, locale),
     getTranslation(locale, "destination-page"),
     getTranslation(locale, "navigation"),
     getTranslation(locale, "jsonld"),
+    getBlogPostsByDestination(destination, locale, 3).catch(() => []),
   ]);
 
   if (!destinationData) {
     notFound();
+  }
+
+  // Fetch related destinations in the same continent
+  let relatedDestinations: Awaited<
+    ReturnType<typeof getDestinationsListWithMetadata>
+  > = [];
+  if (destinationData.continent) {
+    const allDestinations = await getDestinationsListWithMetadata(
+      locale,
+      10,
+      "popular"
+    );
+    relatedDestinations = allDestinations.filter(
+      d => d.continent === destinationData.continent && d.code !== destination
+    );
   }
 
   // Generate structured data
@@ -245,28 +265,66 @@ export default async function DestinationPage({
         )}
 
         {/* Related Blog Posts Section */}
-        <section className="container mx-auto px-4 py-12">
-          <div className="mb-8">
-            <h2 className="mb-4 text-3xl font-bold">
-              {t("relatedContent.title")}
-            </h2>
-            <p className="text-muted-foreground">
-              {t("relatedContent.description", {
-                destination: destinationData.localizedName,
-              })}
-            </p>
-          </div>
+        {relatedBlogPosts && relatedBlogPosts.length > 0 && (
+          <section className="container mx-auto px-4 py-12">
+            <div className="mb-8">
+              <h2 className="mb-4 text-3xl font-bold">
+                {t("relatedContent.title")}
+              </h2>
+              <p className="text-muted-foreground">
+                {t("relatedContent.description", {
+                  destination: destinationData.localizedName,
+                })}
+              </p>
+            </div>
 
-          <div className="py-8 text-center">
-            <Link
-              href={`/${locale}/d/${destination}/blog`}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center rounded-lg px-6 py-3 transition-colors"
-            >
-              {t("relatedContent.viewBlog")}
-              <ChevronRight className="ms-2 h-4 w-4 rtl:rotate-180" />
-            </Link>
-          </div>
-        </section>
+            <div className="mb-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedBlogPosts.map(post => (
+                <BlogPostCard key={post.slug} post={post} locale={locale} />
+              ))}
+            </div>
+
+            <div className="py-8 text-center">
+              <Link
+                href={`/${locale}/d/${destination}/blog`}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center rounded-lg px-6 py-3 transition-colors"
+              >
+                {t("relatedContent.viewBlog")}
+                <ChevronRight className="ms-2 h-4 w-4 rtl:rotate-180" />
+              </Link>
+            </div>
+          </section>
+        )}
+
+        {/* Related Destinations Section */}
+        {relatedDestinations && relatedDestinations.length > 0 && (
+          <section className="bg-muted/50 py-12">
+            <div className="container mx-auto px-4">
+              <div className="mb-8">
+                <h2 className="mb-4 text-3xl font-bold">
+                  {t("relatedDestinations.title", {
+                    continent: destinationData.continent,
+                  })}
+                </h2>
+                <p className="text-muted-foreground">
+                  {t("relatedDestinations.description", {
+                    continent: destinationData.continent,
+                  })}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {relatedDestinations.map(dest => (
+                  <DestinationCard
+                    key={dest.code}
+                    destination={dest}
+                    locale={locale}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
       </main>
     </>
   );
