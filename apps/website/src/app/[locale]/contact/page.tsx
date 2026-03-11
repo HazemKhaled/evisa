@@ -86,9 +86,9 @@ export default async function ContactPage({ params }: ContactPageProps) {
 
   return (
     <>
-      <JsonLd data={webpageJsonLd} />
-      <JsonLd data={breadcrumbJsonLd} />
-      <JsonLd data={faqJsonLd} />
+      <JsonLd id="json-ld-webpage" data={webpageJsonLd} />
+      <JsonLd id="json-ld-breadcrumb" data={breadcrumbJsonLd} />
+      <JsonLd id="json-ld-faq" data={faqJsonLd} />
       <StaticPageLayout>
         <div className="space-y-12">
           {/* Breadcrumb */}

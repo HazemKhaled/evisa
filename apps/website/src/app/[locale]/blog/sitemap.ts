@@ -55,16 +55,11 @@ export default async function sitemap({
   blogPosts.forEach(post => {
     const postAlternates: Record<string, string> = {};
 
-    // Generate alternates by checking if post exists in other locales
+    // Generate alternates by finding posts with matching slugs across locales
     allLocaleBlogData.forEach(({ locale: lang, posts: langPosts }) => {
-      const equivalentPost = langPosts.find(p =>
-        // Try to find equivalent post by matching some criteria
-        // For now, we'll assume each post is only available in its original language
-        lang === locale ? p.slug === post.slug : false
-      );
-
-      if (equivalentPost || lang === locale) {
-        postAlternates[lang] = `${baseUrl}/${lang}/blog/${post.slug}`;
+      const equivalentPost = langPosts.find(p => p.slug === post.slug);
+      if (equivalentPost) {
+        postAlternates[lang] = `${baseUrl}/${lang}/blog/${equivalentPost.slug}`;
       }
     });
 
@@ -96,12 +91,13 @@ export default async function sitemap({
       const tagExists = langPosts.some(post => post.tags?.includes(tag));
 
       if (tagExists || lang === locale) {
-        tagAlternates[lang] = `${baseUrl}/${lang}/blog/t/${tag}`;
+        tagAlternates[lang] =
+          `${baseUrl}/${lang}/blog/t/${encodeURIComponent(tag)}`;
       }
     });
 
     urls.push({
-      url: `${baseUrl}/${locale}/blog/t/${tag}`,
+      url: `${baseUrl}/${locale}/blog/t/${encodeURIComponent(tag)}`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.5,

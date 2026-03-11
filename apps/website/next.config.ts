@@ -21,6 +21,10 @@ const nextConfig: NextConfig = {
       source: "/:locale/blog/sitemap.xml",
       destination: "/:locale/blog/sitemap/:locale.xml",
     },
+    {
+      source: "/:locale/d/sitemap.xml",
+      destination: "/:locale/d/sitemap/:locale.xml",
+    },
   ],
 };
 

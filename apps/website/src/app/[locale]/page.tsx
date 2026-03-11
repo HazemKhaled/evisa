@@ -60,8 +60,8 @@ export default async function LocalePage({
 
   return (
     <>
-      <JsonLd data={webpageJsonLd} />
-      <JsonLd data={serviceJsonLd} />
+      <JsonLd id="json-ld-webpage" data={webpageJsonLd} />
+      <JsonLd id="json-ld-service" data={serviceJsonLd} />
       <main
         id="main-content"
         className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100"

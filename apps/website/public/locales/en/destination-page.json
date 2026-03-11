@@ -5,7 +5,8 @@
     "ogTitle": "{{destination}} Visa Requirements & Travel Information",
     "ogDescription": "Everything you need to know about visiting {{destination}}. {{visaCount}} visa types available with detailed requirements and processing information.",
     "twitterTitle": "{{destination}} Visa Guide",
-    "twitterDescription": "Complete visa requirements and travel guide for {{destination}}"
+    "twitterDescription": "Complete visa requirements and travel guide for {{destination}}",
+    "notFound": "Destination Not Found"
   },
   "hero": {
     "visaTypes": "Visa Types",

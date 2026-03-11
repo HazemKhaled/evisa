@@ -5,7 +5,8 @@
     "ogTitle": "متطلبات التأشيرة ومعلومات السفر لـ {{destination}}",
     "ogDescription": "كل ما تحتاج معرفته عن زيارة {{destination}}. {{visaCount}} أنواع تأشيرة متاحة مع متطلبات مفصلة ومعلومات المعالجة.",
     "twitterTitle": "دليل تأشيرة {{destination}}",
-    "twitterDescription": "متطلبات التأشيرة الكاملة ودليل السفر لـ {{destination}}"
+    "twitterDescription": "متطلبات التأشيرة الكاملة ودليل السفر لـ {{destination}}",
+    "notFound": "الوجهة غير موجودة"
   },
   "breadcrumb": {
     "home": "الرئيسية",

@@ -108,8 +108,8 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   // Use the existing blog page component with the modified search params and tag route flag
   return (
     <>
-      <JsonLd data={webpageJsonLd} />
-      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd id="json-ld-webpage" data={webpageJsonLd} />
+      <JsonLd id="json-ld-breadcrumb" data={breadcrumbJsonLd} />
       <BlogHome
         params={params}
         searchParams={Promise.resolve(modifiedSearchParams)}

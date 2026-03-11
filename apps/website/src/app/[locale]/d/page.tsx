@@ -5,11 +5,13 @@ import { DestinationsGrid } from "@/components/destinations/destinations-grid";
 import { SearchFilterForm } from "@/components/destinations/search-filter-form";
 import { JsonLd } from "@/components/json-ld";
 import { EnhancedPagination, PageBreadcrumb } from "@/components/ui";
+import { env } from "@/lib/consts";
 import { generateWebPageJsonLd } from "@/lib/json-ld";
 import {
   getDestinationContinents,
   getDestinationsListWithMetadataPaginated,
 } from "@/lib/services/country-service";
+import { generateAlternatesMetadata } from "@/lib/utils";
 
 export const revalidate = 86400; // Revalidate every day
 
@@ -32,6 +34,8 @@ export async function generateMetadata({
     keyPrefix: "meta",
   });
 
+  const alternates = generateAlternatesMetadata(env.baseUrl, "d", locale);
+
   return {
     title: t("title"),
     description: t("description"),
@@ -39,25 +43,14 @@ export async function generateMetadata({
       title: t("ogTitle"),
       description: t("ogDescription"),
       type: "website",
+      url: alternates.canonical,
     },
     twitter: {
       card: "summary_large_image",
       title: t("twitterTitle"),
       description: t("twitterDescription"),
     },
-    alternates: {
-      canonical: `/${locale}/d`,
-      languages: {
-        en: `/en/d`,
-        ar: `/ar/d`,
-        es: `/es/d`,
-        pt: `/pt/d`,
-        ru: `/ru/d`,
-        de: `/de/d`,
-        fr: `/fr/d`,
-        it: `/it/d`,
-      },
-    },
+    alternates,
   };
 }
 
@@ -100,7 +93,7 @@ export default async function DestinationsPage({
   const jsonLd = generateWebPageJsonLd({
     name: t("meta.title"),
     description: t("meta.description"),
-    url: `/${locale}/d`,
+    url: `${env.baseUrl}/${locale}/d`,
   });
 
   return (
