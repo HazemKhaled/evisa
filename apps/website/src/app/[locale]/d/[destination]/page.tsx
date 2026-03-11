@@ -113,20 +113,30 @@ export default async function DestinationPage({
   const { locale, destination } = await params;
 
   // Parallel fetch: destination data, visa requirements, and translations
-  const [destinationData, visaRequirements, { t }, { t: tNav }] =
-    await Promise.all([
-      getDestinationDetails(destination, locale),
-      getVisaRequirements(destination, locale),
-      getTranslation(locale, "destination-page"),
-      getTranslation(locale, "navigation"),
-    ]);
+  const [
+    destinationData,
+    visaRequirements,
+    { t },
+    { t: tNav },
+    { t: tJsonLd },
+  ] = await Promise.all([
+    getDestinationDetails(destination, locale),
+    getVisaRequirements(destination, locale),
+    getTranslation(locale, "destination-page"),
+    getTranslation(locale, "navigation"),
+    getTranslation(locale, "jsonld"),
+  ]);
 
   if (!destinationData) {
     notFound();
   }
 
   // Generate structured data
-  const jsonLd = generateDestinationJsonLd(destinationData, locale);
+  const jsonLd = generateDestinationJsonLd(
+    destinationData,
+    locale,
+    tJsonLd("travelTo", { defaultValue: "Travel to" })
+  );
 
   return (
     <>

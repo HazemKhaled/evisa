@@ -18,5 +18,8 @@
     "title": "Blog de Viagem",
     "description": "Guias de viagem especializados, dicas de visto e insights de destinos para ajudá-lo a planejar sua viagem perfeita.",
     "article_section": "Blog de Viagem"
+  },
+  "destination": {
+    "travelTo": "Viajar para"
   }
 }

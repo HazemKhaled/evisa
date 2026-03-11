@@ -1,6 +1,8 @@
 import { Button, Skeleton } from "@repo/ui";
+import type { Metadata } from "next";
 import { Suspense } from "react";
 
+import { getLocaleWithRegion } from "@/app/i18n/settings";
 import { BlogPostCard } from "@/components/blog/blog-post-card";
 import { DestinationCard } from "@/components/destinations/destination-card";
 import { VisaTypeCard } from "@/components/destinations/visa-type-card";
@@ -19,10 +21,50 @@ import {
   getDestinationsListWithMetadata,
 } from "@/lib/services/country-service";
 import { getRandomVisaTypes } from "@/lib/services/visa-service";
+import { generateAlternatesMetadata } from "@/lib/utils";
 
 import { getTranslation } from "../i18n";
 
 export const revalidate = 86400; // Revalidate every 24 hours
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const { t: tHero } = await getTranslation(locale, "hero");
+  const { t: tCommon } = await getTranslation(locale, "common");
+
+  const alternates = generateAlternatesMetadata(env.baseUrl, "", locale);
+
+  return {
+    title: tHero("headline"),
+    description: tHero("subheadline"),
+    alternates,
+    openGraph: {
+      type: "website",
+      locale: getLocaleWithRegion(locale),
+      title: tHero("headline"),
+      description: tHero("subheadline"),
+      url: alternates.canonical,
+      siteName: tCommon("site.title"),
+      images: [
+        {
+          url: `${env.baseUrl}/og-homepage.jpg`,
+          width: 1200,
+          height: 630,
+          alt: tHero("headline"),
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: tHero("headline"),
+      description: tHero("subheadline"),
+    },
+  };
+}
 
 export default async function LocalePage({
   params,

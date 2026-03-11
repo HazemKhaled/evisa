@@ -146,7 +146,9 @@ export function generateArticleJsonLd(article: Article) {
     "@type": "Article",
     headline: article.headline,
     description: article.description,
-    image: article.image,
+    ...(article.image
+      ? { image: { "@type": "ImageObject", url: article.image } }
+      : {}),
     author: article.author,
     publisher: article.publisher,
     datePublished: article.datePublished,
@@ -342,7 +344,8 @@ export interface DestinationPlace {
  */
 export function generateDestinationJsonLd(
   destination: DestinationWithVisaTypes,
-  locale: string
+  locale: string,
+  travelToLabel = "Travel to"
 ): Record<string, unknown> {
   const baseUrl = env.baseUrl;
   const destinationUrl = `${baseUrl}/${locale}/d/${destination.code}`;
@@ -392,7 +395,7 @@ export function generateDestinationJsonLd(
     }),
     mainEntity: {
       "@type": "TravelAction",
-      name: `Travel to ${destination.localizedName}`,
+      name: `${travelToLabel} ${destination.localizedName}`,
       description: `Visa requirements and travel information for ${destination.localizedName}`,
       ...(destination.hasVisaFreeEntry && {
         additionalType: "https://schema.org/VisaFreeTravel",
