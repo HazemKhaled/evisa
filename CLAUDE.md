@@ -583,3 +583,6 @@ The platform helps users travel with minimal visa process through:
 
 - Use drizzle migrations for any DDL commands
 - Always respect multilingual, no hardcoded strings
+- Use Promise.all when it's possible to reduce execution time
+- Don't add any hardcoded strings, instead move it to locale files
+- When creating a new page, add it to the sitemap

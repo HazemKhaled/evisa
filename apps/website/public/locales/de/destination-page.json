@@ -79,6 +79,32 @@
     "description": "Entdecken Sie Reisetipps, Sehenswürdigkeiten und Insider-Guides für {{destination}}.",
     "viewBlog": "Reiseblog ansehen"
   },
+  "relatedDestinations": {
+    "title": "Erkunden Sie weitere Ziele in {{continent}}",
+    "description": "Entdecken Sie ähnliche Visaanforderungen und Reiseinformationen für andere Länder in {{continent}}."
+  },
+  "faq": {
+    "question": "Benötige ich ein Visum, um nach {{destination}} zu reisen?",
+    "answer": "Informationen zu den {{visaType}}-Visumanforderungen für {{destination}} finden Sie auf dieser Seite."
+  },
+  "visaDetailPage": {
+    "meta": {
+      "title": "{{visaName}} für {{destinationName}}",
+      "description": "Erhalten Sie detaillierte Informationen zum {{visaName}}-Visum für {{destinationName}}. Bearbeitungszeit: {{processingTime}} Tage, Gebühr: {{fee}} {{currency}}.",
+      "notFound": "Visumtyp nicht gefunden"
+    },
+    "title": "{{visaName}} für {{destinationName}}",
+    "defaultDescription": "Vollständige Informationen zu Anforderungen, Gebühren und Bearbeitungszeit des {{visaName}}-Visums für {{destinationName}}.",
+    "sections": {
+      "visaFeatures": "Visummerkmale",
+      "requirements": "Anforderungen",
+      "requiredDocuments": "Erforderliche Dokumente"
+    },
+    "cta": {
+      "readyToApply": "Bereit für die Antragstellung?",
+      "startApplicationGuidance": "Starten Sie noch heute Ihren Visumantrag und erhalten Sie bei jedem Schritt professionelle Unterstützung."
+    }
+  },
   "aria": {
     "breadcrumb": "Zielseite-Breadcrumb-Navigation"
   }

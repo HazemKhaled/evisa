@@ -20,9 +20,14 @@ interface MobileNavProps {
     destinations: string;
     blog: string;
   };
+  toggleMenuAriaLabel: string;
 }
 
-export function MobileNav({ locale, navigationLabels }: MobileNavProps) {
+export function MobileNav({
+  locale,
+  navigationLabels,
+  toggleMenuAriaLabel,
+}: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigationItems = [
@@ -38,7 +43,7 @@ export function MobileNav({ locale, navigationLabels }: MobileNavProps) {
         size="sm"
         onClick={() => setIsOpen(!isOpen)}
         className="h-9 w-9 p-0"
-        aria-label="Toggle menu"
+        aria-label={toggleMenuAriaLabel}
       >
         {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
       </Button>

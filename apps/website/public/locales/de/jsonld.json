@@ -18,5 +18,8 @@
     "title": "Reise-Blog",
     "description": "Experten-Reiseführer, Visa-Tipps und Reiseziel-Einblicke, um Ihnen bei der Planung Ihrer perfekten Reise zu helfen.",
     "article_section": "Reise-Blog"
+  },
+  "destination": {
+    "travelTo": "Reise nach"
   }
 }

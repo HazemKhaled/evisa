@@ -18,7 +18,7 @@
     "contact_us": "Kontaktieren Sie uns",
     "terms": "Geschäftsbedingungen",
     "privacy": "Datenschutzrichtlinie",
-    "document_center": "Dokumentenzentrum",
+    "destinations": "Reiseziele",
     "travel_blog": "Reise-Blog",
     "email": "E-Mail",
     "phone": "Telefon",
@@ -35,5 +35,8 @@
     "terms": "Geschäftsbedingungen",
     "privacy": "Datenschutzrichtlinie",
     "tag": "Tag: {{tagName}}"
+  },
+  "aria": {
+    "toggleMenu": "Menü umschalten"
   }
 }

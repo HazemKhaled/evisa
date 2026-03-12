@@ -359,32 +359,30 @@ export async function getVisaRequirements(
 
         const destination = destinationResult[0];
 
-        // Get all visa types for this destination
-        const visaTypesForDestination = await getVisaTypesByDestination(
-          destinationCode,
-          locale
+        const [visaTypesForDestination, eligibilityResults] = await Promise.all(
+          [
+            getVisaTypesByDestination(destinationCode, locale),
+            db
+              .select({
+                eligibilityStatus: visaEligibility.eligibilityStatus,
+                passportCode: countries.code,
+              })
+              .from(visaEligibility)
+              .innerJoin(
+                countries,
+                eq(visaEligibility.passportCode, countries.code)
+              )
+              .where(
+                and(
+                  eq(visaEligibility.destinationCode, destination.id),
+                  eq(visaEligibility.isActive, true),
+                  isNull(visaEligibility.deletedAt),
+                  eq(countries.isActive, true),
+                  isNull(countries.deletedAt)
+                )
+              ),
+          ]
         );
-
-        // Get eligibility information grouped by status
-        const eligibilityResults = await db
-          .select({
-            eligibilityStatus: visaEligibility.eligibilityStatus,
-            passportCode: countries.code,
-          })
-          .from(visaEligibility)
-          .innerJoin(
-            countries,
-            eq(visaEligibility.passportCode, countries.code)
-          )
-          .where(
-            and(
-              eq(visaEligibility.destinationCode, destination.id),
-              eq(visaEligibility.isActive, true),
-              isNull(visaEligibility.deletedAt),
-              eq(countries.isActive, true),
-              isNull(countries.deletedAt)
-            )
-          );
 
         // Group countries by eligibility status
         const visaFreeCountries = [

@@ -18,5 +18,8 @@
     "title": "Travel Blog",
     "description": "Expert travel guides, visa tips, and destination insights to help you plan your perfect trip.",
     "article_section": "Travel Blog"
+  },
+  "destination": {
+    "travelTo": "Travel to"
   }
 }

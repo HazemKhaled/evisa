@@ -18,7 +18,7 @@
     "contact_us": "Contactez-nous",
     "terms": "Termes et Conditions",
     "privacy": "Politique de Confidentialité",
-    "document_center": "Centre de Documents",
+    "destinations": "Destinations",
     "travel_blog": "Blog de Voyage",
     "email": "Email",
     "phone": "Téléphone",
@@ -35,5 +35,8 @@
     "terms": "Conditions générales",
     "privacy": "Politique de confidentialité",
     "tag": "Étiquette: {{tagName}}"
+  },
+  "aria": {
+    "toggleMenu": "Basculer le menu"
   }
 }

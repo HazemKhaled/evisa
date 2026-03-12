@@ -79,6 +79,32 @@
     "description": "Descubre consejos de viaje, atracciones y guías internas para {{destination}}.",
     "viewBlog": "Ver Blog de Viajes"
   },
+  "relatedDestinations": {
+    "title": "Explora Otros Destinos en {{continent}}",
+    "description": "Descubre requisitos de visa similares e información de viajes para otros países en {{continent}}."
+  },
+  "faq": {
+    "question": "¿Necesito una visa para viajar a {{destination}}?",
+    "answer": "La información sobre los requisitos de la visa {{visaType}} para {{destination}} está disponible en esta página."
+  },
+  "visaDetailPage": {
+    "meta": {
+      "title": "{{visaName}} para {{destinationName}}",
+      "description": "Obtén información detallada sobre la visa {{visaName}} para {{destinationName}}. Tiempo de procesamiento: {{processingTime}} días, tarifa: {{fee}} {{currency}}.",
+      "notFound": "Tipo de visa no encontrado"
+    },
+    "title": "{{visaName}} para {{destinationName}}",
+    "defaultDescription": "Información completa sobre requisitos, tarifas y tiempo de procesamiento de la visa {{visaName}} para {{destinationName}}.",
+    "sections": {
+      "visaFeatures": "Características de la visa",
+      "requirements": "Requisitos",
+      "requiredDocuments": "Documentos requeridos"
+    },
+    "cta": {
+      "readyToApply": "¿Listo para aplicar?",
+      "startApplicationGuidance": "Comienza hoy tu proceso de solicitud de visa y obtén orientación experta en cada paso."
+    }
+  },
   "aria": {
     "breadcrumb": "Navegación de migas de pan de página de destino"
   }

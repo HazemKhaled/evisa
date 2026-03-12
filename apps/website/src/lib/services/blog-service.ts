@@ -300,15 +300,17 @@ export async function getBlogPosts(
           .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
           .where(and(...whereConditions));
 
-    const totalResults = await totalQuery;
+    const postIds = results.map(r => r.post.id);
+    const [totalResults, tagsMap] = await Promise.all([
+      totalQuery,
+      getTagsForPostIds(db, postIds),
+    ]);
 
     const total = totalResults[0].count;
     const totalPages = Math.ceil(total / limit);
     const currentPage = Math.floor(offset / limit) + 1;
     const hasMore = offset + limit < total;
 
-    const postIds = results.map(r => r.post.id);
-    const tagsMap = await getTagsForPostIds(db, postIds);
     const blogPostsWithTags = results.map(result =>
       convertDbToBlogPostData(
         result.post,

@@ -72,7 +72,7 @@ export async function Footer({ locale }: FooterProps) {
                   href={`/${locale}/d`}
                   className="text-base text-gray-300 hover:text-white"
                 >
-                  {tNav("footer.document_center")}
+                  {tNav("footer.destinations")}
                 </Link>
               </li>
               <li>
