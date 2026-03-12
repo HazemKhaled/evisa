@@ -83,6 +83,28 @@
     "title": "استكشف الوجهات الأخرى في {{continent}}",
     "description": "اكتشف متطلبات تأشيرة مماثلة ومعلومات السفر للدول الأخرى في {{continent}}."
   },
+  "faq": {
+    "question": "هل أحتاج إلى تأشيرة للسفر إلى {{destination}}؟",
+    "answer": "معلومات حول متطلبات تأشيرة {{visaType}} لـ {{destination}} متاحة في هذه الصفحة."
+  },
+  "visaDetailPage": {
+    "meta": {
+      "title": "{{visaName}} لـ {{destinationName}}",
+      "description": "احصل على معلومات مفصلة حول تأشيرة {{visaName}} لـ {{destinationName}}. وقت المعالجة: {{processingTime}} يومًا، الرسوم: {{fee}} {{currency}}.",
+      "notFound": "نوع التأشيرة غير موجود"
+    },
+    "title": "{{visaName}} لـ {{destinationName}}",
+    "defaultDescription": "معلومات كاملة حول متطلبات تأشيرة {{visaName}} والرسوم ووقت المعالجة لـ {{destinationName}}.",
+    "sections": {
+      "visaFeatures": "ميزات التأشيرة",
+      "requirements": "المتطلبات",
+      "requiredDocuments": "الوثائق المطلوبة"
+    },
+    "cta": {
+      "readyToApply": "جاهز للتقديم؟",
+      "startApplicationGuidance": "ابدأ عملية طلب التأشيرة اليوم واحصل على إرشاد خبراء في كل خطوة."
+    }
+  },
   "aria": {
     "breadcrumb": "تنقل مسار التنقل لصفحة الوجهة"
   }

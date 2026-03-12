@@ -149,7 +149,7 @@ export default async function DestinationPage({
   if (destinationData.continent) {
     const allDestinations = await getDestinationsListWithMetadata(
       locale,
-      10,
+      25,
       "popular"
     );
     relatedDestinations = allDestinations.filter(
@@ -161,7 +161,7 @@ export default async function DestinationPage({
   const jsonLd = generateDestinationJsonLd(
     destinationData,
     locale,
-    tJsonLd("travelTo", { defaultValue: "Travel to" })
+    tJsonLd("destination.travelTo", { defaultValue: "Travel to" })
   );
 
   // Breadcrumb items for JSON-LD
@@ -182,8 +182,13 @@ export default async function DestinationPage({
   const faqItems =
     visaRequirements && visaRequirements.visaTypes
       ? visaRequirements.visaTypes.slice(0, 5).map(visa => ({
-          question: `Do I need a visa to travel to ${destinationData.localizedName}?`,
-          answer: `Information about ${visa.type} visa requirements for ${destinationData.localizedName} is available on this page.`,
+          question: t("faq.question", {
+            destination: destinationData.localizedName,
+          }),
+          answer: t("faq.answer", {
+            visaType: visa.type,
+            destination: destinationData.localizedName,
+          }),
         }))
       : [];
   const faqJsonLd = faqItems.length > 0 ? generateFAQJsonLd(faqItems) : null;

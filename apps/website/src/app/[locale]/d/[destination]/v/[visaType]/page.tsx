@@ -17,12 +17,16 @@ import { generateAlternatesMetadata } from "@/lib/utils";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 
+function toVisaSlug(visaType: string): string {
+  return visaType.toLowerCase().replace(/\s+/g, "-");
+}
+
 interface VisaDetailPageProps {
-  params: Promise<{
+  params: {
     locale: string;
     destination: string;
     visaType: string;
-  }>;
+  };
 }
 
 // Pre-build popular destination visas at build time
@@ -35,54 +39,64 @@ export async function generateStaticParams(): Promise<
     "popular"
   );
 
-  const params: VisaDetailPageProps["params"][] = [];
+  const destinationVisaPairs = await Promise.all(
+    popularDestinations.map(async destination => ({
+      destinationCode: destination.code,
+      visas: await getVisaTypesByDestination(destination.code, "en"),
+    }))
+  );
 
-  for (const destination of popularDestinations) {
-    const visas = await getVisaTypesByDestination(destination.code, "en");
-
-    for (const visa of visas) {
-      for (const locale of languages) {
-        params.push(
-          Promise.resolve({
-            locale,
-            destination: destination.code,
-            visaType: visa.type.toLowerCase().replace(/\s+/g, "-"),
-          })
-        );
-      }
-    }
-  }
-
-  return params;
+  return destinationVisaPairs.flatMap(({ destinationCode, visas }) =>
+    visas.flatMap(visa =>
+      languages.map(locale => ({
+        locale,
+        destination: destinationCode,
+        visaType: toVisaSlug(visa.type),
+      }))
+    )
+  );
 }
 
 export async function generateMetadata({
   params,
 }: VisaDetailPageProps): Promise<Metadata> {
-  const { locale, destination, visaType } = await params;
+  const { locale, destination, visaType } = params;
+  const visaTypeSlug = toVisaSlug(visaType);
 
-  const destinationData = await getDestinationDetails(destination, locale);
+  const [destinationData, { t: tDestination }] = await Promise.all([
+    getDestinationDetails(destination, locale),
+    getTranslation(locale, "destination-page"),
+  ]);
   if (!destinationData) {
-    return { title: "Not Found" };
+    return { title: tDestination("visaDetailPage.meta.notFound") };
   }
 
   const visas = await getVisaTypesByDestination(destination, locale);
-  const visa = visas.find(
-    v => v.type.toLowerCase().replace(/\s+/g, "-") === visaType
-  );
+  const visa = visas.find(v => toVisaSlug(v.type) === visaTypeSlug);
 
   if (!visa) {
-    return { title: "Not Found" };
+    return { title: tDestination("visaDetailPage.meta.notFound") };
   }
+
+  const canonicalVisaSlug = toVisaSlug(visa.type);
 
   const alternates = generateAlternatesMetadata(
     env.baseUrl,
-    `d/${destination}/v/${visaType}`,
+    `d/${destination}/v/${canonicalVisaSlug}`,
     locale
   );
 
-  const title = `${visa.name} for ${destinationData.localizedName}`;
-  const description = `Get detailed information about ${visa.name} visa for ${destinationData.localizedName}. Processing time: ${visa.processingTime} days, Fee: ${visa.fee} ${visa.currency}.`;
+  const title = tDestination("visaDetailPage.meta.title", {
+    visaName: visa.name,
+    destinationName: destinationData.localizedName,
+  });
+  const description = tDestination("visaDetailPage.meta.description", {
+    visaName: visa.name,
+    destinationName: destinationData.localizedName,
+    processingTime: visa.processingTime,
+    fee: visa.fee,
+    currency: visa.currency,
+  });
 
   return {
     title,
@@ -93,45 +107,50 @@ export async function generateMetadata({
       description,
       url: alternates.canonical,
       type: "website",
-      images: destinationData.heroImage
-        ? [
-            {
-              url: destinationData.heroImage,
-              width: 1200,
-              height: 630,
-              alt: title,
-            },
-          ]
-        : undefined,
+      images: [
+        {
+          url: destinationData.heroImage ?? `${env.baseUrl}/icon.svg`,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: destinationData.heroImage
+        ? [destinationData.heroImage]
+        : [`${env.baseUrl}/icon.svg`],
     },
   };
 }
 
 export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
-  const { locale, destination, visaType } = await params;
+  const { locale, destination, visaType } = params;
+  const visaTypeSlug = toVisaSlug(visaType);
 
-  const [destinationData, { t: tCommon }] = await Promise.all([
-    getDestinationDetails(destination, locale),
-    getTranslation(locale, "common"),
-  ]);
+  const [destinationData, { t: tCommon }, { t: tDestination }, { t: tJsonLd }] =
+    await Promise.all([
+      getDestinationDetails(destination, locale),
+      getTranslation(locale, "common"),
+      getTranslation(locale, "destination-page"),
+      getTranslation(locale, "jsonld"),
+    ]);
 
   if (!destinationData) {
     notFound();
   }
 
   const visas = await getVisaTypesByDestination(destination, locale);
-  const visa = visas.find(
-    v => v.type.toLowerCase().replace(/\s+/g, "-") === visaType
-  );
+  const visa = visas.find(v => toVisaSlug(v.type) === visaTypeSlug);
 
   if (!visa) {
     notFound();
   }
+
+  const canonicalVisaSlug = toVisaSlug(visa.type);
 
   const breadcrumbs = [
     { label: tCommon("navigation.home"), href: `/${locale}` },
@@ -140,12 +159,21 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
       label: destinationData.localizedName,
       href: `/${locale}/d/${destination}`,
     },
-    { label: visa.name, href: `/${locale}/d/${destination}/v/${visaType}` },
+    {
+      label: visa.name,
+      href: `/${locale}/d/${destination}/v/${canonicalVisaSlug}`,
+    },
   ];
 
   return (
     <>
-      <JsonLd data={generateDestinationJsonLd(destinationData, locale)} />
+      <JsonLd
+        data={generateDestinationJsonLd(
+          destinationData,
+          locale,
+          tJsonLd("destination.travelTo", { defaultValue: "Travel to" })
+        )}
+      />
       <main id="main-content" className="min-h-screen bg-white">
         {/* Breadcrumb */}
         <div className="border-b border-gray-200">
@@ -163,11 +191,17 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
               </span>
             </div>
             <h1 className="mb-4 text-4xl font-bold text-gray-900">
-              {visa.name} for {destinationData.localizedName}
+              {tDestination("visaDetailPage.title", {
+                visaName: visa.name,
+                destinationName: destinationData.localizedName,
+              })}
             </h1>
             <p className="text-lg text-gray-600">
               {visa.description ||
-                `Complete information about ${visa.name} visa requirements, fees, and processing time.`}
+                tDestination("visaDetailPage.defaultDescription", {
+                  visaName: visa.name,
+                  destinationName: destinationData.localizedName,
+                })}
             </p>
           </div>
         </div>
@@ -224,7 +258,7 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
           {/* Visa Features */}
           <div className="mb-12">
             <h2 className="mb-6 text-2xl font-bold text-gray-900">
-              Visa Features
+              {tDestination("visaDetailPage.sections.visaFeatures")}
             </h2>
             <div className="space-y-3">
               {visa.isMultiEntry && (
@@ -248,7 +282,7 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
           {visa.requirements && visa.requirements.length > 0 && (
             <div className="mb-12">
               <h2 className="mb-6 text-2xl font-bold text-gray-900">
-                Requirements
+                {tDestination("visaDetailPage.sections.requirements")}
               </h2>
               <ul className="space-y-3">
                 {visa.requirements.map((req, idx) => (
@@ -272,7 +306,7 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
           {visa.documents && visa.documents.length > 0 && (
             <div className="mb-12">
               <h2 className="mb-6 text-2xl font-bold text-gray-900">
-                Required Documents
+                {tDestination("visaDetailPage.sections.requiredDocuments")}
               </h2>
               <ul className="space-y-3">
                 {visa.documents.map((doc, idx) => (
@@ -295,11 +329,10 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
           {/* CTA */}
           <div className="rounded-lg bg-blue-50 p-8 text-center">
             <h2 className="mb-4 text-2xl font-bold text-gray-900">
-              Ready to Apply?
+              {tDestination("visaDetailPage.cta.readyToApply")}
             </h2>
             <p className="mb-6 text-gray-600">
-              Start your visa application process today and get expert guidance
-              every step of the way.
+              {tDestination("visaDetailPage.cta.startApplicationGuidance")}
             </p>
             <Button size="lg">{tCommon("buttons.startApplication")}</Button>
           </div>

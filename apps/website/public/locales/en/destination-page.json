@@ -79,6 +79,28 @@
     "title": "Explore Other Destinations in {{continent}}",
     "description": "Discover similar visa requirements and travel information for other countries in {{continent}}."
   },
+  "faq": {
+    "question": "Do I need a visa to travel to {{destination}}?",
+    "answer": "Information about {{visaType}} visa requirements for {{destination}} is available on this page."
+  },
+  "visaDetailPage": {
+    "meta": {
+      "title": "{{visaName}} for {{destinationName}}",
+      "description": "Get detailed information about {{visaName}} visa for {{destinationName}}. Processing time: {{processingTime}} days, Fee: {{fee}} {{currency}}.",
+      "notFound": "Visa Type Not Found"
+    },
+    "title": "{{visaName}} for {{destinationName}}",
+    "defaultDescription": "Complete information about {{visaName}} visa requirements, fees, and processing time for {{destinationName}}.",
+    "sections": {
+      "visaFeatures": "Visa Features",
+      "requirements": "Requirements",
+      "requiredDocuments": "Required Documents"
+    },
+    "cta": {
+      "readyToApply": "Ready to Apply?",
+      "startApplicationGuidance": "Start your visa application process today and get expert guidance every step of the way."
+    }
+  },
   "aria": {
     "breadcrumb": "Destination page breadcrumb navigation"
   }

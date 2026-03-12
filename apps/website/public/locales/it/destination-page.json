@@ -81,7 +81,29 @@
   },
   "relatedDestinations": {
     "title": "Esplora altre destinazioni in {{continent}}",
-    "description": "Scopri requisiti visto simili e informazioni di viaggio per altri paesi in {{continent}}."
+    "description": "Scopri requisiti per il visto e informazioni di viaggio simili per altri paesi in {{continent}}."
+  },
+  "faq": {
+    "question": "Ho bisogno di un visto per viaggiare verso {{destination}}?",
+    "answer": "Le informazioni sui requisiti del visto {{visaType}} per {{destination}} sono disponibili in questa pagina."
+  },
+  "visaDetailPage": {
+    "meta": {
+      "title": "{{visaName}} per {{destinationName}}",
+      "description": "Ottieni informazioni dettagliate sul visto {{visaName}} per {{destinationName}}. Tempo di elaborazione: {{processingTime}} giorni, costo: {{fee}} {{currency}}.",
+      "notFound": "Tipo di visto non trovato"
+    },
+    "title": "{{visaName}} per {{destinationName}}",
+    "defaultDescription": "Informazioni complete su requisiti, costi e tempi di elaborazione del visto {{visaName}} per {{destinationName}}.",
+    "sections": {
+      "visaFeatures": "Caratteristiche del visto",
+      "requirements": "Requisiti",
+      "requiredDocuments": "Documenti richiesti"
+    },
+    "cta": {
+      "readyToApply": "Pronto a fare domanda?",
+      "startApplicationGuidance": "Inizia oggi la tua richiesta di visto e ricevi assistenza esperta in ogni fase."
+    }
   },
   "aria": {
     "breadcrumb": "Navigazione breadcrumb pagina destinazione"

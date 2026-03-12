@@ -80,7 +80,7 @@ export async function generateMetadata({
       url: alternates.canonical,
       images: [
         {
-          url: `${env.baseUrl}/og-default.jpg`,
+          url: `${env.baseUrl}/icon.svg`,
           width: 1200,
           height: 630,
           alt: t("site.title"),
@@ -91,6 +91,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("site.twitterTitle"),
       description: t("site.twitterDescription"),
+      images: [`${env.baseUrl}/icon.svg`],
     },
   };
 }

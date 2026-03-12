@@ -51,7 +51,7 @@ export async function generateMetadata({
       siteName: tCommon("site.title"),
       images: [
         {
-          url: `${env.baseUrl}/og-homepage.jpg`,
+          url: `${env.baseUrl}/icon.svg`,
           width: 1200,
           height: 630,
           alt: tHero("headline"),
@@ -62,6 +62,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: tHero("headline"),
       description: tHero("subheadline"),
+      images: [`${env.baseUrl}/icon.svg`],
     },
   };
 }

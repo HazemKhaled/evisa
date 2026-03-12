@@ -80,8 +80,30 @@
     "viewBlog": "Посмотреть блог о путешествиях"
   },
   "relatedDestinations": {
-    "title": "Изучите другие направления в {{continent}}",
-    "description": "Откройте для себя аналогичные требования к визам и информацию о путешествиях в другие страны {{continent}}."
+    "title": "Изучите другие направления этого континента",
+    "description": "Откройте для себя похожие визовые требования и информацию о поездках для других стран этого континента."
+  },
+  "faq": {
+    "question": "Нужна ли мне виза для поездки в {{destination}}?",
+    "answer": "Информация о требованиях к визе {{visaType}} для {{destination}} доступна на этой странице."
+  },
+  "visaDetailPage": {
+    "meta": {
+      "title": "{{visaName}} для {{destinationName}}",
+      "description": "Получите подробную информацию о визе {{visaName}} для {{destinationName}}. Срок обработки: {{processingTime}} дней, сбор: {{fee}} {{currency}}.",
+      "notFound": "Тип визы не найден"
+    },
+    "title": "{{visaName}} для {{destinationName}}",
+    "defaultDescription": "Полная информация о требованиях, сборах и сроках обработки визы {{visaName}} для {{destinationName}}.",
+    "sections": {
+      "visaFeatures": "Особенности визы",
+      "requirements": "Требования",
+      "requiredDocuments": "Необходимые документы"
+    },
+    "cta": {
+      "readyToApply": "Готовы подать заявку?",
+      "startApplicationGuidance": "Начните оформление визы уже сегодня и получите экспертную поддержку на каждом этапе."
+    }
   },
   "aria": {
     "breadcrumb": "Навигация хлебных крошек страницы назначения"
