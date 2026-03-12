@@ -35,5 +35,8 @@
     "terms": "Geschäftsbedingungen",
     "privacy": "Datenschutzrichtlinie",
     "tag": "Tag: {{tagName}}"
+  },
+  "aria": {
+    "toggleMenu": "Menü umschalten"
   }
 }

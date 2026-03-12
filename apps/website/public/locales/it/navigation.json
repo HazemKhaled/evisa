@@ -35,5 +35,8 @@
     "terms": "Termini e condizioni",
     "privacy": "Informativa sulla privacy",
     "tag": "Tag: {{tagName}}"
+  },
+  "aria": {
+    "toggleMenu": "Attiva/disattiva menu"
   }
 }

@@ -38,6 +38,7 @@ export async function Header({ locale }: HeaderProps) {
                   destinations: tNav("header.destinations"),
                   blog: tNav("header.blog"),
                 }}
+                toggleMenuAriaLabel={tNav("aria.toggleMenu")}
               />
             </div>
 
@@ -81,7 +82,7 @@ export async function Header({ locale }: HeaderProps) {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div>{tCommon("status.loading")}</div>}>
             <LanguageSwitcher />
           </Suspense>
         </div>

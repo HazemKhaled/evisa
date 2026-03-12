@@ -35,5 +35,8 @@
     "terms": "Termos e Condições",
     "privacy": "Política de Privacidade",
     "tag": "Tag: {{tagName}}"
+  },
+  "aria": {
+    "toggleMenu": "Alternar menu"
   }
 }
