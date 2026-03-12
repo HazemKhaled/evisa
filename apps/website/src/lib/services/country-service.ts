@@ -643,56 +643,56 @@ export async function getDestinationsListWithMetadataPaginated(
       )
       .where(and(...baseWhereConditions));
 
-    const totalCountResults = await totalCountQuery;
+    const [totalCountResults, results] = await Promise.all([
+      totalCountQuery,
+      db
+        .select({
+          code: countries.code,
+          name: countries.code,
+          localizedName: countriesI18n.name,
+          heroImage: countries.heroImage,
+          about: countriesI18n.about,
+          continent: countries.continent,
+          region: countries.region,
+        })
+        .from(countries)
+        .leftJoin(
+          countriesI18n,
+          and(
+            eq(countries.code, countriesI18n.countryCode),
+            eq(countriesI18n.locale, locale)
+          )
+        )
+        .leftJoin(
+          visaTypes,
+          and(
+            eq(visaTypes.destinationCode, countries.code),
+            eq(visaTypes.isActive, true),
+            isNull(visaTypes.deletedAt)
+          )
+        )
+        .leftJoin(
+          visaEligibility,
+          and(
+            eq(visaEligibility.destinationCode, countries.code),
+            inArray(visaEligibility.eligibilityStatus, [
+              "visa_free",
+              "on_arrival",
+            ]),
+            eq(visaEligibility.isActive, true),
+            isNull(visaEligibility.deletedAt)
+          )
+        )
+        .where(and(...baseWhereConditions))
+        .limit(validatedLimit)
+        .offset(validatedOffset),
+    ]);
     const total = totalCountResults.length;
 
     // Calculate pagination info
     const currentPage = Math.floor(validatedOffset / validatedLimit) + 1;
     const totalPages = Math.ceil(total / validatedLimit);
     const hasMore = validatedOffset + validatedLimit < total;
-
-    // Get paginated results
-    const results = await db
-      .select({
-        code: countries.code,
-        name: countries.code,
-        localizedName: countriesI18n.name,
-        heroImage: countries.heroImage,
-        about: countriesI18n.about,
-        continent: countries.continent,
-        region: countries.region,
-      })
-      .from(countries)
-      .leftJoin(
-        countriesI18n,
-        and(
-          eq(countries.code, countriesI18n.countryCode),
-          eq(countriesI18n.locale, locale)
-        )
-      )
-      .leftJoin(
-        visaTypes,
-        and(
-          eq(visaTypes.destinationCode, countries.code),
-          eq(visaTypes.isActive, true),
-          isNull(visaTypes.deletedAt)
-        )
-      )
-      .leftJoin(
-        visaEligibility,
-        and(
-          eq(visaEligibility.destinationCode, countries.code),
-          inArray(visaEligibility.eligibilityStatus, [
-            "visa_free",
-            "on_arrival",
-          ]),
-          eq(visaEligibility.isActive, true),
-          isNull(visaEligibility.deletedAt)
-        )
-      )
-      .where(and(...baseWhereConditions))
-      .limit(validatedLimit)
-      .offset(validatedOffset);
 
     // Remove duplicates based on country code
     const uniqueResults = results.filter(
@@ -910,53 +910,52 @@ export async function getDestinationDetails(
 
         const destination = destinationResults[0];
 
-        // Get visa types for this destination
-        const visaTypeResults = await db
-          .select({
-            id: visaTypes.id,
-            type: visaTypes.type,
-            name: visaTypesI18n.name,
-            duration: visaTypes.duration,
-            fee: visaTypes.fee,
-            currency: visaTypes.currency,
-            processingTime: visaTypes.processingTime,
-            requiresInterview: visaTypes.requiresInterview,
-            isMultiEntry: visaTypes.isMultiEntry,
-          })
-          .from(visaTypes)
-          .leftJoin(
-            visaTypesI18n,
-            and(
-              eq(visaTypes.id, visaTypesI18n.visaTypeId),
-              eq(visaTypesI18n.locale, locale)
+        const [visaTypeResults, eligibilityResults] = await Promise.all([
+          db
+            .select({
+              id: visaTypes.id,
+              type: visaTypes.type,
+              name: visaTypesI18n.name,
+              duration: visaTypes.duration,
+              fee: visaTypes.fee,
+              currency: visaTypes.currency,
+              processingTime: visaTypes.processingTime,
+              requiresInterview: visaTypes.requiresInterview,
+              isMultiEntry: visaTypes.isMultiEntry,
+            })
+            .from(visaTypes)
+            .leftJoin(
+              visaTypesI18n,
+              and(
+                eq(visaTypes.id, visaTypesI18n.visaTypeId),
+                eq(visaTypesI18n.locale, locale)
+              )
             )
-          )
-          .where(
-            and(
-              eq(visaTypes.destinationCode, destination.code),
-              eq(visaTypes.isActive, true),
-              isNull(visaTypes.deletedAt)
-            )
-          );
-
-        // Check for visa-free and visa-on-arrival options
-        const eligibilityResults = await db
-          .select({
-            eligibilityStatus: visaEligibility.eligibilityStatus,
-            maxStayDays: visaEligibility.maxStayDays,
-          })
-          .from(visaEligibility)
-          .where(
-            and(
-              eq(visaEligibility.destinationCode, destination.code),
-              inArray(visaEligibility.eligibilityStatus, [
-                "visa_free",
-                "on_arrival",
-              ]),
-              eq(visaEligibility.isActive, true),
-              isNull(visaEligibility.deletedAt)
-            )
-          );
+            .where(
+              and(
+                eq(visaTypes.destinationCode, destination.code),
+                eq(visaTypes.isActive, true),
+                isNull(visaTypes.deletedAt)
+              )
+            ),
+          db
+            .select({
+              eligibilityStatus: visaEligibility.eligibilityStatus,
+              maxStayDays: visaEligibility.maxStayDays,
+            })
+            .from(visaEligibility)
+            .where(
+              and(
+                eq(visaEligibility.destinationCode, destination.code),
+                inArray(visaEligibility.eligibilityStatus, [
+                  "visa_free",
+                  "on_arrival",
+                ]),
+                eq(visaEligibility.isActive, true),
+                isNull(visaEligibility.deletedAt)
+              )
+            ),
+        ]);
 
         const destinationVisaTypes: VisaTypeInfo[] = visaTypeResults.map(
           vt => ({
