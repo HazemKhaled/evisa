@@ -585,4 +585,4 @@ The platform helps users travel with minimal visa process through:
 - Always respect multilingual, no hardcoded strings
 - Use Promise.all when it's possible to reduce execution time
 - Don't add any hardcoded strings, instead move it to locale files
-- When create a new page, add it to sitemap
+- When creating a new page, add it to the sitemap
