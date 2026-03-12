@@ -3,6 +3,7 @@ import type { MetadataRoute } from "next";
 import { languages } from "@/app/i18n/settings";
 import { env } from "@/lib/consts";
 import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
+import { getVisaTypesByDestination } from "@/lib/services/visa-service";
 
 export const revalidate = 86400; // Revalidate every day
 
@@ -31,8 +32,8 @@ export default async function sitemap({
     alternates: { languages: listAlternates },
   });
 
-  // Each destination: detail page + blog index
-  destinations.forEach(dest => {
+  // Each destination: detail page + blog index + visa types
+  for (const dest of destinations) {
     const detailAlternates: Record<string, string> = {};
     const blogAlternates: Record<string, string> = {};
     languages.forEach(lang => {
@@ -53,7 +54,32 @@ export default async function sitemap({
       priority: 0.7,
       alternates: { languages: blogAlternates },
     });
-  });
+
+    // Fetch visa types for this destination and add them to sitemap
+    try {
+      const visas = await getVisaTypesByDestination(dest.code, locale);
+      for (const visa of visas) {
+        const visaSlug = visa.type.toLowerCase().replace(/\s+/g, "-");
+        const visaAlternates: Record<string, string> = {};
+        languages.forEach(lang => {
+          visaAlternates[lang] = `${base}/${lang}/d/${dest.code}/v/${visaSlug}`;
+        });
+
+        urls.push({
+          url: `${base}/${locale}/d/${dest.code}/v/${visaSlug}`,
+          changeFrequency: "monthly",
+          priority: 0.8,
+          alternates: { languages: visaAlternates },
+        });
+      }
+    } catch (error) {
+      // Log error but continue sitemap generation for other destinations
+      console.error(
+        `Failed to fetch visas for destination ${dest.code}:`,
+        error
+      );
+    }
+  }
 
   return urls;
 }
