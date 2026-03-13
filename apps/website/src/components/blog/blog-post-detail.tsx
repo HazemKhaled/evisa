@@ -1,13 +1,12 @@
 import { cn } from "@repo/utils";
 import Image from "next/image";
 import Link from "next/link";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 import { getTranslation } from "@/app/i18n";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 import type { BlogPostData } from "@/lib/services/blog-service";
 
+import { BlogMarkdownContent } from "./blog-markdown-content";
 import { BlogPostCard } from "./blog-post-card";
 
 interface BlogPostDetailProps {
@@ -128,56 +127,7 @@ export async function BlogPostDetail({
       </header>
 
       {/* Article content */}
-      <div className="prose prose-lg mb-12 max-w-none">
-        <div className="leading-relaxed text-gray-900">
-          <Markdown
-            remarkPlugins={[remarkGfm]}
-            components={{
-              a: ({ href, children }) => {
-                const isInternal =
-                  href?.startsWith("/") || href?.startsWith("#");
-                if (isInternal) {
-                  return (
-                    <Link
-                      href={href as string}
-                      className="text-blue-600 hover:underline"
-                    >
-                      {children}
-                    </Link>
-                  );
-                }
-                return (
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline"
-                  >
-                    {children}
-                  </a>
-                );
-              },
-              img: ({ src, alt }) => {
-                // Ensure src is valid
-                if (!src) return null;
-                return (
-                  <span className="relative my-6 block aspect-video overflow-hidden rounded-lg">
-                    <Image
-                      src={src as string}
-                      alt={alt || ""}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                  </span>
-                );
-              },
-            }}
-          >
-            {post.content}
-          </Markdown>
-        </div>
-      </div>
+      <BlogMarkdownContent content={post.content} className="mb-12" />
 
       {/* Article footer */}
       <footer className="border-t border-gray-200 pt-8">

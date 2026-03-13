@@ -432,3 +432,93 @@
     color: var(--popover-foreground);
   }
 }
+
+@layer components {
+  .blog-prose {
+    @apply text-foreground max-w-none;
+    line-height: 1.85;
+  }
+
+  .blog-prose :where(h2) {
+    @apply text-foreground mt-12 mb-4 scroll-mt-24 text-3xl font-bold;
+    line-height: 1.35;
+  }
+
+  .blog-prose :where(h3) {
+    @apply text-foreground mt-10 mb-3 scroll-mt-24 text-2xl font-semibold;
+    line-height: 1.4;
+  }
+
+  .blog-prose :where(h4) {
+    @apply text-foreground mt-8 mb-3 scroll-mt-24 text-xl font-semibold;
+    line-height: 1.45;
+  }
+
+  .blog-prose :where(p) {
+    @apply text-foreground/90 my-5 text-base;
+  }
+
+  .blog-prose :where(ul, ol) {
+    @apply my-5 ps-6;
+  }
+
+  .blog-prose :where(li) {
+    @apply text-foreground/90 my-2;
+  }
+
+  .blog-prose :where(blockquote) {
+    @apply border-primary-500 bg-muted/50 text-foreground my-8 rounded-lg border-s-4 px-6 py-4 italic;
+  }
+
+  .blog-prose :where(hr) {
+    @apply border-border my-10;
+  }
+
+  .blog-markdown-link {
+    @apply text-primary-700 decoration-primary-400/60 hover:text-primary-600 font-medium underline underline-offset-4 transition-colors;
+  }
+
+  .blog-prose :where(code):not(pre code) {
+    @apply bg-muted text-foreground rounded px-1.5 py-1 text-sm;
+  }
+
+  .blog-prose :where(pre) {
+    @apply border-border bg-muted my-6 overflow-x-auto rounded-lg border p-4;
+  }
+
+  .blog-prose :where(pre code) {
+    @apply text-foreground bg-transparent p-0 text-sm;
+  }
+
+  .blog-image-wrapper {
+    @apply border-border my-8 block overflow-hidden rounded-lg border;
+  }
+
+  .blog-image {
+    @apply h-auto w-full object-cover;
+  }
+
+  .blog-table-wrapper {
+    @apply border-border bg-card my-8 w-full overflow-x-auto rounded-lg border;
+  }
+
+  .blog-prose :where(table) {
+    @apply w-full min-w-[640px] border-collapse text-left;
+  }
+
+  .blog-prose :where(thead) {
+    @apply border-border bg-muted border-b;
+  }
+
+  .blog-prose :where(th) {
+    @apply text-foreground px-4 py-3 text-sm font-semibold;
+  }
+
+  .blog-prose :where(td) {
+    @apply border-border text-foreground/90 border-t px-4 py-3 align-top text-sm;
+  }
+
+  .blog-prose :where(tbody tr:nth-child(even)) {
+    @apply bg-muted/30;
+  }
+}
