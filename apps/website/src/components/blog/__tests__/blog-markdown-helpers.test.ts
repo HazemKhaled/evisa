@@ -99,12 +99,47 @@ describe("blog-markdown-helpers", () => {
       });
     });
 
+    it("treats hash-only anchor as internal", () => {
+      expect(getMarkdownLinkAttributes("#introduction")).toEqual({
+        href: "#introduction",
+        isInternal: true,
+      });
+    });
+
     it("returns external link metadata with SEO/security rel", () => {
       expect(getMarkdownLinkAttributes("https://example.com/docs")).toEqual({
         href: "https://example.com/docs",
         isInternal: false,
         target: "_blank",
         rel: "nofollow noopener noreferrer",
+      });
+    });
+
+    it("strips javascript: protocol to safe anchor", () => {
+      expect(getMarkdownLinkAttributes("javascript:alert('xss')")).toEqual({
+        href: "#",
+        isInternal: true,
+      });
+    });
+
+    it("strips data: protocol to safe anchor", () => {
+      expect(getMarkdownLinkAttributes("data:text/html,<h1>xss</h1>")).toEqual({
+        href: "#",
+        isInternal: true,
+      });
+    });
+
+    it("strips vbscript: protocol to safe anchor", () => {
+      expect(getMarkdownLinkAttributes("vbscript:msgbox('xss')")).toEqual({
+        href: "#",
+        isInternal: true,
+      });
+    });
+
+    it("strips unsafe protocol regardless of casing", () => {
+      expect(getMarkdownLinkAttributes("JAVASCRIPT:void(0)")).toEqual({
+        href: "#",
+        isInternal: true,
       });
     });
   });

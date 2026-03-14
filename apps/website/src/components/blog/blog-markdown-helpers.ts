@@ -20,6 +20,12 @@ interface BlogMarkdownHeadingData {
 
 const EXPLICIT_HEADING_ANCHOR_REGEX = /\s*\{#([^\s{}]+)\}\s*$/u;
 
+const UNSAFE_HREF_PROTOCOLS = /^(javascript|data|vbscript):/iu;
+
+function isSafeHref(href: string): boolean {
+  return !UNSAFE_HREF_PROTOCOLS.test(href.trim());
+}
+
 function getNodeText(node: ReactNode): string {
   if (typeof node === "string" || typeof node === "number") {
     return String(node);
@@ -101,6 +107,10 @@ export function getHeadingData(
 export function getMarkdownLinkAttributes(
   href: string
 ): BlogMarkdownLinkAttributes {
+  if (!isSafeHref(href)) {
+    return { href: "#", isInternal: true };
+  }
+
   const isInternal = href.startsWith("/") || href.startsWith("#");
 
   if (isInternal) {
