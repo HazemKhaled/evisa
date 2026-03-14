@@ -60,3 +60,4 @@ bmad/
 .gemini
 AGENTS.md
 .playwright-mcp/
+apps/**/coverage/*
