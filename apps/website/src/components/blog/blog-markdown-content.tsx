@@ -1,7 +1,7 @@
 import { cn } from "@repo/utils";
 import Image from "next/image";
 import Link from "next/link";
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -10,82 +10,64 @@ import {
   getMarkdownLinkAttributes,
 } from "./blog-markdown-helpers";
 
+/**
+ * Props for `BlogMarkdownContent`.
+ *
+ * @property content Markdown source content.
+ * @property className Optional class name for the wrapper container.
+ */
 interface BlogMarkdownContentProps {
   content: string;
   className?: string;
 }
 
+type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
+function createHeadingRenderer(
+  level: HeadingTag,
+  headingCounts: Map<string, number>
+) {
+  return function HeadingRenderer({
+    children,
+    ...props
+  }: ComponentPropsWithoutRef<HeadingTag> & { children?: ReactNode }) {
+    const headingData = getHeadingData(children, headingCounts);
+    const Tag = level;
+
+    return (
+      <Tag id={headingData.id} {...props}>
+        {headingData.hasExplicitAnchor ? headingData.cleanedText : children}
+      </Tag>
+    );
+  };
+}
+
+/**
+ * Renders blog markdown content with custom typography and element mapping.
+ *
+ * @param props Markdown content and optional wrapper class.
+ * @returns Rendered markdown React element.
+ */
 export function BlogMarkdownContent({
   content,
   className,
 }: BlogMarkdownContentProps) {
   const headingCounts = new Map<string, number>();
+  const headingRenderers = {
+    h1: createHeadingRenderer("h1", headingCounts),
+    h2: createHeadingRenderer("h2", headingCounts),
+    h3: createHeadingRenderer("h3", headingCounts),
+    h4: createHeadingRenderer("h4", headingCounts),
+    h5: createHeadingRenderer("h5", headingCounts),
+    h6: createHeadingRenderer("h6", headingCounts),
+  };
 
   return (
     <div className={cn("prose prose-lg blog-prose max-w-none", className)}>
       <Markdown
         remarkPlugins={[remarkGfm]}
         components={{
-          h1: ({ children, ...props }) => {
-            const headingData = getHeadingData(children, headingCounts);
-            return (
-              <h1 id={headingData.id} {...props}>
-                {headingData.hasExplicitAnchor
-                  ? headingData.cleanedText
-                  : children}
-              </h1>
-            );
-          },
-          h2: ({ children, ...props }) => {
-            const headingData = getHeadingData(children, headingCounts);
-            return (
-              <h2 id={headingData.id} {...props}>
-                {headingData.hasExplicitAnchor
-                  ? headingData.cleanedText
-                  : children}
-              </h2>
-            );
-          },
-          h3: ({ children, ...props }) => {
-            const headingData = getHeadingData(children, headingCounts);
-            return (
-              <h3 id={headingData.id} {...props}>
-                {headingData.hasExplicitAnchor
-                  ? headingData.cleanedText
-                  : children}
-              </h3>
-            );
-          },
-          h4: ({ children, ...props }) => {
-            const headingData = getHeadingData(children, headingCounts);
-            return (
-              <h4 id={headingData.id} {...props}>
-                {headingData.hasExplicitAnchor
-                  ? headingData.cleanedText
-                  : children}
-              </h4>
-            );
-          },
-          h5: ({ children, ...props }) => {
-            const headingData = getHeadingData(children, headingCounts);
-            return (
-              <h5 id={headingData.id} {...props}>
-                {headingData.hasExplicitAnchor
-                  ? headingData.cleanedText
-                  : children}
-              </h5>
-            );
-          },
-          h6: ({ children, ...props }) => {
-            const headingData = getHeadingData(children, headingCounts);
-            return (
-              <h6 id={headingData.id} {...props}>
-                {headingData.hasExplicitAnchor
-                  ? headingData.cleanedText
-                  : children}
-              </h6>
-            );
-          },
+          ...headingRenderers,
           a: ({ href, children }) => {
             if (!href) {
               return <span>{children}</span>;
@@ -102,14 +84,14 @@ export function BlogMarkdownContent({
             }
 
             return (
-              <Link
+              <a
                 href={linkAttributes.href}
                 target={linkAttributes.target}
                 rel={linkAttributes.rel}
                 className="blog-markdown-link"
               >
                 {children}
-              </Link>
+              </a>
             );
           },
           table: ({ children, ...props }) => (

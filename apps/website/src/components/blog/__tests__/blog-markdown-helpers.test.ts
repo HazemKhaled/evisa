@@ -17,6 +17,11 @@ describe("blog-markdown-helpers", () => {
     it("supports non-latin letters", () => {
       expect(toSlug("مرحبا بالعالم")).toBe("مرحبا-بالعالم");
     });
+
+    it("trims leading and trailing hyphens after normalization", () => {
+      expect(toSlug("Hello -")).toBe("hello");
+      expect(toSlug("- Hello")).toBe("hello");
+    });
   });
 
   describe("createHeadingId", () => {
@@ -33,15 +38,24 @@ describe("blog-markdown-helpers", () => {
       expect(createHeadingId("***", headingCounts)).toBeUndefined();
     });
 
-    it("uses explicit heading ids as authored", () => {
+    it("deduplicates repeated explicit heading ids", () => {
       const headingCounts = new Map<string, number>();
 
       expect(createHeadingId("Title {#destinations}", headingCounts)).toBe(
         "destinations"
       );
       expect(createHeadingId("Another {#destinations}", headingCounts)).toBe(
-        "destinations"
+        "destinations-2"
       );
+    });
+
+    it("reserves explicit heading ids to prevent later generated collisions", () => {
+      const headingCounts = new Map<string, number>();
+
+      expect(createHeadingId("Overview {#overview}", headingCounts)).toBe(
+        "overview"
+      );
+      expect(createHeadingId("Overview", headingCounts)).toBe("overview-2");
     });
   });
 
@@ -78,6 +92,14 @@ describe("blog-markdown-helpers", () => {
         cleanedText: "The Big Winter Destinations",
         hasExplicitAnchor: true,
       });
+
+      expect(
+        getHeadingData("Another destination {#destinations}", headingCounts)
+      ).toEqual({
+        id: "destinations-2",
+        cleanedText: "Another destination",
+        hasExplicitAnchor: true,
+      });
     });
 
     it("falls back to generated heading id when explicit marker is absent", () => {
@@ -102,6 +124,27 @@ describe("blog-markdown-helpers", () => {
     it("treats hash-only anchor as internal", () => {
       expect(getMarkdownLinkAttributes("#introduction")).toEqual({
         href: "#introduction",
+        isInternal: true,
+      });
+    });
+
+    it("treats dot-relative href as internal", () => {
+      expect(getMarkdownLinkAttributes("./visa")).toEqual({
+        href: "./visa",
+        isInternal: true,
+      });
+    });
+
+    it("treats parent-relative href as internal", () => {
+      expect(getMarkdownLinkAttributes("../guide")).toEqual({
+        href: "../guide",
+        isInternal: true,
+      });
+    });
+
+    it("treats bare relative href as internal", () => {
+      expect(getMarkdownLinkAttributes("guide/visa")).toEqual({
+        href: "guide/visa",
         isInternal: true,
       });
     });
