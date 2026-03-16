@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -18,13 +18,13 @@
     "test:ci": "jest --ci --coverage"
   },
   "dependencies": {
-    "@next/third-parties": "15.5.12",
+    "@next/third-parties": "16.1.6",
     "@repo/database": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
     "@sentry/nextjs": "10.43.0",
     "@tailwindcss/typography": "0.5.19",
-    "i18next": "25.8.14",
+    "i18next": "25.8.18",
     "i18next-browser-languagedetector": "8.2.1",
     "i18next-resources-to-backend": "1.2.1",
     "lucide-react": "0.577.0",
@@ -33,7 +33,7 @@
     "remark-gfm": "4.0.1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "15.5.12",
+    "@next/bundle-analyzer": "16.1.6",
     "@repo/typescript-config": "workspace:*"
   }
 }

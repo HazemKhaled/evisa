@@ -33,7 +33,6 @@ export function BlogSearch({
   // This implements the React pattern: "Adjusting state when a prop changes"
   // See: https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setQuery(searchValue ?? "");
   }, [searchValue]);
 

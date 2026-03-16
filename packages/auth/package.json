@@ -14,7 +14,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@clerk/nextjs": "6.39.0"
+    "@clerk/nextjs": "7.0.4"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*"

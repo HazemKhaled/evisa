@@ -28,7 +28,7 @@ export default function RootLayout({
   children,
 }: RootLayoutProps): React.JSX.Element {
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignOutUrl="/">
       <html lang="en">
         <body className="admin-content">
           <SidebarProvider>
@@ -53,7 +53,7 @@ export default function RootLayout({
                       aria-label="Search admin panel"
                     />
                   </div>
-                  <UserButton afterSignOutUrl="/" />
+                  <UserButton />
                 </div>
               </header>
               <div className="flex-1 overflow-auto">
