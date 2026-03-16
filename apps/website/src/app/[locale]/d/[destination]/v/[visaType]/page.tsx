@@ -22,17 +22,17 @@ function toVisaSlug(visaType: string): string {
 }
 
 interface VisaDetailPageProps {
-  params: {
-    locale: string;
-    destination: string;
-    visaType: string;
-  };
+  params: Promise<VisaDetailParams>;
+}
+
+interface VisaDetailParams {
+  locale: string;
+  destination: string;
+  visaType: string;
 }
 
 // Pre-build popular destination visas at build time
-export async function generateStaticParams(): Promise<
-  VisaDetailPageProps["params"][]
-> {
+export async function generateStaticParams(): Promise<VisaDetailParams[]> {
   const popularDestinations = await getDestinationsListWithMetadata(
     "en",
     20,
@@ -60,7 +60,7 @@ export async function generateStaticParams(): Promise<
 export async function generateMetadata({
   params,
 }: VisaDetailPageProps): Promise<Metadata> {
-  const { locale, destination, visaType } = params;
+  const { locale, destination, visaType } = await params;
   const visaTypeSlug = toVisaSlug(visaType);
 
   const [destinationData, { t: tDestination }] = await Promise.all([
@@ -128,7 +128,7 @@ export async function generateMetadata({
 }
 
 export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
-  const { locale, destination, visaType } = params;
+  const { locale, destination, visaType } = await params;
   const visaTypeSlug = toVisaSlug(visaType);
 
   const [destinationData, { t: tCommon }, { t: tDestination }, { t: tJsonLd }] =
