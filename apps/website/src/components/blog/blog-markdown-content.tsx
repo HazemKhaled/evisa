@@ -8,7 +8,7 @@ import remarkGfm from "remark-gfm";
 import {
   getHeadingData,
   getMarkdownLinkAttributes,
-} from "./blog-markdown-helpers";
+} from "@/lib/blog-markdown-helpers";
 
 /**
  * Props for `BlogMarkdownContent`.
