@@ -15,15 +15,14 @@ const eslintConfig = [
       "apps/website/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}",
       "apps/admin/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}",
     ],
-    ...nextPlugin.configs["core-web-vitals"],
+    plugins: { "@next/next": nextPlugin },
     rules: {
       ...nextPlugin.configs["core-web-vitals"].rules,
       "@next/next/no-img-element": "error",
-      "@next/next/no-html-link-for-pages": "error",
     },
     settings: {
       next: {
-        rootDir: [".", "apps/website", "apps/admin"],
+        rootDir: ["apps/website", "apps/admin"],
       },
     },
   },
