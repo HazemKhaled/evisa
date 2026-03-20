@@ -4,44 +4,14 @@
       "command": "npx",
       "args": ["-y", "next-devtools-mcp@latest"],
     },
-    // "Sentry": {
-    //   "type": "http",
-    //   "url": "https://mcp.sentry.dev/mcp/tcf-sala/gtv",
-    // },
-    // "Neon": {
-    //   "type": "stdio",
-    //   "command": "npx",
-    //   "args": ["-y", "mcp-remote@latest", "https://mcp.neon.tech/mcp"],
-    // },
     "shadcn": {
       "command": "npx",
-      "args": ["shadcn@latest", "mcp"]
+      "args": ["shadcn@latest", "mcp"],
     },
     "@magicuidesign/mcp": {
       "command": "npx",
       "args": ["-y", "@magicuidesign/mcp@latest"],
     },
-    // "cloudflare-observability": {
-    //   "command": "npx",
-    //   "args": ["mcp-remote@latest", "https://observability.mcp.cloudflare.com/mcp"],
-    // },
-    // "cloudflare-builds": {
-    //   "command": "npx",
-    //   "args": ["mcp-remote@latest", "https://builds.mcp.cloudflare.com/mcp"],
-    // },
-    // "cloudflare-bindings": {
-    //   "command": "npx",
-    //   "args": ["mcp-remote@latest", "https://bindings.mcp.cloudflare.com/mcp"],
-    // },
-    // "github": {
-    //   "type": "http",
-    //   "url": "https://api.githubcopilot.com/mcp/",
-    // },
-    // "ESLint": {
-    //   "type": "stdio",
-    //   "command": "npx",
-    //   "args": ["@eslint/mcp@latest"],
-    // },
     "oraios/serena": {
       "type": "stdio",
       "command": "uvx",
@@ -51,13 +21,13 @@
       "command": "npx",
       "args": ["@playwright/mcp@latest"],
     },
-    // "chrome-devtools": {
-    //   "command": "npx",
-    //   "args": ["-y", "chrome-devtools-mcp@latest"],
-    // },
     "sequential-thinking": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+    },
+    "neon": {
+      "type": "http",
+      "url": "https://mcp.neon.tech/mcp",
     },
   },
 }
