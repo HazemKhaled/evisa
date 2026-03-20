@@ -12,10 +12,11 @@ export async function generateSitemaps() {
 }
 
 export default async function sitemap({
-  id: locale,
+  id: localePromise,
 }: {
   id: string;
 }): Promise<MetadataRoute.Sitemap> {
+  const locale = await localePromise;
   const base = env.baseUrl;
   const destinations = await getDestinationsListWithMetadata(locale, 1000);
   const urls: MetadataRoute.Sitemap = [];

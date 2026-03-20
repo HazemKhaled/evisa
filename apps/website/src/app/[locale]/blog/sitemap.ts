@@ -16,10 +16,11 @@ export async function generateSitemaps() {
 }
 
 export default async function sitemap({
-  id: locale,
+  id: localePromise,
 }: {
   id: string;
 }): Promise<MetadataRoute.Sitemap> {
+  const locale = await localePromise;
   const baseUrl = env.baseUrl;
 
   // Get blog data for this locale using async service
