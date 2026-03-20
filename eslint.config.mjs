@@ -1,4 +1,6 @@
 import { FlatCompat } from "@eslint/eslintrc";
+import nextPlugin from "@next/eslint-plugin-next";
+import importPlugin from "eslint-plugin-import";
 import reactHooks from "eslint-plugin-react-hooks";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 
@@ -8,20 +10,29 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.config({
-    extends: [
-      "next",
-      "next/core-web-vitals",
-      "prettier",
-      "plugin:prettier/recommended",
-      "plugin:@typescript-eslint/strict",
-      "plugin:@typescript-eslint/stylistic",
+  {
+    files: [
+      "apps/website/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}",
+      "apps/admin/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}",
     ],
+    plugins: { "@next/next": nextPlugin },
+    rules: {
+      ...nextPlugin.configs["core-web-vitals"].rules,
+      "@next/next/no-img-element": "error",
+    },
     settings: {
       next: {
         rootDir: ["apps/website", "apps/admin"],
       },
     },
+  },
+  ...compat.config({
+    extends: [
+      "prettier",
+      "plugin:prettier/recommended",
+      "plugin:@typescript-eslint/strict",
+      "plugin:@typescript-eslint/stylistic",
+    ],
     rules: {
       "@typescript-eslint/consistent-type-imports": [
         "error",
@@ -36,9 +47,6 @@ const eslintConfig = [
 
       // REQUIREMENT: Prefer const assertions over type annotations where possible
       "@typescript-eslint/prefer-as-const": "error",
-
-      "@next/next/no-img-element": "error",
-      "@next/next/no-html-link-for-pages": "error",
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
@@ -69,6 +77,7 @@ const eslintConfig = [
   },
   {
     plugins: {
+      import: importPlugin,
       "simple-import-sort": simpleImportSort,
     },
     rules: {

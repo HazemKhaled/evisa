@@ -586,3 +586,4 @@ The platform helps users travel with minimal visa process through:
 - Use Promise.all when it's possible to reduce execution time
 - Don't add any hardcoded strings, instead move it to locale files
 - When creating a new page, add it to the sitemap
+- Admin UI is only in English, while content supports all 8 languages

@@ -8,8 +8,6 @@
 // Re-export Clerk client components and hooks
 export {
   ClerkProvider,
-  SignedIn,
-  SignedOut,
   SignInButton,
   SignUpButton,
   useAuth,
