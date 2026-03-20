@@ -50,7 +50,6 @@ async function getDashboardStats() {
 
 export default async function HomePage(): Promise<React.JSX.Element> {
   const { userId } = await auth();
-  const stats = await getDashboardStats();
 
   if (!userId) {
     return (
@@ -67,6 +66,8 @@ export default async function HomePage(): Promise<React.JSX.Element> {
       </div>
     );
   }
+
+  const stats = await getDashboardStats();
 
   return (
     <div>
