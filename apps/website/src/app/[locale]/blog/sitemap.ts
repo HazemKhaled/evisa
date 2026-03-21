@@ -7,18 +7,13 @@ import { getBlogDataForLocale } from "@/lib/services/blog-service";
 export const revalidate = 86400; // Revalidate every day
 
 export async function generateSitemaps() {
-  // Generate sitemap entries for each supported locale for blog posts and tags
-  return languages.map(locale => {
-    return {
-      id: locale,
-    };
-  });
+  return languages.map(locale => ({ id: locale }));
 }
 
 export default async function sitemap({
   id: localePromise,
 }: {
-  id: string;
+  id: Promise<string>;
 }): Promise<MetadataRoute.Sitemap> {
   const locale = await localePromise;
   const baseUrl = env.baseUrl;
