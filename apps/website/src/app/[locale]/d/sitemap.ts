@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { languages } from "@/app/i18n/settings";
 import { env } from "@/lib/consts";
-import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
+import { getDestinationsForSitemap } from "@/lib/services/country-service";
 import { getVisaTypesByDestination } from "@/lib/services/visa-service";
 
 export const revalidate = 86400; // Revalidate every day
@@ -14,11 +14,11 @@ export async function generateSitemaps() {
 export default async function sitemap({
   id: localePromise,
 }: {
-  id: string;
+  id: Promise<string>;
 }): Promise<MetadataRoute.Sitemap> {
   const locale = await localePromise;
   const base = env.baseUrl;
-  const destinations = await getDestinationsListWithMetadata(locale, 1000);
+  const destinationCodes = await getDestinationsForSitemap();
   const urls: MetadataRoute.Sitemap = [];
 
   // Destinations list page
@@ -34,23 +34,23 @@ export default async function sitemap({
   });
 
   // Each destination: detail page + blog index + visa types
-  for (const dest of destinations) {
+  for (const code of destinationCodes) {
     const detailAlternates: Record<string, string> = {};
     const blogAlternates: Record<string, string> = {};
     languages.forEach(lang => {
-      detailAlternates[lang] = `${base}/${lang}/d/${dest.code}`;
-      blogAlternates[lang] = `${base}/${lang}/d/${dest.code}/blog`;
+      detailAlternates[lang] = `${base}/${lang}/d/${code}`;
+      blogAlternates[lang] = `${base}/${lang}/d/${code}/blog`;
     });
 
     urls.push({
-      url: `${base}/${locale}/d/${dest.code}`,
+      url: `${base}/${locale}/d/${code}`,
       changeFrequency: "weekly",
       priority: 0.9,
       alternates: { languages: detailAlternates },
     });
 
     urls.push({
-      url: `${base}/${locale}/d/${dest.code}/blog`,
+      url: `${base}/${locale}/d/${code}/blog`,
       changeFrequency: "weekly",
       priority: 0.7,
       alternates: { languages: blogAlternates },
@@ -58,16 +58,16 @@ export default async function sitemap({
 
     // Fetch visa types for this destination and add them to sitemap
     try {
-      const visas = await getVisaTypesByDestination(dest.code, locale);
+      const visas = await getVisaTypesByDestination(code, locale);
       for (const visa of visas) {
         const visaSlug = visa.type.toLowerCase().replace(/\s+/g, "-");
         const visaAlternates: Record<string, string> = {};
         languages.forEach(lang => {
-          visaAlternates[lang] = `${base}/${lang}/d/${dest.code}/v/${visaSlug}`;
+          visaAlternates[lang] = `${base}/${lang}/d/${code}/v/${visaSlug}`;
         });
 
         urls.push({
-          url: `${base}/${locale}/d/${dest.code}/v/${visaSlug}`,
+          url: `${base}/${locale}/d/${code}/v/${visaSlug}`,
           changeFrequency: "monthly",
           priority: 0.8,
           alternates: { languages: visaAlternates },
@@ -75,10 +75,7 @@ export default async function sitemap({
       }
     } catch (error) {
       // Log error but continue sitemap generation for other destinations
-      console.error(
-        `Failed to fetch visas for destination ${dest.code}:`,
-        error
-      );
+      console.error(`Failed to fetch visas for destination ${code}:`, error);
     }
   }
 

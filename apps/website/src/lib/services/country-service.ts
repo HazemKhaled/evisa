@@ -1080,3 +1080,63 @@ export async function getCountriesByCodes(
     return [];
   }
 }
+
+/**
+ * Get all destination codes that have active visa content, for sitemap generation.
+ *
+ * Unlike getDestinationsListWithMetadata, this function has no result cap so it
+ * always returns all qualifying destinations, regardless of how many there are.
+ *
+ * Cached for 24 hours with ISR revalidation.
+ *
+ * @returns Promise<string[]> - Array of destination country codes
+ */
+export async function getDestinationsForSitemap(): Promise<string[]> {
+  const cachedFn = unstable_cache(
+    async (): Promise<string[]> => {
+      try {
+        const db = getDb();
+
+        const results = await db
+          .selectDistinct({ code: countries.code })
+          .from(countries)
+          .leftJoin(
+            visaTypes,
+            and(
+              eq(visaTypes.destinationCode, countries.code),
+              eq(visaTypes.isActive, true),
+              isNull(visaTypes.deletedAt)
+            )
+          )
+          .leftJoin(
+            visaEligibility,
+            and(
+              eq(visaEligibility.destinationCode, countries.code),
+              inArray(visaEligibility.eligibilityStatus, [
+                "visa_free",
+                "on_arrival",
+              ]),
+              eq(visaEligibility.isActive, true),
+              isNull(visaEligibility.deletedAt)
+            )
+          )
+          .where(
+            and(
+              eq(countries.isActive, true),
+              isNull(countries.deletedAt),
+              or(isNotNull(visaTypes.id), isNotNull(visaEligibility.id))
+            )
+          );
+
+        return results.map(r => r.code);
+      } catch (error) {
+        console.error("Failed to get destination codes for sitemap:", error);
+        throw error;
+      }
+    },
+    ["sitemap-destinations"],
+    { tags: ["destinations", "sitemap-destinations"], revalidate: 86400 }
+  );
+
+  return cachedFn();
+}
