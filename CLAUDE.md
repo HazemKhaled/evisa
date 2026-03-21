@@ -587,3 +587,4 @@ The platform helps users travel with minimal visa process through:
 - Don't add any hardcoded strings, instead move it to locale files
 - When creating a new page, add it to the sitemap
 - Admin UI is only in English, while content supports all 8 languages
+- Prefer to use serena mcp to edit code
