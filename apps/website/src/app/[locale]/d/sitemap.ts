@@ -58,7 +58,7 @@ export default async function sitemap({
 
     // Fetch visa types for this destination and add them to sitemap
     try {
-      const visas = await getVisaTypesByDestination(code, "en");
+      const visas = await getVisaTypesByDestination(code, locale);
       for (const visa of visas) {
         const visaSlug = visa.type.toLowerCase().replace(/\s+/g, "-");
         const visaAlternates: Record<string, string> = {};
