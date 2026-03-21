@@ -1131,7 +1131,7 @@ export async function getDestinationsForSitemap(): Promise<string[]> {
         return results.map(r => r.code);
       } catch (error) {
         console.error("Failed to get destination codes for sitemap:", error);
-        return [];
+        throw error;
       }
     },
     ["sitemap-destinations"],
