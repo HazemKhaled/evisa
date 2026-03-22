@@ -14,6 +14,7 @@ import {
 } from "@/lib/services/country-service";
 import { getVisaTypesByDestination } from "@/lib/services/visa-service";
 import { generateAlternatesMetadata } from "@/lib/utils";
+import { getCountryFlagEmoji } from "@/lib/utils/visa-type-utils";
 
 export const revalidate = 86400; // Revalidate every 24 hours
 
@@ -190,7 +191,10 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
                 {visa.type}
               </span>
             </div>
-            <h1 className="mb-4 text-4xl font-bold text-gray-900">
+            <h1 className="mb-4 flex items-center gap-3 text-4xl font-bold text-gray-900">
+              <span className="text-5xl">
+                {getCountryFlagEmoji(destination)}
+              </span>
               {tDestination("visaDetailPage.title", {
                 visaName: visa.name,
                 destinationName: destinationData.localizedName,

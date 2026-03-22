@@ -3,7 +3,11 @@
 ## UX
 
 - [x] FIX: All blog pages redirecting to page 1
-- [ ] FEAT: Enhance visa name type listing in all pages
+- [x] FEAT: Enhance visa name in all pages
+  - It need to look more attractive
+  - Enhance title ex: Turkey tourist e-visa, UAE multi-entry
+  - Add flag if it'll help
+  - Enhance it in home page, country page and any other page if needed
 
 ## SEO
 

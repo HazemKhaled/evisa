@@ -51,6 +51,8 @@
     "maxStay": "Soggiorno massimo",
     "multiEntry": "Ingresso multiplo",
     "interviewRequired": "Colloquio richiesto",
+    "fastProcessing": "Elaborazione veloce",
+    "documentsRequired": "Documenti richiesti",
     "day": "giorno",
     "days": "giorni"
   },

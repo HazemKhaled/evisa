@@ -51,8 +51,14 @@
     "maxStay": "Estadia Máxima",
     "multiEntry": "Entrada múltipla",
     "interviewRequired": "Entrevista obrigatória",
+    "fastProcessing": "Processamento Rápido",
+    "documentsRequired": "Documentos Obrigatórios",
     "day": "dia",
-    "days": "dias"
+    "days": "dias",
+    "free": "Gratuito",
+    "entryType": "Tipo de Entrada",
+    "multiple": "Múltiplas",
+    "single": "Simples"
   },
   "error": {
     "title": "Algo deu errado",
