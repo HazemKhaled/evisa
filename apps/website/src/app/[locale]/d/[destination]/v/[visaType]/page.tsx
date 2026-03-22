@@ -192,7 +192,7 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
               </span>
             </div>
             <h1 className="mb-4 flex items-center gap-3 text-4xl font-bold text-gray-900">
-              <span className="text-5xl">
+              <span className="text-5xl" aria-hidden="true">
                 {getCountryFlagEmoji(destination)}
               </span>
               {tDestination("visaDetailPage.title", {
