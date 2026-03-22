@@ -670,9 +670,7 @@ export async function getDestinationsListWithMetadataPaginated(
         .limit(validatedLimit)
         .offset(validatedOffset),
     ]);
-    const total = Number(
-      (await Promise.resolve(totalCountResults))[0]?.total ?? 0
-    );
+    const total = Number(totalCountResults[0]?.total ?? 0);
 
     // Calculate pagination info
     const currentPage = Math.floor(validatedOffset / validatedLimit) + 1;
