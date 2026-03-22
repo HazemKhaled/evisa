@@ -565,12 +565,12 @@ export async function getDestinationsListWithMetadataPaginated(
   locale: string,
   limit = 20,
   offset = 0,
-  sortBy?: string,
+  sortBy?: "popular" | "alphabetical" | "processing_time" | "visa_fee",
   search?: string,
   continent?: string
 ): Promise<PaginatedDestinationsResponse> {
   // Validate and sanitize input
-  const validatedLimit = Math.max(1, Math.min(100, Math.floor(limit)));
+  const validatedLimit = validateLimit(limit);
   const validatedOffset = Math.max(0, Math.floor(offset));
   const validatedSortBy = validateSortBy(sortBy || "popular");
 
@@ -578,7 +578,7 @@ export async function getDestinationsListWithMetadataPaginated(
     const db = getDb();
 
     // Build base where conditions - array of SQL expressions for filtering
-    const baseWhereConditions: unknown[] = [
+    const baseWhereConditions: Parameters<typeof and> = [
       eq(countries.isActive, true),
       isNull(countries.deletedAt),
       // Only include countries that have either visa types OR visa-free options
@@ -634,7 +634,7 @@ export async function getDestinationsListWithMetadataPaginated(
 
     // Get total count first
     const totalCountQuery = db
-      .selectDistinct({ code: countries.code })
+      .select({ total: sql<number>`COUNT(DISTINCT ${countries.code})` })
       .from(countries)
       .leftJoin(
         countriesI18n,
@@ -643,7 +643,7 @@ export async function getDestinationsListWithMetadataPaginated(
           eq(countriesI18n.locale, locale)
         )
       )
-      .where(and(...(baseWhereConditions as Parameters<typeof and>)));
+      .where(and(...baseWhereConditions));
 
     const [totalCountResults, results] = await Promise.all([
       totalCountQuery,
@@ -665,11 +665,14 @@ export async function getDestinationsListWithMetadataPaginated(
             eq(countriesI18n.locale, locale)
           )
         )
-        .where(and(...(baseWhereConditions as Parameters<typeof and>)))
+        .where(and(...baseWhereConditions))
+        .orderBy(countries.code)
         .limit(validatedLimit)
         .offset(validatedOffset),
     ]);
-    const total = totalCountResults.length;
+    const total = Number(
+      (await Promise.resolve(totalCountResults))[0]?.total ?? 0
+    );
 
     // Calculate pagination info
     const currentPage = Math.floor(validatedOffset / validatedLimit) + 1;
