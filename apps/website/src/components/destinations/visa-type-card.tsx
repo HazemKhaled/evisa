@@ -1,6 +1,7 @@
 import { cn } from "@repo/utils";
 import {
   ArrowLeftRight,
+  ArrowRight,
   Calendar,
   ClipboardList,
   Clock,
@@ -113,7 +114,7 @@ export function VisaTypeCard({
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-3 px-5 pt-4 pb-4">
           {/* Processing Time */}
-          <div className="rounded-lg bg-gray-50 p-3 text-center">
+          <div className="bg-muted/50 rounded-lg p-3 text-center">
             <div className="mb-1 flex items-center justify-center gap-1 text-xs text-gray-500">
               <Clock className="h-3 w-3" aria-hidden="true" />
               <span>{tCommon("labels.processingTime")}</span>
@@ -127,7 +128,7 @@ export function VisaTypeCard({
           </div>
 
           {/* Duration */}
-          <div className="rounded-lg bg-gray-50 p-3 text-center">
+          <div className="bg-muted/50 rounded-lg p-3 text-center">
             <div className="mb-1 flex items-center justify-center gap-1 text-xs text-gray-500">
               <Calendar className="h-3 w-3" aria-hidden="true" />
               <span>{tCommon("labels.duration")}</span>
@@ -141,7 +142,7 @@ export function VisaTypeCard({
           </div>
 
           {/* Fee */}
-          <div className="rounded-lg bg-gray-50 p-3 text-center">
+          <div className="bg-muted/50 rounded-lg p-3 text-center">
             <div className="mb-1 flex items-center justify-center gap-1 text-xs text-gray-500">
               <DollarSign className="h-3 w-3" aria-hidden="true" />
               <span>{tCommon("labels.fee")}</span>
@@ -155,7 +156,7 @@ export function VisaTypeCard({
 
           {/* Max Stay or Entry Type */}
           {visaType.maxStay ? (
-            <div className="rounded-lg bg-gray-50 p-3 text-center">
+            <div className="bg-muted/50 rounded-lg p-3 text-center">
               <div className="mb-1 flex items-center justify-center gap-1 text-xs text-gray-500">
                 <Hourglass className="h-3 w-3" aria-hidden="true" />
                 <span>{tCommon("labels.maxStay")}</span>
@@ -168,7 +169,7 @@ export function VisaTypeCard({
               </div>
             </div>
           ) : (
-            <div className="rounded-lg bg-gray-50 p-3 text-center">
+            <div className="bg-muted/50 rounded-lg p-3 text-center">
               <div className="mb-1 flex items-center justify-center gap-1 text-xs text-gray-500">
                 <ArrowLeftRight className="h-3 w-3" aria-hidden="true" />
                 <span>{tCommon("labels.entryType")}</span>
@@ -201,8 +202,17 @@ export function VisaTypeCard({
             config.bgClass
           )}
         >
-          <span className={cn("text-xs font-medium", config.textClass)}>
-            {tCommon("buttons.learnMore")} →
+          <span
+            className={cn(
+              "inline-flex items-center gap-1 text-xs font-medium",
+              config.textClass
+            )}
+          >
+            {tCommon("buttons.learnMore")}
+            <ArrowRight
+              className="h-3.5 w-3.5 rtl:rotate-180"
+              aria-hidden="true"
+            />
           </span>
         </div>
       </div>

@@ -15,8 +15,7 @@
 - [ ] Sitemap need to be enriched
   - [ ] [Add images sitemap if needed](https://developers.google.com/search/docs/crawling-indexing/sitemaps/image-sitemaps)
   - [ ] [Add video sitemap if needed](https://developers.google.com/search/docs/crawling-indexing/sitemaps/video-sitemaps)
-- [ ] Implement all missing JSON-LD
-  - [ ] [Blog](https://schema.org/Blog)
+- [ ] Implement all missing JSON-LD: Scan the current implementation, and address all required JSON-LD to be implemented https://schema.org/Thing
 
 ## Content
 
