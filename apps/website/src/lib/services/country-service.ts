@@ -568,11 +568,11 @@ export async function getDestinationsListWithMetadataPaginated(
   sortBy?: string,
   search?: string,
   continent?: string
-): Promise<DestinationListResponse> {
+): Promise<PaginatedDestinationsResponse> {
   // Validate and sanitize input
   const validatedLimit = Math.max(1, Math.min(100, Math.floor(limit)));
   const validatedOffset = Math.max(0, Math.floor(offset));
-  const validatedSortBy = sanitizeSortCriteria(sortBy);
+  const validatedSortBy = validateSortBy(sortBy || "popular");
 
   try {
     const db = getDb();
