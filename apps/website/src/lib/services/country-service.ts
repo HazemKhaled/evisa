@@ -5,6 +5,7 @@ import {
   countries,
   countriesI18n,
   eq,
+  exists,
   getDb,
   inArray,
   isNotNull,
@@ -449,54 +450,52 @@ export async function getDestinationsListWithMetadata(
               eq(countriesI18n.locale, locale)
             )
           )
-          .leftJoin(
-            visaTypes,
-            and(
-              eq(visaTypes.destinationCode, countries.code),
-              eq(visaTypes.isActive, true),
-              isNull(visaTypes.deletedAt)
-            )
-          )
-          .leftJoin(
-            visaEligibility,
-            and(
-              eq(visaEligibility.destinationCode, countries.code),
-              inArray(visaEligibility.eligibilityStatus, [
-                "visa_free",
-                "on_arrival",
-              ]),
-              eq(visaEligibility.isActive, true),
-              isNull(visaEligibility.deletedAt)
-            )
-          )
           .where(
             and(
               eq(countries.isActive, true),
               isNull(countries.deletedAt),
               // Only include countries that have either visa types OR visa-free options
               or(
-                isNotNull(visaTypes.id), // Has visa types
-                isNotNull(visaEligibility.id) // Has visa-free/on-arrival options
+                exists(
+                  db
+                    .select({ one: sql`1` })
+                    .from(visaTypes)
+                    .where(
+                      and(
+                        eq(visaTypes.destinationCode, countries.code),
+                        eq(visaTypes.isActive, true),
+                        isNull(visaTypes.deletedAt)
+                      )
+                    )
+                ),
+                exists(
+                  db
+                    .select({ one: sql`1` })
+                    .from(visaEligibility)
+                    .where(
+                      and(
+                        eq(visaEligibility.destinationCode, countries.code),
+                        inArray(visaEligibility.eligibilityStatus, [
+                          "visa_free",
+                          "on_arrival",
+                        ]),
+                        eq(visaEligibility.isActive, true),
+                        isNull(visaEligibility.deletedAt)
+                      )
+                    )
+                )
               )
             )
           )
           .limit(validatedLimit);
 
-        // Remove duplicates based on country code
-        const uniqueResults = results.filter(
-          (destination, index, arr) =>
-            arr.findIndex(d => d.code === destination.code) === index
-        );
-
-        const destinationCodes = uniqueResults.map(
-          destination => destination.code
-        );
+        const destinationCodes = results.map(destination => destination.code);
         const { visaStatsMap, visaFreeSet } = await getVisaStatsForDestinations(
           db,
           destinationCodes
         );
 
-        const destinationsWithStats = uniqueResults.map(destination => {
+        const destinationsWithStats = results.map(destination => {
           const stats = visaStatsMap.get(destination.code);
           return {
             code: destination.code,
@@ -566,29 +565,52 @@ export async function getDestinationsListWithMetadataPaginated(
   locale: string,
   limit = 20,
   offset = 0,
-  sortBy:
-    | "popular"
-    | "alphabetical"
-    | "processing_time"
-    | "visa_fee" = "popular",
+  sortBy?: string,
   search?: string,
   continent?: string
-): Promise<PaginatedDestinationsResponse> {
-  const validatedLimit = validateLimit(limit);
-  const validatedSortBy = validateSortBy(sortBy);
+): Promise<DestinationListResponse> {
+  // Validate and sanitize input
+  const validatedLimit = Math.max(1, Math.min(100, Math.floor(limit)));
   const validatedOffset = Math.max(0, Math.floor(offset));
+  const validatedSortBy = sanitizeSortCriteria(sortBy);
 
   try {
     const db = getDb();
 
-    // Build base where conditions
-    const baseWhereConditions = [
+    // Build base where conditions - array of SQL expressions for filtering
+    const baseWhereConditions: unknown[] = [
       eq(countries.isActive, true),
       isNull(countries.deletedAt),
       // Only include countries that have either visa types OR visa-free options
       or(
-        isNotNull(visaTypes.id), // Has visa types
-        isNotNull(visaEligibility.id) // Has visa-free/on-arrival options
+        exists(
+          db
+            .select({ one: sql`1` })
+            .from(visaTypes)
+            .where(
+              and(
+                eq(visaTypes.destinationCode, countries.code),
+                eq(visaTypes.isActive, true),
+                isNull(visaTypes.deletedAt)
+              )
+            )
+        ),
+        exists(
+          db
+            .select({ one: sql`1` })
+            .from(visaEligibility)
+            .where(
+              and(
+                eq(visaEligibility.destinationCode, countries.code),
+                inArray(visaEligibility.eligibilityStatus, [
+                  "visa_free",
+                  "on_arrival",
+                ]),
+                eq(visaEligibility.isActive, true),
+                isNull(visaEligibility.deletedAt)
+              )
+            )
+        )
       ),
     ];
 
@@ -621,27 +643,7 @@ export async function getDestinationsListWithMetadataPaginated(
           eq(countriesI18n.locale, locale)
         )
       )
-      .leftJoin(
-        visaTypes,
-        and(
-          eq(visaTypes.destinationCode, countries.code),
-          eq(visaTypes.isActive, true),
-          isNull(visaTypes.deletedAt)
-        )
-      )
-      .leftJoin(
-        visaEligibility,
-        and(
-          eq(visaEligibility.destinationCode, countries.code),
-          inArray(visaEligibility.eligibilityStatus, [
-            "visa_free",
-            "on_arrival",
-          ]),
-          eq(visaEligibility.isActive, true),
-          isNull(visaEligibility.deletedAt)
-        )
-      )
-      .where(and(...baseWhereConditions));
+      .where(and(...(baseWhereConditions as Parameters<typeof and>)));
 
     const [totalCountResults, results] = await Promise.all([
       totalCountQuery,
@@ -663,27 +665,7 @@ export async function getDestinationsListWithMetadataPaginated(
             eq(countriesI18n.locale, locale)
           )
         )
-        .leftJoin(
-          visaTypes,
-          and(
-            eq(visaTypes.destinationCode, countries.code),
-            eq(visaTypes.isActive, true),
-            isNull(visaTypes.deletedAt)
-          )
-        )
-        .leftJoin(
-          visaEligibility,
-          and(
-            eq(visaEligibility.destinationCode, countries.code),
-            inArray(visaEligibility.eligibilityStatus, [
-              "visa_free",
-              "on_arrival",
-            ]),
-            eq(visaEligibility.isActive, true),
-            isNull(visaEligibility.deletedAt)
-          )
-        )
-        .where(and(...baseWhereConditions))
+        .where(and(...(baseWhereConditions as Parameters<typeof and>)))
         .limit(validatedLimit)
         .offset(validatedOffset),
     ]);
@@ -694,19 +676,13 @@ export async function getDestinationsListWithMetadataPaginated(
     const totalPages = Math.ceil(total / validatedLimit);
     const hasMore = validatedOffset + validatedLimit < total;
 
-    // Remove duplicates based on country code
-    const uniqueResults = results.filter(
-      (destination, index, arr) =>
-        arr.findIndex(d => d.code === destination.code) === index
-    );
-
-    const destinationCodes = uniqueResults.map(destination => destination.code);
+    const destinationCodes = results.map(destination => destination.code);
     const { visaStatsMap, visaFreeSet } = await getVisaStatsForDestinations(
       db,
       destinationCodes
     );
 
-    const destinationsWithStats = uniqueResults.map(destination => {
+    const destinationsWithStats = results.map(destination => {
       const stats = visaStatsMap.get(destination.code);
       return {
         code: destination.code,

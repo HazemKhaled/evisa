@@ -38,6 +38,13 @@ export function BlogSearch({
 
   useEffect(() => {
     const trimmed = query.trim();
+    const currentSearch = searchParams.get("search") ?? "";
+
+    // Only navigate if the search query has actually changed
+    if (trimmed === currentSearch) {
+      return;
+    }
+
     const params = new URLSearchParams(searchParams.toString());
 
     if (trimmed) {
@@ -49,12 +56,6 @@ export function BlogSearch({
 
     const nextQuery = params.toString();
     const nextUrl = nextQuery ? `${pathname}?${nextQuery}` : pathname;
-    const currentQuery = searchParams.toString();
-    const currentUrl = currentQuery ? `${pathname}?${currentQuery}` : pathname;
-
-    if (nextUrl === currentUrl) {
-      return;
-    }
 
     const timeoutId = setTimeout(() => {
       startTransition(() => {

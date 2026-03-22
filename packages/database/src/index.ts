@@ -23,6 +23,7 @@ export {
   count,
   desc,
   eq,
+  exists,
   inArray,
   isNotNull,
   isNull,
