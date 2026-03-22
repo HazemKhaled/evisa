@@ -150,11 +150,10 @@ export default async function DestinationPage({
     const allDestinations = await getDestinationsListWithMetadata(
       locale,
       25,
-      "popular"
+      "popular",
+      destinationData.continent
     );
-    relatedDestinations = allDestinations.filter(
-      d => d.continent === destinationData.continent && d.code !== destination
-    );
+    relatedDestinations = allDestinations.filter(d => d.code !== destination);
   }
 
   // Generate structured data

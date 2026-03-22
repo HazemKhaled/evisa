@@ -421,7 +421,8 @@ export async function getDestinationsListWithMetadata(
     | "popular"
     | "alphabetical"
     | "processing_time"
-    | "visa_fee" = "popular"
+    | "visa_fee" = "popular",
+  continent?: string
 ): Promise<DestinationMetadata[]> {
   const cachedFn = unstable_cache(
     async (): Promise<DestinationMetadata[]> => {
@@ -454,6 +455,7 @@ export async function getDestinationsListWithMetadata(
             and(
               eq(countries.isActive, true),
               isNull(countries.deletedAt),
+              ...(continent ? [eq(countries.continent, continent)] : []),
               // Only include countries that have either visa types OR visa-free options
               or(
                 exists(
@@ -543,7 +545,7 @@ export async function getDestinationsListWithMetadata(
         return [];
       }
     },
-    ["destinations", locale, limit.toString(), sortBy],
+    ["destinations", locale, limit.toString(), sortBy, continent ?? "all"],
     { tags: ["destinations", `destinations-${locale}`], revalidate: 86400 }
   );
 
