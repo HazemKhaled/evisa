@@ -17,6 +17,7 @@ import {
   getCountryFlagEmoji,
   getVisaCategoryConfig,
   isFastProcessing,
+  toVisaSlug,
 } from "@/lib/utils/visa-type-utils";
 
 interface VisaTypeCardProps {
@@ -32,7 +33,7 @@ export function VisaTypeCard({
   className,
   tCommon,
 }: VisaTypeCardProps) {
-  const visaUrl = `/${locale}/d/${visaType.destinationCode}/v/${visaType.type}`;
+  const visaUrl = `/${locale}/d/${visaType.destinationCode}/v/${toVisaSlug(visaType.type)}`;
   const descriptionId = `visa-desc-${visaType.id}`;
   const config = getVisaCategoryConfig(visaType.type);
   const flagEmoji = getCountryFlagEmoji(visaType.destinationCode);
@@ -59,6 +60,7 @@ export function VisaTypeCard({
                   "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/80 text-lg shadow-sm",
                   config.textClass
                 )}
+                aria-hidden="true"
               >
                 {flagEmoji}
               </div>

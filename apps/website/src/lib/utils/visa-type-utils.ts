@@ -129,14 +129,6 @@ export const VISA_CATEGORY_CONFIG: Record<VisaCategory, VisaCategoryConfig> = {
  * We match by checking if the lowercased type contains any known keyword.
  */
 const CATEGORY_KEYWORDS: Record<VisaCategory, string[]> = {
-  [VISA_CATEGORIES.TOURIST]: [
-    "tourist",
-    "tourism",
-    "visit",
-    "visitor",
-    "holiday",
-    "vacation",
-  ],
   [VISA_CATEGORIES.BUSINESS]: ["business", "commercial", "trade", "conference"],
   [VISA_CATEGORIES.STUDENT]: [
     "student",
@@ -162,6 +154,14 @@ const CATEGORY_KEYWORDS: Record<VisaCategory, string[]> = {
     "immigration",
   ],
   [VISA_CATEGORIES.MEDICAL]: ["medical", "health", "treatment", "hospital"],
+  [VISA_CATEGORIES.TOURIST]: [
+    "tourist",
+    "tourism",
+    "visit",
+    "visitor",
+    "holiday",
+    "vacation",
+  ],
   [VISA_CATEGORIES.OTHER]: [],
 };
 
@@ -226,33 +226,30 @@ export function isFastProcessing(processingTimeDays: number): boolean {
  * Uses regional indicator symbols to create the flag emoji.
  *
  * @param code - Two-letter ISO country code (e.g., "AE", "TR", "JP")
- * @returns Flag emoji corresponding to the country code (e.g., "🇦🇪", "🇹🇷", "🇯🇵")
+ * @returns Flag emoji corresponding to the country code (e.g., "🇦🇪", "🇹🇷", "🇯🇵"), or an empty string for invalid input
  *
  * @example
  * getCountryFlagEmoji("AE") // Returns "🇦🇪"
  * getCountryFlagEmoji("TR") // Returns "🇹🇷"
  */
 export function getCountryFlagEmoji(code: string): string {
+  if (!/^[A-Z]{2}$/i.test(code)) return "";
   return [...code.toUpperCase()]
     .map(c => String.fromCodePoint(c.charCodeAt(0) + 0x1f1a5))
     .join("");
 }
 
 /**
- * Formats an enhanced visa display title by combining destination name and visa name.
- * This creates more descriptive titles that provide context for users.
+ * Converts a visa type string to a URL-safe slug.
+ * Lowercases the string and replaces spaces and underscores with hyphens.
  *
- * @param destinationName - The localized destination country name (e.g., "Turkey", "United Arab Emirates")
- * @param visaName - The localized visa type name (e.g., "Tourist Visa", "Business e-Visa")
- * @returns A formatted title combining both (e.g., "Turkey Tourist Visa", "United Arab Emirates Business e-Visa")
+ * @param visaType - The visa type string (e.g., "Tourist Visa", "Business_Visa")
+ * @returns A URL-safe slug (e.g., "tourist-visa", "business-visa")
  *
  * @example
- * formatVisaTitle("Turkey", "Tourist e-Visa") // Returns "Turkey Tourist e-Visa"
- * formatVisaTitle("United Arab Emirates", "Multi-Entry Visa") // Returns "United Arab Emirates Multi-Entry Visa"
+ * toVisaSlug("Tourist Visa") // Returns "tourist-visa"
+ * toVisaSlug("Business Visa") // Returns "business-visa"
  */
-export function formatVisaTitle(
-  destinationName: string,
-  visaName: string
-): string {
-  return `${destinationName} ${visaName}`;
+export function toVisaSlug(visaType: string): string {
+  return visaType.toLowerCase().replace(/\s+/g, "-");
 }
