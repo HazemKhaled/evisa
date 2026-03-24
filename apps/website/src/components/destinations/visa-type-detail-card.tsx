@@ -39,7 +39,7 @@ export async function VisaTypeDetailCard({
       <div className="border-b p-6">
         <div className="mb-2 flex items-start justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-2xl" aria-hidden="true">
+            <span aria-hidden="true" className="text-2xl">
               {flagEmoji}
             </span>
             <h3 className="text-xl font-semibold">{visaType.name}</h3>
