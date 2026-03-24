@@ -51,8 +51,14 @@
     "maxStay": "Maximaler Aufenthalt",
     "multiEntry": "Mehrfacheinreise",
     "interviewRequired": "Interview erforderlich",
+    "fastProcessing": "Schnelle Bearbeitung",
+    "documentsRequired": "Dokumente erforderlich",
     "day": "Tag",
-    "days": "Tage"
+    "days": "Tage",
+    "free": "Kostenlos",
+    "entryType": "Einreiseart",
+    "multiple": "Mehrfach",
+    "single": "Einfach"
   },
   "error": {
     "title": "Etwas ist schiefgelaufen",

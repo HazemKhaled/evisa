@@ -51,8 +51,14 @@
     "maxStay": "أقصى مدة إقامة",
     "multiEntry": "دخول متعدد",
     "interviewRequired": "مقابلة مطلوبة",
+    "fastProcessing": "معالجة سريعة",
+    "documentsRequired": "الوثائق المطلوبة",
     "day": "يوم",
-    "days": "أيام"
+    "days": "أيام",
+    "free": "مجاني",
+    "entryType": "نوع الدخول",
+    "multiple": "متعدد",
+    "single": "واحد"
   },
   "error": {
     "title": "حدث خطأ ما",

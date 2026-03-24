@@ -3,7 +3,11 @@
 ## UX
 
 - [x] FIX: All blog pages redirecting to page 1
-- [ ] FEAT: Enhance visa name type listing in all pages
+- [x] FEAT: Enhance visa name in all pages
+  - It needs to look more attractive
+  - Enhance title ex: Turkey tourist e-visa, UAE multi-entry
+  - Add flag if it'll help
+  - Enhance it in home page, country page and any other page if needed
 
 ## SEO
 
@@ -11,8 +15,7 @@
 - [ ] Sitemap need to be enriched
   - [ ] [Add images sitemap if needed](https://developers.google.com/search/docs/crawling-indexing/sitemaps/image-sitemaps)
   - [ ] [Add video sitemap if needed](https://developers.google.com/search/docs/crawling-indexing/sitemaps/video-sitemaps)
-- [ ] Implement all missing JSON-LD
-  - [ ] [Blog](https://schema.org/Blog)
+- [ ] Implement all missing JSON-LD: Scan the current implementation, and address all required JSON-LD to be implemented https://schema.org/Thing
 
 ## Content
 

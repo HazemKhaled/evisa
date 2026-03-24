@@ -51,8 +51,14 @@
     "maxStay": "Soggiorno massimo",
     "multiEntry": "Ingresso multiplo",
     "interviewRequired": "Colloquio richiesto",
+    "fastProcessing": "Elaborazione veloce",
+    "documentsRequired": "Documenti richiesti",
     "day": "giorno",
-    "days": "giorni"
+    "days": "giorni",
+    "free": "Gratuito",
+    "entryType": "Tipo di ingresso",
+    "multiple": "Multiplo",
+    "single": "Singolo"
   },
   "error": {
     "title": "Qualcosa è andato storto",

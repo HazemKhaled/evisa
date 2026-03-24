@@ -51,8 +51,14 @@
     "maxStay": "Max Stay",
     "multiEntry": "Multi-entry",
     "interviewRequired": "Interview required",
+    "fastProcessing": "Fast Processing",
+    "documentsRequired": "Documents Required",
     "day": "day",
-    "days": "days"
+    "days": "days",
+    "free": "Free",
+    "entryType": "Entry Type",
+    "multiple": "Multiple",
+    "single": "Single"
   },
   "error": {
     "title": "Something went wrong",

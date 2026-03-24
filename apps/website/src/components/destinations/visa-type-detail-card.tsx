@@ -6,6 +6,7 @@ import type {
   DestinationWithVisaTypes,
   VisaTypeInfo,
 } from "@/lib/services/country-service";
+import { getCountryFlagEmoji } from "@/lib/utils/visa-type-utils";
 
 import { RequiredDocuments } from "./required-documents";
 
@@ -18,12 +19,14 @@ interface VisaTypeDetailCardProps {
 
 export async function VisaTypeDetailCard({
   visaType,
+  destination,
   locale,
   className,
 }: VisaTypeDetailCardProps) {
   const { t } = await getTranslation(locale, "destination-page", {
     keyPrefix: "visaCard",
   });
+  const flagEmoji = getCountryFlagEmoji(destination.code);
 
   return (
     <div
@@ -35,7 +38,12 @@ export async function VisaTypeDetailCard({
       {/* Card Header */}
       <div className="border-b p-6">
         <div className="mb-2 flex items-start justify-between">
-          <h3 className="text-xl font-semibold">{visaType.name}</h3>
+          <div className="flex items-center gap-2">
+            <span aria-hidden="true" className="text-2xl">
+              {flagEmoji}
+            </span>
+            <h3 className="text-xl font-semibold">{visaType.name}</h3>
+          </div>
           {visaType.isMultiEntry && (
             <Badge variant="secondary" className="bg-primary/10 text-primary">
               {t("multiEntry")}
