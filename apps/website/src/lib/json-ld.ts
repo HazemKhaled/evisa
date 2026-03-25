@@ -104,8 +104,8 @@ export interface Article {
   datePublished: string;
   dateModified?: string;
   mainEntityOfPage: {
-    type: string;
-    id: string;
+    "@type": string;
+    "@id": string;
   };
   articleSection?: string;
   keywords?: string;
@@ -201,7 +201,7 @@ export function generateArticleJsonLd(article: Article) {
   const authorType = article.author["@type"] ?? article.author.type;
   const normalizedAuthor = {
     ...article.author,
-    ...(authorType && { "@type": authorType }),
+    "@type": authorType || "Person",
   };
 
   return {
@@ -211,7 +211,16 @@ export function generateArticleJsonLd(article: Article) {
     description: article.description,
     ...(article.image ? { image: imageObject } : {}),
     author: normalizedAuthor,
-    publisher: article.publisher,
+    publisher: {
+      "@type": "Organization",
+      name: article.publisher.name,
+      logo: {
+        "@type": "ImageObject",
+        url: article.publisher.logo.url,
+        width: article.publisher.logo.width,
+        height: article.publisher.logo.height,
+      },
+    },
     datePublished: article.datePublished,
     ...(article.dateModified && { dateModified: article.dateModified }),
     mainEntityOfPage: article.mainEntityOfPage,
@@ -495,8 +504,8 @@ export function generateBlogPostJsonLd(
     datePublished: post.publishedAt,
     dateModified: post.lastUpdated || post.publishedAt,
     mainEntityOfPage: {
-      type: "WebPage",
-      id: postUrl,
+      "@type": "WebPage",
+      "@id": postUrl,
     },
     articleSection: t("jsonld.blog.article_section"),
     keywords: Array.isArray(post.tags) ? post.tags.join(", ") : "",
