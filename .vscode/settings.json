@@ -59,6 +59,7 @@
     "pnpm": true,
     "git": true,
     "npm": true,
+    "gh": true
   },
   "json.schemaDownload.trustedDomains": {
     "https://ui.shadcn.com": true,

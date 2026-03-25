@@ -9,7 +9,7 @@ import { BlogPostCard } from "@/components/blog/blog-post-card";
 import { DestinationCard } from "@/components/destinations/destination-card";
 import { DestinationHero } from "@/components/destinations/destination-hero";
 import { VisaOptionsGrid } from "@/components/destinations/visa-options-grid";
-import { JsonLd } from "@/components/json-ld";
+import { MultipleJsonLd } from "@/components/json-ld";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 import { env } from "@/lib/consts";
 import {
@@ -160,7 +160,13 @@ export default async function DestinationPage({
   const jsonLd = generateDestinationJsonLd(
     destinationData,
     locale,
-    tJsonLd("destination.travelTo", { defaultValue: "Travel to" })
+    tJsonLd("destination.travelTo", { defaultValue: "Travel to" }),
+    {
+      travelDescriptionTemplate: tJsonLd("destination.travelDescription"),
+      visaDescriptionTemplate: tJsonLd("destination.visaDescription"),
+      visaOfferDescriptionTemplate: tJsonLd("destination.visaOfferDescription"),
+      additionalPropertyProcessingTime: tJsonLd("destination.processingTime"),
+    }
   );
 
   // Breadcrumb items for JSON-LD
@@ -192,11 +198,13 @@ export default async function DestinationPage({
       : [];
   const faqJsonLd = faqItems.length > 0 ? generateFAQJsonLd(faqItems) : null;
 
+  const jsonLdBlocks = [jsonLd, breadcrumbJsonLd, faqJsonLd].filter(
+    (item): item is Record<string, unknown> => Boolean(item)
+  );
+
   return (
     <>
-      <JsonLd data={jsonLd} />
-      {breadcrumbJsonLd && <JsonLd data={breadcrumbJsonLd} />}
-      {faqJsonLd && <JsonLd data={faqJsonLd} />}
+      <MultipleJsonLd data={jsonLdBlocks} />
 
       <main id="main-content" className="min-h-screen">
         {/* Breadcrumb Navigation */}

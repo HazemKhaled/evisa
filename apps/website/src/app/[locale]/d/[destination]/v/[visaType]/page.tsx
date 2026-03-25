@@ -4,10 +4,14 @@ import { notFound } from "next/navigation";
 
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
-import { JsonLd } from "@/components/json-ld";
+import { MultipleJsonLd } from "@/components/json-ld";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 import { env } from "@/lib/consts";
-import { generateDestinationJsonLd } from "@/lib/json-ld";
+import {
+  generateBreadcrumbData,
+  generateBreadcrumbListJsonLd,
+  generateVisaServiceJsonLd,
+} from "@/lib/json-ld";
 import {
   getDestinationDetails,
   getDestinationsListWithMetadata,
@@ -162,15 +166,49 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
     },
   ];
 
+  const baseUrl = env.baseUrl;
+  const visaUrl = `${baseUrl}/${locale}/d/${destination}/v/${canonicalVisaSlug}`;
+  const visaServiceJsonLd = generateVisaServiceJsonLd({
+    name: visa.name,
+    description:
+      visa.description ||
+      tDestination("visaDetailPage.defaultDescription", {
+        visaName: visa.name,
+        destinationName: destinationData.localizedName,
+      }),
+    url: visaUrl,
+    destinationName: destinationData.localizedName,
+    destinationCode: destinationData.code,
+    providerName: tJsonLd("organization.name", {
+      defaultValue: "GetTravelVisa.com",
+    }),
+    providerUrl: baseUrl,
+    fee: visa.fee,
+    currency: visa.currency,
+    processingDays: visa.processingTime,
+    durationDays: visa.duration,
+    image: destinationData.heroImage ?? undefined,
+    localizedProcessingLabel: tJsonLd("destination.processingTime"),
+  });
+
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(
+    generateBreadcrumbData([
+      { name: tCommon("navigation.home"), url: `${baseUrl}/${locale}` },
+      {
+        name: tCommon("navigation.destinations"),
+        url: `${baseUrl}/${locale}/d`,
+      },
+      {
+        name: destinationData.localizedName,
+        url: `${baseUrl}/${locale}/d/${destination}`,
+      },
+      { name: visa.name, url: visaUrl },
+    ])
+  );
+
   return (
     <>
-      <JsonLd
-        data={generateDestinationJsonLd(
-          destinationData,
-          locale,
-          tJsonLd("destination.travelTo", { defaultValue: "Travel to" })
-        )}
-      />
+      <MultipleJsonLd data={[visaServiceJsonLd, breadcrumbJsonLd]} />
       <main id="main-content" className="min-h-screen bg-white">
         {/* Breadcrumb */}
         <div className="border-b border-gray-200">

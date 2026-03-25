@@ -1,19 +1,19 @@
-import { Skeleton } from "@repo/ui";
 import { type Metadata } from "next";
-import { Suspense } from "react";
 
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
 import { BlogPostList } from "@/components/blog/blog-post-list";
 import { BlogSearch } from "@/components/blog/blog-search";
-import { JsonLd } from "@/components/json-ld";
+import { MultipleJsonLd } from "@/components/json-ld";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 import { env } from "@/lib/consts";
 import {
+  generateBlogJsonLd,
   generateBreadcrumbData,
   generateBreadcrumbListJsonLd,
-  generateWebPageJsonLd,
+  generateCollectionPageJsonLd,
+  getCanonicalBlogUrl,
 } from "@/lib/json-ld";
 import {
   getBlogPostsByDestinationPaginated,
@@ -21,6 +21,7 @@ import {
   getBlogPostsForLocalePaginated,
   searchBlogPosts,
 } from "@/lib/services/blog-service";
+import type { BlogPostData } from "@/lib/types/blog";
 import { generateAlternatesMetadata } from "@/lib/utils";
 
 // Enable ISR with daily revalidation for blog list
@@ -29,6 +30,98 @@ export const revalidate = 86400; // 24 hours
 // Generate static params for basic locale routes only
 export function generateStaticParams(): { locale: string }[] {
   return languages.map(locale => ({ locale }));
+}
+
+/**
+ * Fetch paginated blog posts based on filter type
+ * Routes to the appropriate service function based on search/tag/destination parameters
+ */
+async function fetchPaginatedPosts(
+  search: string | undefined,
+  tag: string | undefined,
+  destination: string | undefined,
+  locale: string,
+  postsPerPage: number,
+  offset: number
+) {
+  if (search) {
+    return {
+      posts: await searchBlogPosts(search, locale, postsPerPage),
+      totalPages: 1,
+    };
+  }
+
+  if (tag) {
+    return await getBlogPostsByTagPaginated(tag, locale, postsPerPage, offset);
+  }
+
+  if (destination) {
+    return await getBlogPostsByDestinationPaginated(
+      destination,
+      locale,
+      postsPerPage,
+      offset
+    );
+  }
+
+  return await getBlogPostsForLocalePaginated(locale, postsPerPage, offset);
+}
+
+/**
+ * Build normalized breadcrumb model based on current filter state
+ * Returns array of breadcrumb items with decoded labels and canonical URLs
+ */
+function buildBlogBreadcrumbs(
+  search: string | undefined,
+  destination: string | undefined,
+  tag: string | undefined,
+  locale: string,
+  baseUrl: string,
+  canonicalBlogUrl: string,
+  t: (key: string, params?: Record<string, string>) => string,
+  tNav: (key: string, params?: Record<string, string>) => string
+): { decodedLabel: string; url: string }[] {
+  if (search) {
+    return [
+      { decodedLabel: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+      {
+        decodedLabel: tNav("breadcrumb.blog"),
+        url: `${baseUrl}/${locale}/blog`,
+      },
+      { decodedLabel: t("search.heading"), url: canonicalBlogUrl },
+    ];
+  }
+
+  if (destination) {
+    return [
+      { decodedLabel: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+      {
+        decodedLabel: tNav("breadcrumb.destinations"),
+        url: `${baseUrl}/${locale}/d`,
+      },
+      {
+        decodedLabel: destination,
+        url: `${baseUrl}/${locale}/d/${encodeURIComponent(destination)}`,
+      },
+      { decodedLabel: tNav("breadcrumb.blog"), url: canonicalBlogUrl },
+    ];
+  }
+
+  if (tag) {
+    return [
+      { decodedLabel: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+      {
+        decodedLabel: tNav("breadcrumb.blog"),
+        url: `${baseUrl}/${locale}/blog`,
+      },
+      { decodedLabel: decodedOrOriginalTag(tag), url: canonicalBlogUrl },
+    ];
+  }
+
+  return [
+    { decodedLabel: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+    { decodedLabel: tNav("breadcrumb.blog"), url: canonicalBlogUrl },
+  ];
 }
 
 interface BlogHomeProps {
@@ -43,20 +136,36 @@ interface BlogHomeProps {
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{
+    page?: string;
+    tag?: string;
+    destination?: string;
+    search?: string;
+  }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { tag, destination, search } = await searchParams;
   const { t } = await getTranslation(locale, "blog");
   const alternates = generateAlternatesMetadata(env.baseUrl, "blog", locale);
+  const canonicalBlogUrl = getCanonicalBlogUrl(env.baseUrl, locale, {
+    search,
+    tag,
+    destination,
+  });
 
   return {
     title: t("title"),
     description: t("subtitle"),
     keywords: t("keywords"),
-    alternates,
+    alternates: {
+      ...alternates,
+      canonical: canonicalBlogUrl,
+    },
     openGraph: {
-      url: alternates.canonical,
+      url: canonicalBlogUrl,
     },
   };
 }
@@ -82,37 +191,36 @@ export default async function BlogHome({
   let pageTitle = t("title");
   let pageSubtitle = t("subtitle");
   const baseUrl = env.baseUrl;
-  let blogUrl = `${baseUrl}/${locale}/blog`;
+  const canonicalBlogUrl = getCanonicalBlogUrl(baseUrl, locale, {
+    search,
+    tag,
+    destination,
+  });
 
   if (search) {
     pageTitle = t("search.heading");
-    blogUrl = `${baseUrl}/${locale}/blog?search=${encodeURIComponent(search)}`;
   } else if (tag) {
     pageTitle = t("tag.title", { tag });
     pageSubtitle = t("tag.subtitle", { tag });
-    blogUrl = `${baseUrl}/${locale}/blog/t/${encodeURIComponent(tag)}`;
   } else if (destination) {
     pageTitle = t("destination.title", { destination });
     pageSubtitle = t("destination.subtitle", { destination });
-    blogUrl = `${baseUrl}/${locale}/d/${encodeURIComponent(destination)}/blog`;
   }
 
-  // Generate JSON-LD for the blog page
-  const webpageJsonLd = generateWebPageJsonLd({
-    name: pageTitle,
-    description: pageSubtitle,
-    url: blogUrl,
-    isPartOf: {
-      name: t("jsonld.organization.name"),
-      url: baseUrl,
-    },
-  });
+  // Compute empty state message once for later use
+  const emptyStateMessage = search
+    ? t("emptySearch", { search })
+    : t("empty_state");
 
-  const breadcrumbData = generateBreadcrumbData([
-    { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-    { name: tNav("breadcrumb.blog"), url: blogUrl },
-  ]);
-  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
+  // Fetch paginated posts based on filter type
+  const paginatedResponse = await fetchPaginatedPosts(
+    search,
+    tag,
+    destination,
+    locale,
+    postsPerPage,
+    offset
+  );
 
   // Helper function to build pagination URLs with query parameters
   const buildPaginationUrl = (page: number): string => {
@@ -145,46 +253,64 @@ export default async function BlogHome({
     return `/${locale}/blog${query}`;
   };
 
-  // Create breadcrumb items based on current page state
-  let breadcrumbItems: {
-    label: string;
-    href?: string;
-    isCurrentPage?: boolean;
-  }[] = [
-    { label: tNav("breadcrumb.home"), href: `/${locale}` },
-    { label: tNav("breadcrumb.blog"), href: `/${locale}/blog` },
-  ];
+  const { posts: jsonLdPosts, totalPages } = paginatedResponse;
 
-  if (search) {
-    breadcrumbItems = [
-      { label: tNav("breadcrumb.home"), href: `/${locale}` },
-      { label: tNav("breadcrumb.blog"), href: `/${locale}/blog` },
-      { label: t("search.heading"), isCurrentPage: true },
-    ];
-  } else if (destination) {
-    breadcrumbItems = [
-      { label: tNav("breadcrumb.home"), href: `/${locale}` },
-      { label: tNav("breadcrumb.destinations"), href: `/${locale}/d` },
-      { label: destination, href: `/${locale}/d/${destination}` },
-      { label: tNav("breadcrumb.blog"), isCurrentPage: true },
-    ];
-  } else if (tag) {
-    breadcrumbItems = [
-      { label: tNav("breadcrumb.home"), href: `/${locale}` },
-      { label: tNav("breadcrumb.blog"), href: `/${locale}/blog` },
-      { label: tNav("breadcrumb.tag", { tagName: tag }), isCurrentPage: true },
-    ];
-  } else {
-    breadcrumbItems = [
-      { label: tNav("breadcrumb.home"), href: `/${locale}` },
-      { label: tNav("breadcrumb.blog"), isCurrentPage: true },
-    ];
-  }
+  const collectionPageJsonLd = generateCollectionPageJsonLd({
+    name: pageTitle,
+    description: pageSubtitle,
+    url: canonicalBlogUrl,
+    items: jsonLdPosts.map(post => ({
+      name: post.title,
+      url: `${baseUrl}/${locale}/blog/${post.slug}`,
+      image: post.image,
+      description: post.description,
+    })),
+  });
+
+  const blogJsonLd = generateBlogJsonLd({
+    name: pageTitle,
+    description: pageSubtitle,
+    url: canonicalBlogUrl,
+    posts: jsonLdPosts.map(post => ({
+      headline: post.title,
+      url: `${baseUrl}/${locale}/blog/${post.slug}`,
+      image: post.image,
+      datePublished: post.publishedAt,
+    })),
+  });
+
+  // Build normalized breadcrumb model and generate JSON-LD
+  const breadcrumbModel = buildBlogBreadcrumbs(
+    search,
+    destination,
+    tag,
+    locale,
+    baseUrl,
+    canonicalBlogUrl,
+    t,
+    tNav
+  );
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(
+    generateBreadcrumbData(
+      breadcrumbModel.map(item => ({
+        name: item.decodedLabel,
+        url: item.url,
+      }))
+    )
+  );
+
+  // Create breadcrumb items for UI display from normalized model
+  const breadcrumbItems = breadcrumbModel.map((item, index) => ({
+    label: item.decodedLabel,
+    href: index === breadcrumbModel.length - 1 ? undefined : item.url,
+    isCurrentPage: index === breadcrumbModel.length - 1,
+  }));
 
   return (
     <>
-      <JsonLd id="json-ld-webpage" data={webpageJsonLd} />
-      <JsonLd id="json-ld-breadcrumb" data={breadcrumbJsonLd} />
+      <MultipleJsonLd
+        data={[collectionPageJsonLd, blogJsonLd, breadcrumbJsonLd]}
+      />
       <StaticPageLayout>
         <div className="mx-auto max-w-7xl">
           {/* Breadcrumb */}
@@ -209,88 +335,50 @@ export default async function BlogHome({
             />
           </div>
 
-          <Suspense fallback={<BlogPostsSectionSkeleton />}>
-            <BlogPostsSection
-              locale={locale}
-              tag={tag}
-              destination={destination}
-              search={search}
-              currentPage={currentPage}
-              postsPerPage={postsPerPage}
-              offset={offset}
-              buildPaginationUrl={buildPaginationUrl}
-            />
-          </Suspense>
+          <BlogPostsSection
+            locale={locale}
+            posts={jsonLdPosts}
+            totalPages={totalPages}
+            search={search}
+            currentPage={currentPage}
+            buildPaginationUrl={buildPaginationUrl}
+            emptyStateMessage={emptyStateMessage}
+          />
         </div>
       </StaticPageLayout>
     </>
   );
 }
 
-async function BlogPostsSection({
+function decodedOrOriginalTag(tag: string): string {
+  try {
+    return decodeURIComponent(tag);
+  } catch {
+    return tag;
+  }
+}
+
+function BlogPostsSection({
   locale,
-  tag,
-  destination,
+  posts,
+  totalPages,
   search,
   currentPage,
-  postsPerPage,
-  offset,
   buildPaginationUrl,
+  emptyStateMessage,
 }: {
   locale: string;
-  tag?: string;
-  destination?: string;
+  posts: BlogPostData[];
+  totalPages: number;
   search?: string;
   currentPage: number;
-  postsPerPage: number;
-  offset: number;
   buildPaginationUrl: (page: number) => string;
+  emptyStateMessage: string;
 }) {
-  const { t } = await getTranslation(locale, "blog");
-
-  let paginatedResponse;
-
-  if (search) {
-    paginatedResponse = {
-      posts: await searchBlogPosts(search, locale, postsPerPage),
-      totalPages: 1,
-    };
-  } else if (tag) {
-    paginatedResponse = await getBlogPostsByTagPaginated(
-      tag,
-      locale,
-      postsPerPage,
-      offset
-    );
-  } else if (destination) {
-    paginatedResponse = await getBlogPostsByDestinationPaginated(
-      destination,
-      locale,
-      postsPerPage,
-      offset
-    );
-  } else {
-    paginatedResponse = await getBlogPostsForLocalePaginated(
-      locale,
-      postsPerPage,
-      offset
-    );
-  }
-
-  const { posts, totalPages } = paginatedResponse;
-
   if (posts.length === 0) {
     return (
       <div className="py-16 text-center">
-        <p className="text-lg text-gray-600">
-          {tag
-            ? t("emptyTag", { tag })
-            : destination
-              ? t("emptyDestination", { destination })
-              : search
-                ? t("emptySearch", { search })
-                : t("empty_state")}
-        </p>
+        <p className="text-lg text-gray-600">{emptyStateMessage}</p>
       </div>
     );
   }
@@ -305,22 +393,5 @@ async function BlogPostsSection({
       gridCols="3"
       showPagination={!search}
     />
-  );
-}
-
-function BlogPostsSectionSkeleton() {
-  return (
-    <div className="space-y-8">
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="rounded-lg border bg-white p-4">
-            <Skeleton className="mb-4 aspect-video w-full rounded-md" />
-            <Skeleton className="mb-2 h-5 w-3/4" />
-            <Skeleton className="mb-4 h-4 w-full" />
-            <Skeleton className="h-4 w-5/6" />
-          </div>
-        ))}
-      </div>
-    </div>
   );
 }

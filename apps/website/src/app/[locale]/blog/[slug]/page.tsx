@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import { getTranslation } from "@/app/i18n";
 import { BlogPostDetail } from "@/components/blog/blog-post-detail";
-import { JsonLd } from "@/components/json-ld";
+import { MultipleJsonLd } from "@/components/json-ld";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { env } from "@/lib/consts";
 import {
@@ -133,8 +133,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
   return (
     <>
-      <JsonLd id="json-ld-article" data={articleJsonLd} />
-      <JsonLd id="json-ld-breadcrumb" data={breadcrumbJsonLd} />
+      <MultipleJsonLd data={[articleJsonLd, breadcrumbJsonLd]} />
       <StaticPageLayout>
         <main id="main-content" aria-label={`Blog Post - ${blogPost.title}`}>
           <BlogPostDetail
