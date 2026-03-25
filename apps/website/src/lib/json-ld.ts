@@ -56,10 +56,17 @@ export interface WebPage {
 export interface Article {
   headline: string;
   description: string;
-  image: string;
+  image:
+    | string
+    | {
+        url: string;
+        width?: number;
+        height?: number;
+      };
   author: {
     name: string;
-    type: string;
+    type?: string;
+    "@type"?: string;
   };
   publisher: {
     name: string;
@@ -76,7 +83,7 @@ export interface Article {
     id: string;
   };
   articleSection?: string;
-  keywords?: string[];
+  keywords?: string;
 }
 
 export interface BreadcrumbList {
@@ -85,6 +92,20 @@ export interface BreadcrumbList {
     name: string;
     item: string;
   }[];
+}
+
+export interface CollectionPageItem {
+  name: string;
+  url: string;
+  image?: string;
+  description?: string;
+}
+
+export interface BlogSchemaPost {
+  headline: string;
+  url: string;
+  image?: string;
+  datePublished?: string;
 }
 
 /**
@@ -141,14 +162,22 @@ export function generateWebPageJsonLd(webpage: WebPage) {
  * Generate article JSON-LD
  */
 export function generateArticleJsonLd(article: Article) {
+  const imageObject =
+    typeof article.image === "string"
+      ? { "@type": "ImageObject", url: article.image }
+      : {
+          "@type": "ImageObject",
+          url: article.image.url,
+          ...(article.image.width && { width: article.image.width }),
+          ...(article.image.height && { height: article.image.height }),
+        };
+
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.headline,
     description: article.description,
-    ...(article.image
-      ? { image: { "@type": "ImageObject", url: article.image } }
-      : {}),
+    ...(article.image ? { image: imageObject } : {}),
     author: article.author,
     publisher: article.publisher,
     datePublished: article.datePublished,
@@ -208,6 +237,106 @@ export function generateServiceJsonLd(service: {
     provider: generateOrganizationJsonLd(service.provider),
     ...(service.areaServed && { areaServed: service.areaServed }),
     ...(service.serviceType && { serviceType: service.serviceType }),
+  };
+}
+
+/**
+ * Generate collection page JSON-LD with ItemList
+ */
+export function generateCollectionPageJsonLd(page: {
+  name: string;
+  description?: string;
+  url: string;
+  items: CollectionPageItem[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: page.name,
+    ...(page.description && { description: page.description }),
+    url: page.url,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: page.items.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        url: item.url,
+        ...(item.image && { image: item.image }),
+        ...(item.description && { description: item.description }),
+      })),
+    },
+  };
+}
+
+/**
+ * Generate Blog JSON-LD for blog listing pages
+ */
+export function generateBlogJsonLd(blog: {
+  name: string;
+  description?: string;
+  url: string;
+  posts: BlogSchemaPost[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: blog.name,
+    ...(blog.description && { description: blog.description }),
+    url: blog.url,
+    blogPost: blog.posts.map(post => ({
+      "@type": "BlogPosting",
+      headline: post.headline,
+      url: post.url,
+      ...(post.image && { image: post.image }),
+      ...(post.datePublished && { datePublished: post.datePublished }),
+    })),
+  };
+}
+
+/**
+ * Generate visa service JSON-LD for visa details pages
+ */
+export function generateVisaServiceJsonLd(service: {
+  name: string;
+  description: string;
+  url: string;
+  destinationName: string;
+  destinationCode: string;
+  providerName: string;
+  providerUrl: string;
+  fee: number;
+  currency: string;
+  processingDays: number;
+  durationDays: number;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.name,
+    description: service.description,
+    url: service.url,
+    ...(service.image && { image: service.image }),
+    serviceType: "Visa Application Service",
+    provider: {
+      "@type": "Organization",
+      name: service.providerName,
+      url: service.providerUrl,
+    },
+    areaServed: {
+      "@type": "Country",
+      name: service.destinationName,
+      identifier: service.destinationCode,
+    },
+    offers: {
+      "@type": "Offer",
+      price: service.fee.toString(),
+      priceCurrency: service.currency,
+      availability: "https://schema.org/InStock",
+      description: `Valid for ${service.durationDays} days`,
+    },
+    processingTime: `P${service.processingDays}D`,
   };
 }
 
@@ -276,10 +405,14 @@ export function generateBlogPostJsonLd(
   return {
     headline: post.title,
     description: post.description,
-    image: post.image,
+    image: {
+      url: post.image,
+      width: 1200,
+      height: 630,
+    },
     author: {
       name: post.author,
-      type: "Person",
+      "@type": "Person",
     },
     publisher: {
       name: t("jsonld.organization.name"),
@@ -296,7 +429,7 @@ export function generateBlogPostJsonLd(
       id: postUrl,
     },
     articleSection: t("jsonld.blog.article_section"),
-    keywords: post.tags,
+    keywords: post.tags.join(", "),
   };
 }
 
@@ -350,49 +483,23 @@ export function generateDestinationJsonLd(
   const baseUrl = env.baseUrl;
   const destinationUrl = `${baseUrl}/${locale}/d/${destination.code}`;
 
-  return {
-    "@context": "https://schema.org",
-    "@type": "Place",
+  const touristDestination = {
+    "@id": `${destinationUrl}#tourist-destination`,
+    "@type": "TouristDestination",
     name: destination.localizedName,
     description: destination.about,
     url: destinationUrl,
     ...(destination.heroImage && { image: destination.heroImage }),
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: destination.code,
-      ...(destination.region && { addressRegion: destination.region }),
-    },
     ...(destination.continent && {
       containedInPlace: {
         "@type": "AdministrativeArea",
         name: destination.continent,
       },
     }),
-    ...(destination.visaTypes.length > 0 && {
-      containsPlace: destination.visaTypes.map(visa => ({
-        "@type": "Service",
-        name: visa.name,
-        description: `${visa.type} visa for ${destination.localizedName}`,
-        provider: {
-          "@type": "Organization",
-          name: "GetTravelVisa.com",
-          url: baseUrl,
-        },
-        offers: {
-          "@type": "Offer",
-          price: visa.fee.toString(),
-          priceCurrency: visa.currency,
-          availability: "https://schema.org/InStock",
-          validFrom: new Date().toISOString(),
-          description: `Processing time: ${visa.processingTime} days, Valid for: ${visa.duration} days`,
-        },
-        serviceType: "Visa Application Service",
-        areaServed: {
-          "@type": "Country",
-          name: destination.localizedName,
-        },
-      })),
-    }),
+    touristType: {
+      "@type": "Audience",
+      audienceType: "Tourists",
+    },
     mainEntity: {
       "@type": "TravelAction",
       name: `${travelToLabel} ${destination.localizedName}`,
@@ -417,6 +524,41 @@ export function generateDestinationJsonLd(
         name: "Visa on Arrival",
         value: destination.hasVisaOnArrival.toString(),
       },
+    ],
+    ...(destination.visaTypes.length > 0 && {
+      makesOffer: destination.visaTypes.map(visa => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: visa.name,
+          description: `${visa.type} visa for ${destination.localizedName}`,
+          serviceType: "Visa Application Service",
+        },
+        price: visa.fee.toString(),
+        priceCurrency: visa.currency,
+        availability: "https://schema.org/InStock",
+      })),
+    }),
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@id": `${destinationUrl}#country`,
+        "@type": "Country",
+        name: destination.localizedName,
+        url: destinationUrl,
+        identifier: destination.code,
+        ...(destination.region && {
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: destination.code,
+            addressRegion: destination.region,
+          },
+        }),
+      },
+      touristDestination,
     ],
   };
 }

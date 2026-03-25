@@ -6,10 +6,12 @@ import { getLocaleWithRegion } from "@/app/i18n/settings";
 import { BlogPostCard } from "@/components/blog/blog-post-card";
 import { DestinationCard } from "@/components/destinations/destination-card";
 import { VisaTypeCard } from "@/components/destinations/visa-type-card";
-import { JsonLd } from "@/components/json-ld";
+import { MultipleJsonLd } from "@/components/json-ld";
 import { SearchForm } from "@/components/search-form";
 import { env } from "@/lib/consts";
 import {
+  generateBreadcrumbData,
+  generateBreadcrumbListJsonLd,
   generateOrganizationData,
   generateServiceData,
   generateServiceJsonLd,
@@ -100,11 +102,13 @@ export default async function LocalePage({
   const organizationData = generateOrganizationData(t);
   const serviceData = generateServiceData(t, organizationData);
   const serviceJsonLd = generateServiceJsonLd(serviceData);
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(
+    generateBreadcrumbData([{ name: tCommon("navigation.home"), url: pageUrl }])
+  );
 
   return (
     <>
-      <JsonLd id="json-ld-webpage" data={webpageJsonLd} />
-      <JsonLd id="json-ld-service" data={serviceJsonLd} />
+      <MultipleJsonLd data={[webpageJsonLd, serviceJsonLd, breadcrumbJsonLd]} />
       <main
         id="main-content"
         className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100"

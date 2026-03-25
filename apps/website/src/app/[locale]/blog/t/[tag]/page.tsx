@@ -2,13 +2,7 @@ import { type Metadata } from "next";
 
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
-import { JsonLd } from "@/components/json-ld";
 import { env } from "@/lib/consts";
-import {
-  generateBreadcrumbData,
-  generateBreadcrumbListJsonLd,
-  generateWebPageJsonLd,
-} from "@/lib/json-ld";
 import { getAllUniqueTagsAcrossLocales } from "@/lib/services/blog-service";
 import { generateAlternatesMetadata } from "@/lib/utils";
 
@@ -66,14 +60,8 @@ export async function generateMetadata({
 }
 
 export default async function TagPage({ params, searchParams }: TagPageProps) {
-  const { locale, tag } = await params;
+  const { tag } = await params;
   const { page = "1" } = await searchParams;
-
-  // Parallel fetch: both translations
-  const [{ t: tJsonLd }, { t: tNav }] = await Promise.all([
-    getTranslation(locale, "jsonld"),
-    getTranslation(locale, "navigation"),
-  ]);
 
   // Decode the tag parameter
   const decodedTag = decodeURIComponent(tag);
@@ -84,36 +72,11 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
     tag: decodedTag,
   };
 
-  const baseUrl = env.baseUrl;
-  const tagUrl = `${baseUrl}/${locale}/blog/t/${tag}`;
-
-  // Generate JSON-LD for the tag page
-  const webpageJsonLd = generateWebPageJsonLd({
-    name: `${decodedTag} - ${tJsonLd("blog.title")}`,
-    description: tJsonLd("blog.description"),
-    url: tagUrl,
-    isPartOf: {
-      name: tJsonLd("website.name"),
-      url: baseUrl,
-    },
-  });
-
-  const breadcrumbData = generateBreadcrumbData([
-    { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-    { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
-    { name: decodedTag, url: tagUrl },
-  ]);
-  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
-
   // Use the existing blog page component with the modified search params and tag route flag
   return (
-    <>
-      <JsonLd id="json-ld-webpage" data={webpageJsonLd} />
-      <JsonLd id="json-ld-breadcrumb" data={breadcrumbJsonLd} />
-      <BlogHome
-        params={params}
-        searchParams={Promise.resolve(modifiedSearchParams)}
-      />
-    </>
+    <BlogHome
+      params={params}
+      searchParams={Promise.resolve(modifiedSearchParams)}
+    />
   );
 }

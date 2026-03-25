@@ -6,14 +6,15 @@ import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
 import { BlogPostList } from "@/components/blog/blog-post-list";
 import { BlogSearch } from "@/components/blog/blog-search";
-import { JsonLd } from "@/components/json-ld";
+import { MultipleJsonLd } from "@/components/json-ld";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 import { env } from "@/lib/consts";
 import {
+  generateBlogJsonLd,
   generateBreadcrumbData,
   generateBreadcrumbListJsonLd,
-  generateWebPageJsonLd,
+  generateCollectionPageJsonLd,
 } from "@/lib/json-ld";
 import {
   getBlogPostsByDestinationPaginated,
@@ -97,23 +98,6 @@ export default async function BlogHome({
     blogUrl = `${baseUrl}/${locale}/d/${encodeURIComponent(destination)}/blog`;
   }
 
-  // Generate JSON-LD for the blog page
-  const webpageJsonLd = generateWebPageJsonLd({
-    name: pageTitle,
-    description: pageSubtitle,
-    url: blogUrl,
-    isPartOf: {
-      name: t("jsonld.organization.name"),
-      url: baseUrl,
-    },
-  });
-
-  const breadcrumbData = generateBreadcrumbData([
-    { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-    { name: tNav("breadcrumb.blog"), url: blogUrl },
-  ]);
-  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
-
   // Helper function to build pagination URLs with query parameters
   const buildPaginationUrl = (page: number): string => {
     const searchParams = new URLSearchParams();
@@ -144,6 +128,47 @@ export default async function BlogHome({
     // For regular blog routes, use query parameter format: /en/blog?page=2
     return `/${locale}/blog${query}`;
   };
+
+  const jsonLdResponse = search
+    ? {
+        posts: await searchBlogPosts(search, locale, postsPerPage),
+      }
+    : tag
+      ? await getBlogPostsByTagPaginated(tag, locale, postsPerPage, offset)
+      : destination
+        ? await getBlogPostsByDestinationPaginated(
+            destination,
+            locale,
+            postsPerPage,
+            offset
+          )
+        : await getBlogPostsForLocalePaginated(locale, postsPerPage, offset);
+
+  const jsonLdPosts = jsonLdResponse.posts;
+
+  const collectionPageJsonLd = generateCollectionPageJsonLd({
+    name: pageTitle,
+    description: pageSubtitle,
+    url: blogUrl,
+    items: jsonLdPosts.map(post => ({
+      name: post.title,
+      url: `${baseUrl}/${locale}/blog/${post.slug}`,
+      image: post.image,
+      description: post.description,
+    })),
+  });
+
+  const blogJsonLd = generateBlogJsonLd({
+    name: pageTitle,
+    description: pageSubtitle,
+    url: blogUrl,
+    posts: jsonLdPosts.map(post => ({
+      headline: post.title,
+      url: `${baseUrl}/${locale}/blog/${post.slug}`,
+      image: post.image,
+      datePublished: post.publishedAt,
+    })),
+  });
 
   // Create breadcrumb items based on current page state
   let breadcrumbItems: {
@@ -181,10 +206,42 @@ export default async function BlogHome({
     ];
   }
 
+  const breadcrumbData = search
+    ? generateBreadcrumbData([
+        { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+        { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
+        { name: t("search.heading"), url: blogUrl },
+      ])
+    : destination
+      ? generateBreadcrumbData([
+          { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+          {
+            name: tNav("breadcrumb.destinations"),
+            url: `${baseUrl}/${locale}/d`,
+          },
+          {
+            name: destination,
+            url: `${baseUrl}/${locale}/d/${encodeURIComponent(destination)}`,
+          },
+          { name: tNav("breadcrumb.blog"), url: blogUrl },
+        ])
+      : tag
+        ? generateBreadcrumbData([
+            { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+            { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
+            { name: decodedOrOriginalTag(tag), url: blogUrl },
+          ])
+        : generateBreadcrumbData([
+            { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+            { name: tNav("breadcrumb.blog"), url: blogUrl },
+          ]);
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
+
   return (
     <>
-      <JsonLd id="json-ld-webpage" data={webpageJsonLd} />
-      <JsonLd id="json-ld-breadcrumb" data={breadcrumbJsonLd} />
+      <MultipleJsonLd
+        data={[collectionPageJsonLd, blogJsonLd, breadcrumbJsonLd]}
+      />
       <StaticPageLayout>
         <div className="mx-auto max-w-7xl">
           {/* Breadcrumb */}
@@ -225,6 +282,14 @@ export default async function BlogHome({
       </StaticPageLayout>
     </>
   );
+}
+
+function decodedOrOriginalTag(tag: string): string {
+  try {
+    return decodeURIComponent(tag);
+  } catch {
+    return tag;
+  }
 }
 
 async function BlogPostsSection({

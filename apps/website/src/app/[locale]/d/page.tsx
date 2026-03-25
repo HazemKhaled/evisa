@@ -3,10 +3,14 @@ import { type Metadata } from "next";
 import { getTranslation } from "@/app/i18n";
 import { DestinationsGrid } from "@/components/destinations/destinations-grid";
 import { SearchFilterForm } from "@/components/destinations/search-filter-form";
-import { JsonLd } from "@/components/json-ld";
+import { MultipleJsonLd } from "@/components/json-ld";
 import { EnhancedPagination, PageBreadcrumb } from "@/components/ui";
 import { env } from "@/lib/consts";
-import { generateWebPageJsonLd } from "@/lib/json-ld";
+import {
+  generateBreadcrumbData,
+  generateBreadcrumbListJsonLd,
+  generateCollectionPageJsonLd,
+} from "@/lib/json-ld";
 import {
   getDestinationContinents,
   getDestinationsListWithMetadataPaginated,
@@ -89,16 +93,30 @@ export default async function DestinationsPage({
     totalPages,
   } = paginatedResponse;
 
-  // Generate structured data
-  const jsonLd = generateWebPageJsonLd({
+  const pageUrl = `${env.baseUrl}/${locale}/d`;
+
+  const collectionPageJsonLd = generateCollectionPageJsonLd({
     name: t("meta.title"),
     description: t("meta.description"),
-    url: `${env.baseUrl}/${locale}/d`,
+    url: pageUrl,
+    items: paginatedDestinations.map(destination => ({
+      name: destination.localizedName,
+      url: `${env.baseUrl}/${locale}/d/${destination.code}`,
+      image: destination.heroImage ?? undefined,
+      description: destination.about ?? undefined,
+    })),
   });
+
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(
+    generateBreadcrumbData([
+      { name: tNav("breadcrumb.home"), url: `${env.baseUrl}/${locale}` },
+      { name: tNav("breadcrumb.destinations"), url: pageUrl },
+    ])
+  );
 
   return (
     <>
-      <JsonLd data={jsonLd} />
+      <MultipleJsonLd data={[collectionPageJsonLd, breadcrumbJsonLd]} />
 
       <main id="main-content" className="min-h-screen">
         {/* Breadcrumb Navigation */}
