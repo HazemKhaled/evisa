@@ -27,21 +27,25 @@ interface MultipleJsonLdProps {
 
 /**
  * Multiple JSON-LD structured data component
- * Renders multiple JSON-LD script tags for SEO
+ * Renders multiple JSON-LD script tags within a @graph structure for SEO
  */
 export function MultipleJsonLd({ data }: MultipleJsonLdProps) {
+  const graph = {
+    "@context": "https://schema.org",
+    "@graph": data.map(item => {
+      // Remove @context from individual items if present to avoid redundancy in @graph
+      const { "@context": _, ...rest } = item;
+      return rest;
+    }),
+  };
+
   return (
-    <>
-      {data.map((item, index) => (
-        <Script
-          key={index}
-          id={`json-ld-${index}`}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(item),
-          }}
-        />
-      ))}
-    </>
+    <Script
+      id="json-ld-graph"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(graph),
+      }}
+    />
   );
 }

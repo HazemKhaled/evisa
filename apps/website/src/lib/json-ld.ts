@@ -600,19 +600,6 @@ export function generateDestinationJsonLd(
       "@type": "Audience",
       audienceType: labels?.touristTypeAudience || "Tourists",
     },
-    mainEntity: {
-      "@type": "TravelAction",
-      name: `${travelToLabel} ${destination.localizedName}`,
-      description:
-        labels?.travelDescriptionTemplate?.replace(
-          "{destination}",
-          destination.localizedName
-        ) ||
-        `Visa requirements and travel information for ${destination.localizedName}`,
-      ...(destination.hasVisaFreeEntry && {
-        additionalType: "https://schema.org/VisaFreeTravel",
-      }),
-    },
     additionalProperty: [
       {
         "@type": "PropertyValue",
@@ -630,50 +617,81 @@ export function generateDestinationJsonLd(
         value: destination.hasVisaOnArrival.toString(),
       },
     ],
-    ...(destination.visaTypes.length > 0 && {
-      offers: destination.visaTypes.map(visa => ({
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: visa.name,
-          description:
-            labels?.visaDescriptionTemplate
-              ?.replace("{type}", visa.type)
-              .replace("{destination}", destination.localizedName) ||
-            `${visa.type} visa for ${destination.localizedName}`,
-          serviceType: labels?.visaServiceType || "Visa Application Service",
-          processingTime: `P${visa.processingTime}D`,
-        },
-        price: visa.fee.toString(),
-        priceCurrency: visa.currency,
-        availability: "https://schema.org/InStock",
-        description:
-          labels?.visaOfferDescriptionTemplate?.replace(
-            "{days}",
-            visa.duration.toString()
-          ) || `Valid for ${visa.duration} days`,
-      })),
+  };
+
+  const travelAction = {
+    "@type": "TravelAction",
+    name: `${travelToLabel} ${destination.localizedName}`,
+    description:
+      labels?.travelDescriptionTemplate?.replace(
+        "{destination}",
+        destination.localizedName
+      ) ||
+      `Visa requirements and travel information for ${destination.localizedName}`,
+    object: {
+      "@id": `${destinationUrl}#tourist-destination`,
+    },
+    ...(destination.hasVisaFreeEntry && {
+      additionalType: "https://schema.org/VisaFreeTravel",
     }),
   };
+
+  const visaServices = destination.visaTypes.map(visa => ({
+    "@type": "Service",
+    name: visa.name,
+    description:
+      labels?.visaDescriptionTemplate
+        ?.replace("{type}", visa.type)
+        .replace("{destination}", destination.localizedName) ||
+      `${visa.type} visa for ${destination.localizedName}`,
+    serviceType: labels?.visaServiceType || "Visa Application Service",
+    areaServed: {
+      "@id": `${destinationUrl}#tourist-destination`,
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: `${visa.name} Offers`,
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@id": `${destinationUrl}#service-${visa.name.toLowerCase().replace(/\s+/g, "-")}`,
+          },
+          price: visa.fee.toString(),
+          priceCurrency: visa.currency,
+          availability: "https://schema.org/InStock",
+          description:
+            labels?.visaOfferDescriptionTemplate?.replace(
+              "{days}",
+              visa.duration.toString()
+            ) || `Valid for ${visa.duration} days`,
+        },
+      ],
+    },
+    ...(visa.processingTime && {
+      additionalProperty: [
+        {
+          "@type": "PropertyValue",
+          name: "Processing Time",
+          value: `P${visa.processingTime}D`,
+          valueReference: "https://schema.org/Duration",
+        },
+      ],
+    }),
+  }));
 
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@id": `${destinationUrl}#country`,
         "@type": "Country",
+        "@id": `${destinationUrl}#country`,
         name: destination.localizedName,
-        url: destinationUrl,
-        identifier: destination.code,
-        address: {
-          "@type": "PostalAddress",
-          addressCountry: destination.code,
-          ...(destination.region && {
-            addressRegion: destination.region,
-          }),
-        },
+        alternateName: destination.code,
       },
       touristDestination,
+      travelAction,
+      ...visaServices,
     ],
   };
 }
