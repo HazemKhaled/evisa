@@ -38,7 +38,7 @@ export async function generateMetadata({
 }: TagPageProps): Promise<Metadata> {
   const { locale, tag } = await params;
   const { t } = await getTranslation(locale, "blog");
-  const decodedTag = decodeURIComponent(tag);
+  const decodedTag = decodedOrOriginalTag(tag);
   const alternates = generateAlternatesMetadata(
     env.baseUrl,
     `blog/t/${encodeURIComponent(tag)}`,
@@ -64,7 +64,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   const { page = "1" } = await searchParams;
 
   // Decode the tag parameter
-  const decodedTag = decodeURIComponent(tag);
+  const decodedTag = decodedOrOriginalTag(tag);
 
   // Transform the tag parameter into searchParams format and reuse the existing blog component
   const modifiedSearchParams = {
@@ -79,4 +79,12 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
       searchParams={Promise.resolve(modifiedSearchParams)}
     />
   );
+}
+
+function decodedOrOriginalTag(tag: string): string {
+  try {
+    return decodeURIComponent(tag);
+  } catch {
+    return tag;
+  }
 }

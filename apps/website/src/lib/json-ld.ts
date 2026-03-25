@@ -533,10 +533,12 @@ export function generateDestinationJsonLd(
           name: visa.name,
           description: `${visa.type} visa for ${destination.localizedName}`,
           serviceType: "Visa Application Service",
+          processingTime: `P${visa.processingTime}D`,
         },
         price: visa.fee.toString(),
         priceCurrency: visa.currency,
         availability: "https://schema.org/InStock",
+        description: `Valid for ${visa.duration} days`,
       })),
     }),
   };
@@ -550,13 +552,13 @@ export function generateDestinationJsonLd(
         name: destination.localizedName,
         url: destinationUrl,
         identifier: destination.code,
-        ...(destination.region && {
-          address: {
-            "@type": "PostalAddress",
-            addressCountry: destination.code,
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: destination.code,
+          ...(destination.region && {
             addressRegion: destination.region,
-          },
-        }),
+          }),
+        },
       },
       touristDestination,
     ],

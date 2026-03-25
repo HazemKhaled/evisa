@@ -22,6 +22,7 @@ import {
   getBlogPostsForLocalePaginated,
   searchBlogPosts,
 } from "@/lib/services/blog-service";
+import type { BlogPostData } from "@/lib/types/blog";
 import { generateAlternatesMetadata } from "@/lib/utils";
 
 // Enable ISR with daily revalidation for blog list
@@ -129,9 +130,10 @@ export default async function BlogHome({
     return `/${locale}/blog${query}`;
   };
 
-  const jsonLdResponse = search
+  const paginatedResponse = search
     ? {
         posts: await searchBlogPosts(search, locale, postsPerPage),
+        totalPages: 1,
       }
     : tag
       ? await getBlogPostsByTagPaginated(tag, locale, postsPerPage, offset)
@@ -144,7 +146,7 @@ export default async function BlogHome({
           )
         : await getBlogPostsForLocalePaginated(locale, postsPerPage, offset);
 
-  const jsonLdPosts = jsonLdResponse.posts;
+  const { posts: jsonLdPosts, totalPages } = paginatedResponse;
 
   const collectionPageJsonLd = generateCollectionPageJsonLd({
     name: pageTitle,
@@ -269,12 +271,10 @@ export default async function BlogHome({
           <Suspense fallback={<BlogPostsSectionSkeleton />}>
             <BlogPostsSection
               locale={locale}
-              tag={tag}
-              destination={destination}
+              posts={jsonLdPosts}
+              totalPages={totalPages}
               search={search}
               currentPage={currentPage}
-              postsPerPage={postsPerPage}
-              offset={offset}
               buildPaginationUrl={buildPaginationUrl}
             />
           </Suspense>
@@ -294,67 +294,26 @@ function decodedOrOriginalTag(tag: string): string {
 
 async function BlogPostsSection({
   locale,
-  tag,
-  destination,
+  posts,
+  totalPages,
   search,
   currentPage,
-  postsPerPage,
-  offset,
   buildPaginationUrl,
 }: {
   locale: string;
-  tag?: string;
-  destination?: string;
+  posts: BlogPostData[];
+  totalPages: number;
   search?: string;
   currentPage: number;
-  postsPerPage: number;
-  offset: number;
   buildPaginationUrl: (page: number) => string;
 }) {
   const { t } = await getTranslation(locale, "blog");
-
-  let paginatedResponse;
-
-  if (search) {
-    paginatedResponse = {
-      posts: await searchBlogPosts(search, locale, postsPerPage),
-      totalPages: 1,
-    };
-  } else if (tag) {
-    paginatedResponse = await getBlogPostsByTagPaginated(
-      tag,
-      locale,
-      postsPerPage,
-      offset
-    );
-  } else if (destination) {
-    paginatedResponse = await getBlogPostsByDestinationPaginated(
-      destination,
-      locale,
-      postsPerPage,
-      offset
-    );
-  } else {
-    paginatedResponse = await getBlogPostsForLocalePaginated(
-      locale,
-      postsPerPage,
-      offset
-    );
-  }
-
-  const { posts, totalPages } = paginatedResponse;
 
   if (posts.length === 0) {
     return (
       <div className="py-16 text-center">
         <p className="text-lg text-gray-600">
-          {tag
-            ? t("emptyTag", { tag })
-            : destination
-              ? t("emptyDestination", { destination })
-              : search
-                ? t("emptySearch", { search })
-                : t("empty_state")}
+          {search ? t("emptySearch", { search }) : t("empty_state")}
         </p>
       </div>
     );
