@@ -113,6 +113,7 @@ export interface Article {
 
 export interface BreadcrumbList {
   itemListElement: {
+    "@type": "ListItem";
     position: number;
     name: string;
     item: string;
@@ -466,6 +467,7 @@ export function generateBreadcrumbData(
 ): BreadcrumbList {
   return {
     itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
       position: index + 1,
       name: item.name,
       item: item.url,
