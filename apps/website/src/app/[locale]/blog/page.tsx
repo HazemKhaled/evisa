@@ -15,6 +15,7 @@ import {
   generateBreadcrumbData,
   generateBreadcrumbListJsonLd,
   generateCollectionPageJsonLd,
+  getCanonicalBlogUrl,
 } from "@/lib/json-ld";
 import {
   getBlogPostsByDestinationPaginated,
@@ -69,8 +70,8 @@ async function fetchPaginatedPosts(
 }
 
 /**
- * Build breadcrumb data structure based on current filter state
- * Returns breadcrumb data with links appropriate to the page context
+ * Build normalized breadcrumb model based on current filter state
+ * Returns array of breadcrumb items with decoded labels and canonical URLs
  */
 function buildBlogBreadcrumbs(
   search: string | undefined,
@@ -78,45 +79,51 @@ function buildBlogBreadcrumbs(
   tag: string | undefined,
   locale: string,
   baseUrl: string,
-  blogUrl: string,
+  canonicalBlogUrl: string,
   t: (key: string, params?: Record<string, string>) => string,
   tNav: (key: string, params?: Record<string, string>) => string
-) {
+): { decodedLabel: string; url: string }[] {
   if (search) {
-    return generateBreadcrumbData([
-      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-      { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
-      { name: t("search.heading"), url: blogUrl },
-    ]);
+    return [
+      { decodedLabel: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+      {
+        decodedLabel: tNav("breadcrumb.blog"),
+        url: `${baseUrl}/${locale}/blog`,
+      },
+      { decodedLabel: t("search.heading"), url: canonicalBlogUrl },
+    ];
   }
 
   if (destination) {
-    return generateBreadcrumbData([
-      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+    return [
+      { decodedLabel: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
       {
-        name: tNav("breadcrumb.destinations"),
+        decodedLabel: tNav("breadcrumb.destinations"),
         url: `${baseUrl}/${locale}/d`,
       },
       {
-        name: destination,
+        decodedLabel: destination,
         url: `${baseUrl}/${locale}/d/${encodeURIComponent(destination)}`,
       },
-      { name: tNav("breadcrumb.blog"), url: blogUrl },
-    ]);
+      { decodedLabel: tNav("breadcrumb.blog"), url: canonicalBlogUrl },
+    ];
   }
 
   if (tag) {
-    return generateBreadcrumbData([
-      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-      { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
-      { name: decodedOrOriginalTag(tag), url: blogUrl },
-    ]);
+    return [
+      { decodedLabel: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+      {
+        decodedLabel: tNav("breadcrumb.blog"),
+        url: `${baseUrl}/${locale}/blog`,
+      },
+      { decodedLabel: decodedOrOriginalTag(tag), url: canonicalBlogUrl },
+    ];
   }
 
-  return generateBreadcrumbData([
-    { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-    { name: tNav("breadcrumb.blog"), url: blogUrl },
-  ]);
+  return [
+    { decodedLabel: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+    { decodedLabel: tNav("breadcrumb.blog"), url: canonicalBlogUrl },
+  ];
 }
 
 interface BlogHomeProps {
@@ -170,20 +177,26 @@ export default async function BlogHome({
   let pageTitle = t("title");
   let pageSubtitle = t("subtitle");
   const baseUrl = env.baseUrl;
-  let blogUrl = `${baseUrl}/${locale}/blog`;
+  const canonicalBlogUrl = getCanonicalBlogUrl(baseUrl, locale, {
+    search,
+    tag,
+    destination,
+  });
 
   if (search) {
     pageTitle = t("search.heading");
-    blogUrl = `${baseUrl}/${locale}/blog?search=${encodeURIComponent(search)}`;
   } else if (tag) {
     pageTitle = t("tag.title", { tag });
     pageSubtitle = t("tag.subtitle", { tag });
-    blogUrl = `${baseUrl}/${locale}/blog/t/${encodeURIComponent(tag)}`;
   } else if (destination) {
     pageTitle = t("destination.title", { destination });
     pageSubtitle = t("destination.subtitle", { destination });
-    blogUrl = `${baseUrl}/${locale}/d/${encodeURIComponent(destination)}/blog`;
   }
+
+  // Compute empty state message once for later use
+  const emptyStateMessage = search
+    ? t("emptySearch", { search })
+    : t("empty_state");
 
   // Fetch paginated posts based on filter type
   const paginatedResponse = await fetchPaginatedPosts(
@@ -231,7 +244,7 @@ export default async function BlogHome({
   const collectionPageJsonLd = generateCollectionPageJsonLd({
     name: pageTitle,
     description: pageSubtitle,
-    url: blogUrl,
+    url: canonicalBlogUrl,
     items: jsonLdPosts.map(post => ({
       name: post.title,
       url: `${baseUrl}/${locale}/blog/${post.slug}`,
@@ -243,7 +256,7 @@ export default async function BlogHome({
   const blogJsonLd = generateBlogJsonLd({
     name: pageTitle,
     description: pageSubtitle,
-    url: blogUrl,
+    url: canonicalBlogUrl,
     posts: jsonLdPosts.map(post => ({
       headline: post.title,
       url: `${baseUrl}/${locale}/blog/${post.slug}`,
@@ -252,54 +265,32 @@ export default async function BlogHome({
     })),
   });
 
-  // Build breadcrumb data and generate JSON-LD
-  const breadcrumbData = buildBlogBreadcrumbs(
+  // Build normalized breadcrumb model and generate JSON-LD
+  const breadcrumbModel = buildBlogBreadcrumbs(
     search,
     destination,
     tag,
     locale,
     baseUrl,
-    blogUrl,
+    canonicalBlogUrl,
     t,
     tNav
   );
-  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(
+    generateBreadcrumbData(
+      breadcrumbModel.map(item => ({
+        name: item.decodedLabel,
+        url: item.url,
+      }))
+    )
+  );
 
-  // Create breadcrumb items for UI display based on current page state
-  let breadcrumbItems: {
-    label: string;
-    href?: string;
-    isCurrentPage?: boolean;
-  }[] = [
-    { label: tNav("breadcrumb.home"), href: `/${locale}` },
-    { label: tNav("breadcrumb.blog"), href: `/${locale}/blog` },
-  ];
-
-  if (search) {
-    breadcrumbItems = [
-      { label: tNav("breadcrumb.home"), href: `/${locale}` },
-      { label: tNav("breadcrumb.blog"), href: `/${locale}/blog` },
-      { label: t("search.heading"), isCurrentPage: true },
-    ];
-  } else if (destination) {
-    breadcrumbItems = [
-      { label: tNav("breadcrumb.home"), href: `/${locale}` },
-      { label: tNav("breadcrumb.destinations"), href: `/${locale}/d` },
-      { label: destination, href: `/${locale}/d/${destination}` },
-      { label: tNav("breadcrumb.blog"), isCurrentPage: true },
-    ];
-  } else if (tag) {
-    breadcrumbItems = [
-      { label: tNav("breadcrumb.home"), href: `/${locale}` },
-      { label: tNav("breadcrumb.blog"), href: `/${locale}/blog` },
-      { label: tNav("breadcrumb.tag", { tagName: tag }), isCurrentPage: true },
-    ];
-  } else {
-    breadcrumbItems = [
-      { label: tNav("breadcrumb.home"), href: `/${locale}` },
-      { label: tNav("breadcrumb.blog"), isCurrentPage: true },
-    ];
-  }
+  // Create breadcrumb items for UI display from normalized model
+  const breadcrumbItems = breadcrumbModel.map((item, index) => ({
+    label: item.decodedLabel,
+    href: index === breadcrumbModel.length - 1 ? undefined : item.url,
+    isCurrentPage: index === breadcrumbModel.length - 1,
+  }));
 
   return (
     <>
@@ -338,6 +329,7 @@ export default async function BlogHome({
               search={search}
               currentPage={currentPage}
               buildPaginationUrl={buildPaginationUrl}
+              emptyStateMessage={emptyStateMessage}
             />
           </Suspense>
         </div>
@@ -354,13 +346,14 @@ function decodedOrOriginalTag(tag: string): string {
   }
 }
 
-async function BlogPostsSection({
+function BlogPostsSection({
   locale,
   posts,
   totalPages,
   search,
   currentPage,
   buildPaginationUrl,
+  emptyStateMessage,
 }: {
   locale: string;
   posts: BlogPostData[];
@@ -368,15 +361,12 @@ async function BlogPostsSection({
   search?: string;
   currentPage: number;
   buildPaginationUrl: (page: number) => string;
+  emptyStateMessage: string;
 }) {
-  const { t } = await getTranslation(locale, "blog");
-
   if (posts.length === 0) {
     return (
       <div className="py-16 text-center">
-        <p className="text-lg text-gray-600">
-          {search ? t("emptySearch", { search }) : t("empty_state")}
-        </p>
+        <p className="text-lg text-gray-600">{emptyStateMessage}</p>
       </div>
     );
   }

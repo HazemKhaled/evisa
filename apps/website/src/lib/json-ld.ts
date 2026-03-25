@@ -6,6 +6,31 @@ import { type DestinationWithVisaTypes } from "./services/country-service";
  * JSON-LD structured data utilities for SEO
  */
 
+/**
+ * Get canonical blog URL based on filter state
+ * Returns the primary/preferred URL for filtered blog pages
+ */
+export function getCanonicalBlogUrl(
+  baseUrl: string,
+  locale: string,
+  options?: {
+    search?: string;
+    tag?: string;
+    destination?: string;
+  }
+): string {
+  if (options?.search) {
+    return `${baseUrl}/${locale}/blog?search=${encodeURIComponent(options.search)}`;
+  }
+  if (options?.tag) {
+    return `${baseUrl}/${locale}/blog/t/${encodeURIComponent(options.tag)}`;
+  }
+  if (options?.destination) {
+    return `${baseUrl}/${locale}/d/${encodeURIComponent(options.destination)}/blog`;
+  }
+  return `${baseUrl}/${locale}/blog`;
+}
+
 export interface Organization {
   name: string;
   url: string;
