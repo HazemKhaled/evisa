@@ -75,7 +75,7 @@ describe("JsonLd component", () => {
 });
 
 describe("MultipleJsonLd component", () => {
-  it("should render multiple JSON-LD scripts", () => {
+  it("should render multiple JSON-LD objects in a single @graph script", () => {
     const testData = [
       {
         "@context": "https://schema.org",
@@ -91,21 +91,30 @@ describe("MultipleJsonLd component", () => {
 
     render(<MultipleJsonLd data={testData} />);
 
-    const scripts = document.querySelectorAll('script[id^="json-ld"]');
-    expect(scripts).toHaveLength(2);
+    const script = document.querySelector('script[id="json-ld-graph"]');
+    expect(script).toBeInTheDocument();
 
-    expect(scripts[0]).toHaveAttribute("id", "json-ld-0");
-    expect(scripts[0]).toHaveTextContent(JSON.stringify(testData[0]));
-
-    expect(scripts[1]).toHaveAttribute("id", "json-ld-1");
-    expect(scripts[1]).toHaveTextContent(JSON.stringify(testData[1]));
+    const parsed = JSON.parse(script?.textContent || "");
+    expect(parsed["@context"]).toBe("https://schema.org");
+    expect(parsed["@graph"]).toHaveLength(2);
+    expect(parsed["@graph"][0]).toEqual({
+      "@type": "Organization",
+      name: "Test Organization",
+    });
+    expect(parsed["@graph"][1]).toEqual({
+      "@type": "WebSite",
+      name: "Test Website",
+    });
   });
 
   it("should handle empty array", () => {
     render(<MultipleJsonLd data={[]} />);
 
-    const scripts = document.querySelectorAll('script[id^="json-ld"]');
-    expect(scripts).toHaveLength(0);
+    const script = document.querySelector('script[id="json-ld-graph"]');
+    expect(script).toBeInTheDocument();
+
+    const parsed = JSON.parse(script?.textContent || "");
+    expect(parsed["@graph"]).toEqual([]);
   });
 
   it("should handle single item array", () => {
@@ -119,25 +128,14 @@ describe("MultipleJsonLd component", () => {
 
     render(<MultipleJsonLd data={singleData} />);
 
-    const scripts = document.querySelectorAll('script[id^="json-ld"]');
-    expect(scripts).toHaveLength(1);
-    expect(scripts[0]).toHaveAttribute("id", "json-ld-0");
-    expect(scripts[0]).toHaveTextContent(JSON.stringify(singleData[0]));
-  });
+    const script = document.querySelector('script[id="json-ld-graph"]');
+    expect(script).toBeInTheDocument();
 
-  it("should generate unique IDs for each script", () => {
-    const testData = [
-      { "@type": "Organization", name: "Org 1" },
-      { "@type": "Organization", name: "Org 2" },
-      { "@type": "Organization", name: "Org 3" },
-    ];
-
-    render(<MultipleJsonLd data={testData} />);
-
-    const scripts = document.querySelectorAll('script[id^="json-ld"]');
-    const ids = Array.from(scripts).map(script => script.getAttribute("id"));
-
-    expect(ids).toEqual(["json-ld-0", "json-ld-1", "json-ld-2"]);
-    expect(new Set(ids).size).toBe(3); // All IDs should be unique
+    const parsed = JSON.parse(script?.textContent || "");
+    expect(parsed["@graph"]).toHaveLength(1);
+    expect(parsed["@graph"][0]).toEqual({
+      "@type": "Article",
+      headline: "Single Article",
+    });
   });
 });
