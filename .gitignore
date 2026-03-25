@@ -53,11 +53,5 @@ next-env.d.ts
 .env.sentry-build-plugin
 private/
 
-# BMAD (local only)
-bmad/
-.claude
-.github/chatmodes
-.gemini
-AGENTS.md
 .playwright-mcp/
 apps/**/coverage/*
