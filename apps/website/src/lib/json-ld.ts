@@ -55,8 +55,14 @@ export interface WebSite {
   url: string;
   description?: string;
   potentialAction?: {
-    target: string;
-    queryInput: string;
+    "@type": "SearchAction";
+    target:
+      | string
+      | {
+          "@type": "EntryPoint";
+          urlTemplate: string;
+        };
+    "query-input": string;
   };
 }
 
@@ -448,8 +454,12 @@ export function generateWebSiteData(t: (key: string) => string): WebSite {
     url: baseUrl,
     description: t("jsonld.website.description"),
     potentialAction: {
-      target: `${baseUrl}/search?q={search_term_string}`,
-      queryInput: "required name=search_term_string",
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${baseUrl}/search?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
     },
   };
 }
