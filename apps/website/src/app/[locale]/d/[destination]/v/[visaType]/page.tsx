@@ -188,6 +188,7 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
     processingDays: visa.processingTime,
     durationDays: visa.duration,
     image: destinationData.heroImage ?? undefined,
+    localizedProcessingLabel: tJsonLd("destination.processingTime"),
   });
 
   const breadcrumbJsonLd = generateBreadcrumbListJsonLd(

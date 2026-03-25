@@ -398,8 +398,6 @@ export function generateVisaServiceJsonLd(service: {
       availability: "https://schema.org/InStock",
       description: offerDescription,
     },
-    processingTime:
-      service.localizedProcessingTime || `P${service.processingDays}D`,
     additionalProperty: [
       {
         "@type": "PropertyValue",
@@ -419,7 +417,8 @@ export function generateVisaServiceJsonLd(service: {
       {
         "@type": "PropertyValue",
         name: service.localizedProcessingLabel || "Processing Time",
-        value: `${service.processingDays}`,
+        value: service.localizedProcessingTime || `P${service.processingDays}D`,
+        valueReference: "https://schema.org/Duration",
       },
     ],
   };
@@ -578,6 +577,7 @@ export function generateDestinationJsonLd(
     visaDescriptionTemplate?: string;
     visaServiceType?: string;
     visaOfferDescriptionTemplate?: string;
+    additionalPropertyProcessingTime?: string;
   }
 ): Record<string, unknown> {
   const baseUrl = env.baseUrl;
@@ -672,7 +672,7 @@ export function generateDestinationJsonLd(
       additionalProperty: [
         {
           "@type": "PropertyValue",
-          name: "Processing Time",
+          name: labels?.additionalPropertyProcessingTime || "Processing Time",
           value: `P${visa.processingTime}D`,
           valueReference: "https://schema.org/Duration",
         },

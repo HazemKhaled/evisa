@@ -160,7 +160,13 @@ export default async function DestinationPage({
   const jsonLd = generateDestinationJsonLd(
     destinationData,
     locale,
-    tJsonLd("destination.travelTo", { defaultValue: "Travel to" })
+    tJsonLd("destination.travelTo", { defaultValue: "Travel to" }),
+    {
+      travelDescriptionTemplate: tJsonLd("destination.travelDescription"),
+      visaDescriptionTemplate: tJsonLd("destination.visaDescription"),
+      visaOfferDescriptionTemplate: tJsonLd("destination.visaOfferDescription"),
+      additionalPropertyProcessingTime: tJsonLd("destination.processingTime"),
+    }
   );
 
   // Breadcrumb items for JSON-LD
