@@ -26,7 +26,7 @@ export function getCanonicalBlogUrl(
     return `${baseUrl}/${locale}/blog/t/${encodeURIComponent(options.tag)}`;
   }
   if (options?.destination) {
-    return `${baseUrl}/${locale}/d/${encodeURIComponent(options.destination)}/blog`;
+    return `${baseUrl}/${locale}/d/${encodeURIComponent(options.destination)}/a`;
   }
   return `${baseUrl}/${locale}/blog`;
 }
@@ -198,13 +198,19 @@ export function generateArticleJsonLd(article: Article) {
           ...(article.image.height && { height: article.image.height }),
         };
 
+  const authorType = article.author["@type"] ?? article.author.type;
+  const normalizedAuthor = {
+    ...article.author,
+    ...(authorType && { "@type": authorType }),
+  };
+
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.headline,
     description: article.description,
     ...(article.image ? { image: imageObject } : {}),
-    author: article.author,
+    author: normalizedAuthor,
     publisher: article.publisher,
     datePublished: article.datePublished,
     ...(article.dateModified && { dateModified: article.dateModified }),
@@ -336,7 +342,22 @@ export function generateVisaServiceJsonLd(service: {
   processingDays: number;
   durationDays: number;
   image?: string;
+  localizedServiceType?: string;
+  localizedDestinationName?: string;
+  localizedOfferDescription?: string;
+  localizedProcessingTime?: string;
+  localizedVisaTypeLabel?: string;
+  localizedFeeLabel?: string;
+  localizedDurationLabel?: string;
+  localizedProcessingLabel?: string;
 }) {
+  const serviceType = service.localizedServiceType || service.name;
+  const destinationName =
+    service.localizedDestinationName || service.destinationName;
+  const offerDescription =
+    service.localizedOfferDescription ||
+    `Valid for ${service.durationDays} days`;
+
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -344,7 +365,7 @@ export function generateVisaServiceJsonLd(service: {
     description: service.description,
     url: service.url,
     ...(service.image && { image: service.image }),
-    serviceType: "Visa Application Service",
+    serviceType,
     provider: {
       "@type": "Organization",
       name: service.providerName,
@@ -352,7 +373,7 @@ export function generateVisaServiceJsonLd(service: {
     },
     areaServed: {
       "@type": "Country",
-      name: service.destinationName,
+      name: destinationName,
       identifier: service.destinationCode,
     },
     offers: {
@@ -360,9 +381,32 @@ export function generateVisaServiceJsonLd(service: {
       price: service.fee.toString(),
       priceCurrency: service.currency,
       availability: "https://schema.org/InStock",
-      description: `Valid for ${service.durationDays} days`,
+      description: offerDescription,
     },
-    processingTime: `P${service.processingDays}D`,
+    processingTime:
+      service.localizedProcessingTime || `P${service.processingDays}D`,
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: service.localizedVisaTypeLabel || "Visa Type",
+        value: service.name,
+      },
+      {
+        "@type": "PropertyValue",
+        name: service.localizedFeeLabel || "Fee",
+        value: `${service.fee} ${service.currency}`,
+      },
+      {
+        "@type": "PropertyValue",
+        name: service.localizedDurationLabel || "Duration",
+        value: `${service.durationDays}`,
+      },
+      {
+        "@type": "PropertyValue",
+        name: service.localizedProcessingLabel || "Processing Time",
+        value: `${service.processingDays}`,
+      },
+    ],
   };
 }
 
@@ -455,7 +499,7 @@ export function generateBlogPostJsonLd(
       id: postUrl,
     },
     articleSection: t("jsonld.blog.article_section"),
-    keywords: post.tags.join(", "),
+    keywords: Array.isArray(post.tags) ? post.tags.join(", ") : "",
   };
 }
 
@@ -505,7 +549,17 @@ export interface DestinationPlace {
 export function generateDestinationJsonLd(
   destination: DestinationWithVisaTypes,
   locale: string,
-  travelToLabel = "Travel to"
+  travelToLabel = "Travel to",
+  labels?: {
+    travelDescriptionTemplate?: string;
+    touristTypeAudience?: string;
+    additionalPropertyTotalVisaTypes?: string;
+    additionalPropertyVisaFreeEntry?: string;
+    additionalPropertyVisaOnArrival?: string;
+    visaDescriptionTemplate?: string;
+    visaServiceType?: string;
+    visaOfferDescriptionTemplate?: string;
+  }
 ): Record<string, unknown> {
   const baseUrl = env.baseUrl;
   const destinationUrl = `${baseUrl}/${locale}/d/${destination.code}`;
@@ -525,12 +579,17 @@ export function generateDestinationJsonLd(
     }),
     touristType: {
       "@type": "Audience",
-      audienceType: "Tourists",
+      audienceType: labels?.touristTypeAudience || "Tourists",
     },
     mainEntity: {
       "@type": "TravelAction",
       name: `${travelToLabel} ${destination.localizedName}`,
-      description: `Visa requirements and travel information for ${destination.localizedName}`,
+      description:
+        labels?.travelDescriptionTemplate?.replace(
+          "{destination}",
+          destination.localizedName
+        ) ||
+        `Visa requirements and travel information for ${destination.localizedName}`,
       ...(destination.hasVisaFreeEntry && {
         additionalType: "https://schema.org/VisaFreeTravel",
       }),
@@ -538,34 +597,42 @@ export function generateDestinationJsonLd(
     additionalProperty: [
       {
         "@type": "PropertyValue",
-        name: "Total Visa Types",
+        name: labels?.additionalPropertyTotalVisaTypes || "Total Visa Types",
         value: destination.totalVisaTypes.toString(),
       },
       {
         "@type": "PropertyValue",
-        name: "Visa Free Entry",
+        name: labels?.additionalPropertyVisaFreeEntry || "Visa Free Entry",
         value: destination.hasVisaFreeEntry.toString(),
       },
       {
         "@type": "PropertyValue",
-        name: "Visa on Arrival",
+        name: labels?.additionalPropertyVisaOnArrival || "Visa on Arrival",
         value: destination.hasVisaOnArrival.toString(),
       },
     ],
     ...(destination.visaTypes.length > 0 && {
-      makesOffer: destination.visaTypes.map(visa => ({
+      offers: destination.visaTypes.map(visa => ({
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
           name: visa.name,
-          description: `${visa.type} visa for ${destination.localizedName}`,
-          serviceType: "Visa Application Service",
+          description:
+            labels?.visaDescriptionTemplate
+              ?.replace("{type}", visa.type)
+              .replace("{destination}", destination.localizedName) ||
+            `${visa.type} visa for ${destination.localizedName}`,
+          serviceType: labels?.visaServiceType || "Visa Application Service",
           processingTime: `P${visa.processingTime}D`,
         },
         price: visa.fee.toString(),
         priceCurrency: visa.currency,
         availability: "https://schema.org/InStock",
-        description: `Valid for ${visa.duration} days`,
+        description:
+          labels?.visaOfferDescriptionTemplate?.replace(
+            "{days}",
+            visa.duration.toString()
+          ) || `Valid for ${visa.duration} days`,
       })),
     }),
   };

@@ -1,6 +1,4 @@
-import { Skeleton } from "@repo/ui";
 import { type Metadata } from "next";
-import { Suspense } from "react";
 
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
@@ -138,20 +136,36 @@ interface BlogHomeProps {
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{
+    page?: string;
+    tag?: string;
+    destination?: string;
+    search?: string;
+  }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { tag, destination, search } = await searchParams;
   const { t } = await getTranslation(locale, "blog");
   const alternates = generateAlternatesMetadata(env.baseUrl, "blog", locale);
+  const canonicalBlogUrl = getCanonicalBlogUrl(env.baseUrl, locale, {
+    search,
+    tag,
+    destination,
+  });
 
   return {
     title: t("title"),
     description: t("subtitle"),
     keywords: t("keywords"),
-    alternates,
+    alternates: {
+      ...alternates,
+      canonical: canonicalBlogUrl,
+    },
     openGraph: {
-      url: alternates.canonical,
+      url: canonicalBlogUrl,
     },
   };
 }
@@ -321,17 +335,15 @@ export default async function BlogHome({
             />
           </div>
 
-          <Suspense fallback={<BlogPostsSectionSkeleton />}>
-            <BlogPostsSection
-              locale={locale}
-              posts={jsonLdPosts}
-              totalPages={totalPages}
-              search={search}
-              currentPage={currentPage}
-              buildPaginationUrl={buildPaginationUrl}
-              emptyStateMessage={emptyStateMessage}
-            />
-          </Suspense>
+          <BlogPostsSection
+            locale={locale}
+            posts={jsonLdPosts}
+            totalPages={totalPages}
+            search={search}
+            currentPage={currentPage}
+            buildPaginationUrl={buildPaginationUrl}
+            emptyStateMessage={emptyStateMessage}
+          />
         </div>
       </StaticPageLayout>
     </>
@@ -381,22 +393,5 @@ function BlogPostsSection({
       gridCols="3"
       showPagination={!search}
     />
-  );
-}
-
-function BlogPostsSectionSkeleton() {
-  return (
-    <div className="space-y-8">
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="rounded-lg border bg-white p-4">
-            <Skeleton className="mb-4 aspect-video w-full rounded-md" />
-            <Skeleton className="mb-2 h-5 w-3/4" />
-            <Skeleton className="mb-4 h-4 w-full" />
-            <Skeleton className="h-4 w-5/6" />
-          </div>
-        ))}
-      </div>
-    </div>
   );
 }
