@@ -26,7 +26,7 @@ export function getCanonicalBlogUrl(
     return `${baseUrl}/${locale}/blog/t/${encodeURIComponent(options.tag)}`;
   }
   if (options?.destination) {
-    return `${baseUrl}/${locale}/d/${encodeURIComponent(options.destination)}/a`;
+    return `${baseUrl}/${locale}/d/${encodeURIComponent(options.destination)}/blog`;
   }
   return `${baseUrl}/${locale}/blog`;
 }
