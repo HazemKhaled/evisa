@@ -33,6 +33,92 @@ export function generateStaticParams(): { locale: string }[] {
   return languages.map(locale => ({ locale }));
 }
 
+/**
+ * Fetch paginated blog posts based on filter type
+ * Routes to the appropriate service function based on search/tag/destination parameters
+ */
+async function fetchPaginatedPosts(
+  search: string | undefined,
+  tag: string | undefined,
+  destination: string | undefined,
+  locale: string,
+  postsPerPage: number,
+  offset: number
+) {
+  if (search) {
+    return {
+      posts: await searchBlogPosts(search, locale, postsPerPage),
+      totalPages: 1,
+    };
+  }
+
+  if (tag) {
+    return await getBlogPostsByTagPaginated(tag, locale, postsPerPage, offset);
+  }
+
+  if (destination) {
+    return await getBlogPostsByDestinationPaginated(
+      destination,
+      locale,
+      postsPerPage,
+      offset
+    );
+  }
+
+  return await getBlogPostsForLocalePaginated(locale, postsPerPage, offset);
+}
+
+/**
+ * Build breadcrumb data structure based on current filter state
+ * Returns breadcrumb data with links appropriate to the page context
+ */
+function buildBlogBreadcrumbs(
+  search: string | undefined,
+  destination: string | undefined,
+  tag: string | undefined,
+  locale: string,
+  baseUrl: string,
+  blogUrl: string,
+  t: (key: string, params?: Record<string, string>) => string,
+  tNav: (key: string, params?: Record<string, string>) => string
+) {
+  if (search) {
+    return generateBreadcrumbData([
+      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+      { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
+      { name: t("search.heading"), url: blogUrl },
+    ]);
+  }
+
+  if (destination) {
+    return generateBreadcrumbData([
+      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+      {
+        name: tNav("breadcrumb.destinations"),
+        url: `${baseUrl}/${locale}/d`,
+      },
+      {
+        name: destination,
+        url: `${baseUrl}/${locale}/d/${encodeURIComponent(destination)}`,
+      },
+      { name: tNav("breadcrumb.blog"), url: blogUrl },
+    ]);
+  }
+
+  if (tag) {
+    return generateBreadcrumbData([
+      { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+      { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
+      { name: decodedOrOriginalTag(tag), url: blogUrl },
+    ]);
+  }
+
+  return generateBreadcrumbData([
+    { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
+    { name: tNav("breadcrumb.blog"), url: blogUrl },
+  ]);
+}
+
 interface BlogHomeProps {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{
@@ -99,6 +185,16 @@ export default async function BlogHome({
     blogUrl = `${baseUrl}/${locale}/d/${encodeURIComponent(destination)}/blog`;
   }
 
+  // Fetch paginated posts based on filter type
+  const paginatedResponse = await fetchPaginatedPosts(
+    search,
+    tag,
+    destination,
+    locale,
+    postsPerPage,
+    offset
+  );
+
   // Helper function to build pagination URLs with query parameters
   const buildPaginationUrl = (page: number): string => {
     const searchParams = new URLSearchParams();
@@ -130,22 +226,6 @@ export default async function BlogHome({
     return `/${locale}/blog${query}`;
   };
 
-  const paginatedResponse = search
-    ? {
-        posts: await searchBlogPosts(search, locale, postsPerPage),
-        totalPages: 1,
-      }
-    : tag
-      ? await getBlogPostsByTagPaginated(tag, locale, postsPerPage, offset)
-      : destination
-        ? await getBlogPostsByDestinationPaginated(
-            destination,
-            locale,
-            postsPerPage,
-            offset
-          )
-        : await getBlogPostsForLocalePaginated(locale, postsPerPage, offset);
-
   const { posts: jsonLdPosts, totalPages } = paginatedResponse;
 
   const collectionPageJsonLd = generateCollectionPageJsonLd({
@@ -172,7 +252,20 @@ export default async function BlogHome({
     })),
   });
 
-  // Create breadcrumb items based on current page state
+  // Build breadcrumb data and generate JSON-LD
+  const breadcrumbData = buildBlogBreadcrumbs(
+    search,
+    destination,
+    tag,
+    locale,
+    baseUrl,
+    blogUrl,
+    t,
+    tNav
+  );
+  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
+
+  // Create breadcrumb items for UI display based on current page state
   let breadcrumbItems: {
     label: string;
     href?: string;
@@ -207,37 +300,6 @@ export default async function BlogHome({
       { label: tNav("breadcrumb.blog"), isCurrentPage: true },
     ];
   }
-
-  const breadcrumbData = search
-    ? generateBreadcrumbData([
-        { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-        { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
-        { name: t("search.heading"), url: blogUrl },
-      ])
-    : destination
-      ? generateBreadcrumbData([
-          { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-          {
-            name: tNav("breadcrumb.destinations"),
-            url: `${baseUrl}/${locale}/d`,
-          },
-          {
-            name: destination,
-            url: `${baseUrl}/${locale}/d/${encodeURIComponent(destination)}`,
-          },
-          { name: tNav("breadcrumb.blog"), url: blogUrl },
-        ])
-      : tag
-        ? generateBreadcrumbData([
-            { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-            { name: tNav("breadcrumb.blog"), url: `${baseUrl}/${locale}/blog` },
-            { name: decodedOrOriginalTag(tag), url: blogUrl },
-          ])
-        : generateBreadcrumbData([
-            { name: tNav("breadcrumb.home"), url: `${baseUrl}/${locale}` },
-            { name: tNav("breadcrumb.blog"), url: blogUrl },
-          ]);
-  const breadcrumbJsonLd = generateBreadcrumbListJsonLd(breadcrumbData);
 
   return (
     <>
