@@ -21,7 +21,7 @@ import { unstable_cache } from "next/cache";
 
 export interface VisaType {
   id: number;
-  destinationCode: number;
+  destinationCode: string;
   type: string;
   duration: number;
   maxStay: number | null;
@@ -332,7 +332,6 @@ export async function getVisaRequirements(
         // Get destination information
         const destinationResult = await db
           .select({
-            id: countries.code,
             code: countries.code,
             name: countriesI18n.name,
           })
@@ -374,7 +373,7 @@ export async function getVisaRequirements(
               )
               .where(
                 and(
-                  eq(visaEligibility.destinationCode, destination.id),
+                  eq(visaEligibility.destinationCode, destination.code),
                   eq(visaEligibility.isActive, true),
                   isNull(visaEligibility.deletedAt),
                   eq(countries.isActive, true),

@@ -17,6 +17,7 @@ import {
   eq,
   getDb,
   inArray,
+  isNull,
   like,
   or,
   sql,
@@ -112,7 +113,7 @@ export async function getAllBlogPostSlugs(): Promise<
       })
       .from(blogPosts)
       .innerJoin(blogPostsI18n, eq(blogPosts.id, blogPostsI18n.postId))
-      .where(eq(blogPosts.isPublished, true));
+      .where(and(eq(blogPosts.isPublished, true), isNull(blogPosts.deletedAt)));
 
     return results;
   } catch (error) {
@@ -149,7 +150,8 @@ export async function getAllBlogPostSlugsLimited(
             .where(
               and(
                 eq(blogPostsI18n.locale, locale),
-                eq(blogPosts.isPublished, true)
+                eq(blogPosts.isPublished, true),
+                isNull(blogPosts.deletedAt)
               )
             )
             .orderBy(desc(blogPosts.publishedAt))
@@ -193,7 +195,8 @@ export async function getAllBlogPosts(
           .where(
             and(
               eq(blogPostsI18n.locale, locale),
-              eq(blogPosts.isPublished, true)
+              eq(blogPosts.isPublished, true),
+              isNull(blogPosts.deletedAt)
             )
           )
           .orderBy(desc(blogPosts.publishedAt));
@@ -241,6 +244,7 @@ export async function getBlogPosts(
     const whereConditions = [
       eq(blogPostsI18n.locale, locale),
       eq(blogPosts.isPublished, true),
+      isNull(blogPosts.deletedAt),
     ];
 
     // Add destination filter
@@ -362,6 +366,7 @@ export async function getBlogPostsByDestination(
             and(
               eq(blogPostsI18n.locale, locale),
               eq(blogPosts.isPublished, true),
+              isNull(blogPosts.deletedAt),
               like(blogPosts.destinations, `%${destination}%`)
             )
           )
@@ -421,6 +426,7 @@ export async function getBlogPostsByTag(
             and(
               eq(blogPostsI18n.locale, locale),
               eq(blogPosts.isPublished, true),
+              isNull(blogPosts.deletedAt),
               eq(blogTags.slug, tag)
             )
           )
@@ -481,6 +487,7 @@ export async function getRelatedBlogPostsOptimized(
               and(
                 eq(blogPostsI18n.locale, locale),
                 eq(blogPosts.isPublished, true),
+                isNull(blogPosts.deletedAt),
                 sql`${blogPosts.slug} != ${currentPostSlug}`
               )
             )
@@ -536,6 +543,7 @@ export async function getRelatedBlogPostsOptimized(
               and(
                 eq(blogPostsI18n.locale, locale),
                 eq(blogPosts.isPublished, true),
+                isNull(blogPosts.deletedAt),
                 sql`${blogPosts.slug} != ${currentPostSlug}`
               )
             )
@@ -565,6 +573,7 @@ export async function getRelatedBlogPostsOptimized(
             and(
               eq(blogPostsI18n.locale, locale),
               eq(blogPosts.isPublished, true),
+              isNull(blogPosts.deletedAt),
               sql`${blogPosts.slug} != ${currentPostSlug}`,
               or(...matchingConditions)
             )
@@ -625,6 +634,7 @@ export async function getRelatedBlogPosts(
             and(
               eq(blogPostsI18n.locale, locale),
               eq(blogPosts.isPublished, true),
+              isNull(blogPosts.deletedAt),
               like(blogPosts.destinations, `%${destination}%`)
             )
           )
@@ -646,6 +656,7 @@ export async function getRelatedBlogPosts(
               and(
                 eq(blogPostsI18n.locale, locale),
                 eq(blogPosts.isPublished, true),
+                isNull(blogPosts.deletedAt),
                 inArray(blogTags.slug, ["travel", "visa", "guide", "tips"])
               )
             )
@@ -697,7 +708,8 @@ export async function getBlogPostBySlug(
             and(
               eq(blogPosts.slug, slug),
               eq(blogPostsI18n.locale, locale),
-              eq(blogPosts.isPublished, true)
+              eq(blogPosts.isPublished, true),
+              isNull(blogPosts.deletedAt)
             )
           )
           .limit(1);
@@ -746,7 +758,8 @@ export async function getAllTagsForLocale(locale: string): Promise<string[]> {
           .where(
             and(
               eq(blogPostsI18n.locale, locale),
-              eq(blogPosts.isPublished, true)
+              eq(blogPosts.isPublished, true),
+              isNull(blogPosts.deletedAt)
             )
           )
           .orderBy(blogTags.slug);
@@ -781,7 +794,8 @@ export async function getAllDestinationsForLocale(
           .where(
             and(
               eq(blogPostsI18n.locale, locale),
-              eq(blogPosts.isPublished, true)
+              eq(blogPosts.isPublished, true),
+              isNull(blogPosts.deletedAt)
             )
           );
 
@@ -837,6 +851,7 @@ export async function searchBlogPosts(
         and(
           eq(blogPostsI18n.locale, locale),
           eq(blogPosts.isPublished, true),
+          isNull(blogPosts.deletedAt),
           sql`(
             LOWER(${blogPostsI18n.title}) LIKE ${searchTerm} OR
             LOWER(${blogPostsI18n.description}) LIKE ${searchTerm} OR
@@ -897,6 +912,7 @@ export async function getFeaturedBlogPosts(
             and(
               eq(blogPostsI18n.locale, locale),
               eq(blogPosts.isPublished, true),
+              isNull(blogPosts.deletedAt),
               eq(blogTags.slug, "featured")
             )
           )
@@ -915,7 +931,8 @@ export async function getFeaturedBlogPosts(
             .where(
               and(
                 eq(blogPostsI18n.locale, locale),
-                eq(blogPosts.isPublished, true)
+                eq(blogPosts.isPublished, true),
+                isNull(blogPosts.deletedAt)
               )
             )
             .orderBy(desc(blogPosts.publishedAt))
