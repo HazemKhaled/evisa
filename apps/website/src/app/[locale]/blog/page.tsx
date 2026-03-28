@@ -1,4 +1,5 @@
 import { type Metadata } from "next";
+import { Suspense } from "react";
 
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
@@ -328,11 +329,17 @@ export default async function BlogHome({
 
           {/* Search */}
           <div className="mb-12">
-            <BlogSearch
-              locale={locale}
-              searchValue={search}
-              searchPlaceholder={t("search.placeholder")}
-            />
+            <Suspense
+              fallback={
+                <div className="h-14 w-full rounded-lg border bg-white" />
+              }
+            >
+              <BlogSearch
+                locale={locale}
+                searchValue={search}
+                searchPlaceholder={t("search.placeholder")}
+              />
+            </Suspense>
           </div>
 
           <BlogPostsSection

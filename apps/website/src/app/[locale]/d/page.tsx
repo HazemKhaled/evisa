@@ -1,4 +1,5 @@
 import { type Metadata } from "next";
+import { Suspense } from "react";
 
 import { getTranslation } from "@/app/i18n";
 import { DestinationsGrid } from "@/components/destinations/destinations-grid";
@@ -140,16 +141,22 @@ export default async function DestinationsPage({
               </p>
 
               {/* Search and Filter Bar */}
-              <SearchFilterForm
-                locale={locale}
-                continents={continents}
-                translations={{
-                  searchPlaceholder: t("hero.searchPlaceholder"),
-                  allContinents: t("filters.allContinents"),
-                  searchLabel: t("filters.searchLabel"),
-                  continentLabel: t("filters.continentLabel"),
-                }}
-              />
+              <Suspense
+                fallback={
+                  <div className="h-14 w-full rounded-lg border bg-white" />
+                }
+              >
+                <SearchFilterForm
+                  locale={locale}
+                  continents={continents}
+                  translations={{
+                    searchPlaceholder: t("hero.searchPlaceholder"),
+                    allContinents: t("filters.allContinents"),
+                    searchLabel: t("filters.searchLabel"),
+                    continentLabel: t("filters.continentLabel"),
+                  }}
+                />
+              </Suspense>
 
               {/* Results Count */}
               <div className="text-muted-foreground mt-4 text-sm">
