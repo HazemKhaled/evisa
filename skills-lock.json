@@ -1,10 +1,25 @@
 {
   "version": 1,
   "skills": {
+    "add-neon-docs": {
+      "source": "neondatabase/ai-rules",
+      "sourceType": "github",
+      "computedHash": "967db951c7716b8e362f1f91631bb041a3369bd277af3e706ded6a39dd0eae98"
+    },
     "clerk": {
       "source": "clerk/skills",
       "sourceType": "github",
       "computedHash": "912205692b6c1db07d6933f0584af27c6582484e5d6fac1c13fec4b6a963a528"
+    },
+    "neon-drizzle": {
+      "source": "neondatabase/ai-rules",
+      "sourceType": "github",
+      "computedHash": "3dc145538f2ffe9b69adc6c6b4f5afa4f1dd2e5910cb2b4d812b05969f8b2fb6"
+    },
+    "neon-postgres": {
+      "source": "neondatabase/agent-skills",
+      "sourceType": "github",
+      "computedHash": "391693eee67001639ab65474df185da3ea5cf9ee4b99badecfd64561113edbb4"
     },
     "next-best-practices": {
       "source": "vercel-labs/next-skills",
