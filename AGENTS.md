@@ -1,4 +1,4 @@
-# CLAUDE.md
+# AGENTS.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository. A multilingual travel visa processing application built with modern web technologies. Always refer to this document when working on the project to maintain consistency and quality.
 
