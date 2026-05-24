@@ -40,6 +40,6 @@ jobs:
 
       - name: Upload coverage reports to Codecov
         if: matrix.script == 'test:ci'
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
