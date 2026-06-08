@@ -67,13 +67,7 @@
                     },
                     "eligibilityStatus": {
                       "type": "string",
-                      "enum": [
-                        "required",
-                        "visa_free",
-                        "on_arrival",
-                        "eta",
-                        "not_allowed"
-                      ]
+                      "enum": ["required", "visa_free", "on_arrival", "eta", "not_allowed"]
                     },
                     "maxStayDays": {
                       "type": "integer"
