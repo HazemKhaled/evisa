@@ -29,13 +29,13 @@ describe.skip("Visa Service", () => {
     it("should return visa eligibility info for valid passport-destination combination", async () => {
       const mockDestination = {
         id: 1,
-        code: "UAE",
+        code: "AE",
         name: "United Arab Emirates",
       };
 
       const mockPassport = {
         id: 2,
-        code: "USA",
+        code: "US",
         name: "United States",
       };
 
@@ -66,14 +66,14 @@ describe.skip("Visa Service", () => {
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
-      const result = await checkVisaEligibility("USA", "UAE", "en");
+      const result = await checkVisaEligibility("US", "AE", "en");
 
       expect(result).toEqual({
         eligibilityStatus: "visa_free",
         maxStayDays: 30,
         notes: "Visa-free for tourism",
-        passportCode: "USA",
-        destinationCode: "UAE",
+        passportCode: "US",
+        destinationCode: "AE",
         destinationName: "United Arab Emirates",
         passportName: "United States",
         visaTypes: [],
@@ -92,7 +92,7 @@ describe.skip("Visa Service", () => {
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
-      const result = await checkVisaEligibility("INVALID", "UAE", "en");
+      const result = await checkVisaEligibility("INVALID", "AE", "en");
       expect(result).toBeNull();
     });
   });
@@ -115,7 +115,7 @@ describe.skip("Visa Service", () => {
           documents: null,
           name: "Tourist Visa",
           description: null,
-          destinationCode: "UAE",
+          destinationCode: "AE",
           destinationName: "United Arab Emirates",
         },
       ];
@@ -138,7 +138,7 @@ describe.skip("Visa Service", () => {
       expect(result[0]).toMatchObject({
         type: "tourist",
         name: "Tourist Visa",
-        destinationCode: "UAE",
+        destinationCode: "AE",
       });
     });
   });

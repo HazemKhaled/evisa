@@ -256,14 +256,14 @@ export function BlogPostDialog({
               label="Destinations (comma-separated codes)"
               {...register("destinations")}
               error={errors.destinations?.message}
-              placeholder="USA,CAN,FRA"
+              placeholder="US,CA,FR"
             />
 
             <FormInput
               label="Passports (comma-separated codes)"
               {...register("passports")}
               error={errors.passports?.message}
-              placeholder="USA,CAN"
+              placeholder="US,CA"
             />
 
             <FormInput

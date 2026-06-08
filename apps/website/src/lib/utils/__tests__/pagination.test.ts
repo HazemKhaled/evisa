@@ -29,15 +29,15 @@ describe("Pagination utilities", () => {
     const blogItems = [
       {
         tags: ["travel", "visa"],
-        destinations: ["USA", "UK"],
+        destinations: ["US", "GB"],
       },
       {
         tags: ["business", "visa"],
-        destinations: ["Canada", "France"],
+        destinations: ["CA", "FR"],
       },
       {
         tags: ["tourism"],
-        destinations: ["USA", "Spain"],
+        destinations: ["US", "ES"],
       },
     ];
 
@@ -50,24 +50,24 @@ describe("Pagination utilities", () => {
     });
 
     it("filters by destination", () => {
-      const filter = createBlogFilter({ destination: "USA" });
+      const filter = createBlogFilter({ destination: "US" });
       const filtered = blogItems.filter(filter);
 
       expect(filtered).toHaveLength(2);
       expect(
         filtered.every(item =>
-          item.destinations?.some(dest => dest.toLowerCase().includes("usa"))
+          item.destinations?.some(dest => dest.toLowerCase().includes("us"))
         )
       ).toBe(true);
     });
 
     it("filters by both tag and destination", () => {
-      const filter = createBlogFilter({ tag: "visa", destination: "USA" });
+      const filter = createBlogFilter({ tag: "visa", destination: "US" });
       const filtered = blogItems.filter(filter);
 
       expect(filtered).toHaveLength(1);
       expect(filtered[0].tags).toContain("visa");
-      expect(filtered[0].destinations).toContain("USA");
+      expect(filtered[0].destinations).toContain("US");
     });
 
     it("returns all items when no filters", () => {
@@ -81,7 +81,7 @@ describe("Pagination utilities", () => {
       const itemsWithMissing = [
         {},
         { tags: ["travel"] },
-        { destinations: ["USA"] },
+        { destinations: ["US"] },
       ];
 
       const filter = createBlogFilter({ tag: "travel" });

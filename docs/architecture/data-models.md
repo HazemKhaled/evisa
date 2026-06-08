@@ -174,7 +174,7 @@ interface VisaEligibility {
 - `id`: integer (primary key, auto increment)
 - `slug`: string - URL-friendly identifier (unique per locale)
 - `author`: string - Post author name
-- `destinations`: string | null - Comma-separated country codes (e.g., "USA,CAN,FRA")
+- `destinations`: string | null - Comma-separated country codes (e.g., "US,CA,FR")
 - `passports`: string | null - Comma-separated passport country codes
 - `image`: string | null - Featured image URL
 - `publishedAt`: timestamp - Publication date
