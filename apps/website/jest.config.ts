@@ -1,9 +1,12 @@
 import type { Config } from "jest";
 import nextJest from "next/jest.js";
 
+const currentDir =
+  typeof __dirname !== "undefined" ? __dirname : import.meta.dirname;
+
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files
-  dir: "./",
+  dir: currentDir,
 });
 
 // Add any custom config to be passed to Jest
@@ -34,7 +37,6 @@ const config: Config = {
   coverageReporters: ["text", "lcov", "html"],
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
   testTimeout: 10000, // 10 seconds
-  forceExit: true, // Force Jest to exit after tests complete
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
