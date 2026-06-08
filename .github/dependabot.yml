@@ -15,3 +15,33 @@ updates:
     schedule:
       interval: "monthly"
     versioning-strategy: increase-if-necessary
+
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+
+      jest:
+        patterns:
+          - "jest"
+          - "jest-*"
+          - "ts-jest"
+          - "jest-environment-jsdom"
+          - "@types/jest"
+          - "@testing-library/*"
+
+      nextjs:
+        patterns:
+          - "next"
+          - "@next/*"
+          - "@opennextjs/*"
+
+      radix-ui:
+        patterns:
+          - "@radix-ui/*"
+
+      dev-deps:
+        dependency-type: "development"
