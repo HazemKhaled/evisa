@@ -19,45 +19,48 @@ export function GET(request: NextRequest) {
       endpoint: `${origin}/api/mcp`,
     },
     capabilities: {
-      tools: [
-        {
-          name: "check_visa_eligibility",
-          description:
-            "Check visa requirements and eligibility between a passport country and destination country.",
-          inputSchema: {
-            type: "object",
-            properties: {
-              passportCountry: {
-                type: "string",
-                description:
-                  "The ISO 3-letter or 2-letter country code of the passport holder's country",
-              },
-              destinationCountry: {
-                type: "string",
-                description:
-                  "The ISO 3-letter or 2-letter country code of the destination country",
-              },
-            },
-            required: ["passportCountry", "destinationCountry"],
-          },
-        },
-        {
-          name: "search_destinations",
-          description:
-            "Search the visa catalog for available destination countries.",
-          inputSchema: {
-            type: "object",
-            properties: {
-              query: {
-                type: "string",
-                description: "The country name or query string to search for",
-              },
-            },
-            required: ["query"],
-          },
-        },
-      ],
+      tools: true,
+      resources: false,
+      prompts: false,
     },
+    tools: [
+      {
+        name: "check_visa_eligibility",
+        description:
+          "Check visa requirements and eligibility between a passport country and destination country.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            passportCountry: {
+              type: "string",
+              description:
+                "The ISO 3-letter or 2-letter country code of the passport holder's country",
+            },
+            destinationCountry: {
+              type: "string",
+              description:
+                "The ISO 3-letter or 2-letter country code of the destination country",
+            },
+          },
+          required: ["passportCountry", "destinationCountry"],
+        },
+      },
+      {
+        name: "search_destinations",
+        description:
+          "Search the visa catalog for available destination countries.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            query: {
+              type: "string",
+              description: "The country name or query string to search for",
+            },
+          },
+          required: ["query"],
+        },
+      },
+    ],
   };
 
   return new NextResponse(JSON.stringify(card, null, 2), {
