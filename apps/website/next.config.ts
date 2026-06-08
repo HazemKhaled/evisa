@@ -34,6 +34,18 @@ const nextConfig: NextConfig = {
       destination: "/:locale/d/sitemap/:locale.xml",
     },
   ],
+  headers: async () => [
+    {
+      source: "/:path*",
+      headers: [
+        {
+          key: "Link",
+          value:
+            '</.well-known/api-catalog>; rel="api-catalog", </.well-known/mcp/server-card.json>; rel="mcp-server", </openapi.json>; rel="service-desc"',
+        },
+      ],
+    },
+  ],
 };
 
 const withBundleAnalyzer = WithBundleAnalyzer({

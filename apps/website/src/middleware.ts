@@ -6,14 +6,28 @@ export function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
 
-  // Skip if it's a static file or API route
+  // Skip if it's a static file, API route, or well-known metadata
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/static") ||
+    pathname.startsWith("/.well-known") ||
+    pathname.startsWith("/openapi.json") ||
+    pathname.startsWith("/llms.txt") ||
+    pathname.startsWith("/llms-full.txt") ||
+    pathname.startsWith("/auth.md") ||
     pathname.includes(".") // This catches files like favicon.ico, etc.
   ) {
     return NextResponse.next();
+  }
+
+  // Intercept requests containing the Accept: text/markdown header
+  const acceptHeader = request.headers.get("accept") || "";
+  if (acceptHeader.includes("text/markdown")) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/api/markdown-negotiation";
+    url.searchParams.set("url", pathname + request.nextUrl.search);
+    return NextResponse.rewrite(url);
   }
 
   // Check if the pathname already has a supported locale

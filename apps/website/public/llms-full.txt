@@ -1,0 +1,48 @@
+# GetTravelVisa.com Complete Agent Context Bundle
+
+This file provides a consolidated view of the platform services, schema structure, pages, and API definitions to facilitate context windows for AI agents.
+
+---
+
+## 1. About GetTravelVisa.com
+We simplify international travel by providing comprehensive visa information, eligibility checking, and seamless application assistance services.
+Our key features include:
+- **Comprehensive Visa Catalog:** Destination-driven content to help users understand visa options.
+- **RTL and Multilingual Support:** Designed for responsiveness across English, Spanish, Arabic, Portuguese, Russian, German, French, and Italian.
+- **Affiliate Integration:** Connections to visa agency partners.
+
+---
+
+## 2. Page Directory & URLs
+- Home: `/`
+- Destination Catalog: `/d/`
+- Destination specific requirements: `/d/{DESTINATION_COUNTRY}`
+- Visa specific options: `/d/{DESTINATION_COUNTRY}/v/{VISA_OPTION}`
+- Passport-specific info: `/d/{DESTINATION_COUNTRY}/p/{PASSPORT_COUNTRY}`
+- Travel Blog list: `/d/{DESTINATION_COUNTRY}/a`
+- Travel Blog details: `/d/{DESTINATION_COUNTRY}/a/{ARTICLE_SLUG}`
+- About Us: `/about`
+- Contact Us: `/contact`
+- Terms of Service: `/terms`
+- Privacy Policy: `/privacy`
+
+---
+
+## 3. Public APIs
+
+### 3.1 Check Visa Eligibility
+Checks requirements between a passport and a destination.
+- **Endpoint:** `GET /api/eligibility`
+- **Query Params:**
+  - `passport` (required): ISO country code
+  - `destination` (required): ISO country code
+  - `locale` (optional): translation language
+- **Response Format:** JSON
+
+### 3.2 Search Destinations
+Searches country codes and names in the visa database.
+- **Endpoint:** `GET /api/search`
+- **Query Params:**
+  - `q` (required): search string
+  - `locale` (optional): translation language
+- **Response Format:** JSON array of matching countries

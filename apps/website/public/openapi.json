@@ -1,0 +1,194 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "GetTravelVisa.com Public APIs",
+    "description": "APIs for checking travel visa requirements and searching destinations.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://gettravelvisa.com"
+    }
+  ],
+  "paths": {
+    "/api/eligibility": {
+      "get": {
+        "summary": "Check Visa Eligibility",
+        "description": "Checks the eligibility status and visa requirements between a passport country and a destination country.",
+        "parameters": [
+          {
+            "name": "passport",
+            "in": "query",
+            "required": true,
+            "description": "The ISO 2-letter or 3-letter code of the passport issuing country.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "destination",
+            "in": "query",
+            "required": true,
+            "description": "The ISO 2-letter or 3-letter code of the destination country.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "description": "Optional locale for localized names and notes (default: en).",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Visa eligibility information retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "destinationCode": {
+                      "type": "string"
+                    },
+                    "destinationName": {
+                      "type": "string"
+                    },
+                    "passportCode": {
+                      "type": "string"
+                    },
+                    "passportName": {
+                      "type": "string"
+                    },
+                    "eligibilityStatus": {
+                      "type": "string",
+                      "enum": [
+                        "required",
+                        "visa_free",
+                        "on_arrival",
+                        "eta",
+                        "not_allowed"
+                      ]
+                    },
+                    "maxStayDays": {
+                      "type": "integer"
+                    },
+                    "notes": {
+                      "type": "string"
+                    },
+                    "visaTypes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/search": {
+      "get": {
+        "summary": "Search Destinations",
+        "description": "Search for destination countries in the visa catalog.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search query or country name.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "description": "Optional language locale (default: en).",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Max number of results to return (default: 10).",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matching countries list retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "localizedName": {
+                        "type": "string"
+                      },
+                      "heroImage": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "about": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "summary": "Health Status",
+        "description": "Verify system health status.",
+        "responses": {
+          "200": {
+            "description": "Service is healthy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "ok"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@ import { Cairo, Geist_Mono } from "next/font/google";
 
 import { JsonLd } from "@/components/json-ld";
 import { Footer, Header } from "@/components/layout";
+import { WebMcpTools } from "@/components/webmcp-tools";
 import { env } from "@/lib/consts";
 import {
   generateOrganizationData,
@@ -158,6 +159,7 @@ export default async function LocaleLayout({
 
           <JsonLd id="json-ld-organization" data={organizationJsonLd} />
           <JsonLd id="json-ld-website" data={websiteJsonLd} />
+          <WebMcpTools />
         </DirectionProvider>
 
         {process.env.NEXT_PUBLIC_GTM_ID && (
