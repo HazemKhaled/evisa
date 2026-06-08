@@ -106,8 +106,8 @@ export interface VisaRequirements {
  *
  * Cached for 24 hours (86400 seconds) with ISR revalidation tag
  *
- * @param passportCode - Passport country code (3-letter ISO)
- * @param destinationCode - Destination country code (3-letter ISO)
+ * @param passportCode - Passport country code (2-letter ISO)
+ * @param destinationCode - Destination country code (2-letter ISO)
  * @param locale - Language locale for localized content
  * @returns Promise<VisaEligibilityInfo | null> - Eligibility information or null if not found
  */

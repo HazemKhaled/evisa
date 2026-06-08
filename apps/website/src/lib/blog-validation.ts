@@ -102,9 +102,9 @@ export function validateBlogPostData(
         errors.push(`Destination at index ${index} must be a string`);
       } else if (!dest.trim()) {
         errors.push(`Destination at index ${index} cannot be empty`);
-      } else if (dest.length !== 2 && dest.length !== 3) {
+      } else if (dest.length !== 2) {
         warnings.push(
-          `Destination '${dest}' should be a 2 or 3-letter country code`
+          `Destination '${dest}' should be a 2-letter country code`
         );
       }
     });

@@ -22,7 +22,7 @@ The eVisa application uses **PostgreSQL** via **Neon Database** with **Drizzle O
 ```sql
 CREATE TABLE `countries` (
   `id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-  `code` text(3) NOT NULL UNIQUE,
+  `code` text(2) NOT NULL UNIQUE,
   `continent` text NOT NULL,
   `region` text,
   `hero_image` text,
@@ -38,7 +38,7 @@ CREATE TABLE `countries` (
 ```typescript
 interface Country {
   id: number;
-  code: string; // ISO 3166-1 alpha-3 (e.g., 'USA', 'ARE', 'FRA')
+  code: string; // ISO 3166-1 alpha-2 (e.g., 'US', 'AE', 'FR')
   continent: string; // e.g., "Africa", "Asia", "Europe"
   region: string; // e.g., "Western Europe", "Southeast Asia"
   heroImage: string; // Unsplash or other hero image URL
@@ -419,7 +419,7 @@ const country = await db
   .leftJoin(countriesI18n, eq(countries.id, countriesI18n.countryId))
   .where(
     and(
-      eq(countries.code, "USA"),
+      eq(countries.code, "US"),
       eq(countriesI18n.locale, "en"),
       eq(countries.isActive, true),
       isNull(countries.deletedAt)
