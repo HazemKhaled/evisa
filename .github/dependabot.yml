@@ -15,6 +15,10 @@ updates:
     schedule:
       interval: "monthly"
     versioning-strategy: increase-if-necessary
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
 
     groups:
       react:
