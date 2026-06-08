@@ -22,15 +22,31 @@ interface JsonRpcRequest {
 }
 
 export async function POST(request: NextRequest) {
+  let body: JsonRpcRequest;
   try {
-    const body = (await request.json()) as JsonRpcRequest;
+    body = (await request.json()) as JsonRpcRequest;
+  } catch {
+    return NextResponse.json(
+      {
+        jsonrpc: "2.0",
+        id: null,
+        error: {
+          code: -32700,
+          message: "Parse error (Invalid JSON)",
+        },
+      },
+      { status: 400 }
+    );
+  }
+
+  try {
     const { jsonrpc, method, params, id } = body;
 
     if (jsonrpc !== "2.0") {
       return NextResponse.json(
         {
           jsonrpc: "2.0",
-          id: id || null,
+          id: id ?? null,
           error: {
             code: -32600,
             message: "Invalid request (only JSON-RPC 2.0 is supported)",

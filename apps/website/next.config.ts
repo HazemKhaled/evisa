@@ -36,7 +36,9 @@ const nextConfig: NextConfig = {
   ],
   headers: async () => [
     {
-      source: "/:path*",
+      // Exclude _next/, static/, and files with static extensions from Link headers
+      source:
+        "/((?!_next|static|.*\\.(?:png|jpg|jpeg|gif|webp|ico|svg|css|js)).*)",
       headers: [
         {
           key: "Link",
@@ -100,4 +102,6 @@ export default withBundleAnalyzer(
 );
 
 // added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
-initOpenNextCloudflareForDev();
+if (process.env.NODE_ENV === "development") {
+  initOpenNextCloudflareForDev();
+}

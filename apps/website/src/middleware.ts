@@ -21,9 +21,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Intercept requests containing the Accept: text/markdown header
+  // Intercept requests containing the Accept: text/markdown header for GET/HEAD only
   const acceptHeader = request.headers.get("accept") || "";
-  if (acceptHeader.includes("text/markdown")) {
+  const isGetOrHead = request.method === "GET" || request.method === "HEAD";
+  if (isGetOrHead && acceptHeader.includes("text/markdown")) {
     const url = request.nextUrl.clone();
     url.pathname = "/api/markdown-negotiation";
     url.searchParams.set("url", pathname + request.nextUrl.search);

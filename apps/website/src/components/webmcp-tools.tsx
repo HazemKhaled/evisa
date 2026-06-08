@@ -55,6 +55,16 @@ export function WebMcpTools() {
                   const res = await fetch(
                     `/api/eligibility?passport=${encodeURIComponent(params.passportCountry || "")}&destination=${encodeURIComponent(params.destinationCountry || "")}`
                   );
+                  if (!res.ok) {
+                    const errorData = (await res
+                      .json()
+                      .catch(() => ({}))) as Record<string, unknown>;
+                    return {
+                      error:
+                        errorData.error ||
+                        `Request failed with status ${res.status}`,
+                    };
+                  }
                   return await res.json();
                 } catch (e) {
                   return {
@@ -85,6 +95,16 @@ export function WebMcpTools() {
                   const res = await fetch(
                     `/api/search?q=${encodeURIComponent(params.query || "")}`
                   );
+                  if (!res.ok) {
+                    const errorData = (await res
+                      .json()
+                      .catch(() => ({}))) as Record<string, unknown>;
+                    return {
+                      error:
+                        errorData.error ||
+                        `Request failed with status ${res.status}`,
+                    };
+                  }
                   return await res.json();
                 } catch (e) {
                   return {

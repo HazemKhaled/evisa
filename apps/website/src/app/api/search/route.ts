@@ -14,7 +14,10 @@ export async function GET(request: NextRequest) {
       : 10;
 
   if (!query.trim()) {
-    return NextResponse.json([]);
+    return NextResponse.json(
+      { error: "Query parameter 'q' or 'query' is required." },
+      { status: 400 }
+    );
   }
 
   try {
