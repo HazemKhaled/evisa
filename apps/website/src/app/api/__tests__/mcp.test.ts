@@ -19,6 +19,11 @@ interface McpTestResponse {
     };
     tools?: {
       name: string;
+      inputSchema?: {
+        type: string;
+        properties?: Record<string, unknown>;
+        required?: string[];
+      };
     }[];
     content?: {
       text: string;
@@ -79,6 +84,12 @@ describe("MCP API Route", () => {
       expect(response.status).toBe(200);
       expect(body.result?.tools || []).toHaveLength(2);
       expect(body.result?.tools?.[0]?.name).toBe("check_visa_eligibility");
+      expect(
+        body.result?.tools?.[0]?.inputSchema?.properties?.locale
+      ).toBeDefined();
+      expect(
+        body.result?.tools?.[1]?.inputSchema?.properties?.locale
+      ).toBeDefined();
     });
 
     it("should handle tools/call for check_visa_eligibility", async () => {
@@ -137,6 +148,89 @@ describe("MCP API Route", () => {
       expect(response.status).toBe(200);
       expect(searchCountries).toHaveBeenCalledWith("France", "en", 10);
       expect(body.result?.content?.[0]?.text).toContain("FRA");
+    });
+
+    it("should handle tools/call for check_visa_eligibility with locale in arguments", async () => {
+      (checkVisaEligibility as jest.Mock).mockResolvedValue({
+        allowed: true,
+        visaRequirement: "No visa required",
+      });
+
+      const request = new NextRequest("http://localhost/api/mcp", {
+        method: "POST",
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          method: "tools/call",
+          params: {
+            name: "check_visa_eligibility",
+            arguments: {
+              passportCountry: "USA",
+              destinationCountry: "FRA",
+              locale: "es",
+            },
+          },
+          id: 5,
+        }),
+      });
+
+      const response = await POST(request);
+      expect(response.status).toBe(200);
+      expect(checkVisaEligibility).toHaveBeenCalledWith("USA", "FRA", "es");
+    });
+
+    it("should handle tools/call for check_visa_eligibility with locale in JSON-RPC params", async () => {
+      (checkVisaEligibility as jest.Mock).mockResolvedValue({
+        allowed: true,
+        visaRequirement: "No visa required",
+      });
+
+      const request = new NextRequest("http://localhost/api/mcp", {
+        method: "POST",
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          method: "tools/call",
+          params: {
+            name: "check_visa_eligibility",
+            locale: "ar",
+            arguments: {
+              passportCountry: "USA",
+              destinationCountry: "FRA",
+            },
+          },
+          id: 6,
+        }),
+      });
+
+      const response = await POST(request);
+      expect(response.status).toBe(200);
+      expect(checkVisaEligibility).toHaveBeenCalledWith("USA", "FRA", "ar");
+    });
+
+    it("should handle tools/call for check_visa_eligibility with locale in query parameter", async () => {
+      (checkVisaEligibility as jest.Mock).mockResolvedValue({
+        allowed: true,
+        visaRequirement: "No visa required",
+      });
+
+      const request = new NextRequest("http://localhost/api/mcp?locale=fr", {
+        method: "POST",
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          method: "tools/call",
+          params: {
+            name: "check_visa_eligibility",
+            arguments: {
+              passportCountry: "USA",
+              destinationCountry: "FRA",
+            },
+          },
+          id: 7,
+        }),
+      });
+
+      const response = await POST(request);
+      expect(response.status).toBe(200);
+      expect(checkVisaEligibility).toHaveBeenCalledWith("USA", "FRA", "fr");
     });
 
     it("should reject invalid jsonrpc version", async () => {

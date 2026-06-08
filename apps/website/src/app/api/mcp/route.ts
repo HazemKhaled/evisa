@@ -1,5 +1,7 @@
+import i18next from "i18next";
 import { type NextRequest, NextResponse } from "next/server";
 
+import { fallbackLng } from "@/app/i18n/settings";
 import { searchCountries } from "@/lib/services/country-service";
 import { checkVisaEligibility } from "@/lib/services/visa-service";
 
@@ -17,6 +19,7 @@ interface JsonRpcRequest {
   params?: {
     name?: string;
     arguments?: Record<string, unknown>;
+    locale?: string;
   };
   id?: string | number | null;
 }
@@ -96,6 +99,11 @@ export async function POST(request: NextRequest) {
                       description:
                         "The ISO 2-letter or 3-letter country code of the destination country",
                     },
+                    locale: {
+                      type: "string",
+                      description:
+                        "The language locale for localized content (optional, e.g. en, es, ar)",
+                    },
                   },
                   required: ["passportCountry", "destinationCountry"],
                 },
@@ -111,6 +119,11 @@ export async function POST(request: NextRequest) {
                       type: "string",
                       description:
                         "The country name or query string to search for",
+                    },
+                    locale: {
+                      type: "string",
+                      description:
+                        "The language locale for localized content (optional, e.g. en, es, ar)",
                     },
                   },
                   required: ["query"],
@@ -132,6 +145,22 @@ export async function POST(request: NextRequest) {
             },
           });
         }
+
+        const urlLocale = request.nextUrl.searchParams.get("locale");
+        const jsonRpcLocale = params?.locale;
+        const argLocale = args?.locale as string | undefined;
+        const i18nCustom = i18next as unknown as Record<string, unknown>;
+        const locale = String(
+          argLocale ||
+            jsonRpcLocale ||
+            urlLocale ||
+            (typeof i18nCustom.locale === "string" ? i18nCustom.locale : "") ||
+            i18next.language ||
+            fallbackLng ||
+            "en"
+        )
+          .toLowerCase()
+          .trim();
 
         if (name === "check_visa_eligibility") {
           const passport = String(args?.passportCountry || "")
@@ -156,7 +185,7 @@ export async function POST(request: NextRequest) {
           const result = await checkVisaEligibility(
             passport,
             destination,
-            "en"
+            locale
           );
           if (!result) {
             return NextResponse.json({
@@ -201,7 +230,7 @@ export async function POST(request: NextRequest) {
             });
           }
 
-          const results = await searchCountries(query, "en", 10);
+          const results = await searchCountries(query, locale, 10);
           return NextResponse.json({
             jsonrpc: "2.0",
             id,
