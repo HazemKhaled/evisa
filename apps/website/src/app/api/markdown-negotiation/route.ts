@@ -111,6 +111,17 @@ export async function GET(request: NextRequest) {
     const origin = request.nextUrl.origin;
     const targetUrl = new URL(targetPath, origin);
 
+    // Prevent SSRF / cookie exfiltration: only allow same-origin fetches
+    if (targetUrl.origin !== origin) {
+      return new NextResponse(
+        "Invalid url parameter (cross-origin not allowed).",
+        {
+          status: 400,
+          headers: { "Content-Type": "text/plain" },
+        }
+      );
+    }
+
     // Set headers explicitly requesting text/html to avoid recursion loop
     const fetchHeaders = new Headers();
     fetchHeaders.set("accept", "text/html");

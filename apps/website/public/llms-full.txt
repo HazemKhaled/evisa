@@ -16,8 +16,8 @@ Our key features include:
 ## 2. Page Directory & URLs
 - Home: `/`
 - Destination Catalog: `/d/`
-- Destination specific requirements: `/d/{DESTINATION_COUNTRY}`
-- Visa specific options: `/d/{DESTINATION_COUNTRY}/v/{VISA_OPTION}`
+- Destination-specific requirements: `/d/{DESTINATION_COUNTRY}`
+- Visa-specific options: `/d/{DESTINATION_COUNTRY}/v/{VISA_OPTION}`
 - Passport-specific info: `/d/{DESTINATION_COUNTRY}/p/{PASSPORT_COUNTRY}`
 - Travel Blog list: `/d/{DESTINATION_COUNTRY}/a`
 - Travel Blog details: `/d/{DESTINATION_COUNTRY}/a/{ARTICLE_SLUG}`

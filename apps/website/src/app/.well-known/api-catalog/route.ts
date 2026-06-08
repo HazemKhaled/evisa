@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export function GET(request: NextRequest) {
   const origin = request.nextUrl.origin;
 
   const catalog = {
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
         ],
         "service-doc": [
           {
-            href: `${origin}/docs/api`,
+            href: `${origin}/`,
             type: "text/html",
           },
         ],

@@ -98,7 +98,9 @@ export function WebMcpTools() {
             },
           ],
         });
-        console.log("WebMCP tools registered successfully.");
+        if (process.env.NODE_ENV !== "production") {
+          console.log("WebMCP tools registered successfully.");
+        }
       } catch (err) {
         console.error("Error registering WebMCP tools:", err);
       }

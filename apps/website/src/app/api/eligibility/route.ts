@@ -2,8 +2,6 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import { checkVisaEligibility } from "@/lib/services/visa-service";
 
-export const runtime = "edge"; // Run on Edge runtime for performance
-
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const passport = searchParams.get("passport")?.toUpperCase().trim() || "";
