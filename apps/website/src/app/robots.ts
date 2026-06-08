@@ -14,7 +14,7 @@ export default function robots(): MetadataRoute.Robots {
           allow: "/",
         },
         {
-          userAgent: "StartupHubStartupHub.ai-AgentReadinessBot",
+          userAgent: "StartupHub.ai-AgentReadinessBot",
           allow: "/",
         },
       ],
