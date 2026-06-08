@@ -8,10 +8,16 @@ export default function robots(): MetadataRoute.Robots {
   if (isProduction) {
     // Allow all bots on production domain
     return {
-      rules: {
-        userAgent: "*",
-        allow: "/",
-      },
+      rules: [
+        {
+          userAgent: "*",
+          allow: "/",
+        },
+        {
+          userAgent: "StartupHubStartupHub.ai-AgentReadinessBot",
+          allow: "/",
+        },
+      ],
       sitemap: `${env.baseUrl}/sitemap-index.xml`,
     };
   } else {
