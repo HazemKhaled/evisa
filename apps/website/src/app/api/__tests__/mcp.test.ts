@@ -10,6 +10,26 @@ import { GET, POST } from "../mcp/route";
 jest.mock("../../../lib/services/country-service");
 jest.mock("../../../lib/services/visa-service");
 
+interface McpTestResponse {
+  status?: string;
+  jsonrpc?: string;
+  result?: {
+    serverInfo?: {
+      name: string;
+    };
+    tools?: {
+      name: string;
+    }[];
+    content?: {
+      text: string;
+    }[];
+  };
+  error?: {
+    code: number;
+    message: string;
+  };
+}
+
 describe("MCP API Route", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -18,7 +38,7 @@ describe("MCP API Route", () => {
   describe("GET", () => {
     it("should return ok status", async () => {
       const response = await GET();
-      const body = await response.json();
+      const body = (await response.json()) as McpTestResponse;
       expect(response.status).toBe(200);
       expect(body.status).toBe("ok");
     });
@@ -36,11 +56,11 @@ describe("MCP API Route", () => {
       });
 
       const response = await POST(request);
-      const body = await response.json();
+      const body = (await response.json()) as McpTestResponse;
 
       expect(response.status).toBe(200);
       expect(body.jsonrpc).toBe("2.0");
-      expect(body.result.serverInfo.name).toBe("GetTravelVisa Agent Tools");
+      expect(body.result?.serverInfo?.name).toBe("GetTravelVisa Agent Tools");
     });
 
     it("should handle tools/list request", async () => {
@@ -54,11 +74,11 @@ describe("MCP API Route", () => {
       });
 
       const response = await POST(request);
-      const body = await response.json();
+      const body = (await response.json()) as McpTestResponse;
 
       expect(response.status).toBe(200);
-      expect(body.result.tools).toHaveLength(2);
-      expect(body.result.tools[0].name).toBe("check_visa_eligibility");
+      expect(body.result?.tools || []).toHaveLength(2);
+      expect(body.result?.tools?.[0]?.name).toBe("check_visa_eligibility");
     });
 
     it("should handle tools/call for check_visa_eligibility", async () => {
@@ -84,11 +104,11 @@ describe("MCP API Route", () => {
       });
 
       const response = await POST(request);
-      const body = await response.json();
+      const body = (await response.json()) as McpTestResponse;
 
       expect(response.status).toBe(200);
       expect(checkVisaEligibility).toHaveBeenCalledWith("USA", "FRA", "en");
-      expect(body.result.content[0].text).toContain("No visa required");
+      expect(body.result?.content?.[0]?.text).toContain("No visa required");
     });
 
     it("should handle tools/call for search_destinations", async () => {
@@ -112,11 +132,11 @@ describe("MCP API Route", () => {
       });
 
       const response = await POST(request);
-      const body = await response.json();
+      const body = (await response.json()) as McpTestResponse;
 
       expect(response.status).toBe(200);
       expect(searchCountries).toHaveBeenCalledWith("France", "en", 10);
-      expect(body.result.content[0].text).toContain("FRA");
+      expect(body.result?.content?.[0]?.text).toContain("FRA");
     });
 
     it("should reject invalid jsonrpc version", async () => {
