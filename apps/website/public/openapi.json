@@ -20,7 +20,7 @@
             "name": "passport",
             "in": "query",
             "required": true,
-            "description": "The ISO 2-letter or 3-letter code of the passport issuing country.",
+            "description": "The ISO 2-letter code of the passport issuing country.",
             "schema": {
               "type": "string"
             }
@@ -29,7 +29,7 @@
             "name": "destination",
             "in": "query",
             "required": true,
-            "description": "The ISO 2-letter or 3-letter code of the destination country.",
+            "description": "The ISO 2-letter code of the destination country.",
             "schema": {
               "type": "string"
             }

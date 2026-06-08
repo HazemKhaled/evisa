@@ -21,7 +21,7 @@ describe("Eligibility API Route", () => {
 
   it("should return 400 if passport is missing", async () => {
     const request = new NextRequest(
-      "http://localhost/api/eligibility?destination=FRA",
+      "http://localhost/api/eligibility?destination=FR",
       {
         method: "GET",
       }
@@ -36,7 +36,7 @@ describe("Eligibility API Route", () => {
 
   it("should return 400 if destination is missing", async () => {
     const request = new NextRequest(
-      "http://localhost/api/eligibility?passport=USA",
+      "http://localhost/api/eligibility?passport=US",
       {
         method: "GET",
       }
@@ -53,7 +53,7 @@ describe("Eligibility API Route", () => {
     (checkVisaEligibility as jest.Mock).mockResolvedValue(null);
 
     const request = new NextRequest(
-      "http://localhost/api/eligibility?passport=USA&destination=XYZ",
+      "http://localhost/api/eligibility?passport=US&destination=XY",
       {
         method: "GET",
       }
@@ -74,7 +74,7 @@ describe("Eligibility API Route", () => {
     (checkVisaEligibility as jest.Mock).mockResolvedValue(mockResult);
 
     const request = new NextRequest(
-      "http://localhost/api/eligibility?passport=USA&destination=FRA",
+      "http://localhost/api/eligibility?passport=US&destination=FR",
       {
         method: "GET",
       }
@@ -85,6 +85,6 @@ describe("Eligibility API Route", () => {
 
     expect(response.status).toBe(200);
     expect(body).toEqual(mockResult);
-    expect(checkVisaEligibility).toHaveBeenCalledWith("USA", "FRA", "en");
+    expect(checkVisaEligibility).toHaveBeenCalledWith("US", "FR", "en");
   });
 });

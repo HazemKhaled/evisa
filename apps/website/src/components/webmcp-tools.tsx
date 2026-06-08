@@ -40,12 +40,12 @@ export function WebMcpTools() {
                   passportCountry: {
                     type: "string",
                     description:
-                      "The ISO 2-letter or 3-letter country code of the passport holder",
+                      "The ISO 2-letter country code of the passport holder",
                   },
                   destinationCountry: {
                     type: "string",
                     description:
-                      "The ISO 2-letter or 3-letter country code of the destination country",
+                      "The ISO 2-letter country code of the destination country",
                   },
                 },
                 required: ["passportCountry", "destinationCountry"],

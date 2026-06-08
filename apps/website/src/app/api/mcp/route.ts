@@ -92,12 +92,12 @@ export async function POST(request: NextRequest) {
                     passportCountry: {
                       type: "string",
                       description:
-                        "The ISO 2-letter or 3-letter country code of the passport holder's country",
+                        "The ISO 2-letter country code of the passport holder's country",
                     },
                     destinationCountry: {
                       type: "string",
                       description:
-                        "The ISO 2-letter or 3-letter country code of the destination country",
+                        "The ISO 2-letter country code of the destination country",
                     },
                     locale: {
                       type: "string",

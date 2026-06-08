@@ -106,8 +106,8 @@ describe("MCP API Route", () => {
           params: {
             name: "check_visa_eligibility",
             arguments: {
-              passportCountry: "USA",
-              destinationCountry: "FRA",
+              passportCountry: "US",
+              destinationCountry: "FR",
             },
           },
           id: 3,
@@ -118,13 +118,13 @@ describe("MCP API Route", () => {
       const body = (await response.json()) as McpTestResponse;
 
       expect(response.status).toBe(200);
-      expect(checkVisaEligibility).toHaveBeenCalledWith("USA", "FRA", "en");
+      expect(checkVisaEligibility).toHaveBeenCalledWith("US", "FR", "en");
       expect(body.result?.content?.[0]?.text).toContain("No visa required");
     });
 
     it("should handle tools/call for search_destinations", async () => {
       (searchCountries as jest.Mock).mockResolvedValue([
-        { code: "FRA", name: "France" },
+        { code: "FR", name: "France" },
       ]);
 
       const request = new NextRequest("http://localhost/api/mcp", {
@@ -147,7 +147,7 @@ describe("MCP API Route", () => {
 
       expect(response.status).toBe(200);
       expect(searchCountries).toHaveBeenCalledWith("France", "en", 10);
-      expect(body.result?.content?.[0]?.text).toContain("FRA");
+      expect(body.result?.content?.[0]?.text).toContain("FR");
     });
 
     it("should handle tools/call for check_visa_eligibility with locale in arguments", async () => {
@@ -164,8 +164,8 @@ describe("MCP API Route", () => {
           params: {
             name: "check_visa_eligibility",
             arguments: {
-              passportCountry: "USA",
-              destinationCountry: "FRA",
+              passportCountry: "US",
+              destinationCountry: "FR",
               locale: "es",
             },
           },
@@ -175,7 +175,7 @@ describe("MCP API Route", () => {
 
       const response = await POST(request);
       expect(response.status).toBe(200);
-      expect(checkVisaEligibility).toHaveBeenCalledWith("USA", "FRA", "es");
+      expect(checkVisaEligibility).toHaveBeenCalledWith("US", "FR", "es");
     });
 
     it("should handle tools/call for check_visa_eligibility with locale in JSON-RPC params", async () => {
@@ -193,8 +193,8 @@ describe("MCP API Route", () => {
             name: "check_visa_eligibility",
             locale: "ar",
             arguments: {
-              passportCountry: "USA",
-              destinationCountry: "FRA",
+              passportCountry: "US",
+              destinationCountry: "FR",
             },
           },
           id: 6,
@@ -203,7 +203,7 @@ describe("MCP API Route", () => {
 
       const response = await POST(request);
       expect(response.status).toBe(200);
-      expect(checkVisaEligibility).toHaveBeenCalledWith("USA", "FRA", "ar");
+      expect(checkVisaEligibility).toHaveBeenCalledWith("US", "FR", "ar");
     });
 
     it("should handle tools/call for check_visa_eligibility with locale in query parameter", async () => {
@@ -220,8 +220,8 @@ describe("MCP API Route", () => {
           params: {
             name: "check_visa_eligibility",
             arguments: {
-              passportCountry: "USA",
-              destinationCountry: "FRA",
+              passportCountry: "US",
+              destinationCountry: "FR",
             },
           },
           id: 7,
@@ -230,7 +230,7 @@ describe("MCP API Route", () => {
 
       const response = await POST(request);
       expect(response.status).toBe(200);
-      expect(checkVisaEligibility).toHaveBeenCalledWith("USA", "FRA", "fr");
+      expect(checkVisaEligibility).toHaveBeenCalledWith("US", "FR", "fr");
     });
 
     it("should reject invalid jsonrpc version", async () => {
