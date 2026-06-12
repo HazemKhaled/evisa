@@ -114,7 +114,12 @@ export default async function ContactPage({ params }: ContactPageProps) {
               <h2 className="mb-6 text-2xl font-bold text-gray-900">
                 {t("contact.form.title")}
               </h2>
-              <form className="space-y-6">
+              <form
+                className="space-y-6"
+                toolname="submit_contact_form"
+                tooldescription="Submit user contact details, support requests, and messages."
+                toolautosubmit="true"
+              >
                 <div>
                   <Label htmlFor="name">{t("contact.form.name_label")}</Label>
                   <Input
@@ -123,6 +128,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                     name="name"
                     placeholder={t("contact.form.name_placeholder")}
                     required
+                    toolparamdescription="The full name of the user submitting the contact form"
                   />
                 </div>
 
@@ -134,6 +140,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                     name="email"
                     placeholder={t("contact.form.email_placeholder")}
                     required
+                    toolparamdescription="The email address of the user for replies"
                   />
                 </div>
 
@@ -144,6 +151,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                     id="phone"
                     name="phone"
                     placeholder={t("contact.form.phone_placeholder")}
+                    toolparamdescription="The telephone number of the user (optional)"
                   />
                 </div>
 
@@ -177,6 +185,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                     name="subject"
                     placeholder={t("contact.form.subject_placeholder")}
                     required
+                    toolparamdescription="The subject line of the contact request message"
                   />
                 </div>
 
@@ -190,6 +199,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                     rows={6}
                     placeholder={t("contact.form.message_placeholder")}
                     required
+                    toolparamdescription="The main message body containing the user's detailed inquiry"
                   ></Textarea>
                 </div>
 
