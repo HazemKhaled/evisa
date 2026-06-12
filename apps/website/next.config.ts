@@ -34,6 +34,20 @@ const nextConfig: NextConfig = {
       destination: "/:locale/d/sitemap/:locale.xml",
     },
   ],
+  headers: async () => [
+    {
+      // Exclude _next/, static/, and files with static extensions from Link headers
+      source:
+        "/((?!_next|static|.*\\.(?:png|jpg|jpeg|gif|webp|ico|svg|css|js)).*)",
+      headers: [
+        {
+          key: "Link",
+          value:
+            '</.well-known/api-catalog>; rel="api-catalog", </.well-known/mcp/server-card.json>; rel="mcp-server", </openapi.json>; rel="service-desc"',
+        },
+      ],
+    },
+  ],
 };
 
 const withBundleAnalyzer = WithBundleAnalyzer({
@@ -88,4 +102,6 @@ export default withBundleAnalyzer(
 );
 
 // added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
-initOpenNextCloudflareForDev();
+if (process.env.NODE_ENV === "development") {
+  initOpenNextCloudflareForDev();
+}

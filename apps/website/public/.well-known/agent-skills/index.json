@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "travel-visa-processing",
+      "description": "Check travel visa requirements, visa eligibility, and processing times for any destination in the world.",
+      "url": "https://gettravelvisa.com/.well-known/agent-skills/travel-visa-processing/SKILL.md",
+      "digest": "sha256:2a46d28c57c6be22fc52ed6142a7961a3c3cc75bed47442b7541ad3920c09cc8"
+    }
+  ]
+}
