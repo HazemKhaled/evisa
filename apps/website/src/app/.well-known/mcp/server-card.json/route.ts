@@ -34,12 +34,12 @@ export function GET(request: NextRequest) {
             passportCountry: {
               type: "string",
               description:
-                "The ISO 3-letter or 2-letter country code of the passport holder's country",
+                "The ISO 2-letter country code of the passport holder's country",
             },
             destinationCountry: {
               type: "string",
               description:
-                "The ISO 3-letter or 2-letter country code of the destination country",
+                "The ISO 2-letter country code of the destination country",
             },
           },
           required: ["passportCountry", "destinationCountry"],
