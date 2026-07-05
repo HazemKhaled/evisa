@@ -91,11 +91,13 @@ export async function POST(request: NextRequest) {
                   properties: {
                     passportCountry: {
                       type: "string",
+                      pattern: "^[a-zA-Z]{2}$",
                       description:
                         "The ISO 2-letter country code of the passport holder's country",
                     },
                     destinationCountry: {
                       type: "string",
+                      pattern: "^[a-zA-Z]{2}$",
                       description:
                         "The ISO 2-letter country code of the destination country",
                     },
