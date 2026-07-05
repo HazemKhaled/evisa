@@ -18,7 +18,17 @@
       "subject_placeholder": "Breve descrizione della tua richiesta",
       "message_label": "Messaggio",
       "message_placeholder": "Per favore fornisci dettagli sulla tua richiesta...",
-      "submit": "Invia messaggio"
+      "submit": "Invia messaggio",
+      "toolname": "submit_contact_form",
+      "tooldescription": "Invia i dettagli di contatto dell'utente, le richieste di supporto e i messaggi.",
+      "toolautosubmit": "true",
+      "toolparamdescription": {
+        "name": "Il nome completo dell'utente che invia il modulo di contatto",
+        "email": "L'indirizzo email dell'utente per le risposte",
+        "phone": "Il numero di telefono dell'utente (opzionale)",
+        "subject": "L'oggetto del message di richiesta di contatto",
+        "message": "Il corpo principale del messaggio contenente la richiesta dettagliata dell'utente"
+      }
     },
     "info": {
       "title": "Mettiti in contatto",

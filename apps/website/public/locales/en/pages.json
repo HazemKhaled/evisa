@@ -18,7 +18,17 @@
       "subject_placeholder": "Brief description of your inquiry",
       "message_label": "Message",
       "message_placeholder": "Please provide details about your inquiry...",
-      "submit": "Send Message"
+      "submit": "Send Message",
+      "toolname": "submit_contact_form",
+      "tooldescription": "Submit user contact details, support requests, and messages.",
+      "toolautosubmit": "true",
+      "toolparamdescription": {
+        "name": "The full name of the user submitting the contact form",
+        "email": "The email address of the user for replies",
+        "phone": "The telephone number of the user (optional)",
+        "subject": "The subject line of the contact request message",
+        "message": "The main message body containing the user's detailed inquiry"
+      }
     },
     "info": {
       "title": "Get in Touch",
