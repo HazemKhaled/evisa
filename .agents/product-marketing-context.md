@@ -127,13 +127,14 @@ _Last updated: 2026-03-17_
 **Words to avoid:** guaranteed approval, instant visa approval, risk-free approval, official government processor, immigration law firm, fully automated approval.
 
 **Glossary:**
-| Term | Meaning |
-|------|---------|
-| Visa intelligence | The structured combination of eligibility, requirements, timelines, costs, and route-to-apply guidance |
-| Destination-first | Product experience that starts with where a traveler wants to go rather than with visa paperwork categories |
-| Passport-specific filtering | Showing only the visa options and requirements relevant to a traveler's citizenship |
-| Visa-free discovery | Helping users find destinations they can visit without a visa or with reduced application friction |
-| Trusted partner routing | Sending users to selected visa service providers for application handling |
+
+| Term                        | Meaning                                                                                                     |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Visa intelligence           | The structured combination of eligibility, requirements, timelines, costs, and route-to-apply guidance      |
+| Destination-first           | Product experience that starts with where a traveler wants to go rather than with visa paperwork categories |
+| Passport-specific filtering | Showing only the visa options and requirements relevant to a traveler's citizenship                         |
+| Visa-free discovery         | Helping users find destinations they can visit without a visa or with reduced application friction          |
+| Trusted partner routing     | Sending users to selected visa service providers for application handling                                   |
 
 ## Brand Voice
 
@@ -161,12 +162,13 @@ _Last updated: 2026-03-17_
 > "Placeholder: No customer testimonial documented yet." — Pending launch validation
 
 **Value themes:**
-| Theme | Proof |
-|-------|-------|
-| Faster research | Strategy docs position current research time at 3 to 8 hours per destination and under-30-minute target on-platform |
-| Lower anxiety | Product framing consistently centers on clarity, eligibility checking, and reduced friction |
-| Better discovery | Destination-first, passport-specific, and visa-free exploration are documented as core differentiators |
-| Broader reach | The platform supports 8 languages and is designed for global destination coverage |
+
+| Theme             | Proof                                                                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Faster research   | Strategy docs position current research time at 3 to 8 hours per destination and under-30-minute target on-platform       |
+| Lower anxiety     | Product framing consistently centers on clarity, eligibility checking, and reduced friction                               |
+| Better discovery  | Destination-first, passport-specific, and visa-free exploration are documented as core differentiators                    |
+| Broader reach     | The platform supports 8 languages and is designed for global destination coverage                                         |
 | Trust and support | Site copy emphasizes expert guidance, trusted partners, and 24/7 multilingual support, though live proof is still pending |
 
 ## Goals

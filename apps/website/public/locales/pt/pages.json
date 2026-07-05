@@ -18,7 +18,17 @@
       "subject_placeholder": "Brief description of your inquiry",
       "message_label": "Message",
       "message_placeholder": "Please provide details about your inquiry...",
-      "submit": "Send Message"
+      "submit": "Send Message",
+      "toolname": "submit_contact_form",
+      "tooldescription": "Enviar detalhes de contato do usuário, solicitações de suporte e mensagens.",
+      "toolautosubmit": "true",
+      "toolparamdescription": {
+        "name": "O nome completo do usuário que envia o formulário de contato",
+        "email": "O endereço de e-mail do usuário para respostas",
+        "phone": "O número de telefone do usuário (opcional)",
+        "subject": "A linha de assunto da mensagem de solicitação de contato",
+        "message": "O corpo principal da mensagem contendo a consulta detalhada do usuário"
+      }
     },
     "info": {
       "title": "Entre em Contato",

@@ -42,8 +42,85 @@ export function SearchForm({
   const passportLabelId = React.useId();
   const destinationLabelId = React.useId();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // WebMCP tool activated event listener to sync state from pre-filled DOM elements
+  React.useEffect(() => {
+    const handleToolActivated = (e: Event) => {
+      const customEvent = e as CustomEvent<{ toolName: string }> & {
+        toolName?: string;
+      };
+      const toolName = customEvent.detail?.toolName || customEvent.toolName;
+      if (toolName === "check_visa_eligibility_form") {
+        const passportInput = document.getElementsByName(
+          "passportCountry"
+        )[0] as HTMLInputElement;
+        const destinationInput = document.getElementsByName(
+          "destinationCountry"
+        )[0] as HTMLInputElement;
+        if (passportInput?.value) {
+          setPassportCountry(passportInput.value);
+        }
+        if (destinationInput?.value) {
+          setDestinationCountry(destinationInput.value);
+        }
+      }
+    };
+
+    window.addEventListener("toolactivated", handleToolActivated);
+    return () => {
+      window.removeEventListener("toolactivated", handleToolActivated);
+    };
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Cast to access WebMCP specific submit event details
+    const nativeEvent = e.nativeEvent as SubmitEvent & {
+      agentInvoked?: boolean;
+      respondWith?: (promise: Promise<unknown>) => void;
+    };
+
+    if (
+      nativeEvent.agentInvoked &&
+      typeof nativeEvent.respondWith === "function"
+    ) {
+      const fetchEligibility = async () => {
+        try {
+          const res = await fetch(
+            `/api/eligibility?passport=${encodeURIComponent(passportCountry || "")}&destination=${encodeURIComponent(destinationCountry || "")}`
+          );
+          if (!res.ok) {
+            const errData = (await res.json().catch(() => ({}))) as Record<
+              string,
+              unknown
+            >;
+            return {
+              error:
+                errData.error ||
+                `Eligibility request failed with status ${res.status}`,
+            };
+          }
+          return await res.json();
+        } catch (err) {
+          return {
+            error:
+              err instanceof Error
+                ? err.message
+                : "Failed to fetch eligibility data",
+          };
+        }
+      };
+      nativeEvent.respondWith(fetchEligibility());
+    } else {
+      // Standard human submission behavior: redirect if fields are selected
+      if (passportCountry && destinationCountry) {
+        const locale =
+          typeof document !== "undefined"
+            ? document.documentElement.lang || "en"
+            : "en";
+        window.location.href = `/${locale}/d/${destinationCountry.toLowerCase()}?passport=${passportCountry.toLowerCase()}`;
+      }
+    }
   };
 
   return (
@@ -52,7 +129,28 @@ export function SearchForm({
         <h2 className="mb-4 text-lg font-semibold text-gray-900">
           {searchTitle}
         </h2>
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          toolname="check_visa_eligibility_form"
+          tooldescription="Check visa requirements and eligibility between a passport country and destination country."
+          toolautosubmit="true"
+        >
+          {/* Declarative WebMCP parameters */}
+          <input
+            type="hidden"
+            name="passportCountry"
+            value={passportCountry}
+            onChange={e => setPassportCountry(e.target.value)}
+            toolparamdescription="The ISO 2-letter country code of the passport holder"
+          />
+          <input
+            type="hidden"
+            name="destinationCountry"
+            value={destinationCountry}
+            onChange={e => setDestinationCountry(e.target.value)}
+            toolparamdescription="The ISO 2-letter country code of the destination country"
+          />
+
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div>
               <Label

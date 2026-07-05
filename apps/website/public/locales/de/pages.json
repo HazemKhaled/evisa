@@ -18,7 +18,17 @@
       "subject_placeholder": "Kurze Beschreibung Ihrer Anfrage",
       "message_label": "Nachricht",
       "message_placeholder": "Bitte geben Sie Details zu Ihrer Anfrage an...",
-      "submit": "Nachricht senden"
+      "submit": "Nachricht senden",
+      "toolname": "submit_contact_form",
+      "tooldescription": "Senden Sie Benutzerkontaktdetails, Supportanfragen und Nachrichten.",
+      "toolautosubmit": "true",
+      "toolparamdescription": {
+        "name": "Der vollständige Name des Benutzers, der das Kontaktformular absendet",
+        "email": "Die E-Mail-Adresse des Benutzers für Antworten",
+        "phone": "Die Telefonnummer des Benutzers (optional)",
+        "subject": "Die Betreffzeile der Kontaktanfragenachricht",
+        "message": "Der Hauptnachrichtentext mit der detaillierten Anfrage des Benutzers"
+      }
     },
     "info": {
       "title": "Kontakt aufnehmen",

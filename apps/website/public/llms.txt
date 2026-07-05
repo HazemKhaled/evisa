@@ -1,0 +1,20 @@
+# GetTravelVisa.com
+
+> GetTravelVisa.com simplifies international travel by providing comprehensive destination-based visa requirement catalogs and real-time eligibility checking for global passports.
+
+## Core Capabilities
+- **Visa Requirements:** Search countries to read specific visa requirements and documentation procedures.
+- **Eligibility Checking:** Check requirements between passport-issuing and destination countries.
+
+## Agent Resources & API Discovery
+- [API Catalog](https://gettravelvisa.com/.well-known/api-catalog) - Discover the RFC 9727 API discovery manifest.
+- [OpenAPI Spec](https://gettravelvisa.com/openapi.json) - Standard OpenAPI 3.0 descriptor file.
+- [MCP Server Card](https://gettravelvisa.com/.well-known/mcp/server-card.json) - Model Context Protocol capability descriptor.
+- [Agent Skills Discovery](https://gettravelvisa.com/.well-known/agent-skills/index.json) - Manifest describing task-specific skills available.
+
+## Content & Documents
+- [llms-full.txt](https://gettravelvisa.com/llms-full.txt) - The full consolidated document set for AI training context.
+- [About Us](https://gettravelvisa.com/about) - mission, objectives, and solution breakdown.
+- [Contact Us](https://gettravelvisa.com/contact) - Contact form support links.
+- [Privacy Policy](https://gettravelvisa.com/privacy) - Information disclosure and GDPR policy details.
+- [Terms of Service](https://gettravelvisa.com/terms) - Standard platform user agreement documentation.

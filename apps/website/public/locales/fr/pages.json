@@ -18,7 +18,17 @@
       "subject_placeholder": "Brève description de votre demande",
       "message_label": "Message",
       "message_placeholder": "Veuillez fournir des détails sur votre demande...",
-      "submit": "Envoyer le message"
+      "submit": "Envoyer le message",
+      "toolname": "submit_contact_form",
+      "tooldescription": "Soumettre les coordonnées de l'utilisateur, les demandes d'assistance et les messages.",
+      "toolautosubmit": "true",
+      "toolparamdescription": {
+        "name": "Le nom complet de l'utilisateur soumettant le formulaire de contact",
+        "email": "L'adresse e-mail de l'utilisateur pour les réponses",
+        "phone": "Le numéro de téléphone de l'utilisateur (facultatif)",
+        "subject": "L'objet du message de demande de contact",
+        "message": "Le corps principal du message contenant la demande détaillée de l'utilisateur"
+      }
     },
     "info": {
       "title": "Entrer en contact",

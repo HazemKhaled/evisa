@@ -56,11 +56,7 @@ export interface VisaTypeWithI18n {
  * Visa eligibility status for passport-destination combinations
  */
 export type EligibilityStatus =
-  | "required"
-  | "visa_free"
-  | "on_arrival"
-  | "eta"
-  | "not_allowed";
+  "required" | "visa_free" | "on_arrival" | "eta" | "not_allowed";
 
 /**
  * Visa eligibility information for a specific passport-destination combination

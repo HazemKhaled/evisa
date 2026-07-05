@@ -18,7 +18,17 @@
       "subject_placeholder": "Breve descripción de tu consulta",
       "message_label": "Mensaje",
       "message_placeholder": "Por favor proporciona detalles sobre tu consulta...",
-      "submit": "Enviar Mensaje"
+      "submit": "Enviar Mensaje",
+      "toolname": "submit_contact_form",
+      "tooldescription": "Enviar detalles de contacto del usuario, solicitudes de soporte y mensajes.",
+      "toolautosubmit": "true",
+      "toolparamdescription": {
+        "name": "El nombre completo del usuario que envía el formulario de contacto",
+        "email": "La dirección de correo electrónico del usuario para respuestas",
+        "phone": "El número de teléfono del usuario (opcional)",
+        "subject": "La línea de asunto del mensaje de solicitud de contacto",
+        "message": "El cuerpo principal del mensaje que contiene la consulta detallada del usuario"
+      }
     },
     "info": {
       "title": "Ponte en Contacto",
