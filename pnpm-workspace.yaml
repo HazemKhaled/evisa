@@ -1,6 +1,7 @@
 packages:
   - apps/*
   - packages/*
+auditConfig: {}
 
 onlyBuiltDependencies:
   - "@clerk/shared"
