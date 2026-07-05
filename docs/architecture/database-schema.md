@@ -193,11 +193,7 @@ interface VisaEligibility {
   passportId: number; // What passport you hold
   visaTypeId: number; // Which visa type applies
   eligibilityStatus:
-    | "required"
-    | "visa_free"
-    | "on_arrival"
-    | "eta"
-    | "not_allowed";
+    "required" | "visa_free" | "on_arrival" | "eta" | "not_allowed";
   maxStayDays: number | null; // For visa-free or visa-on-arrival
   lastUpdated: Date;
   isActive: boolean;

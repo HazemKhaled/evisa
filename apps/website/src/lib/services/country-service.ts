@@ -418,10 +418,7 @@ export async function getDestinationsListWithMetadata(
   locale: string,
   limit = 20,
   sortBy:
-    | "popular"
-    | "alphabetical"
-    | "processing_time"
-    | "visa_fee" = "popular",
+    "popular" | "alphabetical" | "processing_time" | "visa_fee" = "popular",
   continent?: string
 ): Promise<DestinationMetadata[]> {
   const cachedFn = unstable_cache(

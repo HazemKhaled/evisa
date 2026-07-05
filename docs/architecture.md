@@ -302,10 +302,7 @@ interface VisaEligibility {
   destinationId: string;
   visaTypeId: string;
   eligibilityStatus:
-    | "visa_free"
-    | "visa_on_arrival"
-    | "visa_required"
-    | "not_allowed";
+    "visa_free" | "visa_on_arrival" | "visa_required" | "not_allowed";
   maxStayDays: number | null;
   notes: string | null;
   isActive: boolean;
