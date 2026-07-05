@@ -53,8 +53,9 @@
 **Background Context**: The platform has solid technical foundations with internationalization, database schema, and UI components implemented. However, the core business functionality - the destination catalog with visa eligibility checking - remains incomplete. The enhancement bridges the gap between technical foundation and business value delivery, transforming the platform from a static homepage into a comprehensive visa intelligence platform.
 
 **Change Log**:
-| Change | Date | Version | Description | Author |
-|--------|------|---------|-------------|---------|
-| Initial Foundation | Sep 2024 | v0.1.0 | Next.js platform with i18n and basic UI | Development Team |
+
+| Change             | Date     | Version | Description                             | Author           |
+| ------------------ | -------- | ------- | --------------------------------------- | ---------------- |
+| Initial Foundation | Sep 2024 | v0.1.0  | Next.js platform with i18n and basic UI | Development Team |
 
 ---
