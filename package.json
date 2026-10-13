@@ -65,14 +65,14 @@
     "eslint-plugin-simple-import-sort": "13.0.0",
     "globals": "17.7.0",
     "husky": "9.1.7",
-    "jest": "30.4.2",
-    "jest-environment-jsdom": "30.4.1",
+    "jest": "30.5.2",
+    "jest-environment-jsdom": "30.5.2",
     "lint-staged": "17.0.8",
     "prettier": "3.9.4",
     "prettier-plugin-tailwindcss": "0.8.0",
     "shadcn": "3.8.5",
     "tailwindcss": "4.3.2",
-    "ts-jest": "29.4.11",
+    "ts-jest": "29.4.14",
     "typescript": "5.9.3",
     "wrangler": "4.107.0"
   }
