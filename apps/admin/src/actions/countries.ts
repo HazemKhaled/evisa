@@ -18,6 +18,7 @@ import { type PaginatedResult } from "@repo/utils";
 import { revalidatePath } from "next/cache";
 
 import { type ActionResult, handleActionError } from "@/lib/errors";
+import { invalidatePublicDestinations } from "@/lib/public-site-cache";
 
 interface CountryI18nData {
   locale: string;
@@ -159,6 +160,7 @@ export async function createCountry(
     }
 
     revalidatePath("/countries");
+    invalidatePublicDestinations();
     return { success: true };
   } catch (error) {
     return handleActionError(error, "Failed to create country");
@@ -205,6 +207,7 @@ export async function updateCountry(
     }
 
     revalidatePath("/countries");
+    invalidatePublicDestinations();
     return { success: true };
   } catch (error) {
     return handleActionError(error, "Failed to update country");
@@ -229,6 +232,7 @@ export async function deleteCountry(code: string): Promise<ActionResult> {
       .where(eq(countries.code, code));
 
     revalidatePath("/countries");
+    invalidatePublicDestinations();
     return { success: true };
   } catch (error) {
     return handleActionError(error, "Failed to delete country");

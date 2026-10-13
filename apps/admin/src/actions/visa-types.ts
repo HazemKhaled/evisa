@@ -19,6 +19,7 @@ import { type PaginatedResult } from "@repo/utils";
 import { revalidatePath } from "next/cache";
 
 import { type ActionResult, handleActionError } from "@/lib/errors";
+import { invalidatePublicVisaTypes } from "@/lib/public-site-cache";
 
 interface VisaTypeI18nData {
   locale: string;
@@ -179,6 +180,7 @@ export async function createVisaType(
     }
 
     revalidatePath("/visa-types");
+    invalidatePublicVisaTypes();
     return { success: true };
   } catch (error) {
     return handleActionError(error, "Failed to create visa type");
@@ -231,6 +233,7 @@ export async function updateVisaType(
     }
 
     revalidatePath("/visa-types");
+    invalidatePublicVisaTypes();
     return { success: true };
   } catch (error) {
     return handleActionError(error, "Failed to update visa type");
@@ -255,6 +258,7 @@ export async function deleteVisaType(id: number): Promise<ActionResult> {
       .where(eq(visaTypes.id, id));
 
     revalidatePath("/visa-types");
+    invalidatePublicVisaTypes();
     return { success: true };
   } catch (error) {
     return handleActionError(error, "Failed to delete visa type");
