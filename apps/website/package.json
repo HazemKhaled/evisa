@@ -18,7 +18,7 @@
     "test:ci": "jest --ci --coverage"
   },
   "dependencies": {
-    "@next/third-parties": "16.2.10",
+    "@next/third-parties": "16.4.3",
     "@repo/database": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
@@ -33,7 +33,7 @@
     "remark-gfm": "4.0.1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "16.2.10",
+    "@next/bundle-analyzer": "16.4.3",
     "@repo/typescript-config": "workspace:*"
   }
 }

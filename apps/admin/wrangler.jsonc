@@ -70,4 +70,28 @@
   // "images": {
   //   "binding": "IMAGES",
   // },
+
+  /**
+   * Workers Previews (`wrangler preview`) never inherit the top-level config, so
+   * every binding the Worker reads from `env` has to be repeated here against a
+   * Preview-safe resource. Pointing these at the production cache would let a
+   * branch Preview write into the live ISR/R2/D1 cache. The D1 database is
+   * shared with the website's Preview so cross-worker invalidation still works
+   * between the two Preview workers.
+   */
+  "previews": {
+    "d1_databases": [
+      {
+        "binding": "NEXT_TAG_CACHE_D1",
+        "database_name": "gtv-opennext-cache-preview",
+        "database_id": "27f97493-ed99-4b66-8cb8-22d7ba72098b",
+      },
+    ],
+    "r2_buckets": [
+      {
+        "binding": "NEXT_INC_CACHE_R2_BUCKET",
+        "bucket_name": "gtv-admin-cache-preview",
+      },
+    ],
+  },
 }
