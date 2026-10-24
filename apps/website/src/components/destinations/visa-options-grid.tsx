@@ -1,9 +1,14 @@
 import { cn } from "@repo/utils";
 
 import { getTranslation } from "@/app/i18n";
-import type { DestinationWithVisaTypes } from "@/lib/services/country-service";
+import {
+  type DestinationWithVisaTypes,
+  getCountriesByCodes,
+} from "@/lib/services/country-service";
 import type { VisaRequirements } from "@/lib/services/visa-service";
+import { toCountryPills } from "@/lib/utils/country-pill";
 
+import { CountryPillList } from "./country-pill-list";
 import { VisaTypeDetailCard } from "./visa-type-detail-card";
 
 interface VisaOptionsGridProps {
@@ -11,6 +16,32 @@ interface VisaOptionsGridProps {
   visaRequirements: VisaRequirements | null;
   locale: string;
   className?: string;
+}
+
+/**
+ * Resolves the passport codes in the eligibility lists to localized country
+ * names so a traveller sees "🇫🇷 France" instead of a bare ISO code.
+ */
+async function getLocalizedCountryNames(
+  requirements: VisaRequirements,
+  locale: string
+): Promise<Map<string, string>> {
+  const codes = [
+    ...new Set([
+      ...requirements.visaFreeCountries,
+      ...requirements.visaOnArrivalCountries,
+    ]),
+  ];
+
+  if (codes.length === 0) {
+    return new Map();
+  }
+
+  const countries = await getCountriesByCodes(codes, locale);
+
+  return new Map(
+    countries.map(country => [country.code, country.localizedName])
+  );
 }
 
 export async function VisaOptionsGrid({
@@ -51,6 +82,10 @@ export async function VisaOptionsGrid({
       </div>
     );
   }
+
+  const countryNames = visaRequirements
+    ? await getLocalizedCountryNames(visaRequirements, locale)
+    : new Map<string, string>();
 
   return (
     <div className={cn("space-y-8", className)}>
@@ -125,24 +160,15 @@ export async function VisaOptionsGrid({
               <h3 className="text-lg font-semibold text-green-600">
                 {t("visaFreeCountriesTitle")}
               </h3>
-              <div className="flex flex-wrap gap-2">
-                {visaRequirements.visaFreeCountries
-                  .slice(0, 10)
-                  .map(country => (
-                    <span
-                      key={country}
-                      className="rounded-full bg-green-100 px-3 py-1 text-sm text-green-800"
-                    >
-                      {country}
-                    </span>
-                  ))}
-                {visaRequirements.visaFreeCountries.length > 10 && (
-                  <span className="rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-800">
-                    +{visaRequirements.visaFreeCountries.length - 10}{" "}
-                    {t("more")}
-                  </span>
+              <CountryPillList
+                countries={toCountryPills(
+                  visaRequirements.visaFreeCountries,
+                  countryNames
                 )}
-              </div>
+                tone="green"
+                moreLabel={t("more")}
+                lessLabel={t("less")}
+              />
             </div>
           )}
 
@@ -152,24 +178,15 @@ export async function VisaOptionsGrid({
               <h3 className="text-lg font-semibold text-blue-600">
                 {t("visaOnArrivalTitle")}
               </h3>
-              <div className="flex flex-wrap gap-2">
-                {visaRequirements.visaOnArrivalCountries
-                  .slice(0, 10)
-                  .map(country => (
-                    <span
-                      key={country}
-                      className="rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-800"
-                    >
-                      {country}
-                    </span>
-                  ))}
-                {visaRequirements.visaOnArrivalCountries.length > 10 && (
-                  <span className="rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-800">
-                    +{visaRequirements.visaOnArrivalCountries.length - 10}{" "}
-                    {t("more")}
-                  </span>
+              <CountryPillList
+                countries={toCountryPills(
+                  visaRequirements.visaOnArrivalCountries,
+                  countryNames
                 )}
-              </div>
+                tone="blue"
+                moreLabel={t("more")}
+                lessLabel={t("less")}
+              />
             </div>
           )}
         </div>

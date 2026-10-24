@@ -29,7 +29,8 @@
     "visaFreeCountries": "Безвизовые страны",
     "visaFreeCountriesTitle": "Безвизовый въезд",
     "visaOnArrivalTitle": "Виза по прибытии",
-    "more": "больше"
+    "more": "больше",
+    "less": "Показать меньше"
   },
   "visaCard": {
     "multiEntry": "Многократная",

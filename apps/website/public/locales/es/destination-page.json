@@ -29,7 +29,8 @@
     "visaFreeCountries": "Países sin Visa",
     "visaFreeCountriesTitle": "Entrada sin Visa",
     "visaOnArrivalTitle": "Visa al Llegar",
-    "more": "más"
+    "more": "más",
+    "less": "Mostrar menos"
   },
   "visaCard": {
     "multiEntry": "Entrada Múltiple",

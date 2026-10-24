@@ -14,7 +14,7 @@ export default function ErrorActions({
   reset,
   showBrowseDestinations = false,
 }: ErrorActionsProps) {
-  const { t } = useTranslation("error", locale);
+  const { t } = useTranslation(locale, "common");
 
   return (
     <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
