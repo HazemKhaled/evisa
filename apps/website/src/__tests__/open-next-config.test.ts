@@ -4,6 +4,8 @@ import { withRegionalCache } from "@opennextjs/cloudflare/overrides/incremental-
 import doQueue from "@opennextjs/cloudflare/overrides/queue/do-queue";
 import queueCache from "@opennextjs/cloudflare/overrides/queue/queue-cache";
 import d1NextTagCache from "@opennextjs/cloudflare/overrides/tag-cache/d1-next-tag-cache";
+import fs from "fs";
+import path from "path";
 
 import rawConfig from "../../open-next.config";
 
@@ -79,5 +81,30 @@ describe("open-next.config", () => {
     expect(config.tagCache).toBe(d1NextTagCache);
     expect(config.enableCacheInterception).toBe(true);
     expect(defineCloudflareConfig).toHaveBeenCalledTimes(1);
+  });
+
+  it("includes the D1 revalidations stale/expire schema migrations", () => {
+    const migrationsDir = path.resolve(__dirname, "../../migrations");
+    const createSql = fs.readFileSync(
+      path.join(migrationsDir, "0000_create_revalidations.sql"),
+      "utf-8"
+    );
+    const alterSql = fs.readFileSync(
+      path.join(
+        migrationsDir,
+        "0001_add_stale_and_expire_to_revalidations.sql"
+      ),
+      "utf-8"
+    );
+
+    expect(createSql).toContain("CREATE TABLE IF NOT EXISTS revalidations");
+    expect(createSql).toContain("stale INTEGER");
+    expect(createSql).toContain("expire INTEGER default NULL");
+    expect(alterSql).toContain(
+      "ALTER TABLE revalidations ADD COLUMN stale INTEGER;"
+    );
+    expect(alterSql).toContain(
+      "ALTER TABLE revalidations ADD COLUMN expire INTEGER default NULL;"
+    );
   });
 });
