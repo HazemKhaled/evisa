@@ -69,7 +69,7 @@ export function MobileNav({
                         asChild
                         className={cn(
                           navigationMenuTriggerStyle(),
-                          "w-full justify-start text-left"
+                          "w-full justify-start text-start"
                         )}
                       >
                         <Link

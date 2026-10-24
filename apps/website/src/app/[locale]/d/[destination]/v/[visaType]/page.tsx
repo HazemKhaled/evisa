@@ -328,7 +328,7 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
                     key={idx}
                     className="flex items-start rounded-lg border border-gray-200 bg-white p-4"
                   >
-                    <span className="mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
+                    <span className="me-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
                       <span className="text-sm font-semibold text-blue-600">
                         ✓
                       </span>
@@ -352,7 +352,7 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
                     key={idx}
                     className="flex items-start rounded-lg border border-gray-200 bg-white p-4"
                   >
-                    <span className="mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
+                    <span className="me-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
                       <span className="text-sm font-semibold text-blue-600">
                         📄
                       </span>

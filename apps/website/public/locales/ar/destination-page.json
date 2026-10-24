@@ -29,7 +29,8 @@
     "visaFreeCountries": "دول بدون تأشيرة",
     "visaFreeCountriesTitle": "دخول بدون تأشيرة",
     "visaOnArrivalTitle": "تأشيرة عند الوصول",
-    "more": "أكثر"
+    "more": "أكثر",
+    "less": "عرض أقل"
   },
   "visaCard": {
     "multiEntry": "متعددة الدخول",

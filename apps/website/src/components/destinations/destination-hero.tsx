@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { getTranslation } from "@/app/i18n";
 import type { DestinationWithVisaTypes } from "@/lib/services/country-service";
+import { getCountryFlagEmoji } from "@/lib/utils/visa-type-utils";
 
 interface DestinationHeroProps {
   destination: DestinationWithVisaTypes;
@@ -60,8 +61,11 @@ export async function DestinationHero({
 
         {/* Country Flag */}
         <div className="absolute end-6 top-6">
-          <div className="flex h-12 w-16 items-center justify-center rounded-sm bg-white shadow-lg">
-            <span className="text-2xl font-bold text-gray-800">
+          <div className="flex h-12 w-16 flex-col items-center justify-center gap-0.5 rounded-sm bg-white shadow-lg">
+            <span className="text-xl leading-none" aria-hidden="true">
+              {getCountryFlagEmoji(destination.code)}
+            </span>
+            <span className="text-xs font-bold tracking-wide text-gray-800">
               {destination.code}
             </span>
           </div>

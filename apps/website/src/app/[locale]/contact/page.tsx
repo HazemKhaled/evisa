@@ -226,7 +226,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                   {t("contact.info.title")}
                 </h2>
                 <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100">
                       <span className="text-lg text-blue-600">📧</span>
                     </div>
@@ -243,7 +243,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100">
                       <span className="text-lg text-blue-600">📞</span>
                     </div>
@@ -260,7 +260,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-3">
+                  <div className="flex items-start gap-3">
                     <div className="mt-1 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100">
                       <span className="text-lg text-blue-600">📍</span>
                     </div>
@@ -274,7 +274,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-3">
+                  <div className="flex items-start gap-3">
                     <div className="mt-1 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100">
                       <span className="text-lg text-blue-600">🕒</span>
                     </div>
