@@ -8,7 +8,8 @@
       "@repo/database": ["../../packages/database/src"],
       "@repo/ui": ["../../packages/ui/src"],
       "@repo/utils": ["../../packages/utils/src"]
-    }
+    },
+    "types": ["node", "jest"]
   },
   "include": [
     "next-env.d.ts",

@@ -52,6 +52,18 @@
       "bucket_name": "gtv-admin-cache",
     },
   ],
+  "d1_databases": [
+    // Next tag cache (Next mode).
+    // This is the same database the website worker uses at
+    // `apps/website/wrangler.jsonc`; sharing it is what lets a publish here
+    // invalidate the public site's ISR entries. Required by the
+    // `revalidatePath` calls in `src/actions`.
+    {
+      "binding": "NEXT_TAG_CACHE_D1",
+      "database_id": "ee88ce2e-ccd0-4322-ad0d-5aad6446693f",
+      "database_name": "gtv-opennext-cache",
+    },
+  ],
   // "images": {
   //   "binding": "IMAGES",
   // },

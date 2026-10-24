@@ -21,6 +21,7 @@ import { type PaginatedResult } from "@repo/utils";
 import { revalidatePath } from "next/cache";
 
 import { type ActionResult, handleActionError } from "@/lib/errors";
+import { invalidatePublicBlog } from "@/lib/public-site-cache";
 
 interface BlogPostI18nData {
   locale: string;
@@ -188,6 +189,7 @@ export async function createBlogPost(
     }
 
     revalidatePath("/blog-posts");
+    invalidatePublicBlog();
     return { success: true };
   } catch (error) {
     return handleActionError(error, "Failed to create blog post");
@@ -245,6 +247,7 @@ export async function updateBlogPost(
     }
 
     revalidatePath("/blog-posts");
+    invalidatePublicBlog();
     return { success: true };
   } catch (error) {
     return handleActionError(error, "Failed to update blog post");
@@ -269,6 +272,7 @@ export async function deleteBlogPost(id: number): Promise<ActionResult> {
       .where(eq(blogPosts.id, id));
 
     revalidatePath("/blog-posts");
+    invalidatePublicBlog();
     return { success: true };
   } catch (error) {
     return handleActionError(error, "Failed to delete blog post");
