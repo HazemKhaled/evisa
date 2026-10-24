@@ -33,12 +33,14 @@ export function searchBlogPostsClient(
     const title = post.title?.toLowerCase() || "";
     const description = post.description?.toLowerCase() || "";
     const content = post.content?.toLowerCase() || "";
+    const author = post.author?.toLowerCase() || "";
     const tags = (post.tags || []).join(" ").toLowerCase();
 
     return (
       title.includes(searchTerm) ||
       description.includes(searchTerm) ||
       content.includes(searchTerm) ||
+      author.includes(searchTerm) ||
       tags.includes(searchTerm)
     );
   });
@@ -107,8 +109,11 @@ export function filterBlogPostsByDestinationClient(
   destination: string,
   limit?: number
 ): BlogPostData[] {
+  const normalizedDestination = destination.toUpperCase();
   let filtered = posts.filter((post: BlogPostData) =>
-    post.destinations?.some((dest: string) => dest === destination)
+    post.destinations?.some(
+      (dest: string) => dest.toUpperCase() === normalizedDestination
+    )
   );
 
   // Sort by publication date (newest first)

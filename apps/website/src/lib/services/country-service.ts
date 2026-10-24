@@ -57,9 +57,9 @@ function validateSortBy(
 /**
  * Validate limit parameter
  */
-function validateLimit(limit: number): number {
+function validateLimit(limit: number, maxLimit = 100): number {
   if (!limit || typeof limit !== "number" || limit < 1) return 20;
-  return Math.min(Math.max(1, Math.floor(limit)), 100); // Max 100 results
+  return Math.min(Math.max(1, Math.floor(limit)), maxLimit);
 }
 
 /**
@@ -568,186 +568,201 @@ export async function getDestinationsListWithMetadataPaginated(
   search?: string,
   continent?: string
 ): Promise<PaginatedDestinationsResponse> {
-  // Validate and sanitize input
-  const validatedLimit = validateLimit(limit);
+  const validatedLimit = validateLimit(limit, 500);
   const validatedOffset = Math.max(0, Math.floor(offset));
   const validatedSortBy = validateSortBy(sortBy || "popular");
 
-  try {
-    const db = getDb();
+  const cachedFn = unstable_cache(
+    async (): Promise<PaginatedDestinationsResponse> => {
+      try {
+        const db = getDb();
 
-    // Build base where conditions - array of SQL expressions for filtering
-    const baseWhereConditions: Parameters<typeof and> = [
-      eq(countries.isActive, true),
-      isNull(countries.deletedAt),
-      // Only include countries that have either visa types OR visa-free options
-      or(
-        exists(
-          db
-            .select({ one: sql`1` })
-            .from(visaTypes)
-            .where(
-              and(
-                eq(visaTypes.destinationCode, countries.code),
-                eq(visaTypes.isActive, true),
-                isNull(visaTypes.deletedAt)
-              )
+        // Build base where conditions - array of SQL expressions for filtering
+        const baseWhereConditions: Parameters<typeof and> = [
+          eq(countries.isActive, true),
+          isNull(countries.deletedAt),
+          // Only include countries that have either visa types OR visa-free options
+          or(
+            exists(
+              db
+                .select({ one: sql`1` })
+                .from(visaTypes)
+                .where(
+                  and(
+                    eq(visaTypes.destinationCode, countries.code),
+                    eq(visaTypes.isActive, true),
+                    isNull(visaTypes.deletedAt)
+                  )
+                )
+            ),
+            exists(
+              db
+                .select({ one: sql`1` })
+                .from(visaEligibility)
+                .where(
+                  and(
+                    eq(visaEligibility.destinationCode, countries.code),
+                    inArray(visaEligibility.eligibilityStatus, [
+                      "visa_free",
+                      "on_arrival",
+                    ]),
+                    eq(visaEligibility.isActive, true),
+                    isNull(visaEligibility.deletedAt)
+                  )
+                )
             )
-        ),
-        exists(
-          db
-            .select({ one: sql`1` })
-            .from(visaEligibility)
-            .where(
-              and(
-                eq(visaEligibility.destinationCode, countries.code),
-                inArray(visaEligibility.eligibilityStatus, [
-                  "visa_free",
-                  "on_arrival",
-                ]),
-                eq(visaEligibility.isActive, true),
-                isNull(visaEligibility.deletedAt)
-              )
+          ),
+        ];
+
+        // Add search filter
+        if (search?.trim()) {
+          const searchTerm = `%${search.trim().toLowerCase()}%`;
+          baseWhereConditions.push(
+            or(
+              sql`LOWER(${countriesI18n.name}) LIKE ${searchTerm}`,
+              sql`LOWER(${countries.code}) LIKE ${searchTerm}`
             )
-        )
-      ),
-    ];
+          );
+        }
 
-    // Add search filter
-    if (search?.trim()) {
-      const searchTerm = `%${search.trim().toLowerCase()}%`;
-      baseWhereConditions.push(
-        or(
-          sql`LOWER(${countriesI18n.name}) LIKE ${searchTerm}`,
-          sql`LOWER(${countries.code}) LIKE ${searchTerm}`
-        )
-      );
-    }
+        // Add continent filter
+        if (continent && continent.toLowerCase() !== "all") {
+          baseWhereConditions.push(
+            sql`LOWER(${countries.continent}) = ${continent.toLowerCase()}`
+          );
+        }
 
-    // Add continent filter
-    if (continent && continent.toLowerCase() !== "all") {
-      baseWhereConditions.push(
-        sql`LOWER(${countries.continent}) = ${continent.toLowerCase()}`
-      );
-    }
-
-    // Get total count first
-    const totalCountQuery = db
-      .select({ total: sql<number>`COUNT(DISTINCT ${countries.code})` })
-      .from(countries)
-      .leftJoin(
-        countriesI18n,
-        and(
-          eq(countries.code, countriesI18n.countryCode),
-          eq(countriesI18n.locale, locale)
-        )
-      )
-      .where(and(...baseWhereConditions));
-
-    const [totalCountResults, results] = await Promise.all([
-      totalCountQuery,
-      db
-        .select({
-          code: countries.code,
-          name: countries.code,
-          localizedName: countriesI18n.name,
-          heroImage: countries.heroImage,
-          about: countriesI18n.about,
-          continent: countries.continent,
-          region: countries.region,
-        })
-        .from(countries)
-        .leftJoin(
-          countriesI18n,
-          and(
-            eq(countries.code, countriesI18n.countryCode),
-            eq(countriesI18n.locale, locale)
+        // Get total count first
+        const totalCountQuery = db
+          .select({ total: sql<number>`COUNT(DISTINCT ${countries.code})` })
+          .from(countries)
+          .leftJoin(
+            countriesI18n,
+            and(
+              eq(countries.code, countriesI18n.countryCode),
+              eq(countriesI18n.locale, locale)
+            )
           )
-        )
-        .where(and(...baseWhereConditions))
-        .orderBy(countries.code)
-        .limit(validatedLimit)
-        .offset(validatedOffset),
-    ]);
-    const total = Number(totalCountResults[0]?.total ?? 0);
+          .where(and(...baseWhereConditions));
 
-    // Calculate pagination info
-    const currentPage = Math.floor(validatedOffset / validatedLimit) + 1;
-    const totalPages = Math.ceil(total / validatedLimit);
-    const hasMore = validatedOffset + validatedLimit < total;
+        const [totalCountResults, results] = await Promise.all([
+          totalCountQuery,
+          db
+            .select({
+              code: countries.code,
+              name: countries.code,
+              localizedName: countriesI18n.name,
+              heroImage: countries.heroImage,
+              about: countriesI18n.about,
+              continent: countries.continent,
+              region: countries.region,
+            })
+            .from(countries)
+            .leftJoin(
+              countriesI18n,
+              and(
+                eq(countries.code, countriesI18n.countryCode),
+                eq(countriesI18n.locale, locale)
+              )
+            )
+            .where(and(...baseWhereConditions))
+            .orderBy(countries.code)
+            .limit(validatedLimit)
+            .offset(validatedOffset),
+        ]);
+        const total = Number(totalCountResults[0]?.total ?? 0);
 
-    const destinationCodes = results.map(destination => destination.code);
-    const { visaStatsMap, visaFreeSet } = await getVisaStatsForDestinations(
-      db,
-      destinationCodes
-    );
+        // Calculate pagination info
+        const currentPage = Math.floor(validatedOffset / validatedLimit) + 1;
+        const totalPages = Math.ceil(total / validatedLimit);
+        const hasMore = validatedOffset + validatedLimit < total;
 
-    const destinationsWithStats = results.map(destination => {
-      const stats = visaStatsMap.get(destination.code);
-      return {
-        code: destination.code,
-        name: destination.name,
-        localizedName: destination.localizedName || destination.name,
-        heroImage: destination.heroImage,
-        about: destination.about,
-        continent: destination.continent,
-        region: destination.region,
-        totalVisaTypes: stats?.totalVisaTypes ?? 0,
-        avgProcessingTime: stats?.avgProcessingTime ?? 0,
-        minVisaFee: stats?.minFee ?? 0,
-        hasVisaFreeOptions: visaFreeSet.has(destination.code),
-      };
-    });
-
-    // Apply sorting
-    let sortedDestinations: DestinationMetadata[];
-    switch (validatedSortBy) {
-      case "alphabetical":
-        sortedDestinations = destinationsWithStats.sort((a, b) =>
-          a.localizedName.localeCompare(b.localizedName, locale)
+        const destinationCodes = results.map(destination => destination.code);
+        const { visaStatsMap, visaFreeSet } = await getVisaStatsForDestinations(
+          db,
+          destinationCodes
         );
-        break;
-      case "processing_time":
-        sortedDestinations = destinationsWithStats.sort(
-          (a, b) => a.avgProcessingTime - b.avgProcessingTime
-        );
-        break;
-      case "visa_fee":
-        sortedDestinations = destinationsWithStats.sort(
-          (a, b) => a.minVisaFee - b.minVisaFee
-        );
-        break;
-      case "popular":
-      default:
-        // Sort by visa-free options first, then by total visa types
-        sortedDestinations = destinationsWithStats.sort((a, b) => {
-          if (a.hasVisaFreeOptions && !b.hasVisaFreeOptions) return -1;
-          if (!a.hasVisaFreeOptions && b.hasVisaFreeOptions) return 1;
-          return b.totalVisaTypes - a.totalVisaTypes;
+
+        const destinationsWithStats = results.map(destination => {
+          const stats = visaStatsMap.get(destination.code);
+          return {
+            code: destination.code,
+            name: destination.name,
+            localizedName: destination.localizedName || destination.name,
+            heroImage: destination.heroImage,
+            about: destination.about,
+            continent: destination.continent,
+            region: destination.region,
+            totalVisaTypes: stats?.totalVisaTypes ?? 0,
+            avgProcessingTime: stats?.avgProcessingTime ?? 0,
+            minVisaFee: stats?.minFee ?? 0,
+            hasVisaFreeOptions: visaFreeSet.has(destination.code),
+          };
         });
-        break;
-    }
 
-    return {
-      destinations: sortedDestinations,
-      total,
-      hasMore,
-      currentPage,
-      totalPages,
-    };
-  } catch (error) {
-    console.error(
-      `Failed to get paginated destinations list for locale ${locale}:`,
-      error
-    );
-    return {
-      destinations: [],
-      total: 0,
-      hasMore: false,
-      currentPage: 1,
-      totalPages: 0,
-    };
-  }
+        // Apply sorting
+        let sortedDestinations: DestinationMetadata[];
+        switch (validatedSortBy) {
+          case "alphabetical":
+            sortedDestinations = destinationsWithStats.sort((a, b) =>
+              a.localizedName.localeCompare(b.localizedName, locale)
+            );
+            break;
+          case "processing_time":
+            sortedDestinations = destinationsWithStats.sort(
+              (a, b) => a.avgProcessingTime - b.avgProcessingTime
+            );
+            break;
+          case "visa_fee":
+            sortedDestinations = destinationsWithStats.sort(
+              (a, b) => a.minVisaFee - b.minVisaFee
+            );
+            break;
+          case "popular":
+          default:
+            // Sort by visa-free options first, then by total visa types
+            sortedDestinations = destinationsWithStats.sort((a, b) => {
+              if (a.hasVisaFreeOptions && !b.hasVisaFreeOptions) return -1;
+              if (!a.hasVisaFreeOptions && b.hasVisaFreeOptions) return 1;
+              return b.totalVisaTypes - a.totalVisaTypes;
+            });
+            break;
+        }
+
+        return {
+          destinations: sortedDestinations,
+          total,
+          hasMore,
+          currentPage,
+          totalPages,
+        };
+      } catch (error) {
+        console.error(
+          `Failed to get paginated destinations list for locale ${locale}:`,
+          error
+        );
+        return {
+          destinations: [],
+          total: 0,
+          hasMore: false,
+          currentPage: 1,
+          totalPages: 0,
+        };
+      }
+    },
+    [
+      "destinations-paginated",
+      locale,
+      validatedLimit.toString(),
+      validatedOffset.toString(),
+      validatedSortBy,
+      search ?? "",
+      continent ?? "all",
+    ],
+    { tags: ["destinations", `destinations-${locale}`], revalidate: 86400 }
+  );
+
+  return cachedFn();
 }
 
 /**

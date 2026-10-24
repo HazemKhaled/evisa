@@ -14,6 +14,20 @@ if (typeof globalThis.TextDecoder === "undefined") {
     TextDecoder as unknown as typeof globalThis.TextDecoder;
 }
 
+if (typeof globalThis.IntersectionObserver === "undefined") {
+  globalThis.IntersectionObserver = class IntersectionObserver {
+    readonly root: Element | null = null;
+    readonly rootMargin: string = "";
+    readonly thresholds: readonly number[] = [];
+    observe = jest.fn();
+    unobserve = jest.fn();
+    disconnect = jest.fn();
+    takeRecords(): IntersectionObserverEntry[] {
+      return [];
+    }
+  };
+}
+
 // Mock next/navigation
 jest.mock("next/navigation", () => ({
   useRouter() {
