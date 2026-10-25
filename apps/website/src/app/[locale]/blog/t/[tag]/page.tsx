@@ -8,10 +8,8 @@ import { generateAlternatesMetadata } from "@/lib/utils";
 
 import BlogHome from "../../page";
 
-// Enable ISR with daily revalidation for tag pages
-export const revalidate = 86400; // 24 hours
+export const revalidate = 86400;
 
-// Generate static params for basic tag routes only
 export async function generateStaticParams(): Promise<
   { locale: string; tag: string }[]
 > {
@@ -20,7 +18,6 @@ export async function generateStaticParams(): Promise<
   const params = [];
   for (const currentLocale of languages) {
     for (const tag of allTags) {
-      // Base tag route only
       params.push({ locale: currentLocale, tag });
     }
   }

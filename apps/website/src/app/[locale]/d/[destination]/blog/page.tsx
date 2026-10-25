@@ -24,8 +24,7 @@ import { getDestinationsListWithMetadata } from "@/lib/services/country-service"
 import type { BlogPostData, PaginatedBlogResponse } from "@/lib/types/blog";
 import { generateAlternatesMetadata } from "@/lib/utils";
 
-// Required when use static generation with search params
-export const revalidate = 86400; // Revalidate every day
+export const revalidate = 86400;
 
 const EMPTY_PAGINATED_RESPONSE: PaginatedBlogResponse = {
   posts: [],
@@ -44,18 +43,15 @@ interface DestinationBlogProps {
   }>;
 }
 
-// Pre-build top 10 destinations per locale at build time for destination blog pages
 export async function generateStaticParams(): Promise<
   { locale: string; destination: string }[]
 > {
-  // Get top 10 popular destinations for SSG
   const popularDestinations = await getDestinationsListWithMetadata(
     "en",
     10,
     "popular"
   ).catch(() => []);
 
-  // Generate params for each popular destination in each locale
   return languages.flatMap(locale =>
     popularDestinations.map(destination => ({
       locale,
@@ -90,7 +86,6 @@ export async function generateMetadata({
 
 export default async function DestinationBlog({
   params,
-  searchParams,
 }: DestinationBlogProps) {
   const { locale, destination } = await params;
   const { page = "1", search } = await searchParams;
