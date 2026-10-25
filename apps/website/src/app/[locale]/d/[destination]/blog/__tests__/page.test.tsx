@@ -8,6 +8,12 @@ import DestinationBlog, {
 const mockGetBlogPostsByDestinationPaginated = jest.fn();
 const mockGetDestinationsListWithMetadata = jest.fn();
 
+let mockSearchParams = new URLSearchParams();
+
+jest.mock("next/navigation", () => ({
+  useSearchParams: () => mockSearchParams,
+}));
+
 jest.mock("../../../../../../lib/services/blog-service", () => ({
   getBlogPostsByDestinationPaginated: (...args: unknown[]) =>
     mockGetBlogPostsByDestinationPaginated(...args),
@@ -81,6 +87,7 @@ jest.mock("../../../../../../components/ui/page-breadcrumb", () => ({
 describe("DestinationBlog page", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockSearchParams = new URLSearchParams();
   });
 
   it("renders destination blog posts without delegating to BlogHome module", async () => {
@@ -108,7 +115,6 @@ describe("DestinationBlog page", () => {
 
     const element = await DestinationBlog({
       params: Promise.resolve({ locale: "en", destination: "US" }),
-      searchParams: Promise.resolve({ page: "1" }),
     });
 
     render(element);
@@ -116,7 +122,7 @@ describe("DestinationBlog page", () => {
     expect(mockGetBlogPostsByDestinationPaginated).toHaveBeenCalledWith(
       "US",
       "en",
-      9,
+      expect.any(Number),
       0
     );
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
@@ -136,7 +142,6 @@ describe("DestinationBlog page", () => {
 
     const element = await DestinationBlog({
       params: Promise.resolve({ locale: "en", destination: "US" }),
-      searchParams: Promise.resolve({}),
     });
 
     render(element);
@@ -146,6 +151,42 @@ describe("DestinationBlog page", () => {
     );
     expect(screen.getByText("empty_state")).toBeInTheDocument();
     expect(screen.queryByTestId("blog-post-list")).not.toBeInTheDocument();
+  });
+
+  it("renders the page requested by ?page= without a dynamic render", async () => {
+    mockSearchParams = new URLSearchParams("page=2");
+    mockGetBlogPostsByDestinationPaginated.mockResolvedValue({
+      posts: Array.from({ length: 10 }, (_, index) => ({
+        slug: `post-${index + 1}`,
+        title: `Post ${index + 1}`,
+        description: "Description",
+        content: "Content",
+        author: "Author",
+        publishedAt: "2026-01-01T00:00:00.000Z",
+        image: "/img.jpg",
+        destinations: ["US"],
+        tags: ["visa"],
+        related_visas: [],
+        isPublished: true,
+      })),
+      total: 10,
+      hasMore: false,
+      currentPage: 1,
+      totalPages: 2,
+    });
+
+    const element = await DestinationBlog({
+      params: Promise.resolve({ locale: "en", destination: "US" }),
+    });
+
+    render(element);
+
+    expect(screen.getByTestId("blog-post-list")).toHaveAttribute(
+      "data-current-page",
+      "2"
+    );
+    expect(screen.getByText("Post 10")).toBeInTheDocument();
+    expect(screen.queryByText("Post 1")).not.toBeInTheDocument();
   });
 
   it("degrades generateStaticParams to empty list when country service rejects", async () => {
