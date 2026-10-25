@@ -6,8 +6,10 @@ import type {
   DestinationWithVisaTypes,
   VisaTypeInfo,
 } from "@/lib/services/country-service";
+import { getAffiliatePartnersForVisaType } from "@/lib/services/visa-service";
 import { getCountryFlagEmoji } from "@/lib/utils/visa-type-utils";
 
+import { AffiliatePartnerButton } from "./affiliate-partner-button";
 import { RequiredDocuments } from "./required-documents";
 
 interface VisaTypeDetailCardProps {
@@ -27,6 +29,9 @@ export async function VisaTypeDetailCard({
     keyPrefix: "visaCard",
   });
   const flagEmoji = getCountryFlagEmoji(destination.code);
+
+  // Get affiliate partners for this visa type
+  const affiliatePartners = await getAffiliatePartnersForVisaType(visaType.id);
 
   return (
     <div
@@ -171,7 +176,18 @@ export async function VisaTypeDetailCard({
             {t("lastUpdated")}: {new Date().toLocaleDateString(locale)}
           </div>
 
-          <Button type="button">{t("checkEligibility")}</Button>
+          {affiliatePartners.primaryPartner ? (
+            <AffiliatePartnerButton
+              partnerSlug={affiliatePartners.primaryPartner.slug}
+              partnerName={affiliatePartners.primaryPartner.name}
+              destinationCode={destination.code}
+              visaType={visaType.name}
+              size="sm"
+              variant="default"
+            />
+          ) : (
+            <Button type="button">{t("checkEligibility")}</Button>
+          )}
         </div>
       </div>
     </div>

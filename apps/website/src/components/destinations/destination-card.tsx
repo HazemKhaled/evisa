@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { DestinationMetadata } from "@/lib/services/country-service";
+import { getCountryFlagEmoji } from "@/lib/utils/visa-type-utils";
 
 interface DestinationCardProps {
   destination: DestinationMetadata;
@@ -39,8 +40,9 @@ export function DestinationCard({
                   <div className="from-primary/80 to-primary absolute inset-0 bg-gradient-to-br">
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="bg-background/20 rounded-full p-4">
-                        <div className="text-primary-foreground text-4xl font-bold">
-                          {destination.code.substring(0, 2)}
+                        <div className="text-primary-foreground text-4xl">
+                          {getCountryFlagEmoji(destination.code) ||
+                            destination.code.substring(0, 2)}
                         </div>
                       </div>
                     </div>
