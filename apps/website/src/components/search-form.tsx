@@ -22,6 +22,10 @@ interface SearchFormProps {
 
 /**
  * Client-side search form with country selection comboboxes
+ *
+ * Features:
+ * - Persists selected passport to localStorage for cross-page personalization
+ * - Redirects to destination page with passport query param on submission
  */
 export function SearchForm({
   countries,
@@ -58,6 +62,12 @@ export function SearchForm({
         )[0] as HTMLInputElement;
         if (passportInput?.value) {
           setPassportCountry(passportInput.value);
+          // Persist selected passport to localStorage for cross-page personalization
+          try {
+            localStorage.setItem("gtv_passport", passportInput.value);
+          } catch {
+            // Non-fatal if localStorage is unavailable
+          }
         }
         if (destinationInput?.value) {
           setDestinationCountry(destinationInput.value);
@@ -69,6 +79,19 @@ export function SearchForm({
     return () => {
       window.removeEventListener("toolactivated", handleToolActivated);
     };
+  }, []);
+
+  // Sync localStorage on mount - if there's a saved passport from a previous visit,
+  // pre-fill the form without showing a redirect
+  React.useEffect(() => {
+    try {
+      const savedPassport = localStorage.getItem("gtv_passport");
+      if (savedPassport) {
+        setPassportCountry(savedPassport);
+      }
+    } catch {
+      // Non-fatal if localStorage is unavailable
+    }
   }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -112,8 +135,14 @@ export function SearchForm({
       };
       nativeEvent.respondWith(fetchEligibility());
     } else {
-      // Standard human submission behavior: redirect if fields are selected
+      // Standard human submission behavior: persist passport and redirect if fields are selected
       if (passportCountry && destinationCountry) {
+        // Persist selected passport to localStorage for cross-page personalization
+        try {
+          localStorage.setItem("gtv_passport", passportCountry);
+        } catch {
+          // Non-fatal if localStorage is unavailable
+        }
         const locale =
           typeof document !== "undefined"
             ? document.documentElement.lang || "en"

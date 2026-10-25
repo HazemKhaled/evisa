@@ -43,3 +43,29 @@ jobs:
         uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  build:
+    name: opennext-build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build website (OpenNext)
+        run: pnpm --filter @repo/website exec opennextjs-cloudflare build
+
+      - name: Build admin (OpenNext)
+        run: pnpm --filter @repo/admin exec opennextjs-cloudflare build

@@ -3,21 +3,78 @@ import Image from "next/image";
 
 import { getTranslation } from "@/app/i18n";
 import type { DestinationWithVisaTypes } from "@/lib/services/country-service";
+import type { VisaEligibilityInfo } from "@/lib/services/visa-service";
+import { getCountryFlagEmoji } from "@/lib/utils/visa-type-utils";
 
 interface DestinationHeroProps {
   destination: DestinationWithVisaTypes;
   locale: string;
   className?: string;
+  passportCode?: string;
+  eligibilityInfo: VisaEligibilityInfo | null;
 }
+
+const ELIGIBILITY_CONFIG: Record<
+  string,
+  { color: string; bgClass: string; textClass: string; borderClass: string }
+> = {
+  visa_free: {
+    color: "green",
+    bgClass: "bg-green-500/10",
+    textClass: "text-green-700",
+    borderClass: "border-green-400",
+  },
+  on_arrival: {
+    color: "blue",
+    bgClass: "bg-blue-500/10",
+    textClass: "text-blue-700",
+    borderClass: "border-blue-400",
+  },
+  eta: {
+    color: "amber",
+    bgClass: "bg-amber-500/10",
+    textClass: "text-amber-700",
+    borderClass: "border-amber-400",
+  },
+  required: {
+    color: "orange",
+    bgClass: "bg-orange-500/10",
+    textClass: "text-orange-700",
+    borderClass: "border-orange-400",
+  },
+  not_allowed: {
+    color: "red",
+    bgClass: "bg-red-500/10",
+    textClass: "text-red-700",
+    borderClass: "border-red-400",
+  },
+};
 
 export async function DestinationHero({
   destination,
   locale,
   className,
+  passportCode,
+  eligibilityInfo,
 }: DestinationHeroProps) {
   const { t } = await getTranslation(locale, "destination-page", {
     keyPrefix: "hero",
   });
+  const { t: tMeta } = await getTranslation(locale, "destination-page", {
+    keyPrefix: "meta",
+  });
+
+  // Map eligibility status to translation key
+  const getStatusLabel = (status: string) => {
+    const keyMap: Record<string, string> = {
+      visa_free: "visaFreeStatus",
+      on_arrival: "visaOnArrivalStatus",
+      eta: "etaStatus",
+      required: "visaRequiredStatus",
+      not_allowed: "notAllowedStatus",
+    };
+    return tMeta(keyMap[status] || status);
+  };
 
   return (
     <section className={cn("relative overflow-hidden", className)}>
@@ -60,12 +117,42 @@ export async function DestinationHero({
 
         {/* Country Flag */}
         <div className="absolute end-6 top-6">
-          <div className="flex h-12 w-16 items-center justify-center rounded-sm bg-white shadow-lg">
-            <span className="text-2xl font-bold text-gray-800">
+          <div className="flex h-12 w-16 flex-col items-center justify-center gap-0.5 rounded-sm bg-white shadow-lg">
+            <span className="text-xl leading-none" aria-hidden="true">
+              {getCountryFlagEmoji(destination.code)}
+            </span>
+            <span className="text-xs font-bold tracking-wide text-gray-800">
               {destination.code}
             </span>
           </div>
         </div>
+
+        {/* Passport Eligibility Badge */}
+        {passportCode && eligibilityInfo && (
+          <div className="absolute top-6 left-6 z-10">
+            <div
+              className={cn(
+                "inline-flex items-center gap-2 rounded-lg px-3 py-2 backdrop-blur-sm",
+                ELIGIBILITY_CONFIG[eligibilityInfo.eligibilityStatus]
+                  ?.bgClass ?? "bg-gray-500/10"
+              )}
+            >
+              <span className="text-sm">
+                {getCountryFlagEmoji(passportCode)}
+                {eligibilityInfo.passportName || passportCode}
+              </span>
+              <span className="text-xs font-semibold">
+                {getStatusLabel(eligibilityInfo.eligibilityStatus)}
+              </span>
+              {eligibilityInfo.maxStayDays && (
+                <span className="ml-2 text-xs opacity-80">
+                  ({tMeta("maxStayDays", { days: eligibilityInfo.maxStayDays })}
+                  )
+                </span>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Hero Content */}
         <div className="absolute inset-0 flex items-end">

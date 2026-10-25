@@ -1,4 +1,4 @@
-import { Button, Skeleton } from "@repo/ui";
+import { Skeleton } from "@repo/ui";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -123,17 +123,13 @@ export default async function LocalePage({
               <p className="mx-auto mt-6 max-w-3xl text-xl text-gray-600">
                 {tHero("subheadline")}
               </p>
-              <div className="mt-10">
-                <Button>{tCommon("buttons.startApplication")}</Button>
-              </div>
+              {/* Search Form embedded in Hero above the fold */}
+              <Suspense fallback={<SearchFormSectionSkeleton />}>
+                <SearchFormSection locale={locale} />
+              </Suspense>
             </div>
           </div>
         </div>
-
-        {/* Search Form */}
-        <Suspense fallback={<SearchFormSectionSkeleton />}>
-          <SearchFormSection locale={locale} />
-        </Suspense>
 
         {/* How It Works Section */}
         <div className="bg-white py-16">

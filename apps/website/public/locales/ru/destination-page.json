@@ -6,7 +6,15 @@
     "ogDescription": "Всё, что нужно знать о посещении {{destination}}. {{visaCount}} типов виз доступны с подробными требованиями и информацией об обработке.",
     "twitterTitle": "Визовый гид по {{destination}}",
     "twitterDescription": "Полные визовые требования и путеводитель по {{destination}}",
-    "notFound": "Направление не найдено"
+    "notFound": "Направление не найдено",
+    "passportTitle": "Право на визу для {{passportName}} в {{destination}}",
+    "passportDescription": "{{passportName}} {{status}} для {{destination}}. Пребывание до {{maxStay}} дней.",
+    "visaFreeStatus": "Без визы",
+    "visaOnArrivalStatus": "Виза по прибытии",
+    "etaStatus": "e-Visa требуется",
+    "visaRequiredStatus": "Виза требуется",
+    "notAllowedStatus": "Не разрешено",
+    "maxStayDays": "{{days}} дней"
   },
   "breadcrumb": {
     "home": "Главная",
@@ -16,7 +24,8 @@
     "visaTypes": "Типы виз",
     "visaFreeAvailable": "Безвизовое путешествие доступно",
     "visaOnArrivalAvailable": "Виза по прибытии",
-    "viewTravelGuides": "Посмотреть путеводители"
+    "viewTravelGuides": "Посмотреть путеводители",
+    "passportBadge": "Your passport eligibility"
   },
   "visaOptions": {
     "title": "Визовые опции",
@@ -29,7 +38,8 @@
     "visaFreeCountries": "Безвизовые страны",
     "visaFreeCountriesTitle": "Безвизовый въезд",
     "visaOnArrivalTitle": "Виза по прибытии",
-    "more": "больше"
+    "more": "больше",
+    "less": "Показать меньше"
   },
   "visaCard": {
     "multiEntry": "Многократная",
@@ -65,7 +75,13 @@
     "interviewRequired": "Интервью требуется",
     "interviewDescription": "Консульское интервью может быть назначено как часть процесса подачи заявления. Подготовьте все необходимые документы и будьте готовы обсудить планы поездки.",
     "importantNote": "Важная заметка",
-    "documentNote": "Требования могут различаться в зависимости от вашего гражданства и конкретных обстоятельств. Всегда проверяйте текущие требования в ближайшем консульстве."
+    "documentNote": "Требования могут различаться в зависимости от вашего гражданства и конкретных обстоятельств. Всегда проверяйте текущие требования в ближайшем консульстве.",
+    "passportlink": "Сервис продления паспорта",
+    "applicationlink": "Сервис заявки на визу",
+    "photolink": "Сервис фото для паспорта",
+    "financialprooflink": "Сервис финансовой документации",
+    "affiliatedisclosure": "Это партнерская ссылка. Мы можем получить комиссию, если вы используете эти услуги.",
+    "affiliatedisclosureshort": "Раскрытие партнерской ссылки"
   },
   "visaFree": {
     "title": "Безвизовый режим и виза по прибытии",

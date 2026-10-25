@@ -6,7 +6,15 @@
     "ogDescription": "كل ما تحتاج معرفته عن زيارة {{destination}}. {{visaCount}} أنواع تأشيرة متاحة مع متطلبات مفصلة ومعلومات المعالجة.",
     "twitterTitle": "دليل تأشيرة {{destination}}",
     "twitterDescription": "متطلبات التأشيرة الكاملة ودليل السفر لـ {{destination}}",
-    "notFound": "الوجهة غير موجودة"
+    "notFound": "الوجهة غير موجودة",
+    "passportTitle": "أهلية التأشيرة لـ {{passportName}} إلى {{destination}}",
+    "passportDescription": "{{passportName}} {{status}} لـ {{destination}}. الإقامة حتى {{maxStay}} يوماً.",
+    "visaFreeStatus": "بدون تأشيرة",
+    "visaOnArrivalStatus": "تأشيرة عند الوصول",
+    "etaStatus": "تأشيرة إلكترونية مطلوبة",
+    "visaRequiredStatus": "تأشيرة مطلوبة",
+    "notAllowedStatus": "غير مسموح",
+    "maxStayDays": "{{days}} يوماً"
   },
   "breadcrumb": {
     "home": "الرئيسية",
@@ -16,7 +24,8 @@
     "visaTypes": "أنواع التأشيرات",
     "visaFreeAvailable": "السفر بدون تأشيرة متاح",
     "visaOnArrivalAvailable": "تأشيرة عند الوصول",
-    "viewTravelGuides": "عرض أدلة السفر"
+    "viewTravelGuides": "عرض أدلة السفر",
+    "passportBadge": "Your passport eligibility"
   },
   "visaOptions": {
     "title": "خيارات التأشيرة",
@@ -29,7 +38,8 @@
     "visaFreeCountries": "دول بدون تأشيرة",
     "visaFreeCountriesTitle": "دخول بدون تأشيرة",
     "visaOnArrivalTitle": "تأشيرة عند الوصول",
-    "more": "أكثر"
+    "more": "أكثر",
+    "less": "عرض أقل"
   },
   "visaCard": {
     "multiEntry": "متعددة الدخول",
@@ -65,7 +75,13 @@
     "interviewRequired": "مقابلة مطلوبة",
     "interviewDescription": "قد يتم تحديد موعد لمقابلة ق領صلية كجزء من عملية التقديم. استعد لجميع الوثائق المطلوبة وكن مستعدًا لمناقشة خطط سفرك.",
     "importantNote": "ملاحظة مهمة",
-    "documentNote": "قد تختلف المتطلبات حسب جنسيتك والظروف المحددة. تحقق دائمًا من المتطلبات الحالية مع أقرب قنصلية."
+    "documentNote": "قد تختلف المتطلبات حسب جنسيتك والظروف المحددة. تحقق دائمًا من المتطلبات الحالية مع أقرب قنصلية.",
+    "passportlink": "خدمة تجديد جواز السفر",
+    "applicationlink": "خدمة طلب التأشيرة",
+    "photolink": "خدمة صور جواز السفر",
+    "financialprooflink": "خدمة الوثائق المالية",
+    "affiliatedisclosure": "هذا رابط تابع. قد نكسب عمولة إذا استخدمت هذه الخدمات.",
+    "affiliatedisclosureshort": "إفادة الرابط التابع"
   },
   "visaFree": {
     "title": "بدون تأشيرة وتأشيرة عند الوصول",

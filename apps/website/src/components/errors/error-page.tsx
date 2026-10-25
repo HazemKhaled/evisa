@@ -22,7 +22,7 @@ export default function ErrorPage({
 }: ErrorPageComponentProps) {
   const params = useParams();
   const locale = (params?.locale as string) || "en";
-  const { t } = useTranslation("common", locale);
+  const { t } = useTranslation(locale, "common");
 
   // Log the error
   useEffect(() => {

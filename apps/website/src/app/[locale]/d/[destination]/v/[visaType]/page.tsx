@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
+import { VisaTypeAffiliateCta } from "@/components/destinations/visa-type-affiliate-cta";
 import { MultipleJsonLd } from "@/components/json-ld";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 import { env } from "@/lib/consts";
@@ -328,7 +329,7 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
                     key={idx}
                     className="flex items-start rounded-lg border border-gray-200 bg-white p-4"
                   >
-                    <span className="mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
+                    <span className="me-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
                       <span className="text-sm font-semibold text-blue-600">
                         ✓
                       </span>
@@ -352,7 +353,7 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
                     key={idx}
                     className="flex items-start rounded-lg border border-gray-200 bg-white p-4"
                   >
-                    <span className="mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
+                    <span className="me-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
                       <span className="text-sm font-semibold text-blue-600">
                         📄
                       </span>
@@ -372,7 +373,15 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
             <p className="mb-6 text-gray-600">
               {tDestination("visaDetailPage.cta.startApplicationGuidance")}
             </p>
-            <Button size="lg">{tCommon("buttons.startApplication")}</Button>
+            {visa && visa.id ? (
+              <VisaTypeAffiliateCta
+                visaType={visa.name}
+                destinationCode={destination}
+                locale={locale}
+              />
+            ) : (
+              <Button size="lg">{tCommon("buttons.startApplication")}</Button>
+            )}
           </div>
         </div>
       </main>

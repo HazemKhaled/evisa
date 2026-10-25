@@ -1,5 +1,7 @@
 import {
+  affiliatePartners,
   and,
+  asc,
   countries,
   countriesI18n,
   desc,
@@ -9,6 +11,7 @@ import {
   sql,
   visaEligibility,
   visaEligibilityI18n,
+  visaTypeAffiliatePartners,
   visaTypes,
   visaTypesI18n,
 } from "@repo/database";
@@ -816,4 +819,196 @@ export async function getVisaTypeById(
   );
 
   return cachedFn();
+}
+
+/**
+ * Affiliate partner types for routing CTA clicks to partner services
+ */
+export interface AffiliatePartnerInfo {
+  id: number;
+  name: string;
+  domain: string;
+  baseUrl: string;
+  slug: string;
+  logoUrl: string | null;
+  commissionRate: number | null;
+  priority: number;
+  isActive: boolean;
+  isAvailable: boolean;
+  countryRestrictions: string | null;
+}
+
+export interface AffiliateRoutingResult {
+  primaryPartner: AffiliatePartnerInfo | null;
+  fallbackPartners: AffiliatePartnerInfo[];
+}
+
+/**
+ * Generate an affiliate routing URL for a specific visa type with UTM tracking
+ *
+ * @param partnerSlug - Affiliate partner slug (e.g., "iVisa", "veezaportal", "airalo")
+ * @param destinationCode - ISO destination country code
+ * @param passportCode - Optional passport country code
+ * @param visaType - Visa type name
+ * @param locale - Current locale for UTM parameters
+ * @returns The affiliate URL with UTM parameters
+ */
+export function generateAffiliateUrl({
+  partnerSlug,
+  destinationCode,
+  passportCode,
+  visaType,
+  locale,
+}: {
+  partnerSlug: string;
+  destinationCode: string;
+  passportCode?: string;
+  visaType?: string;
+  locale: string;
+}): string {
+  const utmParams = new URLSearchParams({
+    utm_source: "gettravelvisa.com",
+    utm_medium: "referral",
+    utm_campaign: "affiliate_cta",
+    utm_term: locale,
+    destination_code: destinationCode,
+  });
+
+  if (passportCode) {
+    utmParams.set("passport_code", passportCode);
+  }
+
+  if (visaType) {
+    utmParams.set("visa_type", visaType);
+  }
+
+  const utmString = utmParams.toString();
+
+  const partnerBaseUrls: Record<string, string> = {
+    iVisa: "https://www.ivisa.com",
+    veezaportal: "https://veezaportal.com",
+    airalo: "https://airalo.com",
+  };
+
+  const baseUrl = partnerBaseUrls[partnerSlug] || `https://${partnerSlug}.com`;
+
+  // Route to visa application page with destination/path
+  return `${baseUrl}/apply?${utmString}`;
+}
+
+/**
+ * Get active affiliate partners for a specific visa type
+ *
+ * @param visaTypeId - ID of the visa type
+ * @param locale - Language locale
+ * @returns Promise with primary partner and fallback partners
+ */
+export async function getAffiliatePartnersForVisaType(
+  visaTypeId: number
+): Promise<AffiliateRoutingResult> {
+  const cachedFn = unstable_cache(
+    async (): Promise<AffiliateRoutingResult> => {
+      try {
+        const db = getDb();
+
+        const results = await db
+          .select({
+            id: affiliatePartners.id,
+            name: affiliatePartners.name,
+            domain: affiliatePartners.domain,
+            baseUrl: affiliatePartners.baseUrl,
+            slug: affiliatePartners.slug,
+            logoUrl: affiliatePartners.logoUrl,
+            commissionRate: affiliatePartners.commissionRate,
+            priority: affiliatePartners.priority,
+            isActive: affiliatePartners.isActive,
+            isAvailable: affiliatePartners.isAvailable,
+            countryRestrictions: affiliatePartners.countryRestrictions,
+            visaTypeAvailable: visaTypeAffiliatePartners.isAvailable,
+            visaTypePrimary: visaTypeAffiliatePartners.isPrimary,
+          })
+          .from(affiliatePartners)
+          .leftJoin(
+            visaTypeAffiliatePartners,
+            and(
+              eq(
+                affiliatePartners.id,
+                visaTypeAffiliatePartners.affiliatePartnerId
+              ),
+              eq(visaTypeAffiliatePartners.visaTypeId, visaTypeId),
+              isNull(visaTypeAffiliatePartners.deletedAt)
+            )
+          )
+          .where(
+            and(
+              eq(affiliatePartners.isActive, true),
+              eq(affiliatePartners.isAvailable, true),
+              isNull(affiliatePartners.deletedAt),
+              eq(visaTypeAffiliatePartners.isAvailable, true)
+            )
+          )
+          .orderBy(asc(affiliatePartners.priority));
+
+        const primaryPartner =
+          results.find(r => r.visaTypePrimary) ?? results[0] ?? null;
+        const fallbackPartners = results.filter(
+          r => r.id !== primaryPartner?.id
+        );
+
+        return {
+          primaryPartner: primaryPartner
+            ? {
+                id: primaryPartner.id,
+                name: primaryPartner.name,
+                domain: primaryPartner.domain,
+                baseUrl: primaryPartner.baseUrl,
+                slug: primaryPartner.slug,
+                logoUrl: primaryPartner.logoUrl ?? null,
+                commissionRate: primaryPartner.commissionRate ?? null,
+                priority: primaryPartner.priority,
+                isActive: primaryPartner.isActive,
+                isAvailable: primaryPartner.isAvailable,
+                countryRestrictions: primaryPartner.countryRestrictions,
+              }
+            : null,
+          fallbackPartners: fallbackPartners.map(r => ({
+            id: r.id,
+            name: r.name,
+            domain: r.domain,
+            baseUrl: r.baseUrl,
+            slug: r.slug,
+            logoUrl: r.logoUrl ?? null,
+            commissionRate: r.commissionRate ?? null,
+            priority: r.priority,
+            isActive: r.isActive,
+            isAvailable: r.isAvailable,
+            countryRestrictions: r.countryRestrictions,
+          })),
+        };
+      } catch (error) {
+        console.error(
+          `Failed to get affiliate partners for visa type ${visaTypeId}:`,
+          error
+        );
+        return { primaryPartner: null, fallbackPartners: [] };
+      }
+    },
+    ["affiliate-partners-visa-type", visaTypeId.toString()],
+    { tags: ["affiliate-partners"], revalidate: 86400 }
+  );
+
+  return cachedFn();
+}
+
+/**
+ * Check if any affiliate partner is available for a given visa type
+ *
+ * @param visaTypeId - ID of the visa type
+ * @returns true if at least one affiliate partner is available
+ */
+export async function hasAffiliatePartner(
+  visaTypeId: number
+): Promise<boolean> {
+  const result = await getAffiliatePartnersForVisaType(visaTypeId);
+  return result.primaryPartner !== null || result.fallbackPartners.length > 0;
 }

@@ -6,7 +6,15 @@
     "ogDescription": "Everything you need to know about visiting {{destination}}. {{visaCount}} visa types available with detailed requirements and processing information.",
     "twitterTitle": "{{destination}} Visa Guide",
     "twitterDescription": "Complete visa requirements and travel guide for {{destination}}",
-    "notFound": "Destination Not Found"
+    "notFound": "Destination Not Found",
+    "passportTitle": "Visa eligibility for {{passportName}} to {{destination}}",
+    "passportDescription": "{{passportName}} {{status}} for {{destination}}. Stay up to {{maxStay}} days.",
+    "visaFreeStatus": "Visa-Free",
+    "visaOnArrivalStatus": "Visa on Arrival",
+    "etaStatus": "e-Visa Required",
+    "visaRequiredStatus": "Visa Required",
+    "notAllowedStatus": "Not Allowed",
+    "maxStayDays": "{{days}} days"
   },
   "hero": {
     "visaTypes": "Visa Types",
@@ -25,7 +33,8 @@
     "visaFreeCountries": "Visa-Free Countries",
     "visaFreeCountriesTitle": "Visa-Free Entry",
     "visaOnArrivalTitle": "Visa on Arrival",
-    "more": "more"
+    "more": "more",
+    "less": "Show less"
   },
   "visaCard": {
     "multiEntry": "Multi-Entry",
@@ -61,7 +70,13 @@
     "interviewRequired": "Interview Required",
     "interviewDescription": "A consular interview may be scheduled as part of the application process. Prepare all required documents and be ready to discuss your travel plans.",
     "importantNote": "Important Note",
-    "documentNote": "Requirements may vary based on your nationality and specific circumstances. Always verify current requirements with the nearest consulate."
+    "documentNote": "Requirements may vary based on your nationality and specific circumstances. Always verify current requirements with the nearest consulate.",
+    "passportlink": "Passport Renewal Service",
+    "applicationlink": "Visa Application Service",
+    "photolink": "Passport Photo Service",
+    "financialprooflink": "Financial Documentation Service",
+    "affiliatedisclosure": "This is an affiliate link. We may earn a commission if you use these services.",
+    "affiliatedisclosureshort": "Affiliate link disclosure"
   },
   "visaFree": {
     "title": "Visa-Free & Visa on Arrival",

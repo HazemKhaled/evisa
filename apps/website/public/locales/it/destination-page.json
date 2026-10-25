@@ -6,7 +6,15 @@
     "ogDescription": "Tutto quello che devi sapere sulla visita di {{destination}}. {{visaCount}} tipi di visti disponibili con requisiti dettagliati e informazioni di elaborazione.",
     "twitterTitle": "Guida al visto per {{destination}}",
     "twitterDescription": "Requisiti completi del visto e guida di viaggio per {{destination}}",
-    "notFound": "Destinazione non trovata"
+    "notFound": "Destinazione non trovata",
+    "passportTitle": "Eleggibilità del visto per {{passportName}} verso {{destination}}",
+    "passportDescription": "{{passportName}} {{status}} per {{destination}}. Soggiorno fino a {{maxStay}} giorni.",
+    "visaFreeStatus": "Senza Visto",
+    "visaOnArrivalStatus": "Visto all'arrivo",
+    "etaStatus": "e-Visa Richiesto",
+    "visaRequiredStatus": "Visto Richiesto",
+    "notAllowedStatus": "Non Consentito",
+    "maxStayDays": "{{days}} giorni"
   },
   "breadcrumb": {
     "home": "Home",
@@ -16,7 +24,8 @@
     "visaTypes": "Tipi di visto",
     "visaFreeAvailable": "Viaggio senza visto disponibile",
     "visaOnArrivalAvailable": "Visto all'arrivo",
-    "viewTravelGuides": "Visualizza guide di viaggio"
+    "viewTravelGuides": "Visualizza guide di viaggio",
+    "passportBadge": "Your passport eligibility"
   },
   "visaOptions": {
     "title": "Opzioni del visto",
@@ -29,7 +38,8 @@
     "visaFreeCountries": "Paesi senza visto",
     "visaFreeCountriesTitle": "Ingresso senza visto",
     "visaOnArrivalTitle": "Visto all'arrivo",
-    "more": "più"
+    "more": "più",
+    "less": "Mostra meno"
   },
   "visaCard": {
     "multiEntry": "Ingresso multiplo",
@@ -65,7 +75,13 @@
     "interviewRequired": "Colloquio richiesto",
     "interviewDescription": "Un colloquio consolare potrebbe essere programmato come parte del processo di richiesta. Prepara tutti i documenti richiesti e sii pronto a discutere i tuoi piani di viaggio.",
     "importantNote": "Nota importante",
-    "documentNote": "I requisiti potrebbero variare in base alla tua nazionalità e alle circostanze specifiche. Verifica sempre i requisiti attuali presso il consolato più vicino."
+    "documentNote": "I requisiti potrebbero variare in base alla tua nazionalità e alle circostanze specifiche. Verifica sempre i requisiti attuali presso il consolato più vicino.",
+    "passportlink": "Servizio Rinnovo Passaporto",
+    "applicationlink": "Servizio Richiesta Visto",
+    "photolink": "Servizio Foto Passaporto",
+    "financialprooflink": "Servizio Documentazione Finanziaria",
+    "affiliatedisclosure": "Questo è un link di affiliazione. Potremmo guadagnare una commissione se utilizzi questi servizi.",
+    "affiliatedisclosureshort": "Divulgazione link di affiliazione"
   },
   "visaFree": {
     "title": "Senza visto e visto all'arrivo",
