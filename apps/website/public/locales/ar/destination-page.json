@@ -6,7 +6,15 @@
     "ogDescription": "كل ما تحتاج معرفته عن زيارة {{destination}}. {{visaCount}} أنواع تأشيرة متاحة مع متطلبات مفصلة ومعلومات المعالجة.",
     "twitterTitle": "دليل تأشيرة {{destination}}",
     "twitterDescription": "متطلبات التأشيرة الكاملة ودليل السفر لـ {{destination}}",
-    "notFound": "الوجهة غير موجودة"
+    "notFound": "الوجهة غير موجودة",
+    "passportTitle": "أهلية التأشيرة لـ {{passportName}} إلى {{destination}}",
+    "passportDescription": "{{passportName}} {{status}} لـ {{destination}}. الإقامة حتى {{maxStay}} يوماً.",
+    "visaFreeStatus": "بدون تأشيرة",
+    "visaOnArrivalStatus": "تأشيرة عند الوصول",
+    "etaStatus": "تأشيرة إلكترونية مطلوبة",
+    "visaRequiredStatus": "تأشيرة مطلوبة",
+    "notAllowedStatus": "غير مسموح",
+    "maxStayDays": "{{days}} يوماً"
   },
   "breadcrumb": {
     "home": "الرئيسية",
@@ -16,7 +24,8 @@
     "visaTypes": "أنواع التأشيرات",
     "visaFreeAvailable": "السفر بدون تأشيرة متاح",
     "visaOnArrivalAvailable": "تأشيرة عند الوصول",
-    "viewTravelGuides": "عرض أدلة السفر"
+    "viewTravelGuides": "عرض أدلة السفر",
+    "passportBadge": "Your passport eligibility"
   },
   "visaOptions": {
     "title": "خيارات التأشيرة",

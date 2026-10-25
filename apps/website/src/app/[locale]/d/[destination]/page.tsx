@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { type Metadata } from "next";
+import { cookies, headers } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -8,6 +9,7 @@ import { languages } from "@/app/i18n/settings";
 import { BlogPostCard } from "@/components/blog/blog-post-card";
 import { DestinationCard } from "@/components/destinations/destination-card";
 import { DestinationHero } from "@/components/destinations/destination-hero";
+import { PassportSync } from "@/components/destinations/passport-sync";
 import { VisaOptionsGrid } from "@/components/destinations/visa-options-grid";
 import { MultipleJsonLd } from "@/components/json-ld";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
@@ -23,8 +25,49 @@ import {
   getDestinationDetails,
   getDestinationsListWithMetadata,
 } from "@/lib/services/country-service";
-import { getVisaRequirements } from "@/lib/services/visa-service";
+import {
+  checkVisaEligibility,
+  getVisaRequirements,
+  type VisaEligibilityInfo,
+} from "@/lib/services/visa-service";
 import { generateAlternatesMetadata } from "@/lib/utils";
+
+/**
+ * Read passport code from URL query params or sticky cookie.
+ * Precedence: URL ?passport= param > gtv_passport cookie > undefined.
+ * Result is validated as a 2-letter ISO country code.
+ */
+async function resolvePassportCode(): Promise<string | undefined> {
+  const headerStore = await headers();
+  const cookieStore = await cookies();
+
+  // Reconstruct the request URL from headers (no browser DOM in Server Component)
+  const proto = headerStore.get("x-forwarded-proto") || "https";
+  const host = headerStore.get("host") || "";
+  const path =
+    headerStore.get("x-forwarded-uri") || headerStore.get("url") || "";
+  const url = proto && host ? `${proto}://${host}${path}` : path;
+
+  // 1. Try URL query param first
+  const urlParam = url.split("passport=")[1]?.split("&")[0]?.trim();
+  if (urlParam && /^[A-Z]{2}$/.test(urlParam)) {
+    // Set sticky cookie for subsequent visits
+    try {
+      cookieStore.set("gtv_passport", urlParam);
+    } catch {
+      // Non-fatal if cookie can't be set
+    }
+    return urlParam;
+  }
+
+  // 2. Fall back to sticky cookie
+  const cookieValue = cookieStore.get("gtv_passport")?.value;
+  if (cookieValue && /^[A-Z]{2}$/.test(cookieValue)) {
+    return cookieValue;
+  }
+
+  return undefined;
+}
 
 export const revalidate = 86400; // Revalidate every 24 hours
 
@@ -62,7 +105,15 @@ export async function generateMetadata({
 }: DestinationPageProps): Promise<Metadata> {
   const { locale, destination } = await params;
 
-  const destinationData = await getDestinationDetails(destination, locale);
+  // Read passport code from URL param or sticky cookie
+  const passportCode = await resolvePassportCode();
+
+  // Fetch destination data (passportCode accepted as optional arg)
+  const destinationData = await getDestinationDetails(
+    destination,
+    locale,
+    passportCode
+  );
 
   const { t } = await getTranslation(locale, "destination-page", {
     keyPrefix: "meta",
@@ -80,12 +131,55 @@ export async function generateMetadata({
     locale
   );
 
-  return {
-    title: t("title", { destination: destinationData.localizedName }),
-    description: t("description", {
+  let passportTitle = t("title", {
+    destination: destinationData.localizedName,
+  });
+  let passportDescription = t("description", {
+    destination: destinationData.localizedName,
+    visaCount: destinationData.totalVisaTypes,
+  });
+
+  // If a passport code was resolved, fetch eligibility info for metadata
+  let eligibilityInfo: VisaEligibilityInfo | null = null;
+
+  if (passportCode) {
+    try {
+      eligibilityInfo = await checkVisaEligibility(
+        passportCode,
+        destination,
+        locale
+      );
+    } catch (error) {
+      console.error(
+        `Failed to fetch eligibility for passport ${passportCode}:`,
+        error
+      );
+    }
+  }
+
+  // Generate passport-specific metadata if eligibility info is available
+  if (eligibilityInfo) {
+    const statusLabels = await getPassportStatusLabels(
+      locale,
+      eligibilityInfo.eligibilityStatus,
+      eligibilityInfo.maxStayDays
+    );
+    passportTitle = t("passportTitle", {
       destination: destinationData.localizedName,
-      visaCount: destinationData.totalVisaTypes,
-    }),
+      passportName: eligibilityInfo.passportName,
+      status: statusLabels.status,
+    });
+    passportDescription = t("passportDescription", {
+      destination: destinationData.localizedName,
+      passportName: eligibilityInfo.passportName,
+      status: statusLabels.status,
+      maxStay: statusLabels.maxStay,
+    });
+  }
+
+  return {
+    title: passportTitle,
+    description: passportDescription,
     alternates,
     openGraph: {
       title: t("ogTitle", { destination: destinationData.localizedName }),
@@ -116,6 +210,36 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * Get human-readable labels for an eligibility status and max stay days.
+ */
+async function getPassportStatusLabels(
+  locale: string,
+  status: string,
+  maxStayDays: number | undefined
+): Promise<{ status: string; maxStay: string }> {
+  const { t } = await getTranslation(locale, "destination-page", {
+    keyPrefix: "meta",
+  });
+
+  const statusLabels: Record<string, string> = {
+    visa_free: await t("visaFreeStatus"),
+    on_arrival: await t("visaOnArrivalStatus"),
+    eta: await t("etaStatus"),
+    required: await t("visaRequiredStatus"),
+    not_allowed: await t("notAllowedStatus"),
+  };
+
+  const statusKey = status as keyof typeof statusLabels;
+  const label = statusLabels[statusKey] || status;
+
+  const maxStay = maxStayDays
+    ? await t("maxStayDays", { days: maxStayDays })
+    : "";
+
+  return { status: label, maxStay };
+}
+
 export default async function DestinationPage({
   params,
 }: DestinationPageProps) {
@@ -140,6 +264,27 @@ export default async function DestinationPage({
 
   if (!destinationData) {
     notFound();
+  }
+
+  // Resolve passport code for hero badge (separate from cookie logic above since metadata runs first)
+  const passportCode = await resolvePassportCode();
+
+  // Fetch eligibility info for hero badge
+  let eligibilityInfo: VisaEligibilityInfo | null = null;
+
+  if (passportCode) {
+    try {
+      eligibilityInfo = await checkVisaEligibility(
+        passportCode,
+        destination,
+        locale
+      );
+    } catch (error) {
+      console.error(
+        `Failed to fetch eligibility for passport ${passportCode}:`,
+        error
+      );
+    }
   }
 
   // Fetch related destinations in the same continent
@@ -204,6 +349,8 @@ export default async function DestinationPage({
 
   return (
     <>
+      <PassportSync />
+
       <MultipleJsonLd data={jsonLdBlocks} />
 
       <main id="main-content" className="min-h-screen">
@@ -218,7 +365,12 @@ export default async function DestinationPage({
         />
 
         {/* Destination Hero Section */}
-        <DestinationHero destination={destinationData} locale={locale} />
+        <DestinationHero
+          destination={destinationData}
+          locale={locale}
+          passportCode={passportCode}
+          eligibilityInfo={eligibilityInfo ?? null}
+        />
 
         {/* Visa Options Section */}
         <section className="container mx-auto px-4 py-12">

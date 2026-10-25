@@ -6,7 +6,15 @@
     "ogDescription": "Everything you need to know about visiting {{destination}}. {{visaCount}} visa types available with detailed requirements and processing information.",
     "twitterTitle": "{{destination}} Visa Guide",
     "twitterDescription": "Complete visa requirements and travel guide for {{destination}}",
-    "notFound": "Destination Not Found"
+    "notFound": "Destination Not Found",
+    "passportTitle": "Visa eligibility for {{passportName}} to {{destination}}",
+    "passportDescription": "{{passportName}} {{status}} for {{destination}}. Stay up to {{maxStay}} days.",
+    "visaFreeStatus": "Visa-Free",
+    "visaOnArrivalStatus": "Visa on Arrival",
+    "etaStatus": "e-Visa Required",
+    "visaRequiredStatus": "Visa Required",
+    "notAllowedStatus": "Not Allowed",
+    "maxStayDays": "{{days}} days"
   },
   "hero": {
     "visaTypes": "Visa Types",
