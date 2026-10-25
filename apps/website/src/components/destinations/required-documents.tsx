@@ -20,13 +20,11 @@ export async function RequiredDocuments({
     keyPrefix: "documents",
   });
 
+  // Document type keys used for translation lookups and affiliate link routing
+  const documentKeys = ["passport", "application", "photo", "financialProof"];
+
   // Default document requirements for most visa types
-  const defaultDocuments = [
-    t("passport"),
-    t("application"),
-    t("photo"),
-    t("financialProof"),
-  ];
+  const defaultDocuments = documentKeys;
 
   // Use default documents as actual requirements property doesn't exist in current schema
   const documents = defaultDocuments;
@@ -35,7 +33,11 @@ export async function RequiredDocuments({
     return (
       <div className={cn("text-sm", className)}>
         <div className="text-muted-foreground">
-          {t("commonRequirements")}: {documents.slice(0, 3).join(", ")}
+          {t("commonRequirements")}:{" "}
+          {documents
+            .map(key => t(key))
+            .slice(0, 3)
+            .join(", ")}
           {documents.length > 3 && (
             <span className="text-primary ms-1">
               +{documents.length - 3} {t("more")}
@@ -51,32 +53,78 @@ export async function RequiredDocuments({
       <h4 className="text-foreground font-semibold">{t("title")}</h4>
 
       <div className="grid gap-3">
-        {documents.map((document: string, index: number) => (
-          <div
-            key={index}
-            className="bg-muted/50 flex items-start gap-3 rounded-lg p-3"
-          >
-            {/* Document Icon */}
-            <div className="bg-primary/10 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg">
-              {getDocumentIcon(document)}
-            </div>
+        {defaultDocuments.map((documentKey: string, index: number) => {
+          // Determine the translation key for the affiliate link based on document key
+          const linkKeyMap: Record<string, string> = {
+            passport: "passportlink",
+            application: "applicationlink",
+            photo: "photolink",
+            financialProof: "financialprooflink",
+          };
+          const affiliateLinkKey =
+            linkKeyMap[documentKey] || "generalDescription";
 
-            {/* Document Details */}
-            <div className="min-w-0 flex-1">
-              <div className="text-foreground font-medium">{document}</div>
-              <div className="text-muted-foreground mt-1 text-sm">
-                {getDocumentDescription(document, t)}
+          // Get translated display name for the document
+          const documentDisplay = t(documentKey as keyof typeof t);
+
+          // Get description for the document
+          const documentDescription = getDocumentDescription(documentKey, t);
+
+          // Get icon for the document
+          const documentIcon = getDocumentIcon(documentKey);
+
+          return (
+            <div
+              key={index}
+              className="bg-muted/50 flex items-start gap-3 rounded-lg p-3"
+            >
+              {/* Document Icon */}
+              <div className="bg-primary/10 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg">
+                {documentIcon}
+              </div>
+
+              {/* Document Details */}
+              <div className="min-w-0 flex-1">
+                <div className="text-foreground font-medium">
+                  {documentDisplay}
+                </div>
+                <div className="text-muted-foreground mt-1 text-sm">
+                  {documentDescription}
+                </div>
+                <div className="mt-2 text-xs">
+                  <a
+                    href={`https://example.com/partner/${documentKey}`}
+                    className="text-primary inline-flex items-center gap-1 hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t(affiliateLinkKey)}
+                    <svg
+                      className="h-3 w-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 20"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              {/* Status/Requirement Indicator */}
+              <div className="flex-shrink-0">
+                <span className="bg-primary text-primary-foreground rounded-full px-2 py-1 text-xs">
+                  {t("required")}
+                </span>
               </div>
             </div>
-
-            {/* Status/Requirement Indicator */}
-            <div className="flex-shrink-0">
-              <span className="bg-primary text-primary-foreground rounded-full px-2 py-1 text-xs">
-                {t("required")}
-              </span>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Additional Requirements */}
@@ -108,11 +156,11 @@ export async function RequiredDocuments({
         </div>
       )}
 
-      {/* Important Notes */}
-      <div className="rounded-lg border border-blue-200 bg-blue-50 p-4">
+      {/* Affiliate Disclosure */}
+      <div className="rounded-lg border border-green-200 bg-green-50 p-4">
         <div className="flex items-start gap-3">
           <svg
-            className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-600"
+            className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-600"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -121,15 +169,15 @@ export async function RequiredDocuments({
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              d="M12 6v6l4 2v6h-8v-6L4 6v6l8-2-8-2v6z"
             />
           </svg>
           <div>
-            <div className="font-medium text-blue-800">
-              {t("importantNote")}
+            <div className="font-medium text-green-800">
+              {t("affiliatedisclosure")}
             </div>
-            <div className="mt-1 text-sm text-blue-700">
-              {t("documentNote")}
+            <div className="mt-1 text-xs text-green-700">
+              {t("affiliatedisclosureshort")}
             </div>
           </div>
         </div>

@@ -66,7 +66,13 @@
     "interviewRequired": "Entrevista Obrigatória",
     "interviewDescription": "Uma entrevista consular pode ser agendada como parte do processo de aplicação. Prepare todos os documentos necessários e esteja pronto para discutir seus planos de viagem.",
     "importantNote": "Nota Importante",
-    "documentNote": "Os requisitos podem variar com base na sua nacionalidade e circunstâncias específicas. Sempre verifique os requisitos atuais com o consulado mais próximo."
+    "documentNote": "Os requisitos podem variar com base na sua nacionalidade e circunstâncias específicas. Sempre verifique os requisitos atuais com o consulado mais próximo.",
+    "passportlink": "Serviço de Renovação de Passaporte",
+    "applicationlink": "Serviço de Solicitação de Visto",
+    "photolink": "Serviço de Foto de Passaporte",
+    "financialprooflink": "Serviço de Documentação Financeira",
+    "affiliatedisclosure": "Este é um link de afiliado. Podemos ganhar uma comissão se você usar estes serviços.",
+    "affiliatedisclosureshort": "Divulgação de link de afiliado"
   },
   "visaFree": {
     "title": "Sem Visto e Visto na Chegada",

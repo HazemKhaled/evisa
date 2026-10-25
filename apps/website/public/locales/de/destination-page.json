@@ -66,7 +66,13 @@
     "interviewRequired": "Interview erforderlich",
     "interviewDescription": "Ein Konsularinterview kann als Teil des Antragsverfahrens geplant werden. Bereiten Sie alle erforderlichen Dokumente vor und seien Sie bereit, Ihre Reisepläne zu besprechen.",
     "importantNote": "Wichtiger Hinweis",
-    "documentNote": "Die Anforderungen können je nach Ihrer Staatsangehörigkeit und spezifischen Umständen variieren. Überprüfen Sie immer die aktuellen Anforderungen beim nächstgelegenen Konsulat."
+    "documentNote": "Die Anforderungen können je nach Ihrer Staatsangehörigkeit und spezifischen Umständen variieren. Überprüfen Sie immer die aktuellen Anforderungen beim nächstgelegenen Konsulat.",
+    "passportlink": "Passverlängerungsservice",
+    "applicationlink": "Visumantragsservice",
+    "photolink": "Passbildservice",
+    "financialprooflink": "Finanzdokumentationsservice",
+    "affiliatedisclosure": "Dies ist ein Affiliate-Link. Wir können eine Provision verdienen, wenn Sie diese Dienste nutzen.",
+    "affiliatedisclosureshort": "Affiliate-Link-Offenlegung"
   },
   "visaFree": {
     "title": "Visafrei und Visa bei Ankunft",

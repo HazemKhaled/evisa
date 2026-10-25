@@ -66,7 +66,13 @@
     "interviewRequired": "Colloquio richiesto",
     "interviewDescription": "Un colloquio consolare potrebbe essere programmato come parte del processo di richiesta. Prepara tutti i documenti richiesti e sii pronto a discutere i tuoi piani di viaggio.",
     "importantNote": "Nota importante",
-    "documentNote": "I requisiti potrebbero variare in base alla tua nazionalità e alle circostanze specifiche. Verifica sempre i requisiti attuali presso il consolato più vicino."
+    "documentNote": "I requisiti potrebbero variare in base alla tua nazionalità e alle circostanze specifiche. Verifica sempre i requisiti attuali presso il consolato più vicino.",
+    "passportlink": "Servizio Rinnovo Passaporto",
+    "applicationlink": "Servizio Richiesta Visto",
+    "photolink": "Servizio Foto Passaporto",
+    "financialprooflink": "Servizio Documentazione Finanziaria",
+    "affiliatedisclosure": "Questo è un link di affiliazione. Potremmo guadagnare una commissione se utilizzi questi servizi.",
+    "affiliatedisclosureshort": "Divulgazione link di affiliazione"
   },
   "visaFree": {
     "title": "Senza visto e visto all'arrivo",
