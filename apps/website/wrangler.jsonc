@@ -9,6 +9,9 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-03-15",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  // Enable Cloudflare Preview URLs for this Worker.
+  // https://developers.cloudflare.com/workers/versions-and-deployments/version-urls/#toggle-preview-urls-enable-or-disable
+  "preview_urls": true,
   // Minification helps to keep the Worker bundle size down and improve start up time.
   "minify": true,
   "assets": {

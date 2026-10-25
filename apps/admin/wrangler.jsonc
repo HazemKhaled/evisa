@@ -12,6 +12,9 @@
     // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
     "global_fetch_strictly_public",
   ],
+  // Enable Cloudflare Preview URLs for this Worker.
+  // https://developers.cloudflare.com/workers/versions-and-deployments/version-urls/#toggle-preview-urls-enable-or-disable
+  "preview_urls": true,
   "minify": true,
   "assets": {
     "binding": "ASSETS",
@@ -34,7 +37,6 @@
   "placement": {
     "mode": "smart",
   },
-  "preview_urls": true,
   "keep_vars": true,
   "routes": [
     {
