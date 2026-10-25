@@ -1,7 +1,8 @@
 "use client";
 
 import { Button, CountryCombobox, Label } from "@repo/ui";
-import * as React from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useId, useState, useTransition } from "react";
 
 interface Country {
   code: string;
@@ -34,16 +35,21 @@ export function SearchForm({
   emptyText,
   searchPlaceholder,
 }: SearchFormProps) {
-  const [passportCountry, setPassportCountry] = React.useState<string>("");
-  const [destinationCountry, setDestinationCountry] =
-    React.useState<string>("");
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [passportCountry, setPassportCountry] = useState<string>("");
+  const [destinationCountry, setDestinationCountry] = useState<string>("");
+  const [passportError, setPassportError] = useState<string>("");
+  const [destinationError, setDestinationError] = useState<string>("");
 
   // Generate unique IDs for accessibility
-  const passportLabelId = React.useId();
-  const destinationLabelId = React.useId();
+  const passportLabelId = useId();
+  const destinationLabelId = useId();
+  const passportErrorId = useId();
+  const destinationErrorId = useId();
 
   // WebMCP tool activated event listener to sync state from pre-filled DOM elements
-  React.useEffect(() => {
+  useEffect(() => {
     const handleToolActivated = (e: Event) => {
       const customEvent = e as CustomEvent<{ toolName: string }> & {
         toolName?: string;
@@ -112,14 +118,30 @@ export function SearchForm({
       };
       nativeEvent.respondWith(fetchEligibility());
     } else {
-      // Standard human submission behavior: redirect if fields are selected
-      if (passportCountry && destinationCountry) {
-        const locale =
-          typeof document !== "undefined"
-            ? document.documentElement.lang || "en"
-            : "en";
-        window.location.href = `/${locale}/d/${destinationCountry.toLowerCase()}?passport=${passportCountry.toLowerCase()}`;
+      // Standard human submission behavior: validate and navigate
+      const nextPassportError = passportCountry ? "" : emptyText;
+      const nextDestinationError = destinationCountry ? "" : emptyText;
+      setPassportError(nextPassportError);
+      setDestinationError(nextDestinationError);
+
+      if (nextPassportError || nextDestinationError) {
+        // Focus the first missing combobox trigger
+        const firstMissing = nextPassportError
+          ? document.getElementById("passport-combobox")
+          : document.getElementById("destination-combobox");
+        firstMissing?.focus();
+        return;
       }
+
+      const locale =
+        typeof document !== "undefined"
+          ? document.documentElement.lang || "en"
+          : "en";
+      startTransition(() => {
+        router.push(
+          `/${locale}/d/${destinationCountry.toLowerCase()}?passport=${passportCountry.toLowerCase()}`
+        );
+      });
     }
   };
 
@@ -160,6 +182,11 @@ export function SearchForm({
               >
                 {passportLabel}
               </Label>
+              {passportError && (
+                <p id={passportErrorId} className="text-sm text-red-600">
+                  {passportError}
+                </p>
+              )}
               <CountryCombobox
                 id="passport-combobox"
                 aria-labelledby={passportLabelId}
@@ -179,6 +206,11 @@ export function SearchForm({
               >
                 {destinationLabel}
               </Label>
+              {destinationError && (
+                <p id={destinationErrorId} className="text-sm text-red-600">
+                  {destinationError}
+                </p>
+              )}
               <CountryCombobox
                 id="destination-combobox"
                 aria-labelledby={destinationLabelId}
@@ -191,7 +223,7 @@ export function SearchForm({
               />
             </div>
             <div className="flex items-end">
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full" disabled={isPending}>
                 {checkButtonText}
               </Button>
             </div>

@@ -28,8 +28,15 @@ export async function RequiredDocuments({
     t("financialProof"),
   ];
 
-  // Use default documents as actual requirements property doesn't exist in current schema
-  const documents = defaultDocuments;
+  // Use visaType.documents (when non-empty) or visaType.requirements (when non-empty)
+  // from the database instead of always rendering the 4 hardcoded default items,
+  // falling back to defaultDocuments only when the DB arrays are empty/null
+  const documents: string[] =
+    visaType.documents && visaType.documents.length > 0
+      ? visaType.documents
+      : visaType.requirements && visaType.requirements.length > 0
+        ? visaType.requirements
+        : defaultDocuments;
 
   if (compact) {
     return (

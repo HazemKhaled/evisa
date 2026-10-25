@@ -1,5 +1,6 @@
 import { Button } from "@repo/ui";
 import { type Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { getTranslation } from "@/app/i18n";
@@ -372,7 +373,14 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
             <p className="mb-6 text-gray-600">
               {tDestination("visaDetailPage.cta.startApplicationGuidance")}
             </p>
-            <Button size="lg">{tCommon("buttons.startApplication")}</Button>
+            <Button asChild size="lg">
+              <Link
+                href={`/${locale}/d/${destination}#visa-eligibility`}
+                className="hover:underline"
+              >
+                {tCommon("buttons.checkEligibility")}
+              </Link>
+            </Button>
           </div>
         </div>
       </main>
