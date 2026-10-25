@@ -1,8 +1,7 @@
 "use client";
 
 import { Button, CountryCombobox, Label } from "@repo/ui";
-import { useRouter } from "next/navigation";
-import { useEffect, useId, useState, useTransition } from "react";
+import * as React from "react";
 
 interface Country {
   code: string;
@@ -23,6 +22,10 @@ interface SearchFormProps {
 
 /**
  * Client-side search form with country selection comboboxes
+ *
+ * Features:
+ * - Persists selected passport to localStorage for cross-page personalization
+ * - Redirects to destination page with passport query param on submission
  */
 export function SearchForm({
   countries,
@@ -35,21 +38,16 @@ export function SearchForm({
   emptyText,
   searchPlaceholder,
 }: SearchFormProps) {
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
-  const [passportCountry, setPassportCountry] = useState<string>("");
-  const [destinationCountry, setDestinationCountry] = useState<string>("");
-  const [passportError, setPassportError] = useState<string>("");
-  const [destinationError, setDestinationError] = useState<string>("");
+  const [passportCountry, setPassportCountry] = React.useState<string>("");
+  const [destinationCountry, setDestinationCountry] =
+    React.useState<string>("");
 
   // Generate unique IDs for accessibility
-  const passportLabelId = useId();
-  const destinationLabelId = useId();
-  const passportErrorId = useId();
-  const destinationErrorId = useId();
+  const passportLabelId = React.useId();
+  const destinationLabelId = React.useId();
 
   // WebMCP tool activated event listener to sync state from pre-filled DOM elements
-  useEffect(() => {
+  React.useEffect(() => {
     const handleToolActivated = (e: Event) => {
       const customEvent = e as CustomEvent<{ toolName: string }> & {
         toolName?: string;
@@ -64,6 +62,12 @@ export function SearchForm({
         )[0] as HTMLInputElement;
         if (passportInput?.value) {
           setPassportCountry(passportInput.value);
+          // Persist selected passport to localStorage for cross-page personalization
+          try {
+            localStorage.setItem("gtv_passport", passportInput.value);
+          } catch {
+            // Non-fatal if localStorage is unavailable
+          }
         }
         if (destinationInput?.value) {
           setDestinationCountry(destinationInput.value);
@@ -75,6 +79,19 @@ export function SearchForm({
     return () => {
       window.removeEventListener("toolactivated", handleToolActivated);
     };
+  }, []);
+
+  // Sync localStorage on mount - if there's a saved passport from a previous visit,
+  // pre-fill the form without showing a redirect
+  React.useEffect(() => {
+    try {
+      const savedPassport = localStorage.getItem("gtv_passport");
+      if (savedPassport) {
+        setPassportCountry(savedPassport);
+      }
+    } catch {
+      // Non-fatal if localStorage is unavailable
+    }
   }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -118,30 +135,20 @@ export function SearchForm({
       };
       nativeEvent.respondWith(fetchEligibility());
     } else {
-      // Standard human submission behavior: validate and navigate
-      const nextPassportError = passportCountry ? "" : emptyText;
-      const nextDestinationError = destinationCountry ? "" : emptyText;
-      setPassportError(nextPassportError);
-      setDestinationError(nextDestinationError);
-
-      if (nextPassportError || nextDestinationError) {
-        // Focus the first missing combobox trigger
-        const firstMissing = nextPassportError
-          ? document.getElementById("passport-combobox")
-          : document.getElementById("destination-combobox");
-        firstMissing?.focus();
-        return;
+      // Standard human submission behavior: persist passport and redirect if fields are selected
+      if (passportCountry && destinationCountry) {
+        // Persist selected passport to localStorage for cross-page personalization
+        try {
+          localStorage.setItem("gtv_passport", passportCountry);
+        } catch {
+          // Non-fatal if localStorage is unavailable
+        }
+        const locale =
+          typeof document !== "undefined"
+            ? document.documentElement.lang || "en"
+            : "en";
+        window.location.href = `/${locale}/d/${destinationCountry.toLowerCase()}?passport=${passportCountry.toLowerCase()}`;
       }
-
-      const locale =
-        typeof document !== "undefined"
-          ? document.documentElement.lang || "en"
-          : "en";
-      startTransition(() => {
-        router.push(
-          `/${locale}/d/${destinationCountry.toLowerCase()}?passport=${passportCountry.toLowerCase()}`
-        );
-      });
     }
   };
 
@@ -182,11 +189,6 @@ export function SearchForm({
               >
                 {passportLabel}
               </Label>
-              {passportError && (
-                <p id={passportErrorId} className="text-sm text-red-600">
-                  {passportError}
-                </p>
-              )}
               <CountryCombobox
                 id="passport-combobox"
                 aria-labelledby={passportLabelId}
@@ -206,11 +208,6 @@ export function SearchForm({
               >
                 {destinationLabel}
               </Label>
-              {destinationError && (
-                <p id={destinationErrorId} className="text-sm text-red-600">
-                  {destinationError}
-                </p>
-              )}
               <CountryCombobox
                 id="destination-combobox"
                 aria-labelledby={destinationLabelId}
@@ -223,7 +220,7 @@ export function SearchForm({
               />
             </div>
             <div className="flex items-end">
-              <Button type="submit" className="w-full" disabled={isPending}>
+              <Button type="submit" className="w-full">
                 {checkButtonText}
               </Button>
             </div>

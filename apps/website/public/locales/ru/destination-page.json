@@ -6,7 +6,15 @@
     "ogDescription": "Всё, что нужно знать о посещении {{destination}}. {{visaCount}} типов виз доступны с подробными требованиями и информацией об обработке.",
     "twitterTitle": "Визовый гид по {{destination}}",
     "twitterDescription": "Полные визовые требования и путеводитель по {{destination}}",
-    "notFound": "Направление не найдено"
+    "notFound": "Направление не найдено",
+    "passportTitle": "Право на визу для {{passportName}} в {{destination}}",
+    "passportDescription": "{{passportName}} {{status}} для {{destination}}. Пребывание до {{maxStay}} дней.",
+    "visaFreeStatus": "Без визы",
+    "visaOnArrivalStatus": "Виза по прибытии",
+    "etaStatus": "e-Visa требуется",
+    "visaRequiredStatus": "Виза требуется",
+    "notAllowedStatus": "Не разрешено",
+    "maxStayDays": "{{days}} дней"
   },
   "breadcrumb": {
     "home": "Главная",
@@ -16,7 +24,8 @@
     "visaTypes": "Типы виз",
     "visaFreeAvailable": "Безвизовое путешествие доступно",
     "visaOnArrivalAvailable": "Виза по прибытии",
-    "viewTravelGuides": "Посмотреть путеводители"
+    "viewTravelGuides": "Посмотреть путеводители",
+    "passportBadge": "Your passport eligibility"
   },
   "visaOptions": {
     "title": "Визовые опции",

@@ -6,7 +6,15 @@
     "ogDescription": "Tout ce que vous devez savoir sur la visite de {{destination}}. {{visaCount}} types de visas disponibles avec des exigences détaillées et des informations de traitement.",
     "twitterTitle": "Guide de visa pour {{destination}}",
     "twitterDescription": "Exigences complètes de visa et guide de voyage pour {{destination}}",
-    "notFound": "Destination introuvable"
+    "notFound": "Destination introuvable",
+    "passportTitle": "Éligibilité au visa pour {{passportName}} vers {{destination}}",
+    "passportDescription": "{{passportName}} {{status}} pour {{destination}}. Séjour jusqu'à {{maxStay}} jours.",
+    "visaFreeStatus": "Sans Visa",
+    "visaOnArrivalStatus": "Visa à l'arrivée",
+    "etaStatus": "e-Visa Requis",
+    "visaRequiredStatus": "Visa Requis",
+    "notAllowedStatus": "Non Autorisé",
+    "maxStayDays": "{{days}} jours"
   },
   "breadcrumb": {
     "home": "Accueil",
@@ -16,7 +24,8 @@
     "visaTypes": "Types de visa",
     "visaFreeAvailable": "Voyage sans visa disponible",
     "visaOnArrivalAvailable": "Visa à l'arrivée",
-    "viewTravelGuides": "Voir les guides de voyage"
+    "viewTravelGuides": "Voir les guides de voyage",
+    "passportBadge": "Your passport eligibility"
   },
   "visaOptions": {
     "title": "Options de visa",
