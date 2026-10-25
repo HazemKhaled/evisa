@@ -1,10 +1,10 @@
 import { Button } from "@repo/ui";
 import { type Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
+import { VisaTypeAffiliateCta } from "@/components/destinations/visa-type-affiliate-cta";
 import { MultipleJsonLd } from "@/components/json-ld";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
 import { env } from "@/lib/consts";
@@ -373,14 +373,15 @@ export default async function VisaDetailPage({ params }: VisaDetailPageProps) {
             <p className="mb-6 text-gray-600">
               {tDestination("visaDetailPage.cta.startApplicationGuidance")}
             </p>
-            <Button asChild size="lg">
-              <Link
-                href={`/${locale}/d/${destination}#visa-eligibility`}
-                className="hover:underline"
-              >
-                {tCommon("buttons.checkEligibility")}
-              </Link>
-            </Button>
+            {visa && visa.id ? (
+              <VisaTypeAffiliateCta
+                visaType={visa.name}
+                destinationCode={destination}
+                locale={locale}
+              />
+            ) : (
+              <Button size="lg">{tCommon("buttons.startApplication")}</Button>
+            )}
           </div>
         </div>
       </main>
