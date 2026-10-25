@@ -2,12 +2,14 @@ import { ChevronRight } from "lucide-react";
 import { type Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
 import { BlogPostCard } from "@/components/blog/blog-post-card";
 import { DestinationCard } from "@/components/destinations/destination-card";
 import { DestinationHero } from "@/components/destinations/destination-hero";
+import { PassportEligibilityBanner } from "@/components/destinations/passport-eligibility-banner";
 import { VisaOptionsGrid } from "@/components/destinations/visa-options-grid";
 import { MultipleJsonLd } from "@/components/json-ld";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
@@ -219,6 +221,15 @@ export default async function DestinationPage({
 
         {/* Destination Hero Section */}
         <DestinationHero destination={destinationData} locale={locale} />
+
+        {/* Passport Eligibility Banner (client component, ISR-safe) */}
+        <Suspense fallback={null}>
+          <PassportEligibilityBanner
+            destinationCode={destinationData.code}
+            destinationName={destinationData.localizedName}
+            locale={locale}
+          />
+        </Suspense>
 
         {/* Visa Options Section */}
         <section className="container mx-auto px-4 py-12">
