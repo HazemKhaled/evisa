@@ -75,7 +75,13 @@
     "interviewRequired": "Entretien requis",
     "interviewDescription": "Un entretien consulaire peut être programmé dans le cadre du processus de demande. Préparez tous les documents requis et soyez prêt à discuter de vos plans de voyage.",
     "importantNote": "Note importante",
-    "documentNote": "Les exigences peuvent varier selon votre nationalité et vos circonstances spécifiques. Vérifiez toujours les exigences actuelles auprès du consulat le plus proche."
+    "documentNote": "Les exigences peuvent varier selon votre nationalité et vos circonstances spécifiques. Vérifiez toujours les exigences actuelles auprès du consulat le plus proche.",
+    "passportlink": "Service de Renouvellement de Passeport",
+    "applicationlink": "Service de Demande de Visa",
+    "photolink": "Service de Photo de Passeport",
+    "financialprooflink": "Service de Documentation Financière",
+    "affiliatedisclosure": "Ceci est un lien d'affiliation. Nous pouvons gagner une commission si vous utilisez ces services.",
+    "affiliatedisclosureshort": "Divulgation de lien d'affiliation"
   },
   "visaFree": {
     "title": "Sans visa et visa à l'arrivée",

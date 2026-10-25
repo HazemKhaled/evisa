@@ -75,7 +75,13 @@
     "interviewRequired": "Entrevista Requerida",
     "interviewDescription": "Se puede programar una entrevista consular como parte del proceso de solicitud. Prepara todos los documentos requeridos y estate listo para discutir tus planes de viaje.",
     "importantNote": "Nota Importante",
-    "documentNote": "Los requisitos pueden variar según tu nacionalidad y circunstancias específicas. Siempre verifica los requisitos actuales con el consulado más cercano."
+    "documentNote": "Los requisitos pueden variar según tu nacionalidad y circunstancias específicas. Siempre verifica los requisitos actuales con el consulado más cercano.",
+    "passportlink": "Servicio de Renovación de Pasaporte",
+    "applicationlink": "Servicio de Solicitud de Visa",
+    "photolink": "Servicio de Fotos de Pasaporte",
+    "financialprooflink": "Servicio de Documentación Financiera",
+    "affiliatedisclosure": "Este es un enlace de afiliado. Podemos ganar una comisión si utiliza estos servicios.",
+    "affiliatedisclosureshort": "Divulgación de enlace de afiliado"
   },
   "visaFree": {
     "title": "Sin Visa y Visa al Llegar",
