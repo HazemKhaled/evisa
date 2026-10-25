@@ -19,6 +19,7 @@ export type { Database } from "./connection";
 // Re-export common drizzle-orm utilities
 export {
   and,
+  asc,
   avg,
   count,
   desc,

@@ -1,18 +1,19 @@
 import { Badge, Button } from "@repo/ui";
 import { cn } from "@repo/utils";
 import { ArrowLeftRight, Calendar, Clock, DollarSign } from "lucide-react";
-import Link from "next/link";
 
 import { getTranslation } from "@/app/i18n";
 import type {
   DestinationWithVisaTypes,
   VisaTypeInfo,
 } from "@/lib/services/country-service";
+import { getAffiliatePartnersForVisaType } from "@/lib/services/visa-service";
 import {
   getCountryFlagEmoji,
   getVisaCategoryConfig,
 } from "@/lib/utils/visa-type-utils";
 
+import { AffiliatePartnerButton } from "./affiliate-partner-button";
 import { RequiredDocuments } from "./required-documents";
 
 interface VisaTypeDetailCardProps {
@@ -33,6 +34,9 @@ export async function VisaTypeDetailCard({
   });
   const flagEmoji = getCountryFlagEmoji(destination.code);
   const config = getVisaCategoryConfig(visaType.type);
+
+  // Get affiliate partners for this visa type
+  const affiliatePartners = await getAffiliatePartnersForVisaType(visaType.id);
 
   return (
     <div
@@ -188,13 +192,18 @@ export async function VisaTypeDetailCard({
             {/* Removed synthetic lastUpdated timestamp */}
           </div>
 
-          <div className="flex items-center gap-2">
-            <Link href={`/${locale}/d/${destination.code}/v/${visaType.type}`}>
-              <Button asChild size="default">
-                {t("checkEligibility")}
-              </Button>
-            </Link>
-          </div>
+          {affiliatePartners.primaryPartner ? (
+            <AffiliatePartnerButton
+              partnerSlug={affiliatePartners.primaryPartner.slug}
+              partnerName={affiliatePartners.primaryPartner.name}
+              destinationCode={destination.code}
+              visaType={visaType.name}
+              size="sm"
+              variant="default"
+            />
+          ) : (
+            <Button type="button">{t("checkEligibility")}</Button>
+          )}
         </div>
       </div>
     </div>
