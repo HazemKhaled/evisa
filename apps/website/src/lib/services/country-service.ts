@@ -171,6 +171,8 @@ export interface VisaTypeInfo {
   processingTime: number;
   requiresInterview: boolean;
   isMultiEntry: boolean;
+  documents: string[] | null;
+  requirements: string[] | null;
 }
 
 /**
@@ -898,6 +900,8 @@ export async function getDestinationDetails(
               processingTime: visaTypes.processingTime,
               requiresInterview: visaTypes.requiresInterview,
               isMultiEntry: visaTypes.isMultiEntry,
+              documents: visaTypes.documents,
+              requirements: visaTypes.requirements,
             })
             .from(visaTypes)
             .leftJoin(
@@ -944,6 +948,8 @@ export async function getDestinationDetails(
             processingTime: vt.processingTime,
             requiresInterview: vt.requiresInterview,
             isMultiEntry: vt.isMultiEntry,
+            documents: vt.documents,
+            requirements: vt.requirements,
           })
         );
 

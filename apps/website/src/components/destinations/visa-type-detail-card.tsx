@@ -1,12 +1,17 @@
 import { Badge, Button } from "@repo/ui";
 import { cn } from "@repo/utils";
+import { ArrowLeftRight, Calendar, Clock, DollarSign } from "lucide-react";
+import Link from "next/link";
 
 import { getTranslation } from "@/app/i18n";
 import type {
   DestinationWithVisaTypes,
   VisaTypeInfo,
 } from "@/lib/services/country-service";
-import { getCountryFlagEmoji } from "@/lib/utils/visa-type-utils";
+import {
+  getCountryFlagEmoji,
+  getVisaCategoryConfig,
+} from "@/lib/utils/visa-type-utils";
 
 import { RequiredDocuments } from "./required-documents";
 
@@ -27,6 +32,7 @@ export async function VisaTypeDetailCard({
     keyPrefix: "visaCard",
   });
   const flagEmoji = getCountryFlagEmoji(destination.code);
+  const config = getVisaCategoryConfig(visaType.type);
 
   return (
     <div
@@ -42,13 +48,18 @@ export async function VisaTypeDetailCard({
             <span aria-hidden="true" className="text-2xl">
               {flagEmoji}
             </span>
-            <h3 className="text-xl font-semibold">{visaType.name}</h3>
+            <h3 className={cn("text-xl font-semibold", config.textClass)}>
+              {visaType.name}
+            </h3>
           </div>
-          {visaType.isMultiEntry && (
-            <Badge variant="secondary" className="bg-primary/10 text-primary">
-              {t("multiEntry")}
-            </Badge>
-          )}
+
+          {/* Category Badge */}
+          <Badge
+            variant="secondary"
+            className={cn("bg-primary/10 text-primary", config.badgeBgClass)}
+          >
+            {t("visaType", { type: visaType.type })}
+          </Badge>
         </div>
 
         {/* Visa Type Badge */}
@@ -71,7 +82,10 @@ export async function VisaTypeDetailCard({
         <div className="grid grid-cols-2 gap-4">
           {/* Fee */}
           <div className="bg-muted/50 rounded-lg p-3 text-center">
-            <div className="text-muted-foreground mb-1 text-sm">{t("fee")}</div>
+            <div className="mb-1 flex items-center justify-center gap-1 text-xs text-gray-500">
+              <DollarSign className="h-3 w-3" aria-hidden="true" />
+              <span>{t("fee")}</span>
+            </div>
             <div className="text-lg font-bold">
               {visaType.fee === 0
                 ? t("free")
@@ -81,8 +95,9 @@ export async function VisaTypeDetailCard({
 
           {/* Processing Time */}
           <div className="bg-muted/50 rounded-lg p-3 text-center">
-            <div className="text-muted-foreground mb-1 text-sm">
-              {t("processing")}
+            <div className="mb-1 flex items-center justify-center gap-1 text-xs text-gray-500">
+              <Clock className="h-3 w-3" aria-hidden="true" />
+              <span>{t("processing")}</span>
             </div>
             <div className="text-lg font-bold">
               {visaType.processingTime} {t("days")}
@@ -91,8 +106,9 @@ export async function VisaTypeDetailCard({
 
           {/* Duration */}
           <div className="bg-muted/50 rounded-lg p-3 text-center">
-            <div className="text-muted-foreground mb-1 text-sm">
-              {t("validFor")}
+            <div className="mb-1 flex items-center justify-center gap-1 text-xs text-gray-500">
+              <Calendar className="h-3 w-3" aria-hidden="true" />
+              <span>{t("validFor")}</span>
             </div>
             <div className="text-lg font-bold">
               {visaType.duration} {t("days")}
@@ -101,8 +117,9 @@ export async function VisaTypeDetailCard({
 
           {/* Entry Type */}
           <div className="bg-muted/50 rounded-lg p-3 text-center">
-            <div className="text-muted-foreground mb-1 text-sm">
-              {t("entryType")}
+            <div className="mb-1 flex items-center justify-center gap-1 text-xs text-gray-500">
+              <ArrowLeftRight className="h-3 w-3" aria-hidden="true" />
+              <span>{t("entryType")}</span>
             </div>
             <div className="text-lg font-bold">
               {visaType.isMultiEntry ? t("multiple") : t("single")}
@@ -168,10 +185,16 @@ export async function VisaTypeDetailCard({
       <div className="bg-muted/20 border-t p-6">
         <div className="flex items-center justify-between">
           <div className="text-muted-foreground text-xs">
-            {t("lastUpdated")}: {new Date().toLocaleDateString(locale)}
+            {/* Removed synthetic lastUpdated timestamp */}
           </div>
 
-          <Button type="button">{t("checkEligibility")}</Button>
+          <div className="flex items-center gap-2">
+            <Link href={`/${locale}/d/${destination.code}/v/${visaType.type}`}>
+              <Button asChild size="default">
+                {t("checkEligibility")}
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
