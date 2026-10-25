@@ -30,7 +30,11 @@ export async function generateStaticParams(): Promise<
 
 interface TagPageProps {
   params: Promise<{ locale: string; tag: string }>;
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{
+    page?: string;
+    search?: string;
+    destination?: string;
+  }>;
 }
 
 export async function generateMetadata({
@@ -61,15 +65,18 @@ export async function generateMetadata({
 
 export default async function TagPage({ params, searchParams }: TagPageProps) {
   const { tag } = await params;
-  const { page = "1" } = await searchParams;
+  const { page = "1", search, destination } = await searchParams;
 
   // Decode the tag parameter
   const decodedTag = decodedOrOriginalTag(tag);
 
-  // Transform the tag parameter into searchParams format and reuse the existing blog component
+  // Transform the tag parameter into searchParams format and reuse the existing blog component.
+  // Preserve search/destination so filter links keep working when navigating from a tag page.
   const modifiedSearchParams = {
     page,
     tag: decodedTag,
+    ...(search ? { search } : {}),
+    ...(destination ? { destination } : {}),
   };
 
   // Use the existing blog page component with the modified search params and tag route flag

@@ -16,19 +16,22 @@ import {
   generateCollectionPageJsonLd,
   getCanonicalBlogUrl,
 } from "@/lib/json-ld";
-import { getBlogPostsByDestinationPaginated } from "@/lib/services/blog-service";
+import {
+  getBlogPostsByDestinationPaginated,
+  searchBlogPosts,
+} from "@/lib/services/blog-service";
 import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
-import type { BlogPostData } from "@/lib/types/blog";
+import type { BlogPostData, PaginatedBlogResponse } from "@/lib/types/blog";
 import { generateAlternatesMetadata } from "@/lib/utils";
 
 // Required when use static generation with search params
 export const revalidate = 86400; // Revalidate every day
 
-const EMPTY_PAGINATED_RESPONSE: {
-  posts: BlogPostData[];
-  totalPages: number;
-} = {
+const EMPTY_PAGINATED_RESPONSE: PaginatedBlogResponse = {
   posts: [],
+  total: 0,
+  hasMore: false,
+  currentPage: 1,
   totalPages: 0,
 };
 
@@ -37,6 +40,7 @@ interface DestinationBlogProps {
   searchParams: Promise<{
     page?: string;
     destination?: string;
+    search?: string;
   }>;
 }
 
@@ -89,7 +93,7 @@ export default async function DestinationBlog({
   searchParams,
 }: DestinationBlogProps) {
   const { locale, destination } = await params;
-  const { page = "1" } = await searchParams;
+  const { page = "1", search } = await searchParams;
 
   const parsedPage = parseInt(page, 10);
   const currentPage =
@@ -97,29 +101,54 @@ export default async function DestinationBlog({
   const postsPerPage = 9;
   const offset = (currentPage - 1) * postsPerPage;
 
-  const [{ t }, { t: tNav }, paginatedResponse] = await Promise.all([
+  const [{ t }, { t: tNav }] = await Promise.all([
     getTranslation(locale, "blog"),
     getTranslation(locale, "navigation"),
-    getBlogPostsByDestinationPaginated(
+  ]);
+
+  let paginatedResponse: PaginatedBlogResponse;
+  let pageTitle: string;
+  let pageSubtitle: string;
+
+  if (search) {
+    const results = await searchBlogPosts(search, locale, postsPerPage).catch(
+      () => [] as BlogPostData[]
+    );
+    paginatedResponse = {
+      posts: results,
+      total: results.length,
+      hasMore: results.length > postsPerPage,
+      currentPage,
+      totalPages: Math.ceil(results.length / postsPerPage),
+    };
+    pageTitle = t("search.heading");
+    pageSubtitle = t("subtitle");
+  } else {
+    paginatedResponse = await getBlogPostsByDestinationPaginated(
       destination,
       locale,
       postsPerPage,
       offset
-    ).catch(() => EMPTY_PAGINATED_RESPONSE),
-  ]);
+    ).catch(() => EMPTY_PAGINATED_RESPONSE);
+    pageTitle = t("destination.title", { destination });
+    pageSubtitle = t("destination.subtitle", { destination });
+  }
 
-  const pageTitle = t("destination.title", { destination });
-  const pageSubtitle = t("destination.subtitle", { destination });
   const emptyStateMessage = t("empty_state");
   const baseUrl = env.baseUrl;
   const canonicalBlogUrl = getCanonicalBlogUrl(baseUrl, locale, {
     destination,
+    ...(search ? { search } : {}),
   });
 
   const buildPaginationUrl = (targetPage: number): string => {
     const queryParams = new URLSearchParams();
     queryParams.set("page", targetPage.toString());
-    queryParams.set("destination", destination);
+    if (search) {
+      queryParams.set("search", search);
+    } else {
+      queryParams.set("destination", destination);
+    }
     return `/${locale}/d/${encodeURIComponent(destination)}/blog?${queryParams.toString()}`;
   };
 

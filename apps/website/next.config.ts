@@ -24,16 +24,6 @@ const nextConfig: NextConfig = {
       permanent: true,
     },
   ],
-  rewrites: async () => [
-    {
-      source: "/:locale/blog/sitemap.xml",
-      destination: "/:locale/blog/sitemap/:locale.xml",
-    },
-    {
-      source: "/:locale/d/sitemap.xml",
-      destination: "/:locale/d/sitemap/:locale.xml",
-    },
-  ],
   headers: async () => [
     {
       // Exclude _next/, static/, and files with static extensions from Link headers
