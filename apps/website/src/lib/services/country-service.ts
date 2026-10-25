@@ -30,8 +30,12 @@ function validateCountryCode(code: string): string | null {
   if (!code || typeof code !== "string") return null;
 
   const sanitized = code.trim();
-  // Basic validation for 2-character country codes
-  if (!/^[A-Z]{2}$/.test(sanitized)) return null;
+  // Accept ISO 3166-1 alpha-2 (2 letters) or alpha-3 (3 letters) codes
+  if (
+    !/^[A-Z]{2}([0-9])?$/.test(sanitized) &&
+    !/^[A-Z]{3}$/.test(sanitized)
+  )
+    return null;
 
   return sanitized;
 }
