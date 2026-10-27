@@ -31,10 +31,7 @@ function validateCountryCode(code: string): string | null {
 
   const sanitized = code.trim();
   // Accept ISO 3166-1 alpha-2 (2 letters) or alpha-3 (3 letters) codes
-  if (
-    !/^[A-Z]{2}([0-9])?$/.test(sanitized) &&
-    !/^[A-Z]{3}$/.test(sanitized)
-  )
+  if (!/^[A-Z]{2}([0-9])?$/.test(sanitized) && !/^[A-Z]{3}$/.test(sanitized))
     return null;
 
   return sanitized;
