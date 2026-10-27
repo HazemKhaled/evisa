@@ -524,6 +524,7 @@
 }
 
 /* WebMCP Declarative Form active state outlines for agent actions */
+/*
 form:tool-form-active {
   outline: oklch(0.623 0.214 259.815) dashed 2px;
   outline-offset: 2px;
@@ -534,3 +535,4 @@ input[type="submit"]:tool-submit-active {
   outline: oklch(0.623 0.214 259.815) dashed 2px;
   outline-offset: 2px;
 }
+*/
