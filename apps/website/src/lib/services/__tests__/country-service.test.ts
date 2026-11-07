@@ -5,6 +5,7 @@ import {
   getDestinationDetails,
   getDestinationsListWithMetadata,
   getDestinationWithVisaTypes,
+  validateCountryCode,
 } from "../country-service";
 
 // Mock the database connection
@@ -12,17 +13,61 @@ jest.mock("@repo/database");
 
 const mockDbConnection = dbConnection as jest.Mocked<typeof dbConnection>;
 
-// Skip country-service tests as they require complex database mocking
-// These are integration tests that depend on server-side Next.js APIs
-// Unit tests for individual utility functions are preferred for Jest environment
-describe.skip("Country Service", () => {
+const createMockQuery = <T>(data: T) => {
+  const mockQuery = Promise.resolve(data);
+  Object.assign(mockQuery, {
+    from: jest.fn().mockReturnThis(),
+    leftJoin: jest.fn().mockReturnThis(),
+    innerJoin: jest.fn().mockReturnThis(),
+    where: jest.fn().mockReturnThis(),
+    limit: jest.fn().mockReturnThis(),
+    orderBy: jest.fn().mockReturnThis(),
+    groupBy: jest.fn().mockReturnThis(),
+  });
+  return mockQuery as Promise<T> & {
+    from: jest.Mock;
+    leftJoin: jest.Mock;
+    innerJoin: jest.Mock;
+    where: jest.Mock;
+    limit: jest.Mock;
+    orderBy: jest.Mock;
+    groupBy: jest.Mock;
+  };
+};
+
+describe("Country Service", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  describe("validateCountryCode", () => {
+    it("accepts valid ISO 3166-1 alpha-2 country codes", () => {
+      expect(validateCountryCode("AO")).toBe("AO");
+      expect(validateCountryCode("AE")).toBe("AE");
+      expect(validateCountryCode("US")).toBe("US");
+      expect(validateCountryCode(" AO ")).toBe("AO");
+    });
+
+    it("rejects alpha-3, alphanumeric, lowercase, and malformed codes", () => {
+      expect(validateCountryCode("AGO")).toBeNull();
+      expect(validateCountryCode("A1")).toBeNull();
+      expect(validateCountryCode("ao")).toBeNull();
+      expect(validateCountryCode("Ao")).toBeNull();
+      expect(validateCountryCode("")).toBeNull();
+      expect(validateCountryCode("   ")).toBeNull();
+      expect(validateCountryCode("A")).toBeNull();
+      expect(validateCountryCode("ABCD")).toBeNull();
+      expect(validateCountryCode("12")).toBeNull();
+    });
+  });
+
   describe("getDestinationsListWithMetadata", () => {
     it("should return destination metadata with valid inputs", async () => {
       const mockDestinations = [
         {
           id: 1,
-          code: "UAE",
-          name: "UAE",
+          code: "AE",
+          name: "AE",
           localizedName: "United Arab Emirates",
           heroImage: null,
           about: "Modern destination",
@@ -31,36 +76,27 @@ describe.skip("Country Service", () => {
         },
       ];
 
-      // Create a query that resolves to the destinations array
-      const mockQuery = Promise.resolve(mockDestinations);
-      Object.assign(mockQuery, {
-        from: jest.fn().mockReturnThis(),
-        leftJoin: jest.fn().mockReturnThis(),
-        where: jest.fn().mockReturnThis(),
-        limit: jest.fn().mockReturnThis(),
-      });
-
-      // Mock visa statistics queries
-      const mockVisaStatsQuery = Promise.resolve([
-        { count: 1, avgProcessingTime: 5, minFee: 100 },
+      const mockMainQuery = createMockQuery(mockDestinations);
+      const mockSubQuery1 = createMockQuery([]);
+      const mockSubQuery2 = createMockQuery([]);
+      const mockVisaStatsQuery = createMockQuery([
+        {
+          destinationCode: "AE",
+          totalVisaTypes: 1,
+          avgProcessingTime: 5,
+          minFee: 100,
+        },
       ]);
-      Object.assign(mockVisaStatsQuery, {
-        from: jest.fn().mockReturnThis(),
-        where: jest.fn().mockReturnThis(),
-      });
-
-      const mockVisaFreeQuery = Promise.resolve([{ count: 1 }]);
-      Object.assign(mockVisaFreeQuery, {
-        from: jest.fn().mockReturnThis(),
-        where: jest.fn().mockReturnThis(),
-      });
+      const mockVisaFreeQuery = createMockQuery([{ destinationCode: "AE" }]);
 
       const mockDb = {
         select: jest
           .fn()
-          .mockReturnValueOnce(mockQuery) // Main destinations query
-          .mockReturnValueOnce(mockVisaStatsQuery) // Visa statistics query
-          .mockReturnValue(mockVisaFreeQuery), // Visa-free count query
+          .mockReturnValueOnce(mockMainQuery)
+          .mockReturnValueOnce(mockSubQuery1)
+          .mockReturnValueOnce(mockSubQuery2)
+          .mockReturnValueOnce(mockVisaStatsQuery)
+          .mockReturnValue(mockVisaFreeQuery),
       };
 
       mockDbConnection.getDb.mockReturnValue(
@@ -71,19 +107,13 @@ describe.skip("Country Service", () => {
 
       expect(result).toHaveLength(1);
       expect(result[0]).toMatchObject({
-        code: "UAE",
+        code: "AE",
         localizedName: "United Arab Emirates",
       });
     });
 
     it("should validate and sanitize sort criteria", async () => {
-      const mockQuery = {
-        from: jest.fn().mockReturnThis(),
-        leftJoin: jest.fn().mockReturnThis(),
-        where: jest.fn().mockReturnThis(),
-        limit: jest.fn().mockReturnThis(),
-        orderBy: jest.fn().mockResolvedValue([]),
-      };
+      const mockQuery = createMockQuery([]);
 
       const mockDb = {
         select: jest.fn().mockReturnValue(mockQuery),
@@ -100,12 +130,7 @@ describe.skip("Country Service", () => {
     });
 
     it("should limit results to maximum 100", async () => {
-      const mockQuery = {
-        from: jest.fn().mockReturnThis(),
-        leftJoin: jest.fn().mockReturnThis(),
-        where: jest.fn().mockReturnThis(),
-        limit: jest.fn().mockResolvedValue([]),
-      };
+      const mockQuery = createMockQuery([]);
 
       const mockDb = {
         select: jest.fn().mockReturnValue(mockQuery),
@@ -136,8 +161,8 @@ describe.skip("Country Service", () => {
     it("should return destination details with valid inputs", async () => {
       const mockDestination = {
         id: 1,
-        code: "UAE",
-        name: "UAE",
+        code: "AE",
+        name: "AE",
         localizedName: "United Arab Emirates",
         heroImage: null,
         about: "Modern destination",
@@ -149,28 +174,25 @@ describe.skip("Country Service", () => {
         deletedAt: null,
       };
 
-      // Create proper query chain mocks that match the actual service calls
-      const mockDestinationQuery = Promise.resolve([mockDestination]);
-      Object.assign(mockDestinationQuery, {
-        from: jest.fn().mockReturnThis(),
-        leftJoin: jest.fn().mockReturnThis(),
-        where: jest.fn().mockReturnThis(),
-        limit: jest.fn().mockReturnThis(),
-      });
+      const mockDestinationQuery = createMockQuery([mockDestination]);
+      const mockEmptyQuery = createMockQuery([]);
 
       const mockDb = {
-        select: jest.fn().mockReturnValue(mockDestinationQuery),
+        select: jest
+          .fn()
+          .mockReturnValueOnce(mockDestinationQuery)
+          .mockReturnValue(mockEmptyQuery),
       };
 
       mockDbConnection.getDb.mockReturnValue(
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
-      const result = await getDestinationDetails("UAE", "en");
+      const result = await getDestinationDetails("AE", "en", "AO");
 
       expect(result).toMatchObject({
         id: 1,
-        code: "UAE",
+        code: "AE",
         localizedName: "United Arab Emirates",
       });
       expect(result).toHaveProperty("visaTypes");
@@ -178,17 +200,14 @@ describe.skip("Country Service", () => {
     });
 
     it("should return null for invalid destination code", async () => {
-      const result = await getDestinationDetails("INVALID", "en");
-
-      expect(result).toBeNull();
+      for (const invalidCode of ["INVALID", "AGO", "A1", "ao"]) {
+        const result = await getDestinationDetails(invalidCode, "en");
+        expect(result).toBeNull();
+      }
     });
 
     it("should return null when destination not found in database", async () => {
-      const mockQuery = {
-        from: jest.fn().mockReturnThis(),
-        where: jest.fn().mockReturnThis(),
-        limit: jest.fn().mockResolvedValue([]), // No results
-      };
+      const mockQuery = createMockQuery([]);
 
       const mockDb = {
         select: jest.fn().mockReturnValue(mockQuery),
@@ -198,7 +217,7 @@ describe.skip("Country Service", () => {
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
-      const result = await getDestinationDetails("UAE", "en");
+      const result = await getDestinationDetails("AE", "en");
 
       expect(result).toBeNull();
     });
@@ -207,7 +226,7 @@ describe.skip("Country Service", () => {
   describe("getDestinationWithVisaTypes", () => {
     it("should return the same result as getDestinationDetails", async () => {
       const mockResult: DestinationWithVisaTypes = {
-        code: "UAE",
+        code: "AE",
         name: "United Arab Emirates",
         localizedName: "United Arab Emirates",
         heroImage: null,
@@ -220,27 +239,24 @@ describe.skip("Country Service", () => {
         hasVisaOnArrival: false,
       };
 
-      // Create proper query chain mock
-      const mockQuery = Promise.resolve([mockResult]);
-      Object.assign(mockQuery, {
-        from: jest.fn().mockReturnThis(),
-        leftJoin: jest.fn().mockReturnThis(),
-        where: jest.fn().mockReturnThis(),
-        limit: jest.fn().mockReturnThis(),
-      });
+      const mockDestinationQuery = createMockQuery([mockResult]);
+      const mockEmptyQuery = createMockQuery([]);
 
       const mockDb = {
-        select: jest.fn().mockReturnValue(mockQuery),
+        select: jest
+          .fn()
+          .mockReturnValueOnce(mockDestinationQuery)
+          .mockReturnValue(mockEmptyQuery),
       };
 
       mockDbConnection.getDb.mockReturnValue(
         mockDb as unknown as ReturnType<typeof mockDbConnection.getDb>
       );
 
-      const result = await getDestinationWithVisaTypes("UAE", "en");
+      const result = await getDestinationWithVisaTypes("AE", "en");
 
       expect(result).toMatchObject({
-        code: "UAE",
+        code: "AE",
       });
       expect(result).toHaveProperty("totalVisaTypes");
       expect(typeof result?.totalVisaTypes).toBe("number");
@@ -257,7 +273,7 @@ describe.skip("Country Service", () => {
     });
 
     it("should validate country code format", async () => {
-      const invalidCodes = ["", "A", "ABCD", "12", "A1"];
+      const invalidCodes = ["", "A", "AGO", "ABCD", "12", "A1", "ao"];
 
       for (const code of invalidCodes) {
         const result = await getDestinationDetails(code, "en");
@@ -269,28 +285,17 @@ describe.skip("Country Service", () => {
       const mockDestinations = [
         {
           id: 1,
-          countryCode: "UAE",
-          nameEn: "United Arab Emirates",
-          nameAr: "الإمارات العربية المتحدة",
-          nameNative: "United Arab Emirates",
-          flagSvgPath: "/flags/UAE.svg",
-          isActive: true,
+          code: "AE",
+          name: "AE",
+          localizedName: "United Arab Emirates",
+          heroImage: "/flags/AE.svg",
+          about: null,
           continent: "Asia",
           region: "Middle East",
-          totalVisaTypes: 1,
-          hasVisaFree: true,
-          hasEVisa: true,
-          hasVisaOnArrival: false,
         },
       ];
 
-      const mockQuery = {
-        from: jest.fn().mockReturnThis(),
-        leftJoin: jest.fn().mockReturnThis(),
-        where: jest.fn().mockReturnThis(),
-        limit: jest.fn().mockReturnThis(),
-        orderBy: jest.fn().mockResolvedValue(mockDestinations),
-      };
+      const mockQuery = createMockQuery(mockDestinations);
 
       const mockDb = {
         select: jest.fn().mockReturnValue(mockQuery),

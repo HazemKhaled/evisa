@@ -26,7 +26,7 @@ import { unstable_cache } from "next/cache";
 /**
  * Validate and sanitize country code
  */
-function validateCountryCode(code: string): string | null {
+export function validateCountryCode(code: string): string | null {
   if (!code || typeof code !== "string") return null;
 
   const sanitized = code.trim();
