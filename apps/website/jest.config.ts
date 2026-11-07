@@ -22,6 +22,9 @@ const config: Config = {
       "<rootDir>/src/lib/__mocks__/opennextjs-cloudflare.js",
     "^@repo/database$": "<rootDir>/__mocks__/@repo/database.ts",
     "^next/cache$": "<rootDir>/__mocks__/next/cache.ts",
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^react$": "<rootDir>/../../node_modules/react",
+    "^react-dom$": "<rootDir>/../../node_modules/react-dom",
   },
   collectCoverageFrom: [
     "src/lib/**/*.{ts,tsx}",
