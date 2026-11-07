@@ -39,8 +39,8 @@ describe("Search API Route", () => {
 
   it("should return 200 and country results on success", async () => {
     const mockResults = [
-      { code: "FRA", name: "France" },
-      { code: "DEU", name: "Germany" },
+      { code: "FR", name: "France" },
+      { code: "DE", name: "Germany" },
     ];
     (searchCountries as jest.Mock).mockResolvedValue(mockResults);
 
