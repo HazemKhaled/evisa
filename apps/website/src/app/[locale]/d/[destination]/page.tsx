@@ -48,13 +48,9 @@ async function resolvePassportCode(): Promise<string | undefined> {
     headerStore.get("x-forwarded-uri") || headerStore.get("url") || "";
   const url = proto && host ? `${proto}://${host}${path}` : path;
 
-  // Helper to validate country code (both alpha-2 and alpha-3 formats)
-  const isValidCountryCode = (code: string) =>
-    /^[A-Z]{2}([0-9])?$/.test(code) || /^[A-Z]{3}$/.test(code);
-
   // 1. Try URL query param first
   const urlParam = url.split("passport=")[1]?.split("&")[0]?.trim();
-  if (urlParam && isValidCountryCode(urlParam)) {
+  if (urlParam && /^[A-Z]{2}$/.test(urlParam)) {
     // Set sticky cookie for subsequent visits
     try {
       cookieStore.set("gtv_passport", urlParam);
@@ -66,7 +62,7 @@ async function resolvePassportCode(): Promise<string | undefined> {
 
   // 2. Fall back to sticky cookie
   const cookieValue = cookieStore.get("gtv_passport")?.value;
-  if (cookieValue && isValidCountryCode(cookieValue)) {
+  if (cookieValue && /^[A-Z]{2}$/.test(cookieValue)) {
     return cookieValue;
   }
 
@@ -84,7 +80,10 @@ interface DestinationPageProps {
 
 // Pre-build popular destinations at build time
 export async function generateStaticParams(): Promise<
-  DestinationPageProps["params"][]
+  {
+    locale: string;
+    destination: string;
+  }[]
 > {
   // Get top 20 popular destinations for SSG
   const popularDestinations = await getDestinationsListWithMetadata(
@@ -95,12 +94,10 @@ export async function generateStaticParams(): Promise<
 
   // Generate params for each popular destination in each locale
   return languages.flatMap(locale =>
-    popularDestinations.map(destination =>
-      Promise.resolve({
-        locale,
-        destination: destination.code,
-      })
-    )
+    popularDestinations.map(destination => ({
+      locale,
+      destination: destination.code,
+    }))
   );
 }
 

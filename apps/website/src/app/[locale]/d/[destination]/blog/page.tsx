@@ -5,6 +5,7 @@ import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
 import { BlogPostList } from "@/components/blog/blog-post-list";
 import { BlogSearch } from "@/components/blog/blog-search";
+import { PaginatedBlogList } from "@/components/blog/paginated-blog-list";
 import { MultipleJsonLd } from "@/components/json-ld";
 import { StaticPageLayout } from "@/components/static-page-layout";
 import { PageBreadcrumb } from "@/components/ui/page-breadcrumb";
@@ -16,46 +17,40 @@ import {
   generateCollectionPageJsonLd,
   getCanonicalBlogUrl,
 } from "@/lib/json-ld";
-import {
-  getBlogPostsByDestinationPaginated,
-  searchBlogPosts,
-} from "@/lib/services/blog-service";
+import { getBlogPostsByDestinationPaginated } from "@/lib/services/blog-service";
 import { getDestinationsListWithMetadata } from "@/lib/services/country-service";
-import type { BlogPostData, PaginatedBlogResponse } from "@/lib/types/blog";
+import type { BlogPostData } from "@/lib/types/blog";
 import { generateAlternatesMetadata } from "@/lib/utils";
+import { paginateArray } from "@/lib/utils/pagination";
 
-// Required when use static generation with search params
-export const revalidate = 86400; // Revalidate every day
+export const revalidate = 86400;
 
-const EMPTY_PAGINATED_RESPONSE: PaginatedBlogResponse = {
+const POSTS_PER_PAGE = 9;
+
+// Pagination is applied on the client so the route stays statically cacheable,
+// which means every page's posts have to be fetched up front. The cap keeps a
+// pathological destination from pulling an unbounded list into one render.
+const MAX_POSTS = 500;
+
+const EMPTY_PAGINATED_RESPONSE: {
+  posts: BlogPostData[];
+} = {
   posts: [],
-  total: 0,
-  hasMore: false,
-  currentPage: 1,
-  totalPages: 0,
 };
 
 interface DestinationBlogProps {
   params: Promise<{ locale: string; destination: string }>;
-  searchParams: Promise<{
-    page?: string;
-    destination?: string;
-    search?: string;
-  }>;
 }
 
-// Pre-build top 10 destinations per locale at build time for destination blog pages
 export async function generateStaticParams(): Promise<
   { locale: string; destination: string }[]
 > {
-  // Get top 10 popular destinations for SSG
   const popularDestinations = await getDestinationsListWithMetadata(
     "en",
     10,
     "popular"
   ).catch(() => []);
 
-  // Generate params for each popular destination in each locale
   return languages.flatMap(locale =>
     popularDestinations.map(destination => ({
       locale,
@@ -90,75 +85,42 @@ export async function generateMetadata({
 
 export default async function DestinationBlog({
   params,
-  searchParams,
 }: DestinationBlogProps) {
   const { locale, destination } = await params;
-  const { page = "1", search } = await searchParams;
 
-  const parsedPage = parseInt(page, 10);
-  const currentPage =
-    Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
-  const postsPerPage = 9;
-  const offset = (currentPage - 1) * postsPerPage;
-
-  const [{ t }, { t: tNav }] = await Promise.all([
+  const [{ t }, { t: tNav }, paginatedResponse] = await Promise.all([
     getTranslation(locale, "blog"),
     getTranslation(locale, "navigation"),
+    getBlogPostsByDestinationPaginated(destination, locale, MAX_POSTS, 0).catch(
+      () => EMPTY_PAGINATED_RESPONSE
+    ),
   ]);
 
-  let paginatedResponse: PaginatedBlogResponse;
-  let pageTitle: string;
-  let pageSubtitle: string;
+  const { posts } = paginatedResponse;
+  const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
 
-  if (search) {
-    const results = await searchBlogPosts(search, locale, postsPerPage).catch(
-      () => [] as BlogPostData[]
-    );
-    paginatedResponse = {
-      posts: results,
-      total: results.length,
-      hasMore: results.length > postsPerPage,
-      currentPage,
-      totalPages: Math.ceil(results.length / postsPerPage),
-    };
-    pageTitle = t("search.heading");
-    pageSubtitle = t("subtitle");
-  } else {
-    paginatedResponse = await getBlogPostsByDestinationPaginated(
-      destination,
-      locale,
-      postsPerPage,
-      offset
-    ).catch(() => EMPTY_PAGINATED_RESPONSE);
-    pageTitle = t("destination.title", { destination });
-    pageSubtitle = t("destination.subtitle", { destination });
-  }
-
+  const pageTitle = t("destination.title", { destination });
+  const pageSubtitle = t("destination.subtitle", { destination });
   const emptyStateMessage = t("empty_state");
   const baseUrl = env.baseUrl;
   const canonicalBlogUrl = getCanonicalBlogUrl(baseUrl, locale, {
     destination,
-    ...(search ? { search } : {}),
   });
 
   const buildPaginationUrl = (targetPage: number): string => {
     const queryParams = new URLSearchParams();
     queryParams.set("page", targetPage.toString());
-    if (search) {
-      queryParams.set("search", search);
-    } else {
-      queryParams.set("destination", destination);
-    }
+    queryParams.set("destination", destination);
     return `/${locale}/d/${encodeURIComponent(destination)}/blog?${queryParams.toString()}`;
   };
 
-  const { posts, totalPages } = paginatedResponse;
+  const firstPagePosts = posts.slice(0, POSTS_PER_PAGE);
 
   const collectionPageJsonLd = generateCollectionPageJsonLd({
     name: pageTitle,
     description: pageSubtitle,
     url: canonicalBlogUrl,
-    items: posts.map(post => ({
+    items: firstPagePosts.map(post => ({
       name: post.title,
       url: `${baseUrl}/${locale}/blog/${post.slug}`,
       image: post.image,
@@ -170,7 +132,7 @@ export default async function DestinationBlog({
     name: pageTitle,
     description: pageSubtitle,
     url: canonicalBlogUrl,
-    posts: posts.map(post => ({
+    posts: firstPagePosts.map(post => ({
       headline: post.title,
       url: `${baseUrl}/${locale}/blog/${post.slug}`,
       image: post.image,
@@ -205,6 +167,19 @@ export default async function DestinationBlog({
     href: index === breadcrumbModel.length - 1 ? undefined : item.url,
     isCurrentPage: index === breadcrumbModel.length - 1,
   }));
+
+  const renderedPages = Array.from({ length: totalPages }, (_, index) => (
+    <BlogPostList
+      key={index}
+      posts={paginateArray(posts, index + 1, POSTS_PER_PAGE)}
+      locale={locale}
+      currentPage={index + 1}
+      totalPages={totalPages}
+      buildPaginationUrl={buildPaginationUrl}
+      gridCols="3"
+      showPagination={true}
+    />
+  ));
 
   return (
     <>
@@ -242,15 +217,9 @@ export default async function DestinationBlog({
               <p className="text-lg text-gray-600">{emptyStateMessage}</p>
             </div>
           ) : (
-            <BlogPostList
-              posts={posts}
-              locale={locale}
-              currentPage={currentPage}
-              totalPages={totalPages}
-              buildPaginationUrl={buildPaginationUrl}
-              gridCols="3"
-              showPagination={true}
-            />
+            <Suspense fallback={renderedPages[0]}>
+              <PaginatedBlogList pages={renderedPages} />
+            </Suspense>
           )}
         </div>
       </StaticPageLayout>
