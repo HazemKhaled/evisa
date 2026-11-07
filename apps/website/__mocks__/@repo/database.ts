@@ -33,6 +33,10 @@ export const inArray = jest.fn((col: unknown, vals: readonly unknown[]) => ({
   col,
   vals,
 }));
+export const exists = jest.fn((subquery: unknown) => ({
+  condition: "exists",
+  subquery,
+}));
 export const count = jest.fn(() => ({ count: 0 }));
 export const avg = jest.fn((col: unknown) => ({ condition: "avg", col }));
 export const min = jest.fn((col: unknown) => ({ condition: "min", col }));
@@ -55,6 +59,11 @@ export const visaTypes = {
   destinationCode: "destinationCode",
   id: "id",
   isActive: "isActive",
+};
+export const visaTypesI18n = {
+  visaTypeId: "visaTypeId",
+  locale: "locale",
+  name: "name",
 };
 export const visaEligibility = {
   destinationCode: "destinationCode",
