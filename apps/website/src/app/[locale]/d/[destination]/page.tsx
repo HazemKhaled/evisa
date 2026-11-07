@@ -48,13 +48,9 @@ async function resolvePassportCode(): Promise<string | undefined> {
     headerStore.get("x-forwarded-uri") || headerStore.get("url") || "";
   const url = proto && host ? `${proto}://${host}${path}` : path;
 
-  // Helper to validate country code (both alpha-2 and alpha-3 formats)
-  const isValidCountryCode = (code: string) =>
-    /^[A-Z]{2}([0-9])?$/.test(code) || /^[A-Z]{3}$/.test(code);
-
   // 1. Try URL query param first
   const urlParam = url.split("passport=")[1]?.split("&")[0]?.trim();
-  if (urlParam && isValidCountryCode(urlParam)) {
+  if (urlParam && /^[A-Z]{2}$/.test(urlParam)) {
     // Set sticky cookie for subsequent visits
     try {
       cookieStore.set("gtv_passport", urlParam);
@@ -66,7 +62,7 @@ async function resolvePassportCode(): Promise<string | undefined> {
 
   // 2. Fall back to sticky cookie
   const cookieValue = cookieStore.get("gtv_passport")?.value;
-  if (cookieValue && isValidCountryCode(cookieValue)) {
+  if (cookieValue && /^[A-Z]{2}$/.test(cookieValue)) {
     return cookieValue;
   }
 
