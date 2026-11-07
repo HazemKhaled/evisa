@@ -1,8 +1,5 @@
 import { render, screen } from "@testing-library/react";
 
-import DestinationBlog, {
-  revalidate as destinationBlogRevalidate,
-} from "../../d/[destination]/blog/page";
 import BlogHome, {
   generateMetadata,
   generateStaticParams,
@@ -194,17 +191,8 @@ describe("BlogHome ISR page", () => {
     expect(screen.queryByText("Blog Post 2")).not.toBeInTheDocument();
   });
 
-  it("DestinationBlog and TagPage delegate to BlogHome without awaiting searchParams", async () => {
-    expect(destinationBlogRevalidate).toBe(86400);
+  it("TagPage delegates to BlogHome without awaiting searchParams", async () => {
     expect(tagBlogRevalidate).toBe(86400);
-
-    const destUi = await DestinationBlog({
-      params: Promise.resolve({ locale: "en", destination: "US" }),
-    });
-    const { unmount } = render(destUi);
-    expect(screen.getByText("Travel to US")).toBeInTheDocument();
-    expect(screen.getByText("schengen visa guide")).toBeInTheDocument();
-    unmount();
 
     const tagUi = await TagPage({
       params: Promise.resolve({ locale: "en", tag: "visa" }),

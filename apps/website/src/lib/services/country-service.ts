@@ -577,7 +577,7 @@ export async function getDestinationsListWithMetadataPaginated(
 
   const cachedFn = unstable_cache(
     async (): Promise<PaginatedDestinationsResponse> => {
-      try {
+      {
         const db = getDb();
 
         // Build base where conditions - array of SQL expressions for filtering
@@ -739,18 +739,6 @@ export async function getDestinationsListWithMetadataPaginated(
           currentPage,
           totalPages,
         };
-      } catch (error) {
-        console.error(
-          `Failed to get paginated destinations list for locale ${locale}:`,
-          error
-        );
-        return {
-          destinations: [],
-          total: 0,
-          hasMore: false,
-          currentPage: 1,
-          totalPages: 0,
-        };
       }
     },
     [
@@ -765,7 +753,21 @@ export async function getDestinationsListWithMetadataPaginated(
     { tags: ["destinations", `destinations-${locale}`], revalidate: 86400 }
   );
 
-  return cachedFn();
+  try {
+    return await cachedFn();
+  } catch (error) {
+    console.error(
+      `Failed to get paginated destinations list for locale ${locale}:`,
+      error
+    );
+    return {
+      destinations: [],
+      total: 0,
+      hasMore: false,
+      currentPage: 1,
+      totalPages: 0,
+    };
+  }
 }
 
 /**

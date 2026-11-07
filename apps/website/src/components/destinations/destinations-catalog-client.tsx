@@ -125,7 +125,7 @@ export function DestinationsCatalogView({
 
   const totalItems = filteredDestinations.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const currentPage = requestedPage;
+  const currentPage = Math.min(requestedPage, Math.max(1, totalPages));
   const paginatedDestinations = paginateArray(
     filteredDestinations,
     currentPage,
@@ -133,7 +133,7 @@ export function DestinationsCatalogView({
   );
 
   const resultsText = translations.resultsShowingTemplate
-    .replace("__COUNT__", String(totalItems))
+    .replace("__COUNT__", String(paginatedDestinations.length))
     .replace("__TOTAL__", String(totalItems));
 
   const buildPaginationUrl = (targetPage: number): string => {
