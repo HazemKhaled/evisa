@@ -2,18 +2,20 @@ import { type Metadata } from "next";
 
 import { getTranslation } from "@/app/i18n";
 import { languages } from "@/app/i18n/settings";
+import {
+  BlogCatalogServer,
+  decodedOrOriginalTag,
+} from "@/components/blog/blog-catalog-server";
 import { env } from "@/lib/consts";
 import { getAllUniqueTagsAcrossLocales } from "@/lib/services/blog-service";
 import { generateAlternatesMetadata } from "@/lib/utils";
-
-import BlogHome from "../../page";
 
 export const revalidate = 86400;
 
 export async function generateStaticParams(): Promise<
   { locale: string; tag: string }[]
 > {
-  const allTags = await getAllUniqueTagsAcrossLocales();
+  const allTags = await getAllUniqueTagsAcrossLocales().catch(() => []);
 
   const params = [];
   for (const currentLocale of languages) {
@@ -56,13 +58,7 @@ export async function generateMetadata({
 }
 
 export default async function TagPage({ params }: TagPageProps) {
-  return BlogHome({ params });
-}
+  const { locale, tag } = await params;
 
-function decodedOrOriginalTag(tag: string): string {
-  try {
-    return decodeURIComponent(tag);
-  } catch {
-    return tag;
-  }
+  return BlogCatalogServer({ locale, tag: decodedOrOriginalTag(tag) });
 }

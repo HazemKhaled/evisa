@@ -86,6 +86,11 @@ export default async function DestinationsPage({
 
   const { destinations } = paginatedResponse;
   const firstPageDestinations = destinations.slice(0, ITEMS_PER_PAGE);
+  const catalogDestinations = destinations.map(destination => ({
+    ...destination,
+    about: null,
+    heroImage: null,
+  }));
 
   const pageUrl = `${env.baseUrl}/${locale}/d`;
 
@@ -150,7 +155,7 @@ export default async function DestinationsPage({
           fallback={
             <DestinationsCatalogView
               locale={locale}
-              destinations={destinations}
+              destinations={catalogDestinations}
               continents={continents}
               itemsPerPage={ITEMS_PER_PAGE}
               translations={catalogTranslations}
@@ -159,7 +164,7 @@ export default async function DestinationsPage({
         >
           <DestinationsCatalogClient
             locale={locale}
-            destinations={destinations}
+            destinations={catalogDestinations}
             continents={continents}
             itemsPerPage={ITEMS_PER_PAGE}
             translations={catalogTranslations}
