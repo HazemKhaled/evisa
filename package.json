@@ -17,6 +17,7 @@
     "lint": "pnpm --recursive lint",
     "lint:fix": "pnpm --recursive lint:fix && pnpm format",
     "type-check": "pnpm --recursive type-check",
+    "check-types": "pnpm --recursive type-check",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "jest",

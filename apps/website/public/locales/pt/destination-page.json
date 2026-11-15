@@ -123,5 +123,37 @@
   },
   "aria": {
     "breadcrumb": "Navegação breadcrumb da página de destino"
+  },
+  "passportDestinationPage": {
+    "meta": {
+      "title": "Requisitos de visto de {{passport}} para {{destination}} ({{year}}) — {{status}}",
+      "description": "Cidadãos de {{passport}} precisam de visto para {{destination}} em {{year}}? Status: {{status}}. Compare estadia máxima, prazos, taxas e documentos necessários.",
+      "notFound": "Página de elegibilidade de visto não encontrada"
+    },
+    "hero": {
+      "heading": "Requisitos de visto de {{passport}} para {{destination}} ({{year}})",
+      "directAnswerVisaFree": "Cidadãos de {{passport}} não precisam de visto para {{destination}} em {{year}} para estadias de curta duração.",
+      "directAnswerOnArrival": "Cidadãos de {{passport}} podem obter um visto na chegada ao viajar para {{destination}} em {{year}}.",
+      "directAnswerEta": "Cidadãos de {{passport}} precisam de um e-Visa ou autorização eletrônica (eTA) antes de viajar para {{destination}} em {{year}}.",
+      "directAnswerRequired": "Cidadãos de {{passport}} precisam de um visto antes de viajar para {{destination}} em {{year}}.",
+      "directAnswerNotAllowed": "Viagens para {{destination}} com passaporte de {{passport}} estão atualmente restritas em {{year}}.",
+      "statusLabel": "Status de elegibilidade",
+      "maxStayLabel": "Estadia máxima",
+      "processingTimeLabel": "Tempo de processamento",
+      "feeSummaryLabel": "Taxa do visto",
+      "applyNowCta": "Iniciar solicitação de visto",
+      "tripReadyCta": "Obter eSIM e seguro viagem",
+      "viewAllDestinationVisas": "Ver todos os detalhes de visto para {{destination}}"
+    },
+    "faq": {
+      "title": "Perguntas frequentes: {{passport}} para {{destination}}",
+      "needVisaQuestion": "Cidadãos de {{passport}} precisam de visto para {{destination}}?",
+      "maxStayQuestion": "Por quanto tempo cidadãos de {{passport}} podem ficar em {{destination}}?",
+      "maxStayAnswer": "Portadores de passaporte de {{passport}} podem permanecer em {{destination}} por até {{days}} dias por visita.",
+      "maxStayFallbackAnswer": "A duração de estadia permitida em {{destination}} para cidadãos de {{passport}} depende do tipo de visto selecionado.",
+      "costQuestion": "Quanto custa um visto para {{destination}} para cidadãos de {{passport}}?",
+      "costVisaFreeAnswer": "A entrada em {{destination}} é isenta de visto para cidadãos de {{passport}} em viagens curtas.",
+      "costRangeAnswer": "As taxas de visto para {{destination}} variam de {{feeSummary}} dependendo do tipo de visto."
+    }
   }
 }

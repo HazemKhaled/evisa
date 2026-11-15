@@ -123,5 +123,37 @@
   },
   "aria": {
     "breadcrumb": "Navigation du fil d'Ariane de la page de destination"
+  },
+  "passportDestinationPage": {
+    "meta": {
+      "title": "Exigences de visa de {{passport}} vers {{destination}} ({{year}}) — {{status}}",
+      "description": "Les citoyens de {{passport}} ont-ils besoin d'un visa pour {{destination}} en {{year}} ? Statut : {{status}}. Comparez durée de séjour, délais, frais et documents requis.",
+      "notFound": "Page d'éligibilité au visa introuvable"
+    },
+    "hero": {
+      "heading": "Exigences de visa de {{passport}} vers {{destination}} ({{year}})",
+      "directAnswerVisaFree": "Les citoyens de {{passport}} n'ont pas besoin de visa pour {{destination}} en {{year}} pour les courts séjours.",
+      "directAnswerOnArrival": "Les citoyens de {{passport}} peuvent obtenir un visa à l'arrivée lors d'un voyage vers {{destination}} en {{year}}.",
+      "directAnswerEta": "Les citoyens de {{passport}} ont besoin d'un e-Visa ou d'une autorisation électronique (eTA) avant de voyager vers {{destination}} en {{year}}.",
+      "directAnswerRequired": "Les citoyens de {{passport}} ont besoin d'un visa avant de voyager vers {{destination}} en {{year}}.",
+      "directAnswerNotAllowed": "Les voyages vers {{destination}} avec un passeport de {{passport}} sont actuellement restreints en {{year}}.",
+      "statusLabel": "Statut d'éligibilité",
+      "maxStayLabel": "Séjour max.",
+      "processingTimeLabel": "Délai de traitement",
+      "feeSummaryLabel": "Frais de visa",
+      "applyNowCta": "Commencer la demande de visa",
+      "tripReadyCta": "Obtenir eSIM et assurance voyage",
+      "viewAllDestinationVisas": "Voir tous les détails de visa pour {{destination}}"
+    },
+    "faq": {
+      "title": "Questions fréquentes : {{passport}} vers {{destination}}",
+      "needVisaQuestion": "Les citoyens de {{passport}} ont-ils besoin d'un visa pour {{destination}} ?",
+      "maxStayQuestion": "Combien de temps les citoyens de {{passport}} peuvent-ils rester en {{destination}} ?",
+      "maxStayAnswer": "Les titulaires d'un passeport de {{passport}} peuvent séjourner en {{destination}} jusqu'à {{days}} jours par visite.",
+      "maxStayFallbackAnswer": "La durée de séjour autorisée en {{destination}} pour les citoyens de {{passport}} dépend du type de visa choisi.",
+      "costQuestion": "Combien coûte un visa pour {{destination}} pour les citoyens de {{passport}} ?",
+      "costVisaFreeAnswer": "L'entrée en {{destination}} est exemptée de visa pour les citoyens de {{passport}} pour les courts séjours.",
+      "costRangeAnswer": "Les frais de visa pour {{destination}} vont de {{feeSummary}} selon le type de visa."
+    }
   }
 }

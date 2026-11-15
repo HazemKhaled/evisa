@@ -20,6 +20,7 @@ interface VisaTypeDetailCardProps {
   visaType: VisaTypeInfo;
   destination: DestinationWithVisaTypes;
   locale: string;
+  passportCode?: string;
   className?: string;
 }
 
@@ -27,6 +28,7 @@ export async function VisaTypeDetailCard({
   visaType,
   destination,
   locale,
+  passportCode,
   className,
 }: VisaTypeDetailCardProps) {
   const { t } = await getTranslation(locale, "destination-page", {
@@ -156,6 +158,8 @@ export async function VisaTypeDetailCard({
                 visaType={visaType}
                 compact={true}
                 locale={locale}
+                destinationCode={destination.code}
+                passportCode={passportCode}
               />
             </div>
           </div>
@@ -197,6 +201,7 @@ export async function VisaTypeDetailCard({
               partnerSlug={affiliatePartners.primaryPartner.slug}
               partnerName={affiliatePartners.primaryPartner.name}
               destinationCode={destination.code}
+              passportCode={passportCode}
               visaType={visaType.name}
               size="sm"
               variant="default"

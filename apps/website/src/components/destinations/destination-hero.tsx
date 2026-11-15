@@ -129,7 +129,7 @@ export async function DestinationHero({
 
         {/* Passport Eligibility Badge */}
         {passportCode && eligibilityInfo && (
-          <div className="absolute top-6 left-6 z-10">
+          <div className="absolute start-6 top-6 z-10">
             <div
               className={cn(
                 "inline-flex items-center gap-2 rounded-lg px-3 py-2 backdrop-blur-sm",
@@ -145,7 +145,7 @@ export async function DestinationHero({
                 {getStatusLabel(eligibilityInfo.eligibilityStatus)}
               </span>
               {eligibilityInfo.maxStayDays && (
-                <span className="ml-2 text-xs opacity-80">
+                <span className="ms-2 text-xs opacity-80">
                   ({tMeta("maxStayDays", { days: eligibilityInfo.maxStayDays })}
                   )
                 </span>

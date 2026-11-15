@@ -118,5 +118,37 @@
   },
   "aria": {
     "breadcrumb": "Destination page breadcrumb navigation"
+  },
+  "passportDestinationPage": {
+    "meta": {
+      "title": "{{passport}} to {{destination}} Visa Requirements ({{year}}) — {{status}}",
+      "description": "Do {{passport}} citizens need a visa for {{destination}} in {{year}}? Status: {{status}}. Compare stay duration, processing times, fees, and required documents.",
+      "notFound": "Visa Eligibility Page Not Found"
+    },
+    "hero": {
+      "heading": "{{passport}} to {{destination}} Visa Requirements ({{year}})",
+      "directAnswerVisaFree": "{{passport}} citizens do not need a visa for {{destination}} in {{year}} for short-term stays.",
+      "directAnswerOnArrival": "{{passport}} citizens can obtain a visa on arrival when traveling to {{destination}} in {{year}}.",
+      "directAnswerEta": "{{passport}} citizens need an e-Visa or electronic travel authorization (eTA) before traveling to {{destination}} in {{year}}.",
+      "directAnswerRequired": "{{passport}} citizens need a visa before traveling to {{destination}} in {{year}}.",
+      "directAnswerNotAllowed": "Travel to {{destination}} with a {{passport}} passport is currently restricted in {{year}}.",
+      "statusLabel": "Eligibility Status",
+      "maxStayLabel": "Max Stay",
+      "processingTimeLabel": "Processing Time",
+      "feeSummaryLabel": "Visa Fee",
+      "applyNowCta": "Start Visa Application",
+      "tripReadyCta": "Get Travel eSIM & Insurance",
+      "viewAllDestinationVisas": "View all {{destination}} visa details"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions: {{passport}} to {{destination}}",
+      "needVisaQuestion": "Do {{passport}} citizens need a visa for {{destination}}?",
+      "maxStayQuestion": "How long can {{passport}} citizens stay in {{destination}}?",
+      "maxStayAnswer": "{{passport}} passport holders can stay in {{destination}} for up to {{days}} days per visit, subject to entry conditions.",
+      "maxStayFallbackAnswer": "Allowed stay duration in {{destination}} for {{passport}} citizens depends on the selected visa type and entry conditions.",
+      "costQuestion": "How much does a {{destination}} visa cost for {{passport}} citizens?",
+      "costVisaFreeAnswer": "Entry to {{destination}} is visa-free for {{passport}} citizens for short-term visits.",
+      "costRangeAnswer": "Visa fees for {{destination}} range from {{feeSummary}} depending on the visa type and processing speed."
+    }
   }
 }

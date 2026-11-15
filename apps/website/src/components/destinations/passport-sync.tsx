@@ -9,10 +9,16 @@ import { useEffect } from "react";
  * the `gtv_passport` cookie so subsequent server-side reads (e.g. navigating to
  * a new destination page) stay personalized.
  */
-export function PassportSync() {
+export function PassportSync({ passportCode }: { passportCode?: string }) {
   useEffect(() => {
     const run = () => {
       try {
+        if (passportCode && /^[A-Z]{2}$/i.test(passportCode)) {
+          const normalized = passportCode.toUpperCase();
+          window.localStorage.setItem("gtv_passport", normalized);
+          document.cookie = `gtv_passport=${normalized}; path=/; max-age=31536000; SameSite=Lax`;
+          return;
+        }
         const savedPassport = window.localStorage.getItem("gtv_passport");
         if (savedPassport && /^[A-Z]{2}$/i.test(savedPassport)) {
           document.cookie = `gtv_passport=${savedPassport}; path=/; max-age=31536000; SameSite=Lax`;
@@ -29,7 +35,7 @@ export function PassportSync() {
     return () => {
       window.removeEventListener("load", run);
     };
-  }, []);
+  }, [passportCode]);
 
   return null;
 }

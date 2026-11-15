@@ -123,5 +123,37 @@
   },
   "aria": {
     "breadcrumb": "Zielseite-Breadcrumb-Navigation"
+  },
+  "passportDestinationPage": {
+    "meta": {
+      "title": "Visumanforderungen für {{passport}} nach {{destination}} ({{year}}) — {{status}}",
+      "description": "Benötigen Staatsbürger von {{passport}} {{year}} ein Visum für {{destination}}? Status: {{status}}. Aufenthaltsdauer, Bearbeitungszeiten, Gebühren und Dokumente im Überblick.",
+      "notFound": "Visumberechtigungsseite nicht gefunden"
+    },
+    "hero": {
+      "heading": "Visumanforderungen für {{passport}} nach {{destination}} ({{year}})",
+      "directAnswerVisaFree": "Staatsbürger von {{passport}} benötigen {{year}} für Kurzaufenthalte kein Visum für {{destination}}.",
+      "directAnswerOnArrival": "Staatsbürger von {{passport}} können {{year}} bei der Einreise nach {{destination}} ein Visum bei Ankunft erhalten.",
+      "directAnswerEta": "Staatsbürger von {{passport}} benötigen {{year}} vor der Reise nach {{destination}} ein e-Visum oder eine elektronische Reisegenehmigung (eTA).",
+      "directAnswerRequired": "Staatsbürger von {{passport}} benötigen {{year}} vor der Reise nach {{destination}} ein Visum.",
+      "directAnswerNotAllowed": "Reisen nach {{destination}} mit einem Reisepass aus {{passport}} sind {{year}} derzeit eingeschränkt.",
+      "statusLabel": "Berechtigungsstatus",
+      "maxStayLabel": "Max. Aufenthalt",
+      "processingTimeLabel": "Bearbeitungszeit",
+      "feeSummaryLabel": "Visumgebühr",
+      "applyNowCta": "Visumantrag starten",
+      "tripReadyCta": "Reise-eSIM & Versicherung sichern",
+      "viewAllDestinationVisas": "Alle Visadetails für {{destination}} ansehen"
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen: {{passport}} nach {{destination}}",
+      "needVisaQuestion": "Benötigen Staatsbürger von {{passport}} ein Visum für {{destination}}?",
+      "maxStayQuestion": "Wie lange dürfen Staatsbürger von {{passport}} in {{destination}} bleiben?",
+      "maxStayAnswer": "Inhaber eines Reisepasses aus {{passport}} können pro Besuch bis zu {{days}} Tage in {{destination}} bleiben.",
+      "maxStayFallbackAnswer": "Die zulässige Aufenthaltsdauer in {{destination}} für Staatsbürger von {{passport}} hängt vom gewählten Visumtyp ab.",
+      "costQuestion": "Was kostet ein Visum für {{destination}} für Staatsbürger von {{passport}}?",
+      "costVisaFreeAnswer": "Die Einreise nach {{destination}} ist für Staatsbürger von {{passport}} bei Kurzbesuchen visumfrei.",
+      "costRangeAnswer": "Die Visumgebühren für {{destination}} liegen je nach Visumtyp bei {{feeSummary}}."
+    }
   }
 }
