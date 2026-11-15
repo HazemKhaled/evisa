@@ -455,6 +455,18 @@ src/
 - Generate XML sitemap index that include each destination sitemap
 - Generate sitemap per each destination including all pages related to this destination, blog, visas
 
+### SEO Review (required before marking any task done)
+
+Code review and unit tests alone do not verify SEO output — always perform this review before a feature or page change is considered done or a PR is marked ready:
+
+- Run `pnpm build` (or `pnpm dev`) and inspect the actual rendered `<head>` for the affected route(s): `title`, `meta description`, `canonical`, and `alternates.languages` (hreflang) tags are present and correct for every changed locale.
+- Validate every emitted JSON-LD block with a schema.org validator (e.g. Google's Rich Results Test or https://validator.schema.org) — malformed or incomplete structured data is a silent failure that tests won't catch.
+- Confirm `title`/`description` lengths are within search-engine display limits and are not duplicated across unrelated pages/locales.
+- Confirm no hardcoded strings leaked into metadata/JSON-LD; every string must come from translation files or localized DB content.
+- Confirm the new/changed route is present in the relevant sitemap (`/[locale]/.../sitemap.ts` or sitemap index) and that `alternates.languages` in the sitemap entry matches the page's own hreflang set.
+- Confirm canonical URLs use the correct lowercase/ISO-2 canonicalization and resolve to a real, non-404 page.
+- For RTL locales (`ar`), confirm metadata direction-sensitive content (if any) still reads correctly.
+
 ## MDX
 
 - Follow Next.js guide for MDX pages https://nextjs.org/docs/app/guides/mdx
@@ -578,6 +590,7 @@ The platform helps users travel with minimal visa process through:
 - Use canonical meta tags for destination pages
 - never use eslint-disabled, instead add proper rules or eslint issues
 - After implementing any feature, fix tests & type-check
+- Before marking a page/SEO-affecting task done or opening a PR as ready, complete the "SEO Review" checklist above — do not rely on unit tests/code review alone
 
 ### Memory Notes
 
