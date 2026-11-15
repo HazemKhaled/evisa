@@ -123,5 +123,37 @@
   },
   "aria": {
     "breadcrumb": "Navegación de migas de pan de página de destino"
+  },
+  "passportDestinationPage": {
+    "meta": {
+      "title": "Requisitos de visa de {{passport}} a {{destination}} ({{year}}) — {{status}}",
+      "description": "¿Los ciudadanos de {{passport}} necesitan visa para {{destination}} en {{year}}? Estado: {{status}}. Compara estancia máxima, tiempos de procesamiento, tarifas y documentos.",
+      "notFound": "Página de elegibilidad de visa no encontrada"
+    },
+    "hero": {
+      "heading": "Requisitos de visa de {{passport}} para {{destination}} ({{year}})",
+      "directAnswerVisaFree": "Los ciudadanos de {{passport}} no necesitan visa para viajar a {{destination}} en {{year}} en estancias cortas.",
+      "directAnswerOnArrival": "Los ciudadanos de {{passport}} pueden obtener una visa a la llegada al viajar a {{destination}} en {{year}}.",
+      "directAnswerEta": "Los ciudadanos de {{passport}} necesitan una e-Visa o autorización electrónica (eTA) antes de viajar a {{destination}} en {{year}}.",
+      "directAnswerRequired": "Los ciudadanos de {{passport}} necesitan una visa antes de viajar a {{destination}} en {{year}}.",
+      "directAnswerNotAllowed": "El viaje a {{destination}} con pasaporte de {{passport}} está actualmente restringido en {{year}}.",
+      "statusLabel": "Estado de elegibilidad",
+      "maxStayLabel": "Estancia máxima",
+      "processingTimeLabel": "Tiempo de procesamiento",
+      "feeSummaryLabel": "Tarifa de visa",
+      "applyNowCta": "Iniciar solicitud de visa",
+      "tripReadyCta": "Obtener eSIM y seguro de viaje",
+      "viewAllDestinationVisas": "Ver todos los detalles de visa para {{destination}}"
+    },
+    "faq": {
+      "title": "Preguntas frecuentes: {{passport}} a {{destination}}",
+      "needVisaQuestion": "¿Los ciudadanos de {{passport}} necesitan visa para {{destination}}?",
+      "maxStayQuestion": "¿Cuánto tiempo pueden permanecer los ciudadanos de {{passport}} en {{destination}}?",
+      "maxStayAnswer": "Los titulares de pasaporte de {{passport}} pueden permanecer en {{destination}} hasta {{days}} días por visita.",
+      "maxStayFallbackAnswer": "La duración de estancia permitida en {{destination}} para ciudadanos de {{passport}} depende del tipo de visa seleccionado.",
+      "costQuestion": "¿Cuánto cuesta una visa para {{destination}} para ciudadanos de {{passport}}?",
+      "costVisaFreeAnswer": "La entrada a {{destination}} es sin visa para ciudadanos de {{passport}} en visitas de corta duración.",
+      "costRangeAnswer": "Las tarifas de visa para {{destination}} varían desde {{feeSummary}} según el tipo de visa."
+    }
   }
 }

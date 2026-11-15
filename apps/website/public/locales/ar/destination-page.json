@@ -123,5 +123,37 @@
   },
   "aria": {
     "breadcrumb": "تنقل مسار التنقل لصفحة الوجهة"
+  },
+  "passportDestinationPage": {
+    "meta": {
+      "title": "متطلبات تأشيرة {{destination}} لمواطني {{passport}} ({{year}}) — {{status}}",
+      "description": "هل يحتاج مواطنو {{passport}} إلى تأشيرة للسفر إلى {{destination}} في {{year}}؟ الحالة: {{status}}. قارن مدة الإقامة وأوقات المعالجة والرسوم والمستندات المطلوبة.",
+      "notFound": "صفحة أهلية التأشيرة غير موجودة"
+    },
+    "hero": {
+      "heading": "متطلبات تأشيرة {{destination}} لمواطني {{passport}} ({{year}})",
+      "directAnswerVisaFree": "لا يحتاج مواطنو {{passport}} إلى تأشيرة للسفر إلى {{destination}} في {{year}} للإقامات القصيرة.",
+      "directAnswerOnArrival": "يمكن لمواطني {{passport}} الحصول على تأشيرة عند الوصول عند السفر إلى {{destination}} في {{year}}.",
+      "directAnswerEta": "يحتاج مواطنو {{passport}} إلى تأشيرة إلكترونية أو تصريح سفر إلكتروني قبل السفر إلى {{destination}} في {{year}}.",
+      "directAnswerRequired": "يحتاج مواطنو {{passport}} إلى تأشيرة مسبقة قبل السفر إلى {{destination}} في {{year}}.",
+      "directAnswerNotAllowed": "السفر إلى {{destination}} بجواز سفر {{passport}} مقيد حاليًا في {{year}}.",
+      "statusLabel": "حالة الأهلية",
+      "maxStayLabel": "أقصى مدة إقامة",
+      "processingTimeLabel": "وقت المعالجة",
+      "feeSummaryLabel": "رسوم التأشيرة",
+      "applyNowCta": "ابدأ طلب التأشيرة",
+      "tripReadyCta": "احصل على شريحة eSIM وتأمين السفر",
+      "viewAllDestinationVisas": "عرض جميع تفاصيل تأشيرات {{destination}}"
+    },
+    "faq": {
+      "title": "الأسئلة الشائعة: السفر من {{passport}} إلى {{destination}}",
+      "needVisaQuestion": "هل يحتاج مواطنو {{passport}} إلى تأشيرة للسفر إلى {{destination}}؟",
+      "maxStayQuestion": "كم يومًا يمكن لمواطني {{passport}} الإقامة في {{destination}}؟",
+      "maxStayAnswer": "يمكن لحاملي جواز سفر {{passport}} الإقامة في {{destination}} لمدة تصل إلى {{days}} يومًا في كل زيارة وفقًا لشروط الدخول.",
+      "maxStayFallbackAnswer": "تعتمد مدة الإقامة المسموح بها في {{destination}} لمواطني {{passport}} على نوع التأشيرة وشروط الدخول.",
+      "costQuestion": "كم تبلغ تكلفة تأشيرة {{destination}} لمواطني {{passport}}؟",
+      "costVisaFreeAnswer": "الدخول إلى {{destination}} معفى من التأشيرة لمواطني {{passport}} للزيارات القصيرة.",
+      "costRangeAnswer": "تتراوح رسوم تأشيرة {{destination}} من {{feeSummary}} حسب نوع التأشيرة وسرعة المعالجة."
+    }
   }
 }

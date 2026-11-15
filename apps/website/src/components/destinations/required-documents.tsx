@@ -8,6 +8,8 @@ interface RequiredDocumentsProps {
   compact?: boolean;
   locale: string;
   className?: string;
+  destinationCode?: string;
+  passportCode?: string;
 }
 
 export async function RequiredDocuments({
@@ -15,6 +17,8 @@ export async function RequiredDocuments({
   compact = false,
   locale,
   className,
+  destinationCode,
+  passportCode,
 }: RequiredDocumentsProps) {
   const { t } = await getTranslation(locale, "destination-page", {
     keyPrefix: "documents",
@@ -80,6 +84,16 @@ export async function RequiredDocuments({
           // Get icon for the document
           const documentIcon = getDocumentIcon(documentKey);
 
+          const partnerParams = new URLSearchParams();
+          if (destinationCode) {
+            partnerParams.set("destination_code", destinationCode);
+          }
+          if (passportCode) {
+            partnerParams.set("passport_code", passportCode);
+          }
+          const partnerQuery = partnerParams.toString();
+          const partnerHref = `https://example.com/partner/${documentKey}${partnerQuery ? `?${partnerQuery}` : ""}`;
+
           return (
             <div
               key={index}
@@ -100,7 +114,7 @@ export async function RequiredDocuments({
                 </div>
                 <div className="mt-2 text-xs">
                   <a
-                    href={`https://example.com/partner/${documentKey}`}
+                    href={partnerHref}
                     className="text-primary inline-flex items-center gap-1 hover:underline"
                     target="_blank"
                     rel="noopener noreferrer"

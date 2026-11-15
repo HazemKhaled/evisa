@@ -115,6 +115,16 @@ export async function checkVisaEligibility(
   destinationCode: string,
   locale: string
 ): Promise<VisaEligibilityInfo | null> {
+  const normalizedPassport = passportCode?.trim().toUpperCase() || "";
+  const normalizedDestination = destinationCode?.trim().toUpperCase() || "";
+
+  if (
+    !/^[A-Z]{2}$/.test(normalizedPassport) ||
+    !/^[A-Z]{2}$/.test(normalizedDestination)
+  ) {
+    return null;
+  }
+
   const cachedFn = unstable_cache(
     async (): Promise<VisaEligibilityInfo | null> => {
       try {
@@ -137,7 +147,7 @@ export async function checkVisaEligibility(
             )
             .where(
               and(
-                eq(countries.code, destinationCode),
+                eq(countries.code, normalizedDestination),
                 eq(countries.isActive, true),
                 isNull(countries.deletedAt)
               )
@@ -159,7 +169,7 @@ export async function checkVisaEligibility(
             )
             .where(
               and(
-                eq(countries.code, passportCode),
+                eq(countries.code, normalizedPassport),
                 eq(countries.isActive, true),
                 isNull(countries.deletedAt)
               )
@@ -275,11 +285,11 @@ export async function checkVisaEligibility(
         return null;
       }
     },
-    ["visa-eligibility", passportCode, destinationCode, locale],
+    ["visa-eligibility", normalizedPassport, normalizedDestination, locale],
     {
       tags: [
         "visas",
-        `visa-eligibility-${passportCode}-${destinationCode}`,
+        `visa-eligibility-${normalizedPassport}-${normalizedDestination}`,
         `visas-${locale}`,
       ],
       revalidate: 86400,
@@ -288,6 +298,8 @@ export async function checkVisaEligibility(
 
   return cachedFn();
 }
+
+export const getVisaEligibility = checkVisaEligibility;
 
 /**
  * Get eligible visa types for a specific passport-destination combination
@@ -894,6 +906,45 @@ export function generateAffiliateUrl({
 
   // Route to visa application page with destination/path
   return `${baseUrl}/apply?${utmString}`;
+}
+
+/**
+ * Dynamic affiliate router helper that selects the appropriate partner URL
+ * based on eligibility status and interview requirements, with destinationCode
+ * and passportCode pre-populated.
+ */
+export function getAffiliateCtaUrl({
+  destinationCode,
+  passportCode,
+  eligibilityStatus,
+  visaType,
+  requiresInterview,
+  partnerSlug,
+  locale,
+}: {
+  destinationCode: string;
+  passportCode?: string;
+  eligibilityStatus?: EligibilityStatus;
+  visaType?: string;
+  requiresInterview?: boolean;
+  partnerSlug?: string;
+  locale: string;
+}): string {
+  const resolvedSlug =
+    partnerSlug ||
+    (eligibilityStatus === "visa_free"
+      ? "airalo"
+      : requiresInterview
+        ? "veezaportal"
+        : "iVisa");
+
+  return generateAffiliateUrl({
+    partnerSlug: resolvedSlug,
+    destinationCode: destinationCode.trim().toUpperCase(),
+    passportCode: passportCode ? passportCode.trim().toUpperCase() : undefined,
+    visaType,
+    locale,
+  });
 }
 
 /**

@@ -1,6 +1,7 @@
 "use client";
 
 import { Button, CountryCombobox, Label } from "@repo/ui";
+import { useRouter } from "next/navigation";
 import * as React from "react";
 
 interface Country {
@@ -38,6 +39,7 @@ export function SearchForm({
   emptyText,
   searchPlaceholder,
 }: SearchFormProps) {
+  const router = useRouter();
   const [passportCountry, setPassportCountry] = React.useState<string>("");
   const [destinationCountry, setDestinationCountry] =
     React.useState<string>("");
@@ -137,17 +139,25 @@ export function SearchForm({
     } else {
       // Standard human submission behavior: persist passport and redirect if fields are selected
       if (passportCountry && destinationCountry) {
-        // Persist selected passport to localStorage for cross-page personalization
+        const normalizedPassport = passportCountry.trim().toUpperCase();
+        // Persist selected passport to localStorage and sticky cookie for cross-page personalization
         try {
-          localStorage.setItem("gtv_passport", passportCountry);
+          localStorage.setItem("gtv_passport", normalizedPassport);
         } catch {
           // Non-fatal if localStorage is unavailable
+        }
+        try {
+          document.cookie = `gtv_passport=${normalizedPassport}; path=/; max-age=31536000; SameSite=Lax`;
+        } catch {
+          // Non-fatal if cookies are unavailable
         }
         const locale =
           typeof document !== "undefined"
             ? document.documentElement.lang || "en"
             : "en";
-        window.location.href = `/${locale}/d/${destinationCountry.toLowerCase()}?passport=${passportCountry.toLowerCase()}`;
+        router.push(
+          `/${locale}/d/${destinationCountry.trim().toLowerCase()}/p/${passportCountry.trim().toLowerCase()}`
+        );
       }
     }
   };
