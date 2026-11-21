@@ -19,6 +19,7 @@ import {
 import { type PaginatedResult } from "@repo/utils";
 import { revalidatePath } from "next/cache";
 
+import { assertAdminAuth } from "@/lib/auth";
 import { type ActionResult, handleActionError } from "@/lib/errors";
 
 interface EligibilityI18nData {
@@ -56,6 +57,7 @@ interface GetEligibilityPaginatedInput {
 }
 
 export async function getEligibilityRules(): Promise<VisaEligibility[]> {
+  await assertAdminAuth();
   const db = getDb();
   const result = await db
     .select()
@@ -69,6 +71,7 @@ export async function getEligibilityRules(): Promise<VisaEligibility[]> {
 export async function getEligibilityPaginated(
   input: GetEligibilityPaginatedInput = {}
 ): Promise<PaginatedResult<VisaEligibility>> {
+  await assertAdminAuth();
   const { page = 1, pageSize = 10, search = "" } = input;
   const db = getDb();
   const offset = (page - 1) * pageSize;
@@ -110,6 +113,7 @@ export async function getEligibilityWithI18n(id: number): Promise<{
   eligibility: typeof visaEligibility.$inferSelect;
   i18n: (typeof visaEligibilityI18n.$inferSelect)[];
 } | null> {
+  await assertAdminAuth();
   const db = getDb();
 
   const [eligibilityRule] = await db

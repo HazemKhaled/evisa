@@ -1,6 +1,16 @@
-import { clerkMiddleware } from "@repo/auth/server";
+import { clerkMiddleware, createRouteMatcher } from "@repo/auth/server";
 
-export default clerkMiddleware();
+const isPublicRoute = createRouteMatcher([
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+  "/robots.txt",
+]);
+
+export default clerkMiddleware(async (auth, request) => {
+  if (!isPublicRoute(request)) {
+    await auth.protect();
+  }
+});
 
 export const config = {
   matcher: [
