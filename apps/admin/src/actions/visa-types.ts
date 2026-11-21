@@ -18,6 +18,7 @@ import {
 import { type PaginatedResult } from "@repo/utils";
 import { revalidatePath } from "next/cache";
 
+import { assertAdminAuth } from "@/lib/auth";
 import { type ActionResult, handleActionError } from "@/lib/errors";
 import { invalidatePublicVisaTypes } from "@/lib/public-site-cache";
 
@@ -48,6 +49,7 @@ interface UpdateVisaTypeInput extends CreateVisaTypeInput {
 }
 
 export async function getVisaTypes(): Promise<VisaType[]> {
+  await assertAdminAuth();
   const db = getDb();
   const result = await db
     .select()
@@ -66,6 +68,7 @@ interface GetVisaTypesPaginatedInput {
 export async function getVisaTypesPaginated(
   input: GetVisaTypesPaginatedInput = {}
 ): Promise<PaginatedResult<VisaType>> {
+  await assertAdminAuth();
   const { page = 1, pageSize = 10, search = "" } = input;
   const db = getDb();
   const offset = (page - 1) * pageSize;
@@ -110,6 +113,7 @@ export async function getVisaTypeWithI18n(id: number): Promise<{
   visaType: typeof visaTypes.$inferSelect;
   i18n: (typeof visaTypesI18n.$inferSelect)[];
 } | null> {
+  await assertAdminAuth();
   const db = getDb();
 
   const [visaType] = await db

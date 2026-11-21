@@ -17,6 +17,7 @@ import {
 import { type PaginatedResult } from "@repo/utils";
 import { revalidatePath } from "next/cache";
 
+import { assertAdminAuth } from "@/lib/auth";
 import { type ActionResult, handleActionError } from "@/lib/errors";
 import { invalidatePublicDestinations } from "@/lib/public-site-cache";
 
@@ -41,6 +42,7 @@ interface UpdateCountryInput extends CreateCountryInput {
 }
 
 export async function getCountries(): Promise<Country[]> {
+  await assertAdminAuth();
   const db = getDb();
   const result = await db
     .select()
@@ -59,6 +61,7 @@ interface GetCountriesPaginatedInput {
 export async function getCountriesPaginated(
   input: GetCountriesPaginatedInput = {}
 ): Promise<PaginatedResult<Country>> {
+  await assertAdminAuth();
   const { page = 1, pageSize = 10, search = "" } = input;
   const db = getDb();
   const offset = (page - 1) * pageSize;
@@ -103,6 +106,7 @@ export async function getCountryWithI18n(code: string): Promise<{
   country: typeof countries.$inferSelect;
   i18n: (typeof countriesI18n.$inferSelect)[];
 } | null> {
+  await assertAdminAuth();
   const db = getDb();
 
   const [country] = await db

@@ -20,6 +20,7 @@ import {
 import { type PaginatedResult } from "@repo/utils";
 import { revalidatePath } from "next/cache";
 
+import { assertAdminAuth } from "@/lib/auth";
 import { type ActionResult, handleActionError } from "@/lib/errors";
 import { invalidatePublicBlog } from "@/lib/public-site-cache";
 
@@ -54,6 +55,7 @@ interface GetBlogPostsPaginatedInput {
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
+  await assertAdminAuth();
   const db = getDb();
   const result = await db
     .select()
@@ -66,6 +68,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 export async function getBlogPostsPaginated(
   input: GetBlogPostsPaginatedInput = {}
 ): Promise<PaginatedResult<BlogPost>> {
+  await assertAdminAuth();
   const { page = 1, pageSize = 10, search = "" } = input;
   const db = getDb();
   const offset = (page - 1) * pageSize;
@@ -108,6 +111,7 @@ export async function getBlogPostWithI18n(id: number): Promise<{
   i18n: (typeof blogPostsI18n.$inferSelect)[];
   tagIds: number[];
 } | null> {
+  await assertAdminAuth();
   const db = getDb();
 
   const [post] = await db
@@ -280,6 +284,7 @@ export async function deleteBlogPost(id: number): Promise<ActionResult> {
 }
 
 export async function getAllTags(): Promise<(typeof blogTags.$inferSelect)[]> {
+  await assertAdminAuth();
   const db = getDb();
   return await db.select().from(blogTags).orderBy(blogTags.name);
 }

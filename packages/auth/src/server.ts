@@ -8,7 +8,12 @@
 import { auth } from "@clerk/nextjs/server";
 
 // Re-export Clerk server utilities
-export { auth, clerkMiddleware, currentUser } from "@clerk/nextjs/server";
+export {
+  auth,
+  clerkMiddleware,
+  createRouteMatcher,
+  currentUser,
+} from "@clerk/nextjs/server";
 
 /**
  * Requires authentication for admin operations
