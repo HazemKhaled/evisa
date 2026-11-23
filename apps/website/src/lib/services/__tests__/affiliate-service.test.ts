@@ -1,4 +1,8 @@
-import { generateAffiliateUrl } from "../visa-service";
+import {
+  generateAffiliateUrl,
+  getAffiliateCtaUrl,
+  getVisaEligibility,
+} from "../visa-service";
 
 describe("generateAffiliateUrl", () => {
   const defaultArgs = {
@@ -82,5 +86,56 @@ describe("generateAffiliateUrl", () => {
 
     expect(url).not.toContain("passport_code=");
     expect(url).not.toContain("visa_type=");
+  });
+});
+
+describe("getAffiliateCtaUrl", () => {
+  it("routes visa_free eligibility to Airalo with destination and passport pre-populated", () => {
+    const url = getAffiliateCtaUrl({
+      destinationCode: "AE",
+      passportCode: "US",
+      eligibilityStatus: "visa_free",
+      locale: "en",
+    });
+
+    expect(url).toContain("https://airalo.com/apply?");
+    expect(url).toContain("destination_code=AE");
+    expect(url).toContain("passport_code=US");
+    expect(url).toContain("utm_term=en");
+  });
+
+  it("routes requiresInterview visas to Veeza.ai partner URL with destination and passport pre-populated", () => {
+    const url = getAffiliateCtaUrl({
+      destinationCode: "DE",
+      passportCode: "EG",
+      eligibilityStatus: "required",
+      requiresInterview: true,
+      visaType: "Schengen Tourist Visa",
+      locale: "ar",
+    });
+
+    expect(url).toContain("https://veezaportal.com/apply?");
+    expect(url).toContain("destination_code=DE");
+    expect(url).toContain("passport_code=EG");
+    expect(url).toContain("utm_term=ar");
+  });
+
+  it("routes standard e-Visa / eta / required visas to iVisa with destination and passport pre-populated", () => {
+    const url = getAffiliateCtaUrl({
+      destinationCode: "TR",
+      passportCode: "PK",
+      eligibilityStatus: "eta",
+      visaType: "e-Visa",
+      locale: "en",
+    });
+
+    expect(url).toContain("https://www.ivisa.com/apply?");
+    expect(url).toContain("destination_code=TR");
+    expect(url).toContain("passport_code=PK");
+    expect(url).toContain("visa_type=e-Visa");
+  });
+
+  it("exposes getVisaEligibility helper in visa-service", () => {
+    expect(typeof getVisaEligibility).toBe("function");
   });
 });

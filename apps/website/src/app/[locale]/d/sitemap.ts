@@ -7,6 +7,24 @@ import { getVisaTypesByDestination } from "@/lib/services/visa-service";
 
 export const revalidate = 86400; // Revalidate every day
 
+export const HIGH_PRIORITY_PASSPORTS = [
+  "US",
+  "GB",
+  "DE",
+  "FR",
+  "ES",
+  "IT",
+  "PT",
+  "RU",
+  "AE",
+  "SA",
+  "EG",
+  "IN",
+  "CA",
+  "AU",
+  "BR",
+] as const;
+
 export async function generateSitemaps() {
   return languages.map(locale => ({ id: locale }));
 }
@@ -55,6 +73,26 @@ export default async function sitemap({
       priority: 0.7,
       alternates: { languages: blogAlternates },
     });
+
+    // High-priority passport-destination combinations (/d/[destination]/p/[passport])
+    const destLower = code.toLowerCase();
+    for (const passportCode of HIGH_PRIORITY_PASSPORTS) {
+      const passLower = passportCode.toLowerCase();
+      if (passLower === destLower) continue;
+
+      const passportAlternates: Record<string, string> = {};
+      languages.forEach(lang => {
+        passportAlternates[lang] =
+          `${base}/${lang}/d/${destLower}/p/${passLower}`;
+      });
+
+      urls.push({
+        url: `${base}/${locale}/d/${destLower}/p/${passLower}`,
+        changeFrequency: "weekly",
+        priority: 0.8,
+        alternates: { languages: passportAlternates },
+      });
+    }
 
     // Fetch visa types for this destination and add them to sitemap
     try {

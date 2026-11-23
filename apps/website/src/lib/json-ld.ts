@@ -695,3 +695,89 @@ export function generateDestinationJsonLd(
     ],
   };
 }
+
+export interface GovernmentServiceSchemaInput {
+  name: string;
+  description: string;
+  url: string;
+  serviceType: string;
+  destinationName: string;
+  destinationCode: string;
+  passportName: string;
+  passportCode: string;
+  eligibilityStatus: string;
+  maxStayDays?: number;
+  processingTimeRange?: { min: number; max: number };
+  feeRange?: { min: number; max: number; currency: string };
+  providerName?: string;
+  providerUrl?: string;
+}
+
+/**
+ * Generate GovernmentService JSON-LD tailored to a [Passport] -> [Destination] pair
+ */
+export function generateGovernmentServiceJsonLd(
+  input: GovernmentServiceSchemaInput
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "GovernmentService",
+    name: input.name,
+    description: input.description,
+    url: input.url,
+    serviceType: input.serviceType,
+    provider: {
+      "@type": "Organization",
+      name: input.providerName || "GetTravelVisa.com",
+      url: input.providerUrl || env.baseUrl,
+    },
+    areaServed: {
+      "@type": "Country",
+      name: input.destinationName,
+      identifier: input.destinationCode,
+    },
+    audience: {
+      "@type": "Audience",
+      audienceType: input.passportName,
+      geographicArea: {
+        "@type": "Country",
+        name: input.passportName,
+        identifier: input.passportCode,
+      },
+    },
+    ...(input.feeRange && {
+      offers: {
+        "@type": "AggregateOffer",
+        lowPrice: input.feeRange.min.toString(),
+        highPrice: input.feeRange.max.toString(),
+        priceCurrency: input.feeRange.currency,
+      },
+    }),
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: "eligibilityStatus",
+        value: input.eligibilityStatus,
+      },
+      ...(input.maxStayDays
+        ? [
+            {
+              "@type": "PropertyValue",
+              name: "maxStayDays",
+              value: input.maxStayDays.toString(),
+            },
+          ]
+        : []),
+      ...(input.processingTimeRange && input.processingTimeRange.max > 0
+        ? [
+            {
+              "@type": "PropertyValue",
+              name: "processingTime",
+              value: `P${input.processingTimeRange.min}D`,
+              valueReference: "https://schema.org/Duration",
+            },
+          ]
+        : []),
+    ],
+  };
+}

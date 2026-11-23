@@ -123,5 +123,37 @@
   },
   "aria": {
     "breadcrumb": "Навигация хлебных крошек страницы назначения"
+  },
+  "passportDestinationPage": {
+    "meta": {
+      "title": "Визовые требования из {{passport}} в {{destination}} ({{year}}) — {{status}}",
+      "description": "Нужна ли гражданам {{passport}} виза в {{destination}} в {{year}} году? Статус: {{status}}. Срок пребывания, время оформления, сборы и необходимые документы.",
+      "notFound": "Страница визовых требований не найдена"
+    },
+    "hero": {
+      "heading": "Визовые требования: {{passport}} → {{destination}} ({{year}})",
+      "directAnswerVisaFree": "Гражданам {{passport}} не нужна виза для поездки в {{destination}} в {{year}} году при краткосрочном визите.",
+      "directAnswerOnArrival": "Граждане {{passport}} могут оформить визу по прибытии при поездке в {{destination}} в {{year}} году.",
+      "directAnswerEta": "Гражданам {{passport}} необходимо оформить электронную визу (e-Visa / eTA) перед поездкой в {{destination}} в {{year}} году.",
+      "directAnswerRequired": "Гражданам {{passport}} требуется получить визу перед поездкой в {{destination}} в {{year}} году.",
+      "directAnswerNotAllowed": "Поездки в {{destination}} по паспорту {{passport}} в {{year}} году временно ограничены.",
+      "statusLabel": "Статус визы",
+      "maxStayLabel": "Макс. пребывание",
+      "processingTimeLabel": "Срок оформления",
+      "feeSummaryLabel": "Визовый сбор",
+      "applyNowCta": "Начать оформление визы",
+      "tripReadyCta": "Оформить туристическую eSIM и страховку",
+      "viewAllDestinationVisas": "Все визовые опции для {{destination}}"
+    },
+    "faq": {
+      "title": "Часто задаваемые вопросы: {{passport}} → {{destination}}",
+      "needVisaQuestion": "Нужна ли гражданам {{passport}} виза для поездки в {{destination}}?",
+      "maxStayQuestion": "Сколько дней граждане {{passport}} могут находиться в {{destination}}?",
+      "maxStayAnswer": "Владельцы паспорта {{passport}} могут находиться в {{destination}} до {{days}} дней за одну поездку.",
+      "maxStayFallbackAnswer": "Допустимый срок пребывания в {{destination}} для граждан {{passport}} зависит от выбранного типа визы.",
+      "costQuestion": "Сколько стоит виза в {{destination}} для граждан {{passport}}?",
+      "costVisaFreeAnswer": "Краткосрочный въезд в {{destination}} для граждан {{passport}} является безвизовым.",
+      "costRangeAnswer": "Визовый сбор для поездки в {{destination}} составляет {{feeSummary}} в зависимости от типа визы."
+    }
   }
 }

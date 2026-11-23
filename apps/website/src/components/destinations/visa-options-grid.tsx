@@ -15,6 +15,7 @@ interface VisaOptionsGridProps {
   destination: DestinationWithVisaTypes;
   visaRequirements: VisaRequirements | null;
   locale: string;
+  passportCode?: string;
   className?: string;
 }
 
@@ -48,6 +49,7 @@ export async function VisaOptionsGrid({
   destination,
   visaRequirements,
   locale,
+  passportCode,
   className,
 }: VisaOptionsGridProps) {
   const { t } = await getTranslation(locale, "destination-page", {
@@ -146,6 +148,7 @@ export async function VisaOptionsGrid({
               visaType={visaType}
               destination={destination}
               locale={locale}
+              passportCode={passportCode}
             />
           ))
         )}
