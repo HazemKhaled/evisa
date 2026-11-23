@@ -13,6 +13,9 @@ export { getDb as db } from "./connection";
 // Export schemas
 export * from "./schema";
 
+// Export passport-index sync script utilities
+export * from "./scripts/sync-passport-index";
+
 // Export types
 export type { Database } from "./connection";
 
